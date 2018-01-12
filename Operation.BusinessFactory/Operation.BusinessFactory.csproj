@@ -1,0 +1,80 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{A3636D65-64D3-4F1A-B560-910EC5031EB7}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Operation.BusinessFactory</RootNamespace>
+    <AssemblyName>Operation.BusinessFactory</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="BookingBO.cs" />
+    <Compile Include="CustomerLogInBO.cs" />
+    <Compile Include="DriverActivityBO.cs" />
+    <Compile Include="InvoiceBO.cs" />
+    <Compile Include="OperatorLogInBO.cs" />
+    <Compile Include="OperatorVehicleBO.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SearchBO.cs" />
+    <Compile Include="SummaryBO.cs" />
+    <Compile Include="TripBO.cs" />
+    <Compile Include="TripMonitorBO.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Master.Contract\Master.Contract.csproj">
+      <Project>{b9e20a20-01c6-480a-a49a-647df7c89463}</Project>
+      <Name>Master.Contract</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Operation.Contract\Operation.Contract.csproj">
+      <Project>{ef1065e7-b862-4409-88c4-bfd4a1a83ab5}</Project>
+      <Name>Operation.Contract</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Operation.DataFactory\Operation.DataFactory.csproj">
+      <Project>{37b63eea-9a96-475b-8af3-4d81ece5753e}</Project>
+      <Name>Operation.DataFactory</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\PickC.Services\PickC.Services.csproj">
+      <Project>{a3cef276-f503-45b0-8e74-0211475d2b09}</Project>
+      <Name>PickC.Services</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

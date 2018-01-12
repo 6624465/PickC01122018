@@ -1,0 +1,115 @@
+﻿@model  Operation.Contract.UserData
+@{
+    ViewBag.Title = "UserAppCancellation";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@section seccss{
+    <link href="~/Css/jquery.dataTables.min.css" rel="stylesheet" />
+    }
+<section class="content">
+    <div class="row">
+        <div class="col-md-12">
+            @{ Html.RenderPartial("DashboardMenuList",Model); }
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            @{ Html.RenderPartial("UserApps"); }
+        </div>
+    </div>
+    <div class="box-body" id="ajaxGrid">
+        <div class="row" style="margin:15px 0 0px -30px;">
+            <div class="col-md-12">
+                <div class="col-md-6">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <h2>Cancelled By Customer</h2>
+                            
+                                <div class="table-responsive">
+                                    <table id="customer_cancellation" class="table table-hover table-bordered">
+                                        <thead>
+                                            <tr>
+                                                <th>Customer Name</th>
+                                                <th>Mobile No.</th>
+                                                <th>Booking No.</th>
+                                                <th>Booking Date</th>
+                                                <th>Reason For Cancellation</th>
+                                                <th>Status</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            @foreach (var item in Model.customerCancellation)
+                                            {
+                                                <tr>
+                                                    <td>@Html.DisplayFor(i => item.CustomerName)</td>
+                                                    <td>@Html.DisplayFor(i => item.MobileNo)</td>
+                                                    <td>@Html.DisplayFor(i => item.BookingNo)</td>
+                                                    <td>@Html.DisplayFor(i => item.BookingDate)</td>
+                                                    <td>@Html.DisplayFor(i => item.Reason)</td>
+                                                    <td>@Html.DisplayFor(i => item.Status)</td>
+                                                </tr>
+                                            }
+                                        </tbody>
+                                    </table>
+                                </div>
+                            
+                        </div>
+                    </div>
+                </div>
+                <h2>Cancelled By Driver</h2>
+                <div class="col-md-6">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="table-responsive">
+                                <table id="driver_cancellation" class="table table-hover table-bordered">
+                                    <thead>
+                                        <tr>
+                                            <th>Booking No.</th>
+                                            <th>Driver Name</th>
+                                            <th>Truck No.</th>
+                                            <th>Mobile No.</th>
+                                            <th>Cancellation Remarks</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @foreach (var item in Model.driverCancellation)
+                                        {
+                                            <tr>
+                                                <td>@Html.DisplayFor(i => item.BookingNo)</td>
+                                                <td>@Html.DisplayFor(i => item.DriverName)</td>
+                                                <td>@Html.DisplayFor(i => item.TruckNo)</td>
+                                                <td>@Html.DisplayFor(i => item.MobileNo)</td>
+                                                <td>@Html.DisplayFor(i => item.Remarks)</td>
+                                            </tr>
+                                        }
+                                    </tbody>
+                                </table>
+                            </div>
+                            </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</section>
+@section secscripts{
+    <script src="@Url.Content("~/Scripts/jquery.validate.js")"></script>
+    <script src="@Url.Content("~/Scripts/jquery-ui.js")"></script>
+    <script src="@Url.Content("~/Scripts/moment-with-locales.js")"></script>
+    <script src="@Url.Content("~/Scripts/jquery.dataTables.min.js")"></script>
+
+    <script type="text/javascript">
+
+        $(function () {
+            $('#UserAppCancellation').parent().addClass('active');
+            $('.pagination ul li a').attr('href', '#');
+        });
+
+        $(document).ready(function () {
+            $('#driver_cancellation').dataTable();
+            $('#customer_cancellation').dataTable();
+        });
+    </script>
+    }
+

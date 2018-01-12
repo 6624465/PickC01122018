@@ -1,0 +1,47 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/OperatorWeb/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container">
+    <div class="row marginTop">
+        <div class="col-md-12 col-xs-12">
+            <div class="box box-default box-solid">
+                <div class="box-header with-border">
+                    <h3 class="box-title">Support</h3>
+                </div>
+                <div class="box-body">
+                    <div class="row">
+                        <div class="col-md-12 col-xs-12">
+                            <ul class="nav nav-pills nav-stacked">
+                                <li>
+                                    @Html.ActionLink("Shift Management FAQ's", "faq", "Support", null, new { style = "color:#3c8dbc" })
+                                </li>
+                                <li>
+                                    @Html.ActionLink("Addresses of PickC offices accross the country", "globaloffices", "Support", null, new { style = "color:#3c8dbc" })
+                                </li>
+                                <li>
+                                    @Html.ActionLink("Troubleshooting the Operator App", "troubleshoot", "Support", null, new { style = "color:#3c8dbc" })
+                                </li>
+                                <li>
+                                    @Html.ActionLink("Operator App", "operatorapp", "Support", null, new { style = "color:#3c8dbc" })
+                                </li>
+                                <li>
+                                    @Html.ActionLink("Bookings/Trips", "bookingstrip", "Support", null, new { style = "color:#3c8dbc" })
+                                </li>
+                                <li>
+                                    @Html.ActionLink("Terms/Agreement", "terms", "Support", null, new { style = "color:#3c8dbc" })
+                                </li>
+                                <li>
+                                    @Html.ActionLink("Account Related", "accountrelated", "Support", null, new { style = "color:#3c8dbc" })
+                                </li>
+                            </ul>
+                        </div>                        
+                    </div>
+                </div>                
+            </div>            
+        </div>
+    </div>
+</div>
+

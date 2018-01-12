@@ -1,0 +1,112 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <link href="@Url.Content("~/Css/font-awesome-4.6.2/css/font-awesome.css")" rel="stylesheet" />
+    <link href="@Url.Content("~/Css/bootstrap.min.css")" rel="stylesheet" />
+    <link href="@Url.Content("~/Css/AdminLTE.min.css")" rel="stylesheet" />
+    <title>Invoice</title>
+</head>
+<body>
+    <!--onload="window.print();"-->
+    <div class="wrapper">
+        <section class="invoice">
+            <div class="row">
+                <div class="col-xs-12">
+                    <h2 class="page-header">
+                        <img src="http://ragsarma-001-site6.htempurl.com/images/logo.png" />
+                        <span class="align-center">TRIP INVOICE</span>
+                        <small class="pull-right">@DateTime.Now.ToLongDateString()</small>
+                    </h2>
+                </div>
+            </div>
+            <div class="row invoice-info">
+                <div class="col-sm-12 invoice-col">
+                    <h4><strong>Vijaya Babu Arigela</strong>, Thanks for using our cargo services.</h4>
+                </div>
+            </div>
+            <div class="row invoice-info align-center">
+                <div class="col-sm-12 invoice-col">
+                    <h4>CRN TRNS1234</h4>
+                </div>
+            </div>
+            <div class="row invoice-info align-center">
+                <div class="col-sm-12 invoice-col">
+                    <h4>Total Billed Amount &nbsp;<i class="fa fa-inr" aria-hidden="true"></i>&nbsp;450/-</h4>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-5 table-responsive">
+                    <table class="table table-striped">
+                        <tbody>
+                            <tr>
+                                <td>Base fare for 4 km</td>
+                                <td class="pull-right"><i class="fa fa-inr" aria-hidden="true"></i>&nbsp;80.00</td>
+
+
+                            </tr>
+                            <tr>
+                                <td>Distance fare for 5.1 km</td>
+                                <td class="pull-right"><i class="fa fa-inr" aria-hidden="true"></i>&nbsp;40.80</td>
+
+                            </tr>
+                            <tr>
+                                <td>Ride Time Fare for 41.0 min</td>
+                                <td class="pull-right"><i class="fa fa-inr" aria-hidden="true"></i>&nbsp;41.00</td>
+
+                            </tr>
+                            <tr>
+                                <td>Total Fare</td>
+                                <td class="pull-right"><i class="fa fa-inr" aria-hidden="true"></i>&nbsp;161.80</td>
+
+                            </tr>
+
+                            <tr>
+                                <td>Service Tax (5.6 %)</td>
+                                <td class="pull-right"><i class="fa fa-inr" aria-hidden="true"></i>&nbsp;9.06</td>
+
+                            </tr>
+                            <tr>
+                                <td>Swachh Bharat Tax (0.2 %)</td>
+                                <td class="pull-right"><i class="fa fa-inr" aria-hidden="true"></i>&nbsp;0.32</td>
+
+                            </tr>
+                            <tr>
+                                <td>Krishi Kalyan Cess (0.2 %)</td>
+                                <td class="pull-right"><i class="fa fa-inr" aria-hidden="true"></i>&nbsp;0.32</td>
+
+                            </tr>
+                            <tr>
+                                <td>Total Bill (round off)</td>
+                                <td class="pull-right"><i class="fa fa-inr" aria-hidden="true"></i>&nbsp;171.00</td>
+
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="col-xs-5">
+                    <table class="table table-striped">
+                        <tbody>
+                            <tr>
+                                <td class="align-center"><i class="fa fa-truck" aria-hidden="true"></i>&nbsp;TATA ACE</td>
+                            </tr>
+                            <tr>
+                                <td class="align-center">07:58 PM<span class="text-green">&nbsp;Kukatpally, Telangana, India</span></td>
+                            </tr>
+                            <tr>
+                                <td class="align-center">08:39 PM<span class="text-red">&nbsp;Miyapur, Telangana, India</span></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+    </div>
+</body>
+</html>

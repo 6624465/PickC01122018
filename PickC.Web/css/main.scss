@@ -1,0 +1,152 @@
+$main-color:#05386B;
+.dj {
+  img {
+    margin-bottom: 20px;
+  }
+}
+
+.bullet-list {
+  ;
+  ul li {
+    list-style: circle;
+    font-weight: 500;
+    font-size: 15px;
+    text-align: justify;
+    margin-bottom: 5px;
+  }
+}
+
+.head {
+  h1 {
+    color: $main-color !important;
+    font-weight: bold;
+    font-size: 26px;
+  }
+  h2 {
+    margin: 0px;
+    padding: 0px;
+    color: $main-color !important;
+    font-weight: bold;
+    text-align: center;
+  }
+  h3 a {
+    color: $main-color !important;
+    font-weight: bold;
+    font-size: 13px !important;
+    margin: 0px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+}
+
+.disc-view {
+  padding: 40px 0px;
+}
+
+.disc {
+  h4 {
+    font-size: 20px;
+    font-weight: bold;
+    color: orange;
+  }
+}
+
+.myclose {
+  border: none;
+  background: none;
+  float: right;
+  font-weight: 100;
+  font-size: 20px;
+  color: #fff;
+}
+
+.modal-header {
+  min-height: 16.43px;
+  padding: 13px;
+  background-color: orange;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, .5);
+  // border-radius: 3px 3px 0px 0px;
+  color: #fff;
+}
+
+.modal-title {
+  color: #fff;
+  font-weight: 600;
+}
+
+.form-control::-moz-placeholder {
+  color: #fff;
+  opacity: 1;
+}
+
+.viewbtn {
+  padding: 2px 20px;
+  background: #05386B;
+  border: #05386B;
+}
+
+.viewbtn:hover {
+  background: lighten(#05386B, 20%);
+}
+
+.form-control::-moz-placeholder {
+  color: black;
+}
+
+.form-control:-ms-input-placeholder {
+  color: black;
+}
+
+.form-control::-webkit-input-placeholder {
+  color: black;
+}
+
+.material{
+position: relative;
+}
+.material .inner-material{
+	position: absolute;
+left: 0px;
+bottom: 0px;
+background: RGBA(0, 0, 0, 0.75);
+padding: 0px 10px;
+right: 20px;
+	h4{
+		font-weight: bold;
+		a{
+			color: #fff;
+		}
+	}
+	h5{
+		font-weight: bold;
+		a{
+			color: #fff;
+		}
+	}
+}
+
+.sinks{
+position: relative;
+}
+.sinks .inner-sinks{
+	position: absolute;
+left: 0px;
+bottom: 0px;
+background: RGBA(0, 0, 0, 0.75);
+padding: 0px 10px;
+right: 20px;
+	h4{
+		font-weight: bold;
+		a{
+			color: #fff;
+		}
+	}
+	h5{
+		font-weight: bold;
+		a{
+			color: #fff;
+		}
+	}
+}
+

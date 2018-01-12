@@ -1,0 +1,64 @@
+﻿@model IEnumerable<PickC.Internal.ViewModals.TripMonitorVm>
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/Internal/Views/Shared/_Layout.cshtml";
+}
+
+@section seccss{
+    <style type="text/css">
+        #map {
+            height: 380px;
+            width: 100%;
+            margin: 0px;
+            padding: 0px;
+        }
+    </style>
+}
+<section class="content">
+    <div class="row">
+        <ul id="myTab" class="nav nav-tabs">
+            <li class="active">
+                <a href="@Url.Content("~/Dashboard/GetDriversList")" data-toggle="tab">
+                    Tab1
+              
+                </a>
+            </li>
+            <li>
+                <a href="#ios" data-toggle="tab">Tab2</a>
+            </li>
+
+            <li>
+                <a href="#tab" data-toggle="tab">
+                    Tab3
+                </a>
+            </li>
+        </ul>
+        <div id="myTabContent" class="tab-content">
+            <div class="tab-pane fade in active" id="home">
+                <p>
+                    test1
+                    @Html.ActionLink("drivers", "GetDriversList", "Dashboard")
+                </p>
+            </div>
+
+            <div class="tab-pane fade" id="ios">
+                <p>
+                    test2
+                </p>
+            </div>
+
+            <div class="tab-pane fade" id="tab">
+                <p>
+                    test3
+                </p>
+            </div>
+        </div>        
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <div id="map" style="border: 1px solid rgba(255,255,255,0.15);"></div>
+        </div>
+    </div>
+</section>
+
+

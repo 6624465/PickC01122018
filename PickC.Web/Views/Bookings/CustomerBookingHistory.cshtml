@@ -1,0 +1,93 @@
+﻿@model PickC.Services.DTO.BookingHistoryDTO
+@using PickC.Web.HtmlHelpers
+@{
+    ViewBag.Title = "BookingHistory";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@{
+    WebGrid grid = new WebGrid(Model.BookingHistoryDetails, rowsPerPage: 10, selectionFieldName: "selectedRow", ajaxUpdateContainerId: "grid");
+}
+<style>
+    table td a, th a {
+        color: #000;
+    }
+</style>
+@using (Html.BeginForm("CustomersBookingHistory", "Bookings", FormMethod.Post, new { id = "frmBookingHistory", name = "frmBookingHistory" }))
+{ <section class="help">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-12 col-xs-12">
+                    <div class="content" style="min-height:350px;">
+                        <h1 class="pickcheader">Booking History</h1>
+                        <br />
+                        <div class="row">
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label style="margin-bottom:5px;">Enter Mobile No.</label>
+
+                                    @Html.TextBox("CustomerMobile", null, new { @class = "form-control", id = "txtCustomerMobile" })
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-2">
+                                    <br />
+                                    <button type="button" id="btnBookingHistory" class="btn btn-default btn-submit btn-md ripple has-ripple" onclick="CusBookingHistory()">Search</button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12">
+                                @if (Model.BookingHistoryDetails != null && Model.BookingHistoryDetails.Count != 0)
+                                {
+                                    @grid.GetHtml(tableStyle: "table",
+                                                             headerStyle: "header",
+                                                             alternatingRowStyle: "alt",
+                                                             selectedRowStyle: "select",
+                                                             columns: grid.Columns(
+                                                             grid.Column(columnName: "BookingNo", header: "Booking No", canSort: false),
+                                                             grid.Column("BookingDate", "Booking Date", canSort: false),
+                                                             grid.Column("CustomerID", "Mobile Number", canSort: false),
+                                                             grid.Column("LocationFrom", "Location From", canSort: false),
+                                                             grid.Column("LocationTo", header: "Location To", canSort: false),
+                                                             grid.Column("DriverName", "Driver Name", canSort: false),
+                                                             grid.Column("VehicleType", "Vehicle Type", canSort: false),
+                                                             grid.Column("VehicleNo", "Vehicle No", canSort: false),
+                                                             grid.Column(header: "PDF", canSort: false, format: @<text>@Html.ActionLink("PrintInvoice", "PrintCustomerHistoryInvoice", new { BookingNo = item.BookingNo })</text>)
+                                                         ))
+                                }
+                                else if (@Model.CustomerMobile == null)
+                                {
+                                    @*<div>
+                                        <label>No Data Found...!</label>
+                                    </div>*@
+                                }
+                                <div class="col-md-12">
+                                    <div class="pull-right">@grid.PagerList(mode: WebGridPagerModes.All, paginationStyle: "pagination pagination-sm")</div>
+                                </div>
+
+                            </div>
+                            
+                        </div>
+                    </div>
+
+                    <div class="row">
+                       
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+}
+
+<script type="text/javascript">
+    function CusBookingHistory() {
+        var customerMobile = $('#txtCustomerMobile').val();
+        debugger;
+        if (customerMobile == "" || customerMobile == undefined)
+            alert("Please Enter MobileNo.");
+        else {
+            $('#frmBookingHistory').submit();
+            $('#div-CustomerMobile').css("display", "none");
+        }
+    }
+</script>

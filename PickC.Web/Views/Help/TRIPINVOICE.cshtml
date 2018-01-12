@@ -1,0 +1,259 @@
+﻿@model Master.Contract.TripInvoice
+@{
+    ViewBag.Title = "TRIPINVOICE";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<section class="help">
+
+    <div class="container">
+        <div class="row">
+
+            <div class="col-xs-12">
+                <div class="content">
+                    <div class="row">
+
+                        <div class="col-xs-3">
+                            <img src="~/images/logo.png" />
+                        </div>
+                        <div class="col-xs-6">
+                            <h2 style="text-align:center">Trip Invoice</h2>
+                        </div>
+                        <div class="col-xs-3">
+                            <h2 style="font-size:14px; text-align:right">Date:@Model.InvoiceDate</h2>
+                        </div>
+                    </div>
+                    <div class="row" style="margin-top:25px;">
+
+                        <div class="col-xs-12">
+                            <p>Customer Name: @Model.CustomerName</p>
+                            <p>CRN No.: @Model.BookingNo </p>
+                        </div>
+
+
+                    </div>
+                    <div class="row" style="margin-top:25px;">
+                        <div class="col-xs-12">
+                            <h5 style="text-align:center"> TOTAL BILL AMOUNT - &nbsp; <b style="font-size:25px;"> <i class="fa fa-inr" aria-hidden="true"></i> @Model.TotalBillAmount</b> </h5>
+                        </div>
+                    </div>
+                    <div class="row" style="margin-top:25px;">
+                        <div class="col-xs-6">
+                            <h4 class="text-center">Total Bill Breakup</h4>
+                            <div class="table-responsive">
+                                <table class="table table-bordered">
+
+                                    <tbody>
+                                        <tr>
+                                            <td>Base Fare for @Model.BaseKM Km</td>
+                                            <td>₹ @Model.BaseFare</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Distance Fare for @Model.DistanceKM Km</td>
+                                            <td>₹ @Model.DistanceFare</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Travel Time Fare for  @Model.TravelTime Min</td>
+                                            <td>₹   @Model.TravelTimeFare</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="text-right">   <b> Total Fare</b></td>
+                                            <td><b>₹  @Model.TotalFare</b></td>
+                                        </tr>
+                                        <tr>
+                                            <td>Loading and Unloading Charges</td>
+                                            <td>₹   @Model.LoadingUnLoadingCharges</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Waiting / Night time Charges</td>
+                                            <td>₹   @Model.WaitingCharges</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Other Charges</td>
+                                            <td>₹   @Model.OtherCharges</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="text-right">   <b> Other Charges Total  </b></td>
+                                            <td><b>₹  @Model.TotalAmount</b></td>
+                                        </tr>
+                                        <tr>
+                                            <td>Service Tax  -  5.6 %</td>
+                                            <td>₹     @Model.SalesTax</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Swachh Bharat Tax - 0.2%</td>
+                                            <td>₹    @Model.Tax1</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Krishi Kalyan Cess  - 0.2%</td>
+                                            <td>₹   @Model.Tax2</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="text-right">   <b style="font-size:16px;">Total Bill Amount (rounded off)  </b></td>
+                                            <td><b style="font-size:16px;">₹  @Model.TotalBillAmount</b></td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                        <div class="col-xs-6">
+                            <h4 class="text-center">  Trip Route Map</h4>
+                            <iframe src="https://www.google.com/maps/embed?pb=!1m26!1m12!1m3!1d30449.372564163696!2d78.38989969999997!3d17.451500400000004!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!4m11!3e6!4m3!3m2!1d17.4886292!2d78.309648!4m5!1s0x3bcb91615349595d%3A0xf93c9edfa8ab4120!2sSanthi+Residency%2C+Ayyappa+Society%2C+Mega+Hills%2C+Madhapur%2C+Hyderabad%2C+Telangana+500081!3m2!1d17.4510521!2d78.3898873!5e0!3m2!1sen!2sin!4v1496309322509" width="100%" height="450" frameborder="0" style="border:0" allowfullscreen></iframe>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-xs-6">
+                            <h4 class="text-center">  Trip Details</h4>
+                            <div class="table-responsive">
+                                <table class="table table-bordered" style="padding-bottom: 0px; margin-bottom: 0px; border-bottom: 0px none;">
+
+                                    <tbody>
+                                        <tr>
+                                            <td>Total Trip Kilometers </td>
+                                            <td>@Model.TotalDistanceKm Km </td>
+                                        </tr>
+                                        <tr>
+                                            <td>Total Trip Time </td>
+                                            <td>@Model.TravelTime Min </td>
+                                        </tr>
+                                        <tr>
+                                            <td style="border-bottom:0px;">Vehicle Type and Make Description </td>
+                                            <td style="border-bottom:0px;">@Model.VehicleType & @Model.VehicleNo  </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                                <table class="table table-bordered">
+
+                                    <tbody>
+                                        <tr>
+                                            <td>DRIVER </td>
+                                            <td>@Model.DriverName</td>
+                                        </tr>
+                                        <tr>
+                                            <td>11:30:00 AM</td>
+                                            <td>@Model.LocationFrom </td>
+                                        </tr>
+                                        <tr>
+                                            <td>11:30:00 AM</td>
+                                            <td>@Model.LocationTo</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+
+                            </div>
+                        </div>
+                        <div class="col-xs-6">
+                            <h4 class="text-center"> Payment   </h4>
+                            <div class="table-responsive ">
+                                <table class="table table-bordered" style="padding-bottom: 0px; margin-bottom: 0px; border-bottom: 0px none;">
+
+                                    <tbody>
+                                        <tr>
+                                            <td style="padding:15px  ; width:30%;vertical-align:middle; border-bottom:0px;">Paid By</td>
+                                            <td style="border-bottom:0px;">Cash</td>
+                                        </tr>
+
+                                    </tbody>
+                                </table>
+                                <table class="table table-bordered">
+
+                                    <tbody>
+                                        <tr>
+                                            <td>Any Queries / Complaints related to this invoice          </td>
+
+                                        </tr>
+
+                                        <tr>
+
+                                            <td>contact our    Customer Support </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                                <br />
+                                <br />
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="row">
+                        <div class="col-xs-12">
+                            <div class="table-responsive ">
+                                <table class="table" style="width:50%; margin:0px auto;padding-bottom: 0px; margin-bottom: 0px; border-bottom: 0px none;">
+
+                                    <tbody>
+                                        <tr>
+                                            <td style="border-top:0px; border-bottom:0px; vertical-align: middle; text-align: right">
+                                                <img src="~/images/thankyou.png" />
+                                            </td>
+                                            <td style="border-top:0px; border-bottom:0px; vertical-align: middle; text-align: center"> <b> For using PICK-C services, See you soon </b></td>
+                                            <td style="border-top:0px; border-bottom:0px; vertical-align: middle; text-align: left;">
+
+                                                <img src="~/images/thumb.png" />
+                                            </td>
+                                        </tr>
+
+                                    </tbody>
+                                </table>
+                                <table class="table ">
+
+                                    <tbody>
+                                        <tr>
+                                            <td style="border-top:0px; border-bottom:0px; vertical-align: middle; text-align: center"></td>
+                                            <td style="border-top:0px; border-bottom:0px; vertical-align: middle; text-align: center">
+                                                Office: Plot No. 12 A, Survery No. 71/1, Jai Hind Gandhi Rd, VIP Hills, Sillicon Valley,
+                                                Madhapur, Hyderabad-500081.
+                                            </td>
+
+                                        </tr>
+
+                                        <tr>
+
+                                            <td style="border-top:0px; border-bottom:0px; vertical-align: middle; text-align: center"></td>
+                                            <td style="border-top:0px; border-bottom:0px; vertical-align: middle; text-align: center">www.pickcargo.in </td>
+
+                                        </tr>
+                                        <tr>
+
+                                            <td style="border-top:0px; border-bottom:0px; vertical-align: middle; text-align: center"></td>
+                                            <td style="border-top:0px; border-bottom:0px; vertical-align: middle; text-align: center">     All Rights Reserved  PR TECHNO SOLUTIONS Pvt. Ltd.  </td>
+
+                                        </tr>
+                                        <tr>
+
+                                            <td style="border-top:0px; border-bottom:0px; vertical-align: middle; text-align: center">     CIN: U74999TG2016PTC111331</td>
+                                            <td style="border-top:0px; border-bottom:0px; vertical-align: middle; text-align: center">             PAN No: AAICP7355E</td>
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

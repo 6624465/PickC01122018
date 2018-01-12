@@ -1,0 +1,654 @@
+﻿@model List<Master.Contract.RateCard>
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@section css{
+    <link href="@Url.Content("~/Css/ratecard.css")" rel="stylesheet" />
+    <link href="@Url.Content("~/Css/dynamic.css")" rel="stylesheet" />
+    <style type="text/css">
+        .firstrow li {
+            height: 65px;
+        }
+
+        .first {
+            font-weight: bold !important;
+        }
+
+        
+    </style>
+}
+<section class="help">
+    <div class="container"><h2 class="title"> <span class="title-head" style="font-size:30px;"> Fare Chart </span> </h2>
+
+        <div class="hostingplans">
+
+            @*<div class="container">
+                <ul class="firstrow">
+                    <li class="first" style="padding-top: 0px !important;">
+                        <img src="@Url.Content("~/images/logo.png")" style="height:60px;margin-left:26px" alt="">
+                    </li>
+                    <li class="second"><h2><b>@Model[0].VehicleCategoryDescription</b></h2></li>
+                    <li class="third"><h2><b>@Model[1].VehicleCategoryDescription </b></h2></li>
+                    <li class="fourth"><h2><b>@Model[2].VehicleCategoryDescription  </b></h2></li>
+                    <li class="fifth"><h2><b>@Model[3].VehicleCategoryDescription </b></h2></li>
+                    <li class="sixth"><h2><b>@Model[4].VehicleCategoryDescription</b></h2></li>
+                </ul>
+                <ul class="secondrow">
+                    <li class="first">Base KM</li>
+                    <li class="second"><i class="fa fa-inr" aria-hidden="true"></i> &nbsp;@Model[0].BaseKM</li>
+                    <li class="third"><i class="fa fa-inr" aria-hidden="true"></i> &nbsp;@Model[1].BaseKM</li>
+                    <li class="fourth"><i class="fa fa-inr" aria-hidden="true"></i> &nbsp;@Model[2].BaseKM</li>
+                    <li class="fifth"><i class="fa fa-inr" aria-hidden="true"></i> &nbsp;@Model[3].BaseKM</li>
+                    <li class="sixth"><i class="fa fa-inr" aria-hidden="true"></i> &nbsp;@Model[4].BaseKM</li>
+                </ul>
+                <ul class="secondrow">
+                    <li class="first">Base Fare</li>
+                    <li class="second"><i class="fa fa-inr" aria-hidden="true"></i> &nbsp;@Model[0].BaseFare</li>
+                    <li class="third"><i class="fa fa-inr" aria-hidden="true"></i> &nbsp;@Model[1].BaseFare</li>
+                    <li class="fourth"><i class="fa fa-inr" aria-hidden="true"></i> &nbsp;@Model[2].BaseFare</li>
+                    <li class="fifth"><i class="fa fa-inr" aria-hidden="true"></i> &nbsp;@Model[3].BaseFare</li>
+                    <li class="sixth"><i class="fa fa-inr" aria-hidden="true"></i> &nbsp;@Model[4].BaseFare</li>
+                </ul>
+                <ul class="secondrow">
+                    <li class="first">Distance Fare</li>
+                    <li class="second"><i class="fa fa-inr" aria-hidden="true"></i> &nbsp;@Model[0].DistanceFare</li>
+                    <li class="third"><i class="fa fa-inr" aria-hidden="true"></i> &nbsp;@Model[1].DistanceFare</li>
+                    <li class="fourth"><i class="fa fa-inr" aria-hidden="true"></i> &nbsp;@Model[2].DistanceFare</li>
+                    <li class="fifth"><i class="fa fa-inr" aria-hidden="true"></i> &nbsp;@Model[3].DistanceFare</li>
+                    <li class="sixth"><i class="fa fa-inr" aria-hidden="true"></i> &nbsp;@Model[4].DistanceFare</li>
+                </ul>
+                <ul class="secondrow">
+                    <li class="first">Ride Time Fare</li>
+                    <li class="second"><i class="fa fa-inr" aria-hidden="true"></i> &nbsp;@Model[0].RideTimeFare</li>
+                    <li class="third"><i class="fa fa-inr" aria-hidden="true"></i> &nbsp;@Model[1].RideTimeFare</li>
+                    <li class="fourth"><i class="fa fa-inr" aria-hidden="true"></i> &nbsp;@Model[2].RideTimeFare</li>
+                    <li class="fifth"><i class="fa fa-inr" aria-hidden="true"></i> &nbsp;@Model[3].RideTimeFare</li>
+                    <li class="sixth"><i class="fa fa-inr" aria-hidden="true"></i> &nbsp;@Model[4].RideTimeFare</li>
+                </ul>
+                <ul class="secondrow">
+                    <li class="first">Waiting Fare</li>
+                    <li class="second"><i class="fa fa-inr" aria-hidden="true"></i> &nbsp;@Model[0].WaitingFare</li>
+                    <li class="third"><i class="fa fa-inr" aria-hidden="true"></i> &nbsp;@Model[1].WaitingFare</li>
+                    <li class="fourth"><i class="fa fa-inr" aria-hidden="true"></i> &nbsp;@Model[2].WaitingFare</li>
+                    <li class="fifth"><i class="fa fa-inr" aria-hidden="true"></i> &nbsp;@Model[3].WaitingFare</li>
+                    <li class="sixth"><i class="fa fa-inr" aria-hidden="true"></i> &nbsp;@Model[4].WaitingFare</li>
+                </ul>
+                <ul class="secondrow">
+                    <li class="first">Cancellation Fee</li>
+                    <li class="second"><i class="fa fa-inr" aria-hidden="true"></i> &nbsp;@Model[0].CancellationFee</li>
+                    <li class="third"><i class="fa fa-inr" aria-hidden="true"></i> &nbsp;@Model[1].CancellationFee</li>
+                    <li class="fourth"><i class="fa fa-inr" aria-hidden="true"></i> &nbsp;@Model[2].CancellationFee</li>
+                    <li class="fifth"><i class="fa fa-inr" aria-hidden="true"></i> &nbsp;@Model[3].CancellationFee</li>
+                    <li class="sixth"><i class="fa fa-inr" aria-hidden="true"></i> &nbsp;@Model[4].CancellationFee</li>
+                </ul>
+            </div>*@
+            @*<div class="container">
+                <ul class="firstrow">
+                    <li class="first" style="padding-top: 0px !important;width:36% !important;height:110px;">
+                        <img src="@Url.Content("~/images/logo.png")" style="height:100px;margin-top:20px;padding-bottom:30px;" alt="">
+                        <b style="margin-left:5px;">Standard Pricing</b>
+                    </li>
+                    <li class="second" style="padding-top: 0px !important;width:16% !important;height:110px;">
+                        <h2>
+                            <img src="@Url.Content("~/images/0_75.png")" style="height:50px;margin-left:26px" /><br />
+                            <b>≤ 0.75 Ton</b>
+                        </h2>
+                    </li>
+                    <li class="third" style="padding-top: 0px !important;width:16% !important;height:110px;">
+                        <h2>
+                            <img src="@Url.Content("~/images/1_ton.png")" style="height:50px;margin-left:26px" /><br />
+                            <b>1 Ton </b>
+                        </h2>
+                    </li>
+                    <li class="fourth" style="padding-top: 0px !important;width:16% !important;height:110px;">
+                        <h2>
+                            <img src="@Url.Content("~/images/1_5_ton.png")" style="height:50px;margin-left:26px" /><br />
+                            <b>1.5 Ton  </b>
+                        </h2>
+                    </li>
+                    <li class="fifth" style="padding-top: 0px !important;width:16% !important;height:110px;">
+                        <h2>
+                            <img src="@Url.Content("~/images/2_ton.png")" style="height:50px;margin-left:26px" /><br />
+                            <b>2 Ton </b>
+                        </h2>
+                    </li>
+                </ul>
+                <ul class="secondrow">
+                    <li class="first" style="width:36% !important">Base Fare (for first 3 Km) Open</li>
+                    <li class="second" style="padding-top: 15px !important;width:16% !important;"><i class="fa fa-inr" aria-hidden="true"></i> &nbsp;300</li>
+                    <li class="third" style="padding-top: 15px !important;width:16% !important;"><i class="fa fa-inr" aria-hidden="true"></i> &nbsp;350</li>
+                    <li class="fourth" style="padding-top: 15px !important;width:16% !important;"><i class="fa fa-inr" aria-hidden="true"></i> &nbsp;400</li>
+                    <li class="fifth" style="padding-top: 15px !important;width:16% !important;"><i class="fa fa-inr" aria-hidden="true"></i> &nbsp;450</li>
+                </ul>
+                <ul class="secondrow">
+                    <li class="first" style="width:36% !important">Base Fare(for first 3 Km) Closed</li>
+                    <li class="second" style="padding-top: 15px !important;width:16% !important;"><i class="fa fa-inr" aria-hidden="true"></i> &nbsp;350</li>
+                    <li class="third" style="padding-top: 15px !important;width:16% !important;"><i class="fa fa-inr" aria-hidden="true"></i> &nbsp;400</li>
+                    <li class="fourth" style="padding-top: 15px !important;width:16% !important;"><i class="fa fa-inr" aria-hidden="true"></i> &nbsp;450</li>
+                    <li class="fifth" style="padding-top: 15px !important;width:16% !important;"><i class="fa fa-inr" aria-hidden="true"></i> &nbsp;500</li>
+                </ul>
+                <ul class="secondrow">
+                    <li class="first" style="width:36% !important">Distance Fare (per Km) Open</li>
+                    <li class="second" style="padding-top: 15px !important;width:16% !important;"><i class="fa fa-inr" aria-hidden="true"></i> &nbsp;25</li>
+                    <li class="third" style="padding-top: 15px !important;width:16% !important;"><i class="fa fa-inr" aria-hidden="true"></i> &nbsp;25</li>
+                    <li class="fourth" style="padding-top: 15px !important;width:16% !important;"><i class="fa fa-inr" aria-hidden="true"></i> &nbsp;30</li>
+                    <li class="fifth" style="padding-top: 15px !important;width:16% !important;"><i class="fa fa-inr" aria-hidden="true"></i> &nbsp;35</li>
+                </ul>
+                <ul class="secondrow">
+                    <li class="first" style="width:36% !important">Distance Fare (per Km) Closed</li>
+                    <li class="second" style="padding-top: 15px !important;width:16% !important;"><i class="fa fa-inr" aria-hidden="true"></i> &nbsp;27</li>
+                    <li class="third" style="padding-top: 15px !important;width:16% !important;"><i class="fa fa-inr" aria-hidden="true"></i> &nbsp;27</li>
+                    <li class="fourth" style="padding-top: 15px !important;width:16% !important;"><i class="fa fa-inr" aria-hidden="true"></i> &nbsp;32</li>
+                    <li class="fifth" style="padding-top: 15px !important;width:16% !important;"><i class="fa fa-inr" aria-hidden="true"></i> &nbsp;37</li>
+                </ul>
+                <ul class="secondrow">
+                    <li class="first" style="width:36% !important">Trip Time Charges(per min.)</li>
+                    <li class="second" style="padding-top: 15px !important;width:16% !important;"><i class="fa fa-inr" aria-hidden="true"></i> &nbsp;1</li>
+                    <li class="third" style="padding-top: 15px !important;width:16% !important;"><i class="fa fa-inr" aria-hidden="true"></i> &nbsp;1</li>
+                    <li class="fourth" style="padding-top: 15px !important;width:16% !important;"><i class="fa fa-inr" aria-hidden="true"></i> &nbsp;1</li>
+                    <li class="fifth" style="padding-top: 15px !important;width:16% !important;"><i class="fa fa-inr" aria-hidden="true"></i> &nbsp;2</li>
+                </ul>
+            </div>*@
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-10 col-md-offset-1">
+                        <table class="table-bordered  table">
+                            <thead>
+                                <tr>
+                                    <th>
+                                        <img src="../images/logo.png" />
+                                        <b> Standard Fare Chart</b>
+                                    </th>
+                               <th><img src="../images/0_75.png" /><b>≤ 0.75 Ton</b></th>
+                                <th><img src="../images/1_ton.png" /><b>1 Ton </b></th>
+                                <th><img src="../images/1_5_ton.png" /><b>1.5 Ton  </b></th>
+                                <th><img src="../images/2_ton.png" /><b>2 Ton </b></th></tr>
+                            </thead>
+                            <tbody>
+                            <tr><td><b>Base Fare (for first 3 Km) Open</b></td>
+                                       <td><i class="fa fa-inr" aria-hidden="true"></i>
+ 300/-</td>
+                                       <td><i class="fa fa-inr" aria-hidden="true"></i>
+ 350/-</td>
+                                       <td><i class="fa fa-inr" aria-hidden="true"></i>
+ 400/-</td>
+                                       <td><i class="fa fa-inr" aria-hidden="true"></i>
+ 450/-</td>
+                                </tr>
+                                <tr>
+                                    <td><b>Base Fare(for first 3 Km) Closed</b></td>
+                                   
+                                    <td>
+                                        <i class="fa fa-inr" aria-hidden="true"></i>
+                                        350/-
+                                    </td>
+                                    <td>
+                                        <i class="fa fa-inr" aria-hidden="true"></i>
+                                        400/-
+                                    </td>
+                                    <td>
+                                        <i class="fa fa-inr" aria-hidden="true"></i>
+                                        450/-
+                                    </td>
+                                    <td>
+                                        <i class="fa fa-inr" aria-hidden="true"></i>
+                                        500/-
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td><b>Distance Fare (per Km) Open</b></td>
+                                    <td>
+                                        <i class="fa fa-inr" aria-hidden="true"></i>
+                                        25/-
+                                    </td>
+                                    <td>
+                                        <i class="fa fa-inr" aria-hidden="true"></i>
+                                        25/-
+                                    </td>
+                                    <td>
+                                        <i class="fa fa-inr" aria-hidden="true"></i>
+                                        30/-
+                                    </td>
+                                    <td>
+                                        <i class="fa fa-inr" aria-hidden="true"></i>
+                                        35/-
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td><b>Distance Fare (per Km) Closed</b></td>
+                                    <td>
+                                        <i class="fa fa-inr" aria-hidden="true"></i>
+                                       27/-
+                                    </td>
+                                    <td>
+                                        <i class="fa fa-inr" aria-hidden="true"></i>
+                                        27/-
+                                    </td>
+                                    <td>
+                                        <i class="fa fa-inr" aria-hidden="true"></i>
+                                        32/-
+                                    </td>
+                                    <td>
+                                        <i class="fa fa-inr" aria-hidden="true"></i>
+                                        37/-
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td><b>Trip Time Charges(per min.)</b></td>
+                                    <td>
+                                        <i class="fa fa-inr" aria-hidden="true"></i>
+                                        1/-
+                                    </td>
+                                    <td>
+                                        <i class="fa fa-inr" aria-hidden="true"></i>
+                                        1/-
+                                    </td>
+                                    <td>
+                                        <i class="fa fa-inr" aria-hidden="true"></i>
+                                        1/-
+                                    </td>
+                                    <td>
+                                        <i class="fa fa-inr" aria-hidden="true"></i>
+                                        2/-
+                                    </td>
+                                </tr></tbody>
+                        </table>
+                            </div>
+                        </div>
+                    </div>
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-10 col-md-offset-1">
+                        <b style="font-size:10px;">* Night-time Cargo Bookings: 1.5X apply for trips between 10:00pm to 6:00am.</b>
+                    </div>
+                </div>
+            </div>
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-10 col-md-offset-1">
+                        <table class="table-bordered  table">
+                           
+                            <tbody>
+                                <tr>
+                                    <td><b>Outstation Base Fare (for first 150 Km) Open</b></td>
+                                    <td>
+                                        <i class="fa fa-inr" aria-hidden="true"></i>
+                                        2300/-
+                                       
+                                    </td>
+                                    <td>
+                                        <i class="fa fa-inr" aria-hidden="true"></i>
+                                        2600/-
+                                    </td>
+                                    <td>
+                                        <i class="fa fa-inr" aria-hidden="true"></i>
+                                        2900/-
+                                    </td>
+                                    <td>
+                                        <i class="fa fa-inr" aria-hidden="true"></i>
+                                        3200/-
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td><b>Outstation Base Fare (for first 150 Km) Closed</b></td>
+
+                                    <td>
+                                        <i class="fa fa-inr" aria-hidden="true"></i>
+                                        2600/-
+                                    </td>
+                                    <td>
+                                        <i class="fa fa-inr" aria-hidden="true"></i>
+                                        2900/-
+                                    </td>
+                                    <td>
+                                        <i class="fa fa-inr" aria-hidden="true"></i>
+                                        3200/-
+                                    </td>
+                                    <td>
+                                        <i class="fa fa-inr" aria-hidden="true"></i>
+                                        3500/-
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td><b>Outstation Fare (per km) Open</b></td>
+                                    <td>
+                                        <i class="fa fa-inr" aria-hidden="true"></i>
+                                        18/-
+                                    </td>
+                                    <td>
+                                        <i class="fa fa-inr" aria-hidden="true"></i>
+                                        20/-
+                                    </td>
+                                    <td>
+                                        <i class="fa fa-inr" aria-hidden="true"></i>
+                                        22/-
+                                    </td>
+                                    <td>
+                                        <i class="fa fa-inr" aria-hidden="true"></i>
+                                        24/-
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td><b>Outstation Fare (per km) Closed</b></td>
+                                    <td>
+                                        <i class="fa fa-inr" aria-hidden="true"></i>
+                                        20/-
+                                    </td>
+                                    <td>
+                                        <i class="fa fa-inr" aria-hidden="true"></i>
+                                        22/-
+                                    </td>
+                                    <td>
+                                        <i class="fa fa-inr" aria-hidden="true"></i>
+                                        24/-
+                                    </td>
+                                    <td>
+                                        <i class="fa fa-inr" aria-hidden="true"></i>
+                                        26/-
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td><b>Trip Time Charges(per min.)</b></td>
+                                    <td>
+                                        <i class="fa fa-inr" aria-hidden="true"></i>
+                                        1/-
+                                    </td>
+                                    <td>
+                                        <i class="fa fa-inr" aria-hidden="true"></i>
+                                        1/-
+                                    </td>
+                                    <td>
+                                        <i class="fa fa-inr" aria-hidden="true"></i>
+                                        1/-
+                                    </td>
+                                    <td>
+                                        <i class="fa fa-inr" aria-hidden="true"></i>
+                                        2/-
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <table class="table-bordered  table">
+
+                            <tbody>
+                                <tr>
+                                    <td><b>Waiting Charges (per hour)</b></td>
+                                    <td>
+                                        <i class="fa fa-inr" aria-hidden="true"></i>
+                                        60<br/>
+                                        <small> *free for first 15 mins</small>
+
+                                    </td>
+                                    <td>
+                                        <i class="fa fa-inr" aria-hidden="true"></i>
+                                        60<br />
+                                        <small> *free for first 30 mins</small>
+                                    </td>
+                                    <td>
+                                        <i class="fa fa-inr" aria-hidden="true"></i>
+                                        80<br />
+                                        <small> *free for first 45 mins</small>
+                                    </td>
+                                    <td>
+                                        <i class="fa fa-inr" aria-hidden="true"></i>
+                                        100<br />
+                                        <small> *free for first 45 mins</small>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td><b>Loading Driver assistance</b></td>
+
+                                    <td>
+                                        <i class="fa fa-inr" aria-hidden="true"></i>
+                                        100/-
+                                    </td>
+                                    <td>
+                                        <i class="fa fa-inr" aria-hidden="true"></i>
+                                        100/-
+                                    </td>
+                                    <td>
+                                        <i class="fa fa-inr" aria-hidden="true"></i>
+                                        200/-
+                                    </td>
+                                    <td>
+                                        <i class="fa fa-inr" aria-hidden="true"></i>
+                                        200/-
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td><b>Unloading Driver assistance</b></td>
+                                    <td>
+                                        <i class="fa fa-inr" aria-hidden="true"></i>
+                                        100/-
+                                    </td>
+                                    <td>
+                                        <i class="fa fa-inr" aria-hidden="true"></i>
+                                        100/-
+                                    </td>
+                                    <td>
+                                        <i class="fa fa-inr" aria-hidden="true"></i>
+                                        200/-
+                                    </td>
+                                    <td>
+                                        <i class="fa fa-inr" aria-hidden="true"></i>
+                                        200/-
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td><b>Overnight waiting charges (per hour)
+(10 PM to 6 AM)</b></td>
+                                    <td>
+                                        <i class="fa fa-inr" aria-hidden="true"></i>
+                                        80/-
+                                    </td>
+                                    <td>
+                                        <i class="fa fa-inr" aria-hidden="true"></i>
+                                        80/-
+                                    </td>
+                                    <td>
+                                        <i class="fa fa-inr" aria-hidden="true"></i>
+                                        80/-
+                                    </td>
+                                    <td>
+                                        <i class="fa fa-inr" aria-hidden="true"></i>
+                                        100/-
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td><b> Overnight waiting Charge (out station)
+                                            </b></td>
+                                    <td>
+                                        <i class="fa fa-inr" aria-hidden="true"></i>
+                                        500/-
+                                    </td>
+                                    <td>
+                                        <i class="fa fa-inr" aria-hidden="true"></i>
+                                        500/-
+                                    </td>
+                                    <td>
+                                        <i class="fa fa-inr" aria-hidden="true"></i>
+                                        500/-
+                                    </td>
+                                    <td>
+                                        <i class="fa fa-inr" aria-hidden="true"></i>
+                                        600/-
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <b>
+                                            Cancellation Charges
+                                        </b>
+                                    </td>
+                                    <td>
+                                        <i class="fa fa-inr" aria-hidden="true"></i>
+                                        50/-
+                                    </td>
+                                    <td>
+                                        <i class="fa fa-inr" aria-hidden="true"></i>
+                                        50/-
+                                    </td>
+                                    <td>
+                                        <i class="fa fa-inr" aria-hidden="true"></i>
+                                        50/-
+                                    </td>
+                                    <td>
+                                        <i class="fa fa-inr" aria-hidden="true"></i>
+                                        100/-
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <b>
+                                            Toll/Parking/Other
+                                        </b>
+                                    </td>
+                                    <td colspan="4" style="background-color:rgb(236,243,245);">
+                                        Charges shall be paid by the customer wherever required.
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            @*<div class="container">
+                <div class="row">
+                    <div class="col-md-12" style="margin-left:50px;">
+                        <b style="font-size:10px;">* Night-time Cargo Bookings: 1.5X apply for trips between 10:00pm to 6:00am.</b>
+                    </div>
+                </div>
+            </div>*@
+            @*<div class="container" style="margin-top:20px;">
+                <ul class="firstrow">
+                    <li class="first" style="padding-top: 0px !important;width:36% !important;height:110px;">
+                        <img src="@Url.Content("~/images/logo.png")" style="height:100px;margin-left:50px" alt="">
+                    </li>
+                    <li class="second" style="padding-top: 0px !important;width:16% !important;height:110px;">
+                        <h2>
+                            <img src="@Url.Content("~/images/0_75.png")" style="height:50px;margin-left:26px" /><br />
+                            <b>≤ 0.75 Ton</b>
+                        </h2>
+                    </li>
+                    <li class="third" style="padding-top: 0px !important;width:16% !important;height:110px;">
+                        <h2>
+                            <img src="@Url.Content("~/images/1_ton.png")" style="height:50px;margin-left:26px" /><br />
+                            <b>1 Ton </b>
+                        </h2>
+                    </li>
+                    <li class="fourth" style="padding-top: 0px !important;width:16% !important;height:110px;">
+                        <h2>
+                            <img src="@Url.Content("~/images/1_5_ton.png")" style="height:50px;margin-left:26px" /><br />
+                            <b>1.5 Ton  </b>
+                        </h2>
+                    </li>
+                    <li class="fifth" style="padding-top: 0px !important;width:16% !important;height:110px;">
+                        <h2>
+                            <img src="@Url.Content("~/images/2_ton.png")" style="height:50px;margin-left:26px" /><br />
+                            <b>2 Ton </b>
+                        </h2>
+                    </li>
+                </ul>
+                <ul class="secondrow">
+                    <li class="first" style="width:36% !important;height:65px; border-top:1px solid #8c8c8c !important;">Outstation Base Fare (for first 150 Km) Open</li>
+                    <li class="second" style="padding-top: 15px !important;width:16% !important;border-top:1px solid #8c8c8c !important;height:65px;"><i class="fa fa-inr" aria-hidden="true"></i> &nbsp;2300</li>
+                    <li class="third" style="padding-top: 15px !important;width:16% !important;border-top:1px solid #8c8c8c !important;height:65px;"><i class="fa fa-inr" aria-hidden="true"></i> &nbsp;2600</li>
+                    <li class="fourth" style="padding-top: 15px !important;width:16% !important;border-top:1px solid #8c8c8c !important;height:65px;"><i class="fa fa-inr" aria-hidden="true"></i> &nbsp;2900</li>
+                    <li class="fifth" style="padding-top: 15px !important;width:16% !important;border-top:1px solid #8c8c8c !important;height:65px;"><i class="fa fa-inr" aria-hidden="true"></i> &nbsp;3200</li>
+                </ul>
+                <ul class="secondrow">
+                    <li class="first" style="width:36% !important;height:65px;">Outstation Base Fare (for first 150 Km) Closed</li>
+                    <li class="second" style="padding-top: 15px !important;width:16% !important;height:65px;"><i class="fa fa-inr" aria-hidden="true"></i> &nbsp;2600</li>
+                    <li class="third" style="padding-top: 15px !important;width:16% !important;height:65px;"><i class="fa fa-inr" aria-hidden="true"></i> &nbsp;2900</li>
+                    <li class="fourth" style="padding-top: 15px !important;width:16% !important;height:65px;"><i class="fa fa-inr" aria-hidden="true"></i> &nbsp;3200</li>
+                    <li class="fifth" style="padding-top: 15px !important;width:16% !important;height:65px;"><i class="fa fa-inr" aria-hidden="true"></i> &nbsp;3500</li>
+                </ul>
+                <ul class="secondrow">
+                    <li class="first" style="width:36% !important">Outstation Fare (per km) Open</li>
+                    <li class="second" style="padding-top: 15px !important;width:16% !important;"><i class="fa fa-inr" aria-hidden="true"></i> &nbsp;18</li>
+                    <li class="third" style="padding-top: 15px !important;width:16% !important;"><i class="fa fa-inr" aria-hidden="true"></i> &nbsp;20</li>
+                    <li class="fourth" style="padding-top: 15px !important;width:16% !important;"><i class="fa fa-inr" aria-hidden="true"></i> &nbsp;22</li>
+                    <li class="fifth" style="padding-top: 15px !important;width:16% !important;"><i class="fa fa-inr" aria-hidden="true"></i> &nbsp;24</li>
+                </ul>
+                <ul class="secondrow">
+                    <li class="first" style="width:36% !important">Outstation Fare (per km) Closed</li>
+                    <li class="second" style="padding-top: 15px !important;width:16% !important;"><i class="fa fa-inr" aria-hidden="true"></i> &nbsp;20</li>
+                    <li class="third" style="padding-top: 15px !important;width:16% !important;"><i class="fa fa-inr" aria-hidden="true"></i> &nbsp;22</li>
+                    <li class="fourth" style="padding-top: 15px !important;width:16% !important;"><i class="fa fa-inr" aria-hidden="true"></i> &nbsp;24</li>
+                    <li class="fifth" style="padding-top: 15px !important;width:16% !important;"><i class="fa fa-inr" aria-hidden="true"></i> &nbsp;26</li>
+                </ul>
+                <ul class="secondrow">
+                    <li class="first" style="width:36% !important">Trip Time Charges(per min.)</li>
+                    <li class="second" style="padding-top: 15px !important;width:16% !important;"><i class="fa fa-inr" aria-hidden="true"></i> &nbsp;1</li>
+                    <li class="third" style="padding-top: 15px !important;width:16% !important;"><i class="fa fa-inr" aria-hidden="true"></i> &nbsp;1</li>
+                    <li class="fourth" style="padding-top: 15px !important;width:16% !important;"><i class="fa fa-inr" aria-hidden="true"></i> &nbsp;1</li>
+                    <li class="fifth" style="padding-top: 15px !important;width:16% !important;"><i class="fa fa-inr" aria-hidden="true"></i> &nbsp;2</li>
+                </ul>
+            </div>
+            <div class="container" style="margin-top:20px;">
+                <ul class="firstrow">
+                    <li class="first" style="padding-top: 15px !important;width:36% !important;height:65px;">Waiting Charges (per hour)</li>
+                    <li class="second" style="padding-top: 15px !important;width:16% !important;height:65px;"><i class="fa fa-inr" aria-hidden="true"></i> &nbsp;60<br />*free for first 15 mins</li>
+                    <li class="third" style="padding-top: 15px !important;width:16% !important;height:65px;"><i class="fa fa-inr" aria-hidden="true"></i> &nbsp;60<br />*free for first 30 mins</li>
+                    <li class="fourth" style="padding-top: 15px !important;width:16% !important;height:65px;"><i class="fa fa-inr" aria-hidden="true"></i> &nbsp;80<br />*free for first 45 mins</li>
+                    <li class="fifth" style="padding-top: 15px !important;width:16% !important;height:65px;"><i class="fa fa-inr" aria-hidden="true"></i> &nbsp;100<br />*free for first 45 mins</li>
+                </ul>
+                <ul class="secondrow">
+                    <li class="first" style="width:36% !important;height:65px;">Loading Driver assistance</li>
+                    <li class="second" style="padding-top: 15px !important;width:16% !important;height:65px;"><i class="fa fa-inr" aria-hidden="true"></i> &nbsp;100</li>
+                    <li class="third" style="padding-top: 15px !important;width:16% !important;height:65px;"><i class="fa fa-inr" aria-hidden="true"></i> &nbsp;100</li>
+                    <li class="fourth" style="padding-top: 15px !important;width:16% !important;height:65px;"><i class="fa fa-inr" aria-hidden="true"></i> &nbsp;200</li>
+                    <li class="fifth" style="padding-top: 15px !important;width:16% !important;height:65px;"><i class="fa fa-inr" aria-hidden="true"></i> &nbsp;200</li>
+                </ul>
+				   <ul class="secondrow">
+                    <li class="first" style="width:36% !important;height:65px;">Unloading Driver assistance</li>
+                    <li class="second" style="padding-top: 15px !important;width:16% !important;height:65px;"><i class="fa fa-inr" aria-hidden="true"></i> &nbsp;100</li>
+                    <li class="third" style="padding-top: 15px !important;width:16% !important;height:65px;"><i class="fa fa-inr" aria-hidden="true"></i> &nbsp;100</li>
+                    <li class="fourth" style="padding-top: 15px !important;width:16% !important;height:65px;"><i class="fa fa-inr" aria-hidden="true"></i> &nbsp;200</li>
+                    <li class="fifth" style="padding-top: 15px !important;width:16% !important;height:65px;"><i class="fa fa-inr" aria-hidden="true"></i> &nbsp;200</li>
+                </ul>
+                <ul class="secondrow">
+                    <li class="first" style="width:36% !important;height:65px;">Overnight waiting charges  (per hour) <br/> (10 PM to 6 AM)</li>
+                    <li class="second" style="padding-top: 15px !important;width:16% !important;height:65px;"><i class="fa fa-inr" aria-hidden="true"></i> &nbsp;80</li>
+                    <li class="third" style="padding-top: 15px !important;width:16% !important;height:65px;"><i class="fa fa-inr" aria-hidden="true"></i> &nbsp;80</li>
+                    <li class="fourth" style="padding-top: 15px !important;width:16% !important;height:65px;"><i class="fa fa-inr" aria-hidden="true"></i> &nbsp;80</li>
+                    <li class="fifth" style="padding-top: 15px !important;width:16% !important;height:65px;"><i class="fa fa-inr" aria-hidden="true"></i> &nbsp;100</li>
+                </ul>
+                <ul class="secondrow">
+                    <li class="first" style="width:36% !important;height:65px;">Overnight waiting Charge (out station)</li>
+                    <li class="second" style="padding-top: 15px !important;width:16% !important;height:65px;"><i class="fa fa-inr" aria-hidden="true"></i> &nbsp;500</li>
+                    <li class="third" style="padding-top: 15px !important;width:16% !important;height:65px;"><i class="fa fa-inr" aria-hidden="true"></i> &nbsp;500</li>
+                    <li class="fourth" style="padding-top: 15px !important;width:16% !important;height:65px;"><i class="fa fa-inr" aria-hidden="true"></i> &nbsp;500</li>
+                    <li class="fifth" style="padding-top: 15px !important;width:16% !important;height:65px;"><i class="fa fa-inr" aria-hidden="true"></i> &nbsp;600</li>
+                </ul>
+                <ul class="secondrow">
+                    <li class="first" style="width:36% !important">Cancellation Charges</li>
+                    <li class="second" style="padding-top: 15px !important;width:16% !important;"><i class="fa fa-inr" aria-hidden="true"></i> &nbsp;50</li>
+                    <li class="third" style="padding-top: 15px !important;width:16% !important;"><i class="fa fa-inr" aria-hidden="true"></i> &nbsp;50</li>
+                    <li class="fourth" style="padding-top: 15px !important;width:16% !important;"><i class="fa fa-inr" aria-hidden="true"></i> &nbsp;50</li>
+                    <li class="fifth" style="padding-top: 15px !important;width:16% !important;"><i class="fa fa-inr" aria-hidden="true"></i> &nbsp;100</li>
+                </ul>
+                <ul class="secondrow">
+                    <li class="first" style="width:36% !important">Toll/Parking/Other</li>
+                    <li class="second" style="padding-top: 15px !important;width:64% !important; ">   <span style="text-transform:lowercase; color:#555555;">Charges shall be paid by the customer wherever required.</span></li>
+
+                </ul>
+            </div>*@
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-11 col-md-offset-1 text-center">
+                        <div style="font-size:10px;" class="notes">
+                            <b>*Note:</b>
+                            <ul>
+                                <li>  Waiting charges will be applicable, once the truck reaches pick or drop location, which include loading and unloading time</li>
+                                <li> Cancellation charges will be included in your next booking and will reflect the same in your invoice</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            </div>
+                </div>
+</section>
+

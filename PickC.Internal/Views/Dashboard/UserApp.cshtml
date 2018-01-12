@@ -1,0 +1,347 @@
+﻿@using PickC.Internal.HtmlHelpers
+@{
+    ViewBag.Title = "UserApp";
+    Layout = "~/Areas/Internal/Views/Shared/_Layout.cshtml";
+    //WebGrid grid =
+    // new WebGrid(Model.booking, rowsPerPage: 10, selectionFieldName: "selectedRow", ajaxUpdateContainerId: "grid");
+}
+@*<section>*@
+<section class="content">
+    <div class="row">
+        <div class="col-md-12">
+            @*<ul id="myTab" class="nav nav-tabs">
+                    <li>
+                        <a href="#tab1" data-toggle="tab" onclick="redirect();">
+                            <img class="fa fa-user-o" aria-hidden="true" style="width:12px;">
+                            Drivers Status
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#ios" data-toggle="tab" onclick="bookingsredirect();">Current Bookings</a>
+                    </li>
+                    <li>
+                        <a href="#tab3" data-toggle="tab" onclick="History();">
+                            Booking History
+                        </a>
+                    </li>
+                    <li class="active">
+                        <a href="#tab4" data-toggle="tab">
+                            User App
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#tab5" data-toggle="tab" onclick="paymenthistory();">
+                            Payment History
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#tab6" data-toggle="tab" onclick="pendingamount();">
+                            Pending Amount
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#tab7" data-toggle="tab" onclick="driverlist();">
+                            Driver List
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#tab8" data-toggle="tab" onclick="driverdetails();">
+                            Driver Details
+                        </a>
+                    </li>
+                </ul>*@
+            @{ Html.RenderPartial("DashboardMenuList"); }
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <div class="tab-main-content">
+
+                <div class="row">
+                    <div class="col-md-3 col-sm-6 col-xs-12">
+                        <div class="info-box">
+                            <span class="info-box-icon bg-aqua"><i class="ion ion-ios-gear-outline"></i></span>
+                            <div class="info-box-content">
+                                <span class="info-box-text">User App Downloads</span>
+                                <span class="info-box-number">90<small>%</small></span>
+                            </div>
+                            <!-- /.info-box-content -->
+                        </div>
+                        <!-- /.info-box -->
+                    </div>
+                    <div class="col-md-3 col-sm-6 col-xs-12">
+                        <div class="info-box">
+                            <span class="info-box-icon bg-red"><i class="fa fa-google-plus"></i></span>
+                            <div class="info-box-content">
+                                <span class="info-box-text">Total Bookings</span>
+                                <span class="info-box-number">41,410</span>
+                            </div>
+                            <!-- /.info-box-content -->
+                        </div>
+                        <!-- /.info-box -->
+                    </div>
+                    <div class="col-md-3 col-sm-6 col-xs-12">
+                        <div class="info-box">
+                            <span class="info-box-icon bg-green"><i class="ion ion-ios-cart-outline"></i></span>
+
+                            <div class="info-box-content">
+                                <span class="info-box-text">Registered But Not Booked</span>
+                                <span class="info-box-number">760</span>
+                            </div>
+                            <!-- /.info-box-content -->
+                        </div>
+                        <!-- /.info-box -->
+                    </div>
+                    <div class="col-md-3 col-sm-6 col-xs-12">
+                        <div class="info-box">
+                            <span class="info-box-icon bg-yellow"><i class="ion ion-ios-people-outline"></i></span>
+
+                            <div class="info-box-content">
+                                <span class="info-box-text">Cancellations</span>
+                                <span class="info-box-number">2,000</span>
+                            </div>
+                            <!-- /.info-box-content -->
+                        </div>
+                        <!-- /.info-box -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+    @*<div id="myTabContent" class="tab-content">
+            <div id="tab1" class="tab-pane fade in active">
+                <div class="row" style="margin:10px 0 0 10px;">
+                    <div class="col-md-2">
+                        @Html.TextBoxFor(x => x.dates.fromDate, new { @class = "form-control" })
+                    </div>
+                    <div class="col-md-2">
+                        @Html.TextBoxFor(x => x.dates.toDate, new { @class = "form-control" })
+                    </div>
+                    <div class="col-md-2">
+                        <button type="submit" id="btnSearch" class="btn btn-primary"><i class="fa fa-search"></i>Search </button>
+                    </div>
+                </div>
+                <div class="box-body">
+                    @if (Model != null)
+                    {
+                        <div class="row">
+
+                            <div class="col-md-12">
+                                @grid.Table(
+                tableStyle: "table table-hover",
+                columns: grid.Columns(
+                     grid.Column("Count", "Count"),
+                     grid.Column("Date", "Date")
+                    ),
+                 htmlAttributes: new { id = "grid" })
+                            </div>
+                        </div>
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <div class="pull-right">@grid.PagerList(mode: WebGridPagerModes.All, paginationStyle: "pagination pagination-sm")</div>
+                                        </div>
+                                    </div>
+
+                    }
+                    else
+                    {
+                        <div>
+                            <label>No Data found...</label>
+                        </div>
+                    }
+
+                </div>
+
+            </div>
+        </div>*@
+    @*<div id="myTabContent1" class="tab-content">
+            <div id="tab2" class="tab-pane fade in active">
+                <div class="box-body">
+                    @if (Model != null)
+                    {
+                        <div class="row">
+
+                            <div class="col-md-12">
+                                @grid.Table(
+                tableStyle: "table table-hover",
+                columns: grid.Columns(
+                     grid.Column("BookingDate", "Booking Date"),
+                     grid.Column("CustomerName", "Customer Name"),
+                     grid.Column("VehicleNo", "Vehicle No"),
+                     grid.Column("VehicleType", "Vehicle Type")
+                    ),
+                 htmlAttributes: new { id = "grid" })
+                            </div>
+                        </div>
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <div class="pull-right">@grid.PagerList(mode: WebGridPagerModes.All, paginationStyle: "pagination pagination-sm")</div>
+                                        </div>
+                                    </div>
+
+                    }
+                    else
+                    {
+                        <div>
+                            <label>No Data found...</label>
+                        </div>
+                    }
+
+                </div>
+
+            </div>
+        </div>*@
+    @*<div id="myTabContent2" class="tab-content">
+            <div id="tab3" class="tab-pane fade in active">
+                <div class="box-body">
+                    @if (Model != null)
+                    {
+                        <div class="row">
+
+                            <div class="col-md-12">
+                                @grid.Table(
+                tableStyle: "table table-hover",
+                columns: grid.Columns(
+                     grid.Column("BookingDate", "Booking Date"),
+                     grid.Column("CustomerName", "Customer Name"),
+                     grid.Column("VehicleNo", "Vehicle No"),
+                     grid.Column("VehicleType", "Vehicle Type")
+                    ),
+                 htmlAttributes: new { id = "grid" })
+                            </div>
+                        </div>
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <div class="pull-right">@grid.PagerList(mode: WebGridPagerModes.All, paginationStyle: "pagination pagination-sm")</div>
+                                        </div>
+                                    </div>
+
+                    }
+                    else
+                    {
+                        <div>
+                            <label>No Data found...</label>
+                        </div>
+                    }
+
+                </div>
+
+            </div>
+        </div>*@
+    @*<div id="myTabContent3" class="tab-content">
+            <div id="tab4" class="tab-pane fade in active">
+                <div class="box-body">
+                    @if (Model != null)
+                    {
+                        <div class="row">
+
+                            <div class="col-md-12">
+                                @grid.Table(
+                tableStyle: "table table-hover",
+                columns: grid.Columns(
+                     grid.Column("DateOfRegistration", "Date Of Registration"),
+                     grid.Column("CustomerName", "Customer Name"),
+                     grid.Column("MobileNo", "Mobile No"),
+                     grid.Column("EmailId", "Email ID")
+                    ),
+                 htmlAttributes: new { id = "grid" })
+                            </div>
+                        </div>
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <div class="pull-right">@grid.PagerList(mode: WebGridPagerModes.All, paginationStyle: "pagination pagination-sm")</div>
+                                        </div>
+                                    </div>
+
+                    }
+                    else
+                    {
+                        <div>
+                            <label>No Data found...</label>
+                        </div>
+                    }
+
+                </div>
+
+            </div>
+        </div>*@
+    @*<div id="myTabContent4" class="tab-content">
+                <div id="tab5" class="tab-pane fade in active">
+                    <div class="box-body">
+                        @if (Model != null)
+                        {
+                            <div class="row">
+
+                                <div class="col-md-12">
+                                    @grid.Table(
+                    tableStyle: "table table-hover",
+                    columns: grid.Columns(
+                         grid.Column("BookingDate", "Booking Date"),
+                         grid.Column("CancelDate", "Cancel Date"),
+                         grid.Column("BookingNo", "Booking No"),
+                         grid.Column("CancellationCharges", "Cancellation Charges"),
+                         grid.Column("VehicleType", "Vehicle Type"),
+                         grid.Column("ReasonForCancellation", "Reason For Cancellation")
+                        ),
+                     htmlAttributes: new { id = "grid" })
+                                </div>
+                            </div>
+                                        <div class="row">
+                                            <div class="col-md-12">
+                                                <div class="pull-right">@grid.PagerList(mode: WebGridPagerModes.All, paginationStyle: "pagination pagination-sm")</div>
+                                            </div>
+                                        </div>
+
+                        }
+                        else
+                        {
+                            <div>
+                                <label>No Data found...</label>
+                            </div>
+                        }
+
+                    </div>
+
+                </div>
+            </div>
+        </section>*@
+    @section secscripts{
+        <script src="@Url.Content("~/Scripts/jquery.validate.js")"></script>
+        <script type="text/javascript">
+            $(function () {
+                $('#userApp').parent().addClass('active');
+            });
+            @*function redirect() {
+            window.location = "@Url.Content("~/Internal/Dashboard/GetDriversList")";
+        }
+        function bookingsredirect()
+        {
+            window.location = "@Url.Content("~/Internal/Dashboard/CurrentBookings")";
+        }
+        function History() {
+            debugger;
+            window.location = "@Url.Content("~/Internal/Dashboard/BookingHistory")";
+        }
+        function paymenthistory()
+        {
+            window.location = "@Url.Content("~/Internal/Dashboard/PaymentHistory")";
+        }
+        function pendingamount()
+        {
+            window.location = "@Url.Content("~/Internal/Dashboard/PendingAmount")";
+        }
+        function driverlist()
+        {
+            window.location = "@Url.Content("~/Internal/Driver/TotalDriverList")";
+        }
+        function driverdetails()
+        {
+            window.location = "@Url.Content("~/Internal/Driver/DriverDetails")";
+        }*@
+        </script>
+    }
+
+
+
+

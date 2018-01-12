@@ -1,0 +1,178 @@
+﻿@model PickC.Web.ViewModels.TripEstimateVm
+@{
+    ViewBag.Title = "Services";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<style>
+    .services li {
+    background: #25272e;
+    color:#fffc00;
+    float: left;
+    font-family: Arial,Helvetica,sans-serif;
+   font-size: 12px;
+   line-height:normal;
+    font-weight: bold;
+    margin: 0 1% 10px 0;
+    padding: 10px 10px;
+    text-align: center;
+    width: 24%;
+    list-style:none;
+    border:2px solid;
+    display:table;
+
+}
+/*.services li:nth-child(4n+4) {
+    margin-right: 0;
+}*/
+    .text-cont {
+    vertical-align:middle;
+    display:table-cell;
+    }
+   .img-cont {
+         display:table-cell;
+    }
+</style>
+<section class="help">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12 ">
+                <div class="services" style="padding:10px 0px; min-height:350px;" >
+                    <div class="row">
+                        <h2 class="title" > <span class="title-head" style="font-size:30px;"> Our Services</span> </h2>
+			<br/> 
+                        <ul style="padding:0px;">
+                            <li>
+                                <div class="img-cont">  <img style="padding-top: 5px; width: 85%;" src="~/images/logo.png" /> </div>
+                                <div class="text-cont"> <b>Pick-C</b> (Cargo)</div>
+</li>
+                            <li>
+                                 <div class="img-cont"> <img src="~/images/icon-4.png" /> </div>
+                                <div class="text-cont">
+                                    Software Development &amp; <br/>
+                                    Solutions</div>
+</li>
+                            <li>
+                                 <div class="img-cont"> <img src="~/images/icon-6.png" /> </div>
+                                <div class="text-cont">
+                                    Accounting
+                                    Systems</div>
+</li>
+                            <li> <div class="img-cont"><img src="~/images/icon-12.png" />
+    </div><div class="text-cont">
+    Manufacturing
+    Systems</div>
+
+</li>
+                            <li>
+                                 <div class="img-cont"> <img src="~/images/icon-8.png" /> </div>
+                                <div class="text-cont">
+                                    Equipment Maintenance &amp; <br />
+                                    Repair</div>
+</li>
+                            <li>
+                                 <div class="img-cont"> <img src="~/images/icon-7.png" /> </div>
+                                <div class="text-cont">
+                                    Trucking Management<br />
+                                    Systems</div>
+</li>
+                            <li>
+                                 <div class="img-cont"> <img src="~/images/icon-9.png" /> </div>
+                                <div class="text-cont">
+                                    Port Handling &amp; Management<br/>
+                                    Systems</div>
+</li>
+                            <li>
+                                 <div class="img-cont"> <img src="~/images/icon-1.png" /> </div>
+                                <div class="text-cont">
+                                    Warehouse Management<br/>
+                                    Systems</div>
+</li>
+                            <li>
+                                 <div class="img-cont"> <img src="~/images/icon-3.png" /> </div>
+                                <div class="text-cont">
+                                    Container Freight<br />
+                                    Stations</div>
+</li>
+                            <li>
+                                 <div class="img-cont"> <img src="~/images/icon-5.png" /> </div>
+                                <div class="text-cont">
+                                    OCR-gate &amp; Equipment<br/>
+                                    Automation</div>
+</li>
+                            <li> <div class="img-cont"> <img src="~/images/icon-2.png" /> </div>
+                                <div class="text-cont">
+                                    Electronic Data
+                                    Interface</div>
+</li>
+                            <li>
+
+                                 <div class="img-cont"> <img src="~/images/icon-10.png" /> </div>
+                                <div class="text-cont">
+                                    Container Depots<br/>
+                                    Management</div>
+</li>
+                        </ul>
+                        <div class="clear"></div>
+                    </div>
+                </div>
+            </div>
+                <!--<div class="col-md-3">
+            <div class="left-menu">
+                <ul>
+                    <li class="active"><a class="has-ripple" href=""><i class="fa fa-chevron-circle-right"></i> Title Comes Here</a></li>
+                    <li><a class="has-ripple" href=""><i class="fa fa-chevron-circle-right"></i> Title Comes Here</a></li>
+                    <li><a class="has-ripple" href=""><i class="fa fa-chevron-circle-right"></i> Title Comes Here</a></li>
+                    <li><a class="has-ripple" href=""><i class="fa fa-chevron-circle-right"></i> Title Comes Here</a></li>
+                    <li><a class="has-ripple" href=""><i class="fa fa-chevron-circle-right"></i> Title Comes Here</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="col-md-9">
+            <div class="content">
+                <h3>Title Comes Here</h3>
+                <p>
+                    Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+                    tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+                    quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+                    consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+                    cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+                    proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+                </p>
+                <p>
+                    Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+                    tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+                    quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+                    consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+                    cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+                    proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+                </p>
+                <p>
+                    Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+                    tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+                    quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+                    consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+                    cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+                    proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+                </p>
+                <p>
+                    Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+                    tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+                    quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+                    consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+                    cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+                    proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+                </p>
+                <p>
+                    Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+                    tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+                    quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+                    consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+                    cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+                    proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+                </p>
+            </div>
+        </div>-->
+            </div>
+    </div>
+</section>
+

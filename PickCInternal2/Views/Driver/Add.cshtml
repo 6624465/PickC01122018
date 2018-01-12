@@ -1,0 +1,600 @@
+﻿@model PickC.Internal2.ViewModals.DriverVm
+@{
+    ViewBag.Title = "Add";
+    Model.driver.DateOfBirth = DateTime.Now;
+
+    var addressList = new List<Master.Contract.Address>();
+    Model.driver.AddressList = addressList;
+}
+@section seccss{
+    <link href="@Url.Content("~/Css/bootstrap-datetimepicker.css")" rel="stylesheet" />
+}
+<section class="content-header">
+    @*<div class="row">
+        <div class="col-xs-12">
+            @{ Html.RenderPartial("DashboardMenuList"); }
+        </div>
+    </div>*@
+    <h3>Add Driver</h3>
+</section>
+@using (Html.BeginForm("SaveDriver", "Driver", FormMethod.Post, new { id = "frmDriverAdd", name = "frmDriverAdd", enctype = "multipart/form-data" }))
+{
+    <section class="content">
+        <div class="row">
+            <div class="col-xs-12">
+                <div class="box">
+                    <div class="box-header">
+                        <h3 class="box-title">Operator Info</h3>
+                    </div>
+                    <div class="box-body">
+                        <div class="row">
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label>Operator Number</label>
+                                    @*  <input type="text" id="txt-Operator-Number" class="form-control" />*@
+                                    @Html.DropDownListFor(x => x.driver.OperatorId,new SelectList(ViewBag.Operators,"Value","Text"),"Select Operator", new { @class = "form-control", id = "txt-Operator-Number", onchange = "onChangeOperator(this)" })
+
+
+
+                                </div>
+                            </div>
+                            @*<div class="col-md-4">
+                                <button type="button" class="btn btn-primary" style="margin-top: 25px;" onclick="Check();">Valid</button>
+                            </div>*@
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row" id="DriverInfo" style="display:none;">
+            <div class="col-xs-12">
+                <div class="box">
+                    <div class="box-header">
+                        <h3 class="box-title">Driver Info</h3>
+                    </div>
+                    <div class="box-body">
+                        <div class="row">
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label>Driver ID</label>
+                                    @Html.TextBoxFor(x => x.driver.DriverId, new { @class = "form-control", placeholder = "Driver ID", @readonly = "readonly" })
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label>Driver Name</label>
+                                    @Html.TextBoxFor(x => x.driver.DriverName, new { @class = "form-control", placeholder = "Driver Name" })
+                                </div>
+                            </div>
+                            @*<div class="col-md-4">
+                                    <div class="form-group">
+                                        <label>Vehicle No</label>
+                                        @Html.TextBoxFor(x => x.driver.VehicleNo, new { @class = "form-control", placeholder = "Vehicle No" })
+                                    </div>
+                                </div>*@
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row" style="display:none;" id="PersonalInfo">
+            <div class="col-xs-12">
+                <div class="box">
+                    <div class="box-header">
+                        <h3 class="box-title">Personal Info</h3>
+                    </div>
+                    <div class="box-body">
+                        <div class="row">
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label>Father Name</label>
+                                    @Html.TextBoxFor(x => x.driver.FatherName, new { @class = "form-control", placeholder = "Father Name" })
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label>Date Of Birth</label>
+                                    <div class="input-group dtCss">
+                                        @Html.TextBoxFor(x => x.driver.DateOfBirth,
+                                         new
+                                         {
+                                             @class = "form-control",
+                                             placeholder = "Date Of Birth"
+                                         })
+                                        <span class="input-group-btn">
+                                            <button type="button" class="btn btn-default"><i class="fa fa-calendar" aria-hidden="true"></i></button>
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label>Place Of Birth</label>
+                                    @Html.TextBoxFor(x => x.driver.PlaceOfBirth,
+                                         new
+                                         {
+                                             @class = "form-control",
+                                             placeholder = "Place Of Birth"
+                                         })
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label>Gender</label>
+                                    @Html.DropDownListFor(x => x.driver.Gender,
+                                     new SelectList(Model.driverLookupDTO.genderOptions, "LookupId", "LookupDescription"),
+                                     "Select Gender",
+                                     new { @class = "form-control" })
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label>Maritial Status</label>
+                                    @Html.DropDownListFor(x => x.driver.MaritialStatus,
+                                     new SelectList(Model.driverLookupDTO.maritalOptions, "LookupId", "LookupDescription"),
+                                     "Select Maritial Status",
+                                     new { @class = "form-control" })
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label>Mobile No</label>
+                                    @Html.TextBoxFor(x => x.driver.MobileNo, new { @class = "form-control number", @maxlength=10, placeholder = "Mobile No" })
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label>Phone No</label>
+                                    @Html.TextBoxFor(x => x.driver.PhoneNo, new { @class = "form-control number", @maxlength = 10, placeholder = "Phone No" })
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row" style="display:none;" id="IdentificationInfo">
+            <div class="col-xs-12">
+                <div class="box">
+                    <div class="box-header">
+                        <h3 class="box-title">Identification Info</h3>
+                    </div>
+                    <div class="box-body">
+                        <div class="row">
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label>PAN No</label>
+                                    @Html.TextBoxFor(x => x.driver.PANNo, new { @class = "form-control", @maxlength=10, placeholder = "PAN No" })
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label>Aadhar Card No</label>
+                                    @Html.TextBoxFor(x => x.driver.AadharCardNo, new { @class = "form-control number", @maxlength = 12, placeholder = "Aadhar Card No" })
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label>License No</label>
+                                    @Html.TextBoxFor(x => x.driver.LicenseNo, new { @class = "form-control", placeholder = "License No" })
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row" style="display:none;" id="AddressInfo">
+            <div class="col-md-12">
+                <div class="box">
+                    <div class="box-header">
+                        <h3 class="box-title">Address Info</h3>
+                        <div class="box-tools">
+                            <button class="btn btn-box-tool" type="button" onclick="AddAddress('-1')"><i class="fa fa-plus" aria-hidden="true"></i></button>
+                        </div>
+                    </div>
+                    <div class="box-body" style="padding-bottom:15px;">
+
+                        <table class="table table-hover table-bordered">
+                            <thead>
+                                <tr>
+                                    <th>Address 1</th>
+                                    <th>Address 2</th>
+                                    <th>#Action</th>
+                                </tr>
+                            </thead>
+                            <tbody id="trBody">
+                                @for (var i = 0; i < Model.driver.AddressList.Count; i++)
+                                {
+                                    <tr id="trRow_@i" class="trRowCss">
+                                        <td>
+                                            <span id="Address1_span_@i">@Model.driver.AddressList[i].Address1</span>
+                                            @Html.HiddenFor(x => Model.driver.AddressList[i].Address1)
+                                        </td>
+                                        <td>
+                                            <span id="Address2_span_@i">
+                                                @Model.driver.AddressList[i].Address2
+                                            </span>
+                                            @Html.HiddenFor(x => Model.driver.AddressList[i].Address2)
+                                        </td>
+                                        <td>
+                                            @Html.HiddenFor(x => Model.driver.AddressList[i].Address3)
+                                            @Html.HiddenFor(x => Model.driver.AddressList[i].Address4)
+                                            @Html.HiddenFor(x => Model.driver.AddressList[i].CityName)
+                                            @Html.HiddenFor(x => Model.driver.AddressList[i].StateName)
+                                            @Html.HiddenFor(x => Model.driver.AddressList[i].ZipCode)
+                                            <a class="hand" onclick="EditAddress('@i')">Edit</a>&nbsp;|&nbsp;
+                                            <a class="hand" onclick="DeleteAddress('@i')">Delete</a>
+                                        </td>
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+           <div id="DeviceDetails" class="row" style="display:none;">
+            <div class="col-xs-12">
+                <div class="box">
+                    <div class="box-header">
+                        <h3 class="box-title">Device Details</h3>
+                    </div>
+                    <div class="box-body">
+                        <div class="row">
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                        <label>Mobile Make</label>
+                                    @Html.TextBoxFor(x => x.driver.MobileMake,new
+                               {
+                                   @class = "form-control",
+                                   placeholder = "Mobile Make"
+                               })
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label>Model No</label>
+                                    @Html.TextBoxFor(x => x.driver.ModelNo, new
+                               {
+                                   @class ="form-control",
+                                   placeholder ="Model No"
+                               })                                
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label>Date of Issue</label>
+                                    <div class="input-group dtCss">
+                                        @Html.TextBoxFor(x => x.driver.DateofIssue,
+                                         new
+                                         {
+                                             @class = "form-control",
+                                             placeholder = "Date Of Issue"
+                                         })
+                                        <span class="input-group-btn">
+                                            <button type="button" class="btn btn-default"><i class="fa fa-calendar" aria-hidden="true"></i></button>
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label>Date of Return</label>
+                                    <div class="input-group dtCss">
+                                        @Html.TextBoxFor(x => x.driver.DateofReturn,
+                                         new
+                                         {
+                                             @class = "form-control",
+                                             placeholder = "Date Of Return"
+                                         })
+                                        <span class="input-group-btn">
+                                            <button type="button" class="btn btn-default"><i class="fa fa-calendar" aria-hidden="true"></i></button>
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+     </div>
+        <div class="row" style="display:none;" id="Attachments">
+            <div class="col-md-12">
+                <div class="box">
+                    <div class="box-header">
+                        <h3 class="box-title">Attachments</h3>
+                        @*<div class="box-tools">
+                                <button class="btn btn-box-tool" type="button" onclick="AddAttachments()"><i class="fa fa-plus" aria-hidden="true"></i></button>
+                            </div>*@
+                    </div>
+                    <div class="box-body">
+                        <div class="row">
+                            <div class="col-md-2">
+                                <label>PHOTO</label>
+                            </div>
+                            <div class="col-md-3">
+                                <input type="file" id="fphoto" name="fphoto" value="1385" />
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-2">
+                                <label>LICENSE NO</label>
+                            </div>
+                            <div class="col-md-3">
+                                <input type="file" id="flicense" name="flicense" value="1386" />
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-2">
+                                <label>PAN</label>
+                            </div>
+                            <div class="col-md-3">
+                                <input type="file" id="fpan" name="fpan" value="1387" />
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-2">
+                                <label>AADHAR</label>
+                            </div>
+                            <div class="col-md-3">
+                                <input type="file" id="fadhaar" name="fadhaar" value="1388" />
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-2">
+                                <label>ADDRESS PROOF</label>
+                            </div>
+                            <div class="col-md-3">
+                                <input type="file" id="faddressProof" name="faddressProof" value="1389" />
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-2">
+                                <label>OTHERS</label>
+                            </div>
+                            <div class="col-md-3">
+                                <input type="file" id="fothers" name="fothers" value="1390"  multiple="multiple"/>
+                            </div>
+                        </div>
+                        
+            </div>
+        </div>
+        <div class="row" style="display:none; " id="buttons">
+            <div class="col-md-12">
+                <div class="box">
+                    <div class="box-body" style="padding-bottom:15px;">
+                        <div class="text-left">
+                            <button type="button" class="btn btn-primary btn-them" onclick="btnSave();">Save</button>
+
+                            <button type="button" class="btn btn-default " onclick="location.href = '@Url.Content("~/Driver/Driver")'">Cancel</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+}
+<div class="modal" id="addressModal">
+    <div class="modal-dialog modal-md">
+        <form id="frmAddress" name="frmAddress">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">×</span>
+                    </button>
+                    <h4 class="modal-title">Address Info</h4>
+                </div>
+                <div class="modal-body" id="addressModalBody">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <label>Address 1</label>
+                            <input class="form-control" id="Address1" name="Address1" type="text" value="">
+                        </div>
+                        <div class="col-md-6">
+                            <label>Address 2</label>
+                            <input class="form-control" id="Address2" name="Address2" type="text" value="">
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <label>Address 3</label>
+                            <input class="form-control" id="Address3" name="Address3" type="text" value="">
+                        </div>
+                        <div class="col-md-6">
+                            <label>Address 4</label>
+                            <input class="form-control" id="Address4" name="Address4" type="text" value="">
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <label>State</label>
+                            <input class="form-control" id="StateName" name="StateName" type="text" value="">
+                        </div>
+                        <div class="col-md-6">
+                            <label>City</label>
+                            <input class="form-control" id="CityName" name="CityName" type="text" value="">
+                        </div>
+                        <input id="AddressLinkID" name="AddressLinkID" type="hidden" value="">
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <label>Zipcode</label>
+                            <input class="form-control number" id="ZipCode" name="ZipCode" type="text" value="" maxlength=6>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Close</button>
+                    <button type="button" onclick="btnSaveAddress();" class="btn btn-primary btn-them">Save</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+@section secscripts{
+    <script src="@Url.Content("~/Scripts/jquery.validate.js")"></script>
+    <script src="@Url.Content("~/Scripts/moment.js")"></script>
+    <script src="@Url.Content("~/Scripts/bootstrap-datetimepicker.js")"></script>
+    <script src="@Url.Content("~/Scripts/Internal/DriverAddress.js")"></script>
+    <script src="@Url.Content("~/Scripts/jquery.cookie.js")"></script>
+    <script type="text/javascript">
+        $(function () {
+             @if(Model.driver.DriverId==null)
+             {
+                 <text>  $('#driver_DateOfBirth').val('');</text>
+             }
+            $('#frmDriverAdd').validate({
+                rules: {
+                    'driver.DriverName': {
+                        required: true
+                    },
+                    'driver.VehicleNo': {
+                        required: true
+                    },
+                    'driver.FatherName': {
+                        required: true
+                    },
+                    'driver.DateOfBirth': {
+                        required: true
+                    },
+                    'driver.PlaceOfBirth': {
+                        required: true
+                    },
+                    'driver.Gender': {
+                        required: true
+                    },
+                    'driver.MaritialStatus': {
+                        required: true
+                    },
+                    'driver.MobileNo': {
+                        required: true
+                    },
+                    'driver.PhoneNo': {
+                        required: true
+                    },
+                    'driver.PANNo': {
+                        required: true
+                    },
+                    'driver.AadharCardNo': {
+                        required: true
+                    },
+                    'driver.LicenseNo': {
+                        required: true
+                    }
+                }
+            });
+           
+        });
+
+        $('.dtCss').datetimepicker({
+            icons: {
+                time: 'fa fa-clock-o',
+                date: 'fa fa-calendar',
+                up: 'fa fa-arrow-up',
+                down: 'fa fa-arrow-down',
+                previous: 'fa fa-arrow-left',
+                next: 'fa fa-arrow-right'
+            },
+            format: 'DD/MM/YYYY'
+        });
+        function btnSave() {
+            if ($('#frmDriverAdd').valid()) {
+                $('#frmDriverAdd').submit();
+            }
+        }
+        $('.number').keypress(function (e) {
+            if (window.event)
+                code = e.keyCode;
+            else
+                code = e.which;
+            if (code >= 48 && code <= 57)
+                return true;
+            else
+                return false;
+        });
+        function AddAddress(index) {
+            $('#frmAddress input[type="text"]').removeClass('error');
+            $('#addressModal').modal('show');
+        }
+
+        @*$('.NoSpecialCharacter').keypress(function () {
+            var format = /[!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]+/;
+
+            if (format.test(string)) {
+                return true;
+            } else {
+                return false;
+            }
+          
+        });*@
+        // return string.match(/^[^a-zA-Z0-9]+$/) ? true : false;
+
+        debugger;
+        var values = localStorage.getItem('OperatorValue');
+        var value = JSON.parse(values);
+        onChangeOperator(value);
+
+        function onChangeOperator(val) {
+            debugger
+            var operatorId;
+            if (val != null) {
+                operatorId = val;
+                $('#txt-Operator-Number').val(operatorId);
+            }
+            else {
+                operatorId = $('#txt-Operator-Number').val();
+            }
+                if (operatorId != '' && operatorId != undefined) {
+
+                    $.ajax({
+                        url: '@Url.Content("~/Dashboard/IsValidOperatorId?operatorId=")' + operatorId,
+                        method: 'get',
+                        contentType: 'application/json',
+                        success: function (data) {
+                            if (data == 1) {
+                                //  alert("Valid!");
+                                $("#DriverInfo").css("display", "block");
+                                $("#IdentificationInfo").css("display", "block");
+                                $("#PersonalInfo").css("display", "block")
+                                $("#AddressInfo").css("display", "block");
+                                $("#Attachments").css("display", "block");
+                                $("#DeviceDetails").css("display", "block");
+                                $("#buttons").css("display", "block");
+
+                                $("#txt-Operator-Number").prop("readonly", true);
+                            }
+
+                            //$('.validatenumber').keypress(function (e) {
+
+                            //    if (window.event)
+                            //        code = x.driver.PhoneNo;
+                            //    else
+                            //        code = x.which;
+                            //    if ((code >= 48 && code <= 57) || code == 43)
+                            //        return true;
+                            //    else
+                            //        return false;
+
+                            //});
+
+                            //if (data = 0) {
+                            //    alert("NotValid!");
+                            //    $('#txt-Operator-Number').val('');
+                            //}
+                        },
+                        error: function (err) {
+
+                        }
+                    });
+                }
+        }
+    </script>
+}

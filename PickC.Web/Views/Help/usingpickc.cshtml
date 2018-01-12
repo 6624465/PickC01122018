@@ -1,0 +1,22 @@
+﻿
+@{
+    ViewBag.Title = "using pickc";
+    Layout = "~/Views/Shared/_HelpLayout.cshtml";
+}
+<section class="help">
+    <div class="container">        
+        <div class="row">
+            <div class="col-md-3">
+                <div class="left-menu">
+                    <ul>
+                        <li class="active"><a class="has-ripple" href="@Url.Content("~/Help/menu?name=pickcapp")"><i class="fa fa-chevron-circle-right"></i> PickC App</a></li>
+                        <li><a class="has-ripple" href="@Url.Content("~/Help/menu?name=gettingstarted")"><i class="fa fa-chevron-circle-right"></i> Getting Started</a></li>
+                        <li><a class="has-ripple" href="@Url.Content("~/Help/menu?name=ridesfares")"><i class="fa fa-chevron-circle-right"></i> Rides and Fares</a></li>
+                        <li><a class="has-ripple" href="@Url.Content("~/Help/menu?name=troubleshoot")"><i class="fa fa-chevron-circle-right"></i> Troubleshooting your app</a></li>
+                    </ul>
+                </div>
+            </div>            
+        </div>
+    </div>
+</section>
+

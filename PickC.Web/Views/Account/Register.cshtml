@@ -1,0 +1,232 @@
+﻿@model Master.Contract.Customer
+@{
+    ViewBag.Title = "Register";
+}
+<section class="help">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="content">
+                    <div class="row">
+                        <div class="col-md-4 col-md-offset-4">
+                           
+                            <div class="qc-form">
+                               
+                                @using (Html.BeginForm("Register", "Account", FormMethod.Post, new { id = "frmRegister", name = "frmRegister" }))
+                                {
+                                    <div class="register">
+                                        <h2><i class="fa fa-sign-in"></i> Register Now</h2>
+                                        <div class="row">
+                                            <div class="col-xs-12 col-sm-12 col-md-12">
+                                                <div class="form-group">
+                                                    @Html.TextBoxFor(x => x.Name, new { placeholder = "Name", @class = "form-control", id = "name" })
+                                                </div>
+                                            </div>
+                                            <div class="col-xs-12 col-sm-12 col-md-12">
+                                                <div class="form-group">
+                                                    @Html.TextBoxFor(x => x.MobileNo, new { placeholder = "Phone", @class = "form-control mob", id = "phoneNumber" })
+                                                </div>
+                                            </div>
+                                            <div class="col-xs-12 col-sm-12 col-md-12">
+                                                <div class="form-group">
+                                                    @Html.PasswordFor(x => x.Password, new { placeholder = "Password", @class = "form-control", id = "password" })
+                                                </div>
+                                            </div>
+                                            <div class="col-xs-12 col-sm-12 col-md-12">
+                                                <div class="form-group">
+                                                    @Html.TextBoxFor(x => x.EmailID, new { placeholder = "Email", @class = "form-control", id = "email" })
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <button class="btn btn-default btn-submit btn-md ripple has-ripple" type="submit" onclick="btnRegister()">Save</button>
+                                        </div>
+                                    </div>
+                                    <div>
+                                        @if (Model != null)
+                                        {
+                                            <div class="register-otp">
+                                                <h4 style="margin-bottom:25px; "> Enter your  OTP No. </h4>
+                                                <div class="row">
+                                                    <div class="col-xs-12 col-md-8">
+                                                        <div class="form-group">
+                                                            <input type="text" id="txtOTP" placeholder="OTP" class="form-control" />
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-xs-12 col-md-4">
+                                                        <div class="form-group">
+                                                            <button class="btn btn-default btn-submit btn-md ripple has-ripple" type="submit" onclick="btnOTP()" style="padding:3px 10px;">Submit</button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        }
+                                            </div>
+                                        }
+                                    </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="verified" class="modal fade" role="dialog">
+        <div class="modal-dialog">
+
+            <!-- Modal content-->
+            <div class="modal-content">
+
+                <div class="modal-body">
+                    <p>OTP verified is done</p>
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+    <div id="Notverified" class="modal fade" role="dialog">
+        <div class="modal-dialog">
+
+            <!-- Modal content-->
+            <div class="modal-content">
+
+                <div class="modal-body">
+                    <p>Please Enter your OTP No!</p>
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+</section>
+@section scripts{
+    <script type="text/javascript">
+        $(function () {
+            @if(Model !=null)
+             {
+            <text>$(".register").hide();</text>
+            @*<text>$("#MobileNo").hide();</text>
+            <text>$("#Password").hide();</text>
+            <text>$("#EmailID").hide();</text>
+            <text>$("#btnRegister").hide();</text>*@
+            }
+
+            $('#frmRegister').validate({
+                rules: {
+                    Name: {
+                        required: true
+                    },
+                    MobileNo: {
+                        required: true
+                    },
+                    Password: {
+                        required: true
+                    },
+                    EmailID: {
+                        required: true
+                    }
+                },
+                errorPlacement: function (error, element) { }
+            });
+        });
+
+        $('#email').change(function (e) {
+            var emailRegexp = /^[+a-zA-Z0-9._-]+@@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/i,
+                email = e.currentTarget ? e.currentTarget.value : '';
+
+            if (emailRegexp.test(email) == false) {
+                alert('Please enter valid email.');
+                $('#email').val("");
+                return false;
+            }
+        });
+        $('#password').change(function (e) {
+            var passwordRegExp = /^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@@$%^&*-]).{8,}$/,
+                password = e.currentTarget ? e.currentTarget.value : '';
+
+            if (passwordRegExp.test(password) == false) {
+                alert('Please enter valid password & it should maintain atleast one special character, one capital alphabet, one small alphabet ,numeric and should 8 characters!');
+                $('#password').val("");
+                return false;
+            }
+        });
+        $('#phoneNumber').change(function (e) {
+            var mobileNumberRegExp = /^[789]\d{9}$/,
+                mobileNumber = e.currentTarget ? e.currentTarget.value : '';
+
+            if (mobileNumberRegExp.test(mobileNumber) == false) {
+                alert('Please enter valid phonenumber & it should contails 10 digits and starts with (7 or 8 or 9).');
+                $('#phoneNumber').val("");
+                return false;
+            }
+        });
+
+        function btnRegister() {
+            validateRegister();
+            if ($('#frmRegister').valid()) {
+                $("#Name").hide();
+                $("#MobileNo").hide();
+                $("#Password").hide();
+                $("#EmailID").hide();
+                $("#btnRegister").hide();
+                $('#frmRegister').submit();
+            }
+            else {
+                $('label.error').remove();
+            }
+        }
+        function validateRegister() {
+
+            var name = $('#name').val();
+            var email = $('#email').val();
+            var password = $('#password').val();
+            var mobileNumber = $('#phoneNumber').val();
+
+            if (!name || name == null) {
+                alert('Please enter name.');
+                return false;
+            }
+
+            if (!mobileNumber || mobileNumber == null) {
+                alert('Please enter phonenumber.');
+                return false;
+            }
+            if (!password || password == null) {
+                alert('Please enter password');
+                return false;
+            }
+
+            if (!email || email == null) {
+                alert('Please enter email.');
+                return false;
+            }
+        }
+
+        function btnOTP() {
+            debugger;
+            var OTPNo = $('#txtOTP').val();
+            if ($('#txtOTP').val() != '') {
+                $.ajax({
+                    url: '@Url.Content("~/Account/RegisterOTP?OTP=")' + OTPNo,
+                    method: 'POST',
+                    contentType: 'application/json',
+                    success: function (data) {
+                        if (data = "OTP Verified...!") {
+                           // alert("OTP verified is done");
+                            $('#verified').modal('show');
+                          window.location.href = '@Url.Content("~/Account/Login")';
+                        }
+                    },
+                    error: function (err) {
+                        debugger;
+                    }
+                });
+            }
+            else {
+              //alert("Please Enter your OTP No!");
+                $('#Notverified').modal('show');
+                
+            }
+        }
+    </script>
+}

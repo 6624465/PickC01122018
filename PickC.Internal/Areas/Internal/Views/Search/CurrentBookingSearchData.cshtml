@@ -1,0 +1,63 @@
+﻿@model List<Operation.Contract.Booking>
+@using PickC.Internal.HtmlHelpers
+@{
+    ViewBag.Title = "CurrentBookingSearchData";
+    Layout = "~/Areas/Internal/Views/Shared/_Layout.cshtml";
+}
+@{
+    WebGrid grid = new WebGrid(Model, rowsPerPage: 10, selectionFieldName: "selectedRow", ajaxUpdateContainerId: "grid");
+}
+
+<section>
+    @using (Html.BeginForm())
+    {
+        <div class="box">
+            <div class="box-header">
+                <h3 class="box-title">Customer List</h3>
+
+                <div class="box-tools">
+                    <div class="input-group input-group-sm" style="width: 150px;">
+                        <input type="text" name="table_search" class="form-control pull-right" placeholder="Search">
+
+                        <div class="input-group-btn">
+                            <button type="submit" class="btn btn-default"><i class="fa fa-search"></i></button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="box-body">
+                @if (Model != null)
+                {
+                    <div class="row">
+
+                        <div class="col-md-12">
+                            @grid.Table(
+                                   tableStyle: "table table-hover",
+                                   columns: grid.Columns(
+                                        grid.Column("BookingNo", "Booking No"),
+                                        grid.Column("BookingDate", "Booking Date"),
+                                        grid.Column("VehicleNo", "Vehicle Number"),
+                                        grid.Column("CargoType", "Cargo Type")
+                                       ),
+                                    htmlAttributes: new { id = "grid" })
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="pull-right">@grid.PagerList(mode: WebGridPagerModes.All, paginationStyle: "pagination pagination-sm")</div>
+                        </div>
+                    </div>
+
+                }
+                else
+                {
+                    <div>
+                        <label>No Data found...</label>
+                    </div>
+                }
+            </div>
+
+        </div>
+    }
+
+</section>

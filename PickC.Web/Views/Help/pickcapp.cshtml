@@ -1,0 +1,23 @@
+﻿@{
+    ViewBag.Title = "PickC App";
+    Layout = "~/Views/Shared/_HelpLayout.cshtml";
+}
+
+<section class="help">
+    <div class="container">        
+        <div class="row">
+            <div class="col-md-3">
+                <div class="left-menu">
+                    <ul>
+                        <li class="active"><a class="has-ripple" href="@Url.Content("~/Help/menu?name=downloading")"><i class="fa fa-chevron-circle-right"></i> Downloading the app</a></li>
+                        <li><a class="has-ripple" href="@Url.Content("~/Help/menu?name=updatingapp")"><i class="fa fa-chevron-circle-right"></i> Updating the app</a></li>
+                        <li><a class="has-ripple" href="@Url.Content("~/Help/menu?name=locationservices")"><i class="fa fa-chevron-circle-right"></i> Location Services</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+

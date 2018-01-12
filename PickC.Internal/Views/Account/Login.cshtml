@@ -1,0 +1,79 @@
+﻿@model Master.Contract.Customer
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Login</title>
+    <link href="@Url.Content("~/Css/font-awesome-4.7.0/css/font-awesome.css")" rel="stylesheet" />
+    <link href="@Url.Content("~/Css/bootstrap.min.css")" rel="stylesheet" />
+    <link href="@Url.Content("~/Css/AdminLTE.min.css")" rel="stylesheet" />
+    <style type="text/css">
+        input[type=text].error, input[type=password].error, textarea.error, select.error {
+            border: 1px solid red;
+            background-color: #f5e6e6;
+        }
+
+        label.error {
+            display: none !important;
+        }
+    </style>
+</head>
+
+<body class="hold-transition login-page">
+    <div class="login-box">
+        <div class="login-logo">
+            <a href="../../index2.html"><b>Pick</b>Cargo Internal</a>
+        </div>
+        <!-- /.login-logo -->
+        <div class="login-box-body">
+            <p class="login-box-msg">Sign in to start your session</p>
+            @using (Html.BeginForm("Login", "Account", FormMethod.Post, new { id = "frmLogin", name = "frmLogin" }))
+            {
+                <div class="form-group has-feedback">
+                    @Html.TextBoxFor(x => x.MobileNo, new { placeholder = "Phone", @class = "form-control" })
+                    <span class="fa fa-phone form-control-feedback"></span>
+                </div>
+                <div class="form-group has-feedback">
+                    @Html.PasswordFor(x => x.Password, new { placeholder = "Password", @class = "form-control" })
+                    <span class="fa fa-lock form-control-feedback"></span>
+                </div>
+                <div class="row">                    
+                    <div class="col-xs-12">
+                        <button type="button" class="btn btn-primary btn-block btn-flat" onclick="btnLogin();"><i class="fa fa-sign-in" aria-hidden="true"></i>&nbsp;Sign In</button>
+                    </div>                    
+                </div>
+            }
+        </div>       
+    </div>    
+    <script src="@Url.Content("~/Scripts/jquery-2.2.3.min.js")"></script>
+    <script src="@Url.Content("~/Scripts/jquery.validate.js")"></script>
+    <script src="@Url.Content("~/Scripts/bootstrap.min.js")"></script>
+    <script type="text/javascript">
+        $(function () {            
+            $('#frmLogin').validate({
+                rules: {
+                    MobileNo: {
+                        required: true
+                    },
+                    Password: {
+                        required: true
+                    }
+                },
+                errorPlacement: function (error, element) { }
+            });
+        });
+
+        function btnLogin() {            
+            if ($('#frmLogin').valid())
+                $('#frmLogin').submit();
+            else {
+                $('label.error').remove();
+            }
+        }
+    </script>
+</body>
+</html>

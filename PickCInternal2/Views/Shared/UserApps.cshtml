@@ -1,0 +1,77 @@
+﻿@model  Operation.Contract.UserData
+            <div class="tab-main-content">
+
+                <div class="row">
+                    <div class="col-md-3 col-sm-6 col-xs-12" id="AppDownloadsBox" onclick="getDownloadList();">
+                        <div class="info-box">
+                            <span class="info-box-icon bg-aqua"><i class="fa fa-download" aria-hidden="true"></i></span>
+                            <div class="info-box-content">
+                                <span class="info-box-text">User App Downloads</span>
+                                <span class="info-box-number"><small></small></span>
+                            </div>
+                            <!-- /.info-box-content -->
+                        </div>
+                        <!-- /.info-box -->
+                    </div>
+                    <div class="col-md-3 col-sm-6 col-xs-12 hand" id="totaltripsBox" onclick="getTotalTrips();">
+                        <div class="info-box">
+                            <span class="info-box-icon bg-red"><i class="fa fa-tripadvisor" aria-hidden="true"></i></span>
+                            <div class="info-box-content">
+                                <span class="info-box-text">Total Trips</span>
+                                <span class="info-box-number">@Model.userDataDashBoard.TotalBookings</span>
+                            </div>
+                            <!-- /.info-box-content -->
+                        </div>
+                        <!-- /.info-box -->
+                    </div>
+                    <div class="col-md-3 col-sm-6 col-xs-12 hand" id="RegisteredBox" onclick="getRegisteredList();">
+                        <div class="info-box">
+                            <span class="info-box-icon bg-green"><i class="fa fa-registered" aria-hidden="true"></i></span>
+
+                            <div class="info-box-content">
+                                <span class="info-box-text">Registered But Not Booked</span>
+                                <span class="info-box-number">@Model.userDataDashBoard.RegisteredNotBook</span>
+                            </div>
+                            <!-- /.info-box-content -->
+                        </div>
+                        <!-- /.info-box -->
+                    </div>
+                    <div class="col-md-3 col-sm-6 col-xs-12 hand" id="CancellationBox" onclick="getCancelledList();">
+                        <div class="info-box">
+                            <span class="info-box-icon bg-yellow"><i class="ion ion-ios-people-outline"></i></span>
+
+                            <div class="info-box-content">
+                                <span class="info-box-text">Cancellations</span>
+                                <span class="info-box-number">Driver: @Model.userDataDashBoard.DriverCancel<br/>
+                                Customer:@Model.userDataDashBoard.CustomerCancel
+                                </span>
+                            </div>
+                            <!-- /.info-box-content -->
+                        </div>
+                        <!-- /.info-box -->
+                    </div>
+                </div>
+            </div>
+
+<script src="@Url.Content("~/Scripts/jquery.validate.js")"></script>
+
+    <script type="text/javascript">
+            $(function () {
+                $('#userApp').parent().addClass('active');
+            });
+            function getTotalTrips() {
+                window.location = "@Url.Content("~/Dashboard/UserApp")";
+            }
+            function getRegisteredList() {
+                window.location = "@Url.Content("~/Dashboard/RegisteredList")";
+            }
+            function getCancelledList() {
+                window.location = "@Url.Content("~/Dashboard/UserAppCancellation")";
+            }
+    
+    </script>
+
+
+
+
+

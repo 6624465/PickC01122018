@@ -1,0 +1,104 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{B9E20A20-01C6-480A-A49A-647DF7C89463}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Master.Contract</RootNamespace>
+    <AssemblyName>Master.Contract</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Address.cs" />
+    <Compile Include="BankDetails.cs" />
+    <Compile Include="CargoTypeList.cs" />
+    <Compile Include="CompanyTripInvoice.cs" />
+    <Compile Include="ContactUs.cs" />
+    <Compile Include="Customer.cs" />
+    <Compile Include="CustomerBillDetails.cs" />
+    <Compile Include="CustomerPassword.cs" />
+    <Compile Include="Driver.cs" />
+    <Compile Include="DriverDetails.cs" />
+    <Compile Include="DriverEarningPaymentType.cs" />
+    <Compile Include="DriverImageRegister.cs" />
+    <Compile Include="DriverInvoice.cs" />
+    <Compile Include="DriverPassword.cs" />
+    <Compile Include="DriverRating.cs" />
+    <Compile Include="DriverReferral.cs" />
+    <Compile Include="DriverTodayTripList.cs" />
+    <Compile Include="DriverTripInvoice.cs" />
+    <Compile Include="DriverWiseDailyAmountPaymentTypeList.cs" />
+    <Compile Include="IContract.cs" />
+    <Compile Include="InvoiceDTO.cs" />
+    <Compile Include="Invoices.cs" />
+    <Compile Include="LookUp.cs" />
+    <Compile Include="Operator.cs" />
+    <Compile Include="OperatorAttachment.cs" />
+    <Compile Include="OperatorBankDetails.cs" />
+    <Compile Include="OperatorDriver.cs" />
+    <Compile Include="OperatorDriverData.cs" />
+    <Compile Include="OperatorDriverList.cs" />
+    <Compile Include="OperatorDriversAmountList.cs" />
+    <Compile Include="OperatorDriverTruckAttachment.cs" />
+    <Compile Include="OperatorNotifications.cs" />
+    <Compile Include="OperatorPasssword.cs" />
+    <Compile Include="OperatorVehicle.cs" />
+    <Compile Include="OperatorVehicles.cs" />
+    <Compile Include="OperatorVehuicleAttachedNo.cs" />
+    <Compile Include="OperatorWiseDriverVehicleAttachedTodayList.cs" />
+    <Compile Include="PendingAmount.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="RateCard.cs" />
+    <Compile Include="TrackCargoWithCRN.cs" />
+    <Compile Include="TripCE.cs" />
+    <Compile Include="TripAmont.cs" />
+    <Compile Include="TripCElist.cs" />
+    <Compile Include="TripCount.cs" />
+    <Compile Include="TripCountandEarnings.cs" />
+    <Compile Include="TripCountList.cs" />
+    <Compile Include="TripEstimate.cs" />
+    <Compile Include="TripEstimateForCustomer.cs" />
+    <Compile Include="TripInvoice.cs" />
+    <Compile Include="TruckList.cs" />
+    <Compile Include="VehicleCategory.cs" />
+    <Compile Include="VehicleConfig.cs" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

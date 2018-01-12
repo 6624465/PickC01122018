@@ -1,0 +1,89 @@
+﻿@model PickC.Services.DTO.DriverManufacturerDTO
+
+@{
+    ViewBag.Title = "Add";
+    Layout = "~/Areas/Internal/Views/Shared/_Layout.cshtml";
+}
+
+<section class="content-header">
+    <h1>Manufacturer Details</h1>
+</section>
+
+@using (Html.BeginForm("", "", FormMethod.Post, new { id = "frmManufacturer" }))
+{
+    <section class="content">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="box">
+                    <div class="box-header">
+                        <h3> Manufacturer Info</h3>
+                    </div>
+                    <div class="box-body">
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label>Manufacturer Name</label>
+                                @Html.TextBoxFor(x => x.Manufacturer, new { @class = "form-control", placeholder = "Manufacurer Name" })
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label>Vehicle Name</label>
+                                @Html.TextBoxFor(x => x.MakeType, new { @class = "form-control", placeholder = "Vehicle Name" })
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label>Tonnage</label>
+                                @Html.TextBoxFor(x => x.Capacity, new { @class = "form-control", placeholder = "Tonnage" })
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <div class="box">
+                    <div class="box-body">
+                        <div class="col-md-1">
+                            <div class="form-group">
+                                <button type="submit" class="btn btn-primary">Save</button>
+                            </div>
+                        </div>
+                        <div class="col-md-1">
+                            <div class="form-group">
+                                <button type="button" class="btn btn-default" onclick="redirect()">Cancel</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+}
+
+@section secscripts{
+    <script src="@Url.Content("~/Scripts/jquery.validate.js")"></script>
+  
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('#frmManufacturer').validate({
+                rules: {
+                    'Manufacturer': {
+                        required: true
+                    },
+                    'MakeType': {
+                        required: true
+                    },
+                    'Capacity': {
+                        required: true
+                    }
+                }
+            });
+        });
+        function redirect() {
+            window.location = '@Url.Content("~/Internal/Manufacturer/Add")';
+        }
+    </script>
+}

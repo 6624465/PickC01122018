@@ -1,0 +1,107 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{A3CEF276-F503-45B0-8E74-0211475D2B09}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>PickC.Services</RootNamespace>
+    <AssemblyName>PickC.Services</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="RestSharp, Version=105.2.2.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\RestSharp.105.2.2\lib\net45\RestSharp.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Net" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="AddressService.cs" />
+    <Compile Include="BookingService.cs" />
+    <Compile Include="CustomerService.cs" />
+    <Compile Include="DriverService.cs" />
+    <Compile Include="DriverSummaryService.cs" />
+    <Compile Include="DTO\BookingDTO.cs" />
+    <Compile Include="DTO\BookingHistoryDTO.cs" />
+    <Compile Include="DTO\BookingSearchDTO.cs" />
+    <Compile Include="DTO\CustomerDTO.cs" />
+    <Compile Include="DTO\DriverAttachmentsDTO.cs" />
+    <Compile Include="DTO\DriverDTO.cs" />
+    <Compile Include="DTO\DriverLookup.cs" />
+    <Compile Include="DTO\DriverManufacturerDTO.cs" />
+    <Compile Include="DTO\DriverPaymentsDTO.cs" />
+    <Compile Include="DTO\LoginDTO.cs" />
+    <Compile Include="DTO\AttachmentDTO.cs" />
+    <Compile Include="DTO\OperatorDriverDTO.cs" />
+    <Compile Include="DTO\OperatorLookup.cs" />
+    <Compile Include="DTO\OperatorVehicleDTO.cs" />
+    <Compile Include="DTO\PaymentHistory.cs" />
+    <Compile Include="DTO\PendingAmountDTO.cs" />
+    <Compile Include="DTO\SaveBookingDTO.cs" />
+    <Compile Include="DTO\SummaryDTO.cs" />
+    <Compile Include="ManufacturerService.cs" />
+    <Compile Include="OperatorDriverService.cs" />
+    <Compile Include="OperatorService.cs" />
+    <Compile Include="OperatorVehicleService.cs" />
+    <Compile Include="PaymentService.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="RateCardService.cs" />
+    <Compile Include="SearchService.cs" />
+    <Compile Include="Service.cs" />
+    <Compile Include="TripMonitorService.cs" />
+    <Compile Include="UserService.cs" />
+    <Compile Include="VehicleGroupService.cs" />
+    <Compile Include="VehicleTypeService.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Master.Contract\Master.Contract.csproj">
+      <Project>{b9e20a20-01c6-480a-a49a-647df7c89463}</Project>
+      <Name>Master.Contract</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Operation.Contract\Operation.Contract.csproj">
+      <Project>{ef1065e7-b862-4409-88c4-bfd4a1a83ab5}</Project>
+      <Name>Operation.Contract</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

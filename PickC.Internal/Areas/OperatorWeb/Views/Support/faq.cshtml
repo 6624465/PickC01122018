@@ -1,0 +1,73 @@
+﻿
+@{
+    ViewBag.Title = "faq";
+    Layout = "~/Areas/OperatorWeb/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container">
+    <div class="row marginTop">
+        <div class="col-md-12 col-xs-12">
+            <div class="box box-default box-solid">
+                <div class="box-header with-border">
+                    <h3 class="box-title">Shift Management FAQs</h3>
+                </div>
+                <div class="box-body">
+                    <div class="row" style="margin-top: 10px;">
+                        <div class="col-md-12 col-xs-12">
+                            <ul class="nav nav-pills nav-stacked">
+                                <li>
+                                    <a href="#">
+                                        Can I set a schedule for my drivers?/Is there someplace where i can see the daily timetable of drivers and cars ?
+                                    </a>
+                                </li>
+                                <li>
+                                    @Html.ActionLink("How do i add a shift ?", "addshift", null, new { style = "color:#3c8dbc" })
+                                </li>
+                                <li>
+                                    <a href="#">
+                                        What does 'Today's calendar' track ?
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#">
+                                        What are the green boxes on my calendar ?
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#">
+                                        Can i choose a specific car ?
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#">
+                                        How do i select a specific driver ?
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#">
+                                        Do my driver get alerts/msgs with details of their scheduled shifts ?
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#">
+                                        Will i be alerted in case my drivder does not report on duty ?
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#">
+                                        Where do i set the date and timings of the shift ?
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="box-footer">
+                    <div class="row">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

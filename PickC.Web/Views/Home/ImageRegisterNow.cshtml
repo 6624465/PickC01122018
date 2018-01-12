@@ -1,0 +1,59 @@
+﻿@model Master.Contract.Driver
+@{
+    ViewBag.Title = "ImageRegisterNow";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@using (Html.BeginForm("GetFile", "Home", FormMethod.Post, new { id = "frmImageRegister", name = "frmImageRegister" }))
+{
+    <section class="help">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-12 col-xs-12">
+                    <div class="content" style="min-height:350px;">
+                        <h1 class="pickcheader">Register</h1>
+                        <br />
+                        <div class="row">
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label style="margin-bottom:5px;">Enter Name</label>
+                                    @Html.TextBoxFor(x => Model.DriverName, new { @class = "form-control", placeholder = "Name" })
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label style="margin-bottom:5px;">Enter Mobile No.</label>
+                                    @Html.TextBoxFor(x => Model.MobileNo, new { @class = "form-control", placeholder = "Mobile Number" })
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+
+                            <div class="col-md-2">
+                                <br />
+                                <button type="submit" id="btnRegisterNow" class="btn btn-default btn-submit btn-md ripple has-ripple">Save</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+}
+@section scripts {
+    <script type="text/javascript">
+        $(function () {
+            $('#frmImageRegister').validate({
+                rules: {
+                    DriverName: {
+                        required: true
+                    },
+                    MobileNo: {
+                        required: true
+                    }
+                }
+            })
+        })
+    </script>
+}

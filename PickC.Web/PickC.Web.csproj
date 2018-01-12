@@ -1,0 +1,591 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.0\build\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props" Condition="Exists('..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.0\build\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" />
+  <Import Project="..\packages\Microsoft.Net.Compilers.1.0.0\build\Microsoft.Net.Compilers.props" Condition="Exists('..\packages\Microsoft.Net.Compilers.1.0.0\build\Microsoft.Net.Compilers.props')" />
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>
+    </ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{7A54A10E-5FA5-418E-BDB2-A8197EBB6B6E}</ProjectGuid>
+    <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>PickC.Web</RootNamespace>
+    <AssemblyName>PickC.Web</AssemblyName>
+    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
+    <UseIISExpress>true</UseIISExpress>
+    <IISExpressSSLPort />
+    <IISExpressAnonymousAuthentication />
+    <IISExpressWindowsAuthentication />
+    <IISExpressUseClassicPipelineMode />
+    <UseGlobalApplicationHostFile />
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
+    <TargetFrameworkProfile />
+    <Use64BitIISExpress />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="itextsharp, Version=5.5.10.0, Culture=neutral, PublicKeyToken=8354ae6d2174ddca, processorArchitecture=MSIL">
+      <HintPath>..\packages\iTextSharp.5.5.10\lib\itextsharp.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="itextsharp.xmlworker, Version=5.5.10.0, Culture=neutral, PublicKeyToken=8354ae6d2174ddca, processorArchitecture=MSIL">
+      <HintPath>..\packages\itextsharp.xmlworker.5.5.10\lib\itextsharp.xmlworker.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.CodeDom.Providers.DotNetCompilerPlatform, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.0\lib\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="RestSharp, Version=105.2.3.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\RestSharp.105.2.3\lib\net46\RestSharp.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Web.DynamicData" />
+    <Reference Include="System.Web.Entity" />
+    <Reference Include="System.Web.ApplicationServices" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.EnterpriseServices" />
+    <Reference Include="System.Xml.Linq" />
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="System.Web.Razor">
+      <HintPath>..\packages\Microsoft.AspNet.Razor.3.2.3\lib\net45\System.Web.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Webpages">
+      <HintPath>..\packages\Microsoft.AspNet.Webpages.3.2.3\lib\net45\System.Web.Webpages.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Webpages.Deployment">
+      <HintPath>..\packages\Microsoft.AspNet.Webpages.3.2.3\lib\net45\System.Web.Webpages.Deployment.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Webpages.Razor">
+      <HintPath>..\packages\Microsoft.AspNet.Webpages.3.2.3\lib\net45\System.Web.Webpages.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Helpers">
+      <HintPath>..\packages\Microsoft.AspNet.Webpages.3.2.3\lib\net45\System.Web.Helpers.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Web.Infrastructure">
+      <HintPath>..\packages\Microsoft.Web.Infrastructure.1.0.0.0\lib\net40\Microsoft.Web.Infrastructure.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Mvc">
+      <HintPath>..\packages\Microsoft.AspNet.Mvc.5.2.3\lib\net45\System.Web.Mvc.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Help\companyinvoice.html" />
+    <Content Include="css\AdminLTE.min.css" />
+    <Content Include="css\AjaxLoader.html" />
+    <Content Include="css\animate.css" />
+    <Content Include="css\assets\large_left.png" />
+    <Content Include="css\bootstrap-datetimepicker.css" />
+    <Content Include="css\bootstrap-rating.css" />
+    <Content Include="css\bootstrap-select.min.css" />
+    <Content Include="css\bootstrap.css" />
+    <Content Include="css\bootstrap.min.css" />
+    <Content Include="css\colorbox.css" />
+    <Content Include="css\dynamic.css" />
+    <Content Include="css\extra.css" />
+    <Content Include="css\flaticon.css" />
+    <Content Include="css\font-awesome-4.6.2\css\font-awesome.css" />
+    <Content Include="css\font-awesome-4.6.2\css\font-awesome.min.css" />
+    <Content Include="css\font-awesome-4.6.2\fonts\fontawesome-webfont.svg" />
+    <Content Include="css\font-awesome-4.6.2\HELP-US-OUT.txt" />
+    <Content Include="css\font-awesome.css" />
+    <Content Include="css\font-awesome.min.css" />
+    <Content Include="css\grabbing.html" />
+    <Content Include="css\help\css\AjaxLoader.html" />
+    <Content Include="css\help\css\animate.css" />
+    <Content Include="css\help\css\bootstrap-select.min.css" />
+    <Content Include="css\help\css\bootstrap.min.css" />
+    <Content Include="css\help\css\colorbox.css" />
+    <Content Include="css\help\css\extra.css" />
+    <Content Include="css\help\css\font-awesome.min.css" />
+    <Content Include="css\help\css\grabbing.html" />
+    <Content Include="css\help\css\owl.carousel.css" />
+    <Content Include="css\help\css\owl.theme.css" />
+    <Content Include="css\help\css\responsive.css" />
+    <Content Include="css\help\css\ripple.css" />
+    <Content Include="css\help\css\style.css" />
+    <Content Include="css\help\fonts\fontawesome-webfont93e3.html" />
+    <Content Include="css\help\fonts\fontawesome-webfont93e3.svg" />
+    <Content Include="css\help\fonts\glyphicons-halflings-regular-2.html" />
+    <Content Include="css\help\fonts\glyphicons-halflings-regular-3.html" />
+    <Content Include="css\help\fonts\glyphicons-halflings-regular-4.html" />
+    <Content Include="css\help\fonts\glyphicons-halflings-regular.html" />
+    <Content Include="css\help\fonts\glyphicons-halflings-regulard41dd41d.html" />
+    <Content Include="css\help\images\1 - Copy.png" />
+    <Content Include="css\help\images\1.png" />
+    <Content Include="css\help\images\2.png" />
+    <Content Include="css\help\images\3.png" />
+    <Content Include="css\help\images\4.png" />
+    <Content Include="css\help\images\5.png" />
+    <Content Include="css\help\images\6.png" />
+    <Content Include="css\help\images\app.png" />
+    <Content Include="css\help\images\apple_ios_store.png" />
+    <Content Include="css\help\images\content-bg.jpg" />
+    <Content Include="css\help\images\controls.png" />
+    <Content Include="css\help\images\crossword.png" />
+    <Content Include="css\help\images\down-arrow-color.png" />
+    <Content Include="css\help\images\down-arrow-transparent.png" />
+    <Content Include="css\help\images\down-arrow-white.png" />
+    <Content Include="css\help\images\footer-logo.png" />
+    <Content Include="css\help\images\goo.png" />
+    <Content Include="css\help\images\google_play_store.png" />
+    <Content Include="css\help\images\ico-02.png" />
+    <Content Include="css\help\images\image-overlay.png" />
+    <Content Include="css\help\images\loading.html" />
+    <Content Include="css\help\images\logo.png" />
+    <Content Include="css\help\images\logo2.png" />
+    <Content Include="css\help\images\newsletter-icon.png" />
+    <Content Include="css\help\images\product-bg.jpg" />
+    <Content Include="css\help\images\sprite.png" />
+    <Content Include="css\help\js\bootstrap-select.min.js" />
+    <Content Include="css\help\js\bootstrap.min.js" />
+    <Content Include="css\help\js\custom.js" />
+    <Content Include="css\help\js\gmap3.min.js" />
+    <Content Include="css\help\js\ini.isotope.js" />
+    <Content Include="css\help\js\isotope.js" />
+    <Content Include="css\help\js\jquery-2.1.3.min.js" />
+    <Content Include="css\help\js\jquery-ui.js" />
+    <Content Include="css\help\js\jquery.colorbox.js" />
+    <Content Include="css\help\js\jquery.counterup.min.js" />
+    <Content Include="css\help\js\jquery.js" />
+    <Content Include="css\help\js\owl.carousel.js" />
+    <Content Include="css\help\js\owl.carousel.min.js" />
+    <Content Include="css\help\js\ripple.js" />
+    <Content Include="css\help\js\sticky.js" />
+    <Content Include="css\help\js\waypoints.min.js" />
+    <Content Include="css\hover.css" />
+    <Content Include="css\jquery.fancybox.css" />
+    <Content Include="css\main.css" />
+    <Content Include="css\owl.carousel.css" />
+    <Content Include="css\owl.css" />
+    <Content Include="css\owl.theme.css" />
+    <Content Include="css\prettyPhoto.css" />
+    <Content Include="css\ratecard.css" />
+    <Content Include="css\responsive.css" />
+    <Content Include="css\revolution-slider.css" />
+    <Content Include="css\ripple.css" />
+    <Content Include="css\style.css" />
+    <Content Include="Views\Help\driverinvoice.html" />
+    <Content Include="fonts\fontawesome-webfont93e3.html" />
+    <Content Include="fonts\fontawesome-webfont93e3.svg" />
+    <Content Include="fonts\glyphicons-halflings-regular-2.html" />
+    <Content Include="fonts\glyphicons-halflings-regular-3.html" />
+    <Content Include="fonts\glyphicons-halflings-regular-4.html" />
+    <Content Include="fonts\glyphicons-halflings-regular.html" />
+    <Content Include="fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="fonts\glyphicons-halflings-regulard41dd41d.html" />
+    <Content Include="Global.asax" />
+    <Content Include="images\0_75.png" />
+    <Content Include="images\1 - Copy.png" />
+    <Content Include="images\1.jpeg" />
+    <Content Include="images\1_5_ton.png" />
+    <Content Include="images\1.png" />
+    <Content Include="images\1_ton.png" />
+    <Content Include="images\2.jpeg" />
+    <Content Include="images\2.png" />
+    <Content Include="images\2_ton.png" />
+    <Content Include="images\3.jpeg" />
+    <Content Include="images\3.png" />
+    <Content Include="images\4.jpg" />
+    <Content Include="images\4.png" />
+    <Content Include="images\5.png" />
+    <Content Include="images\6.png" />
+    <Content Include="images\app.png" />
+    <Content Include="images\apple_ios_store.png" />
+    <Content Include="images\b1.png" />
+    <Content Include="images\b10.png" />
+    <Content Include="images\b11.png" />
+    <Content Include="images\b12.png" />
+    <Content Include="images\b13.png" />
+    <Content Include="images\b14.png" />
+    <Content Include="images\b15.png" />
+    <Content Include="images\b2.png" />
+    <Content Include="images\b3.png" />
+    <Content Include="images\b4.png" />
+    <Content Include="images\b5.png" />
+    <Content Include="images\b6.png" />
+    <Content Include="images\b7.png" />
+    <Content Include="images\b8.png" />
+    <Content Include="images\b9.png" />
+    <Content Include="images\cc-logo.png" />
+    <Content Include="images\content-bg.jpg" />
+    <Content Include="images\controls.png" />
+    <Content Include="images\crossword.png" />
+    <Content Include="images\DOST_shadow.jpg" />
+    <Content Include="images\down-arrow-color.png" />
+    <Content Include="images\down-arrow-transparent.png" />
+    <Content Include="images\down-arrow-white.png" />
+    <Content Include="images\driver.jpg" />
+    <Content Include="images\DriverDocument.png" />
+    <Content Include="images\f5.png" />
+    <Content Include="images\feedback.png" />
+    <Content Include="images\Final-Register-Now.png" />
+    <Content Include="images\flag_Malaysia.PNG" />
+    <Content Include="images\footer-logo.png" />
+    <Content Include="images\goo.png" />
+    <Content Include="images\google_play_store.png" />
+    <Content Include="images\green%402x.png" />
+    <Content Include="images\green.css" />
+    <Content Include="images\green.png" />
+    <Content Include="images\ico-02.png" />
+    <Content Include="images\icon-1.png" />
+    <Content Include="images\icon-10.png" />
+    <Content Include="images\icon-12.png" />
+    <Content Include="images\icon-2.png" />
+    <Content Include="images\icon-3.png" />
+    <Content Include="images\icon-4.png" />
+    <Content Include="images\icon-5.png" />
+    <Content Include="images\icon-6.png" />
+    <Content Include="images\icon-7.png" />
+    <Content Include="images\icon-8.png" />
+    <Content Include="images\icon-9.png" />
+    <Content Include="images\image-overlay.png" />
+    <Content Include="images\India.png" />
+    <Content Include="images\loading.html" />
+    <Content Include="images\logo.png" />
+    <Content Include="images\logo2.png" />
+    <Content Include="images\n2.jpg" />
+    <Content Include="images\n3.jpg" />
+    <Content Include="images\n4.jpg" />
+    <Content Include="images\n5.jpg" />
+    <Content Include="images\n6.jpg" />
+    <Content Include="images\new2.png" />
+    <Content Include="images\new3.png" />
+    <Content Include="images\newsletter-icon.png" />
+    <Content Include="images\pageunderconstruction.png" />
+    <Content Include="images\paytm.jpg" />
+    <Content Include="images\PDFDownloadButton.png" />
+    <Content Include="images\product-bg.jpg" />
+    <Content Include="images\qrcode.png" />
+    <Content Include="images\red-dot.png" />
+    <Content Include="images\rupee.png" />
+    <Content Include="images\S1.png" />
+    <Content Include="images\S2.png" />
+    <Content Include="images\S3.png" />
+    <Content Include="images\S4.png" />
+    <Content Include="images\S5.png" />
+    <Content Include="images\singapore.png" />
+    <Content Include="images\sprite.png" />
+    <Content Include="images\support.jpg" />
+    <Content Include="images\th-icon.png" />
+    <Content Include="images\thankyou.png" />
+    <Content Include="images\thumb.png" />
+    <Content Include="images\usa.png" />
+    <Content Include="js\angular.js" />
+    <Content Include="js\app.js" />
+    <Content Include="js\bootstrap-datetimepicker.js" />
+    <Content Include="js\bootstrap-rating.min.js" />
+    <Content Include="js\bootstrap-select.min.js" />
+    <Content Include="js\bootstrap.min.js" />
+    <Content Include="js\custom.js" />
+    <Content Include="js\DriverImage.js" />
+    <Content Include="js\gmap3.min.js" />
+    <Content Include="js\icheck.min.js" />
+    <Content Include="js\ini.isotope.js" />
+    <Content Include="js\isotope.js" />
+    <Content Include="js\jquery-2.1.3.min.js" />
+    <Content Include="js\jquery-ui.js" />
+    <Content Include="js\jquery.colorbox.js" />
+    <Content Include="js\jquery.counterup.min.js" />
+    <Content Include="js\jquery.js" />
+    <Content Include="js\jquery.validate.js" />
+    <Content Include="js\moment.js" />
+    <Content Include="js\owl.carousel.js" />
+    <Content Include="js\owl.carousel.min.js" />
+    <Content Include="js\ripple.js" />
+    <Content Include="js\sticky.js" />
+    <Content Include="js\ui-bootstrap.js" />
+    <Content Include="js\waypoints.min.js" />
+    <Content Include="mobile\terms.html" />
+    <Content Include="Views\Help\terms-mobile.html" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="BaseController.cs" />
+    <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\BillController.cs" />
+    <Compile Include="Controllers\BookingsController.cs" />
+    <Compile Include="Controllers\DefaultController.cs" />
+    <Compile Include="Controllers\HelpController.cs" />
+    <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\RateCardController.cs" />
+    <Compile Include="Core\PickCEx.cs" />
+    <Compile Include="Core\WebAuthFilter.cs" />
+    <Compile Include="Global.asax.cs">
+      <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="HtmlHelpers\WebGridExtensions.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Utilities\EmailGenerator.cs" />
+    <Compile Include="Utilities\smsGenerator.cs" />
+    <Compile Include="ViewModels\RateCardVm.cs" />
+    <Compile Include="ViewModels\TripEstimateVm.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\web.config" />
+    <Content Include="packages.config" />
+    <Content Include="Views\Shared\_Layout.cshtml" />
+    <Content Include="Views\_ViewStart.cshtml" />
+    <Content Include="Views\Home\Index.cshtml" />
+    <Content Include="css\extra.css.map" />
+    <Content Include="css\extra.scss" />
+    <Content Include="css\main.css.map" />
+    <Content Include="css\main.scss" />
+    <Content Include="fonts\fontawesome-webfont93e3.eot" />
+    <Content Include="fonts\fontawesome-webfont93e3.ttf" />
+    <Content Include="fonts\fontawesome-webfont93e3.woff" />
+    <Content Include="fonts\fontawesome-webfontd41d.eot" />
+    <Content Include="images\logo.psd" />
+    <Content Include="images\Pick-C Logo%281%29.psd" />
+    <Content Include="images\road.psd" />
+    <Content Include="Views\Account\Login.cshtml" />
+    <Content Include="css\font-awesome-4.6.2\fonts\fontawesome-webfont.eot" />
+    <Content Include="css\font-awesome-4.6.2\fonts\fontawesome-webfont.ttf" />
+    <Content Include="css\font-awesome-4.6.2\fonts\fontawesome-webfont.woff" />
+    <Content Include="css\font-awesome-4.6.2\fonts\fontawesome-webfont.woff2" />
+    <Content Include="css\font-awesome-4.6.2\fonts\FontAwesome.otf" />
+    <Content Include="css\font-awesome-4.6.2\less\animated.less" />
+    <Content Include="css\font-awesome-4.6.2\less\bordered-pulled.less" />
+    <Content Include="css\font-awesome-4.6.2\less\core.less" />
+    <Content Include="css\font-awesome-4.6.2\less\fixed-width.less" />
+    <Content Include="css\font-awesome-4.6.2\less\font-awesome.less" />
+    <Content Include="css\font-awesome-4.6.2\less\icons.less" />
+    <Content Include="css\font-awesome-4.6.2\less\larger.less" />
+    <Content Include="css\font-awesome-4.6.2\less\list.less" />
+    <Content Include="css\font-awesome-4.6.2\less\mixins.less" />
+    <Content Include="css\font-awesome-4.6.2\less\path.less" />
+    <Content Include="css\font-awesome-4.6.2\less\rotated-flipped.less" />
+    <Content Include="css\font-awesome-4.6.2\less\screen-reader.less" />
+    <Content Include="css\font-awesome-4.6.2\less\stacked.less" />
+    <Content Include="css\font-awesome-4.6.2\less\variables.less" />
+    <Content Include="css\font-awesome-4.6.2\scss\font-awesome.scss" />
+    <Content Include="css\font-awesome-4.6.2\scss\_animated.scss" />
+    <Content Include="css\font-awesome-4.6.2\scss\_bordered-pulled.scss" />
+    <Content Include="css\font-awesome-4.6.2\scss\_core.scss" />
+    <Content Include="css\font-awesome-4.6.2\scss\_fixed-width.scss" />
+    <Content Include="css\font-awesome-4.6.2\scss\_icons.scss" />
+    <Content Include="css\font-awesome-4.6.2\scss\_larger.scss" />
+    <Content Include="css\font-awesome-4.6.2\scss\_list.scss" />
+    <Content Include="css\font-awesome-4.6.2\scss\_mixins.scss" />
+    <Content Include="css\font-awesome-4.6.2\scss\_path.scss" />
+    <Content Include="css\font-awesome-4.6.2\scss\_rotated-flipped.scss" />
+    <Content Include="css\font-awesome-4.6.2\scss\_screen-reader.scss" />
+    <Content Include="css\font-awesome-4.6.2\scss\_stacked.scss" />
+    <Content Include="css\font-awesome-4.6.2\scss\_variables.scss" />
+    <Content Include="Views\Bookings\Bookings.cshtml" />
+    <Content Include="Views\Bookings\Pdf.cshtml" />
+    <Content Include="Views\RateCard\mobile.cshtml" />
+    <Content Include="Views\RateCard\Index.cshtml" />
+    <Content Include="Views\Help\acblocked.cshtml" />
+    <Content Include="Views\Help\activatecp.cshtml" />
+    <Content Include="Views\Help\applycoupon.cshtml" />
+    <Content Include="Views\Help\bookingacab.cshtml" />
+    <Content Include="Views\Help\bookingacabadvance.cshtml" />
+    <Content Include="Views\Help\cancellationfee.cshtml" />
+    <Content Include="Views\Help\cancellationreview.cshtml" />
+    <Content Include="Views\Help\changemobile.cshtml" />
+    <Content Include="Views\Help\changepassword.cshtml" />
+    <Content Include="Views\Help\citylimits.cshtml" />
+    <Content Include="Views\Help\corporateprofile.cshtml" />
+    <Content Include="Views\Help\createpickcac.cshtml" />
+    <Content Include="Views\Help\downloading.cshtml" />
+    <Content Include="Views\Help\droplocation.cshtml" />
+    <Content Include="Views\Help\emergencyalert.cshtml" />
+    <Content Include="Views\Help\emergencycontact.cshtml" />
+    <Content Include="Views\Help\forgotpassword.cshtml" />
+    <Content Include="Views\Help\freeridecoupon.cshtml" />
+    <Content Include="Views\Help\freerideexpires.cshtml" />
+    <Content Include="Views\Help\freezing.cshtml" />
+    <Content Include="Views\Help\gettingstarted.cshtml" />
+    <Content Include="Views\Help\incorectloction.cshtml" />
+    <Content Include="Views\Help\installingapp.cshtml" />
+    <Content Include="Views\Help\invitefriend.cshtml" />
+    <Content Include="Views\Help\knowyourfare.cshtml" />
+    <Content Include="Views\Help\locationservices.cshtml" />
+    <Content Include="Views\Help\menu.cshtml" />
+    <Content Include="Views\Help\minbalance.cshtml" />
+    <Content Include="Views\Help\myaccount.cshtml" />
+    <Content Include="Views\Help\nofreeridecoupon.cshtml" />
+    <Content Include="Views\Help\noregfreeridecoupon.cshtml" />
+    <Content Include="Views\Help\olamoney.cshtml" />
+    <Content Include="Views\Help\payforride.cshtml" />
+    <Content Include="Views\Help\peakpricing.cshtml" />
+    <Content Include="Views\Help\pickcapp.cshtml" />
+    <Content Include="Views\Help\pickcbalance.cshtml" />
+    <Content Include="Views\Help\pickcmoney.cshtml" />
+    <Content Include="Views\Help\pickctransaction.cshtml" />
+    <Content Include="Views\Help\pickupaddres.cshtml" />
+    <Content Include="Views\Help\ratecard.cshtml" />
+    <Content Include="Views\Help\rating.cshtml" />
+    <Content Include="Views\Help\receivecpreports.cshtml" />
+    <Content Include="Views\Help\rechargefailed.cshtml" />
+    <Content Include="Views\Help\rechargepickc.cshtml" />
+    <Content Include="Views\Help\redeempromocode.cshtml" />
+    <Content Include="Views\Help\referralprogram.cshtml" />
+    <Content Include="Views\Help\referrel.cshtml" />
+    <Content Include="Views\Help\registerreferral.cshtml" />
+    <Content Include="Views\Help\rideest.cshtml" />
+    <Content Include="Views\Help\rideoptions.cshtml" />
+    <Content Include="Views\Help\ridesfares.cshtml" />
+    <Content Include="Views\Help\safety.cshtml" />
+    <Content Include="Views\Help\safetycallus.cshtml" />
+    <Content Include="Views\Help\safetystnds.cshtml" />
+    <Content Include="Views\Help\savecard.cshtml" />
+    <Content Include="Views\Help\sharingcab.cshtml" />
+    <Content Include="Views\Help\trackacab.cshtml" />
+    <Content Include="Views\Help\troubleregister.cshtml" />
+    <Content Include="Views\Help\troubleshoot.cshtml" />
+    <Content Include="Views\Help\troubleshootac.cshtml" />
+    <Content Include="Views\Help\Troubleshootingreferral.cshtml" />
+    <Content Include="Views\Help\unablechangemobile.cshtml" />
+    <Content Include="Views\Help\unableemailspickc.cshtml" />
+    <Content Include="Views\Help\unableinvoice.cshtml" />
+    <Content Include="Views\Help\unableloginac.cshtml" />
+    <Content Include="Views\Help\unablereceiveotp.cshtml" />
+    <Content Include="Views\Help\unablereferralcode.cshtml" />
+    <Content Include="Views\Help\unablesmspickc.cshtml" />
+    <Content Include="Views\Help\unableverifymobile.cshtml" />
+    <Content Include="Views\Help\updateemail.cshtml" />
+    <Content Include="Views\Help\updatingapp.cshtml" />
+    <Content Include="Views\Help\updatingapp2.cshtml" />
+    <Content Include="Views\Help\usingpickc.cshtml" />
+    <Content Include="Views\Help\whatiscp.cshtml" />
+    <Content Include="Views\Help\withdrawpickcbalance.cshtml" />
+    <Content Include="Views\Shared\_HelpLayout.cshtml" />
+    <Content Include="css\help\css\extra.css.map" />
+    <Content Include="css\help\css\extra.scss" />
+    <Content Include="css\help\fonts\fontawesome-webfont93e3.eot" />
+    <Content Include="css\help\fonts\fontawesome-webfont93e3.ttf" />
+    <Content Include="css\help\fonts\fontawesome-webfont93e3.woff" />
+    <Content Include="css\help\fonts\fontawesome-webfontd41d.eot" />
+    <Content Include="css\help\images\logo.psd" />
+    <Content Include="css\help\images\Pick-C Logo%281%29.psd" />
+    <Content Include="css\help\images\road.psd" />
+    <Content Include="Views\Help\Services.cshtml" />
+    <Content Include="Views\Help\AboutUs.cshtml" />
+    <Content Include="Views\Help\ContactUs.cshtml" />
+    <Content Include="Views\Help\FeedBack.cshtml" />
+    <Content Include="Views\Help\FAQS.cshtml" />
+    <Content Include="Views\Help\Careers.cshtml" />
+    <Content Include="Views\Help\Terms.cshtml" />
+    <Content Include="Views\Help\PrivacyPolicy.cshtml" />
+    <Content Include="fonts\glyphicons-halflings-regular.eot" />
+    <Content Include="fonts\glyphicons-halflings-regular.ttf" />
+    <Content Include="fonts\glyphicons-halflings-regular.woff" />
+    <Content Include="fonts\chlub-webfont.woff" />
+    <Content Include="fonts\chlub-webfont.woff2" />
+    <Content Include="images\RegisterNow.pdf" />
+    <None Include="Properties\PublishProfiles\PicKCWebNew.pubxml" />
+    <Content Include="Views\Bill\mobile.cshtml" />
+    <Content Include="Views\Bill\mobilefeedback.cshtml" />
+    <Content Include="Views\Help\Support.cshtml" />
+    <Content Include="Views\Help\mobilehelp.cshtml" />
+    <Content Include="Views\Help\TRIPINVOICEMOBILE.cshtml" />
+    <Content Include="Views\Help\FindCRN.cshtml" />
+    <Content Include="Views\Account\Register.cshtml" />
+    <Content Include="Views\Bookings\CustomerBookingHistory.cshtml" />
+    <Content Include="Views\Help\TRIPINVOICE.cshtml" />
+    <Content Include="Views\Bookings\pdf2.cshtml" />
+    <Content Include="Views\Home\ImageRegisterNow.cshtml" />
+    <Content Include="Views\Help\driverinvoice.cshtml" />
+    <Content Include="Views\Help\CompanyInvoice.cshtml" />
+    <None Include="Web.Debug.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </None>
+    <None Include="Web.Release.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="App_Data\" />
+    <Folder Include="Models\" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Master.Contract\Master.Contract.csproj">
+      <Project>{b9e20a20-01c6-480a-a49a-647df7c89463}</Project>
+      <Name>Master.Contract</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Operation.Contract\Operation.Contract.csproj">
+      <Project>{ef1065e7-b862-4409-88c4-bfd4a1a83ab5}</Project>
+      <Name>Operation.Contract</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\PickC.Services\PickC.Services.csproj">
+      <Project>{a3cef276-f503-45b0-8e74-0211475d2b09}</Project>
+      <Name>PickC.Services</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
+    <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+  </PropertyGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(VSToolsPath)\WebApplications\Microsoft.WebApplication.targets" Condition="'$(VSToolsPath)' != ''" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" Condition="false" />
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
+        <WebProjectProperties>
+          <UseIIS>True</UseIIS>
+          <AutoAssignPort>True</AutoAssignPort>
+          <DevelopmentServerPort>52329</DevelopmentServerPort>
+          <DevelopmentServerVPath>/</DevelopmentServerVPath>
+          <IISUrl>http://localhost:52329/</IISUrl>
+          <NTLMAuthentication>False</NTLMAuthentication>
+          <UseCustomServer>False</UseCustomServer>
+          <CustomServerUrl>
+          </CustomServerUrl>
+          <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
+        </WebProjectProperties>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('..\packages\Microsoft.Net.Compilers.1.0.0\build\Microsoft.Net.Compilers.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.Net.Compilers.1.0.0\build\Microsoft.Net.Compilers.props'))" />
+    <Error Condition="!Exists('..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.0\build\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.0\build\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props'))" />
+  </Target>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

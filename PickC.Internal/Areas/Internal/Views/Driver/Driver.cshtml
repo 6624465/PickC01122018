@@ -1,0 +1,57 @@
+﻿@model IEnumerable<Master.Contract.Driver>
+@using PickC.Internal.HtmlHelpers
+@{
+    ViewBag.Title = "Driver";
+    Layout = "~/Areas/Internal/Views/Shared/_Layout.cshtml";
+}
+
+@{
+    ViewBag.Title = "Index";
+    WebGrid grid = new WebGrid(Model, rowsPerPage: 10, selectionFieldName: "selectedRow", ajaxUpdateContainerId: "grid");
+}
+
+<section class="content">
+    <div class="row">
+        <div class="col-xs-12">
+            <div class="box">
+                <div class="box-header">
+                    <h3 class="box-title">Drivers List</h3>
+
+                    <div class="box-tools">
+                        <div class="input-group input-group-sm" style="width: 150px;">
+                            <input type="text" name="table_search" class="form-control pull-right" placeholder="Search">
+
+                            <div class="input-group-btn">
+                                <button type="submit" class="btn btn-default"><i class="fa fa-search"></i></button>&nbsp;&nbsp;
+                                <button type="button" class="btn btn-default" onclick="location.href = '@Url.Content("~/Internal/driver/add")'"><i class="fa fa-plus" aria-hidden="true"></i></button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="box-body">
+                    <div class="row">
+                        <div class="col-md-12">
+                            @grid.Table(
+                            tableStyle: "table table-hover",
+                            columns: grid.Columns(
+                                grid.Column("DriverID", "ID"),
+                                grid.Column("DriverName", "Name"),
+                                grid.Column("VehicleNo", "VehicleNo"),
+                                grid.Column("VehicleNo", "#Action", format: @<text><a href="@Url.Content("~/internal/driver/edit?driverID=" + item.DriverID)">@item.DriverName</a></text>)
+                            ),
+                            htmlAttributes: new { id = "grid" })
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <div class="pull-right">@grid.PagerList(mode: WebGridPagerModes.All, paginationStyle: "pagination pagination-sm")</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</section>
+

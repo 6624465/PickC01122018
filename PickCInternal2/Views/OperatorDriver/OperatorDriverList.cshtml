@@ -1,0 +1,48 @@
+﻿@model IEnumerable<Master.Contract.OperatorDriverList>
+@using PickC.Internal2.HtmlHelpers
+@{
+    ViewBag.Title = "OperatorDriverList";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@{
+    ViewBag.Title = "OperatorDriverList";
+    WebGrid grid = new WebGrid(Model, rowsPerPage: 10, selectionFieldName: "selectedRow", ajaxUpdateContainerId: "grid");
+}
+
+<section class="content">
+    <div class="row">
+        <div class="col-xs-12">
+            <div class="box">
+                <div class="box-header">
+                    <h3 class="box-title">Operator Driver</h3>
+                    <div class="box-tools">
+                    <button type="submit" name="OperatorDriver" onclick="location.href='@Url.Content("~/OperatorDriver/OperatorDriver")'">Add operator Driver</button>                    
+                    </div>
+                </div>
+                <div class="box-body">
+                        <div class="row">
+                            <div class="col-md-12">
+                                @grid.Table(
+                                tableStyle: "table table-hover",
+                                columns: grid.Columns(
+                                    grid.Column("DriverName", "Driver Name"),
+                                    grid.Column("DriverLicenseNo", "Driver License No"),
+                                    grid.Column("DriverMobileNo", "Driver Mobile No"),
+                                    grid.Column("VehicleattachedNo", "Vehicle attached No")
+                                ),
+                                htmlAttributes: new { id = "grid" })
+                            </div>
+                        </div>                
+                            <div class="row">
+                        <div class="col-md-12">
+                            <div class="pull-right">@grid.PagerList(mode: WebGridPagerModes.All, paginationStyle: "pagination pagination-sm")</div>
+                        </div>
+                    </div>
+                        </div>
+                    </div>
+                </div>
+    </div>
+</section>
+
+
+

@@ -1,0 +1,51 @@
+﻿
+@model IEnumerable<Master.Contract.OperatorVehicle>
+@using PickC.Internal2.HtmlHelpers
+@{
+    ViewBag.Title = "OperatorVehicleList";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@{
+    ViewBag.Title = "OperatorVehicleList";
+    WebGrid grid = new WebGrid(Model, rowsPerPage: 10, selectionFieldName: "selectedRow", ajaxUpdateContainerId: "grid");
+}
+
+<section class="content">
+    <div class="row">
+        <div class="col-xs-12">
+            <div class="box">
+                <div class="box-header">
+                    <h3 class="box-title">Operator Vehicle List</h3>
+                    <div class="box-tools">
+                        <button type="submit" name="OperatorDriver" onclick="location.href='@Url.Content("~/OperatorVehicle/OperatorVehicle")'">Add operator Vehicle</button>
+                    </div>
+                </div>
+
+                <div class="box-body">
+                    <div class="row">
+                        <div class="col-md-12">
+                            @grid.Table(
+                                tableStyle: "table table-hover",
+                                columns: grid.Columns(
+                                    grid.Column("VehicleRegistrationNo", "Vehicle Registration No"),
+                                    grid.Column("VehicleType", "Vehicle Type"),
+                                    grid.Column("Model", "Model"),
+                                    grid.Column("Tonnage", "Tonnage")
+                                ),
+                                htmlAttributes: new { id = "grid" })
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="pull-right">@grid.PagerList(mode: WebGridPagerModes.All, paginationStyle: "pagination pagination-sm")</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+

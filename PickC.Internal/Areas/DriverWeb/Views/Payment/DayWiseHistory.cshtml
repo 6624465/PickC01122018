@@ -1,0 +1,48 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>DayWiseHistory</title>
+    <link href="@Url.Content("~/Css/font-awesome-4.7.0/css/font-awesome.min.css")" rel="stylesheet" />
+    <link href="@Url.Content("~/Css/bootstrap.min.css")" rel="stylesheet" />
+    <link href="@Url.Content("~/Css/AdminLTE.min.css")" rel="stylesheet" />
+    <script src="@Url.Content("~/Scripts/jquery-1.10.2.js")"></script>
+    <script src="@Url.Content("~/Scripts/bootstrap.min.js")"></script>
+    <style type="text/css">
+        .marginTop {
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body class="container">
+    <div class="row  top-details">
+        <div class="col-md-12 col-xs-12">
+            <h4>Daywise History</h4>
+        </div>
+    </div>
+    <div class="row marginTop">
+        <div class="col-md-12 col-xs-12">
+
+            <div class="list-group"> 
+                @if (Model != null) { 
+                    foreach (var item in Model)
+                    {
+                        <a href="#" class="list-group-item"><b>@item.CreatedOn</b> <span class="pull-right"><i class="fa fa-rupee"></i>&nbsp;@item.PaidAmount</span></a>
+                    }
+                
+                }
+                @*<a href="#" class="list-group-item"><b>Tue, 20 Sep</b> <span class="pull-right"><i class="fa fa-rupee"></i>&nbsp;0.00</span></a>
+                    <a href="#" class="list-group-item"><b>Mon, 19 Sep</b> <span class="pull-right"><i class="fa fa-rupee"></i>&nbsp;0.00</span></a>
+                    <a href="#" class="list-group-item"><b>Sun, 18 Sep</b> <span class="pull-right"><i class="fa fa-rupee"></i>&nbsp;0.00</span></a>
+                    <a href="#" class="list-group-item"><b>Sat, 17 Sep</b> <span class="pull-right"><i class="fa fa-rupee"></i>&nbsp;0.00</span></a>*@
+            </div>
+        </div>
+    </div>
+</body>
+</html>

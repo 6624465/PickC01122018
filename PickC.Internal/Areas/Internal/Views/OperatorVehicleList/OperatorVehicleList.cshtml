@@ -1,0 +1,83 @@
+﻿
+@model PickC.Services.DTO.OperatorVehicleDTO
+@{
+    ViewBag.Title = "BookingHistory";
+    Layout = "~/Areas/Internal/Views/Shared/_Layout.cshtml";
+}
+<section class="content">
+    @using (Html.BeginForm("OperatorVehicle", "Operator", FormMethod.Post, new { id = "frmOperatorVehicle", name = "frmOperatorVehicle" }))
+    {
+        <div class="row css10">
+            <div class="col-md-3">
+                <label class="control-label pull-right">Vehicle Registration No</label>
+            </div>
+            <div class="col-md-4">
+                @Html.TextBoxFor(x => x.operatorVehicle.VehicleRegistrationNo, new { @class = "form-control" })
+            </div>
+        </div>
+            <div class="row css10">
+                <div class="col-md-3">
+                    <label class="control-label pull-right">Vehicle Type</label>
+                </div>
+                <div class="col-md-4">
+                    @Html.DropDownListFor(x =>x.operatorVehicle.VehicleType, new SelectList(ViewBag.VehicleType, "Value", "Text"), "Select Category", new { @class = "form-control input-sm", onchange = "productCategoryChanged(this)" })
+                </div>
+            </div>
+                <div class="row css10">
+                    <div class="col-md-3">
+                        <label class="control-label pull-right">Model</label>
+                    </div>
+                    <div class="col-md-4">
+                            @Html.DropDownListFor(x => x.operatorVehicle.Model, new SelectList(ViewBag.Model, "Value", "Text"), "Select Category", new { @class = "form-control input-sm", onchange = "productCategoryChanged(this)" })
+                        </div>
+                </div>
+                    <div class="row css10">
+                        <div class="col-md-3">
+                            <label class="control-label pull-right">Tonnage</label>
+                        </div>
+                        <div class="col-md-4">
+                                @Html.DropDownListFor(x => x.operatorVehicle.Tonnage, new SelectList(ViewBag.Tonnage, "Value", "Text"), "Select Category", new { @class = "form-control input-sm", onchange = "productCategoryChanged(this)" })
+                            </div>
+                    </div>
+                    <div class="row css10">
+                        <div class="col-md-4">
+                        </div>
+                        <div class="col-md-1">
+                            <button type="button" id="btnsave" class="btn btn-success" onclick="SaveOperatorVehicle()"><i class="fa fa-trash-o"></i>&nbsp;Save</button>
+                        </div>
+                    </div>
+    }
+</section>
+<script src="@Url.Content("~/Scripts/moment.min.js")"></script>
+<script type="text/javascript">
+
+    $(function ()
+    {
+
+    });
+    $('#frmOperatorVehicle').validate({
+        rules: {
+            VehicleRegistrationNo: {
+                required: true
+            },
+            VehicleType: {
+                required: true
+            },
+            Model: {
+                required: true
+            },
+            Model: {
+                required: true
+            },
+            Tonnage: {
+                required: true
+            }
+        }
+    });
+    function SaveOperatorVehicle()
+    {
+        debugger;
+        $('#frmOperatorVehicle').valid();
+        $('#frmOperatorVehicle').submit();
+    }
+</script>

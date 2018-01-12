@@ -1,0 +1,201 @@
+﻿@model PickC.Services.DTO.BookingSearchDTO
+@{
+    ViewBag.Title = "CurrentBookings";
+    Layout = "~/Areas/Internal/Views/Shared/_Layout.cshtml";
+}
+
+<section class="content">
+    @using (Html.BeginForm("CurrentBookings", "Dashboard", FormMethod.Post, new { id = "frmCurrentBookings" }))
+    {
+        <div class="row">
+            <div class="col-md-12">
+                @{ Html.RenderPartial("DashboardMenuList"); }
+            </div>
+        </div>
+        <br />
+        <div class="row">
+            <div class="col-md-5">
+                <label>CurrentBookings</label>
+                [@Model.booking.Count]
+            </div>
+        </div>
+            <div id="myTabContent" class="tab-content">
+                <div class="tab-pane fade in active" id="home">
+                        <div class="col-md-3">
+                            <div class="search-map">
+                                <select id="ddlSearchCustomerByStatus" class="form-control">
+                                    <option value="0">All</option>
+                                    <option value="1">Booking Confirm but Truck No arrived</option>
+                                    <option value="2">On going bookings</option>
+                                    <option value="3">Truck arrived but Trip Not Started</option>
+                                </select>
+                            </div>
+                            <div class="dr-list" id="CustomerList">
+                                <ul class="listofvhl">
+                                    @foreach (var item in Model.booking)
+                                    {
+                                        <li>
+                                            <img src="~/images/user_male2-512.png" alt="customer" height="25" style="float:left;" />
+                                            <div style="float:left;padding-left:10px;">
+                                                <span style="display:block">@item.CustomerName</span>
+                                                <span style="display:block"> @item.ReceiverMobileNo</span>
+                                                <span style="display:block"> @item.BookingNo</span>
+                                            </div>
+                                            <div class="clearfix"></div>
+                                            <span class="active-dr">
+                                                @if (@item.Status == 1)
+                                                {
+                                                    <i class="fa fa-circle text-danger"></i>
+                                                }
+                                                @if (@item.Status == 2)
+                                                {
+                                                    <i class="fa fa-circle text-success"></i>
+                                                }
+                                                @if (@item.Status == 3)
+                                                {
+                                                    <i class="fa fa-circle text-warning"></i>
+                                                }
+                                            </span>
+                                        </li>
+                                    }
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                        @*<div class="row">
+                <div class="col-md-12">
+                    <div class="tab-main-content">
+                        <br />
+                        <br />
+                        <div class="box">
+
+                            <div class="box-body">
+                                <div id="myTabContent" class="tab-content">
+                                    <div id="tab2" class="tab-pane fade in active">
+                                        <div class="row" style="margin:10px 0 0 10px;">
+
+                                            <div class="col-md-2">
+                                                @Html.TextBoxFor(x => x.dates.fromDate, new { @class = "form-control" })
+                                                @*<span class="input-group-btn">
+                                    <button type="button" class="btn btn-default"><i class="fa fa-calendar" aria-hidden="true"></i></button>
+                                </span>*@
+                        @*</div>
+                                                        <div class="col-md-2">
+                                                            @Html.TextBoxFor(x => x.dates.toDate, new { @class = "form-control" })
+                                                        </div>
+                                                        <div class="col-md-2">
+                                                            <button type="submit" id="btnSearch" class="btn btn-primary"><i class="fa fa-search"></i>Search </button>
+                                                        </div>
+                                                    </div>
+                                                    <div class="box-body">
+                                                        @if (Model != null)
+                                                        {
+                                                            <div class="row">
+
+                                                                <div class="col-md-12">
+                                                                    @grid.Table(
+                tableStyle: "table table-hover",
+                columns: grid.Columns(
+                     grid.Column("BookingNo", "Booking No"),
+                     grid.Column("BookingDate", "Booking Date"),
+                     grid.Column("VehicleNo", "Vehicle Number"),
+                     grid.Column("CargoType", "Cargo Type")
+                    ),
+                 htmlAttributes: new { id = "grid" })
+                                                                </div>
+                                                            </div>
+                                                            <div class="row">
+                                                                <div class="col-md-12">
+                                                                    <div class="pull-right">@grid.PagerList(mode: WebGridPagerModes.All, paginationStyle: "pagination pagination-sm")</div>
+                                                                </div>
+                                                            </div>
+
+                                                        }
+                                                        else
+                                                        {
+                                                            <div>
+                                                                <label>No Data found...</label>
+                                                            </div>
+                                                        }
+
+                                                    </div>
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                        </div>
+                    </div>*@
+                        }
+</section>
+
+
+@section secscripts{
+    <script src="@Url.Content("~/Scripts/jquery.validate.js")"></script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('#dates_fromDate,#dates_toDate').datepicker();
+            $('#frmCurrentBookings').validate({
+                rules: {
+                    'dates.fromDate': {
+                        required: true
+                    },
+                    'dates.toDate': {
+                        required: true
+                    }
+                }
+            });
+        });
+        $(function () {
+            $('#currentBookings').parent().addClass('active');
+
+            $('#ddlSearchCustomerByStatus').on("change", function () {
+                debugger;
+                $.ajax({
+                    url: '@Url.Content("~/Internal/Dashboard/GetCustomerBySearch")',
+                    method: 'POST',
+                    contentType: 'application/json',
+                    dataType: 'json',
+                    data: JSON.stringify({ 'status': $('#ddlSearchCustomerByStatus').val() }),
+                    success: function (data) {
+                        $('#CustomerList').val();
+                        var html = '';
+                        $.each(data, function (key, val) {
+                            html += '<ul class="listofvhl">'
+                            html += '<li>'
+                            html +='<img src="@Url.Content("~/images/user_male2-512.png")" class="img-circle" alt="customer" height="25" style="float:left;">';
+                            html += '<div style="float:left;padding-left:10px;">';
+                            html += '<span style="display:block"> ' + val.CustomerName + '</span>';
+                            html += '<span style="display:block"> ' + val.ReceiverMobileNo + ' </span>';
+                            html += '<span style="display:block"> ' + val.BookingNo + ' </span>     </div>';
+                            html += '<div class="clearfix"></div>';
+                            html += '<span class="active-dr">';
+                            if (val.Status == 1) {
+                                html += '<i class="fa fa-circle text-danger"></i>';
+                            }
+                            if (val.Status == 2) {
+                                html += '<i class="fa fa-circle text-success"></i>';
+                            }
+                            if (val.Status == 3) {
+                                html += '<i class="fa fa-circle text-warning"></i>';
+                            }
+                            html += '</span></li></ul>';
+                        });
+
+                        $('#CustomerList').html(html);
+
+
+                    },
+                    error: function (err) {
+
+                    },
+                    failure: function (fail) {
+
+                    }
+                });
+            });
+        });
+    </script>
+}

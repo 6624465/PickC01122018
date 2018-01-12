@@ -1,0 +1,514 @@
+﻿@model PickC.Internal.ViewModals.DriverVm
+@{
+    ViewBag.Title = "Edit";
+    Layout = "~/Areas/Internal/Views/Shared/_Layout.cshtml";
+}
+@section seccss{
+    <link href="@Url.Content("~/Css/bootstrap-datetimepicker.css")" rel="stylesheet" />
+}
+<section class="content-header">
+    <h1>Driver Details</h1>
+</section>
+@using (Html.BeginForm("SaveDriver", "Driver", FormMethod.Post, new { id = "frmDriverAdd", name = "frmDriverAdd", enctype = "multipart/form-data" }))
+{
+    <section class="content">
+        <div class="row">
+            <div class="col-xs-12">
+                <div class="box">
+                    <div class="box-header">
+                        <h3 class="box-title">Driver Info</h3>
+                    </div>
+                    <div class="box-body">
+                        <div class="row">
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label>Driver ID</label>
+                                    @Html.TextBoxFor(x => x.driver.DriverID, new { @class = "form-control", placeholder = "Driver ID", @readonly = "readonly" })
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label>Driver Name</label>
+                                    @Html.TextBoxFor(x => x.driver.DriverName, new { @class = "form-control", placeholder = "Driver Name" })
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label>Vehicle No</label>
+                                    @Html.TextBoxFor(x => x.driver.VehicleNo, new { @class = "form-control", placeholder = "Vehicle No" })
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xs-12">
+                <div class="box">
+                    <div class="box-header">
+                        <h3 class="box-title">Personal Info</h3>
+                    </div>
+                    <div class="box-body">
+                        <div class="row">
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label>Father Name</label>
+                                    @Html.TextBoxFor(x => x.driver.FatherName, new { @class = "form-control", placeholder = "Father Name" })
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label>Date Of Birth</label>
+                                    <div class="input-group dtCss">
+                                        @Html.TextBoxFor(x => x.driver.DateOfBirth,
+                                         new
+                                         {
+                                             @class = "form-control",
+                                             placeholder = "Date Of Birth"
+                                         })
+                                        <span class="input-group-btn">
+                                            <button type="button" class="btn btn-default"><i class="fa fa-calendar" aria-hidden="true"></i></button>
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label>Place Of Birth</label>
+                                    @Html.TextBoxFor(x => x.driver.PlaceOfBirth,
+                                         new
+                                         {
+                                             @class = "form-control",
+                                             placeholder = "Place Of Birth"
+                                         })
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label>Gender</label>
+                                    @Html.DropDownListFor(x => x.driver.Gender,
+                                     new SelectList(Model.driverLookupDTO.genderOptions, "LookupID", "LookupDescription"),
+                                     "Select Gender",
+                                     new { @class = "form-control" })
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label>Maritial Status</label>
+                                    @Html.DropDownListFor(x => x.driver.MaritialStatus,
+                                     new SelectList(Model.driverLookupDTO.maritalOptions, "LookupID", "LookupDescription"),
+                                     "Select Maritial Status",
+                                     new { @class = "form-control" })
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label>Mobile No</label>
+                                    @Html.TextBoxFor(x => x.driver.MobileNo, new { @class = "form-control", placeholder = "Mobile No" })
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label>Phone No</label>
+                                    @Html.TextBoxFor(x => x.driver.PhoneNo, new { @class = "form-control", placeholder = "Phone No" })
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <label>Nationality</label>
+                                <div class="form-group">
+                                    <select id="ddlNationality" class="form-control">
+                                        <option value="Indian">Indian</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xs-12">
+                <div class="box">
+                    <div class="box-header">
+                        <h3 class="box-title">Identification Info</h3>
+                    </div>
+                    <div class="box-body">
+                        <div class="row">
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label>PAN No</label>
+                                    @Html.TextBoxFor(x => x.driver.PANNo, new { @class = "form-control", placeholder = "PAN No" })
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label>Aadhar Card No</label>
+                                    @Html.TextBoxFor(x => x.driver.AadharCardNo, new { @class = "form-control", placeholder = "Aadhar Card No" })
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label>License No</label>
+                                    @Html.TextBoxFor(x => x.driver.LicenseNo, new { @class = "form-control", placeholder = "License No" })
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <div class="box">
+                    <div class="box-header">
+                        <h3 class="box-title">Address Info</h3>
+                        <div class="box-tools">
+                            <button class="btn btn-box-tool" type="button" onclick="AddAddress('-1')"><i class="fa fa-plus" aria-hidden="true"></i></button>
+                        </div>
+                    </div>
+                    <div class="box-body">
+                        <div class="col-md-12">
+                            <table class="table table-hover table-bordered">
+                                <thead>
+                                    <tr>
+                                        <th>Address 1</th>
+                                        <th>Address 2</th>
+                                        <th>#Action</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="trBody">
+                                    @for (var i = 0; i < Model.driver.AddressList.Count; i++)
+                                    {
+                                        <tr id="trRow_@i" class="trRowCss">
+                                            <td>
+                                                <span id="Address1_span_@i">@Model.driver.AddressList[i].Address1</span>
+                                                @Html.HiddenFor(x => Model.driver.AddressList[i].Address1)
+                                            </td>
+                                            <td>
+                                                <span id="Address2_span_@i">
+                                                    @Model.driver.AddressList[i].Address2
+                                                </span>
+                                                @Html.HiddenFor(x => Model.driver.AddressList[i].Address2)
+                                            </td>
+                                            <td>
+                                                @Html.HiddenFor(x => Model.driver.AddressList[i].Address3)
+                                                @Html.HiddenFor(x => Model.driver.AddressList[i].Address4)
+                                                @Html.HiddenFor(x => Model.driver.AddressList[i].CityName)
+                                                @Html.HiddenFor(x => Model.driver.AddressList[i].StateName)
+                                                @Html.HiddenFor(x => Model.driver.AddressList[i].ZipCode)
+                                                @Html.HiddenFor(x => Model.driver.AddressList[i].IsActive)
+                                                <a class="hand" onclick="EditAddress('@i')">Edit</a>&nbsp;|&nbsp;
+                                                <a class="hand" onclick="DeleteAddress('@i')">Delete</a>
+                                            </td>
+                                        </tr>
+                                    }
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xs-12">
+                <div class="box">
+                    <div class="box-header">
+                        <h3 class="box-title">Attachments</h3>
+                        <div class="box-tools">
+                            <button class="btn btn-box-tool" type="button" onclick="AddAttachments()"><i class="fa fa-plus" aria-hidden="true"></i></button>
+                        </div>
+                    </div>
+                    <div class="box-body">
+
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xs-12">
+                <div class="box">
+                    <div class="box-header">
+                        <h3 class="box-title">Bank Details</h3>
+                        <div class="box-tools">
+                            <button class="btn btn-box-tool" type="button" onclick="bankDetails()"><i class="fa fa-plus" aria-hidden="true"></i></button>
+                        </div>
+                    </div>
+                    <div class="box-body">
+                        <div class="row">
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <div class="box">
+                    <div class="box-body">
+                        <div class="col-md-1">
+                            <button type="button" class="btn btn-primary btn-block" onclick="btnSave();">Save</button>
+                        </div>
+                        <div class="col-md-1">
+                            <button type="button" class="btn btn-default btn-block" onclick="location.href = '@Url.Content("~/Internal/Driver/Driver")'">Cancel</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+}
+
+<div class="modal" id="addressModal">
+    <div class="modal-dialog modal-md">
+        <form id="frmAddress" name="frmAddress">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">×</span>
+                    </button>
+                    <h4 class="modal-title">Address Info</h4>
+                </div>
+                <div class="modal-body" id="addressModalBody">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <label>Address 1</label>
+                            <input class="form-control" id="Address1" name="Address1" type="text" value="">
+                        </div>
+                        <div class="col-md-6">
+                            <label>Address 2</label>
+                            <input class="form-control" id="Address2" name="Address2" type="text" value="">
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <label>Address 3</label>
+                            <input class="form-control" id="Address3" name="Address3" type="text" value="">
+                        </div>
+                        <div class="col-md-6">
+                            <label>Address 4</label>
+                            <input class="form-control" id="Address4" name="Address4" type="text" value="">
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <label>State</label>
+                            <input class="form-control" id="StateName" name="StateName" type="text" value="">
+                        </div>
+                        <div class="col-md-6">
+                            <label>City</label>
+                            <input class="form-control" id="CityName" name="CityName" type="text" value="">
+                        </div>
+                        <input id="AddressLinkID" name="AddressLinkID" type="hidden" value="">
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <label>Zipcode</label>
+                            <input class="form-control" id="ZipCode" name="ZipCode" type="text" value="">
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Close</button>
+                    <button type="button" onclick="btnSaveAddress();" class="btn btn-primary">Save changes</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+<div class="modal" id="attachmentModal">
+    <div class="modal-dialog modal-md">
+        <form id="frmAttachments" method="post">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">×</span>
+                    </button>
+                    <h4 class="modal-title">Attachment</h4>
+                </div>
+                <div class="modal-body" id="attachment">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <select id="ddlAttachment" class="form-control"></select>
+                        </div>
+                        <div class="col-md-6">
+                            <input type="file" id="fileAttachment" />
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button id="btnSave" class="btn btn-primary" type="button" onclick="saveAttachment()">Save</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+<div class="modal" id="bankDetailsModal">
+    <div class="modal-dialog modal-md">
+        <form id="frmBank" method="post">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">×</span>
+                    </button>
+                    <h4 class="modal-title">Bank Details</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <label>Bank Name</label>
+                            <input type="text" id="txtBankName" class="form-control" />
+                        </div>
+                        <div class="col-md-6">
+                            <label>Branch</label>
+                            <input type="text" id="txtBranch" class="form-control" />
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <label>Account Number</label>
+                            <input type="text" id="txtAccNumber" class="form-control" />
+                        </div>
+                        <div class="col-md-6">
+                            <label>Account Type</label>
+                            <input type="text" id="txtAccType" class="form-control" />
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button id="btnSave" type="button" class="btn btn-primary">Save</button>
+                </div> 
+            </div>
+        </form>
+    </div>
+</div>
+
+@section secscripts{
+    <script src="@Url.Content("~/Scripts/jquery.validate.js")"></script>
+    <script src="@Url.Content("~/Scripts/moment.js")"></script>
+    <script src="@Url.Content("~/Scripts/bootstrap-datetimepicker.js")"></script>
+    <script src="@Url.Content("~/Scripts/Js/Driver/DriverAddress.js")"></script>
+    <script type="text/javascript">
+        function AddAddress() {
+            $('#addressModal').modal('show');
+        }
+        function bankDetails() {
+            $('#bankDetailsModal').modal('show');
+        }
+        function AddAttachments() {
+            //debugger;
+            $('#attachmentModal').modal('show');
+            $.ajax({
+                url: '@Url.Content("~/Internal/Driver/GetAttachmentData")',
+                type: 'GET',
+                contentType: 'application/json',
+                dataType: 'json',
+                success: function (data) {
+                    //  debugger;
+                    var html = '';
+                    $.each(data.attachments, function (key, val) {
+                        html += "<option value='" + val.LookupID + "'>" + val.LookupDescription + "</option>";
+                    });
+
+                    $('#ddlAttachment').html(html);
+                },
+                error: function (err) {
+                }
+            })
+        }
+
+        function saveAttachment() {
+            debugger;
+            var formData = new FormData();
+            var totalFiles = document.getElementById("fileAttachment").files.length;
+            for (var i = 0; i < totalFiles; i++) {
+                var file = document.getElementById("fileAttachment").files[i];
+                var driverId = $('#driver_DriverID').val();
+                var lookupCode = $('#ddlAttachment').val();
+
+                formData.append("imageUploadForm", file);
+                formData.append("driverId", driverId);
+                formData.append("lookupCode", lookupCode);
+            }
+
+
+            $.ajax({
+                url: '@Url.Content("~/Internal/Driver/AddAttachment")',
+                type: 'POST',
+                processData: false,
+                contentType: false,
+                dataType: 'json',
+                data: formData, //JSON.stringify({ attachment: obj }),
+                success: function (data) {
+                    debugger;
+                },
+                error: function (err) {
+                    debugger;
+                }
+            });
+        }
+
+        $(function () {
+            $('#frmDriverAdd').validate({
+                rules: {
+                    'driver.DriverID': {
+                        required: true
+                    },
+                    'driver.DriverName': {
+                        required: true
+                    },
+                    'driver.VehicleNo': {
+                        required: true
+                    },
+                    'driver.FatherName': {
+                        required: true
+                    },
+                    'driver.DateOfBirth': {
+                        required: true
+                    },
+                    'driver.PlaceOfBirth': {
+                        required: true
+                    },
+                    'driver.Gender': {
+                        required: true
+                    },
+                    'driver.MaritialStatus': {
+                        required: true
+                    },
+                    'driver.MobileNo': {
+                        required: true
+                    },
+                    'driver.PhoneNo': {
+                        required: true
+                    },
+                    'driver.PANNo': {
+                        required: true
+                    },
+                    'driver.AadharCardNo': {
+                        required: true
+                    },
+                    'driver.LicenseNo': {
+                        required: true
+                    }
+                }
+            });
+            $('.dtCss').datetimepicker({
+                format: 'MM/DD/YY HH:mm A'
+            });
+        });
+
+        function btnSave() {
+            if ($('#frmDriverAdd').valid()) {
+                $('#frmDriverAdd').submit();
+            }
+        }
+
+
+    </script>
+}
+

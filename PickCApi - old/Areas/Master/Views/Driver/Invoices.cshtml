@@ -1,0 +1,695 @@
+﻿@model Master.Contract.InvoiceDTO
+@{
+    ViewBag.Title = "Invoices";
+    Layout = null;
+}
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+
+</head>
+<body>
+    <div class="container-fluid" style="font-family:Trebuchet MS;font-size:10px;margin:0px auto; background:#fff;">
+        <table class="table table-bordered" style="width:100%;  color:#000;  margin:20px auto 0px; background:#fff;  ">
+            <tr>
+                <td style="padding:15px 15px 55px 15px; border:1px thin #e7e7e7;">
+                    <table style="width:100%;">
+                        <tr>
+                            <td style="width:100px; text-align:left; vertical-align:middle;">
+                                <img src="http://ragsarma-001-site13.htempurl.com/Images/logo.png" style="width:70px; max-width:70px;height:auto;" />
+                            </td>
+                            <td>
+                                <h2 style="text-align:center; vertical-align:middle; font-weight:bold;font-size:18px;">Trip Invoice</h2>
+                            </td>
+                            <td style="width:100px;">
+                                <h2 style="font-size:12px; vertical-align:middle; text-align:right ">Date:@Model.TripInvoice.InvoiceDate</h2>
+                            </td>
+                        </tr>
+                    </table>
+                    <table style="margin-top:25px; width:100%;">
+                        <tr>
+                            <td style="text-align:left; width:60%">
+                                <p style="font-size:12px; padding:0px;">Customer Name: @Model.TripInvoice.CustomerName</p>
+                                <p style="font-size:12px; padding:0px;">CRN No.: @Model.TripInvoice.BookingNo </p>
+                            </td>
+
+
+                            <td style="text-align:right; font-size:12px; width:40%;">
+
+                                <b>Total Bill Amount : &nbsp; </b>
+                                <b style="">
+                                    <img src="http://ragsarma-001-site13.htempurl.com/Images/rupee.png" style="width:8px; height:10px;padding-left:5px;" />
+                                    &nbsp; @Model.TripInvoice.TotalBillAmount
+                                </b>
+
+                            </td>
+                        </tr>
+                    </table>
+
+
+                    <h4 style="text-align:center; font-weight:bold; margin-bottom:10px;  font-size:14px;">Total Bill Breakup</h4>
+
+                    <table class="table table-bordered" style="width:100%;display:table;margin:0px;padding:0px; border:1px solid rgb(85,85,85);">
+
+                        <tr>
+                            <td style="border-bottom:1px solid rgb(85,85,85);border-right:1px solid rgb(85,85,85);  width:70%; vertical-align:middle; padding:7px; font-size: 10px;">Base Fare for @Model.TripInvoice.BaseKM Km</td>
+                            <td style="border-bottom:1px solid rgb(85,85,85); width:30%;font-size: 10px; padding:7px; text-align:right;">
+                                <img src="http://ragsarma-001-site13.htempurl.com/Images/rupee.png" style="width:7px; height:9px;padding-left:5px;" />
+                                &nbsp; @Model.TripInvoice.BaseFare
+                            </td>
+                        </tr>
+                        <tr>
+                            <td style="border-bottom:1px solid rgb(85,85,85);border-right:1px solid rgb(85,85,85);width:70%;vertical-align:middle;padding:7px;  font-size: 10px;">Distance Fare for @Model.TripInvoice.DistanceKM Km</td>
+                            <td style="border-bottom:1px solid rgb(85,85,85); width:30%;font-size: 10px;padding:7px;text-align:right; ">
+                                <img src="http://ragsarma-001-site13.htempurl.com/Images/rupee.png" style="width:7px; height:9px;padding-left:5px;" />
+                                &nbsp; @Model.TripInvoice.DistanceFare
+                            </td>
+                        </tr>
+                        <tr>
+                            <td style="border-bottom:1px solid rgb(85,85,85);border-right:1px solid rgb(85,85,85);width:70%;vertical-align:middle; padding:7px; font-size: 10px; ">Travel Time Fare for  @Model.TripInvoice.TravelTime Min</td>
+                            <td style="border-bottom:1px solid rgb(85,85,85); width:30%;font-size: 10px;padding:7px; text-align:right;">
+                                <img src="http://ragsarma-001-site13.htempurl.com/Images/rupee.png" style="width:7px; height:9px;padding-left:5px;" />
+                                &nbsp; @Model.TripInvoice.TravelTimeFare
+                            </td>
+                        </tr>
+                        <tr>
+                            <td style="border-bottom:1px solid rgb(85,85,85);border-right:1px solid rgb(85,85,85);width:70%;vertical-align:middle; padding:7px; font-size: 10px;   text-align:right;">   <b> Total Fare</b></td>
+                            <td style="border-bottom:1px solid rgb(85,85,85); width:30%;font-size: 10px;padding:7px;text-align:right; ">
+                                <b>
+                                    <img src="http://ragsarma-001-site13.htempurl.com/Images/rupee.png" style="width:7px; height:9px;padding-left:5px;" />
+                                    &nbsp;  @Model.TripInvoice.TotalFare
+                                </b>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td style="border-bottom:1px solid rgb(85,85,85);border-right:1px solid rgb(85,85,85);width:70%;vertical-align:middle; padding:7px;  font-size: 10px;">Loading and Unloading Charges</td>
+                            <td style="border-bottom:1px solid rgb(85,85,85); width:30%;font-size: 10px;padding:7px;text-align:right; ">
+                                <img src="http://ragsarma-001-site13.htempurl.com/Images/rupee.png" style="width:7px; height:9px;padding-left:5px;" />
+                                &nbsp;  @Model.TripInvoice.LoadingUnLoadingCharges
+                            </td>
+                        </tr>
+                        <tr>
+                            <td style="border-bottom:1px solid rgb(85,85,85);border-right:1px solid rgb(85,85,85);width:70%;vertical-align:middle; padding:7px; font-size: 10px;">Waiting / Night time Charges</td>
+                            <td style="border-bottom:1px solid rgb(85,85,85); width:30%;font-size: 10px;padding:7px;text-align:right; ">
+                                <img src="http://ragsarma-001-site13.htempurl.com/Images/rupee.png" style="width:7px; height:9px;padding-left:5px;" />
+                                &nbsp;  @Model.TripInvoice.WaitingCharges
+                            </td>
+                        </tr>
+                        <tr>
+                            <td style="border-bottom:1px solid rgb(85,85,85);border-right:1px solid rgb(85,85,85);width:70%;vertical-align:middle; padding:7px;  font-size: 10px;">Offers / Discounts</td>
+                            <td style="border-bottom:1px solid rgb(85,85,85); width:30%;font-size: 10px;padding:7px;text-align:right; ">
+                                <img src="http://ragsarma-001-site13.htempurl.com/Images/rupee.png" style="width:7px; height:9px;padding-left:5px;" />
+                                &nbsp;  @Model.TripInvoice.OtherCharges
+                            </td>
+                        </tr>
+                        <tr>
+                            <td style="border-bottom:1px solid rgb(85,85,85);border-right:1px solid rgb(85,85,85);width:70%;vertical-align:middle; padding:7px; text-align:right; font-size: 10px; ">   <b> Other Charges Total  </b></td>
+                            <td style="border-bottom:1px solid rgb(85,85,85); width:30%;font-size: 10px; padding:7px;text-align:right; ">
+                                <b>
+                                    <img src="http://ragsarma-001-site13.htempurl.com/Images/rupee.png" style="width:7px; height:9px;padding-left:5px;" />
+                                    &nbsp; @Model.TripInvoice.TotalAmount
+                                </b>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td style="border-bottom:1px solid rgb(85,85,85);border-right:1px solid rgb(85,85,85);width:70%;vertical-align:middle;padding:7px;  font-size: 10px;">GST Tax  - 6.0%</td>
+                            <td style="border-bottom:1px solid rgb(85,85,85); width:30%;font-size: 10px; padding:7px;text-align:right;">
+                                <img src="http://ragsarma-001-site13.htempurl.com/Images/rupee.png" style="width:7px; height:9px;padding-left:5px;" />
+                                &nbsp;  @Model.TripInvoice.GSTTax
+                            </td>
+                        </tr>
+                        <tr>
+                            <td style="border-right:1px solid rgb(85,85,85);vertical-align:middle;padding:7px;width:70%; text-align:right;  font-size: 16px;">   <b style="font-size:12px;">Total Bill Amount (rounded off)  </b></td>
+                            <td style="font-size: 16px; padding:7px;text-align:right; ">
+                                <b style="font-size:14px;">
+                                    <img src="http://ragsarma-001-site13.htempurl.com/Images/rupee.png" style="width:9px; height:11px;padding-left:5px;" />
+                                    &nbsp;@Model.TripInvoice.TotalBillAmount
+                                </b>
+                            </td>
+                        </tr>
+
+                    </table>
+
+                    @*<h4 style="text-align:center; font-weight:bold; margin-bottom:10px;  font-size:14px;">  Trip Route Map</h4>
+                        <iframe src="https://www.google.com/maps/embed?pb=!1m26!1m12!1m3!1d30449.372564163696!2d78.38989969999997!3d17.451500400000004!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!4m11!3e6!4m3!3m2!1d17.4886292!2d78.309648!4m5!1s0x3bcb91615349595d%3A0xf93c9edfa8ab4120!2sSanthi+Residency%2C+Ayyappa+Society%2C+Mega+Hills%2C+Madhapur%2C+Hyderabad%2C+Telangana+500081!3m2!1d17.4510521!2d78.3898873!5e0!3m2!1sen!2sin!4v1496309322509" width="100%" height="450" frameborder="0" style="border:0" allowfullscreen></iframe>*@
+
+
+
+                    <h4 style="text-align:center; font-weight:bold; margin-top:10px;  font-size:14px;">  Trip Details</h4>
+
+                    <table class="table table-bordered" style="width:100%;display:table;margin:0px;padding:0px; border:1px solid rgb(85,85,85);">
+
+
+                        <tr tr style="border-bottom:1px solid rgb(85,85,85);">
+                            <td style="border-bottom:1px solid rgb(85,85,85);border-right:1px solid rgb(85,85,85); display:table-cell;  vertical-align:middle; padding:7px; text-align:left;  font-size: 10px; width:70%">Total Trip Kilometers </td>
+                            <td style="width:30%;border-bottom:1px solid rgb(85,85,85);  font-size: 10px;  padding:7px;text-align:right;">@Model.TripInvoice.TotalDistanceKm Km </td>
+                        </tr>
+                        <tr>
+                            <td style="border-bottom:1px solid rgb(85,85,85);vertical-align:middle;border-right:1px solid rgb(85,85,85); padding:7px; text-align:left; font-size: 10px;width:70%">Total Trip Time </td>
+                            <td style="width:30%;border-bottom:1px solid rgb(85,85,85);font-size: 10px;padding:7px;text-align:right;">@Model.TripInvoice.TravelTime Min </td>
+                        </tr>
+                        <tr>
+                            <td style="vertical-align:middle;border-right:1px solid rgb(85,85,85); padding:7px; text-align:left; font-size: 10px;width:70%">Vehicle Type and Make Description </td>
+                            <td style="width:30%;font-size: 10px; padding:7px;text-align:right;">@Model.TripInvoice.VehicleType & @Model.TripInvoice.VehicleMaker  </td>
+                        </tr>
+
+                    </table>
+                    <table class="table table-bordered" style="border:1px solid rgb(85,85,85); border-top:0px solid #fff; width:100%; margin:0px;padding:0px;">
+
+
+                        <tr>
+                            <td style="width:30%;border-bottom:1px solid rgb(85,85,85);font-size: 10px;border-right:1px solid rgb(85,85,85); border-top:0px solid #fff;  padding:7px;text-align:left;">Driver Name </td>
+                            <td style="border-bottom:1px solid rgb(85,85,85);vertical-align:middle; padding:7px;border-top:0px solid #fff; text-align:left;  font-size: 10px; width:70%">@Model.TripInvoice.DriverName</td>
+                        </tr>
+                        <tr>
+                            <td style="width:30%;border-bottom:1px solid rgb(85,85,85);font-size: 10px;border-right:1px solid rgb(85,85,85);  vertical-align:middle;padding:7px;text-align:left;">
+                                <img src="http://ragsarma-001-site13.htempurl.com/Images/source2.png" style="width:10px; height:15px; " /> &nbsp; &nbsp; @Model.TripInvoice.StartTime (Start Time)
+                            </td>
+                            <td style="border-bottom:1px solid rgb(85,85,85);vertical-align:middle; padding:7px; text-align:left;  font-size: 10px;width:70%">@Model.TripInvoice.LocationFrom</td>
+                        </tr>
+                        <tr>
+                            <td style="width:30%;font-size: 10px;border-right:1px solid rgb(85,85,85);  vertical-align:middle; padding:7px;text-align:left;"> <img src="http://ragsarma-001-site13.htempurl.com/Images/destination2.png" style="width:10px; height:15px;  " /> &nbsp; &nbsp; @Model.TripInvoice.EndTime (End Time)</td>
+                            <td style="vertical-align:middle;  padding:7px;text-align:left;  font-size: 10px;width:70%">@Model.TripInvoice.LocationTo</td>
+                        </tr>
+
+                    </table>
+
+
+                    <h4 style="text-align:center; font-weight:bold; margin-top:20px; margin-bottom:10px; font-size:14px;">  Payment   </h4>
+                    <br />
+
+                    <table class="table table-bordered" style="width:100%;display:table;margin:0px;padding:0px; border:1px solid rgb(85,85,85);">
+
+
+                        <tr>
+                            <td style="border-right:1px solid rgb(85,85,85); vertical-align:middle;padding:7px; text-align:left; width:70%;  font-size: 10px;">Paid By</td>
+                            <td style="width:30%;font-size: 12px; padding:7px;text-align:right;">Cash</td>
+                        </tr>
+
+
+                    </table>
+                    <table class="table table-bordered" style="width:100%;display:table;margin:0px;padding:0px; border:1px solid rgb(85,85,85); border-top:0px solid #fff;">
+
+                        <tbody>
+                            <tr>
+                                <td style="vertical-align:middle; padding:7px;text-align:left;  font-size: 10px;">Any Queries / Complaints related to this invoice  contact our    Customer Support </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <br />
+
+
+                    <table class="table">
+                        <tr>
+                            <td style="font-size:10px; margin-bottom:5px; margin-left:15px;">
+                                <hr style="margin:7px 0px 0px;padding:0px;" />
+                                <b style="font-size:10px;">*Note:</b> Trip start and end time includes truck (start/end) waiting time.
+                            </td>
+                        </tr>
+                    </table>
+                    <br />
+                    <table class="table" style="width:100%;padding-bottom: 0px; margin-top: 10px; border-bottom: 0px none;">
+
+
+                        <tr>
+                            <td style="width:15% "></td>
+                            <td style="border-top:0px; border-bottom:0px; padding:3px; vertical-align: middle; text-align: right" width="10%">
+                                <img src="http://ragsarma-001-site13.htempurl.com/Images/thankyou.png" style="width:60px; height:60px;" />
+                            </td>
+                            <td style="border-top:0px; border-bottom:0px;padding:3px; vertical-align: middle; text-align: center; width:47%"> <b> For using Pick-C services, See you soon </b></td>
+                            <td style="border-top:0px; border-bottom:0px; padding:3px;vertical-align: middle; text-align: left;">
+
+                                <img src="http://ragsarma-001-site13.htempurl.com/Images/thumb.png" style="width:64px; height:51px;" />
+                            </td>
+                            <td style="width:15%; padding:3px;"></td>
+                        </tr>
+
+
+                    </table>
+
+
+
+                    <table style="width:100%; ">
+
+
+                        <tr>
+                            <td style="padding:3px;font-size: 12px;border-top:0px; border-bottom:0px; vertical-align: middle; text-align: center">www.pickcargo.in </td>
+
+                        </tr>
+                        <tr>
+
+                            <td style="padding:3px;font-size: 12px;border-top:0px; border-bottom:0px; vertical-align: middle; text-align: center">     All Rights Reserved  PR TECHNO SOLUTIONS Pvt. Ltd.  </td>
+
+                        </tr>
+
+                    </table>
+
+
+                    <table style="width:100%;">
+
+                        <tr>
+
+                            <td style="font-size: 12px;padding:3px; border-top:0px; border-bottom:0px; vertical-align: middle; text-align: center;">      CIN: U74999TG2016PTC111331 | PAN No: AAICP7355E</td>|
+
+                        </tr>
+
+                    </table>
+
+
+
+                </td>
+            </tr>
+        </table>
+        <br /><br />
+    </div>
+    <div class="container-fluid" style="font-family:Trebuchet MS; font-size:10px;margin:0px auto; background:#fff;">
+        <table class="table table-bordered" style="color:#000;">
+            <tr>
+                <td style="padding:15px">
+                    <table class="table" style="margin-top:0px; margin-bottom:0px;">
+                        <tr>
+                            <td style="vertical-align:bottom; text-align:center;">
+
+                                <span class="title-head" style="text-align:center;font-size:16px;padding:0px;text-transform: capitalize; display: inline-block; font-weight: 700;
+    letter-spacing: 0; font-family:Trebuchet MS; ">
+                                    &nbsp; Driver Invoice &nbsp;
+                                </span>
+                            </td>
+                        </tr>
+                    </table>
+                    <table class="table" style="margin-top:0px; margin-bottom:0px; width:100%;">
+                        <tr>
+                            <td style="height:4px; vertical-align:top; padding:0px 0px 0px 0px;">
+                                <hr style="width:200px;height:4px; margin:0px ; background-color:#fffc00; border-color:#fffc00; color:#fffc00; padding:10px; text-align:center;" />
+                            </td> <!--<div style="height:4px; width:100px; margin:0px auto; background-color:#fffc00; display:block;"> </div>-->
+                        </tr>
+                    </table>
+
+                    <table class="table" style="margin-top:10px;">
+                        <tr>
+                            <td style="text-align:center; padding:10px ;  width:10%">
+                                <img src="http://pickcargo.in/images/logo.png" style="width:55px; max-width:55px;height:auto; padding:10px; " />
+                            </td>
+                            <td style="padding:10px ; font-size:10px; width:40%;">
+                                <p style="margin-top:0px;margin-bottom:0px;font-size:10px; ">
+                                    <b>Driver Name : </b> @Model.DriverTripInvoice.DriverName
+                                </p>
+                                <p style="margin-top:0px;margin-bottom:0px; "><b>Driver ID : </b> @Model.DriverTripInvoice.DriverID</p>
+                                <p style="margin-top:0px;margin-bottom:0px; "><b>Invoice Number : </b> @Model.DriverTripInvoice.InvoiceNo</p>
+                                <p style="margin-top:0px;margin-bottom:0px; "><b>Invoice ID : </b> @Model.DriverTripInvoice.InvoiceNo</p>
+                                <p style="margin-top:0px;margin-bottom:0px; "><b>Invoice Date : </b> @Model.DriverTripInvoice.InvoiceDate </p>
+                                <!--@*<p>
+                                    Phone : +91. 40. 6 5454 222
+                                </p>
+                                <p>
+                                    Email : info@pickcargo.in
+                                </p>
+                                <p>  Web : www.pickcargo.in  </p>*@-->
+                            </td>
+                            <td style="text-align:center; width:10%; padding:10px;">
+                                <img src="http://ragsarma-001-site13.htempurl.com/DriverImages/DR170800007.png" style="width:55px;max-width:65px;height:auto; " />
+                            </td>
+                            <td style="padding:10px; font-size:10px; width:40%">
+                                <p style="margin-top:0px;margin-bottom:0px;">
+                                    <b>
+                                    </b>
+                                </p>
+                                <p style="margin-top:0px;margin-bottom:0px;">
+                                    <b>
+                                        CIN :
+                                    </b>1234567
+                                </p>
+                                <p style="margin-top:0px;margin-bottom:0px;">
+                                    <b>
+                                        Service Tax category :
+                                    </b>1234567
+                                </p>
+                                <p style="margin-top:0px;margin-bottom:0px;">
+                                    <b>
+                                        PAN :
+                                    </b>@Model.DriverTripInvoice.PANNo
+                                </p>
+                                <!--<div>
+                                    <p style="margin-top:0px;margin-bottom:0px;">
+
+                                        <b>GST Number : </b> 123456778
+                                    </p>
+                                    <p style="margin-top:0px;margin-bottom:0px;">
+
+                                            CIN : 1234567
+                                    </p>
+                                    <p style="margin-top:0px;margin-bottom:0px;">
+
+                                            Service Tax category :  1234567
+                                    </p>
+                                    <p style="margin-top:0px;margin-bottom:0px;">
+
+                                            PAN : 12345678
+                                    </p>
+                                </div>-->
+                            </td>
+                        </tr>
+                        <!--<div style="clear:both;"></div>-->
+                    </table>
+
+                    <hr style="margin:0px 0px 5px;padding:0px;" />
+                    <table class="table" style="margin:0px;padding:0px;">
+                        <tr>
+                            <td style="padding-left:84px; width:50%; font-size:14px;padding-top:13px;"><b>CRN Number :</b> 12464874549874</td>
+                            <td style="padding-left:82px;  width:50%; text-align:left; padding-top:13px;  font-size:14px; "><b>GST Number :</b> 46847861</td>
+                        </tr>
+                        <!--<div style="clear:both"></div>-->
+                    </table>
+                    <hr style="margin:7px 0px 0px;padding:0px;" />
+
+                    <h2 style="font-size: 12px;text-transform: uppercase; line-height: 34px; font-weight: 400; margin-bottom: 20px; margin-top: 0; text-align: center;
+    position: relative;letter-spacing: 1px;">
+                        <span style="font-size:16px;text-transform: capitalize; display: block; font-weight: 700;
+    letter-spacing: 0;">Trip Details</span> <!--<span style="height:4px; width:80px; margin:0px auto; background:#fffc00; display:block; margin-top:10px;"> </span>-->
+                    </h2>
+
+                    <table class="table" style="margin:0px 0px 10px;">
+                        <tr>
+                            <td style="padding-left:85px; font-size:10px; ">
+                                <p style="margin-top:0px;margin-bottom:0px;"><b>Customer Name:</b> @Model.DriverTripInvoice.CustomerName </p>
+                                <p style="margin-top:0px;margin-bottom:0px;"><b>Customer Mobile No. :</b> @Model.DriverTripInvoice.CustomerMobileNo</p>
+                                <br />
+                                <br />
+                            </td>
+                        </tr>
+
+                    </table>
+
+
+                    <table class="table">
+                        <tr>
+                            <td style="padding-left:84px;  ">
+                                <h4 style="font-size:12px; margin-bottom:3px;"><b>From Location:</b></h4>
+                                <p style="font-size:10px;margin-top:0px;margin-bottom:0px;">
+                                    @*#26, Overlook Road Ardsley,
+                                            NY-10502, USA
+                                        </p><p style="font-size:10px;margin-top:0px;margin-bottom:0px;">
+                                            Phone : +1. 646. 696 6005
+                                        </p><p style="margin-top:0px;margin-bottom:0px; font-size:10px;">
+                                            Email : info@pickcargo.in*@
+                                    @Model.DriverTripInvoice.FromLocation
+                                </p>
+
+                            </td>
+                            <td style="padding-left:78px;">
+                                <h4 style="font-size:12px ; margin-bottom:3px;"><b>To Location:</b></h4>
+                                <p style="font-size:10px;margin-top:0px;margin-bottom:0px;">
+                                    @*#26, Overlook Road Ardsley,
+                                            NY-10502, USA
+                                        </p><p style="font-size:10px;margin-top:0px;margin-bottom:0px;">
+                                            Phone : +1. 646. 696 6005
+                                        </p><p style="margin-top:0px;margin-bottom:0px; font-size:10px;">
+                                            Email : info@pickcargo.in*@
+                                    @Model.DriverTripInvoice.ToLocation
+                                </p>
+                            </td>
+                        </tr>
+
+                    </table>
+                    <hr style="margin:5px 0px;background-color:rgb(85,85,85);" />
+                    <h2 style="font-size: 14px;text-transform: uppercase; line-height: 34px; font-weight: 400;  text-align: center;
+    position: relative;letter-spacing: 1px;">
+                        <span style="font-size:16px;text-transform: capitalize; display: block; font-weight: 700;
+    letter-spacing: 0;">Trip Charges</span>
+                        <!--<span style="height:4px; width:80px; margin:0px auto;  background:#fffc00;  display:block; margin-top:10px;"> </span>-->
+                    </h2>
+                    <br />
+                    <table style="width:100%;">
+                        <tr>
+                            <td style="padding-left:50px; padding-right:50px; width:80% ">
+                                <table class="table table-bordered" style="width:100%;display:table; border:1px solid rgb(85,85,85);">
+                                    <tr style="border-bottom:1px solid #555555; display:table-row;">
+                                        <th style="text-align:right; border-bottom:1px solid #555555; display:table-cell; font-size:10px;  padding:10px 5px;  width:70%;"><b>Trip Charge :</b></th>
+                                        <td style="text-align:right; border-bottom:1px solid #555555; display:table-cell; font-size:10px;border-left:1px solid #555555;  padding:10px 5px; width:30%; "> <img src="http://ragsarma-001-site13.htempurl.com/Images/rupee.png" style="width:7px; height:9px;padding-left:5px;" />&nbsp;  @Model.DriverTripInvoice.DriverTripAmount/-</td>
+                                    </tr>
+                                    <tr style="border-bottom:1px solid #555555; display:table-row;">
+                                        .
+
+                                        <th style="text-align:right; border-bottom:1px solid #555555; display:table-cell; font-size:10px; width:70%;  padding:10px 5px;"><b>GST Tax  - 5.0%</b></th>
+                                        <td style="text-align:right; border-bottom:1px solid #555555; display:table-cell; font-size:10px; border-left:1px solid #555555;  width:30%; padding:10px 5px;"> 	<img src="http://ragsarma-001-site13.htempurl.com/Images/rupee.png" style="width:7px; height:9px;padding-left:5px;" />&nbsp;  @Model.DriverTripInvoice.DriverGST/- </td>
+                                    </tr>
+                                    @*<tr style="border-bottom:1px solid #555555; display:table-row;">
+                                            <th style="text-align:right; border-bottom:1px solid #555555; display:table-cell; font-size:10px;  width:60%;  padding:10px 5px;"><b>GST Charge :</b></th>
+                                            <td style="text-align:right; border-bottom:1px solid #555555;  display:table-cell; font-size:10px;  border-left:1px solid #555555;  padding:10px 5px;"> &#8377; @Mode/-</td>
+                                        </tr>*@
+                                    @*<tr style="border-bottom:1px solid #555555; display:table-row;">
+                                            <th style="text-align:right; border-bottom:1px solid #555555; display:table-cell; font-size:10px; width:60%;  padding:10px 5px;"><b>GST Charge :</b></th>
+                                            <td style="text-align:right; border-bottom:1px solid #555555;  display:table-cell;  font-size:10px; border-left:1px solid #555555;  padding:10px 5px;"> <img src="http://ragsarma-001-site13.htempurl.com/Images/rupee.png" style="width:7px; height:9px;padding-left:5px;" />&nbsp;  200/-</td>
+                                        </tr>*@
+                                    <tr style="display:table-row;">
+                                        <th style="text-align:right; width:70%;  display:table-cell; padding:10px 5px; font-size:12px;"><b>Grand Total :</b></th>
+                                        <td style="text-align:right;  display:table-cell; padding:10px 5px; border-left:1px solid #555555; width:30%;  font-size:12px;"><b> <img src="http://ragsarma-001-site13.htempurl.com/Images/rupee.png" style="width:7px; height:9px;padding-left:5px;" />&nbsp;  @*<img src="http://i.stack.imgur.com/nGbfO.png" width="3" height="5" /> <img src="http://pickcargo.in/images/rupee.png" width="10" height="10" />*@ @Model.DriverTripInvoice.DriverTotalAmount/-</b></td>
+                                    </tr>
+                                </table>
+
+                            </td>
+                        </tr>
+                    </table>
+
+
+
+
+
+                    <table class="table">
+                        <tr>
+                            <td class="col-md-12" style="font-size:10px; margin-bottom:5px; margin-left:15px;">
+                                <hr style="margin:7px 0px 0px;padding:0px;" />
+                                <b style="font-size:10px;">*Note:</b>
+                            </td>
+                        </tr>
+                    </table>
+
+                </td>
+            </tr>
+        </table>
+        <br /><br /><br />
+        <br /><br /><br />
+        <br /><br /><br />
+        <br /><br /><br />
+        <br />
+
+    </div>
+
+
+    <div class="container-fluid" style="font-family:Trebuchet MS; font-size:10px;margin:0px auto; background:#fff;">
+        <table class="table table-bordered" style="color:#000;  margin:20px auto 0px; background:#fff; ">
+            <tr>
+                <td style="padding:15px;">
+
+
+                    <table class="table" style="margin-top:0px; margin-bottom:0px; width:100%;">
+                        <tr>
+                            <td style="vertical-align:bottom; text-align:center;">
+
+                                <span class="title-head" style="text-align:center;font-size:16px;padding:0px;text-transform: capitalize; display: inline-block; font-weight: 700;
+    letter-spacing: 0; font-family:Trebuchet MS; ">
+                                    Company Invoice
+                                </span>
+                            </td>
+                        </tr>
+                    </table>
+                    <br />
+                    <br />
+                    @*<table class="table" style="margin-top:0px; margin-bottom:0px; width:100%;">
+                            <tr>
+                                <td style="height:4px; vertical-align:top; padding:0px 0px 0px 0px;">
+                                    <hr style="width:200px;height:4px; margin:0px auto; background-color:#fffc00; border-color:#fffc00; color:#fffc00;  text-align:center;" />
+                                </td> <div style="height:4px; width:100px; margin:0px auto; background-color:#fffc00; display:block;"> </div>
+                            </tr>
+                        </table>*@
+
+                    <table class="table" style="margin-top:10px; width:100%; margin-bottom:0px; padding-bottom:0px;">
+                        <tr>
+
+                            <td style="font-size: 11px; width: 30%; padding-left:55px; padding-right:15px;">
+                                <p style="margin-top: 0px; font-size:10px; margin-bottom: 0px;">
+                                    <b>PR Techno Solutions Pvt. Ltd.</b><br />
+                                    #3rd Floor, Plot No.12-A, Survey No.71/1,<br />
+                                    Jai Hind Gandhi Rd, VIP Hills, Madhapur,<br />
+                                    Hyderabad, 500081, India.<br />
+                                </p>
+                            </td>
+                            <td style="text-align:center;  padding:10px; width:10%;">
+                                <img src="http://pickcargo.in/images/logo.png" style="width:55px;max-width:65px;height:auto; margin:0px auto; " />
+                            </td>
+                            <td style="font-size: 11px; width:40%; padding-left:20px; ">
+                                <p style="margin-top:0px;margin-bottom:0px;">
+                                    <b>
+                                        GST Number :
+                                    </b>123456778
+                                </p>
+                                <p style="margin-top:0px;margin-bottom:0px;">
+                                    <b>
+                                        CIN :
+                                    </b>1234567
+                                </p>
+                                <p style="margin-top:0px;margin-bottom:0px;">
+                                    <b>
+                                        Service Tax category :
+                                    </b>1234567
+                                </p>
+                                <p style="margin-top:0px;margin-bottom:0px;">
+                                    <b>
+                                        PAN :
+                                    </b>12345678
+                                </p>
+                                <!--<div>
+                                    <p style="margin-top:0px;margin-bottom:0px;">
+
+                                        <b>GST Number : </b> 123456778
+                                    </p>
+                                    <p style="margin-top:0px;margin-bottom:0px;">
+
+                                            CIN : 1234567
+                                    </p>
+                                    <p style="margin-top:0px;margin-bottom:0px;">
+
+                                            Service Tax category :  1234567
+                                    </p>
+                                    <p style="margin-top:0px;margin-bottom:0px;">
+
+                                            PAN : 12345678
+                                    </p>
+                                </div>-->
+                            </td>
+                        </tr>
+                        <!--<div style="clear:both;"></div>-->
+                    </table>
+                    <hr style="margin:0px 0px 5px;padding:0px;" />
+                    <table class="table" style="margin:0px;padding:0px;width:100%;">
+                        <tr>
+                            <td style="text-align:center; vertical-align:middle; padding-top:13px; padding-bottom:0px;font-size: 14px;"><b>CRN Number :</b> 12464874549874</td>
+
+                        </tr>
+                        <!--<div style="clear:both"></div>-->
+                    </table>
+                    <hr style="margin:7px 0px 0px;padding:0px;" />
+
+                    <h2 style="font-size: 14px;text-transform: uppercase; line-height: 34px; font-weight: 400; margin-bottom: 20px; margin-top: 0; text-align: center;
+    position: relative;letter-spacing: 1px;">
+                        <span style="font-size:16px;text-transform: capitalize; display: block; font-weight: 700;
+    letter-spacing: 0;">Trip Details</span> <!--<span style="height:4px; width:80px; margin:0px auto; background:#fffc00; display:block; margin-top:10px;"> </span>-->
+                    </h2>
+
+                    <table class="table" style="margin:0px 0px 10px; width:100%;">
+                        <tr>
+                            <td style="padding-left:55px; font-size: 11px; width:50%; ">
+                                <p style="margin-top:0px;margin-bottom:0px;"><b>Customer Name:</b> @Model.CompanyTripInvoice.CustomerName </p>
+                                <p style="margin-top:0px;margin-bottom:0px;"><b>Customer Mobile No. :</b> @Model.CompanyTripInvoice.CustomerMobileNo </p>
+                                <br />
+                                <br />
+                            </td>
+                            <td style="width:50%; vertical-align:top;padding-left:45px;font-size: 11px;">
+
+                                <p style="margin-top:0px;margin-bottom:0px;"><b>Invoice Date:</b> @Model.CompanyTripInvoice.InvoiceDate </p>
+                                <p style="margin-top:0px;margin-bottom:0px;"><b>Invoice Id:</b> @Model.CompanyTripInvoice.InvoiceNo</p>
+
+
+                            </td>
+                        </tr>
+
+                    </table>
+
+
+
+                    <table class="table" style="width:100%;">
+                        <tr>
+                            <td style="padding-left:55px;  width:50%; ">
+                                <h4 style="font-size:12px; margin-bottom:3px;"><b>From Location:</b></h4>
+                                <p style="font-size: 11px;margin-top:0px;margin-bottom:0px;">
+                                    @Model.CompanyTripInvoice.FromLocation
+                                </p>
+                                @*<p style="font-size: 14px;margin-top:0px;margin-bottom:0px;">
+                                        #26, Overlook Road Ardsley,
+                                        NY-10502, USA
+                                    </p><p style="font-size: 14px;margin-top:0px;margin-bottom:0px;">
+                                        Phone : +1. 646. 696 6005
+                                    </p><p style="margin-top:0px;margin-bottom:0px; font-size: 14px;">
+                                        Email : info@pickcargo.in  </p>*@
+
+
+                            </td>
+                            <td style="width: 50%; padding-left: 45px;">
+                                <h4 style="font-size:12px ; margin-bottom:3px;"><b>To Location:</b></h4>
+                                <p style="font-size: 11px;margin-top:0px;margin-bottom:0px;">
+                                    @Model.CompanyTripInvoice.ToLocation
+                                    @*#26, Overlook Road Ardsley,
+                                            NY-10502, USA
+                                        </p><p style="font-size: 14px;margin-top:0px;margin-bottom:0px;">
+                                            Phone : +1. 646. 696 6005
+                                        </p><p style="margin-top:0px;margin-bottom:0px; font-size: 14px;">
+                                            Email : info@pickcargo.in*@
+                                </p>
+                            </td>
+                        </tr>
+
+                    </table>
+                    <hr style="margin:5px 0px;background-color:rgb(85,85,85);" />
+                    <table style="width:100%;">
+                        <tr>
+                            <td colspan="2" style="padding-top:10px;">
+
+                                <h2 style="font-size: 14px;text-transform: uppercase; line-height: 34px; font-weight: 400; margin-bottom: 20px; margin-top: 0; text-align: center;
+    position: relative;letter-spacing: 1px;">
+                                    <span style="font-size:16px;text-transform: capitalize; display: block; font-weight: 700;
+    letter-spacing: 0;">Trip Charges</span> <span style="height:4px; width:80px; margin:0px auto;  background:#fffc00;  display:block; margin-top:10px;"> </span>
+                                </h2>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td colspan="2" style="padding-left:50px; padding-right:50px; width:80% ">
+
+
+
+                                <table style="width:100%;  display:table; border:1px solid rgb(85,85,85);">
+                                    <tr style="border-bottom:1px solid #555555; display:table-row;">
+                                        <td style="font-size: 11px;text-align:right; border-bottom:1px solid #555555; display:table-cell; padding:10px 5px;  width:70%;"><b>Trip Charge :</b></td>
+                                        <td style="font-size: 11px;text-align:right; border-bottom:1px solid #555555; display:table-cell; border-left:1px solid #555555;  padding:10px 5px; width:30%; text-align:right; "> <img src="http://ragsarma-001-site13.htempurl.com/Images/rupee.png" style="width:7px; height:9px;padding-left:5px;" />&nbsp;  @Model.CompanyTripInvoice.CompanyTripAmount/-</td>
+                                    </tr>
+                                    <tr style="border-bottom:1px solid #555555; display:table-row;">
+                                        <td style="font-size: 11px;text-align:right; border-bottom:1px solid #555555; display:table-cell; width:70%;  padding:10px 5px;"><b>GST Tax  - 9.0%</b></td>
+                                        <td style="font-size: 11px;text-align:right; border-bottom:1px solid #555555; display:table-cell;  border-left:1px solid #555555; padding:10px 5px; width:30%; text-align:right;"> <img src="http://ragsarma-001-site13.htempurl.com/Images/rupee.png" style="width:7px; height:9px;padding-left:5px;" />&nbsp;  @Model.CompanyTripInvoice.GST/-</td>
+                                    </tr>
+                                    <tr style="border-bottom:1px solid #555555; display:table-row;">
+                                        <td style="font-size: 11px;text-align:right; border-bottom:1px solid #555555; display:table-cell; width:70%;  padding:10px 5px;"><b>GST Tax  - 9.0%</b></td>
+                                        <td style="font-size: 11px;text-align:right; border-bottom:1px solid #555555;  display:table-cell; border-left:1px solid #555555;  padding:10px 5px; width:30%; text-align:right;"> <img src="http://ragsarma-001-site13.htempurl.com/Images/rupee.png" style="width:7px; height:9px;padding-left:5px;" />&nbsp;  @Model.CompanyTripInvoice.CGST/-</td>
+                                    </tr>
+
+                                    <tr style="display:table-row;">
+                                        <td style="text-align:right; width:70%;  display:table-cell; padding:10px 5px; font-size: 12px;"><b>Grand Total :</b></td>
+                                        <td style="text-align:right;  display:table-cell; padding:10px 5px; border-left:1px solid #555555;  font-size: 12px; width:30%; text-align:right;"><b> <img src="http://ragsarma-001-site13.htempurl.com/Images/rupee.png" style="width:7px; height:9px;padding-left:5px;" />&nbsp;  @Model.CompanyTripInvoice.CompanyTotalAmount/-</b></td>
+                                    </tr>
+                                </table>
+                                <br />
+
+                            </td>
+                        </tr>
+                    </table>
+                    <table style="width:100%;">
+                        <tr>
+                            <td style="padding:10px 0px;  ">
+
+                                <hr style="margin:7px 0px 0px;padding:0px;" />
+
+                                <p style="font-size: 12px;padding-top:10px ">
+                                    <b style="font-size: 12px;">*Note:</b>
+                                </p>
+
+                            </td>
+                        </tr>
+                    </table>
+                </td>
+            </tr>
+        </table>
+    </div>
+</body>
+
+</html>
+

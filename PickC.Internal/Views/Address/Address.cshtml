@@ -1,0 +1,33 @@
+﻿@model Master.Contract.Address
+
+    <div class="row">
+        <div class="col-md-6">
+            <label>Address 1</label>
+            @Html.TextBoxFor(x => x.Address1, new { @class = "form-control" })
+        </div>
+        <div class="col-md-6">
+            <label>Address 2</label>
+            @Html.TextBoxFor(x => x.Address2, new { @class = "form-control" })
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-6">
+            <label>Address 3</label>
+            @Html.TextBoxFor(x => x.Address3, new { @class = "form-control" })
+        </div>
+        <div class="col-md-6">
+            <label>City</label>
+            @Html.TextBoxFor(x => x.CityName, new { @class = "form-control" })
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-6">
+            <label>State</label>
+            @Html.TextBoxFor(x => x.StateName, new { @class = "form-control" })
+        </div>
+        <div class="col-md-6">
+            <label>Zipcode</label>
+            @Html.TextBoxFor(x => x.ZipCode, new { @class = "form-control" })
+        </div>
+        @Html.HiddenFor(x => x.AddressLinkID)
+    </div>

@@ -1,0 +1,139 @@
+﻿@model  Operation.Contract.UserData
+
+@{
+    ViewBag.Title = "UserApp";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    var MonthName = string.Empty;
+    var MonthNo = string.Empty;
+    if (Model.userBookingList != null)
+    {
+        for (var i = 0; i < Model.userBookingList.Count; i++)
+        {
+            MonthName += "'" + Model.userBookingList[i].MonthView + "'" + ",";
+            MonthNo += Model.userBookingList[i].totaltrips + ",";
+        }
+        MonthName = MonthName.TrimEnd(',');
+        MonthNo = MonthNo.TrimEnd(',');
+    }
+}
+
+@section seccss{
+     <link href="@Url.Content("~/Css/bootstrap-datetimepicker.css")" rel="stylesheet" />
+     
+}
+<section class="content">
+    <div class="row">
+        <div class="col-md-12">
+            @{ Html.RenderPartial("DashboardMenuList",Model); }
+        </div>
+    </div>
+    <div class="row">
+     <div class="col-md-12">
+         @{ Html.RenderPartial("UserApps"); }
+     </div>
+    </div>
+
+    <div class="row" id="SearchTrips">
+        <div class="col-md-12" style="margin:10px 0 0 10px;">
+            @using (Html.BeginForm("SearchTotalTrips", "Dashboard", FormMethod.Post, new { id = "frmuser", name = "frmuser" }))
+            {
+            <div class="row">
+                <div class="col-md-2">
+                    <div class="form-group">
+                        <label>Date From</label>
+                        <div class="input-group dtCss">
+                            @Html.TextBoxFor(x => x.DateFrom,new { id = "datefrom", @class = "form-control" })
+                            <span class="input-group-btn">
+                                <button type="button" class="btn btn-default"><i class="fa fa-calendar" aria-hidden="true"></i></button>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-2">
+                    <div class="form-group">
+                        <label>Date To</label>
+                        <div class="input-group dtCss">
+                            @Html.TextBoxFor(x => x.DateTo, new { id = "dateto", @class = "form-control" })
+                            <span class="input-group-btn">
+                                <button type="button" class="btn btn-default"><i class="fa fa-calendar" aria-hidden="true"></i></button>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-2">
+                    <button type="submit" id="btnSearch" class="btn btn-primary" style="margin-top:25px;"><i class="fa fa-search"></i>Search </button>
+                </div>
+                    </div>
+                    }
+                </div>
+       
+            </div>
+    <div class="row">
+        <div id="chartcontainer" style="width:350px;margin-left:50px;"></div>
+    </div>
+</section>
+    @section secscripts{
+        <script src="@Url.Content("~/Scripts/jquery.validate.js")"></script>
+        <script src="@Url.Content("~/Scripts/moment-with-locales.js")"></script>
+        <script src="@Url.Content("~/Scripts/bootstrap-datetimepicker.js")"></script>
+        <script src="@Url.Content("~/Scripts/highcharts.js")"></script>
+        <script src="@Url.Content("~/Scripts/highcharts-more.js")"></script>
+        <script src="@Url.Content("~/Scripts/exporting.js")"></script>
+
+  
+        <script type="text/javascript">
+            $(function () {
+                $('#userApp').parent().addClass('active');
+            });
+
+            $('.dtCss').datetimepicker({
+                icons: {
+                    time: 'fa fa-clock-o',
+                    date: 'fa fa-calendar',
+                    up: 'fa fa-arrow-up',
+                    down: 'fa fa-arrow-down',
+                    previous: 'fa fa-arrow-left',
+                    next: 'fa fa-arrow-right'
+                },
+                format: 'DD/MM/YYYY'
+            });
+
+            $(document).ready(function () {
+                $('#frmuser').validate({
+                    rules: {
+                        'DateFrom': {
+                            required: true
+                        },
+                        'DateTo': {
+                            required: true
+                        }
+                    }
+                });
+            });
+
+            var chart = Highcharts.chart('chartcontainer', {
+                title: {
+                    text: 'Total Trips'
+                },
+                subtitle: {
+                    text: ''
+                },
+                xAxis: {
+                    categories: [@Html.Raw(MonthName)]
+                },
+                series: [{
+                    type: 'column',
+                    colorByPoint: true,
+                    data: [@Html.Raw(MonthNo)],
+                    showInLegend: false
+                }]
+
+            });
+        
+        </script>
+    }
+
+
+
+

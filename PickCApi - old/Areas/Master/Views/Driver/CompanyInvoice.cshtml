@@ -1,0 +1,224 @@
+﻿@model Master.Contract.CompanyTripInvoice
+@{
+    ViewBag.Title = "CompanyInvoice";
+    Layout = null;
+}
+<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+    <meta charset="utf-8" />
+</head>
+<body>
+
+    <div class="container-fluid" style="font-family:Trebuchet MS; font-size:8px;margin:0px auto; background:#fff;">
+        <table class="table table-bordered">
+            <tr>
+                <td style="padding:15px;">
+
+
+                    <table class="table" style="margin-top:0px; margin-bottom:0px; width:100%;">
+                        <tr>
+                            <td style="vertical-align:bottom; text-align:center;">
+
+                                <span class="title-head" style="text-align:center;font-size:16px;padding:0px;text-transform: capitalize; display: inline-block; font-weight: 700;
+    letter-spacing: 0; font-family:Arial, Helvetica, sans-serif; ">
+                                    Company Invoice
+                                </span>
+                            </td>
+                        </tr>
+                    </table>
+                    @*<table class="table" style="margin-top:0px; margin-bottom:0px; width:100%;">
+                            <tr>
+                                <td style="height:4px; vertical-align:top; padding:0px 0px 0px 0px;">
+                                    <hr style="width:200px;height:4px; margin:0px auto; background-color:#fffc00; border-color:#fffc00; color:#fffc00;  text-align:center;" />
+                                </td> <div style="height:4px; width:100px; margin:0px auto; background-color:#fffc00; display:block;"> </div>
+                            </tr>
+                        </table>*@
+
+                    <table class="table" style="margin-top:10px; width:100%; margin-bottom:0px; padding-bottom:0px;">
+                        <tr>
+
+                            <td style="font-size: 12px; width: 30%; padding-left:85px; padding-right:15px;">
+                                <p style="margin-top: 0px; margin-bottom: 0px;">
+                                    <b>PR Techno Solutions Pvt. Ltd.</b><br />
+                                    #3rd Floor, Plot No.12-A, Survey No.71/1,<br />
+                                    Jai Hind Gandhi Rd, VIP Hills, Madhapur,<br />
+                                    Hyderabad, 500081, India.<br />
+                                </p>
+                            </td>
+                            <td style="text-align:center;  padding:10px; width:10%;">
+                                <img src="http://pickcargo.in/images/logo.png" style="width:55px;max-width:65px;height:auto; margin:0px auto; " />
+                            </td>
+                            <td style="font-size:10px; width:40%; padding-left:20px; ">
+                                <p style="margin-top:0px;margin-bottom:0px;">
+                                    <b>
+                                        GST Number :
+                                    </b>123456778
+                                </p>
+                                <p style="margin-top:0px;margin-bottom:0px;">
+                                    <b>
+                                        CIN :
+                                    </b>1234567
+                                </p>
+                                <p style="margin-top:0px;margin-bottom:0px;">
+                                    <b>
+                                        Service Tax category :
+                                    </b>1234567
+                                </p>
+                                <p style="margin-top:0px;margin-bottom:0px;">
+                                    <b>
+                                        PAN :
+                                    </b>12345678
+                                </p>
+                                <!--<div>
+                                    <p style="margin-top:0px;margin-bottom:0px;">
+
+                                        <b>GST Number : </b> 123456778
+                                    </p>
+                                    <p style="margin-top:0px;margin-bottom:0px;">
+
+                                            CIN : 1234567
+                                    </p>
+                                    <p style="margin-top:0px;margin-bottom:0px;">
+
+                                            Service Tax category :  1234567
+                                    </p>
+                                    <p style="margin-top:0px;margin-bottom:0px;">
+
+                                            PAN : 12345678
+                                    </p>
+                                </div>-->
+                            </td>
+                        </tr>
+                        <!--<div style="clear:both;"></div>-->
+                    </table>
+
+                    <hr style="margin:0px 0px 5px;padding:0px;" />
+                    <table class="table" style="margin:0px;padding:0px;width:100%;">
+                        <tr>
+                            <td style="text-align:center; vertical-align:middle; padding-top:13px; padding-bottom:0px;font-size:10px;"><b>CRN Number :</b> 12464874549874</td>
+
+                        </tr>
+                        <!--<div style="clear:both"></div>-->
+                    </table>
+                    <hr style="margin:7px 0px 0px;padding:0px;" />
+
+                    <h2 style="font-size: 12px;text-transform: uppercase; line-height: 34px; font-weight: 400; margin-bottom: 20px; margin-top: 0; text-align: center;
+    position: relative;letter-spacing: 1px;">
+                        <span style="font-size:16px;text-transform: capitalize; display: block; font-weight: 700;
+    letter-spacing: 0;">Trip Details</span> <!--<span style="height:4px; width:80px; margin:0px auto; background:#fffc00; display:block; margin-top:10px;"> </span>-->
+                    </h2>
+
+                    <table class="table" style="margin:0px 0px 10px; width:100%;">
+                        <tr>
+                            <td style="padding-left:100px; font-size:10px; width:50%; ">
+                                <p style="margin-top:0px;margin-bottom:0px;"><b>Customer Name:</b> PR Techno Solutions Pvt. Ltd. </p>
+                                <p style="margin-top:0px;margin-bottom:0px;"><b>Customer Mobile No. :</b> 1234567890</p>
+                                <br />
+                                <br />
+                            </td>
+                            <td style="width:50%; vertical-align:top;padding-left:45px;font-size:10px;">
+
+                                <p style="margin-top:0px;margin-bottom:0px;"><b>Invoice Date:</b> @Model.InvoiceDate</p>
+                                <p style="margin-top:0px;margin-bottom:0px;"><b>Invoice Id:</b> @Model.InvoiceNo</p>
+
+
+                            </td>
+                        </tr>
+
+                    </table>
+
+
+
+                    <table class="table" style="width:100%;">
+                        <tr>
+                            <td style="padding-left:100px;  width:50%; ">
+                                <h4 style="font-size:12px; margin-bottom:3px;"><b>From Location:</b></h4>
+                                <p style="font-size:10px;margin-top:0px;margin-bottom:0px;">
+                                    #26, Overlook Road Ardsley,
+                                    NY-10502, USA
+                                </p><p style="font-size:10px;margin-top:0px;margin-bottom:0px;">
+                                    Phone : +1. 646. 696 6005
+                                </p><p style="margin-top:0px;margin-bottom:0px; font-size:10px;">
+                                    Email : info@pickcargo.in
+                                </p>
+
+                            </td>
+                            <td style="width: 50%; padding-left: 45px;">
+                                <h4 style="font-size:12px ; margin-bottom:3px;"><b>To Location:</b></h4>
+                                <p style="font-size:10px;margin-top:0px;margin-bottom:0px;">
+                                    #26, Overlook Road Ardsley,
+                                    NY-10502, USA
+                                </p><p style="font-size:10px;margin-top:0px;margin-bottom:0px;">
+                                    Phone : +1. 646. 696 6005
+                                </p><p style="margin-top:0px;margin-bottom:0px; font-size:10px;">
+                                    Email : info@pickcargo.in
+                                </p>
+                            </td>
+                        </tr>
+
+                    </table>
+                    <hr style="margin:5px 0px;background-color:rgb(85,85,85);" />
+                    <table style="width:100%;">
+                        <tr>
+                            <td colspan="2" style="padding-top:10px;">
+
+                                <h2 style="font-size: 12px;text-transform: uppercase; line-height: 34px; font-weight: 400; margin-bottom: 20px; margin-top: 0; text-align: center;
+    position: relative;letter-spacing: 1px;">
+                                    <span style="font-size:14px;text-transform: capitalize; display: block; font-weight: 700;
+    letter-spacing: 0;">Trip Charges</span> <span style="height:4px; width:80px; margin:0px auto;  background:#fffc00;  display:block; margin-top:10px;"> </span>
+                                </h2>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td colspan="2" style="padding-left:50px; padding-right:50px; width:80% ">
+
+
+
+                                <table style="width:100%;  display:table; border:1px solid rgb(85,85,85);">
+                                    <tr style="border-bottom:1px solid #555555; display:table-row;">
+                                        <td style="font-size:10px;text-align:right; border-bottom:1px solid #555555; display:table-cell; padding:10px 5px;  width:70%;"><b>Trip Charge :</b></td>
+                                        <td style="font-size:10px;text-align:right; border-bottom:1px solid #555555; display:table-cell; border-left:1px solid #555555;  padding:10px 5px; width:30%; text-align:right; "> Rs. @Model.CompanyTripAmount/-</td>
+                                    </tr>
+                                    <tr style="border-bottom:1px solid #555555; display:table-row;">
+                                        <td style="font-size:10px;text-align:right; border-bottom:1px solid #555555; display:table-cell; width:70%;  padding:10px 5px;"><b>GST Charge :</b></td>
+                                        <td style="font-size:10px;text-align:right; border-bottom:1px solid #555555; display:table-cell;  border-left:1px solid #555555; padding:10px 5px; width:30%; text-align:right;"> Rs. @Model.GST/-</td>
+                                    </tr>
+                                    <tr style="border-bottom:1px solid #555555; display:table-row;">
+                                        <td style="font-size:10px;text-align:right; border-bottom:1px solid #555555; display:table-cell; width:70%;  padding:10px 5px;"><b>CGST Charge :</b></td>
+                                        <td style="font-size:10px;text-align:right; border-bottom:1px solid #555555;  display:table-cell; border-left:1px solid #555555;  padding:10px 5px; width:30%; text-align:right;"> Rs. @Model.CGST/-</td>
+                                    </tr>
+
+                                    <tr style="display:table-row;">
+                                        <td style="text-align:right; width:70%;  display:table-cell; padding:10px 5px; font-size:10px;"><b>Grand Total :</b></td>
+                                        <td style="text-align:right;  display:table-cell; padding:10px 5px; border-left:1px solid #555555;  font-size:10px; width:30%; text-align:right;"><b> Rs. @Model.CompanyTotalAmount/-</b></td>
+                                    </tr>
+                                </table>
+                                <br />
+
+                            </td>
+                        </tr>
+                    </table>
+                    <table style="width:100%;">
+                        <tr>
+                            <td style="padding:10px 0px;  ">
+
+                                <hr style="margin:7px 0px 0px;padding:0px;" />
+
+                                <p style="font-size:10px;padding-top:10px ">
+                                    <b style="font-size:10px;">*Note:</b>
+                                </p>
+
+                            </td>
+                        </tr>
+                    </table>
+                </td>
+            </tr>
+        </table>
+    </div>
+
+</body>
+</html>
+
+

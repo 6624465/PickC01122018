@@ -1,0 +1,66 @@
+﻿@model List<Operation.Contract.Booking>
+@{
+    ViewBag.Title = "Bookings";
+}
+@section css{
+
+}
+<section class="help">
+    <div class="container">
+        @if (Model != null && Model.Count > 0)
+            {
+                for (var i = 0; i < Model.Count; i++)
+                {
+                <div class="row" style="margin-top: 0px;">
+                    <div class="col-md-12">
+                        <div class="box box-success">
+                            <div class="box-header with-border">
+                                <i class="fa fa-truck" aria-hidden="true"></i>
+                                <h3 class="box-title">@Model[i].BookingNo</h3>&nbsp;
+                                <label class="label label-success"><b>Confirmed</b></label>
+                                <div class="box-tools pull-right">
+                                    <a class="btn btn-box-tool" onclick="$('#spin_@i').show();" href="@Url.Content("~/bookings/emailinvoice?bookingNo=" + Model[i].BookingNo)"><i class="fa fa-envelope" aria-hidden="true"></i></a>&nbsp;
+                                    <a class="btn btn-box-tool" href="@Url.Content("~/bookings/printinvoice?bookingNo=" + Model[i].BookingNo)" target="_blank"><i class="fa fa-print" aria-hidden="true"></i></a>
+                                </div>
+                            </div>
+                            <div class="box-body">
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div>
+                                            <span><i class="fa fa-calendar fa-2x" aria-hidden="true"></i>&nbsp;@Model[i].BookingDate.ToLongDateString()</span>
+                                            <div><span class="text-green">@Model[i].LocationFrom</span>&nbsp;/&nbsp;<span class="text-red">@Model[i].LocationTo</span></div>
+                                            <small><cite title="Source Title">@Model[i].CargoDescription</cite></small>
+                                            <small><cite title="Source Title">@Model[i].Remarks</cite></small>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="pull-right">
+                                            <span><i class="fa fa-truck fa-2x" aria-hidden="true"></i>&nbsp;Vehicle No: AP28 TU 3250</span>
+                                            <div><span class="text-green">Driver</span>&nbsp;&nbsp;<span class="text-red">Some Name</span></div>
+                                            <div><span>Vehicle</span>&nbsp;&nbsp;<span>TATA ACE (Open)</span></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="overlay" style="display:none;" id="spin_@i">
+                                <i class="fa-li fa fa-spinner fa-spin"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            }
+        }
+        else
+        {
+            <section class="content-header">
+                <div class="alert alert-warning alert-dismissible">
+                    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+                    <h4><i class="icon fa fa-warning"></i> Alert!</h4>
+                    Warning alert preview. This alert is dismissable.
+                </div>
+            </section>
+        }
+    </div>
+</section>
+
+

@@ -1,0 +1,90 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Payments Details</title>
+    <link href="@Url.Content("~/Css/font-awesome-4.7.0/css/font-awesome.min.css")" rel="stylesheet" />
+    <link href="@Url.Content("~/Css/bootstrap.min.css")" rel="stylesheet" />
+    <link href="@Url.Content("~/Css/AdminLTE.min.css")" rel="stylesheet" />
+    <script src="@Url.Content("~/Scripts/jquery-1.10.2.js")"></script>
+    <script src="@Url.Content("~/Scripts/bootstrap.min.js")"></script>
+    <style type="text/css">
+        .marginTop {
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body >
+    
+ <div class="container">
+     <div class="top-details row"><div class="col-md-12 col-xs-12"><h4>Payments Details</h4></div></div>
+    <div class="row marginTop amount-re" >
+        <div class="col-xs-12 text-center" >
+            <div>
+                <h4>Amount Received</h4>
+                <h2><i class="fa fa-rupee"></i>&nbsp;2402</h2>
+                <h5>Paid on: 14 Sep</h5>
+            </div>
+        </div>
+    </div>
+     <div class="row marginTop amount-table">
+         <div class="col-xs-12">
+             <h4>BREAKUP FOR 12 SEP - 13 SEP</h4>
+             <table class="table table-bordered payment-table">
+                 <tr>
+                     <td>Operator Bill</td>
+                     <td>
+                         <span><i class="fa fa-rupee"></i>&nbsp;0.00</span>
+                         <h5>For Mon, 12 Sep</h5>
+                     </td>
+                 </tr>
+                 <tr>
+                     <td>TDS</td>
+                     <td>
+                         <span><i class="fa fa-rupee"></i>&nbsp;0.00</span>
+                     </td>
+                 </tr>
+                 <tr>
+                     <td>Cash Collected</td>
+                     <td>
+                         <span><i class="fa fa-rupee"></i>&nbsp;0.00</span>
+                         <h5>On Mon, 12 Sep</h5>
+                     </td>
+                 </tr>
+                 <tr>
+                     <td>Platform Fees</td>
+                     <td>
+                         
+                         <h5> On sun, 11 sep : <span><i class="fa fa-rupee"></i>&nbsp;50.00</span></h5>
+                        
+                         <h5> On sat, 10 sep :<span><i class="fa fa-rupee"></i>&nbsp;50.00</span></h5>
+                     </td>
+                 </tr>
+                 <tr>
+                     <td> Mbg Incentive</td>
+                     <td>
+                         
+                         <h5>On sun, 11 sep : <span><i class="fa fa-rupee"></i>&nbsp;1115.00</span></h5>
+                         
+                         <h5>On sat, 10 sep : <span><i class="fa fa-rupee"></i>&nbsp;1387.00</span></h5>
+                     </td>
+                 </tr>
+                 <tr>
+                     <td>Total Payment(Neft)</td>
+                     <td>
+                         <span><i class="fa fa-rupee"></i>&nbsp;2402.00</span>
+                     </td>
+                 </tr>
+             </table>
+         </div>
+     </div>
+    </div>
+</body>
+</html>
+

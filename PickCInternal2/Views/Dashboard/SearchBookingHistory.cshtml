@@ -1,0 +1,148 @@
+﻿@model PickC.Services.DTO.BookingHistoryDTO
+@using PickC.Internal2.HtmlHelpers
+@{
+    ViewBag.Title = "SearchBookingHistory";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@section seccss{
+        <link href="@Url.Content("~/Css/bootstrap-datetimepicker.css")" rel="stylesheet" />
+        <link href="~/Css/jquery.dataTables.min.css" rel="stylesheet" />
+    }
+<section class="content">
+    @using (Html.BeginForm("BookingsHistory", "Dashboard", FormMethod.Post, new { id = "frmSearchBookingHistory", name = "frmSearchBookingHistory" }))
+    {
+        <div class="row">
+            <div class="col-md-12">
+                @{ Html.RenderPartial("DashboardMenuList"); }
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <div class="tab-main-content">
+                </div>
+            </div>
+        </div>
+        <div id="myTabContent" class="tab-content">
+            <div id="tab2" class="tab-pane fade in active">
+                <div class="row" style="margin:10px 0 0 10px;">
+                    <div class="col-md-2">
+                        <div class="form-group">
+                            <label>Date From</label>
+                            <div class="input-group dtCss">
+                                @Html.TextBoxFor(x => x.bookings.DateFrom, new { id = "datefrom", @class = "form-control" })
+                                <span class="input-group-btn">
+                                    <button type="button" class="btn btn-default"><i class="fa fa-calendar" aria-hidden="true"></i></button>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-2">
+                        <div class="form-group">
+                            <label>Date To</label>
+                            <div class="input-group dtCss">
+                                @Html.TextBoxFor(x => x.bookings.DateTo, new { id = "datefrom", @class = "form-control" })
+                                <span class="input-group-btn">
+                                    <button type="button" class="btn btn-default"><i class="fa fa-calendar" aria-hidden="true"></i></button>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-2">
+                        <button type="submit" id="btnSearch" class="btn btn-primary" style="margin-top:25px;"><i class="fa fa-search"></i>Search </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    <table id="table_id" class="table table-hover">
+        <thead>
+            <tr>
+                <th>Booking No.</th>
+                <th>Booking Date</th>
+                <th>Customer Name</th>
+                <th>Customer Mobile</th>
+                <th>Vehicle No</th>
+                <th>Driver Name</th>
+                <th>Invoice Amount</th>
+                
+            </tr>
+        </thead>
+        <tbody>
+            
+            @foreach (var item in Model.booking)
+            {
+            <tr>
+                <td>@Html.DisplayFor(m =>  item.BookingNo)</td>
+                <td>@Html.DisplayFor(m => item.BookingDate)</td>
+                <td>@Html.DisplayFor(m => item.CustomerName)</td>
+                <td>@Html.DisplayFor(m => item.CustomerId)</td>
+                <td>@Html.DisplayFor(m => item.VehicleNo)</td>
+                <td>@Html.DisplayFor(m => item.DriverName)</td>
+                <td>@Html.DisplayFor(m => item.InvoiceAmount)</td>
+            </tr>
+            }
+        </tbody>
+
+    </table>
+           }
+</section>
+@section secscripts{
+    <script src="@Url.Content("~/Scripts/jquery.validate.js")"></script>
+    <script src="@Url.Content("~/Scripts/moment-with-locales.js")"></script>
+    <script src="@Url.Content("~/Scripts/bootstrap-datetimepicker.js")"></script>
+    <script src="~/Scripts/jquery.dataTables.min.js"></script>
+
+
+    <script type="text/javascript">
+        //function anchorClick() {
+        //    location.href = '?fromDt=' + fromDt '';
+        //}
+
+        $(document).ready(function () {
+            $('#table_id').dataTable();
+        });
+        $('.dtCss').datetimepicker({
+            icons: {
+                time: 'fa fa-clock-o',
+                date: 'fa fa-calendar',
+                up: 'fa fa-arrow-up',
+                down: 'fa fa-arrow-down',
+                previous: 'fa fa-arrow-left',
+                next: 'fa fa-arrow-right'
+            },
+            format: 'DD/MM/YYYY'
+        });
+        $(function () {
+            $('#SearchBookingHistory').parent().addClass('active');
+           // $('.pagination a').attr({ 'href': '#', 'onclick': 'anchorClick()' });
+         
+        });
+            //$('#Datefrom,#DateTo').datetimepicker({
+            //    icons: {
+            //        time: 'fa fa-clock-o',
+            //        date: 'fa fa-calendar',
+            //        up: 'fa fa-arrow-up',
+            //        down: 'fa fa-arrow-down'
+            //    },
+            //    format: 'DD/MM/YYYY'
+            //});
+            //$('#DateTo,#Datefrom').datepicker();
+            //$('#Datefrom').datepicker();
+            //$('#frmSearchBookingHistory').validate({
+            //    rules: {
+            //        BookingNo: {
+            //            required: true
+            //        },
+            //        CustomerMobile: {
+            //            required: true
+            //        }
+            //    }
+            //});
+
+       
+
+        function HistorySearch() {
+            $('#frmBookingHistory').validate();
+            $('#frmBookingHistory').submit();
+        }
+    </script>
+}

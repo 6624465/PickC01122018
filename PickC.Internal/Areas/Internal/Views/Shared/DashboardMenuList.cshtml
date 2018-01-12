@@ -1,0 +1,83 @@
+﻿
+<ul id="myTab" class="nav nav-tabs">
+    <li>
+        <a href="@Url.Content("~/Internal/Dashboard/GetDriversList")"  id="driverStatus">
+            <i class="fa fa-user-o" aria-hidden="true" style="width:12px;"></i>
+            Drivers Status
+        </a>
+    </li>
+    <li>
+        <a href="@Url.Content("~/Internal/Dashboard/CurrentBookings")"  id="currentBookings">
+            <i class="fa fa-user-o" aria-hidden="true" style="width:12px;"></i>
+            Current Bookings
+        </a>
+    </li>
+    <li>
+        <a href="#tab3" data-toggle="tab" onclick="History();" id="bookingHistory">
+            <i class="fa fa-history" aria-hidden="true"></i>
+            Booking History
+        </a>
+    </li>
+    <li>
+        <a href="#tab4" data-toggle="tab" onclick="userapp();" id="userApp">
+            <i class="fa fa-user-circle" aria-hidden="true"></i>
+            User App
+        </a>
+    </li>
+    <li>
+        <a href="#tab5" data-toggle="tab" onclick="paymenthistory();" id="paymentHistory">
+            <i class="fa fa-credit-card" aria-hidden="true"></i>
+            Payment History
+        </a>
+    </li>
+    <li>
+        <a href="#tab6" data-toggle="tab" onclick="pendingamount();" id="pendingAmount">
+            <i class="fa fa-cc-mastercard" aria-hidden="true"></i>
+            Pending Amount
+        </a>
+    </li>
+    <li>
+        <a href="#tab7" data-toggle="tab" onclick="driverlist();" id="driverList">
+            <i class="fa fa-list-alt" aria-hidden="true"></i>
+            Driver List
+        </a>
+    </li>
+    <li>
+        <a href="#tab8" data-toggle="tab" onclick="driverdetails();" id="driverDetails">
+            Driver Details
+        </a>
+    </li>
+</ul>
+<script src="@Url.Content("~/Scripts/jquery.validate.js")"></script>
+<script type="text/javascript">
+           function redirect() {
+            window.location = "@Url.Content("~/Internal/Dashboard/GetDriversList")";
+            }
+           function CurrentBookingredirect()
+           {
+             window.location = "@Url.Content("~/Internal/Dashboard/CurrentBookings")";
+            }
+            function History() {
+            window.location = "@Url.Content("~/Internal/Dashboard/BookingHistory")";
+            }
+            function userapp()
+            {
+            window.location = "@Url.Content("~/Internal/Dashboard/UserApp")";
+            }
+            function paymenthistory()
+            {
+            window.location = "@Url.Content("~/Internal/Dashboard/PaymentHistory")";
+            }
+            function pendingamount()
+            {
+            window.location = "@Url.Content("~/Internal/Dashboard/PendingAmount")";
+            }
+            function driverlist()
+            {
+            window.location = "@Url.Content("~/Internal/Driver/TotalDriverList")";
+            }
+            function driverdetails()
+            {
+            window.location = "@Url.Content("~/Internal/Driver/DriverDetails")";
+            }
+</script>

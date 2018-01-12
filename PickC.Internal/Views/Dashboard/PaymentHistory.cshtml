@@ -1,0 +1,152 @@
+﻿@using PickC.Internal.HtmlHelpers
+@{
+    ViewBag.Title = "PaymentHistory";
+    Layout = "~/Areas/Internal/Views/Shared/_Layout.cshtml";
+    //WebGrid grid =
+    //   new WebGrid(Model.booking, rowsPerPage: 10, selectionFieldName: "selectedRow", ajaxUpdateContainerId: "grid");
+}
+<section class="content">
+    <div class="row">
+        <div class="col-md-12">
+            @*<ul id="myTab" class="nav nav-tabs">
+                <li>
+                    <a href="#tab1" data-toggle="tab" onclick="redirect();">
+                        <img class="fa fa-user-o" aria-hidden="true" style="width:12px;">
+                        Drivers Status
+                    </a>
+                </li>
+                <li>
+                    <a href="#ios" data-toggle="tab" onclick="bookingsredirect();">Current Bookings</a>
+                </li>
+                <li>
+                    <a href="#tab3" data-toggle="tab" onclick="History();">
+                        Booking History
+                    </a>
+                </li>
+                <li>
+                    <a href="#tab4" data-toggle="tab" onclick="userapp();">
+                        User App
+                    </a>
+                </li>
+                <li class="active">
+                    <a href="#tab5" data-toggle="tab">
+                        Payment History
+                    </a>
+                </li>
+                <li>
+                    <a href="#tab6" data-toggle="tab" onclick="pendingamount();">
+                        Pending Amount
+                    </a>
+                </li>
+                <li>
+                    <a href="#tab7" data-toggle="tab" onclick="driverlist();">
+                        Driver List
+                    </a>
+                </li>
+                <li>
+                    <a href="#tab8" data-toggle="tab" onclick="driverdetails();">
+                        Driver Details
+                    </a>
+                </li>
+            </ul>*@
+            @{ Html.RenderPartial("DashboardMenuList"); }
+            @*<div id="myTabContent" class="tab-content">
+            <div id="tab2" class="tab-pane fade in active">
+                <div class="row" style="margin:10px 0 0 10px;">
+
+                    <div class="col-md-2">
+                        @Html.TextBoxFor(x => x.dates.fromDate, new { @class = "form-control" })
+                        @*<span class="input-group-btn">
+                                <button type="button" class="btn btn-default"><i class="fa fa-calendar" aria-hidden="true"></i></button>
+                            </span>*@
+            @*</div>
+                    <div class="col-md-2">
+                        @Html.TextBoxFor(x => x.dates.toDate, new { @class = "form-control" })
+                    </div>
+                    <div class="col-md-2">
+                        @Html.DropDownList("ddl1")
+                    </div>
+                    <div class="col-md-2">
+                        <button type="submit" id="btnSearch" class="btn btn-primary"><i class="fa fa-search"></i>Search </button>
+                    </div>
+                </div>
+                </div>
+            </div>*@
+            @*<div class="box-body">
+                @if (Model != null)
+                {
+                    <div class="row">
+
+                        <div class="col-md-12">
+                            @grid.Table(
+            tableStyle: "table table-hover",
+            columns: grid.Columns(
+                 @*grid.Column(format: @<text>@Html.ActionLink((string)item.BookingNo,"ActionName","Controllername", new { id = item.id }, null)</text>","Booking No"),*@
+            @*grid.Column("VehicleNo", "Vehicle No"),
+                 grid.Column("DriverName", "Driver Name"),
+                 grid.Column("TripFrom", "Trip From"),
+                 grid.Column("TripTo", "Trip To"),
+                 grid.Column("InvoiceAmount", "Invoice Amount")
+                ),
+             htmlAttributes: new { id = "grid" })
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="pull-right">@grid.PagerList(mode: WebGridPagerModes.All, paginationStyle: "pagination pagination-sm")</div>
+                        </div>
+                    </div>
+                }
+                else
+                {
+                    <div>
+                        <label>No Data found...</label>
+                    </div>
+                }
+            </div>*@
+            </div>
+        </div>
+    <div class="row">
+        <div class="col-md-12">
+            <div class="tab-main-content">
+            </div>
+        </div>
+    </div>
+    </section>
+@section secscripts{
+    <script src="@Url.Content("~/Scripts/jquery.validate.js")"></script>
+    <script type="text/javascript">
+        $(function () {
+            $('#paymentHistory').parent().addClass('active');
+        });
+        @*function redirect() {
+            window.location = "@Url.Content("~/Internal/Dashboard/GetDriversList")";
+        }
+        function bookingsredirect()
+        {
+            window.location = "@Url.Content("~/Internal/Dashboard/CurrentBookings")";
+        }
+        function History() {
+            debugger;
+            window.location = "@Url.Content("~/Internal/Dashboard/BookingHistory")";
+        }
+        function userapp()
+        {
+            window.location = "@Url.Content("~/Internal/Dashboard/UserApp")";
+        }
+        function pendingamount()
+        {
+            window.location = "@Url.Content("~/Internal/Dashboard/PendingAmount")";
+        }
+        function driverlist()
+        {
+            window.location = "@Url.Content("~/Internal/Driver/TotalDriverList")";
+        }
+        function driverdetails()
+        {
+            window.location = "@Url.Content("~/Internal/Driver/DriverDetails")";
+        }*@
+    </script>
+    }
+
+

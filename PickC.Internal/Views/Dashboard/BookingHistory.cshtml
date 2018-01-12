@@ -1,0 +1,110 @@
+﻿@model PickC.Services.DTO.BookingHistoryDTO
+@using PickC.Internal.HtmlHelpers
+@{
+    ViewBag.Title = "BookingHistory";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@{
+     ViewBag.Title = "BookingHistory";
+    WebGrid grid = new WebGrid(Model.bookingHistory, rowsPerPage: 10, selectionFieldName: "selectedRow", ajaxUpdateContainerId: "grid");
+}
+<section class="content">
+    @using (Html.BeginForm("BookingsHistory", "Dashboard", FormMethod.Post, new { id = "frmBookingHistory", name = "frmBookingHistory" }))
+    {
+        <div class="row">
+            <div class="col-md-12">
+                @{ Html.RenderPartial("DashboardMenuList"); }
+                </div> </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="tab-main-content">
+                        </div>
+                    </div>
+                </div>
+
+        <div id="myTabContent" class="tab-content">
+                    <div id="tab2" class="tab-pane fade in active">
+                        <div class="row" style="margin:10px 0 0 10px;">
+                            <div class="col-md-2">
+                  @Html.TextBoxFor(x=>x.Datefrom, new { @class = "form-control" })
+                       </div>
+                <div class="col-md-2">
+                    @Html.TextBoxFor(x =>x.DateTo, new { @class = "form-control" })
+                </div>
+                <div class="col-md-2">
+                    @Html.TextBoxFor(x =>x.BookingNo, new { @class = "form-control" })
+                </div>
+                 <div class="col-md-2">
+                    @Html.TextBoxFor(x =>x.CustomerMobile, new { @class = "form-control" })
+                </div>
+                <div class="col-md-2">
+                    <button type="submit" id="btnSearch" class="btn btn-primary" ><i class="fa fa-search"></i>Search </button>
+                </div>
+            </div>
+            </div>
+            </div>
+                <div class="box-body">
+                    @if (Model.bookingHistory.Count != 0)
+                {
+                        <div class="row">
+
+                            <div class="col-md-12">
+                                @grid.Table(
+            tableStyle: "table table-hover",
+            columns: grid.Columns(
+                     @*grid.Column(format: @<text>@Html.ActionLink((string)item.BookingNo,"ActionName","Controllername", new { id = item.id }, null)</text>","Booking No"),*@
+                     grid.Column("BookingNo", "Booking No"),
+                     grid.Column("CustomerName", "Customer Name"),
+                     grid.Column("CustomerMobile", "Customer Mobile"),
+                     grid.Column("VehicleNo", "Vehicle No"),
+                     grid.Column("DriverName", "Driver Name"),
+                     grid.Column("TripFrom", "Trip From"),
+                     grid.Column("TripTo", "Trip To"),
+                     grid.Column("InvoiceAmount", "Invoice Amount")
+                    ),
+                 htmlAttributes: new { id = "grid" })
+                                </div>
+                            </div>
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <div class="pull-right">@grid.PagerList(mode: WebGridPagerModes.All, paginationStyle: "pagination pagination-sm")</div>
+                                        </div>
+                                    </div>
+
+                        }
+                        else
+                        {
+                            <div>
+                                <label>No Data found...</label>
+                            </div>
+                        }
+
+                    </div>
+    }
+    </section>
+@section secscripts{
+<script src="@Url.Content("~/Scripts/jquery.validate.js")"></script>
+    <script type="text/javascript">
+        $(function () {
+            $('#bookingHistory').parent().addClass('active');
+            $('#DateTo,#Datefrom').datepicker();
+            $('#frmBookingHistory').validate({
+                rules: {
+                    BookingNo: {
+                        required: true
+                    },
+                    CustomerMobile: {
+                        required: true
+                    }
+                }
+            });
+
+        });
+       
+        //function HistorySearch()
+        //{
+        //    $('#frmBookingHistory').validate();
+        //    $('#frmBookingHistory').submit();
+        //}
+    </script>
+}

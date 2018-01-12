@@ -1,0 +1,298 @@
+﻿@model Master.Contract.TripInvoice
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <link href="~/css/bootstrap.css" rel="stylesheet" />
+    <link href="~/css/style.css" rel="stylesheet" />
+</head>
+<body>
+    <section class="help">
+
+        <div class="container" style="width:80%; margin:0px auto;">
+            <div class="row">
+
+                <div class="col-xs-12">
+                    <div class="content">
+                        <table>
+                            <tr>
+                                <td>
+                                    <img src="http://ragsarma-001-site13.htempurl.com/Images/logo.png" width="70" height="70" />
+                                </td>
+                                <td>
+                                    <h2 style="text-align:center; font-weight:bold;font-size:18px;">Trip Invoice</h2>
+                                </td>
+                                <td>
+                                    <h2 style="font-size:8px; text-align:right ">Date:@Model.InvoiceDate</h2>
+                                </td>
+                            </tr>
+                        </table>
+                        <table style="margin-top:25px; width:100%;">
+                            <tr>
+                                <td style="text-align:left; width:70%" width="68%">
+                                    <p style="font-size:10px;">Customer Name: @Model.CustomerName</p>
+                                    <p style="font-size:10px;">CRN No.: @Model.BookingNo </p>
+                                </td>
+
+
+                                <td style="text-align:right; font-size:10px; width:32%;">
+                                    <div style="float:right">
+                                        <b>Total Bill Amount : </b>
+                                        <b style="font-size:16px;float:right">
+                                            <img src="http://ragsarma-001-site13.htempurl.com/Images/thumb.png" width="7" height="9" style="display:inline-block;margin-right:4px;" />
+                                            &nbsp;@Model.TotalBillAmount
+                                        </b>
+                                    </div>
+                                </td>
+                            </tr>
+                        </table>
+                        @*<table style="margin-top:25px; width:100%; text-align:center;">
+                                <tr>
+                                    <td align="center" style="text-align:center;">
+
+
+                                    </td>
+                                </tr>
+                            </table>*@
+
+                        <div class="row">
+                            <div class="col-xs-6">
+                                <h4 class="text-center" style="text-align:center; font-weight:bold; margin-bottom:10px;  font-size:10px;">Total Bill Breakup</h4>
+                                <div class="table-responsive">
+                                    <table style="border:1px solid #808080;" border="1">
+
+                                        <tbody>
+                                            <tr>
+                                                <td style="vertical-align:middle;  font-size:8px; padding-left:5px;">Base Fare for @Model.BaseKM Km</td>
+                                                <td width="20%" style="font-size:8px; text-align:right;">
+                                                    <img src="http://ragsarma-001-site13.htempurl.com/Images/rupee.png" width="5" height="8" style="padding-left:5px;" />
+                                                    &nbsp; @Model.BaseFare
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td style="vertical-align:middle;  font-size:8px; padding-left:5px;">Distance Fare for @Model.DistanceKM Km</td>
+                                                <td width="20%" style="font-size:8px;text-align:right; ">
+                                                    <img src="http://ragsarma-001-site13.htempurl.com/Images/rupee.png" width="5" height="8" style="padding-left:5px;" />
+                                                    &nbsp; @Model.DistanceFare
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td style="vertical-align:middle;  font-size:8px; padding-left:5px; ">Travel Time Fare for  @Model.TravelTime Min</td>
+                                                <td width="20%" style="font-size:8px; text-align:right;">
+                                                    <img src="http://ragsarma-001-site13.htempurl.com/Images/rupee.png" width="5" height="8" style="padding-left:5px;" />
+                                                    &nbsp; @Model.TravelTimeFare
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td style="vertical-align:middle;  font-size:8px; padding-right:5px;  text-align:right;">   <b> Total Fare</b></td>
+                                                <td width="20%" style="font-size:8px;text-align:right; ">
+                                                    <b>
+                                                        <img src="http://ragsarma-001-site13.htempurl.com/Images/rupee.png" width="5" height="8" style="padding-left:5px;" />
+                                                        &nbsp;  @Model.TotalFare
+                                                    </b>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td style="vertical-align:middle;  font-size:8px; padding-left:5px;">Loading and Unloading Charges</td>
+                                                <td width="20%" style="font-size:8px;text-align:right; ">
+                                                    <img src="http://ragsarma-001-site13.htempurl.com/Images/rupee.png" width="5" height="8" style="padding-left:5px;" />
+                                                    &nbsp;  @Model.LoadingUnLoadingCharges
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td style="vertical-align:middle;  font-size:8px; padding-left:5px;">Waiting / Night time Charges</td>
+                                                <td width="20%" style="font-size:8px;text-align:right; ">
+                                                    <img src="http://ragsarma-001-site13.htempurl.com/Images/rupee.png" width="5" height="8" style="padding-left:5px;" />
+                                                    &nbsp;  @Model.WaitingCharges
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td style="vertical-align:middle;  font-size:8px; padding-left:5px;">Other / Discount</td>
+                                                <td width="20%" style="font-size:8px;text-align:right; ">
+                                                    <img src="http://ragsarma-001-site13.htempurl.com/Images/rupee.png" width="5" height="8" style="padding-left:5px;" />
+                                                    &nbsp;  @Model.OtherCharges
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td style="vertical-align:middle;  text-align:right; font-size:8px; padding-right:5px;">   <b> Other Charges Total  </b></td>
+                                                <td width="20%" style="font-size:8px; text-align:center; ">
+                                                    <b>
+                                                        <img src="http://ragsarma-001-site13.htempurl.com/Images/rupee.png" width="5" height="8" style="padding-left:5px;" />
+                                                        &nbsp; @Model.TotalAmount
+                                                    </b>
+                                                </td>
+                                            </tr>
+                                            @*<tr>
+                                                    <td style="vertical-align:middle;  font-size:8px; padding-left:5px;">Service Tax  -  5.6 %</td>
+                                                    <td width="20%" style="font-size:8px;text-align:right; "> <img src="http://ragsarma-001-site13.htempurl.com/Images/rupee.png" width="5" height="8" style="padding-left:5px;" />  &nbsp;   @Model.SalesTax</td>
+                                                </tr>
+                                                <tr>
+                                                    <td style="vertical-align:middle;  font-size:8px; padding-left:5px;">Swachh Bharat Tax - 0.2%</td>
+                                                    <td width="20%" style="font-size:8px;text-align:right; "> <img src="http://ragsarma-001-site13.htempurl.com/Images/rupee.png" width="5" height="8" style="padding-left:5px;" /> &nbsp;   @Model.Tax1</td>
+                                                </tr>*@
+                                            <tr>
+                                                <td style="vertical-align:middle;  font-size:8px; padding-left:5px;">GST Tax  - 6.0%</td>
+                                                <td width="20%" style="font-size:8px;text-align:right;">
+                                                    <img src="http://ragsarma-001-site13.htempurl.com/Images/rupee.png" width="5" height="8" style="padding-left:5px;" />
+                                                    &nbsp;  @Model.GSTTax
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td style="vertical-align:middle; text-align:right;padding-right:5px;  font-size:8px;">   <b style="font-size:12px;">Total Bill Amount (rounded off)  </b></td>
+                                                <td width="20%" style="font-size:8px;text-align:right; ">
+                                                    <b style="font-size:12px;">
+                                                        <img src="http://ragsarma-001-site13.htempurl.com/Images/rupee.png" width="6" height="9" style="padding-left:5px;" />
+                                                        &nbsp;@Model.TotalBillAmount
+                                                    </b>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                            @*<div class="col-xs-6">
+                                    <h4 class="text-center">  Trip Route Map</h4>
+                                    <iframe src="https://www.google.com/maps/embed?pb=!1m26!1m12!1m3!1d30449.372564163696!2d78.38989969999997!3d17.451500400000004!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!4m11!3e6!4m3!3m2!1d17.4886292!2d78.309648!4m5!1s0x3bcb91615349595d%3A0xf93c9edfa8ab4120!2sSanthi+Residency%2C+Ayyappa+Society%2C+Mega+Hills%2C+Madhapur%2C+Hyderabad%2C+Telangana+500081!3m2!1d17.4510521!2d78.3898873!5e0!3m2!1sen!2sin!4v1496309322509" width="100%" height="450" frameborder="0" style="border:0" allowfullscreen></iframe>
+                                </div>*@
+                        </div>
+                        <div class="row">
+                            <div class="col-xs-6">
+                                <h4 style="text-align:center; font-weight:bold; margin-top:10px;  font-size:10px;">  Trip Details</h4>
+                                <div class="table-responsive">
+                                    <table border="1" style="padding-bottom: 0px; margin-bottom: 0px; border-bottom: 0px none;">
+
+                                        <tbody>
+                                            <tr>
+                                                <td style="vertical-align:middle; text-align:left; padding-left:5px;  font-size:8px;">Total Trip Kilometers </td>
+                                                <td width="20%" style="font-size:8px; padding-left:5px; text-align:left;">@Model.TotalDistanceKm Km </td>
+                                            </tr>
+                                            <tr>
+                                                <td style="vertical-align:middle; text-align:left; padding-left:5px; font-size:8px;">Total Trip Time </td>
+                                                <td width="20%" style="font-size:8px; padding-left:5px;text-align:left;">@Model.TravelTime Min </td>
+                                            </tr>
+                                            <tr>
+                                                <td style="vertical-align:middle; text-align:left; padding-left:5px; font-size:8px;">Vehicle Type and Make Description </td>
+                                                <td width="20%" style="font-size:8px;text-align:left; padding-left:5px;">@Model.VehicleType & @Model.VehicleMaker  </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                    <table border="1">
+
+                                        <tbody>
+                                            <tr>
+                                                <td width="20%" style="font-size:8px;text-align:left;">DRIVER </td>
+                                                <td style="vertical-align:middle; text-align:left; padding-left:5px;  font-size:8px;">@Model.DriverName</td>
+                                            </tr>
+                                            <tr>
+                                                <td width="20%" style="font-size:8px;text-align:left;">@Model.StartTime</td>
+                                                <td style="vertical-align:middle; text-align:left; padding-left:5px;  font-size:8px;">@Model.LocationFrom</td>
+                                            </tr>
+                                            <tr>
+                                                <td width="20%" style="font-size:8px;text-align:left;">@Model.EndTime</td>
+                                                <td style="vertical-align:middle; text-align:left; padding-left:5px;  font-size:8px;">@Model.LocationTo</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+
+                                </div>
+                            </div>
+                            <div class="col-xs-6">
+                                <h4 style="text-align:center; font-weight:bold; margin-top:10px; margin-bottom:10px; font-size:10px;"> Payment <br />  </h4>
+                                <br />
+                                <div class="table-responsive " style="margin-top:20px; padding-top:20px;">
+                                    <table border="1" style="padding-bottom: 0px; margin-bottom: 0px; border-bottom: 0px none;">
+
+                                        <tbody>
+                                            <tr>
+                                                <td style="vertical-align:middle; text-align:left;  font-size:10px;">Paid By</td>
+                                                <td width="20%" style="font-size:8px;text-align:left; padding-left:5px; ">Cash</td>
+                                            </tr>
+
+                                        </tbody>
+                                    </table>
+                                    <table border="1">
+
+                                        <tbody>
+                                            <tr>
+                                                <td style="vertical-align:middle; text-align:left;  font-size:8px;">Any Queries / Complaints related to this invoice          </td>
+
+                                            </tr>
+
+                                            <tr>
+
+                                                <td style="vertical-align:middle; text-align:left;  font-size:8px;">contact our    Customer Support </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                    <br />
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class="row">
+                            <div class="col-xs-12">
+                                <div class="table-responsive  ">
+                                    <table class="table" style="padding-bottom: 0px; margin-top: 10px; border-bottom: 0px none;">
+
+                                        <tbody>
+                                            <tr>
+                                                <td style="width:18%;" width="18%"></td>
+                                                <td style="border-top:0px; border-bottom:0px; vertical-align: middle; text-align: right" width="10%">
+                                                    <img src="http://ragsarma-001-site13.htempurl.com/Images/thankyou.png" width="40" height="40" />
+                                                </td>
+                                                <td style="border-top:0px; border-bottom:0px; vertical-align: middle; text-align: center; width:44%" width="44%"> <b> For using Pick-C services, See you soon </b></td>
+                                                <td style="border-top:0px; border-bottom:0px; vertical-align: middle; text-align: left;">
+
+                                                    <img src="http://ragsarma-001-site13.htempurl.com/Images/thumb.png" width="45" height="30" />
+                                                </td>
+                                                <td style="width:15%;"></td>
+                                            </tr>
+
+                                        </tbody>
+                                    </table>
+                                    <br />
+
+                                </div>
+                                <table class="table " style="width:100%;">
+
+                                    <tbody>
+                                        <tr>
+                                            <td style="font-size:8px;border-top:0px; border-bottom:0px; vertical-align: middle; text-align: center">www.pickcargo.in </td>
+
+                                        </tr>
+                                        <tr>
+
+
+                                            <td style="font-size:8px;border-top:0px; border-bottom:0px; vertical-align: middle; text-align: center">     All Rights Reserved  PR TECHNO SOLUTIONS Pvt. Ltd.  </td>
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+
+                                <br />
+                                <table class="table " style="width:100%;">
+                                    <tbody>
+                                        <tr>
+
+                                            <td style="font-size:8px; border-top:0px; border-bottom:0px; vertical-align: middle; text-align: center;">      CIN: U74999TG2016PTC111331 | PAN No: AAICP7355E</td>|
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</body>
+</html>
+
+

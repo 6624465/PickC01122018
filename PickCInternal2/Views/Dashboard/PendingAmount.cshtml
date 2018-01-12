@@ -1,0 +1,141 @@
+﻿
+@model Operation.Contract.PendingCommission
+@{
+    ViewBag.Title = "PendingAmount";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    @*WebGrid grid =
+            new WebGrid(Model.pendingAmount, rowsPerPage: 10, selectionFieldName: "selectedRow", ajaxUpdateContainerId: "grid");
+        }*@
+}
+@section seccss{
+    <link href="@Url.Content("~/Css/bootstrap-datetimepicker.css")" rel="stylesheet" />
+    <link href="~/Css/jquery.dataTables.min.css" rel="stylesheet" />
+}
+<section class="content">
+    @using (Html.BeginForm("PaymentsHistory", "Dashboard", FormMethod.Post, new { id = "FrmPaymentsHistory", name = "FrmPaymentsHistory" }))
+    {
+        <div class="row">
+            <div class="col-md-12">
+                @{ Html.RenderPartial("DashboardMenuList"); }
+            </div>
+        </div>
+        <div class="row" style="margin:15px 0 0px -30px;">
+            <div class="col-md-12">
+                <div class="col-md-6">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <h2>User Pending Cancellation Charges</h2>
+                            <div class="table-responsive">
+                                <table id="Table_userpending" class="table table-hover table-bordered">
+                                    <thead>
+                                        <tr>
+                                            <th>Booking No.</th>
+                                            <th>Booking Date</th>
+                                            <th>Vehicle Type</th>
+                                            <th>Vehicle No.</th>
+                                            <th>Location From</th>
+                                            <th>Location To</th>
+                                            <th>Cancellation Remarks</th>
+                                            <th>Cancellation Amount</th>
+                                        </tr>
+                                    </thead>
+                                    @*@<tbody>
+                                                    @foreach(var item in )
+                                            {
+                                                <tr>
+                                                    <td>@Html.DisplayFor(i=>item.BookingNo)</td>
+                                                    <td>@Html.DisplayFor(i => item.BookingDate)</td>
+                                                    <td>@Html.DisplayFor(i => item.VehicleType)</td>
+                                                    <td>@Html.DisplayFor(i => item.VehicleNo)</td>
+                                                    <td>@Html.DisplayFor(i => item.LocationFrom)</td>
+                                                    <td>@Html.DisplayFor(i => item.LocationTo)</td>
+                                                    <td>@Html.DisplayFor(i => item.CancellationRemarks)</td>
+                                                    <td>@Html.DisplayFor(i=>item.CancellationAmount)</td>
+                                                </tr>
+                                            }
+                                        </tbody>*@
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <h2>Driver Commission amount pending to Pick-C</h2>
+                            <div class="table-responsive">
+                                <table id="Table_drivercommission" class="table table-hover table-bordered">
+                                    <thead>
+                                        <tr>
+                                            <th>Driver Id</th>
+                                            <th>Driver Name</th>
+                                            <th>Vehicle No.</th>
+                                            <th>Booking No.</th>
+                                            <th>Booking Date</th>
+                                            <th>Trip Amount</th>
+                                            <th>Payment Type</th>
+                                            <th>Commission Amount</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @foreach (var item in Model.driverPendingCommision)
+                                        {
+                                            <tr>
+
+                                                <td>@Html.DisplayFor(i => item.DriverId)</td>
+                                                <td>@Html.DisplayFor(i => item.DriverName)</td>
+                                                <td>@Html.DisplayFor(i => item.VehicleNo)</td>
+                                                <td>@Html.DisplayFor(i => item.BookingNo)</td>
+                                                <td>@Html.DisplayFor(i => item.BookingDate)</td>
+                                                <td>@Html.DisplayFor(i => item.TripAmount)</td>
+                                                <td>@Html.DisplayFor(i => item.PaymentType)</td>
+                                                <td>@Html.DisplayFor(i => item.CommissionAmount)</td>
+
+                                            </tr>
+                                        }
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+</section>
+@section secscripts{
+    <script src="@Url.Content("~/Scripts/jquery.validate.js")"></script>
+    <script src="@Url.Content("~/Scripts/moment-with-locales.js")"></script>
+    <script src="@Url.Content("~/Scripts/bootstrap-datetimepicker.js")"></script>
+    <script src="@Url.Content("~/Scripts/jquery.dataTables.min.js")"></script>
+    <script src="@Url.Content("~/Scripts/jquery-ui.js")"></script>
+    <script type="text/javascript">
+        $(function () {
+            $('#pendingAmount').parent().addClass('active');
+            //  $('.pagination ul li a').attr('href', '#');
+
+            $(document).ready(function () {
+                $('#Table_userpending').dataTable();
+                $('#Table_drivercommission').dataTable();
+            });
+
+            $(function () {
+                $('#pendingAmount').parent().addClass('active');
+            });
+            $('.dtCss').datetimepicker({
+                icons: {
+                    time: 'fa fa-clock-o',
+                    date: 'fa fa-calendar',
+                    up: 'fa fa-arrow-up',
+                    down: 'fa fa-arrow-down',
+                    previous: 'fa fa-arrow-left',
+                    next: 'fa fa-arrow-right'
+                },
+                format: 'DD/MM/YYYY'
+            });
+        });
+    </script>
+}
+
+

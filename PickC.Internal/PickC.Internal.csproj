@@ -1,0 +1,418 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.0\build\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props" Condition="Exists('..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.0\build\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" />
+  <Import Project="..\packages\Microsoft.Net.Compilers.1.0.0\build\Microsoft.Net.Compilers.props" Condition="Exists('..\packages\Microsoft.Net.Compilers.1.0.0\build\Microsoft.Net.Compilers.props')" />
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>
+    </ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{F4B03C2A-CD62-48D5-885A-5D8CBAFE9F34}</ProjectGuid>
+    <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>PickC.Internal</RootNamespace>
+    <AssemblyName>PickC.Internal</AssemblyName>
+    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
+    <UseIISExpress>true</UseIISExpress>
+    <IISExpressSSLPort />
+    <IISExpressAnonymousAuthentication />
+    <IISExpressWindowsAuthentication />
+    <IISExpressUseClassicPipelineMode />
+    <UseGlobalApplicationHostFile />
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Master.BusinessFactory">
+      <HintPath>D:\PickC 01312017\dlls\Master.BusinessFactory.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AI.Agent.Intercept, Version=2.0.6.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.ApplicationInsights.Agent.Intercept.2.0.6\lib\net45\Microsoft.AI.Agent.Intercept.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.AI.DependencyCollector, Version=2.2.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.ApplicationInsights.DependencyCollector.2.2.0\lib\net45\Microsoft.AI.DependencyCollector.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.AI.PerfCounterCollector, Version=2.2.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.ApplicationInsights.PerfCounterCollector.2.2.0\lib\net45\Microsoft.AI.PerfCounterCollector.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.AI.ServerTelemetryChannel, Version=2.2.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.ApplicationInsights.WindowsServer.TelemetryChannel.2.2.0\lib\net45\Microsoft.AI.ServerTelemetryChannel.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.AI.Web, Version=2.2.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.ApplicationInsights.Web.2.2.0\lib\net45\Microsoft.AI.Web.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.AI.WindowsServer, Version=2.2.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.ApplicationInsights.WindowsServer.2.2.0\lib\net45\Microsoft.AI.WindowsServer.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.ApplicationInsights, Version=2.2.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.ApplicationInsights.2.2.0\lib\net45\Microsoft.ApplicationInsights.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.CodeDom.Providers.DotNetCompilerPlatform, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.0\lib\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Newtonsoft.Json">
+      <HintPath>D:\PickC 01312017\PickC 01312017\PickC\PickC.Internal\PickC.Internal\bin\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="RestSharp">
+      <HintPath>D:\PickC 01312017\PickC 01312017\PickC\PickC.Internal\PickC.Internal\bin\RestSharp.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.DynamicData" />
+    <Reference Include="System.Web.Entity" />
+    <Reference Include="System.Web.ApplicationServices" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Web.Http">
+      <HintPath>..\PickCApi\bin\System.Web.Http.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.EnterpriseServices" />
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="System.Web.Razor">
+      <HintPath>..\packages\Microsoft.AspNet.Razor.3.2.3\lib\net45\System.Web.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Webpages">
+      <HintPath>..\packages\Microsoft.AspNet.Webpages.3.2.3\lib\net45\System.Web.Webpages.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Webpages.Deployment">
+      <HintPath>..\packages\Microsoft.AspNet.Webpages.3.2.3\lib\net45\System.Web.Webpages.Deployment.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Webpages.Razor">
+      <HintPath>..\packages\Microsoft.AspNet.Webpages.3.2.3\lib\net45\System.Web.Webpages.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Helpers">
+      <HintPath>..\packages\Microsoft.AspNet.Webpages.3.2.3\lib\net45\System.Web.Helpers.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Web.Infrastructure">
+      <HintPath>..\packages\Microsoft.Web.Infrastructure.1.0.0.0\lib\net40\Microsoft.Web.Infrastructure.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Mvc">
+      <HintPath>..\packages\Microsoft.AspNet.Mvc.5.2.3\lib\net45\System.Web.Mvc.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Content\bootstrap.css" />
+    <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\datepicker.css" />
+    <Content Include="Content\Site.css" />
+    <Content Include="Css\AdminLTE.min.css" />
+    <Content Include="Css\bootstrap-datetimepicker.css" />
+    <Content Include="Css\bootstrap-rating.css" />
+    <Content Include="Css\bootstrap.min.css" />
+    <Content Include="Css\dynamic.css" />
+    <Content Include="Css\help\css\AjaxLoader.html" />
+    <Content Include="Css\help\css\animate.css" />
+    <Content Include="Css\help\css\bootstrap-select.min.css" />
+    <Content Include="Css\help\css\bootstrap.min.css" />
+    <Content Include="Css\help\css\colorbox.css" />
+    <Content Include="Css\help\css\extra.css" />
+    <Content Include="Css\help\css\font-awesome.min.css" />
+    <Content Include="Css\help\css\grabbing.html" />
+    <Content Include="Css\help\css\owl.carousel.css" />
+    <Content Include="Css\help\css\owl.theme.css" />
+    <Content Include="Css\help\css\responsive.css" />
+    <Content Include="Css\help\css\ripple.css" />
+    <Content Include="Css\help\css\style.css" />
+    <Content Include="Css\help\fonts\fontawesome-webfont93e3.html" />
+    <Content Include="Css\help\fonts\fontawesome-webfont93e3.svg" />
+    <Content Include="Css\help\fonts\glyphicons-halflings-regular-2.html" />
+    <Content Include="Css\help\fonts\glyphicons-halflings-regular-3.html" />
+    <Content Include="Css\help\fonts\glyphicons-halflings-regular-4.html" />
+    <Content Include="Css\help\fonts\glyphicons-halflings-regular.html" />
+    <Content Include="Css\help\fonts\glyphicons-halflings-regulard41dd41d.html" />
+    <Content Include="Css\help\images\1 - Copy.png" />
+    <Content Include="Css\help\images\1.png" />
+    <Content Include="Css\help\images\2.png" />
+    <Content Include="Css\help\images\3.png" />
+    <Content Include="Css\help\images\4.png" />
+    <Content Include="Css\help\images\5.png" />
+    <Content Include="Css\help\images\6.png" />
+    <Content Include="Css\help\images\app.png" />
+    <Content Include="Css\help\images\apple_ios_store.png" />
+    <Content Include="Css\help\images\content-bg.jpg" />
+    <Content Include="Css\help\images\controls.png" />
+    <Content Include="Css\help\images\crossword.png" />
+    <Content Include="Css\help\images\down-arrow-color.png" />
+    <Content Include="Css\help\images\down-arrow-transparent.png" />
+    <Content Include="Css\help\images\down-arrow-white.png" />
+    <Content Include="Css\help\images\footer-logo.png" />
+    <Content Include="Css\help\images\goo.png" />
+    <Content Include="Css\help\images\google_play_store.png" />
+    <Content Include="Css\help\images\ico-02.png" />
+    <Content Include="Css\help\images\image-overlay.png" />
+    <Content Include="Css\help\images\loading.html" />
+    <Content Include="Css\help\images\logo.png" />
+    <Content Include="Css\help\images\logo2.png" />
+    <Content Include="Css\help\images\newsletter-icon.png" />
+    <Content Include="Css\help\images\product-bg.jpg" />
+    <Content Include="Css\help\images\sprite.png" />
+    <Content Include="Css\help\js\bootstrap-select.min.js" />
+    <Content Include="Css\help\js\bootstrap.min.js" />
+    <Content Include="Css\help\js\custom.js" />
+    <Content Include="Css\help\js\gmap3.min.js" />
+    <Content Include="Css\help\js\ini.isotope.js" />
+    <Content Include="Css\help\js\isotope.js" />
+    <Content Include="Css\help\js\jquery-2.1.3.min.js" />
+    <Content Include="Css\help\js\jquery-ui.js" />
+    <Content Include="Css\help\js\jquery.colorbox.js" />
+    <Content Include="Css\help\js\jquery.counterup.min.js" />
+    <Content Include="Css\help\js\jquery.js" />
+    <Content Include="Css\help\js\owl.carousel.js" />
+    <Content Include="Css\help\js\owl.carousel.min.js" />
+    <Content Include="Css\help\js\ripple.js" />
+    <Content Include="Css\help\js\sticky.js" />
+    <Content Include="Css\help\js\waypoints.min.js" />
+    <Content Include="Css\icheck-green.css" />
+    <Content Include="Css\icheck.css" />
+    <Content Include="Css\ratecard.css" />
+    <Content Include="Css\_all-skins.min.css" />
+    <Content Include="fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="Global.asax" />
+    <Content Include="images\gooleicon.jpg" />
+    <Content Include="images\icon.png" />
+    <Content Include="images\truck.png" />
+    <Content Include="images\user2-160x160.jpg" />
+    <Content Include="images\user_male2-512.png" />
+    <Content Include="Scripts\bootstrap-datepicker.js" />
+    <Content Include="Scripts\bootstrap.js" />
+    <Content Include="Scripts\bootstrap.min.js" />
+    <Content Include="Areas\DriverWeb\Views\Payment\Breakup.cshtml" />
+    <Content Include="Areas\DriverWeb\Views\Payment\DayWiseHistory.cshtml" />
+    <Content Include="Areas\DriverWeb\Views\Payment\Incentive.cshtml" />
+    <Content Include="Areas\DriverWeb\Views\Payment\PaymentDetails.cshtml" />
+    <Content Include="Areas\DriverWeb\Views\Payment\Payments.cshtml" />
+    <Content Include="Areas\DriverWeb\Views\Payment\Reverify.cshtml" />
+    <Content Include="Areas\DriverWeb\Views\Payment\Summary.cshtml" />
+    <Content Include="Areas\DriverWeb\Views\web.config" />
+    <Content Include="Areas\Internal\Views\Address\Address.cshtml" />
+    <Content Include="Areas\Internal\Views\Customers\Index.cshtml" />
+    <Content Include="Areas\Internal\Views\DashBoard\Index.cshtml" />
+    <Content Include="Areas\Internal\Views\Driver\Add.cshtml" />
+    <Content Include="Areas\Internal\Views\Driver\Driver.cshtml" />
+    <Content Include="Areas\Internal\Views\Driver\Edit.cshtml" />
+    <Content Include="Areas\Internal\Views\Shared\_Footer.cshtml" />
+    <Content Include="Areas\Internal\Views\Shared\_Header.cshtml" />
+    <Content Include="Areas\Internal\Views\Shared\_Layout.cshtml" />
+    <Content Include="Areas\Internal\Views\Shared\_Sidebar.cshtml" />
+    <Content Include="Areas\Internal\Views\web.config" />
+    <Content Include="Areas\OperatorWeb\Views\DashBoard\Index.cshtml" />
+    <Content Include="Areas\OperatorWeb\Views\Earnings\Index.cshtml" />
+    <Content Include="Areas\OperatorWeb\Views\Fleet\Index.cshtml" />
+    <Content Include="Areas\OperatorWeb\Views\Shared\_Layout.cshtml" />
+    <Content Include="Areas\OperatorWeb\Views\Support\addshift.cshtml" />
+    <Content Include="Areas\OperatorWeb\Views\Support\faq.cshtml" />
+    <Content Include="Areas\OperatorWeb\Views\Support\Index.cshtml" />
+    <Content Include="Areas\OperatorWeb\Views\Timeline\Index.cshtml" />
+    <Content Include="Areas\OperatorWeb\Views\Track\Index.cshtml" />
+    <Content Include="Areas\OperatorWeb\Views\web.config" />
+    <Content Include="Areas\Internal\Views\_ViewStart.cshtml" />
+    <Content Include="Areas\Internal\Views\Search\CurrentBookingSearch.cshtml" />
+    <Content Include="Areas\Internal\Views\Search\CurrentBookingSearchData.cshtml" />
+    <Content Include="Css\help\css\extra.css.map" />
+    <Content Include="Css\help\css\extra.scss" />
+    <Content Include="Css\help\fonts\fontawesome-webfont93e3.eot" />
+    <Content Include="Css\help\fonts\fontawesome-webfont93e3.ttf" />
+    <Content Include="Css\help\fonts\fontawesome-webfont93e3.woff" />
+    <Content Include="Css\help\fonts\fontawesome-webfontd41d.eot" />
+    <Content Include="Css\help\images\logo.psd" />
+    <Content Include="Css\help\images\Pick-C Logo%281%29.psd" />
+    <Content Include="Css\help\images\road.psd" />
+    <Content Include="Areas\Internal\Views\DashBoard\GetDriversList.cshtml" />
+    <Content Include="Areas\Internal\Views\DashBoard\CurrentBookings.cshtml" />
+    <Content Include="Areas\Internal\Views\Manufacturer\Add.cshtml" />
+    <Content Include="Areas\Internal\Views\DashBoard\UserApp.cshtml" />
+    <Content Include="Areas\Internal\Views\DashBoard\PaymentHistory.cshtml" />
+    <Content Include="Areas\Internal\Views\DashBoard\PendingAmount.cshtml" />
+    <Content Include="Areas\Internal\Views\Driver\DriverDetails.cshtml" />
+    <Content Include="Areas\Internal\Views\Driver\TotalDriverList.cshtml" />
+    <Content Include="Areas\Internal\Views\DashBoard\BookingHistory.cshtml" />
+    <Content Include="Areas\Internal\Views\Shared\DashboardMenuList.cshtml" />
+    <Content Include="Areas\Internal\Views\OperatorVehicleList\OperatorVehicleList.cshtml" />
+    <None Include="Scripts\jquery-1.10.2.intellisense.js" />
+    <Content Include="Scripts\Internal\DriverAddress.js" />
+    <Content Include="Scripts\Internal\DriverAttachment.js" />
+    <Content Include="Scripts\Internal\DriverBankDetails.js" />
+    <Content Include="Scripts\jquery-1.10.2.js" />
+    <Content Include="Scripts\jquery-1.10.2.min.js" />
+    <Content Include="Scripts\modernizr-2.6.2.js" />
+    <Content Include="Web.config" />
+    <Content Include="Views\Shared\_Footer.cshtml" />
+    <Content Include="Views\Shared\_Header.cshtml" />
+    <Content Include="Views\Shared\_Sidebar.cshtml" />
+    <Content Include="Views\Account\Login.cshtml" />
+    <Content Include="Views\Address\Address.cshtml" />
+    <Content Include="Views\Customers\Index.cshtml" />
+    <Content Include="Views\Dashboard\Index.cshtml" />
+    <Content Include="Views\Driver\Add.cshtml" />
+    <Content Include="Views\Driver\Driver.cshtml" />
+    <Content Include="Views\Driver\Edit.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Areas\DriverWeb\Controllers\PaymentController.cs" />
+    <Compile Include="Areas\DriverWeb\DriverWebAreaRegistration.cs" />
+    <Compile Include="Areas\Internal\Controllers\AddressController.cs" />
+    <Compile Include="Areas\Internal\Controllers\CustomersController.cs" />
+    <Compile Include="Areas\Internal\Controllers\DashBoardController.cs" />
+    <Compile Include="Areas\Internal\Controllers\DriverController.cs" />
+    <Compile Include="Areas\Internal\Controllers\ManufacturerController.cs" />
+    <Compile Include="Areas\Internal\Controllers\SearchController.cs" />
+    <Compile Include="Areas\Internal\InternalAreaRegistration.cs" />
+    <Compile Include="Areas\OperatorWeb\Controllers\DashBoardController.cs" />
+    <Compile Include="Areas\OperatorWeb\Controllers\EarningsController.cs" />
+    <Compile Include="Areas\OperatorWeb\Controllers\FleetController.cs" />
+    <Compile Include="Areas\OperatorWeb\Controllers\SupportController.cs" />
+    <Compile Include="Areas\OperatorWeb\Controllers\TimelineController.cs" />
+    <Compile Include="Areas\OperatorWeb\Controllers\TrackController.cs" />
+    <Compile Include="Areas\OperatorWeb\OperatorWebAreaRegistration.cs" />
+    <Compile Include="BaseController.cs" />
+    <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\AddressController.cs" />
+    <Compile Include="Controllers\CustomersController.cs" />
+    <Compile Include="Controllers\DashboardController.cs" />
+    <Compile Include="Controllers\DriverController.cs" />
+    <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Areas\Internal\Controllers\OperatorVehicleListController.cs" />
+    <Compile Include="Controllers\OperatorVehicleListController.cs" />
+    <Compile Include="Core\PickCEx.cs" />
+    <Compile Include="Core\WebAuthFilter.cs" />
+    <Compile Include="Global.asax.cs">
+      <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="HtmlHelpers\WebGridExtensions.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ViewModals\DriverVm.cs" />
+    <Compile Include="ViewModals\TripMonitorVm.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\web.config" />
+    <Content Include="packages.config" />
+    <Content Include="ApplicationInsights.config">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Views\_ViewStart.cshtml" />
+    <Content Include="Views\Shared\_Layout.cshtml" />
+    <Content Include="Views\Home\Index.cshtml" />
+    <Content Include="fonts\glyphicons-halflings-regular.woff" />
+    <Content Include="fonts\glyphicons-halflings-regular.ttf" />
+    <Content Include="fonts\glyphicons-halflings-regular.eot" />
+    <Content Include="Scripts\jquery-1.10.2.min.map" />
+    <Content Include="Views\OperatorVehicleList\OperatorVehicleList.cshtml" />
+    <Content Include="Views\Dashboard\BookingHistory.cshtml" />
+    <Content Include="Views\Dashboard\CurrentBookings.cshtml" />
+    <Content Include="Views\Dashboard\GetDriversList.cshtml" />
+    <Content Include="Views\Dashboard\PaymentHistory.cshtml" />
+    <Content Include="Views\Dashboard\PendingAmount.cshtml" />
+    <Content Include="Views\Dashboard\UserApp.cshtml" />
+    <None Include="Web.Debug.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </None>
+    <None Include="Web.Release.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="App_Data\" />
+    <Folder Include="Areas\DriverWeb\Models\" />
+    <Folder Include="Areas\DriverWeb\Views\Shared\" />
+    <Folder Include="Areas\Internal\Models\" />
+    <Folder Include="Areas\OperatorWeb\Models\" />
+    <Folder Include="Css\font-awesome-4.7.0\" />
+    <Folder Include="Models\" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Master.Contract\Master.Contract.csproj">
+      <Project>{b9e20a20-01c6-480a-a49a-647df7c89463}</Project>
+      <Name>Master.Contract</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Operation.BusinessFactory\Operation.BusinessFactory.csproj">
+      <Project>{A3636D65-64D3-4F1A-B560-910EC5031EB7}</Project>
+      <Name>Operation.BusinessFactory</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Operation.Contract\Operation.Contract.csproj">
+      <Project>{ef1065e7-b862-4409-88c4-bfd4a1a83ab5}</Project>
+      <Name>Operation.Contract</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\PickC.Services\PickC.Services.csproj">
+      <Project>{a3cef276-f503-45b0-8e74-0211475d2b09}</Project>
+      <Name>PickC.Services</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
+    <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+  </PropertyGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(VSToolsPath)\WebApplications\Microsoft.WebApplication.targets" Condition="'$(VSToolsPath)' != ''" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" Condition="false" />
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
+        <WebProjectProperties>
+          <UseIIS>True</UseIIS>
+          <AutoAssignPort>True</AutoAssignPort>
+          <DevelopmentServerPort>57528</DevelopmentServerPort>
+          <DevelopmentServerVPath>/</DevelopmentServerVPath>
+          <IISUrl>http://localhost:50133/</IISUrl>
+          <NTLMAuthentication>False</NTLMAuthentication>
+          <UseCustomServer>False</UseCustomServer>
+          <CustomServerUrl>
+          </CustomServerUrl>
+          <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
+        </WebProjectProperties>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('..\packages\Microsoft.Net.Compilers.1.0.0\build\Microsoft.Net.Compilers.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.Net.Compilers.1.0.0\build\Microsoft.Net.Compilers.props'))" />
+    <Error Condition="!Exists('..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.0\build\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.0\build\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props'))" />
+  </Target>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

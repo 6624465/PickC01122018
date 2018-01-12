@@ -1,0 +1,21 @@
+﻿
+@{
+    ViewBag.Title = "Troubleshooting";
+    Layout = "~/Views/Shared/_HelpLayout.cshtml";
+}
+<section class="help">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-3">
+                <div class="left-menu">
+                    <ul>
+                        <li><a class="has-ripple" href="@Url.Content("~/Help/menu?name=nofreeridecoupon")"><i class="fa fa-chevron-circle-right"></i> I referred my friend but did not get a free-ride coupon.</a></li>
+                        <li><a class="has-ripple" href="@Url.Content("~/Help/menu?name=noregfreeridecoupon")"><i class="fa fa-chevron-circle-right"></i> I registered with a referral code but did not get a free-ride coupon.</a></li>
+                        <li><a class="has-ripple" href="@Url.Content("~/Help/menu?name=unablereferralcode")"><i class="fa fa-chevron-circle-right"></i> I am unable to find my referral code.</a></li>
+                        
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

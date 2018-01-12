@@ -1,0 +1,1369 @@
+﻿@model List<Master.Contract.RateCard>
+@{
+    Layout = null;
+}
+
+
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>@ViewBag.Title</title>
+    <link rel="stylesheet" href="@Url.Content("~/Css/help/css/bootstrap.min.css")">
+    <!-- Template styles-->
+    <link rel="stylesheet" href="@Url.Content("~/Css/help/css/style.css")">
+    <!-- Responsive styles-->
+    <link rel="stylesheet" href="@Url.Content("~/Css/help/css/responsive.css")">
+    <!-- FontAwesome -->
+    <link rel="stylesheet" href="@Url.Content("~/Css/help/css/font-awesome.min.css")">
+    <!-- Animation -->
+    <link rel="stylesheet" href="@Url.Content("~/Css/help/css/animate.css")">
+    <!-- Owl Carousel -->
+    <link rel="stylesheet" href="@Url.Content("~/Css/help/css/owl.carousel.css")">
+    <link rel="stylesheet" href="@Url.Content("~/Css/help/css/owl.theme.css")">
+    <!-- Colorbox -->
+    <link rel="stylesheet" href="@Url.Content("~/Css/help/css/colorbox.css")">
+    <link rel="stylesheet" type="text/css" href="@Url.Content("~/Css/help/css/ripple.css")">
+
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="@Url.Content("~/Css/help/css/bootstrap-select.min.css")">
+    <link rel="stylesheet" href="@Url.Content("~/Css/help/css/extra.css")">
+    <link rel="stylesheet" href="@Url.Content("~/css/extra.css")">
+    <style type="text/css">
+        .btn-link {
+            color: black;
+        }
+
+        .dt-title span {
+            font-weight: bold;
+            font-size: 26px;
+        }
+
+        .left-menu {
+            border-top: 1px solid rgba(0, 0, 0, 0.1);
+        }
+
+        .help {
+            padding: 5px;
+        }
+
+        .content {
+            padding: 10px 0px;
+        }
+
+        #using-pick > ol, ol ol {
+            padding-left: 20px;
+        }
+    </style>
+    <link rel="stylesheet" href="@Url.Content("~/css/style.css")">
+</head>
+<body>
+    <section class="help">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-md-3">
+                    <div class="left-menu">
+                       <div class="content help-img">
+                        <ol>
+                            <li >
+                                <h1>We are here to <b>Help</b> </h1>
+                            </li>
+                        </ol>
+                           </div>
+                        <ul>
+                            <li class=""><a class="has-ripple" href="#using-pick"><i class="fa fa-chevron-circle-right"></i> using <b>Pick-C</b> app</a></li>
+                            <li><a class="has-ripple" href="#booking-pick"><i class="fa fa-chevron-circle-right"></i> booking a <b>Pick-C</b> trip</a></li>
+                            <li><a class="has-ripple" href="#Book-a-Truck"><i class="fa fa-chevron-circle-right"></i> Book a Truck Using the Pick-C </a></li>
+                            <li><a class="has-ripple" href="#fares-and-charges"><i class="fa fa-chevron-circle-right"></i> fares and charges</a></li>
+                            <li><a class="has-ripple" href="#Payment-Options"><i class="fa fa-chevron-circle-right"></i> payment options</a></li>
+                            <li><a class="has-ripple" href="#safety"><i class="fa fa-chevron-circle-right"></i> safety </a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-md-9">
+                    <div class="content help-img">
+                        <ol>
+                            <li id="using-pick">
+                                <h1>using <b>Pick-C</b> app</h1>
+                                <ol>
+                                    <li>
+                                        <h2>downloading the app</h2>
+
+
+                                        <p>
+                                            <b>Pick-C</b> app is
+                                            available to download using app store provided in your mobile. The
+                                            <b>Pick-C</b> app supports the following devices and versions of the
+                                            operating system:
+                                        </p>
+
+                                        <ul>
+                                            <li>
+
+                                                Android - V5.0
+                                                and above
+
+                                            </li>
+                                            <li>
+
+
+                                                <u>
+                                                    Apple
+                                                    IOS -
+                                                </u>
+
+
+                                            </li>
+                                        </ul>
+                                        <p>
+                                            You can also
+                                            download the <b>Pick-C</b> app by clicking the link below:
+                                        </p>
+                                        <p>
+
+                                            <a href="">
+                                                Download Pick-C App
+                                            </a>
+
+                                        </p>
+                                        <p>
+                                            If you are unable to
+                                            download the app, write to us at:
+                                        </p>
+                                        <p>
+                                            <b> email id:</b>
+                                            <a href="mailto:support@pickcargo.in">support@pickcargo.in</a>
+                                        </p>
+
+                                    </li>
+
+
+                                    <li id="signing-up">
+                                        <h2>
+                                            signing up with <b>Pick-C</b>
+                                        </h2>
+
+
+                                        <p>
+                                            To start using the
+                                            <b>Pick-C</b> app, you must sign up by providing your details such as name,
+                                            mobile number, email id, and so on. Along with these details, you
+                                            must provide a unique password in order to log into the app.
+                                        </p>
+                                        <p>Follow these steps:</p>
+                                        <ol>
+                                            <li>
+                                                <p>
+                                                    Open <b>Pick-C</b> app in your mobile.
+                                                </p>
+
+
+
+
+                                                <div class="img-content"><img src="../images/first-Pick-C.jpg" name="picture 22"></div>
+                                            </li>
+
+                                            <li>
+                                                <p>
+                                                    Tap on <b> sign up  </b>button as shown in the above figure. Register
+                                                    screen appears.
+                                                </p>
+
+                                                <div class="img-content"><img src="../images/signup.jpg" name="picture 25"></div>
+
+                                            </li>
+                                            <li>
+                                                <p>
+                                                    In <b>full name</b>  field, enter your full name.
+                                                </p>
+                                            </li>
+                                            <li>
+                                                <p>
+                                                    In <b>  mobile number </b> field, enter a valid mobile number. The entered mobile
+                                                    number must be the number you have registered.
+                                                </p>
+                                            </li>
+                                            <li>
+                                                <p>
+                                                    In <b>email id</b>  field, enter your valid email id.
+                                                </p>
+                                            </li>
+                                            <li id="password_standard">
+                                                <p>
+
+                                                    In <b>enter password</b> field, enter a unique password. Your
+                                                    password must contain minimum 8 characters with one upper case, one
+                                                    lower case, one numeric, and one special character.
+                                                </p>
+
+                                                <p>
+                                                    <b>
+                                                        For example
+                                                    </b>: Transport@1.
+                                                </p>
+                                                <p>
+                                                    <b>Note</b>:
+                                                    It is recommended that your password does not contain your first or
+                                                    last name, mobile number.
+                                                </p>
+                                            </li>
+
+                                            <li>
+                                                <p>
+                                                    In <b>  re-enter  password </b> field, re-enter the password.
+                                                </p>
+                                            </li>
+                                            <li>
+                                                <p>
+                                                    Tap on <b> sign up </b>button as shown in the above figure.
+                                                </p>
+
+                                                <p>
+                                                    Upon
+                                                    successful signup, an otp is generated and sent to your registered
+                                                    mobile number.
+                                                </p>
+                                                <div class="img-content"><img src="../images/Submit.jpg" name="picture 1"></div>
+                                            </li>
+                                            <li>
+                                                <p>
+                                                    In <b>kindly enter otp</b> field, enter the otp you have received in
+                                                    your registered mobile number.
+                                                </p>
+                                            </li>
+                                            <li>
+                                                <p>Tap on <b>submit</b> button.</p>
+                                                <p>
+                                                    <b>Pick-C</b> user account is created.
+                                                </p>
+                                            </li>
+                                        </ol>
+                                    </li>
+
+
+                                    <li>
+                                        <h2>Changing Password</h2>
+                                        <p>
+                                            You may consider
+                                            changing your password if you have forgotten your password or if your
+                                            password has been compromised. You can change your password on
+                                            regular basses to maintain the security of your account.
+                                        </p>
+                                        <p>Follow these steps:</p>
+                                        <ol>
+                                            <li>
+                                                <p>
+                                                    Open <b>Pick-C</b> app and login with your user account.
+                                                </p>
+                                            </li>
+                                            <li>
+                                                <p>
+                                                    On the
+                                                    <img src="../images/menu.jpg" name="picture 85">menu,
+                                                    tap on profile<img src="../images/Profile.jpg" name="picture 88">
+                                                    icon, as shown in the screenshot below:
+                                                </p>
+
+
+
+                                                <div class="img-content"><img src="../images/My-Profile.jpg" name="picture 4"></div><p>
+                                                    Update profile  screen appears as shown below:
+                                                </p>
+                                                <div class="img-content"><img src="../images/Update-Profile.jpg" name="picture 7"></div>
+
+                                            </li>
+
+                                            <li>
+                                                <p>
+                                                    In <b>password</b> field, tap on edit<img src="../images/Edit.jpg" name="picture 91">
+                                                    icon.
+                                                </p>
+
+                                                <p>
+                                                    Change
+                                                    your password screen appears as shown below:
+                                                </p>
+
+                                                <div class="img-content"><img src="../images/Password.jpg" name="picture 10"></div>
+                                            </li>
+                                            <li>
+                                                <p>
+                                                    In <b> old password </b> field, enter your current password.
+                                                </p>
+                                            </li>
+                                            <li>
+                                                <p>
+                                                    In <b>  new password </b> field, enter new password.
+                                                </p>
+                                            </li>
+                                            <li>
+                                                <p>
+                                                    In <b>  re-enter  new password </b> field, re-enter new password.
+                                                </p>
+                                            </li>
+                                            <li>
+                                                <p>
+                                                    Tap on <b>continue</b> button.
+                                                </p>
+                                            </li>
+                                            <li>
+                                                <p>
+                                                    Tap on <b>  update profile    </b> button.
+                                                </p>
+                                            </li>
+                                        </ol>
+
+                                        <p>
+                                            <b>Note</b>: You  must always follow the standard password pattern to enforce the
+                                            password standards.
+                                        </p>
+                                        <p>
+                                            Refer to the <a href="#password_standard">password section</a>.
+                                        </p>
+                                    </li>
+
+
+                                    <li>
+                                        <h2>
+                                            forgot password
+                                        </h2>
+
+                                        <p>
+                                            If you have
+                                            forgotten your <b>Pick-C</b> account password, you can re-set your password
+                                            by receiving an otp to your registered mobile number.
+                                        </p>
+                                        <p>Follow these steps:</p>
+                                        <ol>
+                                            <li>
+                                                <p>
+                                                    On the <b>Pick-C</b>
+                                                    app main screen, tap on <b>login</b> button.
+                                                </p>
+                                            <li>
+                                                <p>
+                                                    Tap on <b>  forgot password? </b> link.
+                                                </p>
+
+
+                                                <div class="img-content"><img src="../images/Forgot-Password.jpg" name="picture 13"></div>
+                                                <p>
+                                                    Reset your password screen appears as shown below:
+                                                </p>
+                                                <div class="img-content"><img src="../images/Reset-password.jpg" name="picture 16"></div>
+                                            </li>
+                                            <li>
+                                                <p>
+                                                    In <b>  enter  registered mobile number </b>field, enter your registered mobile
+                                                    number.
+                                                </p>
+                                            </li>
+                                            <li>
+                                                <p>
+                                                    Tap on <b>continue</b>button.
+                                                </p>
+                                            </li>
+                                        </ol>
+
+
+
+
+                                    <li>
+                                        <h2>updating the app</h2>
+
+
+                                        <p>
+                                            We make sure that
+                                            the <b>Pick-C</b> app is updated from time to time, so that you receive the
+                                            best experiences from new and updated features that have been
+                                            implemented in the upgraded versions. Whenever the updates are
+                                            available for <b>Pick-C</b>, you will receive a notification when you open
+                                            the <b>Pick-C</b> app on your mobile phone.
+                                        </p>
+                                        <p>
+                                            You can also update
+                                            <b>Pick-C</b> app using the below links:
+                                        </p>
+                                        <p>
+
+                                            <u>
+                                                Tap on here for android.
+                                            </u>
+
+                                        </p>
+                                        <p>
+
+                                            <u>
+                                                Tap on here for apple ios.
+                                            </u>
+
+                                        </p>
+                                        <p>
+                                            Prior to updating
+                                            the <b>Pick-C</b> app, make sure that you are connected to internet with
+                                            strong wi-fi connection, and also make sure that you have enough
+                                            storage space in your mobile phone.
+                                        </p>
+                                    </li>
+                                </ol>
+
+
+
+                            <li id="booking-pick">
+                                <h1>Booking a <b>Pick-C</b> trip</h1>
+                                <ol>
+                                    <li>
+                                        <h2>Enable location services</h2>
+
+                                        <p>
+                                            Prior to accessing
+                                            the <b>Pick-C</b> mobile app, you must enable the gps location of your
+                                            mobile, which helps the app to automatically select the pickup
+                                            location.
+                                        </p>
+                                        <p>
+                                            You can turn on the
+                                            location by doing either of the following ways:
+                                        </p>
+                                        <ul>
+                                            <li>
+                                                <p>
+                                                    Up on logging
+                                                    in to <b>Pick-C</b> app without enabling the gps, it will notify you to
+                                                    enable the location services.
+                                                </p>
+                                            </li>
+                                            <li>
+                                                <p>
+                                                    In your mobile
+                                                    phone go to <b>settings</b>, tap on <b>location</b> and tap on <b>
+                                                        location
+                                                        on
+                                                    </b>button.
+                                                </p>
+                                            </li>
+                                        </ul>
+                                        <p>
+                                            Once the location is
+                                            turned on you can start the booking process.
+                                        </p>
+                                    </li>
+
+
+
+                                    <li>
+                                        <h2>Providing a pickup address</h2>
+
+                                        <p>
+                                            To provide a pickup address for
+                                            <b>Pick-C</b>, make sure that you have entered the correct pickup address
+                                            before booking the truck. Ensure that your gps location is turned on,
+                                            so that the <font color="#000000">app</font> automatically sets the
+                                            pickup location. You can view your location in the map on your mobile
+                                            screen with a flag pointing on your location. You can set a pickup
+                                            location by either ways:
+                                        </p>
+                                        <ul>
+                                            <li>
+                                                <p>
+                                                    Place the flag
+                                                    to you required location
+                                                </p>
+                                            </li>
+                                            <li>
+                                                <p>
+                                                    You can
+                                                    manually type the location in the pickup location field
+                                                </p>
+                                            </li>
+                                        </ul>
+
+                                        <div class="img-content"><img src="../images/Pickupup-Location.jpg" name="picture 55"></div>
+
+                                        <p>
+                                            After pickup
+                                            location is set, tap on the lock location<img src="../images/lock-location.jpg" name="picture 94">
+                                            icon to lock the pickup location, so that if you accidently placed
+                                            the flag on some other location the pickup location will not change.
+                                            If you are unable to find your current location in the map, tap on my
+                                            location<img src="../images/My_location.jpg" name="picture 97">button
+                                            on the map.
+                                        </p>
+
+                                        <p>
+                                            <b>Note:</b> Once
+                                            the booking is confirmed, you cannot change your pickup location, so
+                                            make sure you have entered correct pickup address.
+                                        </p>
+                                    </li>
+
+                                    <li>
+                                        <h2>Providing a drop address</h2>
+
+                                        <p>
+                                            Entering a drop
+                                            location helps the driver to navigate to your destination without any
+                                            trouble, once the drop location is locked, only then you can book a
+                                            truck. It is mandatory to enter your drop location before you book a
+                                            truck.
+                                        </p>
+                                        <p>
+                                            You can enter a drop
+                                            location by doing either of the following:
+                                        </p>
+                                        <ul>
+                                            <li>
+                                                <p>
+                                                    Selecting the
+                                                    drop location by tapping on the drop location field, and manually
+                                                    entering
+                                                </p>
+                                            </li>
+                                            <li>
+                                                <p>
+                                                    Moving the flag
+                                                    to your drop location in the map which is provided on your screen
+                                                </p>
+                                            </li>
+                                        </ul>
+                                        <div class="img-content"><img src="../images/Drop-Location.jpg" name="picture 58"></div>
+                                        <p>
+                                            Once you lock the
+                                            drop location you can’t move the flag to other location. To change
+                                            the drop location you must tap on the lock location<img src="../images/lock-location.jpg" name="picture 100">icon
+                                            to unlock the drop location, which is available above the flag, and
+                                            move the flag to your desired location.
+                                        </p>
+                                    </li>
+
+
+
+                                </ol>
+                            </li>
+
+
+                            <li id="Book-a-Truck">
+                                <h1>Book a Truck Using the <b>Pick-C</b></h1>
+                                <ol>
+                                    <li id="Book-Now">
+                                        <h2>Book Now</h2>
+
+
+                                        <p>
+                                            You can book a truck using the book now option from the <b>Pick-C</b> mobile app. Prior to login you must register with Pick-C, refer <a href="#signing-up">Signing up with Pick-C </a> to create a user account for Pick-C.
+                                        </p>
+                                        <p>Follow these steps:</p>
+                                        <ol>
+                                            <li>
+                                                <p>
+                                                    Login to the <b>Pick-C</b> mobile app.
+                                                </p><p> Book <b>Pick-C</b> screen appears as shown below:</p>
+
+                                                <div class="img-content"> <img src="~/images/b1.png" /></div>
+                                            </li>
+
+                                            <li>
+                                                <p>In the <b>pickup location</b> field, select pickup location.</p>
+                                            </li>
+
+                                            <li>
+                                                In the <b>drop location</b> field, select drop location as shown below:
+                                                <div class="img-content"> <img src="~/images/b2.png" /></div>
+                                            </li>
+
+
+                                            <li>
+                                                Tap on <b>loading/unloading </b> icon as shown in above figure. And select any of the following:
+                                                <ul>
+                                                    <li>
+                                                        <b>Loading:</b> Select this option, if you want to load your cargo in the truck.
+                                                    </li>
+
+                                                    <li>
+                                                        <b>Unloading:</b> Select this option, if you want to unload your cargo from the truck.
+                                                    </li>
+                                                </ul> <p>
+                                                    <b>Note: </b> You can also opt for trip without loading and unloading services.
+                                                </p>
+                                                <div class="img-content"> <img src="~/images/b3.png" /></div>
+                                            </li>
+                                            <li>
+                                                In the bottom end of the main screen of <b>Pick-C</b>, tap on the following truck options:
+                                                <ul>
+                                                    <li>
+                                                        <b> Less than 0.75 Tons:</b> Select less than 0.75 ton truck, if your cargo weight is less 0.75 tons.
+                                                    </li>
+
+                                                    <li>
+                                                        <b> 1 Ton:</b> Select 1 ton truck, if your cargo weight is between 0.75 Tons and 1Ton.
+                                                    </li>
+
+                                                    <li>
+                                                        <b> 1.5 Ton:</b> Select 1.5 ton truck, if you cargo weight is between 1ton and 1.5 tons.
+                                                    </li>
+
+                                                    <li>
+                                                        <b> 2 Ton:</b> Select 2 ton truck, if your cargo weight is between 1.5 tons and 2 tons.
+                                                    </li>
+
+
+                                                </ul>
+                                                <b>Note:</b> Make sure that the measure of the cargo is calculated in “tons” and does not exceed 2 tons.
+                                            </li>
+                                            <li>
+                                                Tap to select any of the available trucks and select one of the following options:
+                                                <ul>
+                                                    <li>
+                                                        <b>Open:</b> Select open option, if you want to book a truck with open top.
+                                                    </li>
+                                                    <li>
+                                                        <b> Closed:</b> Select closed option, if you want to book a truck with closed top.
+                                                    </li>
+                                                </ul>
+                                                <div class="img-content"> <img src="~/images/b4.png" /></div>
+                                            </li>
+
+                                            <li>
+                                                Tap on <b>
+                                                    BOOK NOW
+                                                </b>
+                                                button.<p>
+                                                    Select Cargo type and Select Cargo Weight screen appears.
+                                                </p>
+                                                <div class="img-content">  <img src="~/images/b5.png" /></div>
+                                            </li>
+
+                                            <li>
+                                                Select any of the following cargo type:
+                                                <ul>
+                                                    <li>
+                                                        House Shifting
+                                                    </li>
+
+                                                    <li>
+                                                        Home Appliances/Electronics
+                                                    </li>
+
+                                                    <li>
+                                                        Poultry/Agro
+                                                    </li>
+
+                                                    <li>
+                                                        Industrial
+                                                    </li>
+
+                                                    <li>
+                                                        Medical
+                                                    </li>
+
+                                                    <li>
+                                                        Liquid
+                                                    </li>
+
+                                                    <li>
+                                                        Fragile
+                                                    </li>
+
+                                                    <li>
+                                                        Construction
+
+                                                    </li>
+
+                                                    <li>
+                                                        Others
+                                                    </li>
+                                                </ul>
+                                            </li>
+                                            <li>
+                                                In <b>Enter your cargo</b> field, enter the approximate weight of your cargo in tons.
+                                            </li>
+                                            <li>
+                                                Tap on <b>NEXT</b> as shown in the above figure.
+                                                <p>A dialogue box appears.</p>
+                                                <div class="img-content"><img src="~/images/b6.png" /></div>
+                                            </li>
+                                            <li>
+                                                Tap on uncheck box if you want to use other registered mobile number.
+                                            </li>
+                                            <li>
+                                                In <b>Please enter mobile no </b> field, enter mobile number of the person or party who is responsible to receive the delivery of goods.
+                                            </li>
+                                            <li>
+                                                <p> Tap on <b>OK</b> button.</p>
+                                                <p> Confirm booking screen appears.</p>
+
+                                                <div class="img-content">
+                                                    <div class="img-content">  <img src="~/images/b7.png" style="width:238px;" /></div>
+                                                </div>   <p> <b>Note:</b> You can check the rate card and trip estimation.</p>
+                                                <ul>
+                                                    <li>
+                                                        Tap on <a href="#rate-card">Rate card</a> to view the rates of the trucks available.
+                                                    </li>
+                                                    <li>
+                                                        Tap on <a href="#Trip-Estimation"> Trip Estimation</a> if you want to know the approximate trip cost and approximate time estimate.
+                                                    </li>
+                                                </ul>
+                                            </li>
+                                            <li>
+                                                <p>Tap on <b>Confirm booking</b> as shown in the below figure:</p>
+
+                                                <div class="img-content">
+                                                    <img src="~/images/b8.png" style="width:238px;" />
+                                                </div>
+                                                <p>
+                                                    <b> Note:</b> For later booking a message appears stating “Truck scheduled with BK170300189 at 02/23/2017”
+                                                </p><p>
+                                                    Confirm booking screen appears.
+                                                </p>
+
+                                                <div class="img-content">
+                                                    <img src="~/images/b9.png" />
+                                                </div>
+                                                <p>
+                                                    Truck booked successfully. Waiting for driver confirmation message appears as shown above.
+                                                </p>
+                                            </li>
+                                            <li>
+                                                <p>Once the driver accepts your booking.</p>
+                                                <p> A screen appears with the following options:</p>
+                                                <ul>
+                                                    <li>
+                                                        <b> Call Driver:</b> Select this option, if you want to call the driver.
+                                                    </li>
+                                                    <li>
+                                                        <b>Support: </b>Select this option, if you want to have any support information.
+                                                    </li>
+                                                    <li>	<b>Cancel: </b>Select this option, if you want to cancel you booking.</li>
+                                                </ul>
+                                                <div class="img-content"> <img src="~/images/b10.png" /></div>
+                                            </li>
+                                            <li>
+                                                <p>
+                                                    Once the driver reaches the pickup location a pop up appears
+                                                </p>
+                                                <div class="img-content"><img src="~/images/b11.png" /></div>
+                                            </li>
+
+
+                                        </ol>
+                                    </li>
+                                    <li>
+                                        <h2>	Book Later</h2>
+                                        <p>
+                                            You can also book a truck by selecting book later option from the <b>Pick-C</b> app, book later lets you book a truck up to 3 days in advance, once you have logged in successfully you can start the booking process for book later, to book later follow these steps:
+                                        </p><ol>
+                                            <li>
+                                                <p>
+                                                    Follow <a href="#Book-Now">Book Now </a> steps, from step1 to step7.
+                                                </p>
+                                            </li>
+                                            <li>
+                                                <p>
+                                                    Tap on <b> BOOK LATER</b> button.
+                                                </p><p>
+                                                    SELECT DATE screen appears.
+                                                </p>
+                                                <div class="img-content"><img src="~/images/b12.png" /></div>
+                                            </li>
+                                            <li>
+                                                <p>
+                                                    From <b> SELECT DATE</b> screen, select a date.<br />
+                                                    <b>For Example:</b> If the current date is 21st then you can book the truck up to 23rd
+                                                </p><p>
+                                                    SELECT TIME screen appears.
+
+                                                </p>
+                                                <div class="img-content"> <img src="~/images/b13.png" style="width:238px;" /></div>
+                                            </li>
+                                            <li>
+                                                <p>
+                                                    From <b>SELECT TIME </b> screen, select an hour from the clock shown above.
+                                                </p>
+                                            </li>
+                                            <li>
+                                                <p>
+                                                    Tap on minutes as shown above.
+                                                    SELECT TIME screen appears as shown below:
+
+                                                </p>
+                                                <div class="img-content"><img src="~/images/b14.png" /></div>
+                                            </li>
+                                            <li>
+                                                <p>
+                                                    From SELECT TIME screen, select a minutes from the clock as shown above.
+                                                </p>
+                                            </li>
+                                            <li>
+                                                <p>
+                                                    Tap on <b>AM</b> or <b>PM</b>.
+                                                </p>
+                                            </li>
+                                            <li>
+                                                <p>
+                                                    Tap on <b>OK</b> button.
+                                                    Select Cargo type and Select Cargo Weight screen appears.
+                                                </p>
+                                            </li>
+                                            <li>
+                                                <p>
+                                                    Select a cargo type and enter the weight in tons, and tap on <b>NEXT</b> button.
+                                                    Delivery Receivers Number screen appears
+                                                </p>
+                                            </li>
+                                            <li>
+                                                <p>
+                                                    Tap on <b>OK</b> button.
+                                                </p>
+                                            </li>
+                                            <li>
+                                                <p>
+                                                    Tap on <b>Confirm Booking </b> button.
+                                                </p><p>
+                                                    Truck Booked popup appears as shown below:
+                                                </p>
+                                                <div class="img-content">
+                                                    <img src="~/images/b15.png" />
+                                                </div>
+                                                <p>
+                                                    Truck booked successfully.
+                                                </p>
+                                            </li>
+
+                                        </ol>
+                                    </li>
+                                    <li>
+                                        <h2>Tracking Your Cargo Truck</h2>
+                                        <p>
+                                            Tracking your truck lets you to view the position of the truck you have booked, and the time it will take to reach your pickup location. Once your booking is confirmed, you can track your cargo truck and you can view the truck location live on the map, which is provided in the <b>Pick-C</b> app in your mobile phone.
+                                        </p>
+
+                                    </li>
+                                    <li>
+                                        <h2>	Paying For Your Trip</h2>
+                                        <p>
+                                            After the pickup and drop of your cargo is completed, you can check the total bill amount of your trip in the invoice that you will receive on your <b>Pick-C</b> mobile app after the trip is successfully completed, you will also receive an email of the total bill invoice on your registered email id, and you will receive a SMS message of total bill amount to be paid on your registered mobile number.
+
+                                        <p>
+                                            To make the payment, you can choose any one of the following payment options:
+                                        </p>
+                                        <ul>
+
+                                            <li>
+                                                <b> Cash:</b> Select payment through cash, if you want to do the payment by cash after the trip is completed.
+                                            </li>
+                                            <li>
+                                                <b>Credit Card:</b> Select payment through credit card, if you want to pay for your trip by credit card.
+                                            </li>
+                                            <li>
+                                                <b> Debit Card:</b> Select payment through debit card, if you want to pay for your trip by debit card.
+                                            </li>
+                                        </ul>  <p>To know more about the payment option, tap on <a href="#Payment-Options">Payment Options</a>.</p>
+
+                                    </li>
+                                    <li>
+                                        <h2>	Rating a Trip</h2>
+                                        <p>
+                                            Rating a trip is to ensure you that all the <b>Pick-C</b> truck drivers are convenient, safe, comfortable, and also takes good care of your cargo deliveries in time. Rating a trip lets you rate a driver which you have booked, depending upon the service provided by the driver. Once the trip is completed, you can rate a driver, the rating is visible on the Pick-C app screen in your mobile along with the driver’s details. <b>Pick-C </b> provides ratings from 1 to 5 stars, in order of least to highly satisfied trip. You can also give the feedback by writing to us:
+                                        </p>  <b>Email id:</b>
+                                        <p>
+                                            Your rating and feedback helps us to understand your experience with <b>Pick-C</b>, and also helps us to improve our service and quality.
+                                        </p> <b>Follow these steps:</b>
+
+                                    </li>
+
+                                </ol>
+                            </li>
+
+
+
+                            <li id="fares-and-charges">
+                                <h1>fares and charges</h1>
+                                <ol>
+                                    <li id="rate-card">
+                                        <h2>
+                                            Rate card
+                                        </h2>
+
+
+                                        <p>
+                                            Rate card helps you
+                                            to check fares and charges of your cargo bookings which are available
+                                            on <b>Pick-C</b>. Rate card will give you the detailed pricing of different
+                                            trucks which are available, based on the weight (tonnage) of the
+                                            cargo and type of the trucks.
+                                        </p>
+                                        <p>
+                                            To view the rate
+                                            card, follow these steps:
+                                        </p>
+                                        <ol>
+                                            <li>
+                                                <p>
+                                                    Login to the
+                                                    app with user account.
+                                                </p>
+                                            </li>
+                                            <li>
+                                                <p>
+                                                    On the<img src="../images/menu.jpg" name="picture 103">menu,
+                                                    tap on <b>rate card</b>.
+                                                </p>
+                                            </li>
+                                        </ol>
+                                        <div class="img-content"><img src="../images/Rate-Card.jpg" name="picture 61"></div>
+                                        <p>
+                                            Rate card screen appears as shown
+                                            below:
+                                        </p>
+
+                                        <div class="img-content"><img src="../images/fire1.jpg" name="graphics3" style="width:100%"></div>
+                                        <div class="img-content"><img src="../images/fire2.jpg" name="graphics4" style="width:100%"></div>
+                                        <div class="img-content"><img src="../images/fire3.jpg" name="graphics5" style="width:100%"></div>
+                                        <p>
+                                            <b>Note</b>: Toll, parking, and
+                                            other charges are not included in the rate card, such charges should
+                                            be paid by the customer, once the driver provides hard copy of the
+                                            bills to the customer.
+                                        </p>
+                                    </li>
+
+
+                                    <li>
+                                        <h2>Knowing your fare</h2>
+
+                                        <p>
+                                            Knowing your fare is
+                                            to make you understand on detailed breakup as mentioned below:
+                                        </p>
+                                        <p>
+                                            The following are
+                                            the breakup fares of your trip with <b>Pick-C</b>:
+                                        </p>
+                                        <ul>
+                                            <li>
+                                                <p>
+                                                    <b>Base fare</b>: The minimum
+                                                    amount of money is charged for your booking, to a particular
+                                                    distance or for first few kilometres.
+                                                </p>
+                                            </li>
+                                            <li>
+                                                <p>
+                                                    <b>Distance fare:</b> The fare
+                                                    charged for every kilometre after the minimum distance is completed.
+
+                                                </p>
+                                            </li>
+                                            <li>
+                                                <p>
+                                                    <b>Trip time fares:</b> The
+                                                    total amount charged on the time of the trip including the drivers
+                                                    waiting time at the pickup location.
+                                                </p><p>
+                                                    <b>Note:</b> The
+                                                    trip starts only when the driver starts the trip after the truck
+                                                    reaches the pickup location.
+                                                </p>
+                                            <li>
+                                                <p>
+                                                    <b>Night time fares: </b>Night
+                                                    time fares (1.5x charges) are applicable only at night time from
+                                                    10pm to 6am.
+                                                </p><p>
+                                                    <b>Note:</b>
+                                                    Toll, parking fee, and any other charges which are not mentioned in
+                                                    the rate card, should be borne by the customer, once the driver
+                                                    produces relevant hard copy bills to the customer.
+                                                </p>
+                                            </li>
+                                        </ul>
+
+                                    </li>
+
+                                    <li id="Trip-Estimation">
+                                        <h2>trip estimate</h2>
+
+                                        <p>
+                                            Trip estimate will
+                                            calculate the trip time, trip fares, trip distance, and lets you
+                                            check the price of your trip, based on the weight of the cargo and
+                                            the type of truck you have selected for the trip.
+                                        </p>
+                                        <p>Follow below steps:</p>
+                                        <ol>
+                                            <li>
+                                                <p>
+                                                    Login to app
+                                                    with user account.
+                                                </p>
+                                            </li>
+                                            <li>
+                                                <p>
+                                                    Select pickup
+                                                    and drop locations.
+                                                </p>
+                                            </li>
+                                            <li>
+                                                <p>
+                                                    Select loading
+                                                    or unloading or both.
+                                                </p>
+                                            </li>
+                                            <li><p>Select a truck.</p></li>
+                                            <li>
+                                                <p>
+                                                    Tap on <b>
+                                                        book
+                                                        now
+                                                    </b>button.
+                                                </p>
+
+                                                <p>
+                                                    Confirm
+                                                    booking screen appears with the following options appears:
+                                                </p>
+                                                <ul>
+                                                    <li><p>Rate card</p></li>
+                                                    <li><p>Trip estimate</p></li>
+                                                </ul>
+
+                                                <div class="img-content"><img src="../images/f5.png" name="picture 64"></div>
+                                            </li>
+                                            <li>
+                                                <p>
+                                                    Tap on <b>
+                                                        trip
+                                                        estimate
+                                                    </b>.
+                                                </p>
+
+                                                <p>
+                                                    Trip
+                                                    estimate screen appears.
+                                                </p>
+
+                                                <div class="img-content"><img src="../images/Trip-Estimate.jpg" name="picture 67"></div>
+                                                <p>
+                                                    Once you have
+                                                    selected trip estimate, you can view the approximate travel time,
+                                                    approximate distance, trip cost, cargo pick up and drop locations
+                                                    provided on your screen.
+                                                </p>
+                                                <p>
+                                                    <b>Note</b>: This is
+                                                    an approximate trip estimate, actual cost and travel time may differ.
+                                                </p>
+                                            </li>
+                                        </ol>
+                                    </li>
+
+                                    <li>
+                                        <h2>Cancel Booking</h2>
+
+                                        <p>
+                                            Cancel booking lets
+                                            you to cancel the truck you have booked until the truck reaches your
+                                            pickup location.
+                                        </p>
+                                        <p>
+                                            <b>Note</b>: You
+                                            cannot cancel the booking once the cargo is loaded in to the truck.
+                                        </p>
+                                        <p>
+                                            Cancelling the
+                                            booking is done by following these steps:
+                                        </p>
+                                        <ol>
+                                            <li>
+                                                <p>
+                                                    <a href="#Book-a-Truck">
+                                                        Book a truck using the <b>Pick-C</b>
+                                                    </a>  app.
+                                                </p>
+
+                                                <p>
+                                                    A
+                                                    screen appears as shown below:
+                                                </p>
+
+                                                <div class="img-content"><img src="../images/Cancel.jpg" name="picture 76"></div>
+                                            </li>
+
+
+                                            <li>
+                                                <p>
+                                                    Tap on <b>cancel</b> button.
+                                                </p>
+
+
+                                                <p>
+                                                    <b>
+                                                        Cancel
+                                                        Booking?
+                                                    </b> popup appears.
+                                                </p>
+
+                                                <div class="img-content"><img src="../images/Cancel-Booking.jpg" name="picture 79"></div>
+                                            </li>
+
+                                            <li>
+                                                <p>
+                                                    Select any of the following
+                                                    options:
+                                                </p>
+
+                                                <ul>
+                                                    <li>
+                                                        <p>
+                                                            <b>
+                                                                Driver is
+                                                                late
+                                                            </b>: Select this option, if the driver is late.
+                                                        </p>
+                                                    </li>
+                                                    <li>
+                                                        <p>
+                                                            <b>
+                                                                changed my
+                                                                mind
+                                                            </b>: Select this option, if you have changed your mind.
+                                                        </p>
+                                                    </li>
+                                                    <li>
+                                                        <p>
+                                                            <b>
+                                                                Booked
+                                                                another truck
+                                                            </b>: Select this option, if you have booked another
+                                                            truck.
+                                                        </p>
+                                                    </li>
+                                                    <li>
+                                                        <p>
+                                                            <b>
+                                                                Driver
+                                                                denied duty
+                                                            </b>: Select this option, if the driver doesn’t want to
+                                                            accept your trip.
+                                                        </p>
+                                                    </li>
+                                                </ul>
+                                            </li>
+
+                                            <li>
+                                                <p>
+                                                    Tap on <b>
+                                                        cancel
+                                                        booking
+                                                    </b>button.
+                                                </p>
+
+                                                <p>
+                                                    Booking
+                                                    is cancelled.
+                                                </p>
+
+                                            </li>
+                                        </ol>
+                                    </li>
+                                </ol>
+                            </li>
+                            <li id="Payment-Options">
+                                <h1>
+                                    payment
+                                    options
+                                </h1>
+                                <ol>
+                                    <li>
+                                        <h2>Paying in cash</h2>
+
+
+                                        <p>
+                                            By choosing paying
+                                            in cash option, you can pay the total bill of your trip by cash
+                                            directly to the truck driver at the end of the trip. You are advised
+                                            to pay the money, only after you receive the total bill invoice on
+                                            your app screen. You are also advised to check the approximate rate
+                                            before taping  confirm booking, to check the approximate rate of your
+                                            trip, tap on <a href="#Trip-Estimation">Trip Estimate</a>.
+                                        </p>
+                                    </li>
+
+                                    <li>
+                                        <h2>paying with credit/debit card</h2>
+
+                                        <p>
+                                            By choosing paying
+                                            with credit/debit card option, you can pay the bill of your trip by
+                                            credit or debit card through the <b>Pick-C</b> app, you must add credit or
+                                            debit card details into your <b>Pick-C</b> account before making the
+                                            payment. Once you have successfully added card details into your
+                                            account, you can make the payment.
+                                        </p>
+                                    </li>
+                                </ol>
+                            </li>
+
+                            <li id="safety">
+                                <h1>
+                                    Safety
+                                </h1>
+                                <ol>
+                                    <li>
+                                        <h2>Safety standard</h2>
+
+
+                                        <p>
+                                            Your cargo’s safety is extremely important to us. We have a strong safety measure which includes the following:
+                                        </p>
+
+                                        <ul>
+                                            <li>
+                                                <p>
+                                                    We check if the driver has under gone a proper training to drive all the trucks we provide.
+
+
+                                                </p>
+                                            </li>
+                                            <li>
+                                                <p>
+                                                    We make sure that we have good quality trucks by doing regular checkups and repairs to insure the safety of your goods.
+                                            </li>
+                                            <li>
+                                                <p>
+                                                    Our drivers are professionally trained and well behaved
+                                                </p>
+
+
+                                            </li>
+                                            <!--   <li>
+                                            <p >
+                                                we take
+                                            </p> -->
+                                        </ul>
+
+                                        <p>Need Help?</p>
+                                        <p>CALL US:  </p>
+
+                                    </li>
+                                    @*<li>
+                                            <h2>
+                                                safety concerns
+                                            </h2>
+
+
+                                            <p>
+                                                we make sure that
+                                                your goods safety is our top priority, we have strong safety features
+                                                and police verification to make your cargo reaches the destination
+                                                safely.
+                                            </p>
+
+                                            <ul>
+                                                <li>
+                                                    <p>
+                                                        if you have any concern
+                                                        regarding you cargo’s safety you can call us.
+                                                    </p>
+                                                </li>
+
+                                                <li>
+                                                    <p>
+                                                        in case of any missing cargo or
+                                                        any damage done to your cargo while transporting, you can call us or
+                                                        write to us.
+                                                    </p>
+                                                </li>
+                                            </ul>
+
+                                            <p>need help?</p>
+                                            <p>call us</p>
+                                            <p>
+                                                email id:
+                                            </p>
+                                        </li>*@
+                                </ol>
+                            </li>
+
+                        </ol>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <div id="back-to-top" data-spy="affix" data-offset-top="10" class="back-to-top affix">
+        <button class="btn btn-primary" title="Back to Top">
+            <i class="fa fa-angle-double-up"></i>
+        </button>
+    </div>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
+    <script>
+        $(document).ready(function () {
+
+            // Add smooth scrolling to all links
+            $("a").on('click', function (event) {
+
+                // Make sure this.hash has a value before overriding default behavior
+                if (this.hash !== "") {
+                    // Prevent default anchor click behavior
+                    event.preventDefault();
+
+                    // Store hash
+                    var hash = this.hash;
+
+                    // Using jQuery's animate() method to add smooth page scroll
+                    // The optional number (800) specifies the number of milliseconds it takes to scroll to the specified area
+                    $('html, body').animate({
+                        scrollTop: $(hash).offset().top - 130
+                    }, 800, function () {
+
+                        // Add hash (#) to URL when done scrolling (default click behavior)
+                        window.location.hash = hash - 130;
+                    });
+                } // End if
+            });
+        });
+    </script>
+    <script src="@Url.Content("~/Css/help/js/jquery.js")"></script>
+
+
+    <!-- Bootstrap jQuery -->
+    <script type="text/javascript" src="@Url.Content("~/Css/help/js/bootstrap.min.js")"></script>
+    <!-- Owl Carousel -->
+    <script type="text/javascript" src="@Url.Content("~/Css/help/js/owl.carousel.min.js")"></script>
+    <!-- Counter -->
+    <script type="text/javascript" src="@Url.Content("~/Css/help/js/jquery.counterup.min.js")"></script>
+    <!-- Waypoints -->
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="@Url.Content("~/Css/help/js/bootstrap-select.min.js")"></script>
+
+
+    <script type="text/javascript" src="@Url.Content("~/Css/help/js/waypoints.min.js")"></script>
+    <!-- Color box -->
+    <script type="text/javascript" src="@Url.Content("~/Css/help/js/jquery.colorbox.js")"></script>
+    <!-- Isotope -->
+    <script type="text/javascript" src="@Url.Content("~/Css/help/js/isotope.js")"></script>
+    <script type="text/javascript" src="@Url.Content("~/Css/help/js/ini.isotope.js")"></script>
+
+
+    <script type="text/javascript" src="@Url.Content("~/Css/help/js/owl.carousel.js")"></script>
+
+
+    <script type="text/javascript" src="@Url.Content("~/js/custom.js")"></script>
+    <script type="text/javascript" src="@Url.Content("~/Css/help/js/ripple.js")"></script>
+    <script type="text/javascript">
+        $(function () {
+            $('.ripple').materialripple();
+            $('.left-menu li a,.btn').materialripple();
+            $('[data-toggle="tooltip"]').tooltip();
+
+            $('.left-menu li.active').removeClass('active');
+            //$('.dt-title span').hide();
+        });
+
+    </script>
+
+</body>
+</html>
