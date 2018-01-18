@@ -21,22 +21,58 @@
 });
 var gIndex = -1;
 function EditOperatorVehicle(index) {
-    debugger
+    //$('#registrationdoc').bind('change', function () {
+    //    var filename = $('#' + baseID + 'registrationdoc').val();
+    //    if (/^\s*$/.test(filename)) {
+    //        $(".regDoc").removeClass('active');
+    //        $("#registrationdocnoFile").text("No file chosen...");
+    //    }
+    //    else {
+    //        $(".regDoc").addClass('active');
+    //        $("#registrationdocnoFile").text(filename.replace("C:\\fakepath\\", ""));
+    //    }
+    //});
+
     gIndex = index;
     //OPerator_OperatorVehicle_0__VehicleRegistrationNo
     var baseID = 'OPerator_OperatorVehicle_' + index + '__';
-    $('#operatorVehicle_VehicleRegistrationNo').val($('#' + baseID + 'VehicleRegistrationNo').val());
-    $('#operatorVehicle_VehicleType').val($('#' + baseID + 'VehicleType').val());
-    $('#operatorVehicle_VehicleCategory').val($('#' + baseID + 'VehicleCategory').val());
+    $('#VehicleRegistrationNo').val($('#' + baseID + 'VehicleRegistrationNo').val());
+    $('#VehicleType').val($('#' + baseID + 'VehicleType').val());
+    $('#VehicleCategory').val($('#' + baseID + 'VehicleCategory').val());
     var selectedCategory = {};
     selectedCategory.value = $('#' + baseID + 'VehicleCategory').val();
-    onChangeVehicleCategory(selectedCategory);
-    var el = {};
-    el.value = $('#' + baseID + 'Model').val();
-    ModelChanged(el);
-     $('#operatorVehicle_Model').val($('#' + baseID + 'Model').val());
+    var vehicleCategoryPromise = onChangeVehicleCategoryPromise(selectedCategory);
+    $.when(vehicleCategoryPromise).done(function (result1) {
+        $('#Model').removeAttr("disabled");
+        $("#Model").html(""); // clear before appending new list
+        $("<option value='-1'>Select item</option>").appendTo("#Model");
+        $.each(result1, function (i, val) {
+            $("#Model").append($('<option></option>').val(val.Text).html(val.Value));
+        });
+        $('#Model').val($('#' + baseID + 'Model').val());
+
+        var modalObject = {};
+        modalObject.value = $('#' + baseID + 'Model').val();
+
+        var modalPromise = ModelChangedPromise(modalObject);
+        $.when(modalPromise).done(function (modalResult) {
+            $.each(modalResult, function (i, val) {
+                $("#Model").append(
+                    $('<option></option>').val(val.Text).html(val.Value));
+            });
+            $('#Tonnage').val($('#' + baseID + 'Tonnage').val());
+        });
+    });   
+    
+     
    
-    $('#operatorVehicle_Tonnage').val($('#' + baseID + 'Tonnage').val());
+    $('#registrationdocFile').text($('#' + baseID + 'registrationdoc').val());
+    $('#insurancedocFile').text($('#' + baseID + 'insurancedoc').val());
+    $('#pollutioncheckdocFile').text($('#' + baseID + 'pollutioncheckdoc').val());
+    $('#othersdocFile').text($('#' + baseID + 'othersdoc').val());
+
+    //var regDoc2 = $('#registrationdoc');
+    debugger;
     //$('#operatorVehicle_VehicleType option').filter(function () {
     //    return this.text == $('#' + baseID + 'VehicleType').val();
     //}).attr('selected', true);
@@ -50,6 +86,7 @@ function EditOperatorVehicle(index) {
     //}).attr('selected', true);
 
   //  $('#operatorVehicle_Tonnage').val($('#' + baseID + 'Tonnage').val());
+    
     $('#VehicleModal').modal('show');
 
 }

@@ -20,6 +20,14 @@ namespace Master.Contract
         public DateTime CreatedOn { get; set; }
         public string ModifiedBy { get; set; }
         public DateTime ModifiedOn { get; set; }
+
+        public string registrationdoc { get; set; }
+
+        public string insurancedoc { get; set; }
+
+        public string pollutioncheckdoc { get; set; }
+
+        public string othersdoc { get; set; }
       
     }
     public class VehicleAttachment
