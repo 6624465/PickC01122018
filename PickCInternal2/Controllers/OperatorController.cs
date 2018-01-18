@@ -175,14 +175,15 @@ namespace PickCInternal2.Controllers
             {
                 if(Request.Files[file] != null && Request.Files[file].ContentLength > 0)
                 {
-                    System.IO.DirectoryInfo dirInfo = new DirectoryInfo(Server.MapPath("~/VehicleAttachments/" + operatorVehicle.OperatorVehicleID + "/"));
+                    var vehicleAttachmentsPath = Server.MapPath("~/VehicleAttachments/" + operatorVehicle.OperatorVehicleID + "/" + operatorVehicle.VehicleRegistrationNo + "/");
+                    System.IO.DirectoryInfo dirInfo = new DirectoryInfo(vehicleAttachmentsPath);
 
                     if (!dirInfo.Exists)
                         dirInfo.Create();
 
                     HttpPostedFileBase _file = Request.Files[file];
                     var fileName = Path.GetFileName(_file.FileName);
-                    var path = Path.Combine(Server.MapPath("~/VehicleAttachments/" + operatorVehicle.OperatorVehicleID + "/"), fileName);
+                    var path = Path.Combine(vehicleAttachmentsPath, fileName);
                     _file.SaveAs(path);
 
                     /*
