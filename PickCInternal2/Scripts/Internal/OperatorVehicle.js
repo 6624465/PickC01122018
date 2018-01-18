@@ -75,6 +75,11 @@ function EditOperatorVehicle(index) {
     $('#pollutioncheckdocFile').text($('#' + baseID + 'pollutioncheckdoc').val());
     $('#othersdocFile').text($('#' + baseID + 'othersdoc').val());
 
+    $('#hdnRegistrationdocFile').val($('#' + baseID + 'registrationdoc').val());
+    $('#hdnInsurancedocFile').val($('#' + baseID + 'insurancedoc').val());
+    $('#hdnPollutioncheckdocFile').val($('#' + baseID + 'pollutioncheckdoc').val());
+    $('#hdnOthersdocFile').val($('#' + baseID + 'othersdoc').val());
+
     //var regDoc2 = $('#registrationdoc');
     debugger;
     //$('#operatorVehicle_VehicleType option').filter(function () {

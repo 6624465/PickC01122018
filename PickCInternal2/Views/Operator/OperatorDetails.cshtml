@@ -733,12 +733,13 @@ new { @class = "form-control" })
                             <div class="file-upload">
                                 <div class="file-select">
                                     <div class="file-select-button" id="fileName">Choose File</div>                                    
-                                    <input type="file" id="registrationdoc" name="registrationdoc" value="1391" onchange="onFileChange(this, 'registrationdocFile')" />
+                                    <input type="file" id="registrationdoc" name="registrationdoc" value="1391" onchange="onFileChange(this, 'registrationdocFile','hdnRegistrationdocFile')" />
                                 </div>
                             </div>
                         </div>
                         <div class="col-md-3">
                             <div id="registrationdocFile"></div>
+                            <input type="hidden" name="hdnRegistrationdocFile" id="hdnRegistrationdocFile" />
                         </div>
                     </div>
                     <div class="row">
@@ -749,13 +750,14 @@ new { @class = "form-control" })
                             <div class="file-upload">
                                 <div class="file-select">
                                     <div class="file-select-button" id="fileName">Choose File</div>
-                                    <input type="file" id="insurancedoc" name="insurancedoc" value="1392" onchange="onFileChange(this, 'insurancedocFile')" />
+                                    <input type="file" id="insurancedoc" name="insurancedoc" value="1392" onchange="onFileChange(this, 'insurancedocFile','hdnInsurancedocFile')" />
                                 </div>
                             </div>
                             
                         </div>
                         <div class="col-md-3">
                             <div id="insurancedocFile"></div>
+                            <input type="hidden" name="hdnInsurancedocFile" id="hdnInsurancedocFile" />
                         </div>
                     </div>
                     <div class="row">
@@ -766,13 +768,14 @@ new { @class = "form-control" })
                             <div class="file-upload">
                                 <div class="file-select">
                                     <div class="file-select-button" id="fileName">Choose File</div>
-                                    <input type="file" id="pollutioncheckdoc" name="pollutioncheckdoc" value="1393" onchange="onFileChange(this, 'pollutioncheckdocFile')" />
+                                    <input type="file" id="pollutioncheckdoc" name="pollutioncheckdoc" value="1393" onchange="onFileChange(this, 'pollutioncheckdocFile','hdnPollutioncheckdocFile')" />
                                 </div>
                             </div>
                             
                         </div>
                         <div class="col-md-3">
                             <div id="pollutioncheckdocFile"></div>
+                            <input type="hidden" name="hdnPollutioncheckdocFile" id="hdnPollutioncheckdocFile" />
                         </div>
                     </div>
                     <div class="row">
@@ -783,13 +786,14 @@ new { @class = "form-control" })
                             <div class="file-upload">
                                 <div class="file-select">
                                     <div class="file-select-button" id="fileName">Choose File</div>
-                                    <input type="file" id="othersdoc" name="othersdoc" value="1394" onchange="onFileChange(this, 'othersdocFile')" />
+                                    <input type="file" id="othersdoc" name="othersdoc" value="1394" onchange="onFileChange(this, 'othersdocFile','hdnOthersdocFile')" />
                                 </div>
                             </div>
                             
                         </div>
                         <div class="col-md-3">
                             <div id="othersdocFile"></div>
+                            <input type="hidden" name="hdnOthersdocFile" id="hdnOthersdocFile" />
                         </div>
                     </div>
                     <div class="modal-footer">
@@ -939,9 +943,9 @@ new { @class = "form-control" })
 
     <script type="text/javascript">
 
-        function onFileChange(el, id) {
-            debugger;
-            $('#' + id).text(el.files[0].name);            
+        function onFileChange(el, id, hdn) {
+            $('#' + id).text(el.files[0].name); 
+            $('#' + hdn).val(el.files[0].name); 
         }
                 function AddAddress() {
                     $('#addressModal').modal('show');

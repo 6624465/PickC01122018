@@ -185,6 +185,7 @@ namespace PickCInternal2.Controllers
                     var path = Path.Combine(Server.MapPath("~/VehicleAttachments/" + operatorVehicle.OperatorVehicleID + "/"), fileName);
                     _file.SaveAs(path);
 
+                    /*
                     if(file == "registrationdoc")                    
                         operatorVehicle.registrationdoc = _file.FileName;                    
                     else if(file == "insurancedoc")
@@ -193,8 +194,30 @@ namespace PickCInternal2.Controllers
                         operatorVehicle.pollutioncheckdoc = _file.FileName;
                     else if (file == "othersdoc")
                         operatorVehicle.othersdoc = _file.FileName;
+                    */
                 }
             }
+
+            if (!string.IsNullOrWhiteSpace(Request.Form["hdnRegistrationdocFile"]))
+                operatorVehicle.registrationdoc = Request.Form["hdnRegistrationdocFile"];
+            else
+                operatorVehicle.registrationdoc = null;
+
+            if (!string.IsNullOrWhiteSpace(Request.Form["hdnInsurancedocFile"]))
+                operatorVehicle.insurancedoc = Request.Form["hdnInsurancedocFile"];
+            else
+                operatorVehicle.insurancedoc = null;
+
+            if (!string.IsNullOrWhiteSpace(Request.Form["hdnPollutioncheckdocFile"]))
+                operatorVehicle.pollutioncheckdoc = Request.Form["hdnPollutioncheckdocFile"];
+            else
+                operatorVehicle.pollutioncheckdoc = null;
+
+            if (!string.IsNullOrWhiteSpace(Request.Form["hdnOthersdocFile"]))
+                operatorVehicle.othersdoc = Request.Form["hdnOthersdocFile"];
+            else
+                operatorVehicle.othersdoc = null;
+
             var result = await new OperatorVehicleService(AUTHTOKEN, p_mobileNo).SaveOperatorVehicleList(operatorVehicle);
             return RedirectToAction("Edit", new { operatorID = operatorVehicle.OperatorVehicleID });
         }
