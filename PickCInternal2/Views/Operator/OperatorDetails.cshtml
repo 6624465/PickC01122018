@@ -18,7 +18,122 @@
 }
 @section seccss{
     <link href="@Url.Content("~/Css/bootstrap-datetimepicker.css")" rel="stylesheet" />
-    
+    <style type="text/css">
+        .file-upload {
+            display: block;
+            text-align: center;
+            font-family: Helvetica, Arial, sans-serif;
+            font-size: 12px;
+        }
+
+            .file-upload .file-select {
+                display: block;
+                border: 2px solid #dce4ec;
+                color: #34495e;
+                cursor: pointer;
+                height: 30px;
+                line-height: 30px;
+                text-align: left;
+                background: #FFFFFF;
+                overflow: hidden;
+                position: relative;
+            }
+
+                .file-upload .file-select .file-select-button {
+                    background: #dce4ec;
+                    padding: 0 10px;
+                    /*display: inline-block;*/
+                    height: 40px;
+                    /*line-height: 40px;*/
+                }
+
+                .file-upload .file-select .file-select-name {
+                    line-height: 40px;
+                    display: inline-block;
+                    padding: 0 10px;
+                }
+
+                .file-upload .file-select:hover {
+                    border-color: #34495e;
+                    transition: all .2s ease-in-out;
+                    -moz-transition: all .2s ease-in-out;
+                    -webkit-transition: all .2s ease-in-out;
+                    -o-transition: all .2s ease-in-out;
+                }
+
+                    .file-upload .file-select:hover .file-select-button {
+                        background: #34495e;
+                        color: #FFFFFF;
+                        transition: all .2s ease-in-out;
+                        -moz-transition: all .2s ease-in-out;
+                        -webkit-transition: all .2s ease-in-out;
+                        -o-transition: all .2s ease-in-out;
+                    }
+
+            .file-upload.active .file-select {
+                border-color: #3fa46a;
+                transition: all .2s ease-in-out;
+                -moz-transition: all .2s ease-in-out;
+                -webkit-transition: all .2s ease-in-out;
+                -o-transition: all .2s ease-in-out;
+            }
+
+                .file-upload.active .file-select .file-select-button {
+                    background: #3fa46a;
+                    color: #FFFFFF;
+                    transition: all .2s ease-in-out;
+                    -moz-transition: all .2s ease-in-out;
+                    -webkit-transition: all .2s ease-in-out;
+                    -o-transition: all .2s ease-in-out;
+                }
+
+            .file-upload .file-select input[type=file] {
+                z-index: 100;
+                cursor: pointer;
+                position: absolute;
+                height: 100%;
+                width: 100%;
+                top: 0;
+                left: 0;
+                opacity: 0;
+                filter: alpha(opacity=0);
+            }
+
+            .file-upload .file-select.file-select-disabled {
+                opacity: 0.65;
+            }
+
+                .file-upload .file-select.file-select-disabled:hover {
+                    cursor: default;
+                    display: block;
+                    border: 2px solid #dce4ec;
+                    color: #34495e;
+                    cursor: pointer;
+                    height: 40px;
+                    line-height: 40px;
+                    margin-top: 5px;
+                    text-align: left;
+                    background: #FFFFFF;
+                    overflow: hidden;
+                    position: relative;
+                }
+
+                    .file-upload .file-select.file-select-disabled:hover .file-select-button {
+                        background: #dce4ec;
+                        color: #666666;
+                        padding: 0 10px;
+                        display: inline-block;
+                        height: 40px;
+                        line-height: 40px;
+                    }
+
+                    .file-upload .file-select.file-select-disabled:hover .file-select-name {
+                        line-height: 40px;
+                        display: inline-block;
+                        padding: 0 10px;
+                    }
+
+    </style>
 }
 <section class="content-header">
     <h1>Operator Details</h1>
@@ -359,6 +474,11 @@ new { @class = "form-control" })
                                                                                     <td>
                                                                                         <span id="operatorVehicle_Tonnage_span_@i">@Model.OPerator.OperatorVehicle[i].Tonnage</span>
                                                                                         @Html.HiddenFor(x => Model.OPerator.OperatorVehicle[i].Tonnage)
+                                                                                        @Html.HiddenFor(X => Model.OPerator.OperatorVehicle[i].registrationdoc)
+                                                                                        @Html.HiddenFor(X => Model.OPerator.OperatorVehicle[i].pollutioncheckdoc)
+                                                                                        @Html.HiddenFor(X => Model.OPerator.OperatorVehicle[i].insurancedoc)
+                                                                                        @Html.HiddenFor(X => Model.OPerator.OperatorVehicle[i].othersdoc)
+                                                                                        
                                                                                     </td>
                                                                                     <td>
                                                                                         <a class="hand" onclick="EditOperatorVehicle('@i')">Edit</a>&nbsp;|&nbsp;
@@ -555,6 +675,9 @@ new { @class = "form-control" })
         </form>
     </div>
 </div>
+
+@using (Html.BeginForm("SaveVehicle", "Operator", FormMethod.Post, new { id = "frmVehicle", name = "frmVehicle", enctype = "multipart/form-data" }))
+{
 <div id="VehicleModal" class="modal">
     <div class="modal-dialog modal-md">
         <form id="frmVehicle" name="frmVehicle">
@@ -569,39 +692,49 @@ new { @class = "form-control" })
                     <div class="row">
                         <div class="col-md-6">
                             <label>Vehicle Registration No</label>
-                            <input class="form-control" id="operatorVehicle_VehicleRegistrationNo" name="operatorVehicle_VehicleRegistrationNo" type="text" value="" onchange="VehicleNo(this)" />
+                            @Html.Hidden("OperatorVehicleID", Model.OPerator.OperatorID)
+                            @Html.TextBox("VehicleRegistrationNo", "", new { @class = "form-control", onchange = "VehicleNo(this)" })
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-md-6">
                             <label>Vehicle Type</label>
-                            @Html.DropDownList("operatorVehicle_VehicleType", new SelectList(ViewBag.VehicleType, "Value", "Text"), "Select Category", new { @class = "form-control input-sm" })
+                            @Html.DropDownList("VehicleType", new SelectList(ViewBag.VehicleType, "Value", "Text"), "Select Category", new { @class = "form-control input-sm" })
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-md-6">
                             <label>Vehicle Category</label>
-                            @Html.DropDownList("operatorVehicle_VehicleCategory", new SelectList(ViewBag.VehicleCategory, "Value", "Text"), "Select Category", new { @class = "form-control input-sm", onchange = "onChangeVehicleCategory(this)" })
+                            @Html.DropDownList("VehicleCategory", new SelectList(ViewBag.VehicleCategory, "Value", "Text"), "Select Category", new { @class = "form-control input-sm", onchange = "onChangeVehicleCategory(this)" })
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-md-6">
                             <label>Model</label>
-                            @Html.DropDownList("operatorVehicle_Model", new SelectList("Value", "Text"), "Select Category", new { @class = "form-control input-sm", onchange = "ModelChanged(this)", @disabled = "disabled" })
+                            @Html.DropDownList("Model", new SelectList("Value", "Text"), "Select Category", new { @class = "form-control input-sm", onchange = "ModelChanged(this)", @disabled = "disabled" })
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-md-6">
-                            <label>Tonnage</label>
-                            <input class="form-control" id="operatorVehicle_Tonnage" name="operatorVehicle_Tonnage" type="text" value="" readonly="readonly" />
+                            <label>Tonnage</label>                            
+                            @Html.TextBox("Tonnage", "", new { @class = "form-control", @readonly = "readonly" })
                         </div>
                     </div><br />
-                    @*<div class="row">
+                    <div class="row">
                         <div class="col-md-3">
                             <label>Registration (RC)</label>
                         </div>
                         <div class="col-md-3">
-                            <input type="file" id="registration" name="registration" value="1391" />
+                            @*<input type="file" id="registrationdoc" name="registrationdoc" value="1391" onchange="onFileChange(this, 'registrationdocFile')" />*@
+                            <div class="file-upload">
+                                <div class="file-select">
+                                    <div class="file-select-button" id="fileName">Choose File</div>                                    
+                                    <input type="file" id="registrationdoc" name="registrationdoc" value="1391" onchange="onFileChange(this, 'registrationdocFile')" />
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div id="registrationdocFile"></div>
                         </div>
                     </div>
                     <div class="row">
@@ -609,7 +742,16 @@ new { @class = "form-control" })
                             <label>Insurance</label>
                         </div>
                         <div class="col-md-3">
-                            <input type="file" id="Insurance" name="Insurance" value="1392" />
+                            <div class="file-upload">
+                                <div class="file-select">
+                                    <div class="file-select-button" id="fileName">Choose File</div>
+                                    <input type="file" id="insurancedoc" name="insurancedoc" value="1392" onchange="onFileChange(this, 'insurancedocFile')" />
+                                </div>
+                            </div>
+                            
+                        </div>
+                        <div class="col-md-3">
+                            <div id="insurancedocFile"></div>
                         </div>
                     </div>
                     <div class="row">
@@ -617,26 +759,45 @@ new { @class = "form-control" })
                             <label>Pollution Check</label>
                         </div>
                         <div class="col-md-3">
-                            <input type="file" id="pollutioncheck" name="pollutioncheck" value="1393" />
+                            <div class="file-upload">
+                                <div class="file-select">
+                                    <div class="file-select-button" id="fileName">Choose File</div>
+                                    <input type="file" id="pollutioncheckdoc" name="pollutioncheckdoc" value="1393" onchange="onFileChange(this, 'pollutioncheckdocFile')" />
+                                </div>
+                            </div>
+                            
+                        </div>
+                        <div class="col-md-3">
+                            <div id="pollutioncheckdocFile"></div>
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-md-3">
                             <label>Others</label>
-                       </div>
-                        <div class="col-md-3">
-                            <input type="file" id="others" name="others" value="1394" multiple="multiple"/>
                         </div>
-                    </div>*@
+                        <div class="col-md-3">
+                            <div class="file-upload">
+                                <div class="file-select">
+                                    <div class="file-select-button" id="fileName">Choose File</div>
+                                    <input type="file" id="othersdoc" name="othersdoc" value="1394" onchange="onFileChange(this, 'othersdocFile')" />
+                                </div>
+                            </div>
+                            
+                        </div>
+                        <div class="col-md-3">
+                            <div id="othersdocFile"></div>
+                        </div>
+                    </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Close</button>
-                        <button type="button" onclick="btnSaveVehicle();" class="btn btn-primary btn-them">Save</button>
+                        <button type="submit" class="btn btn-primary btn-them">Save</button><!--onclick="btnSaveVehicle();"-->
                     </div>
                 </div>
             </div>
         </form>
     </div>
 </div>
+}
 <div class="modal" id="addressModal">
     <div class="modal-dialog modal-md">
         <form id="frmAddress" name="frmAddress">
@@ -773,6 +934,10 @@ new { @class = "form-control" })
     <script src="@Url.Content("~/Scripts/jquery.cookie.js")"></script>
 
     <script type="text/javascript">
+
+        function onFileChange(el, id) {
+            $('#' + id).text(el.files[0].name);            
+        }
                 function AddAddress() {
                     $('#addressModal').modal('show');
                 }
@@ -885,6 +1050,8 @@ new { @class = "form-control" })
                     });
                 }
                 $(function () {
+                    
+
                     @if(Model.OPerator.OperatorID==null)
                     {
                         <text> $('#OPerator_DateOfBirth').val('');</text>
@@ -952,11 +1119,11 @@ new { @class = "form-control" })
                         contentType: 'application/json',
                         success: function (data) {
                             debugger
-                            $('#operatorVehicle_Model').removeAttr("disabled");
-                            $("#operatorVehicle_Model").html(""); // clear before appending new list
-                            $("<option value='-1'>Select item</option>").appendTo("#operatorVehicle_Model");
+                            $('#Model').removeAttr("disabled");
+                            $("#Model").html(""); // clear before appending new list
+                            $("<option value='-1'>Select item</option>").appendTo("#Model");
                             $.each(data, function (i, val) {
-                                $("#operatorVehicle_Model").append(
+                                $("#Model").append(
                                     $('<option></option>').val(val.Text).html(val.Value));
                             });
                         },
@@ -965,11 +1132,36 @@ new { @class = "form-control" })
                         }
                     });
                 }
+
+        function onChangeVehicleCategoryPromise(selectedCategory) {
+            var def = $.Deferred();
+                    var category = selectedCategory.value;
+                    $.ajax({
+                        url: '@Url.Content("~/Operator/GetCategoryModel?categoryValue=")' + category,
+                        method: 'get',
+                        contentType: 'application/json',
+                        success: function (data) {
+                            //debugger
+                            //$('#Model').removeAttr("disabled");
+                            //$("#Model").html(""); // clear before appending new list
+                            //$("<option value='-1'>Select item</option>").appendTo("#Model");
+                            //$.each(data, function (i, val) {
+                            //    $("#Model").append(
+                            //        $('<option></option>').val(val.Text).html(val.Value));
+                            //});
+                            def.resolve(data);
+                        },
+                        error: function (err) {
+
+                        }
+                    });
+                    return def.promise();
+                }
         function ModelChanged(el) {
             debugger;
             var tonnage = el.value;
 
-                $('#operatorVehicle_Model option').val(tonnage);
+                //$('#operatorVehicle_Model option').val(tonnage);
 
                     $.ajax({
                         url: '@Url.Content("~/Operator/GetTonnage?tonnage=")' + tonnage,
@@ -978,13 +1170,37 @@ new { @class = "form-control" })
                         success: function (data) {
                             debugger;
                             $.each(data, function (i, item) {
-                                $('#operatorVehicle_Tonnage').val(item.Text);
+                                $('#Tonnage').val(item.Text);
                             });
                         },
                         error: function (err) {
 
                         }
                     });
+        }
+
+        function ModelChangedPromise(el) {
+            var def = $.Deferred();
+                    var tonnage = el.value;
+
+                //$('#operatorVehicle_Model option').val(tonnage);
+
+                    $.ajax({
+                        url: '@Url.Content("~/Operator/GetTonnage?tonnage=")' + tonnage,
+                        method: 'get',
+                        contentType: 'application/json',
+                        success: function (data) {
+                            //debugger;
+                            //$.each(data, function (i, item) {
+                            //    $('#Tonnage').val(item.Text);
+                            //});
+                            def.resolve(data);
+                        },
+                        error: function (err) {
+
+                        }
+                    });
+                    return def.promise();
                 }
                 function VehicleNo(el) {
                     var vehicleNo = el.value;
@@ -995,7 +1211,7 @@ new { @class = "form-control" })
                         success: function (data) {
                             if (data == false) {
                                 alert('This VehicleNo is exist!')
-                                $('#operatorVehicle_VehicleRegistrationNo').val('');
+                                $('#VehicleRegistrationNo').val('');
                             }
                         },
                         error: function (err) {
@@ -1055,7 +1271,7 @@ new { @class = "form-control" })
             $('#txtBankName, #txtBranch, #txtAccNumber, #txtAccType').val('');
             $('#bankDetailsModal').modal('hide');
         }
-       
+
             $('#Btn_SendOperatorId').bind('click', function () {
                 debugger;
                 var data = $('#OperatorId').val();
@@ -1063,7 +1279,7 @@ new { @class = "form-control" })
                // $.cookie("OperatorValue", $('#OperatorId').val());
                 window.location.href = '@Url.Action("Add", "Driver")';
             });
-        
+
     </script>
 }
 <style>
