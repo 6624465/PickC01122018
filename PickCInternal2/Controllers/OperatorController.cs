@@ -175,7 +175,7 @@ namespace PickCInternal2.Controllers
             {
                 if(Request.Files[file] != null && Request.Files[file].ContentLength > 0)
                 {
-                    System.IO.DirectoryInfo dirInfo = new DirectoryInfo(Server.MapPath("~/VehicleAttachment/" + operatorVehicle.OperatorVehicleID + "/"));
+                    System.IO.DirectoryInfo dirInfo = new DirectoryInfo(Server.MapPath("~/VehicleAttachments/" + operatorVehicle.OperatorVehicleID + "/"));
 
                     if (!dirInfo.Exists)
                         dirInfo.Create();

@@ -32,6 +32,20 @@ $(function () {
             txtAccType: {
                 required: true
             }
+        },
+        messages: {
+            txtBankName: {
+                required: ''
+            },
+            txtBranch: {
+                required: ''
+            },
+            txtAccNumber: {
+                required: ''
+            },
+            txtAccType: {
+                required: ''
+            }
         }
     });
 });
@@ -109,7 +123,8 @@ function btnSaveBank() {
     $('#bankDetailsModal').modal('hide');
     gIndex = -1;
 }
-function AddDriver(index) {
+function bankDetails(index) {
+    debugger;
     gIndex = -1;
     $('#txtBankName, #txtBranch, #txtAccNumber, #txtAccType').val('');
     $('#bankDetailsModal').modal('show');

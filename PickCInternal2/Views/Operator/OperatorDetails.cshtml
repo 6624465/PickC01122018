@@ -133,6 +133,10 @@
                         padding: 0 10px;
                     }
 
+                    label.error {
+            display: none !important;
+        }
+
     </style>
 }
 <section class="content-header">
@@ -368,7 +372,7 @@ new { @class = "form-control" })
                                                 <div class="box-header">
                                                     <h3 class="box-title">Bank Details</h3>
                                                     <div class="box-tools">
-                                                        <button class="btn btn-box-tool" type="button" onclick="bankDetails('-1')"><i class="fa fa-plus" aria-hidden="true"></i></button>
+                                                        <button class="btn btn-box-tool" type="button"  onclick="bankDetails('-1')"><i class="fa fa-plus" aria-hidden="true"></i></button>
                                                     </div>
                                                 </div>
                                                 <div class="box-body">
@@ -790,7 +794,7 @@ new { @class = "form-control" })
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Close</button>
-                        <button type="submit" class="btn btn-primary btn-them">Save</button><!--onclick="btnSaveVehicle();"-->
+                        <button type="button" onclick="btnSaveVehicle();" class="btn btn-primary btn-them">Save</button><!--onclick="btnSaveVehicle();"-->
                     </div>
                 </div>
             </div>
@@ -803,7 +807,7 @@ new { @class = "form-control" })
         <form id="frmAddress" name="frmAddress">
             <div class="modal-content">
                 <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal" onclick="ClearFields();"aria-label="Close">
+                    <button type="button" class="close" data-dismiss="modal"  id="address_cancel" onclick="ClearFields();"aria-label="Close">
                         <span aria-hidden="true">×</span>
                     </button>
                     <h4 class="modal-title">Address Info</h4>
@@ -888,7 +892,7 @@ new { @class = "form-control" })
         <form id="frmBank" name="frmBank">
             <div class="modal-content">
                 <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal" onclick="ClearBankDetails();" aria-label="Close">
+                    <button type="button" class="close" data-dismiss="modal" id="bank_cancel" onclick="ClearBankDetails();" aria-label="Close">
                         <span aria-hidden="true">×</span>
                     </button>
                     <h4 class="modal-title">Bank Details</h4>
@@ -916,7 +920,7 @@ new { @class = "form-control" })
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-default pull-left" data-dismiss="modal" onclick="ClearBankDetails();">Close</button>
+                    <button type="button" class="btn btn-default pull-left" data-dismiss="modal" id="bank_cancel" onclick="ClearBankDetails();">Close</button>
                     <button id="btnSave" type="button" class="btn btn-primary btn-them " onclick="btnSaveBank();">Save</button>
                 </div>
             </div>
@@ -936,6 +940,7 @@ new { @class = "form-control" })
     <script type="text/javascript">
 
         function onFileChange(el, id) {
+            debugger;
             $('#' + id).text(el.files[0].name);            
         }
                 function AddAddress() {
@@ -982,9 +987,18 @@ new { @class = "form-control" })
                 //function DeleteBankDetails(index) {
                 //    $('#trRow_Bank_' + index).remove();
                 //}
-                function bankDetails() {
-                    $('#bankDetailsModal').modal('show');
-                }
+                //function bankDetails() {
+                //    gIndex = -1;
+                //    $("#bank_clear").on("click", function () {
+                //        $("form div").removeClass("error");
+                //        $("form label").removeClass("error");
+                //        $("form")[0].reset();
+                //    });
+                //    //$("#frmBank")[0].reset();
+                //    $('#txtBankName, #txtBranch, #txtAccNumber, #txtAccType').val('');
+                //    $('#bankDetailsModal').modal('hide');
+                //    $('#bankDetailsModal').modal('show');
+                //}
                 function AddAttachments() {
                     $('#attachmentModal').modal('show');
                     $.ajax({
@@ -1265,9 +1279,20 @@ new { @class = "form-control" })
             $('#Address1, #Address2, #Address3, #Address4, #CityName, #StateName, #ZipCode').val('');
             $('#addressModal').modal('hide');
         }
+   
         function ClearBankDetails() {
             debugger
             gIndex = -1;
+            //$("#bank_cancel").on("click", function () {
+            $('#frmBank input[type="text"]').removeClass('error');
+            $('#frmBank label').removeClass('error');
+            //$('#frmBank label').empty();
+           
+                //$("form div").removeClass("error");
+                //$("form label").removeClass("error");
+                //$("form")[0].reset();
+            //});
+            //$("#frmBank")[0].reset();
             $('#txtBankName, #txtBranch, #txtAccNumber, #txtAccType').val('');
             $('#bankDetailsModal').modal('hide');
         }
