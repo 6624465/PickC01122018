@@ -22,6 +22,9 @@
 });
 var gIndex = -1;
 function EditOperatorVehicle(index) {
+    if (index != -1) {
+        $('#VehicleRegistrationNo').attr('readonly', 'readonly');
+    }
     //$('#registrationdoc').bind('change', function () {
     //    var filename = $('#' + baseID + 'registrationdoc').val();
     //    if (/^\s*$/.test(filename)) {
@@ -173,4 +176,8 @@ function AddVehicle(index) {
     gIndex = -1;
     $('#operatorVehicle_VehicleRegistrationNo, #operatorVehicle_VehicleType,#operatorVehicle_VehicleCategory, #operatorVehicle_Model, #operatorVehicle_Tonnage').val('');
     $('#VehicleModal').modal('show');
+
+    if (index != -1) {
+        $('#VehicleRegistrationNo').attr('readonly','readonly');
+    }
 }
