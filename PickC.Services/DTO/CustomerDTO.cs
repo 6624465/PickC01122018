@@ -18,6 +18,6 @@ namespace PickC.Services.DTO
         public string MobileNo { get; set; }
         public string EmailID { get; set; }
         public int TotalBookings { get; set; }
-        public DateTime RegistrationDate { get; set; }
+        public string RegistrationDate { get; set; }
     }
 }

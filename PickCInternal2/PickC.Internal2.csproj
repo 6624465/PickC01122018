@@ -46,10 +46,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Antlr3.Runtime">
-      <HintPath>C:\dlls\Antlr3.Runtime.dll</HintPath>
-    </Reference>
-    <Reference Include="Master.BusinessFactory">
-      <HintPath>..\..\..\..\Bhushan PickC\PickC\Master.BusinessFactory\bin\Debug\Master.BusinessFactory.dll</HintPath>
+      <HintPath>..\..\..\PickC\PickC\PickCApi\bin\Antlr3.Runtime.dll</HintPath>
     </Reference>
     <Reference Include="MCPG.CCA.Util">
       <HintPath>C:\dlls\MCPG.CCA.Util.dll</HintPath>
@@ -96,7 +93,7 @@
       <HintPath>C:\dlls\Microsoft.Practices.EnterpriseLibrary.Common.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.Practices.EnterpriseLibrary.Data">
-      <HintPath>..\..\..\..\Bhushan PickC\PickC\Operation.DataFactory\bin\Debug\Microsoft.Practices.EnterpriseLibrary.Data.dll</HintPath>
+      <HintPath>..\..\..\..\MVC\PractiseMvc\API\bin\Microsoft.Practices.EnterpriseLibrary.Data.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.Practices.ServiceLocation">
       <HintPath>C:\dlls\Microsoft.Practices.ServiceLocation.dll</HintPath>
@@ -108,7 +105,7 @@
       <HintPath>C:\dlls\Microsoft.Practices.Unity.Interception.dll</HintPath>
     </Reference>
     <Reference Include="Newtonsoft.Json">
-      <HintPath>C:\dlls\Newtonsoft.Json.dll</HintPath>
+      <HintPath>..\..\..\PickC\PickC\PickCApi\bin\Newtonsoft.Json.dll</HintPath>
     </Reference>
     <Reference Include="RestSharp">
       <HintPath>C:\dlls\RestSharp.dll</HintPath>
@@ -123,13 +120,11 @@
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.Web.Extensions" />
-    <Reference Include="System.Web.Mvc, Version=4.0.0.1, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>C:\dlls\System.Web.Mvc.dll</HintPath>
+    <Reference Include="System.Web.Mvc">
+      <HintPath>..\..\..\PickC\PickC\PickCApi\bin\System.Web.Mvc.dll</HintPath>
     </Reference>
-    <Reference Include="System.Web.WebPages, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\PickCApi\bin\System.Web.WebPages.dll</HintPath>
+    <Reference Include="System.Web.WebPages">
+      <HintPath>..\..\..\PickC\PickC\PickCApi\bin\System.Web.WebPages.dll</HintPath>
     </Reference>
     <Reference Include="System.Xml" />
     <Reference Include="System.Configuration" />
@@ -375,6 +370,10 @@
     <Folder Include="Views\UsersData\" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Master.BusinessFactory\Master.BusinessFactory.csproj">
+      <Project>{ba43b622-97b8-4856-aa07-7b138f46cb58}</Project>
+      <Name>Master.BusinessFactory</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Master.Contract\Master.Contract.csproj">
       <Project>{b9e20a20-01c6-480a-a49a-647df7c89463}</Project>
       <Name>Master.Contract</Name>
@@ -407,7 +406,7 @@
           <AutoAssignPort>True</AutoAssignPort>
           <DevelopmentServerPort>59122</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
-          <IISUrl>http://localhost:59122/</IISUrl>
+          <IISUrl>http://localhost:59121/</IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
           <UseCustomServer>False</UseCustomServer>
           <CustomServerUrl>

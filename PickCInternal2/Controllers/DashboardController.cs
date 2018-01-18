@@ -194,7 +194,7 @@ namespace PickC.Internal2.Controllers
         //    return View("UserRegister");
         //}
         [HttpGet]
-        public ActionResult PaymentHistory()
+        public async Task<ActionResult> PaymentHistory()
         {
             PaymentHistory data = new PaymentHistory();
             data.paymentsearch = new Paymentsearch();
@@ -204,6 +204,10 @@ namespace PickC.Internal2.Controllers
             DateTime dateTime = DateTime.Now;
             data.paymentsearch.DateFrom = new DateTime(dateTime.Year, dateTime.Month, 1); 
             data.paymentsearch.DateTo = DateTime.Now;
+            var paymentresult = await new PaymentService(AUTHTOKEN, p_mobileNo).PaymentHistoryDetails(data.paymentsearch);
+            data.customerdetails = paymentresult.customerdetails;
+            data.driverCommissiondetails = paymentresult.driverCommissiondetails;
+            data.pickCCommissiondetails = paymentresult.pickCCommissiondetails;
             return View("PaymentHistory", data);
         }
         [HttpPost]
