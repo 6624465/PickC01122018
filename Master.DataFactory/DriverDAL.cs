@@ -77,7 +77,7 @@ namespace Master.DataFactory
                 var savecommand = db.GetStoredProcCommand(DBRoutine.SAVEDRIVER);
                 db.AddInParameter(savecommand, "DriverID", System.Data.DbType.String, driver.DriverId);
                 db.AddInParameter(savecommand, "DriverName", System.Data.DbType.String, driver.DriverName);
-                db.AddInParameter(savecommand, "Password", System.Data.DbType.String, driver.Password);
+                db.AddInParameter(savecommand, "Password", System.Data.DbType.String, driver.MobileNo);
                 db.AddInParameter(savecommand, "VehicleNo", System.Data.DbType.String, "");
                 db.AddInParameter(savecommand, "FatherName", System.Data.DbType.String, driver.FatherName);
                 db.AddInParameter(savecommand, "DateOfBirth", System.Data.DbType.DateTime, driver.DateOfBirth);
