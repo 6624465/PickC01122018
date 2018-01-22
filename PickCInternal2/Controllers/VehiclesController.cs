@@ -11,6 +11,7 @@ namespace PickCInternal2.Controllers
     public class VehiclesController : Controller
     {
         // GET: Vehicles
+
         public ActionResult Vehicle()
         {
             return View();
