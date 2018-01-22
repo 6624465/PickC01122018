@@ -296,6 +296,7 @@
     <Compile Include="Controllers\OperatorController.cs" />
     <Compile Include="Controllers\OperatorDriverController.cs" />
     <Compile Include="Controllers\OperatorVehicleController.cs" />
+    <Compile Include="Controllers\VehicleController.cs" />
     <Compile Include="Core\PickCEx.cs" />
     <Compile Include="Core\WebAuthFilter.cs" />
     <Compile Include="Global.asax.cs">
@@ -348,6 +349,7 @@
     <Content Include="Scripts\jquery-3.2.1.slim.min.map" />
     <Content Include="Scripts\jquery-3.2.1.min.map" />
     <Content Include="Views\Dashboard\BookingInvoice.cshtml" />
+    <Content Include="Views\Vehicle\Vehicle.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

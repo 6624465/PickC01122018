@@ -11,10 +11,10 @@ namespace Master.Contract
 		public VehicleConfig() { }
 
 
-		public Int16  VehicleType { get; set; }
+		//public Int16  VehicleType { get; set; }
 
 
-		public string VehicleDescription { get; set; }
+		public string VehicleGroupDescription { get; set; }
 
 
 		public string Maker { get; set; }

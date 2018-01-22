@@ -36,6 +36,7 @@ namespace Master.DataFactory
         public const string LISTVEHICLECONFIG = "[Master].[usp_VehicleConfigList]";
         public const string SAVEVEHICLECONFIG = "[Master].[usp_VehicleConfigSave]";
         public const string DELETEVEHICLECONFIG = "[Master].[usp_VehicleConfigDelete]";
+        public const string INSERTVEHICLECONFIG= "[Master].[usp_VehicleConfigInsert]";
 
 
 

@@ -57,9 +57,9 @@ namespace Master.DataFactory
             try
             {
 
-                var savecommand = db.GetStoredProcCommand(DBRoutine.SAVEVEHICLECONFIG);
-                db.AddInParameter(savecommand, "VehicleType", System.Data.DbType.Int16, vehicleconfig.VehicleType);
-                db.AddInParameter(savecommand, "VehicleDescription", System.Data.DbType.String, vehicleconfig.VehicleDescription);
+                var savecommand = db.GetStoredProcCommand(DBRoutine.INSERTVEHICLECONFIG);
+                //db.AddInParameter(savecommand, "VehicleType", System.Data.DbType.Int16, vehicleconfig.VehicleType);
+                //db.AddInParameter(savecommand, "VehicleDescription", System.Data.DbType.String, vehicleconfig.VehicleDescription);
                 db.AddInParameter(savecommand, "Maker", System.Data.DbType.String, vehicleconfig.Maker);
                 db.AddInParameter(savecommand, "Model", System.Data.DbType.String, vehicleconfig.Model);
                 db.AddInParameter(savecommand, "Tonnage", System.Data.DbType.Decimal, vehicleconfig.Tonnage);
@@ -103,7 +103,7 @@ namespace Master.DataFactory
             try
             {
                 var deleteCommand = db.GetStoredProcCommand(DBRoutine.DELETEVEHICLECONFIG);
-                db.AddInParameter(deleteCommand, "VehicleType", System.Data.DbType.Int16, vehicleconfig.VehicleType);
+               // db.AddInParameter(deleteCommand, "VehicleType", System.Data.DbType.Int16, vehicleconfig.VehicleType);
 
 
                 result = Convert.ToBoolean(db.ExecuteNonQuery(deleteCommand, transaction));
@@ -132,7 +132,7 @@ namespace Master.DataFactory
 
             var vehicleconfigItem = db.ExecuteSprocAccessor(DBRoutine.SELECTVEHICLECONFIG,
                                                     MapBuilder<VehicleConfig>.BuildAllProperties(),
-                                                    item.VehicleType).FirstOrDefault();
+                                                    item.VehicleGroup).FirstOrDefault();
 
             if (vehicleconfigItem == null) return null;
 

@@ -33,50 +33,50 @@ namespace PickCApi.Areas.Master.Controllers
             }
         }
 
-        [HttpGet]
-        [Route("{vehicleType}")]
-        public IHttpActionResult GetVehicleConfig(short vehicleType)
-        {
-            try
-            {
-                var vehicleConfig = new VehicleConfigBO()
-                                        .GetVehicleConfig(new VehicleConfig
-                                        {
-                                            VehicleType = vehicleType
-                                        });
+        //[HttpGet]
+        //[Route("{vehicleType}")]
+        //public IHttpActionResult GetVehicleConfig(short vehicleType)
+        //{
+        //    try
+        //    {
+        //        var vehicleConfig = new VehicleConfigBO()
+        //                                .GetVehicleConfig(new VehicleConfig
+        //                                {
+        //                                    VehicleType = vehicleType
+        //                                });
 
-                if (vehicleConfig != null)
-                    return Ok(vehicleConfig);
-                else
-                    return NotFound();
-            }
-            catch (Exception ex)
-            {
-                return InternalServerError(ex);
-            }
-        }
+        //        if (vehicleConfig != null)
+        //            return Ok(vehicleConfig);
+        //        else
+        //            return NotFound();
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        return InternalServerError(ex);
+        //    }
+        //}
 
-        [HttpDelete]
-        [Route("{vehicleType}")]
-        public IHttpActionResult DeleteVehicleConfig(short vehicleType)
-        {
-            try
-            {
-                var result = new VehicleConfigBO()
-                                    .DeleteVehicleConfig(new VehicleConfig
-                                    {
-                                        VehicleType = vehicleType
-                                    });
-                if (result)
-                    return Ok(UTILITY.DELETEMSG);
-                else
-                    return NotFound();
-            }
-            catch (Exception ex)
-            {
-                return InternalServerError(ex);
-            }
-        }
+        //[HttpDelete]
+        //[Route("{vehicleType}")]
+        //public IHttpActionResult DeleteVehicleConfig(short vehicleType)
+        //{
+        //    try
+        //    {
+        //        var result = new VehicleConfigBO()
+        //                            .DeleteVehicleConfig(new VehicleConfig
+        //                            {
+        //                                VehicleType = vehicleType
+        //                            });
+        //        if (result)
+        //            return Ok(UTILITY.DELETEMSG);
+        //        else
+        //            return NotFound();
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        return InternalServerError(ex);
+        //    }
+        //}
 
         [HttpGet]
         [Route("list")]
