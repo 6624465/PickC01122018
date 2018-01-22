@@ -146,12 +146,14 @@ namespace PickC.Internal2.Controllers
         {
 
             var userData = new UserData();
-            DateTime dateTime = DateTime.Now;
-            userData.DateFrom = new DateTime(dateTime.Year, dateTime.Month, 1);
-            userData.DateTo = DateTime.Now;
-            userData.userBookingList = await new UserService(AUTHTOKEN, p_mobileNo).searchBookingTripsAsync(userData);
+            //DateTime dateTime = DateTime.Now;
+            //userData.DateFrom = new DateTime(dateTime.Year, dateTime.Month, 1);
+            //userData.DateTo = DateTime.Now;
+            //userData.userBookingList = await new UserService(AUTHTOKEN, p_mobileNo).searchBookingTripsAsync(userData);
             userData.userDataDashBoard = new UserDataDashBoard();
             userData.userDataDashBoard = await new UserService(AUTHTOKEN, p_mobileNo).GetDashBoardUserData();
+            userData.tripDailyBasis = new List<TripDailyBasis>();
+            userData.tripDailyBasis = await new UserService(AUTHTOKEN, p_mobileNo).getTotalTripDailyBasis();
             return View("UserApp", userData);
         }
         [HttpGet]
