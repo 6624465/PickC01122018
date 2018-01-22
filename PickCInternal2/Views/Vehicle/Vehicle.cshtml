@@ -21,6 +21,7 @@
                                     <div class="col-md-4">
                                         <div class="form-group">
                                             <label>Model</label>
+                                            @Html.HiddenFor(x=>x.VehicleModelId)
                                             @Html.TextBoxFor(x => x.Model, new { @class = "form-control" })
                                         </div>
                                     </div>

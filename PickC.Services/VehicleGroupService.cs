@@ -49,5 +49,16 @@ namespace PickC.Services
             return ServiceResponse(
                 await client.ExecuteTaskAsync<List<VehicleConfig>>(request));
         }
+        public async Task<VehicleConfig> GetVehicleConfigById(int id) {
+            IRestClient client = new RestClient(ApiBaseUrl);
+            var request = new RestRequest();
+            request.Method = Method.GET;
+            request.Resource = "master/vehicleconfig/{VehicleModelId}";
+            request.AddParameter("VehicleModelId", id, ParameterType.UrlSegment);
+            return await Task.Run(() =>
+            {
+                return ServiceResponse<VehicleConfig>(client.Execute<VehicleConfig>(request));
+            });
+        }
     }
 }

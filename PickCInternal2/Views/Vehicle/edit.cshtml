@@ -1,0 +1,95 @@
+﻿@model Master.Contract.VehicleConfig
+@{
+    ViewBag.Title = "edit";
+}
+
+
+<section class="content">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="tab-main-content">
+                <div class="row">
+                    <div class="col-xs-12">
+                        <div class="box">
+                            <div class="box-header">
+                                <h3 class="box-title">Vehicle Model</h3>
+                            </div>
+                            @using (Html.BeginForm("saveVehicleConfig", "Vehicle", FormMethod.Post, new { name = "frmConfig", id = "frmConfig" }))
+                            {
+                                <div class="box-body">
+                                    <div class="row">
+                                        <div class="col-md-4">
+                                            <div class="form-group">
+                                                <label>Model</label>
+                                                @Html.HiddenFor(x => x.VehicleModelId)
+                                                @Html.TextBoxFor(x => x.Model, new { @class = "form-control" })
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-4">
+                                            <div class="form-group">
+                                                <label>Maker</label>
+                                                @Html.TextBoxFor(x => x.Maker, new { @class = "form-control" })
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-4">
+                                            <div class="form-group">
+                                                <label>Vehicle Group</label>
+                                                @Html.DropDownListFor(x => x.VehicleGroup, new SelectList(ViewBag.VehicleCategory, "Value", "Text"), "Select Category", new { @class = "form-control" })
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-4">
+                                            <div class="form-group">
+                                                <label>Tonnage</label>
+                                                @Html.TextBoxFor(x => x.Tonnage, new { @class = "form-control" })
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-4">
+                                            <button class="btn btn-primary btn-sm " type="button" onclick="onSave();"> &nbsp;Save</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            }
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+@section Secscripts{
+    <script src="@Url.Content("~/Scripts/jquery.validate.js")"></script>
+}
+<script type="text/javascript">
+
+    $(function () {
+        $('#frmConfig').validate({
+            rules: {
+                Model: {
+                    required: true
+                },
+                Maker: {
+                    required:true
+                },
+                VehicleGroup: {
+                    required:true
+                },
+                Tonnage: {
+                    required:true
+                }
+            }
+        });
+    })
+    function onSave() {
+        if($('#frmConfig').valid()){
+            $('#frmConfig').submit();
+        }
+    }
+</script>

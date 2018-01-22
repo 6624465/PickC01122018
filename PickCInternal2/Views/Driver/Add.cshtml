@@ -551,15 +551,16 @@
         onChangeOperator(value);
 
         function onChangeOperator(val) {
-            debugger
-            var operatorId;
-            if (val != null) {
-                operatorId = val.value;
-                $('#txt-Operator-Number').val(operatorId);
-            }
-            else {
-                operatorId = $('#txt-Operator-Number').val();
-            }
+            
+            //var operatorId;
+            //if (val != null) {
+            //    operatorId = val;
+            //    $('#txt-Operator-Number').val(operatorId);
+            //}
+            //else {
+            //    operatorId = $('#txt-Operator-Number').val();
+            //}
+            operatorId = $('#txt-Operator-Number').val();
                 if (operatorId != '' && operatorId != undefined) {
 
                     $.ajax({
