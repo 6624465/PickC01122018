@@ -47,10 +47,12 @@ function EditOperatorVehicle(index) {
     selectedCategory.value = $('#' + baseID + 'VehicleCategory').val();
     var vehicleCategoryPromise = onChangeVehicleCategoryPromise(selectedCategory);
     $.when(vehicleCategoryPromise).done(function (result1) {
+       
         $('#Model').removeAttr("disabled");
         $("#Model").html(""); // clear before appending new list
         $("<option value='-1'>Select item</option>").appendTo("#Model");
         $.each(result1, function (i, val) {
+            
             $("#Model").append($('<option></option>').val(val.Text).html(val.Value));
         });
         $('#Model').val($('#' + baseID + 'Model').val());
@@ -59,11 +61,8 @@ function EditOperatorVehicle(index) {
         modalObject.value = $('#' + baseID + 'Model').val();
 
         var modalPromise = ModelChangedPromise(modalObject);
-        $.when(modalPromise).done(function (modalResult) {
-            $.each(modalResult, function (i, val) {
-                $("#Model").append(
-                    $('<option></option>').val(val.Text).html(val.Value));
-            });
+        $.when(modalPromise).done(function (modalResult) {            
+            
             $('#Tonnage').val($('#' + baseID + 'Tonnage').val());
         });
     });   
