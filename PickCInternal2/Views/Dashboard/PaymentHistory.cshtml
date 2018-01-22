@@ -55,50 +55,55 @@
     </div>
     <div class="clearfix"></div>
 
-    <div class="accordion">
-    <div class="accordion-section">
-        <a class="accordion-section-title btn btn-default btn-sm btn-them" href="#accordion-1">TOTAL AMOUNT RECEIVED FROM CUSTOMER</a>
-        <div id="accordion-1" class="accordion-section-content">
-            <div class="box-body">
-                <div class="row">
-                    <div class="col-md-12">
-                        <table  id="Accordian_customerDetails" class="table table-hover table-bordered">
-                            <thead>
-                                <tr>
-                                    <th>Invoice No.</th>
-                                    <th>Invoice Date</th>
-                                    <th>Invoice Amount</th>
-                                    <th>GST</th>
-                                    <th>Total Amount</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                @foreach(var item in Model.customerdetails)
-                                {
-                                    <tr>
-                                        <td>@Html.DisplayFor(i => item.InvoiceNo)</td>
-                                        <td>@Html.DisplayFor(i => item.InvoiceDate)</td>
-                                        <td>@Html.DisplayFor(i => item.InvoiceAmount)</td>
-                                        <td>@Html.DisplayFor(i => item.GST)</td>
-                                        <td>@Html.DisplayFor(i => item.TotalAmount)</td>
-                                    </tr>
-                                }
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-        <div class="accordion">
-            <div class="accordion-section">
-                <a class="accordion-section-title btn btn-default btn-sm btn-them" href="#accordion-2">PICK - C COMISSION</a>
-                <div id="accordion-2" class="accordion-section-content">
-                  <div class="box-body">
+    <article class="tabbed-content tabs-side">
+        <nav class="tabs">
+            <ul>
+                <li><a href="#side_tab1" class="active accordion-section-title btn btn-default btn-sm btn-them">TOTAL AMOUNT RECEIVED FROM CUSTOMER</a></li>
+                <li><a href="#side_tab2" class="accordion-section-title btn btn-default btn-sm btn-them">PICK - C COMISSION</a></li>
+                <li><a href="#side_tab3" class="accordion-section-title btn btn-default btn-sm btn-them">DRIVER COMISSION</a></li>
+                <li><a href="#side_tab4" class="accordion-section-title btn btn-default btn-sm btn-them">CANCELLATION CHARGES COLLECTED</a></li>
+            </ul>
+        </nav>
+        <section id="side_tab1" class="item active" data-title="Tab 1">
+            <div class="item-content">
+                <div class="box-body">
                     <div class="row">
                         <div class="col-md-12">
-                            <table  id="Accordian_pickcCommision" class="table table-hover table-bordered">
+                            <table id="Accordian_customerDetails" class="table table-hover table-bordered">
+                                <thead>
+                                    <tr>
+                                        <th>Invoice No.</th>
+                                        <th>Invoice Date</th>
+                                        <th>Invoice Amount</th>
+                                        <th>GST</th>
+                                        <th>Total Amount</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach (var item in Model.customerdetails)
+                                    {
+                                        <tr>
+                                            <td>@Html.DisplayFor(i => item.InvoiceNo)</td>
+                                            <td>@Html.DisplayFor(i => item.InvoiceDate)</td>
+                                            <td>@Html.DisplayFor(i => item.InvoiceAmount)</td>
+                                            <td>@Html.DisplayFor(i => item.GST)</td>
+                                            <td>@Html.DisplayFor(i => item.TotalAmount)</td>
+                                        </tr>
+                                    }
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+        <section id="side_tab2" class="item" data-title="Tab 2">
+            <div class="item-content">
+                <div class="box-body">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <table id="Accordian_pickcCommision" class="table table-hover table-bordered">
                                 <thead>
                                     <tr>
                                         <th>Invoice No.</th>
@@ -111,80 +116,84 @@
                                 <tbody>
                                     @foreach (var item in Model.pickCCommissiondetails)
                                     {
-                                    <tr>
-                                        <td>@Html.DisplayFor(i=>item.InvoiceNo)</td>
-                                        <td>@Html.DisplayFor(i => item.InvoiceDate)</td>
-                                        <td>@Html.DisplayFor(i => item.InvoiceAmount)</td>
-                                        <td>@Html.DisplayFor(i => item.GST)</td>
-                                        <td>@Html.DisplayFor(i => item.PickcCommision)</td>
-                                    </tr>
+                                        <tr>
+                                            <td>@Html.DisplayFor(i => item.InvoiceNo)</td>
+                                            <td>@Html.DisplayFor(i => item.InvoiceDate)</td>
+                                            <td>@Html.DisplayFor(i => item.InvoiceAmount)</td>
+                                            <td>@Html.DisplayFor(i => item.GST)</td>
+                                            <td>@Html.DisplayFor(i => item.PickcCommision)</td>
+                                        </tr>
                                     }
                                 </tbody>
                             </table>
                         </div>
                     </div>
                 </div>
-               </div>
+
+
+
             </div>
-        </div>
-        <div class="accordion">
-            <div class="accordion-section">
-                <a class="accordion-section-title btn btn-default btn-sm btn-them" href="#accordion-3">DRIVER COMISSION</a>
-                <div id="accordion-3" class="accordion-section-content">
-                    <div class="box-body">
-                        <div class="row">
-                            <div class="col-md-12">
-                                <table  id="Accordian_DriverCommision" class="table table-hover table-bordered">
-                                    <thead>
-                                        <tr><th>Invoice No.</th>
-                                            <th>Driver Name</th>
-                                            <th>Vehicle No.</th>
-                                            <th>TripID</th>
-                                            <th>Driver Commission</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        @foreach (var item in Model.driverCommissiondetails)
-                                        {
+        </section>
+        <section id="side_tab3" class="item" data-title="Tab 3">
+            <div class="item-content">
+                <div class="box-body">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <table id="Accordian_DriverCommision" class="table table-hover table-bordered">
+                                <thead>
+                                    <tr>
+                                        <th>Invoice No.</th>
+                                        <th>Driver Name</th>
+                                        <th>Vehicle No.</th>
+                                        <th>TripID</th>
+                                        <th>Driver Commission</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach (var item in Model.driverCommissiondetails)
+                                    {
                                         <tr>
-                                            <td>@Html.DisplayFor(i=>item.InvoiceNo)</td>
-                                            <td>@Html.DisplayFor(i=>item.DriverName)</td>
+                                            <td>@Html.DisplayFor(i => item.InvoiceNo)</td>
+                                            <td>@Html.DisplayFor(i => item.DriverName)</td>
                                             <td>@Html.DisplayFor(i => item.VehicleNo)</td>
                                             <td>@Html.DisplayFor(i => item.TripId)</td>
                                             <td>@Html.DisplayFor(i => item.DriverCommission)</td>
                                         </tr>
-                                        }
-                                    </tbody>
-                                </table>
-                            </div>
+                                    }
+                                </tbody>
+                            </table>
                         </div>
                     </div>
                 </div>
+
+
+
             </div>
-        </div>
-        <div class="accordion">
-            <div class="accordion-section">
-                <a class="accordion-section-title btn btn-default btn-sm btn-them" href="#accordion-4">CANCELLATION CHARGES COLLECTED</a>
-                <div id="accordion-4" class="accordion-section-content">
-                    <div class="box-body">
-                        <div class="row">
-                            <div class="col-md-12">
-                                <table  id="Accordian_DriverCommision" class="table table-hover table-bordered">
-                                    <thead>
-                                        <tr>
-                                            <th>Driver Name</th>
-                                            <th>Vehicle No.</th>
-                                            <th>Trip ID</th>
-                                            <th>Driver Commission</th>
-                                        </tr>
-                                    </thead>
-                                </table>
-                            </div>
+        </section>
+        <section id="side_tab4" class="item" data-title="Tab 3">
+            <div class="item-content">
+                <div class="box-body">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <table id="Accordian_DriverCommision" class="table table-hover table-bordered">
+                                <thead>
+                                    <tr>
+                                        <th>Driver Name</th>
+                                        <th>Vehicle No.</th>
+                                        <th>Trip ID</th>
+                                        <th>Driver Commission</th>
+                                    </tr>
+                                </thead>
+                            </table>
                         </div>
                     </div>
                 </div>
+
+
+
             </div>
-        </div>
+        </section>
+    </article>
 
 </section>
 @section secscripts{
@@ -265,6 +274,59 @@
             navigation: true
         });
 
+
+        tabControl();
+
+        /*
+        We also apply the switch when a viewport change is detected on the fly
+        (e.g. when you resize the browser window or flip your device from 
+        portrait mode to landscape). We set a timer with a small delay to run 
+        it only once when the resizing ends. It's not perfect, but it's better
+        than have it running constantly during the action of resizing.
+        */
+        var resizeTimer;
+        $(window).on("resize", function (e) {
+            clearTimeout(resizeTimer);
+            resizeTimer = setTimeout(function () {
+                tabControl();
+            }, 250);
+        });
+
+        /*
+        The function below is responsible for switching the tabs when clicked.
+        It switches both the tabs and the accordion buttons even if 
+        only the one or the other can be visible on a screen. We prefer
+        that in order to have a consistent selection in case the viewport
+        changes (e.g. when you esize the browser window or flip your 
+        device from portrait mode to landscape).
+        */
+        function tabControl() {
+            var tabs = $(".tabbed-content").find(".tabs");
+            if (tabs.is(":visible")) {
+                tabs.find("a").on("click", function (event) {
+                    event.preventDefault();
+                    var target = $(this).attr("href"),
+                      tabs = $(this).parents(".tabs"),
+                      buttons = tabs.find("a"),
+                      item = tabs.parents(".tabbed-content").find(".item");
+                    buttons.removeClass("active");
+                    item.removeClass("active");
+                    $(this).addClass("active");
+                    $(target).addClass("active");
+                });
+            } else {
+                $(".item").on("click", function () {
+                    var container = $(this).parents(".tabbed-content"),
+                      currId = $(this).attr("id"),
+                      items = container.find(".item");
+                    container.find(".tabs a").removeClass("active");
+                    items.removeClass("active");
+                    $(this).addClass("active");
+                    container.find('.tabs a[href$="#' + currId + '"]').addClass("active");
+                });
+            }
+        }
+
     </script>
     }
 <style>
@@ -314,4 +376,145 @@
     display:none;
 }
 
- </style>
+
+
+.tabbed-content {
+  background: #fff;
+  box-shadow: 1px 1px 6px #ccc;
+  max-width:100%;
+  padding: 1em;
+ 
+  
+}
+
+
+
+.tabs ul {
+  margin: 0;
+  padding: 0 0 1em 0;
+  font-weight: bold;
+}
+.tabs ul li {
+  background: #eee;
+}
+.tabs ul li a {
+  padding: .5em 1em;
+}
+.tabs ul li a:hover, .tabs ul li a.active {
+  background: #444;
+  color: #eee;
+}
+
+.item {
+  margin-bottom: 2px;
+}
+.item::before {
+  cursor: pointer;
+  font-weight: bold;
+  background: #eee;
+  padding: .5em;
+  display: block;
+}
+.item.active::before {
+  background: #444;
+  color: #eee;
+}
+.item.active .item-content {
+  padding: 1em;
+  -webkit-transition: opacity 0.3s ease-in-out;
+  -moz-transition: opacity 0.3s ease-in-out;
+  -o-transition: opacity 0.3s ease-in-out;
+  -ms-transition: opacity 0.3s ease-in-out;
+  transition: opacity 0.3s ease-in-out;
+}
+
+
+/* 
+The project specific CSS starts here
+This is the minimum CSS that you will need in order for this to work
+*/
+.tabbed-content .tabs {
+  display:inherit;
+}
+.tabbed-content .item {
+  min-height: 2em;
+}
+.tabbed-content .item::before {
+  content: attr(data-title);
+}
+.tabbed-content .item .item-content {
+  opacity: 0;
+  visibility: hidden;
+  height: 0;
+}
+.tabbed-content .item.active .item-content {
+  opacity: 1;
+  visibility: visible;
+  height: auto;
+}
+
+
+@@media all and (min-width: 800px) {
+  .item.active .item-content {
+    padding-top: 0;
+  }
+
+  .tabs-side .tabs li {
+    margin-bottom: 2px;
+  }
+}
+/* 
+The project specific CSS starts here
+This is the minimum CSS that you will need in order for this to work
+*/
+.tabbed-content .tabs {
+  display: none;
+}
+.tabbed-content .item {
+  min-height: 2em;
+}
+.tabbed-content .item::before {
+  content: attr(data-title);
+}
+.tabbed-content .item .item-content {
+  opacity: 0;
+  visibility: hidden;
+  height: 0;
+}
+.tabbed-content .item.active .item-content {
+  opacity: 1;
+  visibility: visible;
+  height: auto;
+}
+
+@@media all and (min-width: 800px) {
+  .tabbed-content .tabs {
+    display: block;
+  }
+  .tabbed-content .tabs li {
+    display: inline-block;
+  }
+  .tabbed-content .tabs li a {
+    display: block;
+  }
+  .tabbed-content .item {
+    min-height: 0;
+  }
+  .tabbed-content .item::before {
+    display: none;
+  }
+  .tabbed-content.tabs-side .tabs {
+    width: 350px;
+    float: left;
+  }
+  .tabbed-content.tabs-side .tabs li {
+    display: block;
+  }
+  .tabbed-content.tabs-side .item {
+    margin-left: 350px;
+  }
+}
+
+
+
+</style>

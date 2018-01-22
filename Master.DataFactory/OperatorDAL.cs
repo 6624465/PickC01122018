@@ -247,7 +247,8 @@ namespace Master.DataFactory
 
 
             operatorItem.AddressList = new AddressDAL().GetList(operatorItem.OperatorID);
-            operatorItem.OperatorDriverList = new OperatorDriverDAL().GetSelectList(operatorItem.OperatorID);
+            //operatorItem.OperatorDriverList = new OperatorDriverDAL().GetSelectList(operatorItem.OperatorID);
+            operatorItem.OperatorDriverList = new OperatorDriverDAL().GetList().Where(x => x.OperatorID == operatorItem.OperatorID).ToList();
             operatorItem.OperatorVehicle = new OperatorVehicleDAL().GetOperatorVehicleListById(operatorItem.OperatorID);
             operatorItem.BankDetails = new BankDetailsDAL().GetList(operatorItem.OperatorID);
             return operatorItem;
@@ -261,7 +262,8 @@ namespace Master.DataFactory
                                                     OperatorID).FirstOrDefault();
 
             operatorItem.AddressList = new AddressDAL().GetList(operatorItem.OperatorID);
-            operatorItem.OperatorDriverList = new OperatorDriverDAL().GetSelectList(operatorItem.OperatorID);
+           // operatorItem.OperatorDriverList = new OperatorDriverDAL().GetSelectList(operatorItem.OperatorID);
+            operatorItem.OperatorDriverList= new OperatorDriverDAL().GetList().Where(x=>x.OperatorID== OperatorID).ToList();
             operatorItem.OperatorVehicle = new OperatorVehicleDAL().GetOperatorVehicleListById(OperatorID);
             operatorItem.BankDetails = new BankDetailsDAL().GetList(operatorItem.OperatorID);
 
