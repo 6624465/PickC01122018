@@ -23,9 +23,10 @@ namespace PickCInternal2.Controllers
         [HttpGet]
         public async Task<ActionResult> Operator()
         {
-            var operatorList = await new OperatorService(AUTHTOKEN, p_mobileNo).OperatorsListAsync();
+            var operatorList = await new OperatorService(AUTHTOKEN, p_mobileNo).OperatorsWithProfileListAsync();
             return View(operatorList);
         }
+       
         [HttpGet]
         public async Task<ActionResult> OperatorDetails()
          {

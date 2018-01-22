@@ -1,4 +1,4 @@
-﻿@model IEnumerable<Master.Contract.Operator>
+﻿@model IEnumerable<Master.Contract.OperatorWithProfilePic>
 @using PickC.Internal2.HtmlHelpers
 @{
     ViewBag.Title = "Operator";
@@ -41,8 +41,13 @@
                                 @grid.Table(
                             tableStyle: "table table-hover",
                             columns: grid.Columns(
-                                grid.Column("OperatorID", "Operator ID"),
+                                grid.Column("ProfilePic", "Profile Pic",
+                                format:
+                                @<text>
+                                <img src="@Url.Content("~/Attachments/" + item.ImagePath)" class="img-circle" style="width:50px;height:50px" />
+                                </text>),
                                 grid.Column("OperatorName", "Operator Name"),
+                                grid.Column("OperatorID", "Operator ID"),
                                 grid.Column("PhoneNo", "Phone No"),
                                 grid.Column("Edit", "#Edit", format: 
                                 @<text><a href="@Url.Content("~/Operator/Edit?OperatorID=" + item.OperatorID)"><i class="fa fa-pencil" aria-hidden="true"></i></a></text>)
