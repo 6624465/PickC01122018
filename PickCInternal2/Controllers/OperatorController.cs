@@ -21,8 +21,14 @@ namespace PickCInternal2.Controllers
     public class OperatorController : BaseController
     {
         [HttpGet]
-        public async Task<ActionResult> Operator()
+        public async Task<ActionResult> Operator(string OperatorID = "")
         {
+            if(!string.IsNullOrWhiteSpace(OperatorID))
+            {
+                List<OperatorDriver> OperatorDriverList = (await new OperatorDriverService(AUTHTOKEN, p_mobileNo).GetDriverList()).Where(x => x.OperatorID == OperatorID).ToList();
+
+                ViewData["VD:DriverList"] = OperatorDriverList;
+            }
             var operatorList = await new OperatorService(AUTHTOKEN, p_mobileNo).OperatorsWithProfileListAsync();
             return View(operatorList);
         }
@@ -171,6 +177,13 @@ namespace PickCInternal2.Controllers
             };
 
             return View("OperatorDetails", operatorVm);
+        }
+
+        [HttpGet]
+        public async Task<ActionResult> GetOperatorDriverList(string operatorID)
+        {
+            List<OperatorDriver> OperatorDriverList = (await new OperatorDriverService(AUTHTOKEN, p_mobileNo).GetDriverList()).Where(x => x.OperatorID == operatorID).ToList();
+            return View("OperatorDetails", OperatorDriverList);
         }
 
         [HttpPost]
