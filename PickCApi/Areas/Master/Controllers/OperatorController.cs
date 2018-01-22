@@ -40,6 +40,26 @@ namespace PickCApi.Areas.Master.Controllers
                 return InternalServerError(ex);
             }
         }
+
+        [HttpGet]
+        [Route("profilepic/list")]
+        public IHttpActionResult OperatorWithProfilePicList()
+        {
+            try
+            {
+                var operatorList = new OperatorBO().GetWithProfileList();
+
+                if (operatorList != null)
+                    return Ok(operatorList);
+                else
+                    return NotFound();
+            }
+            catch (Exception ex)
+            {
+                return InternalServerError(ex);
+            }
+        }
+
         [HttpGet]
         [Route("lookupdata")]
         public IHttpActionResult LookUpData()
