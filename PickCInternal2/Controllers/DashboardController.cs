@@ -9,7 +9,8 @@ using PickC.Internal2.ViewModals;
 using PickC.Services.DTO;
 using Operation.Contract;
 using Operation.BusinessFactory;
-
+using Master.BusinessFactory;
+using Master.Contract;
 
 namespace PickC.Internal2.Controllers
 {
@@ -114,6 +115,24 @@ namespace PickC.Internal2.Controllers
             bookingSearchVM.booking = bookingHistory1;
             return View("BookingHistory", bookingSearchVM);
         }
+
+        public async Task<PartialViewResult> BookingInvoice(string bookingNo)
+        {
+            try
+            {
+                var tripInvoiceList = await new RegisterService(AUTHTOKEN, p_mobileNo).GetBookingInvoiceByBookingNoAsync(bookingNo);
+                if (tripInvoiceList==null)
+                {
+                    tripInvoiceList = new TripInvoice();
+                }
+                return PartialView("BookingInvoice", tripInvoiceList);
+            }
+            catch (Exception ex)
+            {
+                return null;
+            }
+        }
+
         [HttpPost]
         public async Task<ActionResult> BookingsHistory(BookingHistoryDTO search)
         {
@@ -170,14 +189,14 @@ namespace PickC.Internal2.Controllers
             userData.userDataDashBoard = await new UserService(AUTHTOKEN, p_mobileNo).GetDashBoardUserData();
             return View("UserApp", userData);
         }
-        
+
         [HttpGet]
-        public async  Task<ActionResult> UserAppCancellation()
+        public async Task<ActionResult> UserAppCancellation()
         {
             var userData = new UserData();
             userData.customerCancellation = await new UserService(AUTHTOKEN, p_mobileNo).getCancelledList();
-            userData.driverCancellation   =  await new UserService(AUTHTOKEN, p_mobileNo).getCancelledListDriver();
-            userData.userDataDashBoard= await new UserService(AUTHTOKEN, p_mobileNo).GetDashBoardUserData();
+            userData.driverCancellation = await new UserService(AUTHTOKEN, p_mobileNo).getCancelledListDriver();
+            userData.userDataDashBoard = await new UserService(AUTHTOKEN, p_mobileNo).GetDashBoardUserData();
             return View("UserAppCancellation", userData);
         }
         //[HttpPost]
@@ -202,7 +221,7 @@ namespace PickC.Internal2.Controllers
             data.driverCommissiondetails = new List<DriverCommissionDetails>();
             data.pickCCommissiondetails = new List<pickCCommissionDetails>();
             DateTime dateTime = DateTime.Now;
-            data.paymentsearch.DateFrom = new DateTime(dateTime.Year, dateTime.Month, 1); 
+            data.paymentsearch.DateFrom = new DateTime(dateTime.Year, dateTime.Month, 1);
             data.paymentsearch.DateTo = DateTime.Now;
             var paymentresult = await new PaymentService(AUTHTOKEN, p_mobileNo).PaymentHistoryDetails(data.paymentsearch);
             data.customerdetails = paymentresult.customerdetails;
@@ -215,7 +234,7 @@ namespace PickC.Internal2.Controllers
         {
             var data = await new PaymentService(AUTHTOKEN, p_mobileNo).PaymentHistoryDetails(payment.paymentsearch);
 
-            return View("PaymentHistory",data);
+            return View("PaymentHistory", data);
         }
         [HttpGet]
         public async Task<ActionResult> PendingAmount()
@@ -246,7 +265,7 @@ namespace PickC.Internal2.Controllers
             int i = Convert.ToInt32(operatorDetails);
             return Json(i, JsonRequestBehavior.AllowGet);
         }
-        
+
         [HttpGet]
         public ActionResult DriverRevoke()
         {
