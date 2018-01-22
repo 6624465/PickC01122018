@@ -57,6 +57,16 @@ namespace PickC.Internal2.Controllers
             driverVm.driver.DateofReturn = DateTime.Now;
             return View(driverVm);
         }
+        [HttpGet]
+        public async Task<ActionResult> DeleteDriver(string driverID)
+        {
+            try
+            {
+                var result = await new DriverService(AUTHTOKEN, p_mobileNo).DeleteDriverAsync(driverID);
+                return Json(result,JsonRequestBehavior.AllowGet);
+            }
+            catch (Exception)
+            {
 
         [HttpPost]
         public async Task<ActionResult> SaveDriver(Driver driver)
