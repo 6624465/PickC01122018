@@ -66,6 +66,10 @@ namespace PickCInternal2.Controllers
                     {
                         lookupId = "1382";
                     }
+                    if (file == "fprofilepic")
+                    {
+                        lookupId = "1506";
+                    }
                     string mapPath = Server.MapPath("~/Attachments/");
                     if (!Directory.Exists(mapPath))
                     {

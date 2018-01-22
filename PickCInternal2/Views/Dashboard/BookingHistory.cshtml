@@ -6,8 +6,8 @@
 }
 @{
     ViewBag.Title = "BookingHistory";
-  
-   // Model.Datefrom = DateTime.Now;
+
+    // Model.Datefrom = DateTime.Now;
     //Model.DateTo = DateTime.Now;
     //WebGrid grid = new WebGrid(Model.booking, rowsPerPage: 10, canPage: true, selectionFieldName: "selectedRow", ajaxUpdateContainerId: "ajaxGrid");
 
@@ -16,6 +16,12 @@
     <link href="@Url.Content("~/Css/bootstrap-datetimepicker.css")" rel="stylesheet" />
     <link href="~/Css/jquery.dataTables.min.css" rel="stylesheet" />
 }
+<style>
+    .modal-dialog {
+        width: 70%;
+        margin: 30px auto;
+    }
+</style>
 <section class="content">
     @using (Html.BeginForm("BookingsHistory", "Dashboard", FormMethod.Post, new { id = "frmBookingHistory", name = "frmBookingHistory" }))
     {
@@ -24,12 +30,12 @@
                 @{ Html.RenderPartial("DashboardMenuList"); }
             </div>
         </div>
-                <div class="row">
-                    <div class="col-md-12">
-                        <div class="tab-main-content">
-                        </div>
-                    </div>
+        <div class="row">
+            <div class="col-md-12">
+                <div class="tab-main-content">
                 </div>
+            </div>
+        </div>
 
                 <div id="myTabContent" class="tab-content">
                     <div id="tab2" class="tab-pane fade in active">
@@ -38,7 +44,7 @@
                                 <div class="form-group">
                                     <label>Date From</label>
                                     <div class="input-group dtCss">
-                                        @Html.TextBoxFor(x => x.bookings.DateFrom, new {@id="startDate", @class = "form-control" })
+                                        @Html.TextBoxFor(x => x.bookings.DateFrom, new { @id = "startDate", @class = "form-control" })
                                         <span class="input-group-btn">
                                             <button type="button" class="btn btn-default"><i class="fa fa-calendar" aria-hidden="true"></i></button>
                                         </span>
@@ -57,7 +63,7 @@
                                 </div>
                             </div>
 
-                          
+
                             @*<div class="col-md-2">
                                     @Html.TextBoxFor(x =>x.BookingNo, new { @class = "form-control" })
                                 </div>
@@ -73,49 +79,67 @@
 
                 <div class="box-body" id="ajaxGrid">
                     @*@if (Model.booking.Count != 0)
-                    {*@
-                        <div class="row">
+                        {*@
+                    <div class="row">
 
-                            <div class="col-md-12">
-                                    <table id="table_id" class="table table-hover">
-                                        <thead>
-                                            <tr>
-                                                <th>Booking No.</th>
-                                                <th>Booking Date</th>
-                                                <th>Customer Name</th>
-                                                <th>Customer Mobile</th>
-                                                <th>Vehicle No.</th>
-                                                <th>Driver Name</th>
-                                                <th>Invoice Amount</th>
+                        <div class="col-md-12">
+                            <table id="table_id" class="table table-hover">
+                                <thead>
+                                    <tr>
+                                        <th>Booking No.</th>
+                                        <th>Booking Date</th>
+                                        <th>Customer Name</th>
+                                        <th>Customer Mobile</th>
+                                        <th>Vehicle No.</th>
+                                        <th>Driver Name</th>
+                                        <th>Invoice Amount</th>
 
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            @foreach (var item in Model.booking)
-                                            {
-                                                <tr>
-                                                    <td>@Html.DisplayFor(m => item.BookingNo)</td>
-                                                    <td>@Html.DisplayFor(m => item.BookingDate)</td>
-                                                    <td>@Html.DisplayFor(m => item.CustomerName)</td>
-                                                    <td>@Html.DisplayFor(m => item.CustomerId)</td>
-                                                    <td>@Html.DisplayFor(m => item.VehicleNo)</td>
-                                                    <td>@Html.DisplayFor(m => item.DriverName)</td>
-                                                    <td>@Html.DisplayFor(m => item.InvoiceAmount)</td>
-                                                </tr>
-                                            }
-                                        </tbody>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach (var item in Model.booking)
+                                    {
+                                        <tr>
+                                            <td>
+                                                <a class="hand" onclick="DisplayInvoice('@item.BookingNo')">@item.BookingNo</a>
+                                            </td>
+                                            <td>@Html.DisplayFor(m => item.BookingDate)</td>
+                                            <td>@Html.DisplayFor(m => item.CustomerName)</td>
+                                            <td>@Html.DisplayFor(m => item.CustomerId)</td>
+                                            <td>@Html.DisplayFor(m => item.VehicleNo)</td>
+                                            <td>@Html.DisplayFor(m => item.DriverName)</td>
+                                            <td>@Html.DisplayFor(m => item.InvoiceAmount)</td>
+                                        </tr>
+                                    }
+                                </tbody>
 
-                                    </table>
-                            </div>
+                            </table>
                         </div>
-                            @*<div class="row">
-                                <div class="col-md-12">
-                                    <div class="pull-right">@grid.PagerList(mode: WebGridPagerModes.All, paginationStyle: "pagination pagination-sm")</div>
-                                </div>
-                            </div>*@
+                    </div>
+                    @*<div class="row">
+                            <div class="col-md-12">
+                                <div class="pull-right">@grid.PagerList(mode: WebGridPagerModes.All, paginationStyle: "pagination pagination-sm")</div>
+                            </div>
+                        </div>*@
                 </div>
                     }
 </section>
+<div class="modal" id="InvoiceModal">
+    <div class="modal-dialog modal-md">
+        <form id="frmDriver" name="frmDriver">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">×</span>
+                    </button>
+                    <h4 class="modal-title">Booking Invoice</h4>
+                </div>
+                <div class="modal-body" id="InvoiceModalContent">
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
 @section secscripts{
     <script src="@Url.Content("~/Scripts/jquery.validate.js")"></script>
     <script src="@Url.Content("~/Scripts/moment-with-locales.js")"></script>
@@ -123,77 +147,95 @@
     <script src="~/Scripts/jquery.dataTables.min.js"></script>
 
     <script type="text/javascript">
-        $(function () {
-            $('#bookingHistory').parent().addClass('active');
-            $('.pagination ul li a').attr('href', '#');
+            $(function () {
+                $('#bookingHistory').parent().addClass('active');
+                $('.pagination ul li a').attr('href', '#');
 
-            $(document).ready(function () {
-                $('#table_id').dataTable();
-            });
-            var date = new Date();
-            var monthStartDay = new Date(date.getFullYear(), date.getMonth(), 1);
-            console.log(monthStartDay);
-           
+                $(document).ready(function () {
+                    $('#table_id').dataTable();
+                });
+                var date = new Date();
+                var monthStartDay = new Date(date.getFullYear(), date.getMonth(), 1);
+                console.log(monthStartDay);
 
-            $(document).ready(function () {
-             //   $('#startDate').val(new Date(monthStartDay.toDateString()));
-            });
-          
-          //  console.log(monthStartDay);
-            $('.dtCss').datetimepicker({
-                icons: {
-                    time: 'fa fa-clock-o',
-                    date: 'fa fa-calendar',
-                    up: 'fa fa-arrow-up',
-                    down: 'fa fa-arrow-down',
-                    previous: 'fa fa-arrow-left',
-                    next: 'fa fa-arrow-right'
-                },
-                format: 'DD/MM/YYYY'
-              //  Datefrom: monthStartDay
-            });
 
-            //$('#Datefrom,#DateTo').datetimepicker({
-            //    icons: {
-            //        time: 'fa fa-clock-o',
-            //        date: 'fa fa-calendar',
-            //        up: 'fa fa-arrow-up',
-            //        down: 'fa fa-arrow-down'
-            //    },
-            //    format: 'DD/MM/YYYY'
-            //});
-            //$('#DateTo,#Datefrom').datepicker();
-            //$('#Datefrom').datepicker();
-            $('#frmBookingHistory').validate({
-                rules: {
-                'bookings.DateTo': {
-                        required: true
+                $(document).ready(function () {
+                    //   $('#startDate').val(new Date(monthStartDay.toDateString()));
+                });
+
+                //  console.log(monthStartDay);
+                $('.dtCss').datetimepicker({
+                    icons: {
+                        time: 'fa fa-clock-o',
+                        date: 'fa fa-calendar',
+                        up: 'fa fa-arrow-up',
+                        down: 'fa fa-arrow-down',
+                        previous: 'fa fa-arrow-left',
+                        next: 'fa fa-arrow-right'
                     },
-                    'bookings.DateFrom': {
-                        required: true
+                    format: 'DD/MM/YYYY'
+                    //  Datefrom: monthStartDay
+                });
+
+                //$('#Datefrom,#DateTo').datetimepicker({
+                //    icons: {
+                //        time: 'fa fa-clock-o',
+                //        date: 'fa fa-calendar',
+                //        up: 'fa fa-arrow-up',
+                //        down: 'fa fa-arrow-down'
+                //    },
+                //    format: 'DD/MM/YYYY'
+                //});
+                //$('#DateTo,#Datefrom').datepicker();
+                //$('#Datefrom').datepicker();
+                $('#frmBookingHistory').validate({
+                    rules: {
+                        'bookings.DateTo': {
+                            required: true
+                        },
+                        'bookings.DateFrom': {
+                            required: true
+                        }
                     }
+                });
+                $('#endDate').blur(function () {
+                    debugger
+                    var startD = $('#startDate').val();
+                    var endD = $('#endDate').val();
+                    if (startD != '' && endD != '')
+                        if (startD >= endD) {
+                            alert("DateTo should be greater than DateFrom");
+                        }
+                });
+                $(function () {
+                    debugger;
+                    //   $("#startDate").html(monthStartDay);
+                });
+
+            });
+
+        function DisplayInvoice(bookingNo) {
+            debugger;
+            $.ajax({
+                url: '@Url.Content("~/Dashboard/BookingInvoice?bookingNo=")' + bookingNo,
+                method: 'get',
+                contentType: 'text/html',
+                success: function (html) {
+                    debugger;
+                    $('#InvoiceModalContent').html(html);
+                    $('#InvoiceModal').modal('show');
+                },
+                error: function (err) {
+
                 }
             });
-            $('#endDate').blur(function () {
-                debugger
-                var startD = $('#startDate').val();
-                var endD = $('#endDate').val();
-                if (startD != '' && endD != '')
-                    if (startD >= endD) {
-                        alert("DateTo should be greater than DateFrom");
-                    }
-            });
-            $(function () {
-                debugger;
-             //   $("#startDate").html(monthStartDay);
-            });
-
-        });
-
-        function HistorySearch() {
-            $('#frmBookingHistory').validate();
-            $('#frmBookingHistory').submit();
         }
+
+
+            function HistorySearch() {
+                $('#frmBookingHistory').validate();
+                $('#frmBookingHistory').submit();
+            }
     </script>
 
 

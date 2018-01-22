@@ -282,7 +282,8 @@ namespace PickCApi.Areas.Master.Controllers
                 {
                     return Ok(UTILITY.SUCCESS);
                 }
-                else {
+                else
+                {
                     return Ok(UTILITY.FAIL);
                 }
             }
@@ -653,9 +654,9 @@ namespace PickCApi.Areas.Master.Controllers
             }
         }
         [HttpGet]
-        [Route("sendInvoiceMail/{bookingNo}/{emailId}/")]
+        [Route("sendInvoiceMail/{bookingNo}/{emailId}/{Ismail}")]
         //[ApiAuthFilter]
-        public IHttpActionResult SendInvoiceMail(string BookingNo, string EmailId)
+        public IHttpActionResult SendInvoiceMail(string BookingNo, string EmailId, bool Ismail = true)
         {
             try
             {
@@ -663,45 +664,51 @@ namespace PickCApi.Areas.Master.Controllers
                 {
                     BookingNo = BookingNo
                 });
-
-                DriverTripInvoice driverTripInvoice = new DriverBO().GetDriverTripInvoice(new DriverTripInvoice
+                if (Ismail)
                 {
-                    BookingNo = BookingNo
-                });
-                CompanyTripInvoice companyTripInvoice = new CustomerBO().GetCompanyTripInvoiceList(new CompanyTripInvoice
-                {
-                    BookingNo = BookingNo
-                });
-
-                InvoiceDTO invoiceDTO = new InvoiceDTO();
-                invoiceDTO.CompanyTripInvoice = companyTripInvoice;
-                invoiceDTO.DriverTripInvoice = driverTripInvoice;
-                invoiceDTO.TripInvoice = tripInvoiceList;
-
-                byte[] pdf; // result will be here
-
-                var cssText = File.ReadAllText(HttpContext.Current.Server.MapPath("~/Areas/Master/Views/Driver/bootstrap.css"));
-                var html = this.RenderView<InvoiceDTO>("~/Areas/Master/Views/Driver/Invoices.cshtml", invoiceDTO);
-                using (var memoryStream = new MemoryStream())
-                {
-                    var document = new Document(PageSize.A4, 25f, 25f, 25f, 25f);
-                    var writer = PdfWriter.GetInstance(document, memoryStream);
-                    document.Open();
-
-                    using (var cssMemoryStream = new MemoryStream(System.Text.Encoding.UTF8.GetBytes(cssText)))
+                    DriverTripInvoice driverTripInvoice = new DriverBO().GetDriverTripInvoice(new DriverTripInvoice
                     {
-                        using (var htmlMemoryStream = new MemoryStream(System.Text.Encoding.UTF8.GetBytes(html)))
+                        BookingNo = BookingNo
+                    });
+                    CompanyTripInvoice companyTripInvoice = new CustomerBO().GetCompanyTripInvoiceList(new CompanyTripInvoice
+                    {
+                        BookingNo = BookingNo
+                    });
+
+                    InvoiceDTO invoiceDTO = new InvoiceDTO();
+                    invoiceDTO.CompanyTripInvoice = companyTripInvoice;
+                    invoiceDTO.DriverTripInvoice = driverTripInvoice;
+                    invoiceDTO.TripInvoice = tripInvoiceList;
+
+                    byte[] pdf; // result will be here
+
+                    var cssText = File.ReadAllText(HttpContext.Current.Server.MapPath("~/Areas/Master/Views/Driver/bootstrap.css"));
+                    var html = this.RenderView<InvoiceDTO>("~/Areas/Master/Views/Driver/Invoices.cshtml", invoiceDTO);
+                    using (var memoryStream = new MemoryStream())
+                    {
+                        var document = new Document(PageSize.A4, 25f, 25f, 25f, 25f);
+                        var writer = PdfWriter.GetInstance(document, memoryStream);
+                        document.Open();
+
+                        using (var cssMemoryStream = new MemoryStream(System.Text.Encoding.UTF8.GetBytes(cssText)))
                         {
-                            XMLWorkerHelper.GetInstance().ParseXHtml(writer, document, htmlMemoryStream, cssMemoryStream);
+                            using (var htmlMemoryStream = new MemoryStream(System.Text.Encoding.UTF8.GetBytes(html)))
+                            {
+                                XMLWorkerHelper.GetInstance().ParseXHtml(writer, document, htmlMemoryStream, cssMemoryStream);
+                            }
                         }
+                        document.Close();
+                        pdf = memoryStream.ToArray();
+                        bool sendCustomerMail = new EmailGenerator().ConfigMail(EmailId, true, "PickC Invoice", "<div>PickC Invoice</div>", pdf);
+                        if (sendCustomerMail)
+                            return Ok(UTILITY.SUCCESS);
+                        else
+                            return Ok(UTILITY.FAIL);
                     }
-                    document.Close();
-                    pdf = memoryStream.ToArray();
-                    bool sendCustomerMail = new EmailGenerator().ConfigMail(EmailId, true, "PickC Invoice", "<div>PickC Invoice</div>", pdf);
-                    if (sendCustomerMail)
-                        return Ok(UTILITY.SUCCESS);
-                    else
-                        return Ok(UTILITY.FAIL);
+                }
+                else
+                {
+                    return Ok(tripInvoiceList);
                 }
             }
             catch (Exception ex)
@@ -838,7 +845,7 @@ namespace PickCApi.Areas.Master.Controllers
                 return Ok(new List<LookUp>());
             }
         }
-       
+
         [HttpGet]
         [Route("customerPaymentsIsPaidCheck")]
         [ApiAuthFilter]
