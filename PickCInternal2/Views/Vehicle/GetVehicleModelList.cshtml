@@ -1,0 +1,65 @@
+﻿@model IEnumerable<Master.Contract.VehicleConfig>
+@using PickC.Internal2.HtmlHelpers
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@{
+    ViewBag.Title = "Index";
+    WebGrid grid = new WebGrid(Model, rowsPerPage: 10, selectionFieldName: "selectedRow", ajaxUpdateContainerId: "grid");
+  
+}
+<section class="content">
+    @*<div class="row">
+            <div class="col-xs-12">
+                @{ Html.RenderPartial("DashboardMenuList"); }
+            </div>
+        </div>*@
+    <div class="row">
+        <div class="col-xs-12">
+            <div class="tab-main-content">
+                <div class="box" id="grid">
+                    <div class="box-header" style="padding-bottom:11px;">
+                        <h3 class="box-title">Vehilce List</h3>
+
+                        <div class="box-tools">
+                            <div class="input-group input-group-sm" style="width: 150px;">
+                                <div class="input-group-btn">
+                                    <button type="button" class="btn btn-default pull-right" onclick="location.href = '@Url.Content("~/Vehicle/Vehicle")'"><i class="fa fa-plus" aria-hidden="true"></i></button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    @if (Model != null)
+                    {
+                        <div class="box-body" id="">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    @grid.Table(
+                                     tableStyle: "table table-hover",
+                                     columns: grid.Columns(
+                                         grid.Column("Model", "Model"),
+                                         grid.Column("Maker", "Maker"),
+                                         grid.Column("Tonnage", "Tonnage"),
+                                         grid.Column("VehicleGroupDescription", "VehicleGroupDescription")
+                                     ),
+                                     htmlAttributes: new { id = "grid" })
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-12">
+                                    <div class="pull-right">@grid.PagerList(mode: WebGridPagerModes.All, paginationStyle: "pagination pagination-sm")</div>
+                                </div>
+                            </div>
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+
+</section>
+
+
+
+
+

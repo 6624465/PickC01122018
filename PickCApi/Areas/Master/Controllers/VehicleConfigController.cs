@@ -12,7 +12,7 @@ using PickCApi.Core;
 namespace PickCApi.Areas.Master.Controllers
 {
     [RoutePrefix("api/master/vehicleconfig")]
-    [ApiAuthFilter]
+   // [ApiAuthFilter]
     public class VehicleConfigController : ApiController
     {
         [HttpPost]

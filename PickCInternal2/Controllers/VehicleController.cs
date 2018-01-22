@@ -24,12 +24,13 @@ namespace PickCInternal2.Controllers
         public async Task<ActionResult> saveVehicleConfig(VehicleConfig con)
         {
             var result = await new VehicleGroupService(AUTHTOKEN, p_mobileNo).SaveVehicleConfig(con);
-            return View();
+            return RedirectToAction("getVehicleModelList");
 
         }
-        //public ActionResult getVehicleModelList()
-        //{
-        //    var result = n
-        //}
+        public async Task<ActionResult> getVehicleModelList()
+        {
+            var result = await new VehicleGroupService(AUTHTOKEN, p_mobileNo).GetVehicleConfig();
+            return View(result);
+        }
     }
 }

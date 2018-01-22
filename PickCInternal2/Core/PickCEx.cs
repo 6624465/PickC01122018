@@ -20,7 +20,7 @@ namespace PickC.Internal2
                 ViewName = "Error1",
                 ViewData = new ViewDataDictionary(model)
             };*/            
-           filterContext.Result = new RedirectResult("~/Account/Login");
+          // filterContext.Result = new RedirectResult("~/Account/Login");
         }
     }
 }
