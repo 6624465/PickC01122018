@@ -69,11 +69,8 @@ namespace PickC.Internal2.Controllers
             {
                 return Json(ex.Message, JsonRequestBehavior.AllowGet);
             }
-        }
-
-                throw;
-            }
-        }
+        }                
+        
         [HttpPost]
         public async Task<ActionResult> SaveDriver(Driver driver)
         {
