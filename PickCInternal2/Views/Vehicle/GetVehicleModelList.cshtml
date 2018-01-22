@@ -5,7 +5,7 @@
 }
 @{
     ViewBag.Title = "Index";
-    WebGrid grid = new WebGrid(Model, rowsPerPage: 10, selectionFieldName: "selectedRow", ajaxUpdateContainerId: "grid");
+    WebGrid grid = new WebGrid(Model, rowsPerPage: 10, selectionFieldName: "selectedRow");
   
 }
 <section class="content">
@@ -17,7 +17,7 @@
     <div class="row">
         <div class="col-xs-12">
             <div class="tab-main-content">
-                <div class="box" id="grid">
+                <div class="box" id="vehiclegrid">
                     <div class="box-header" style="padding-bottom:11px;">
                         <h3 class="box-title">Vehilce List</h3>
 
@@ -31,7 +31,7 @@
                     </div>
                     @if (Model != null)
                     {
-                        <div class="box-body">
+                        <div class="box-body" id="grid">
                             <div class="row">
                                 <div class="col-md-12">
                                     @grid.Table(
@@ -42,8 +42,7 @@
                                          grid.Column("Tonnage", "Tonnage"),
                                          grid.Column("VehicleGroupDescription", "VehicleGroup"),
                                          grid.Column("Edit", "#Edit", format:@<text><a href="@Url.Content("~/Vehicle/edit?VehicleModelId=" + item.VehicleModelId)"><i class="fa fa-pencil" aria-hidden="true"></i></a></text>)
-                                     ),
-                                     htmlAttributes: new { id = "grid" })
+                                     ))
                                 </div>
                             </div>
                             <div class="row">

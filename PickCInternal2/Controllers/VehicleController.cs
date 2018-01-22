@@ -27,6 +27,8 @@ namespace PickCInternal2.Controllers
             return RedirectToAction("getVehicleModelList");
 
         }
+
+        [HttpGet]
         public async Task<ActionResult> getVehicleModelList()
         {
             var result = await new VehicleGroupService(AUTHTOKEN, p_mobileNo).GetVehicleConfig();
