@@ -515,6 +515,7 @@
         });
         function btnSave() {
             if ($('#frmDriverAdd').valid()) {
+                $("#txt-Operator-Number").removeAttr("disabled", "disabled");
                 $('#frmDriverAdd').submit();
             }
         }
@@ -548,19 +549,18 @@
         debugger;
         var values = localStorage.getItem('OperatorValue');
         var value = JSON.parse(values);
+        debugger;
         onChangeOperator(value);
 
         function onChangeOperator(val) {
-            
-            //var operatorId;
-            //if (val != null) {
-            //    operatorId = val;
-            //    $('#txt-Operator-Number').val(operatorId);
-            //}
-            //else {
-            //    operatorId = $('#txt-Operator-Number').val();
-            //}
-            operatorId = $('#txt-Operator-Number').val();
+            debugger
+            var operatorId;
+            if (val != null) {
+                operatorId = val;
+                $('#txt-Operator-Number').val(operatorId);
+            }
+            else {
+                operatorId = $('#txt-Operator-Number').val();
                 if (operatorId != '' && operatorId != undefined) {
 
                     $.ajax({
@@ -578,7 +578,7 @@
                                 $("#DeviceDetails").css("display", "block");
                                 $("#buttons").css("display", "block");
 
-                                $("#txt-Operator-Number").prop("readonly", true);
+                                $("#txt-Operator-Number").attr("disabled", "disabled");
                             }
 
                             //$('.validatenumber').keypress(function (e) {

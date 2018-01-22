@@ -113,8 +113,8 @@ namespace Master.DataFactory
                     {
                         foreach (var driverAttachment in driver.driverAttachment)
                         {
-                            driverAttachment.DriverId = driver.OperatorId;
-                            driverAttachment.AttachmentId = driver.OperatorId + driverAttachment.LookupCode;
+                            driverAttachment.DriverId = newDocumentNo;
+                            driverAttachment.AttachmentId = newDocumentNo + driverAttachment.LookupCode;
                         }
                         result = new DriverAttachementDAL().SaveList(driver.driverAttachment, transaction) == true ? 1 : 0;
                     }
