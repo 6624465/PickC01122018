@@ -35,8 +35,8 @@
                                 columns: grid.Columns(
                                     grid.Column("Name", "Name"),
                                     grid.Column("MobileNo", "Mobile No"),
-                                    grid.Column("EmailID", "Email ID"),
-                                    grid.Column("Edit", "#Edit", format: @<text><a href="@Url.Content("~/Customers/CustomerDetails?MobileNo=" + item.MobileNo)"><i class="fa fa-pencil" aria-hidden="true"></i></a></text>)
+                                    grid.Column("EmailID", "Email ID")
+                                    @*grid.Column("Edit", "#Edit", format: @<text><a href="@Url.Content("~/Customers/CustomerDetails?MobileNo=" + item.MobileNo)"><i class="fa fa-pencil" aria-hidden="true"></i></a></text>)*@
                                    ),
                                 htmlAttributes: new { id = "grid" })
                         </div>
