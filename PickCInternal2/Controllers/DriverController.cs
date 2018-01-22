@@ -65,8 +65,11 @@ namespace PickC.Internal2.Controllers
                 var result = await new DriverService(AUTHTOKEN, p_mobileNo).DeleteDriverAsync(driverID);
                 return Json(result, JsonRequestBehavior.AllowGet);
             }
-            catch (Exception )
+            catch (Exception ex)
             {
+                return Json(ex.Message, JsonRequestBehavior.AllowGet);
+            }
+        }                
 
             }
         }
