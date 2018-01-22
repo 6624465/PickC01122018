@@ -30,6 +30,18 @@ namespace PickC.Services
                 return ServiceResponse<List<Operator>>(client.Execute<List<Operator>>(request));
             });
         }
+        public async Task<List<OperatorWithProfilePic>> OperatorsWithProfileListAsync()
+        {
+            IRestClient client = new RestClient(ApiBaseUrl);
+            var request = p_request;
+            request.Method = Method.GET;
+            request.Resource = "master/operator/profilepic/list";
+
+            return await Task.Run(() =>
+            {
+                return ServiceResponse<List<OperatorWithProfilePic>>(client.Execute<List<OperatorWithProfilePic>>(request));
+            });
+        }
         public async Task<List<Operator>> GetOperatorList()
         {
             IRestClient client = new RestClient(ApiBaseUrl);

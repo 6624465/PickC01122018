@@ -23,9 +23,10 @@ namespace PickCInternal2.Controllers
         [HttpGet]
         public async Task<ActionResult> Operator()
         {
-            var operatorList = await new OperatorService(AUTHTOKEN, p_mobileNo).OperatorsListAsync();
+            var operatorList = await new OperatorService(AUTHTOKEN, p_mobileNo).OperatorsWithProfileListAsync();
             return View(operatorList);
         }
+       
         [HttpGet]
         public async Task<ActionResult> OperatorDetails()
          {
@@ -65,6 +66,10 @@ namespace PickCInternal2.Controllers
                     if (file == "fothers")
                     {
                         lookupId = "1382";
+                    }
+                    if (file == "fprofilepic")
+                    {
+                        lookupId = "1506";
                     }
                     string mapPath = Server.MapPath("~/Attachments/");
                     if (!Directory.Exists(mapPath))

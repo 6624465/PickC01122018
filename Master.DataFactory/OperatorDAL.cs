@@ -33,6 +33,12 @@ namespace Master.DataFactory
         {
             return db.ExecuteSprocAccessor(DBRoutine.LISTOPERATOR, MapBuilder<Operator>.BuildAllProperties()).ToList();
         }
+
+        public List<OperatorWithProfilePic> GetWithProfileList()
+        {
+            return db.ExecuteSprocAccessor(DBRoutine.LISTWITHPROFILEPICOPERATOR, MapBuilder<OperatorWithProfilePic>.BuildAllProperties()).ToList();
+        }
+
         public bool Save<T>(T item, DbTransaction parentTransaction) where T : IContract
         {
             currentTransaction = parentTransaction;

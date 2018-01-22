@@ -102,6 +102,7 @@ namespace Master.DataFactory
         public const string SELECTOPERATOR = "[Master].[usp_OperatorSelect]";
         public const string SELECTOPERATORBYOPERATORID = "[Master].[usp_OperatorSelectByOperatorID]";
         public const string LISTOPERATOR = "[Master].[usp_OperatorList]";
+        public const string LISTWITHPROFILEPICOPERATOR = "[Master].[usp_OperatorListWithProfilePic]";
         public const string SAVEOPERATOR = "[Master].[usp_OperatorSave]";
         public const string DELETEPERATOR = "[Master].[usp_OperatorDelete]";
         public const string LISTBANKDETAILSOPERATORWISE = "[Master].[usp_BankListOperatorWise]";
