@@ -28,16 +28,26 @@ namespace PickC.Services
             return ServiceResponse(
                 await client.ExecuteTaskAsync<List<LookUp>>(request));
         }
-        public async Task<VehicleConfig> SaveVehicleConfig(VehicleConfig con)
+        public async Task<string> SaveVehicleConfig(VehicleConfig con)
+        {
+            IRestClient client = new RestClient(ApiBaseUrl);
+            var request = new RestRequest();
+            request.Method = Method.POST;
+            request.Resource = "master/vehicleconfig/save";
+            request.AddJsonBody(con);
+            return await Task.Run(() =>
+            {
+                return ServiceResponse(client.Execute(request));
+            });
+        }
+        public async Task<List<VehicleConfig>> GetVehicleConfig()
         {
             IRestClient client = new RestClient(ApiBaseUrl);
             var request = new RestRequest();
             request.Method = Method.GET;
-            request.Resource = "master/vehicleconfig/save";
-            request.AddJsonBody(con);
+            request.Resource = "master/vehicleconfig/list";
             return ServiceResponse(
-                await client.ExecuteTaskAsync<VehicleConfig>(request));
-
+                await client.ExecuteTaskAsync<List<VehicleConfig>>(request));
         }
     }
 }
