@@ -284,7 +284,7 @@ new { @class = "form-control" })
                                         <div class="col-md-4">
                                             <div class="form-group">
                                                 <label>Aadhar Card No</label>
-                                                @Html.TextBoxFor(x => x.OPerator.AadharCardNo, new { @class = "form-control", placeholder = "Aadhar Card No", maxLength = 12,@id= "AadharCardNo"})
+                                                @Html.TextBoxFor(x => x.OPerator.AadharCardNo, new { @class = "form-control", placeholder = "Aadhar Card No", maxLength = 16,@id= "AadharCardNo"})
                                             </div>
                                         </div>
                                         @*<div class="col-md-4">
@@ -297,7 +297,7 @@ new { @class = "form-control" })
                                     <hr />
                                     <div class="row">
                                         <div class="col-md-6">
-                                            <h5>Address Info</h5>
+                                            @*<h5>Address Info</h5>*@
                                             <div class="box">
                                                 <div class="box-header">
                                                     <h3 class="box-title">Address Info</h3>
@@ -367,7 +367,7 @@ new { @class = "form-control" })
                                                 </div>
                                             </div>*@
                                         <div class="col-md-6">
-                                            <h5>Bank Details</h5>
+                                            @*<h5>Bank Details</h5>*@
                                             <div class="box">
                                                 <div class="box-header">
                                                     <h3 class="box-title">Bank Details</h3>
@@ -431,7 +431,7 @@ new { @class = "form-control" })
                                     {
                                         <div class="row">
                                             <div class="col-md-6">
-                                                <h5>Vehicle Details</h5>
+                                                @*<h5>Vehicle Details</h5>*@
                                                 <div class="box">
                                                     <div class="box-header">
                                                         <h3 class="box-title">Vehicle Details</h3>
@@ -500,7 +500,7 @@ new { @class = "form-control" })
                                                 </div>
                                             </div>
                                             <div class="col-md-6">
-                                                <h5>Driver Details</h5>
+                                                @*<h5>Driver Details</h5>*@
                                                 <div class="box">
                                                     <div class="box-header">
                                                         <h3 class="box-title">Driver Details</h3>
@@ -572,54 +572,54 @@ new { @class = "form-control" })
                                     }
                                     <div class="row">
                                         <div class="col-md-6">
-                                            <h5>Attachments</h5>
+                                            @*<h5>Attachments</h5>*@
                                             <div class="box">
                                                 <div class="box-header">
                                                     <h3 class="box-title">Attachments</h3>
                                                 </div>
                                                 <div class="box-body">
                                                     <div class="row">
-                                                        <div class="col-md-2">
+                                                        <div class="col-md-3">
                                                             <label>AADHAR CARD</label>
                                                         </div>
                                                         <div class="col-md-3">
                                                             <input type="file" id="fadhar" name="fadhar" value="1375" />
                                                         </div>
                                                     </div>
-                                                    <div class="row">
-                                                        <div class="col-md-2">
+                                                    <div class="row" style="padding-top:5px">
+                                                        <div class="col-md-3">
                                                             <label>PAN CARD</label>
                                                         </div>
                                                         <div class="col-md-3">
                                                             <input type="file" id="fpan" name="fpan" value="1374" />
                                                         </div>
                                                     </div>
-                                                    <div class="row">
-                                                        <div class="col-md-2">
-                                                            <label>LICENSE CARD</label>
+                                                    <div class="row" style="padding-top:5px">
+                                                        <div class="col-md-3">
+                                                            <label>DRIVING LICENCE</label>
                                                         </div>
                                                         <div class="col-md-3">
                                                             <input type="file" id="flicense" name="flicense" value="1376" />
                                                         </div>
                                                     </div>
-                                                    <div class="row">
-                                                        <div class="col-md-2">
+                                                    <div class="row" style="padding-top:5px">
+                                                        <div class="col-md-3">
                                                             <label>VOTER ID</label>
                                                         </div>
                                                         <div class="col-md-3">
                                                             <input type="file" id="fvoter" name="fvoter" value="1377" />
                                                         </div>
                                                     </div>
-                                                    <div class="row">
-                                                        <div class="col-md-2">
+                                                    <div class="row" style="padding-top:5px">
+                                                        <div class="col-md-3">
                                                             <label>PROFILE PIC</label>
                                                         </div>
                                                         <div class="col-md-3">
                                                             <input type="file" id="fvoter" name="fprofilepic" value="1506" />
                                                         </div>
                                                     </div>
-                                                    <div class="row">
-                                                        <div class="col-md-2">
+                                                    <div class="row" style="padding-top:5px">
+                                                        <div class="col-md-3">
                                                             <label>OTHERS</label>
                                                         </div>
                                                         <div class="col-md-3">
