@@ -14,6 +14,7 @@ using Master.BusinessFactory;
 using PickCApi.Core;
 using PickCApi.Areas.Operation.DTO;
 using PickC.Services.DTO;
+using System.Web;
 
 namespace PickCApi.Areas.Operation.Controllers
 {
@@ -306,6 +307,7 @@ namespace PickCApi.Areas.Operation.Controllers
         }
         [HttpPost]
         [Route("Reject")]
+        [ApiAuthFilter]
         public IHttpActionResult RejectBookingByDriverInNotification(BookingCancelDTO bookingCancelDTO)
         {
             try
@@ -318,8 +320,11 @@ namespace PickCApi.Areas.Operation.Controllers
                     bookingCancelDTO.cancelRemarks,
                     bookingCancelDTO.istripstarted,
                     bookingCancelDTO.IsLoadingUnloading);
-                if (result)
+                if (result == true)
                 {
+                    PushNotification(new BookingBO().GetCustomerDeviceIDByBookingNo(bookingCancelDTO.bookingNo),
+                      bookingCancelDTO.bookingNo,
+                      UTILITY.NotifyCancelledByDriver);
                     return Ok(new { Status = UTILITY.SUCCESSMESSAGE });
                 }
                 else

@@ -58,7 +58,7 @@ namespace Master.DataFactory
                 var savecommand = db.GetStoredProcCommand(DBRoutine.SAVEOPERATOR);
                 db.AddInParameter(savecommand, "OperatorID", System.Data.DbType.String, operatorItem.OperatorID ?? "");
                 db.AddInParameter(savecommand, "OperatorName", System.Data.DbType.String, operatorItem.OperatorName);
-                db.AddInParameter(savecommand, "Password", System.Data.DbType.String, operatorItem.Password);
+                db.AddInParameter(savecommand, "Password", System.Data.DbType.String, operatorItem.MobileNo);
                 db.AddInParameter(savecommand, "FatherName", System.Data.DbType.String, operatorItem.FatherName);
                 db.AddInParameter(savecommand, "DateOfBirth", System.Data.DbType.DateTime, operatorItem.DateOfBirth);
                 db.AddInParameter(savecommand, "PlaceOfBirth", System.Data.DbType.String, operatorItem.PlaceOfBirth);
