@@ -261,6 +261,20 @@ namespace PickCApi.Areas.Operation.Controllers
                 return InternalServerError(ex);
             }
         }
+        [HttpGet]
+        [Route("GetTotalTripDetailsOnDailyBasis")]
+        public IHttpActionResult GetTotalTripDailyBasis()
+        {
+            try
+            {
+                var result = new TripBO().getTripDetailsDailyBasis();
+                return Ok(result);
+            }
+            catch (Exception ex)
+            {
+                return InternalServerError(ex);
+            }
+        }
 
 
     }

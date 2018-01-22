@@ -64,8 +64,15 @@ namespace PickC.Services
             return ServiceResponse(await client.ExecuteTaskAsync<List<DriverCancellation>>(request));
 
         }
-      
-        
+        public async Task<List<TripDailyBasis>> getTotalTripDailyBasis()
+        {
+            IRestClient client = new RestClient(ApiBaseUrl);
+            var request = p_request;
+            request.Method = Method.GET;
+            request.Resource = "operation/trip/GetTotalTripDetailsOnDailyBasis";
+            return ServiceResponse(await client.ExecuteTaskAsync<List<TripDailyBasis>>(request));
+
+        }
 
     }
 }
