@@ -149,7 +149,6 @@ namespace PickCInternal2.Controllers
         }
         [HttpGet]
         public async Task<ActionResult> Edit(string operatorID)
-
         {
             Task<Operator> taskOperator = new OperatorService(AUTHTOKEN, p_mobileNo).OperatorInfoAsync(operatorID);
             Task<OperatorLookupDTO> taskoperatorLookupDTO = new OperatorService(AUTHTOKEN, p_mobileNo).LookUpDataAsync();
@@ -167,6 +166,61 @@ namespace PickCInternal2.Controllers
             };
 
             return View("OperatorDetails", operatorVm);
+        }
+
+        [HttpPost]
+        public async Task<ActionResult> SaveVehicle(OperatorVehicle operatorVehicle)
+        {
+            foreach(string file in Request.Files)
+            {
+                if(Request.Files[file] != null && Request.Files[file].ContentLength > 0)
+                {
+                    var vehicleAttachmentsPath = Server.MapPath("~/VehicleAttachments/" + operatorVehicle.OperatorVehicleID + "/" + operatorVehicle.VehicleRegistrationNo + "/");
+                    System.IO.DirectoryInfo dirInfo = new DirectoryInfo(vehicleAttachmentsPath);
+
+                    if (!dirInfo.Exists)
+                        dirInfo.Create();
+
+                    HttpPostedFileBase _file = Request.Files[file];
+                    var fileName = Path.GetFileName(_file.FileName);
+                    var path = Path.Combine(vehicleAttachmentsPath, fileName);
+                    _file.SaveAs(path);
+
+                    /*
+                    if(file == "registrationdoc")                    
+                        operatorVehicle.registrationdoc = _file.FileName;                    
+                    else if(file == "insurancedoc")
+                        operatorVehicle.insurancedoc = _file.FileName;
+                    else if (file == "pollutioncheckdoc")
+                        operatorVehicle.pollutioncheckdoc = _file.FileName;
+                    else if (file == "othersdoc")
+                        operatorVehicle.othersdoc = _file.FileName;
+                    */
+                }
+            }
+
+            if (!string.IsNullOrWhiteSpace(Request.Form["hdnRegistrationdocFile"]))
+                operatorVehicle.registrationdoc = Request.Form["hdnRegistrationdocFile"];
+            else
+                operatorVehicle.registrationdoc = null;
+
+            if (!string.IsNullOrWhiteSpace(Request.Form["hdnInsurancedocFile"]))
+                operatorVehicle.insurancedoc = Request.Form["hdnInsurancedocFile"];
+            else
+                operatorVehicle.insurancedoc = null;
+
+            if (!string.IsNullOrWhiteSpace(Request.Form["hdnPollutioncheckdocFile"]))
+                operatorVehicle.pollutioncheckdoc = Request.Form["hdnPollutioncheckdocFile"];
+            else
+                operatorVehicle.pollutioncheckdoc = null;
+
+            if (!string.IsNullOrWhiteSpace(Request.Form["hdnOthersdocFile"]))
+                operatorVehicle.othersdoc = Request.Form["hdnOthersdocFile"];
+            else
+                operatorVehicle.othersdoc = null;
+
+            var result = await new OperatorVehicleService(AUTHTOKEN, p_mobileNo).SaveOperatorVehicleList(operatorVehicle);
+            return RedirectToAction("Edit", new { operatorID = operatorVehicle.OperatorVehicleID });
         }
 
         public async Task<JsonResult> GetAttachmentData()

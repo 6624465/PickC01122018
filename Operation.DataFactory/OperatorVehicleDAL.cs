@@ -85,6 +85,11 @@ namespace Operation.DataFactory
                 db.AddInParameter(savecommand, "CreatedBy", System.Data.DbType.String, operatorvehicle.CreatedBy);
                 db.AddInParameter(savecommand, "ModifiedBy", System.Data.DbType.String, operatorvehicle.ModifiedBy);
 
+                db.AddInParameter(savecommand, "registrationdoc", System.Data.DbType.String, operatorvehicle.registrationdoc);
+                db.AddInParameter(savecommand, "insurancedoc", System.Data.DbType.String, operatorvehicle.insurancedoc);
+                db.AddInParameter(savecommand, "pollutioncheckdoc", System.Data.DbType.String, operatorvehicle.pollutioncheckdoc);
+                db.AddInParameter(savecommand, "othersdoc", System.Data.DbType.String, operatorvehicle.othersdoc);
+
 
                 result = db.ExecuteNonQuery(savecommand, transaction);
 

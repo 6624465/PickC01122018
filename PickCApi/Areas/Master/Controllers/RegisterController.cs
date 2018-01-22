@@ -850,10 +850,10 @@ namespace PickCApi.Areas.Master.Controllers
                 var result = new CustomerBO().GetCustomerPaymentsCheck(CustomerMobNo);
                 if (string.IsNullOrWhiteSpace(result))
                 {
-                    return Ok(new { Status = UTILITY.SUCCESS, BookingNo = "" });
+                    return Ok(new { Status = UTILITY.SUCCESS, BookingNo = result });
                 }
                 else
-                    return Ok(new { Status = UTILITY.FAIL, BookingNo = result });
+                    return Ok(new { Status = UTILITY.FAIL, BookingNo = "" });
             }
             catch (Exception)
             {

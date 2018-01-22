@@ -14,6 +14,7 @@ using Master.BusinessFactory;
 using PickCApi.Core;
 using PickCApi.Areas.Operation.DTO;
 using PickC.Services.DTO;
+using System.Web;
 
 namespace PickCApi.Areas.Operation.Controllers
 {
@@ -306,6 +307,7 @@ namespace PickCApi.Areas.Operation.Controllers
         }
         [HttpPost]
         [Route("Reject")]
+        [ApiAuthFilter]
         public IHttpActionResult RejectBookingByDriverInNotification(BookingCancelDTO bookingCancelDTO)
         {
             try
