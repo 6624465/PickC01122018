@@ -30,7 +30,7 @@
                         <div class="row">
                             <div class="col-md-4">
                                 <div class="form-group">
-                                    <label>Operator Number</label>
+                                    <label>Operator</label>
                                     @*  <input type="text" id="txt-Operator-Number" class="form-control" />*@
                                     @Html.DropDownListFor(x => x.driver.OperatorId,new SelectList(ViewBag.Operators,"Value","Text"),"Select Operator", new { @class = "form-control", id = "txt-Operator-Number", onchange = "onChangeOperator(this)" })
 
@@ -554,7 +554,7 @@
             debugger
             var operatorId;
             if (val != null) {
-                operatorId = val;
+                operatorId = val.value;
                 $('#txt-Operator-Number').val(operatorId);
             }
             else {
