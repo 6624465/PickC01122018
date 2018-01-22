@@ -28,5 +28,15 @@ namespace PickC.Services
             return ServiceResponse(
                 await client.ExecuteTaskAsync<List<LookUp>>(request));
         }
+        public async Task<VehicleConfig> SaveVehicleConfig()
+        {
+            IRestClient client = new RestClient(ApiBaseUrl);
+            var request = new RestRequest();
+            request.Method = Method.GET;
+            request.Resource = "master/vehiclegroup/saveVehicleConfig";
+            return ServiceResponse(
+                await client.ExecuteTaskAsync<VehicleConfig>(request));
+
+        }
     }
 }
