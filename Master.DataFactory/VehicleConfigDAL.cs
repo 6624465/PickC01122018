@@ -132,7 +132,7 @@ namespace Master.DataFactory
 
             var vehicleconfigItem = db.ExecuteSprocAccessor(DBRoutine.SELECTVEHICLECONFIG,
                                                     MapBuilder<VehicleConfig>.BuildAllProperties(),
-                                                    item.VehicleGroup).FirstOrDefault();
+                                                    item.VehicleModelId).FirstOrDefault();
 
             if (vehicleconfigItem == null) return null;
 

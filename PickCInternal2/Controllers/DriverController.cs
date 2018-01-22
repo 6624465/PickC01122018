@@ -55,7 +55,13 @@ namespace PickC.Internal2.Controllers
             };
             driverVm.driver.DateofIssue = DateTime.Now;
             driverVm.driver.DateofReturn = DateTime.Now;
+
+            if (Request.IsAjaxRequest())
+            {
+                return Json(driverVm, JsonRequestBehavior.AllowGet);
+            }
             return View(driverVm);
+
         }
         [HttpGet]
         public async Task<ActionResult> DeleteDriver(string driverID)
@@ -70,8 +76,6 @@ namespace PickC.Internal2.Controllers
                 return Json(ex.Message, JsonRequestBehavior.AllowGet);
             }
         }                
-
-           
 
         [HttpPost]
         public async Task<ActionResult> SaveDriver(Driver driver)

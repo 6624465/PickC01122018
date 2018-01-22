@@ -27,9 +27,17 @@ namespace PickCInternal2.Controllers
             return RedirectToAction("getVehicleModelList");
 
         }
+
+        [HttpGet]
         public async Task<ActionResult> getVehicleModelList()
         {
             var result = await new VehicleGroupService(AUTHTOKEN, p_mobileNo).GetVehicleConfig();
+            return View(result);
+        }
+        public async Task<ActionResult> edit(int VehicleModelId)
+        {
+            ViewBag.VehicleCategory = (await new OperatorVehicleService(AUTHTOKEN, p_mobileNo).GetOperatorVehicleCategoryList()).Select(x => new { Value = x.LookupId, Text = x.LookupCode }).ToList();
+            var result = await new VehicleGroupService(AUTHTOKEN, p_mobileNo).GetVehicleConfigById(VehicleModelId);
             return View(result);
         }
     }

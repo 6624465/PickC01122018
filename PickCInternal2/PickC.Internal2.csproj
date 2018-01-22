@@ -349,8 +349,7 @@
     <Content Include="Views\Dashboard\BookingInvoice.cshtml" />
     <Content Include="Views\Vehicle\Vehicle.cshtml" />
     <Content Include="Views\Vehicle\GetVehicleModelList.cshtml" />
-    <Content Include="Scripts\jquery-3.1.1.slim.min.map" />
-    <Content Include="Scripts\jquery-3.1.1.min.map" />
+    <Content Include="Views\Vehicle\edit.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
