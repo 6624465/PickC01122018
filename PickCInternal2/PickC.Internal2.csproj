@@ -357,6 +357,7 @@
     <Content Include="Views\Dashboard\UserAppCancellation.cshtml" />
     <Content Include="Views\Dashboard\DriverRevoke.cshtml" />
     <Content Include="Views\Customers\CustomerDetails.cshtml" />
+    <Content Include="Views\Dashboard\BookingInvoice.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
