@@ -77,7 +77,7 @@ namespace Master.DataFactory
                 var savecommand = db.GetStoredProcCommand(DBRoutine.SAVEDRIVER);
                 db.AddInParameter(savecommand, "DriverID", System.Data.DbType.String, driver.DriverId);
                 db.AddInParameter(savecommand, "DriverName", System.Data.DbType.String, driver.DriverName);
-                db.AddInParameter(savecommand, "Password", System.Data.DbType.String, driver.Password);
+                db.AddInParameter(savecommand, "Password", System.Data.DbType.String, driver.MobileNo);
                 db.AddInParameter(savecommand, "VehicleNo", System.Data.DbType.String, "");
                 db.AddInParameter(savecommand, "FatherName", System.Data.DbType.String, driver.FatherName);
                 db.AddInParameter(savecommand, "DateOfBirth", System.Data.DbType.DateTime, driver.DateOfBirth);
@@ -118,6 +118,10 @@ namespace Master.DataFactory
                         }
                         result = new DriverAttachementDAL().SaveList(driver.driverAttachment, transaction) == true ? 1 : 0;
                     }
+                    //if (driver.operatorDriverList != null&& driver.operatorDriverList.Count > 0)
+                    //{
+                    //    result = new DriverAttachementDAL().SaveList(driver.driverAttachment, transaction) == true ? 1 : 0;
+                    //}
                     if (driver.AddressList != null && driver.AddressList.Count > 0)
                     {
                         foreach (var addressItem in driver.AddressList)
@@ -286,8 +290,8 @@ namespace Master.DataFactory
             var driverItem = db.ExecuteSprocAccessor(DBRoutine.SELECTDRIVER,
                                                     MapBuilder<Driver>
                                                     .MapAllProperties()
-                                                    .DoNotMap(x => x.Nationality).Build(),
-                                                    item.DriverId).FirstOrDefault();
+                                                    .DoNotMap(x => x.Nationality)
+                                                    .Build(),item.DriverId).FirstOrDefault();
 
             if (driverItem == null) return null;
 
