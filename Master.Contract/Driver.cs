@@ -94,8 +94,14 @@ namespace Master.Contract
         public DateTime DateofReturn { get; set; }
         public List<BankDetails> BankDetails { get; set; }
         public List<DriverAttachment> driverAttachment { get; set; }
+        
+        //public DriverOpertorId driverOpertorId { get; set; }
 
     }
+    //public class DriverOpertorId
+    //{
+    //    public string DriverVehicleNo { get; set; }
+    //}
     public class DriverAttachment : IContract
     {
         public string AttachmentId { get; set; }

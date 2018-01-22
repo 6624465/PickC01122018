@@ -318,8 +318,11 @@ namespace PickCApi.Areas.Operation.Controllers
                     bookingCancelDTO.cancelRemarks,
                     bookingCancelDTO.istripstarted,
                     bookingCancelDTO.IsLoadingUnloading);
-                if (result)
+                if (result == true)
                 {
+                    PushNotification(new BookingBO().GetCustomerDeviceIDByBookingNo(bookingCancelDTO.bookingNo),
+                      bookingCancelDTO.bookingNo,
+                      UTILITY.NotifyCancelledByDriver);
                     return Ok(new { Status = UTILITY.SUCCESSMESSAGE });
                 }
                 else

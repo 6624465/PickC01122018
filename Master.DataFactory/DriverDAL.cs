@@ -118,6 +118,10 @@ namespace Master.DataFactory
                         }
                         result = new DriverAttachementDAL().SaveList(driver.driverAttachment, transaction) == true ? 1 : 0;
                     }
+                    //if (driver.operatorDriverList != null&& driver.operatorDriverList.Count > 0)
+                    //{
+                    //    result = new DriverAttachementDAL().SaveList(driver.driverAttachment, transaction) == true ? 1 : 0;
+                    //}
                     if (driver.AddressList != null && driver.AddressList.Count > 0)
                     {
                         foreach (var addressItem in driver.AddressList)
@@ -286,8 +290,8 @@ namespace Master.DataFactory
             var driverItem = db.ExecuteSprocAccessor(DBRoutine.SELECTDRIVER,
                                                     MapBuilder<Driver>
                                                     .MapAllProperties()
-                                                    .DoNotMap(x => x.Nationality).Build(),
-                                                    item.DriverId).FirstOrDefault();
+                                                    .DoNotMap(x => x.Nationality)
+                                                    .Build(),item.DriverId).FirstOrDefault();
 
             if (driverItem == null) return null;
 
