@@ -100,14 +100,14 @@ namespace Master.DataFactory
                         });
                     }
 
-                    if (operatorItem.OperatorDriverList != null && operatorItem.OperatorDriverList.Count > 0)
-                    {
-                        operatorItem.OperatorDriverList.ForEach(x =>
-                        {
-                            x.OperatorDriverId = operatorItem.OperatorID;
-                            result = new OperatorDriverDAL().Save(x, transaction) == true ? 1 : 0;
-                        });
-                    }
+                    //if (operatorItem.OperatorDriverList != null && operatorItem.OperatorDriverList.Count > 0)
+                    //{
+                    //    operatorItem.OperatorDriverList.ForEach(x =>
+                    //    {
+                    //        x.OperatorID = operatorItem.OperatorID;
+                    //        result = new OperatorDriverDAL().Save(x, transaction) == true ? 1 : 0;
+                    //    });
+                    //}
 
                     if (operatorItem.OperatorVehicle != null && operatorItem.OperatorVehicle.Count > 0)
                     {

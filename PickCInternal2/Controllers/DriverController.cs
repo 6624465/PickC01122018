@@ -71,6 +71,9 @@ namespace PickC.Internal2.Controllers
             }
         }
 
+                throw;
+            }
+        }
         [HttpPost]
         public async Task<ActionResult> SaveDriver(Driver driver)
         {
