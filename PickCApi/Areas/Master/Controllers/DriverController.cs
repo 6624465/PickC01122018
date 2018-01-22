@@ -62,7 +62,6 @@ namespace PickCApi.Areas.Master.Controllers
                 driver.ModifiedBy = UTILITY.DEFAULTUSER;
                 driver.CreatedOn = DateTime.Now;
                 driver.ModifiedOn = DateTime.Now;
-
                 if (driver.AddressList!=null && driver.AddressList.Count > 0)
                 {
                     driver.AddressList.ForEach(x =>

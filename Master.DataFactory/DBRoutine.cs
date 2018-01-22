@@ -36,6 +36,7 @@ namespace Master.DataFactory
         public const string LISTVEHICLECONFIG = "[Master].[usp_VehicleConfigList]";
         public const string SAVEVEHICLECONFIG = "[Master].[usp_VehicleConfigSave]";
         public const string DELETEVEHICLECONFIG = "[Master].[usp_VehicleConfigDelete]";
+        public const string INSERTVEHICLECONFIG= "[Master].[usp_VehicleConfigInsert]";
 
 
 
@@ -102,6 +103,7 @@ namespace Master.DataFactory
         public const string SELECTOPERATOR = "[Master].[usp_OperatorSelect]";
         public const string SELECTOPERATORBYOPERATORID = "[Master].[usp_OperatorSelectByOperatorID]";
         public const string LISTOPERATOR = "[Master].[usp_OperatorList]";
+        public const string LISTWITHPROFILEPICOPERATOR = "[Master].[usp_OperatorListWithProfilePic]";
         public const string SAVEOPERATOR = "[Master].[usp_OperatorSave]";
         public const string DELETEPERATOR = "[Master].[usp_OperatorDelete]";
         public const string LISTBANKDETAILSOPERATORWISE = "[Master].[usp_BankListOperatorWise]";

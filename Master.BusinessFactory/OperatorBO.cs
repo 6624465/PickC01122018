@@ -23,6 +23,12 @@ namespace Master.BusinessFactory
         {
             return operatorDAL.GetList();
         }
+
+        public List<OperatorWithProfilePic> GetWithProfileList()
+        {
+            return operatorDAL.GetWithProfileList();
+        }
+
         public bool SaveOperator(Operator newItem)
         {
             return operatorDAL.Save(newItem);

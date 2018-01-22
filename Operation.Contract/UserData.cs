@@ -15,19 +15,34 @@ namespace Operation.Contract
         public UserDataDashBoard userDataDashBoard { get; set; }
         public List<DriverCancellation> driverCancellation { get; set; }
         public List<CustomerCancellation> customerCancellation { get; set; }
+        public List<TripDailyBasis> tripDailyBasis { get; set; }
     }
     public class UserBookingList
     {
         public string MonthView { get; set; }
         public Int16 totaltrips { get; set; }
     }
-
+    public class TripDailyBasis
+    {
+        public string BookingNo { get; set; }
+        public string DriverName { get; set; }
+        public string TruckType { get; set; }
+        public string TruckGroup { get; set; }
+        public string LocationFrom { get; set; }
+        public string LocationTo { get; set; }
+        public decimal Amount { get; set; }
+    }
+    
     public class UserDataDashBoard
     {
         public Int64 TotalBookings { get; set; }
         public Int64 RegisteredNotBook { get; set; }
         public Int64 DriverCancel { get; set; }
         public Int64 CustomerCancel { get; set; }
+        public Int64 TotalBookingsdailyBasis { get; set; }
+        public Int64 RegisteredNotBookDailyBasis { get; set; }
+        public Int64 DrivercancelDailyBasis { get; set; }
+        public Int64 CustomercanceldailyBasis { get; set; }
 
     }
     //public class Cancellation

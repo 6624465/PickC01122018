@@ -45,12 +45,6 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Antlr3.Runtime">
-      <HintPath>..\..\..\PickC\PickC\PickCApi\bin\Antlr3.Runtime.dll</HintPath>
-    </Reference>
-    <Reference Include="MCPG.CCA.Util">
-      <HintPath>C:\dlls\MCPG.CCA.Util.dll</HintPath>
-    </Reference>
     <Reference Include="Microsoft.AI.Agent.Intercept, Version=2.0.6.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.ApplicationInsights.Agent.Intercept.2.0.6\lib\net45\Microsoft.AI.Agent.Intercept.dll</HintPath>
       <Private>True</Private>
@@ -92,20 +86,12 @@
     <Reference Include="Microsoft.Practices.EnterpriseLibrary.Common">
       <HintPath>C:\dlls\Microsoft.Practices.EnterpriseLibrary.Common.dll</HintPath>
     </Reference>
-    <Reference Include="Microsoft.Practices.EnterpriseLibrary.Data">
-      <HintPath>..\..\..\..\MVC\PractiseMvc\API\bin\Microsoft.Practices.EnterpriseLibrary.Data.dll</HintPath>
-    </Reference>
-    <Reference Include="Microsoft.Practices.ServiceLocation">
-      <HintPath>C:\dlls\Microsoft.Practices.ServiceLocation.dll</HintPath>
-    </Reference>
     <Reference Include="Microsoft.Practices.Unity">
       <HintPath>C:\dlls\Microsoft.Practices.Unity.dll</HintPath>
     </Reference>
-    <Reference Include="Microsoft.Practices.Unity.Interception">
-      <HintPath>C:\dlls\Microsoft.Practices.Unity.Interception.dll</HintPath>
-    </Reference>
-    <Reference Include="Newtonsoft.Json">
-      <HintPath>..\..\..\PickC\PickC\PickCApi\bin\Newtonsoft.Json.dll</HintPath>
+    <Reference Include="Newtonsoft.Json, Version=10.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.10.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
+      <Private>True</Private>
     </Reference>
     <Reference Include="RestSharp">
       <HintPath>C:\dlls\RestSharp.dll</HintPath>
@@ -120,12 +106,13 @@
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.Web.Extensions" />
-    <Reference Include="System.Web.Mvc, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <HintPath>..\packages\Microsoft.AspNet.Mvc.5.2.3\lib\net45\System.Web.Mvc.dll</HintPath>
+    <Reference Include="System.Web.Mvc, Version=4.0.0.1, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>C:\dlls\System.Web.Mvc.dll</HintPath>
     </Reference>
     <Reference Include="System.Web.WebPages, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>C:\dlls\System.Web.WebPages.dll</HintPath>
+      <HintPath>..\PickCApi\bin\System.Web.WebPages.dll</HintPath>
     </Reference>
     <Reference Include="System.Xml" />
     <Reference Include="System.Configuration" />
@@ -276,10 +263,12 @@
     <Content Include="Scripts\Internal\OperatorAddress.js" />
     <Content Include="Scripts\Internal\OperatorDriver.js" />
     <Content Include="Scripts\Internal\OperatorVehicle.js" />
-    <Content Include="Scripts\jquery-1.10.2.js" />
-    <Content Include="Scripts\jquery-1.10.2.min.js" />
-    <Content Include="Scripts\jquery-1.10.2.min.map" />
     <Content Include="Scripts\jquery-2.2.3.min.js" />
+    <None Include="Scripts\jquery-3.2.1.intellisense.js" />
+    <Content Include="Scripts\jquery-3.2.1.js" />
+    <Content Include="Scripts\jquery-3.2.1.min.js" />
+    <Content Include="Scripts\jquery-3.2.1.slim.js" />
+    <Content Include="Scripts\jquery-3.2.1.slim.min.js" />
     <Content Include="Scripts\jquery-ui.js" />
     <Content Include="Scripts\jquery.cookie.js" />
     <Content Include="Scripts\jquery.dataTables.min.js" />
@@ -307,6 +296,7 @@
     <Compile Include="Controllers\OperatorController.cs" />
     <Compile Include="Controllers\OperatorDriverController.cs" />
     <Compile Include="Controllers\OperatorVehicleController.cs" />
+    <Compile Include="Controllers\VehicleController.cs" />
     <Compile Include="Core\PickCEx.cs" />
     <Compile Include="Core\WebAuthFilter.cs" />
     <Compile Include="Global.asax.cs">
@@ -345,7 +335,6 @@
     <Content Include="Views\Dashboard\UserApp.cshtml" />
     <Content Include="Views\Operator\Operator.cshtml" />
     <Content Include="Scripts\angular.min.js.map" />
-    <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Views\Dashboard\GetDriversList.cshtml" />
     <Content Include="Views\Shared\_Sidebar.cshtml" />
     <Content Include="Views\Dashboard\SearchBookingHistory.cshtml" />
@@ -357,6 +346,10 @@
     <Content Include="Views\Dashboard\UserAppCancellation.cshtml" />
     <Content Include="Views\Dashboard\DriverRevoke.cshtml" />
     <Content Include="Views\Customers\CustomerDetails.cshtml" />
+    <Content Include="Scripts\jquery-3.2.1.slim.min.map" />
+    <Content Include="Scripts\jquery-3.2.1.min.map" />
+    <Content Include="Views\Dashboard\BookingInvoice.cshtml" />
+    <Content Include="Views\Vehicle\Vehicle.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -371,10 +364,6 @@
     <Folder Include="Views\UsersData\" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Master.BusinessFactory\Master.BusinessFactory.csproj">
-      <Project>{ba43b622-97b8-4856-aa07-7b138f46cb58}</Project>
-      <Name>Master.BusinessFactory</Name>
-    </ProjectReference>
     <ProjectReference Include="..\Master.Contract\Master.Contract.csproj">
       <Project>{b9e20a20-01c6-480a-a49a-647df7c89463}</Project>
       <Name>Master.Contract</Name>
