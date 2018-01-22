@@ -76,5 +76,9 @@ namespace Operation.BusinessFactory
         {
             return tripDAL.getCancelledListByDriver();
         }
+        public List<TripDailyBasis> getTripDetailsDailyBasis()
+        {
+            return tripDAL.getTripDetailsDailyBasis();
+        }
     }
 }

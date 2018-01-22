@@ -293,5 +293,10 @@ namespace Operation.DataFactory
         {
             return db.ExecuteSprocAccessor(DBRoutine.BOOKINGCANCELLEDBYDRIVERLIST, MapBuilder<DriverCancellation>.BuildAllProperties()).ToList();
         }
+        public List<TripDailyBasis> getTripDetailsDailyBasis()
+        {
+            return db.ExecuteSprocAccessor(DBRoutine.TOTALTRIPDETAILSDAILYBASIS, MapBuilder<TripDailyBasis>.BuildAllProperties()).ToList();
+        }
+
     }
 }
