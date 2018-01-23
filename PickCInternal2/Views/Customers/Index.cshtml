@@ -1,4 +1,4 @@
-﻿@model List<PickC.Services.DTO.CustomerDTO>
+﻿@model List<PickC.Services.DTO.CustomerInfo>
 @using PickC.Internal2.HtmlHelpers
 @{
     ViewBag.Title = "Index";
@@ -33,9 +33,11 @@
                             @grid.Table(
                                 tableStyle: "table table-hover",
                                 columns: grid.Columns(
-                                    grid.Column("Name", "Name"),
+                                    grid.Column("CustomerName", "Name"),
                                     grid.Column("MobileNo", "Mobile No"),
-                                    grid.Column("EmailID", "Email ID")
+                                    grid.Column("EmailID", "Email ID"),
+                                    grid.Column("TotalBookings", "Total Bookings"),
+                                    grid.Column("RegistrationDate", "Registration Date")
                                     @*grid.Column("Edit", "#Edit", format: @<text><a href="@Url.Content("~/Customers/CustomerDetails?MobileNo=" + item.MobileNo)"><i class="fa fa-pencil" aria-hidden="true"></i></a></text>)*@
                                    ),
                                 htmlAttributes: new { id = "grid" })

@@ -180,7 +180,7 @@
                             <div class="col-md-4">
                                 <div class="form-group">
                                     <label>License No</label>
-                                    @Html.TextBoxFor(x => x.driver.LicenseNo, new { @class = "form-control", placeholder = "License No" })
+                                    @Html.TextBoxFor(x => x.driver.LicenseNo, new { @class = "form-control",@maxlength=16, placeholder = "License No" })
                                 </div>
                             </div>
                         </div>
@@ -487,6 +487,7 @@
                     },
                     'driver.PhoneNo': {
                         required: true
+                        
                     },
                     'driver.PANNo': {
                         required: true
@@ -529,6 +530,19 @@
             else
                 return false;
         });
+        
+      
+        //function isValidCharacter(txtTitle) {   
+        //    var title = document.getElementById(txtTitle);
+        //    var regExp = /^[a-zA-Z]*$/
+        //    if (!regExp.test(title.value)) {
+        //        title.value = '';
+        //        return false;
+        //    }
+        //    else {      
+        //        return true;
+        //    }
+        //}
         function AddAddress(index) {
             $('#frmAddress input[type="text"]').removeClass('error');
             $('#addressModal').modal('show');

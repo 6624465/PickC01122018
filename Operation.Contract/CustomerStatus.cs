@@ -12,6 +12,6 @@ namespace Operation.Contract
         public string MobileNo { get; set; }
         public string EmailId { get; set; }
         public DateTime RegisteredDate { get; set; }
-        public DateTime LastLoginDate { get; set; }
+        public DateTime? LastLoginDate { get; set; }
     }
 }

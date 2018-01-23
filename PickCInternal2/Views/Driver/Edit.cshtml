@@ -29,7 +29,7 @@
                         <div class="row">
                             <div class="col-md-4">
                                 <div class="form-group">
-                                    <label>Operator Number</label>
+                                    <label>Operator</label>
                                     @Html.TextBoxFor(x => x.driver.OperatorId, new { @class = "form-control", placeholder = "Operator ID", @readonly = "readonly" })
                                 </div>
                             </div>
@@ -134,7 +134,7 @@
                             <div class="col-md-4">
                                 <div class="form-group">
                                     <label>Mobile No</label>
-                                    @Html.TextBoxFor(x => x.driver.MobileNo, new { @maxlength = "10", @class = "form-control input-sm numCsspuls", placeholder = "Mobile No" })
+                                    @Html.TextBoxFor(x => x.driver.MobileNo, new { @maxlength = "10", @class = "form-control input-sm number", placeholder = "Mobile No" })
                                 </div>
                             </div>
                         </div>
@@ -142,7 +142,7 @@
                             <div class="col-md-4">
                                 <div class="form-group">
                                     <label>Phone No</label>
-                                    @Html.TextBoxFor(x => x.driver.PhoneNo, new { @maxlength = "10", @class = "form-control input-sm numCsspuls", placeholder = "Phone No" })
+                                    @Html.TextBoxFor(x => x.driver.PhoneNo, new { @maxlength = "10", @class = "form-control input-sm number", placeholder = "Phone No" })
                                 </div>
                             </div>
                         </div>
@@ -161,19 +161,19 @@
                             <div class="col-md-4">
                                 <div class="form-group">
                                     <label>PAN No</label>
-                                    @Html.TextBoxFor(x => x.driver.PANNo, new { @class = "form-control", placeholder = "PAN No" })
+                                    @Html.TextBoxFor(x => x.driver.PANNo, new { @class = "form-control", @maxlength = 10, placeholder = "PAN No" })
                                 </div>
                             </div>
                             <div class="col-md-4">
                                 <div class="form-group">
                                     <label>Aadhar Card No</label>
-                                    @Html.TextBoxFor(x => x.driver.AadharCardNo, new { @class = "form-control", placeholder = "Aadhar Card No" })
+                                    @Html.TextBoxFor(x => x.driver.AadharCardNo, new { @class = "form-control number",@maxlength=12, placeholder = "Aadhar Card No" })
                                 </div>
                             </div>
                             <div class="col-md-4">
                                 <div class="form-group">
                                     <label>License No</label>
-                                    @Html.TextBoxFor(x => x.driver.LicenseNo, new { @class = "form-control", placeholder = "License No" })
+                                    @Html.TextBoxFor(x => x.driver.LicenseNo, new { @class = "form-control",@maxlength=16, placeholder = "License No" })
                                 </div>
                             </div>
                         </div>
@@ -371,7 +371,7 @@
                     <div class="row">
                         <div class="col-md-6">
                             <label>Zipcode</label>
-                            <input class="form-control" id="ZipCode" name="ZipCode" type="text" value="">
+                            <input class="form-control number" id="ZipCode" name="ZipCode" type="text" value="" maxlength=6>
                         </div>
                     </div>
                 </div>
@@ -464,6 +464,16 @@
         //    var selectedText = $(this).find("option:selected").text();
         //    var selectedValue = $(this).val();
         //});
+        $('.number').keypress(function (e) {
+            if (window.event)
+                code = e.keyCode;
+            else
+                code = e.which;
+            if (code >= 48 && code <= 57)
+                return true;
+            else
+                return false;
+        });
         function btnSave() {
             if ($('#frmDriverAdd').valid()) {
                 $('#frmDriverAdd').submit();
