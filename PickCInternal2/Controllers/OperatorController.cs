@@ -20,14 +20,19 @@ namespace PickCInternal2.Controllers
     [PickCEx]
     public class OperatorController : BaseController
     {
-        [HttpGet]
-        public async Task<ActionResult> Operator(string OperatorID = "")
+        [AcceptVerbs(HttpVerbs.Get | HttpVerbs.Post)]
+        public async Task<ActionResult> Operator()
         {
-            if(!string.IsNullOrWhiteSpace(OperatorID))
+            if (Request.HttpMethod == "POST")
             {
-                List<OperatorDriver> OperatorDriverList = (await new OperatorDriverService(AUTHTOKEN, p_mobileNo).GetDriverList()).Where(x => x.OperatorID == OperatorID).ToList();
+                string OperatorID = "";
+                OperatorID = Request.Form["OperatorID"];
+                if (!string.IsNullOrWhiteSpace(OperatorID))
+                {
+                    List<OperatorDriver> OperatorDriverList = (await new OperatorDriverService(AUTHTOKEN, p_mobileNo).GetDriverList()).Where(x => x.OperatorID == OperatorID).ToList();
 
-                ViewData["VD:DriverList"] = OperatorDriverList;
+                    ViewData["VD:DriverList"] = OperatorDriverList;
+                }
             }
             var operatorList = await new OperatorService(AUTHTOKEN, p_mobileNo).OperatorsWithProfileListAsync();
             return View(operatorList);
