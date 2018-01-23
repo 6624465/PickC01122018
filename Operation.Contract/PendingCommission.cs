@@ -4,11 +4,15 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
+using Master.Contract;
+
 namespace Operation.Contract
 {
     public class PendingCommission
     {
         public List<DriverPendingCommission> driverPendingCommision { get; set; }
+
+        public List<DriverPendingAmount> driverPendingAmount { get; set; }
     }
     public class DriverPendingCommission
     {

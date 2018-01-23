@@ -207,5 +207,18 @@ namespace PickC.Services
                 return ServiceResponse(client.Execute(request));
             });
         }
+
+        public async Task<List<DriverPendingAmount>> DriverPendingAmountAsync()
+        {
+            IRestClient client = new RestClient(ApiBaseUrl);
+            var request = p_request;
+            request.Method = Method.GET;
+            request.Resource = "master/driver/driverpendingamount";
+
+            return await Task.Run(() =>
+            {
+                return ServiceResponse<List<DriverPendingAmount>>(client.Execute<List<DriverPendingAmount>>(request));
+            });
+        }
     }
 }

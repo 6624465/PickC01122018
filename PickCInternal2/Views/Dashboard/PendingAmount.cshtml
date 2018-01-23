@@ -163,17 +163,25 @@
 									<thead>
 										<tr>
 											<th>Driver Id</th>
-											<th>Driver Name</th>
-											<th>Vehicle No.</th>
-											<th>Booking No.</th>
-											<th>Booking Date</th>
-											<th>Trip Amount</th>
-											<th>Payment Type</th>
-											<th>Commission Amount</th>
-											
+											<th>Invoice No</th>
+											<th>Trip Id</th>
+											<th>Balance Amt</th>											
 										</tr>
 									</thead>
-									<tbody></tbody>
+									<tbody>
+                                        @for (var i = 0; i < Model.driverPendingAmount.Count; i++)
+                                        {
+                                        <tr>
+                                            <td>@Model.driverPendingAmount[i].DriverID</td>
+                                            <td>@Model.driverPendingAmount[i].InvoiceNo</td>
+                                            <td>@Model.driverPendingAmount[i].TripID</td>
+                                            <td>
+                                                
+                                                @Html.DisplayFor(x => x.driverPendingAmount[i].BalanceAmount)
+                                            </td>
+                                        </tr>
+                                        }
+                                    </tbody>
 								</table>
 							</div>
 						</div>

@@ -242,6 +242,8 @@ namespace PickC.Internal2.Controllers
         {
             PendingCommission pending = new PendingCommission();
             pending.driverPendingCommision = await new PaymentService(AUTHTOKEN, p_mobileNo).driverpendingAmountDetails();
+            pending.driverPendingAmount = await new DriverService(AUTHTOKEN, p_mobileNo).DriverPendingAmountAsync();
+
             return View(pending);
         }
         [HttpPost]
