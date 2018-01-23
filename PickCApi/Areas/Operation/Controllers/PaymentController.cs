@@ -146,6 +146,23 @@ namespace PickCApi.Areas.Operation.Controllers
             }
            
         }
+        [HttpGet]
+        [Route("DailyPaymentHistory")]
+        public IHttpActionResult getDailyPaymentHistory()
+        {
+            try
+            {
+                var result = new SummaryBO().DailyPaymentHistory();
+                if (result != null)
+                    return Ok(result);
+                else
+                    return NotFound();
+            }
+            catch (Exception ex)
+            {
+                return InternalServerError(ex);
+            }
+        }
     }
 
     public class RSAObject

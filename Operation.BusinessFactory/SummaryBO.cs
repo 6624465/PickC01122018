@@ -33,5 +33,9 @@ namespace Operation.BusinessFactory
         {
             return summaryDAL.getDriverCommision();
         }
+        public DailyPaymentHistory DailyPaymentHistory()
+        {
+            return summaryDAL.DailyPaymentHistory();
+        }
     }
 }

@@ -221,6 +221,7 @@ namespace PickC.Internal2.Controllers
             data.customerdetails = new List<CustomerDetails>();
             data.driverCommissiondetails = new List<DriverCommissionDetails>();
             data.pickCCommissiondetails = new List<pickCCommissionDetails>();
+            data.dailyPaymentHistory = new DailyPaymentHistory();
             DateTime dateTime = DateTime.Now;
             data.paymentsearch.DateFrom = new DateTime(dateTime.Year, dateTime.Month, 1);
             data.paymentsearch.DateTo = DateTime.Now;
@@ -228,6 +229,7 @@ namespace PickC.Internal2.Controllers
             data.customerdetails = paymentresult.customerdetails;
             data.driverCommissiondetails = paymentresult.driverCommissiondetails;
             data.pickCCommissiondetails = paymentresult.pickCCommissiondetails;
+            data.dailyPaymentHistory = await new PaymentService(AUTHTOKEN, p_mobileNo).DailyPaymentHistory();
             return View("PaymentHistory", data);
         }
         [HttpPost]
