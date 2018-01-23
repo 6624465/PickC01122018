@@ -165,6 +165,7 @@ namespace Operation.DataFactory
 
         public const string  DASHBOARDCOUNT="[operation].[usp_dashBoardCountList]";
         public const string TOTALTRIPDETAILSDAILYBASIS = "[master].[usp_getTotalTripsDetailDailyBasis]";
+        public const string PAYMENTHISTORYDAILYBASIS="[operation].[usp_paymenthistoryDailyBasis]";
 
     }
 }

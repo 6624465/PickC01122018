@@ -14,6 +14,7 @@ namespace PickC.Services.DTO
         public List<DriverCommissionDetails> driverCommissiondetails { get; set; }
         public List<pickCCommissionDetails> pickCCommissiondetails { get; set; }
         public List<CustomerDetails> customerdetails { get; set; }
+        public DailyPaymentHistory dailyPaymentHistory { get; set; }
     }
     public class Paymentsearch
     {
@@ -45,6 +46,12 @@ namespace PickC.Services.DTO
         public decimal InvoiceAmount { get; set; }
         public decimal GST { get; set; }
         public decimal TotalAmount { get; set; }
+    }
+    public class DailyPaymentHistory
+    {
+        public decimal CustomerAmount { get; set; }
+        public decimal PickcAmount { get; set; }
+        public decimal DriverAmount { get; set; }
     }
    
 }
