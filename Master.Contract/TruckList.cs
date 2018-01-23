@@ -12,7 +12,9 @@ namespace Master.Contract
         {
 
         }
-        public string Maker { get; set; }
+        //public string Maker { get; set; }
+
+        public string VehicleGroup { get; set; }
 
         public string VehicleNo { get; set; }
 

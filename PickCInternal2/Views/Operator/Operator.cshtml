@@ -83,7 +83,7 @@
         <form id="frmDriverList" name="frmDriverList">
             <div class="modal-content">
                 <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <button type="button" class="close" onclick="disposeModel()" aria-label="Close">
                         <span aria-hidden="true">×</span>
                     </button>
                     <h4 class="modal-title">Operator Driver List</h4>
@@ -120,9 +120,9 @@
                                                 <td>
                                                     <span id="operatorDriverList_DriverMobileNo_span_@i">@driverList[i].MobileNo</span>
                                                 </td>
-                                                @*<td>
-                                                    <button type="button" data-toggle="popover" data-container="body" data-placement="left" data-html="true" onclick="DisplayDriverDetails('@driverList[i].DriverID')" href="#" id="login" class="btn btn-primary">View Details</button>
-                                                </td>*@
+                                                <td>
+                                                    <button type="button" data-toggle="popover" data-container="body" data-placement="left" data-html="true" data-driverid="@driverList[i].DriverID" id="login" class="btn btn-primary displaypopup">View Details</button>
+                                                </td>
                                             </tr>
                                         }
                                     }
@@ -145,39 +145,31 @@
     <script src="@Url.Content("~/Scripts/moment.min.js")"></script>
     <script type="text/javascript">
         $(function () {
-            @if (driverList!=null)
+            @if (driverList != null)
             {
-                <text>
-            $('#DriverListModal').modal('show');
-            $("[data-toggle=popover]").each(function (i, obj) {
-                $(this).popover({
-                    html: true,
-                    content: function () {
-                        var id = $(this).attr('id')
-                        return $('#popover-content-' + id).html();
-                    }
-                });
-            });
+            <text>
+                $('#DriverListModal').modal('show');
             </text>
             }
-
-
         });
 
+        function disposeModel()
+        {
+            $('.displaypopup').popover('hide');
+            $('#DriverListModal').modal('hide');
+        }
 
-        function DisplayDriverDetails(driverID) {
-            debugger;
+        $('.displaypopup').click(function () {
+            $('.displaypopup').popover('hide');
+            var e = $(this);
             $.ajax({
-                url: '@Url.Content("~/Driver/Edit?driverID=")' + driverID,
+                url: '@Url.Content("~/Driver/Edit?driverID=")' + e.data('driverid'),
                 method: 'get',
                 contentType: 'application/json',
                 success: function (data) {
-                    debugger;
                     $('#popover-content-login').empty();
-
                     if (data.driver != null) {
                         //var m = moment(data.driver.DateOfBirth);
-                        debugger;
                         $('#popover-content-login').append('<ul class="list-group" id="DriverContent">');
                         $('#popover-content-login').append('<li class="list-group-item"><b>Aadhar Card No: </b>' + data.driver.AadharCardNo + '</li>');
                         $('#popover-content-login').append('<li class="list-group-item"><b>PAN No: </b>' + data.driver.PANNo + '</li>');
@@ -188,16 +180,15 @@
                         $('#popover-content-login').append('<li class="list-group-item"><b>Maritial Status: </b>' + data.driver.MaritialStatusDescription + '</li>');
                         $('#popover-content-login').append('<li class="list-group-item"><b>Phone No: </b>' + data.driver.PhoneNo + '</li>');
                         $('#popover-content-login').append('</ul');
-                        
-                        
-                    }
 
+                        e.popover({ content: $('#popover-content-login').html() }).popover('show');
+                    }
                 },
                 error: function (err) {
 
                 }
             });
-        }
+        });
     </script>
 }
 
