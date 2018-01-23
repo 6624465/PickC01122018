@@ -45,27 +45,33 @@
                         <h3 class="box-title">Driver Info</h3>
                     </div>
                     <div class="box-body">
-                        <div class="row">
-                            <div class="col-md-4">
-                                <div class="form-group">
-                                    <label>Driver ID</label>
-                                    @Html.TextBoxFor(x => x.driver.DriverId, new { @class = "form-control", placeholder = "Driver ID", @readonly = "readonly" })
-                                </div>
-                            </div>
-                            <div class="col-md-4">
-                                <div class="form-group">
-                                    <label>Driver Name</label>
-                                    @Html.TextBoxFor(x => x.driver.DriverName, new { @class = "form-control", placeholder = "Driver Name" })
-                                    @Html.HiddenFor(x => x.driver.Password)
-                                </div>
-                            </div>
-                            @*<div class="col-md-4">
-                                    <div class="form-group">
-                                        <label>Vehicle No</label>
-                                        @Html.TextBoxFor(x => x.driver.VehicleNo, new { @class = "form-control", placeholder = "Vehicle No" })
-                                    </div>
-                                </div>*@
-                        </div>
+						<div class="row">
+							<div class="col-md-4">
+								<div class="form-group">
+									<label>Driver ID</label>
+									@Html.TextBoxFor(x => x.driver.DriverId, new { @class = "form-control", placeholder = "Driver ID", @readonly = "readonly" })
+								</div>
+							</div>
+							<div class="col-md-4">
+								<div class="form-group">
+									<label>Driver Name</label>
+									@Html.TextBoxFor(x => x.driver.DriverName, new { @class = "form-control", placeholder = "Driver Name" })
+									@Html.HiddenFor(x => x.driver.Password)
+								</div>
+							</div>
+							<div class="col-md-4">
+								<div class="form-group">
+									<label>Driver Remarks</label>
+									@Html.TextBoxFor(x => x.driver.DriverRemarks, new { @class = "form-control", placeholder = "Driver Remarks" })
+								</div>
+							</div>
+							@*<div class="col-md-4">
+			<div class="form-group">
+				<label>Vehicle No</label>
+				@Html.TextBoxFor(x => x.driver.VehicleNo, new { @class = "form-control", placeholder = "Vehicle No" })
+			</div>
+		</div>*@
+						</div>
                     </div>
                 </div>
             </div>

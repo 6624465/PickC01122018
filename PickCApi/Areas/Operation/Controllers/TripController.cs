@@ -219,13 +219,30 @@ namespace PickCApi.Areas.Operation.Controllers
             }
         }
 
-      [HttpGet]
+        [HttpGet]
         [Route("CustomerStatus")]
         public IHttpActionResult CustomerStatus()
         {
             try
             {
                 var result = new TripBO().GetCustomerStatusList();
+                return Ok(result);
+            }
+            catch (Exception ex)
+            {
+                return InternalServerError(ex);
+            }
+        }
+
+        [HttpPost]
+        [Route("CustomerStatus")]
+        public IHttpActionResult CustomerStatus(RegButNotBookedSearch obj)
+        {
+            try
+            {
+                obj.DateFrom = obj.DateFrom.Value.ToLocalTime();
+                obj.DateTo = obj.DateTo.Value.ToLocalTime();
+                var result = new TripBO().GetCustomerStatusList(obj);
                 return Ok(result);
             }
             catch (Exception ex)

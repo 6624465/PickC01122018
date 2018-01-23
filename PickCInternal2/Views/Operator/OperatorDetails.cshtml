@@ -136,7 +136,6 @@
                     label.error {
             display: none !important;
         }
-
     </style>
 }
 <section class="content-header">
@@ -166,7 +165,7 @@
                                         <div class="col-md-4">
                                             <div class="form-group">
                                                 <label>Operator ID</label>
-                                                @Html.TextBoxFor(x => x.OPerator.OperatorID, new { @class = "form-control", placeholder = "Operator ID", @readonly = "readonly",@id="OperatorId" })
+												@Html.TextBoxFor(x => x.OPerator.OperatorID, new { @class = "form-control", placeholder = "Operator ID", @readonly = "readonly", @id = "OperatorId" })
                                             </div>
                                         </div>
                                         <div class="col-md-4">
@@ -278,13 +277,13 @@ new { @class = "form-control" })
                                         <div class="col-md-4">
                                             <div class="form-group">
                                                 <label>PAN No</label>
-                                                @Html.TextBoxFor(x => x.OPerator.PANNo, new { @class = "form-control", placeholder = "PAN No",@id="panno", maxLength = 10 })
+												@Html.TextBoxFor(x => x.OPerator.PANNo, new { @class = "form-control", placeholder = "PAN No", @id = "panno", maxLength = 10 })
                                             </div>
-                                        </div >          
+										</div>
                                         <div class="col-md-4">
                                             <div class="form-group">
                                                 <label>Aadhar Card No</label>
-                                                @Html.TextBoxFor(x => x.OPerator.AadharCardNo, new { @class = "form-control", placeholder = "Aadhar Card No", maxLength = 16,@id= "AadharCardNo"})
+												@Html.TextBoxFor(x => x.OPerator.AadharCardNo, new { @class = "form-control", placeholder = "Aadhar Card No", maxLength = 16, @id = "AadharCardNo" })
                                             </div>
                                         </div>
                                         @*<div class="col-md-4">
@@ -372,7 +371,7 @@ new { @class = "form-control" })
                                                 <div class="box-header">
                                                     <h3 class="box-title">Bank Details</h3>
                                                     <div class="box-tools">
-                                                        <button class="btn btn-box-tool" type="button"  onclick="bankDetails('-1')"><i class="fa fa-plus" aria-hidden="true"></i></button>
+														<button class="btn btn-box-tool" type="button" onclick="bankDetails('-1')"><i class="fa fa-plus" aria-hidden="true"></i></button>
                                                     </div>
                                                 </div>
                                                 <div class="box-body">
@@ -507,9 +506,9 @@ new { @class = "form-control" })
                                                         <div class="box-tools">
                                                             @*<button class="btn btn-box-tool" type="button" onclick="bankDetails()">Add</button>*@
                                                             @*<button type="button" class="btn btn-box-tool" data-toggle="modal" data-target="#myModal"><i class="fa fa-plus" aria-hidden="true"></i></button>*@
-                                                            <button class="btn btn-default btn-sm btn-them " type="button" id="Btn_SendOperatorId" onclick='location.href="@Url.Content("~/Driver/Add")"'>Add Driver</button>
+															<button class="btn btn-default btn-sm btn-them " type="button" id="Btn_SendOperatorId">Add Driver</button>
                                                             @*<button class="btn btn-default btn-sm btn-them " type="button" onclick="AddDriver('-1')">Add</button>*@
-                                                            @*<button class="btn btn-box-tool" type="button" onclick="AddDriver('-1')"><i class="fa fa-plus" aria-hidden="true"></i></button>*@
+															@*<button class="btn btn-box-tool" type="button" onclick="AddDriver('-1')"><i class="fa fa-plus" aria-hidden="true"></i></button>location.href="@Url.Content("~/Driver/Add?OperatorID=OP171100001")"*@
                                                         </div>
                                                     </div>
                                                     <div class="box-body">
@@ -1138,7 +1137,9 @@ new { @class = "form-control" })
                             'OPerator.MobileNo': {
                                 required: true
                             },
-                           
+                            'OPerator.PhoneNo': {
+                                required: false
+                            },
                             'OPerator.PANNo': {
                                 required: true
                             },
@@ -1349,7 +1350,9 @@ new { @class = "form-control" })
                 var data = $('#OperatorId').val();
                 localStorage.setItem('OperatorValue', JSON.stringify(data));
                // $.cookie("OperatorValue", $('#OperatorId').val());
-                window.location.href = '@Url.Action("Add", "Driver")';
+				//window.location.href = '@Url.Action("Add", "Driver")';
+				var url = '@Url.Content("~/Driver/Add")';
+				location.href = url + "?OperatorId=" + data;
             });
         $('.number').keypress(function (e) {
             if (window.event)
@@ -1361,6 +1364,12 @@ new { @class = "form-control" })
             else
                 return false;
         });
+
+			@*function GoToAddDriver() {
+				var OperatorId = $('#OperatorId').val()
+				var url = '@Url.Content("~/Driver/Add")';
+				location.href = url + "?OperatorId=" + OperatorId;
+			}*@
 
     </script>
 }

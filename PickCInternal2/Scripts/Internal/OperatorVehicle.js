@@ -3,7 +3,9 @@
     $('#frmVehicle').validate({
         rules: {
             VehicleRegistrationNo: {
-                required: true
+				required: true,
+				maxlength: 10,
+				minlength: 10
             },
             VehicleType: {
                 required: true
@@ -201,6 +203,6 @@ function AddVehicle(index) {
     $('#VehicleModal').modal('show');
 
     if (index != -1) {
-        $('#VehicleRegistrationNo').attr('readonly','readonly');
+		$('#VehicleRegistrationNo').attr('readonly', 'readonly');
     }
 }

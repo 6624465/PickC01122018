@@ -17,7 +17,12 @@ namespace Master.BusinessFactory
         {
             return driverDAL.GetList();
         }
-        public List<DriverDetails> GetDriversDetailList()
+
+		public List<DriverMdl> GetDriverList()
+		{
+			return driverDAL.GetDriverList();
+		}
+		public List<DriverDetails> GetDriversDetailList()
         {
             return driverDAL.GetDriversDetailList();
         }
@@ -42,7 +47,13 @@ namespace Master.BusinessFactory
 
             return driverDAL.Save(newItem);
         }
-        public bool SaveDriverReferral(DriverReferral newItem)
+
+		//// added by Kiran////
+		public bool SaveDriverDetails(DriverMdl newItem)
+		{
+			return driverDAL.SaveDriverDetails(newItem);
+		}
+		public bool SaveDriverReferral(DriverReferral newItem)
         {
 
             return driverDAL.SaveDriverReferral(newItem);
@@ -76,7 +87,13 @@ namespace Master.BusinessFactory
         {
             return (Driver)driverDAL.GetItem<Driver>(item);
         }
-        public List<DriverEarningPaymentType> GetDriverTripAmountbyPaymentType(string DriverID,DateTime FromDate,DateTime ToDate)
+
+		// added by Kiran///
+		public DriverMdl GetDriverByID(DriverMdl item)
+		{
+			return (DriverMdl)driverDAL.GetDriverByID<DriverMdl>(item);
+		}
+		public List<DriverEarningPaymentType> GetDriverTripAmountbyPaymentType(string DriverID,DateTime FromDate,DateTime ToDate)
         {
             return driverDAL.GetDriverTripAmountbyPaymentType(DriverID,FromDate,ToDate);
         }

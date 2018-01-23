@@ -10,8 +10,9 @@ namespace PickC.Internal2.ViewModals
 {
     public class DriverVm
     {
-        public Driver driver { get; set; }
-        public DriverLookupDTO driverLookupDTO { get; set; }
+        //public Driver driver { get; set; }
+		public DriverMdl driver { get; set; }
+		public DriverLookupDTO driverLookupDTO { get; set; }
        
     }
   
