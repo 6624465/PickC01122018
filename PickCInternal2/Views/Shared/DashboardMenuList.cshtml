@@ -1,6 +1,12 @@
 ﻿
 <ul id="myTab" class="nav nav-tabs">
     <li>
+        <a href="#tab4" data-toggle="tab" onclick="userapp();" id="userApp">
+            <i class="fa fa-user-circle" aria-hidden="true"></i>
+            User App
+        </a>
+    </li>
+    <li>
         <a href="@Url.Content("~/Dashboard/GetDriversList")"  id="driverStatus">
             <i class="fa fa-user-o" aria-hidden="true" style="width:12px;"></i>
             Drivers Status
@@ -18,12 +24,7 @@
             Booking History
         </a>
     </li>
-    <li>
-        <a href="#tab4" data-toggle="tab" onclick="userapp();" id="userApp">
-            <i class="fa fa-user-circle" aria-hidden="true"></i>
-            User App
-        </a>
-    </li>
+    
     <li>
         <a href="#tab5" data-toggle="tab" onclick="paymenthistory();" id="paymentHistory">
             <i class="fa fa-credit-card" aria-hidden="true"></i>
@@ -36,18 +37,18 @@
             Pending Amount
         </a>
     </li>
-    <li>
+    @*<li>
         <a href="#tab7" data-toggle="tab" onclick="driverdetails();" id="driverDetails">
             <i class="fa fa-car" aria-hidden="true"></i>
                 Add Driver 
            </a>
-    </li>
-    <li> 
+    </li>*@
+    @*<li> 
         <a href="#tab8" data-toggle="tab" onclick="driverrevoke();" id="driverRevoke">
             <i class="fa fa-ban" aria-hidden="true"></i>
                 Driver Revoke
         </a>
-    </li>
+    </li>*@
 </ul>
 <script src="@Url.Content("~/Scripts/jquery.validate.js")"></script>
 <script type="text/javascript">

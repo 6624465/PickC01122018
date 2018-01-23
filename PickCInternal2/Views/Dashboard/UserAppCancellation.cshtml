@@ -5,11 +5,21 @@
 }
 @section seccss{
     <link href="~/Css/jquery.dataTables.min.css" rel="stylesheet" />
+}
+
+<style>
+    #customer_cancellation {
+        border: 1px solid #111 !important;
     }
+
+    #driver_cancellation {
+        border: 1px solid #111 !important;
+    }
+</style>
 <section class="content">
     <div class="row">
         <div class="col-md-12">
-            @{ Html.RenderPartial("DashboardMenuList",Model); }
+            @{ Html.RenderPartial("DashboardMenuList", Model); }
         </div>
     </div>
     <div class="row">
@@ -24,35 +34,35 @@
                     <div class="row">
                         <div class="col-md-12">
                             <h2>Cancelled By Customer</h2>
-                            
-                                <div class="table-responsive">
-                                    <table id="customer_cancellation" class="table table-hover table-bordered">
-                                        <thead>
+
+                            <div class="table-responsive">
+                                <table id="customer_cancellation" class="table table-hover table-bordered">
+                                    <thead>
+                                        <tr>
+                                            <th>Customer Name</th>
+                                            <th>Mobile No.</th>
+                                            <th>Booking No.</th>
+                                            <th>Booking Date</th>
+                                            <th>Reason For Cancellation</th>
+                                            <th>Status</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @foreach (var item in Model.customerCancellation)
+                                        {
                                             <tr>
-                                                <th>Customer Name</th>
-                                                <th>Mobile No.</th>
-                                                <th>Booking No.</th>
-                                                <th>Booking Date</th>
-                                                <th>Reason For Cancellation</th>
-                                                <th>Status</th>
+                                                <td>@Html.DisplayFor(i => item.CustomerName)</td>
+                                                <td>@Html.DisplayFor(i => item.MobileNo)</td>
+                                                <td>@Html.DisplayFor(i => item.BookingNo)</td>
+                                                <td>@Html.DisplayFor(i => item.BookingDate)</td>
+                                                <td>@Html.DisplayFor(i => item.Reason)</td>
+                                                <td>@Html.DisplayFor(i => item.Status)</td>
                                             </tr>
-                                        </thead>
-                                        <tbody>
-                                            @foreach (var item in Model.customerCancellation)
-                                            {
-                                                <tr>
-                                                    <td>@Html.DisplayFor(i => item.CustomerName)</td>
-                                                    <td>@Html.DisplayFor(i => item.MobileNo)</td>
-                                                    <td>@Html.DisplayFor(i => item.BookingNo)</td>
-                                                    <td>@Html.DisplayFor(i => item.BookingDate)</td>
-                                                    <td>@Html.DisplayFor(i => item.Reason)</td>
-                                                    <td>@Html.DisplayFor(i => item.Status)</td>
-                                                </tr>
-                                            }
-                                        </tbody>
-                                    </table>
-                                </div>
-                            
+                                        }
+                                    </tbody>
+                                </table>
+                            </div>
+
                         </div>
                     </div>
                 </div>
@@ -85,7 +95,7 @@
                                     </tbody>
                                 </table>
                             </div>
-                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -111,5 +121,5 @@
             $('#customer_cancellation').dataTable();
         });
     </script>
-    }
+}
 

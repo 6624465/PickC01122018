@@ -1081,12 +1081,12 @@ namespace PickCApi.Areas.Master.Controllers
         }
 
         [HttpGet]
-        [Route("GetCustomerDetails/{MobileNo}")]
-        public IHttpActionResult GetCustomersDetails(string MobileNo)
+        [Route("GetCustomerList")]
+        public IHttpActionResult GetCustomersDetails()
         {
             try
             {
-                var result = new CustomerBO().GetCustomersDetails(MobileNo);
+                var result = new CustomerBO().GetCustomersDetails();
                 if (result != null)
                     return Ok(result);
                 else

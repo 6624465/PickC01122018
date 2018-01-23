@@ -99,15 +99,15 @@ namespace PickC.Services
 
         }
 
-        public async Task<List<CustomerDTO>> GetCustomerListAsync()
+        public async Task<List<CustomerInfo>> GetCustomerListAsync()
         {
             IRestClient client = new RestClient(ApiBaseUrl);
             var request = p_request;
             request.Method = Method.GET;
-            request.Resource = "master/customer/customerList";
+            request.Resource = "master/customer/GetCustomerList";
 
-            return ServiceResponse<List<CustomerDTO>>(
-                await client.ExecuteTaskAsync<List<CustomerDTO>>(request));
+            return ServiceResponse<List<CustomerInfo>>(
+                await client.ExecuteTaskAsync<List<CustomerInfo>>(request));
         }
 
         public async Task<string> UpdateCustomerAsync(Customer customer)
