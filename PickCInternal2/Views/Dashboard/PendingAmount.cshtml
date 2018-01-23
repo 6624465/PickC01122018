@@ -1,71 +1,166 @@
 ﻿
 @model Operation.Contract.PendingCommission
 @{
-    ViewBag.Title = "PendingAmount";
-    Layout = "~/Views/Shared/_Layout.cshtml";
-    @*WebGrid grid =
-            new WebGrid(Model.pendingAmount, rowsPerPage: 10, selectionFieldName: "selectedRow", ajaxUpdateContainerId: "grid");
-        }*@
+	ViewBag.Title = "PendingAmount";
+	Layout = "~/Views/Shared/_Layout.cshtml";
+	@*WebGrid grid =
+			new WebGrid(Model.pendingAmount, rowsPerPage: 10, selectionFieldName: "selectedRow", ajaxUpdateContainerId: "grid");
+		}*@
 }
 @section seccss{
-    <link href="@Url.Content("~/Css/bootstrap-datetimepicker.css")" rel="stylesheet" />
-    <link href="~/Css/jquery.dataTables.min.css" rel="stylesheet" />
+	<link href="@Url.Content("~/Css/bootstrap-datetimepicker.css")" rel="stylesheet" />
+	<link href="~/Css/jquery.dataTables.min.css" rel="stylesheet" />
 }
 <section class="content">
-    @using (Html.BeginForm("PaymentsHistory", "Dashboard", FormMethod.Post, new { id = "FrmPaymentsHistory", name = "FrmPaymentsHistory" }))
-    {
-        <div class="row">
-            <div class="col-md-12">
-                @{ Html.RenderPartial("DashboardMenuList"); }
-            </div>
-        </div>
-        <div class="row" style="margin:15px 0 0px -30px;">
-            <div class="col-md-12">
-                <div class="col-md-6">
-                    <div class="row">
-                        <div class="col-md-12">
-                            <h2>User Pending Cancellation Charges</h2>
-                            <div class="table-responsive">
-                                <table id="Table_userpending" class="table table-hover table-bordered">
-                                    <thead>
-                                        <tr>
-                                            <th>Booking No.</th>
-                                            <th>Booking Date</th>
-                                            <th>Vehicle Type</th>
-                                            <th>Vehicle No.</th>
-                                            <th>Location From</th>
-                                            <th>Location To</th>
-                                            <th>Cancellation Remarks</th>
-                                            <th>Cancellation Amount</th>
-                                        </tr>
-                                    </thead>
-                                    @*@<tbody>
-                                                    @foreach(var item in )
-                                            {
-                                                <tr>
-                                                    <td>@Html.DisplayFor(i=>item.BookingNo)</td>
-                                                    <td>@Html.DisplayFor(i => item.BookingDate)</td>
-                                                    <td>@Html.DisplayFor(i => item.VehicleType)</td>
-                                                    <td>@Html.DisplayFor(i => item.VehicleNo)</td>
-                                                    <td>@Html.DisplayFor(i => item.LocationFrom)</td>
-                                                    <td>@Html.DisplayFor(i => item.LocationTo)</td>
-                                                    <td>@Html.DisplayFor(i => item.CancellationRemarks)</td>
-                                                    <td>@Html.DisplayFor(i=>item.CancellationAmount)</td>
-                                                </tr>
-                                            }
-                                        </tbody>*@
-                                </table>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-6">
-                    <div class="row">
-                        <div class="col-md-12">
-                            <h2>Driver Commission amount pending to Pick-C</h2>
-                            <div class="table-responsive">
-                                <table id="Table_drivercommission" class="table table-hover table-bordered">
-                                    <thead>
+	<div class="row">
+		<div class="col-md-12">
+			@{ Html.RenderPartial("DashboardMenuList"); }
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-md-12">
+			<div class="tab-main-content">
+			</div>
+		</div>
+	</div>
+	<div class="row" style="margin:10px 0 0 10px;">
+		@*@using (Html.BeginForm("PaymentHistory", "Dashboard", FormMethod.Post, new { id = "frmPaymentHistory", name = "frmPaymentHistory" }))
+		{
+			<div class="col-md-2">
+				<div class="form-group">
+					<label>Date From</label>
+					<div class="input-group dtCss">
+						@Html.TextBoxFor(x => x.paymentsearch.DateFrom, new { @id = "startDate", @class = "form-control" })						
+						<span class="input-group-btn">
+							<button type="button" class="btn btn-default"><i class="fa fa-calendar" aria-hidden="true"></i></button>
+						</span>
+					</div>
+				</div>
+			</div>
+			<div class="col-md-2">
+				<div class="form-group">
+					<label>Date To</label>
+					<div class="input-group dtCss">
+						@Html.TextBoxFor(x => x.paymentsearch.DateTo, new { @id = "enddate", @class = "form-control", })
+						<span class="input-group-btn">
+							<button type="button" class="btn btn-default"><i class="fa fa-calendar" aria-hidden="true"></i></button>
+						</span>
+					</div>
+				</div>
+			</div>
+			<div class="col-md-2">
+				<button type="submit" id="btnSearch" class="btn btn-primary" style="margin-top:25px;"><i class="fa fa-search"></i>Search </button>
+			</div>
+		}*@
+	</div>
+	<div class="clearfix"></div>
+	@using (Html.BeginForm("PaymentsHistory", "Dashboard", FormMethod.Post, new { id = "FrmPaymentsHistory", name = "FrmPaymentsHistory" }))
+	{
+		<article class="tabbed-content tabs-side">
+			<nav class="tabs">
+				<ul>
+					<li><a href="#side_tab1" class="active accordion-section-title btn btn-default btn-sm btn-them">USER PENDING CANCELLATION CHARGES</a></li>
+					<li><a href="#side_tab2" class="accordion-section-title btn btn-default btn-sm btn-them">DRIVER COMMISSION AMOUNT PENDING</a></li>
+					<li><a href="#side_tab3" class="accordion-section-title btn btn-default btn-sm btn-them">DRIVER AMOUNT PENDING TO PICK-C</a></li>
+					@*<li><a href="#side_tab4" class="accordion-section-title btn btn-default btn-sm btn-them">CANCELLATION CHARGES COLLECTED</a></li>*@
+				</ul>
+			</nav>
+			<section id="side_tab1" class="item active" data-title="Tab 1">
+				<div class="item-content">
+					<div class="box-body">
+						<div class="row">
+							<div class="col-md-12">
+								
+								<div class="table-responsive">
+									<table id="Table_userpending" class="table table-hover table-bordered">
+										<thead>
+											<tr>
+												<th>Booking No.</th>
+												<th>Booking Date</th>
+												<th>Vehicle Type</th>
+												<th>Vehicle No.</th>
+												<th>Location From</th>
+												<th>Location To</th>
+												<th>Cancellation Remarks</th>
+												<th>Cancellation Amount</th>
+											</tr>
+										</thead>
+										@*@<tbody>
+														@foreach(var item in )
+												{
+													<tr>
+														<td>@Html.DisplayFor(i=>item.BookingNo)</td>
+														<td>@Html.DisplayFor(i => item.BookingDate)</td>
+														<td>@Html.DisplayFor(i => item.VehicleType)</td>
+														<td>@Html.DisplayFor(i => item.VehicleNo)</td>
+														<td>@Html.DisplayFor(i => item.LocationFrom)</td>
+														<td>@Html.DisplayFor(i => item.LocationTo)</td>
+														<td>@Html.DisplayFor(i => item.CancellationRemarks)</td>
+														<td>@Html.DisplayFor(i=>item.CancellationAmount)</td>
+													</tr>
+												}
+											</tbody>*@
+									</table>
+								</div>
+							</div>
+						</div>
+					</div>
+
+				</div>
+			</section>
+			<section id="side_tab2" class="item" data-title="Tab 2">
+				<div class="item-content">
+					<div class="box-body">
+						<div class="row">
+							<div class="col-md-12">
+								@*<h2>Driver Commission amount pending to Pick-C</h2>*@
+								<div class="table-responsive">
+									<table id="Table_drivercommission" class="table table-hover table-bordered">
+										<thead>
+											<tr>
+												<th>Driver Id</th>
+												<th>Driver Name</th>
+												<th>Vehicle No.</th>
+												<th>Booking No.</th>
+												<th>Booking Date</th>
+												<th>Trip Amount</th>
+												<th>Payment Type</th>
+												<th>Commission Amount</th>
+											
+											</tr>
+										</thead>
+										<tbody>
+											@foreach (var item in Model.driverPendingCommision)
+											{
+												<tr>
+
+													<td>@Html.DisplayFor(i => item.DriverId)</td>
+													<td>@Html.DisplayFor(i => item.DriverName)</td>
+													<td>@Html.DisplayFor(i => item.VehicleNo)</td>
+													<td>@Html.DisplayFor(i => item.BookingNo)</td>
+													<td>@Html.DisplayFor(i => item.BookingDate)</td>
+													<td>@Html.DisplayFor(i => item.TripAmount)</td>
+													<td>@Html.DisplayFor(i => item.PaymentType)</td>
+													<td>@Html.DisplayFor(i => item.CommissionAmount)</td>
+												
+
+												</tr>
+											}
+										</tbody>
+									</table>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</section>
+			<section id="side_tab3" class="item" data-title="Tab 3">
+				<div class="item-content">
+					<div class="box-body">
+						<div class="row">
+							<div class="col-md-12">
+								<table id="Table_driveramount" class="table table-hover table-bordered">
+									<thead>
 										<tr>
 											<th>Driver Id</th>
 											<th>Driver Name</th>
@@ -75,69 +170,350 @@
 											<th>Trip Amount</th>
 											<th>Payment Type</th>
 											<th>Commission Amount</th>
-											<th>Pending Amount</th>
+											
 										</tr>
-                                    </thead>
-                                    <tbody>
-                                        @foreach (var item in Model.driverPendingCommision)
-                                        {
-										<tr>
+									</thead>
+									<tbody></tbody>
+								</table>
+							</div>
+						</div>
+					</div>
 
-											<td>@Html.DisplayFor(i => item.DriverId)</td>
-											<td>@Html.DisplayFor(i => item.DriverName)</td>
-											<td>@Html.DisplayFor(i => item.VehicleNo)</td>
-											<td>@Html.DisplayFor(i => item.BookingNo)</td>
-											<td>@Html.DisplayFor(i => item.BookingDate)</td>
-											<td>@Html.DisplayFor(i => item.TripAmount)</td>
-											<td>@Html.DisplayFor(i => item.PaymentType)</td>
-											<td>@Html.DisplayFor(i => item.CommissionAmount)</td>
-											<td>@(item.TripAmount - item.CommissionAmount)</td>
 
-										</tr>
-                                        }
-                                    </tbody>
-                                </table>
-                            </div>
-                        </div>
 
-                    </div>
-                </div>
-            </div>
-        </div>
-    }
+				</div>
+			</section>
+		</article>
+	}
 </section>
+
 @section secscripts{
-    <script src="@Url.Content("~/Scripts/jquery.validate.js")"></script>
-    <script src="@Url.Content("~/Scripts/moment-with-locales.js")"></script>
-    <script src="@Url.Content("~/Scripts/bootstrap-datetimepicker.js")"></script>
-    <script src="@Url.Content("~/Scripts/jquery.dataTables.min.js")"></script>
-    <script src="@Url.Content("~/Scripts/jquery-ui.js")"></script>
-    <script type="text/javascript">
-        $(function () {
-            $('#pendingAmount').parent().addClass('active');
-            //  $('.pagination ul li a').attr('href', '#');
+	<script src="@Url.Content("~/Scripts/jquery.validate.js")"></script>
+	<script src="@Url.Content("~/Scripts/moment-with-locales.js")"></script>
+	<script src="@Url.Content("~/Scripts/bootstrap-datetimepicker.js")"></script>
+	<script src="@Url.Content("~/Scripts/jquery.dataTables.min.js")"></script>
+	<script src="@Url.Content("~/Scripts/jquery-ui.js")"></script>
+	<script type="text/javascript">
+		$(function () {
+			$('#pendingAmount').parent().addClass('active');
+			//  $('.pagination ul li a').attr('href', '#');
 
-            $(document).ready(function () {
-                $('#Table_userpending').dataTable();
-                $('#Table_drivercommission').dataTable();
-            });
+			$(document).ready(function () {
+				$('#Table_userpending').dataTable();
+				$('#Table_drivercommission').dataTable();
+				$('#Table_driveramount').dataTable();
 
-            $(function () {
-                $('#pendingAmount').parent().addClass('active');
-            });
-            $('.dtCss').datetimepicker({
-                icons: {
-                    time: 'fa fa-clock-o',
-                    date: 'fa fa-calendar',
-                    up: 'fa fa-arrow-up',
-                    down: 'fa fa-arrow-down',
-                    previous: 'fa fa-arrow-left',
-                    next: 'fa fa-arrow-right'
-                },
-                format: 'DD/MM/YYYY'
-            });
-        });
-    </script>
+			});
+
+			$(function () {
+				$('#pendingAmount').parent().addClass('active');
+			});
+			$('.dtCss').datetimepicker({
+				icons: {
+					time: 'fa fa-clock-o',
+					date: 'fa fa-calendar',
+					up: 'fa fa-arrow-up',
+					down: 'fa fa-arrow-down',
+					previous: 'fa fa-arrow-left',
+					next: 'fa fa-arrow-right'
+				},
+				format: 'DD/MM/YYYY'
+			});
+		});
+
+		$(document).ready(function () {
+
+			function close_accordion_section() {
+
+				$('.accordion .accordion-section-title').removeClass('active');
+				$('.accordion .accordion-section-content').slideUp(300).removeClass('open');
+			}
+
+			$('.accordion-section-title').click(function (e) {
+
+				// Grab current anchor value
+				var currentAttrValue = $(this).attr('href');
+
+				if ($(e.target).is('.active')) {
+					close_accordion_section();
+				} else {
+					close_accordion_section();
+
+					// Add active class to section title
+					$(this).addClass('active');
+					// Open up the hidden content panel
+					$('.accordion ' + currentAttrValue).
+						slideDown(300).addClass('open');
+				}
+
+			});
+		});
+
+		$(".accordion").accordion({
+			autoHeight: false,
+			collapsible: true,
+			navigation: true
+		});
+
+
+		tabControl();
+
+		/*
+		We also apply the switch when a viewport change is detected on the fly
+		(e.g. when you resize the browser window or flip your device from
+		portrait mode to landscape). We set a timer with a small delay to run
+		it only once when the resizing ends. It's not perfect, but it's better
+		than have it running constantly during the action of resizing.
+		*/
+		var resizeTimer;
+		$(window).on("resize", function (e) {
+			clearTimeout(resizeTimer);
+			resizeTimer = setTimeout(function () {
+				tabControl();
+			}, 250);
+		});
+
+		/*
+		The function below is responsible for switching the tabs when clicked.
+		It switches both the tabs and the accordion buttons even if
+		only the one or the other can be visible on a screen. We prefer
+		that in order to have a consistent selection in case the viewport
+		changes (e.g. when you esize the browser window or flip your
+		device from portrait mode to landscape).
+		*/
+		function tabControl() {
+			var tabs = $(".tabbed-content").find(".tabs");
+			if (tabs.is(":visible")) {
+				tabs.find("a").on("click", function (event) {
+					event.preventDefault();
+					var target = $(this).attr("href"),
+						tabs = $(this).parents(".tabs"),
+						buttons = tabs.find("a"),
+						item = tabs.parents(".tabbed-content").find(".item");
+					buttons.removeClass("active");
+					item.removeClass("active");
+					$(this).addClass("active");
+					$(target).addClass("active");
+				});
+			} else {
+				$(".item").on("click", function () {
+					var container = $(this).parents(".tabbed-content"),
+						currId = $(this).attr("id"),
+						items = container.find(".item");
+					container.find(".tabs a").removeClass("active");
+					items.removeClass("active");
+					$(this).addClass("active");
+					container.find('.tabs a[href$="#' + currId + '"]').addClass("active");
+				});
+			}
+		}
+
+	</script>
 }
 
+<style>
+	.btn-default.active, .btn-default:active, .open > .dropdown-toggle.btn-default {
+		background-color: #ecec3a;
+		border-color: #ecec3a;
+	}
 
+	.accordion, .accordion * {
+		-webkit-box-sizing: border-box;
+		-moz-box-sizing: border-box;
+		box-sizing: border-box;
+	}
+
+	.accordion {
+		overflow: hidden;
+		box-shadow: 0px 1px 3px rgba(0,0,0,0.25);
+		border-radius: 3px;
+		background: #f7f7f7;
+	}
+
+	.accordion-section-title {
+		width: 100%;
+		padding: 15px;
+		display: inline-block;
+		border-bottom: 1px solid #1a1a1a;
+		background: #333;
+		transition: all linear 0.15s;
+		margin: 0 0 30px 0;
+		font-size: 1.200em;
+		text-shadow: 0px 1px 0px #1a1a1a;
+		color: yellow;
+	}
+
+		.accordion-section-title:active, .accordion-section-title:hover, .accordion-section-title:focus {
+			background-color: rgb(236, 236, 58);
+			text-decoration: none;
+		}
+
+	.accordion-section:last-child .accordion-section-title {
+		border-bottom: none;
+	}
+
+
+	.accordion-section-content {
+		padding: 15px;
+		display: none;
+	}
+
+
+
+	.tabbed-content {
+		background: #fff;
+		box-shadow: 1px 1px 6px #ccc;
+		max-width: 100%;
+		padding: 1em;
+		min-height: 300px;
+	}
+
+
+
+	.tabs ul {
+		margin: 0;
+		padding: 0 0 1em 0;
+		font-weight: bold;
+	}
+
+		.tabs ul li {
+			background: #eee;
+		}
+
+			.tabs ul li a {
+				padding: .5em 1em;
+			}
+
+				.tabs ul li a:hover, .tabs ul li a.active {
+					background: #444;
+					color: #eee;
+				}
+
+	.item {
+		margin-bottom: 2px;
+	}
+
+		.item::before {
+			cursor: pointer;
+			font-weight: bold;
+			background: #eee;
+			padding: .5em;
+			display: block;
+		}
+
+		.item.active::before {
+			background: #444;
+			color: #eee;
+		}
+
+		.item.active .item-content {
+			padding: 1em;
+			-webkit-transition: opacity 0.3s ease-in-out;
+			-moz-transition: opacity 0.3s ease-in-out;
+			-o-transition: opacity 0.3s ease-in-out;
+			-ms-transition: opacity 0.3s ease-in-out;
+			transition: opacity 0.3s ease-in-out;
+		}
+
+
+	/*
+		The project specific CSS starts here
+		This is the minimum CSS that you will need in order for this to work
+		*/
+	.tabbed-content .tabs {
+		display: inherit;
+	}
+
+	.tabbed-content .item {
+		min-height: 2em;
+	}
+
+		.tabbed-content .item::before {
+			content: attr(data-title);
+		}
+
+		.tabbed-content .item .item-content {
+			opacity: 0;
+			visibility: hidden;
+			height: 0;
+		}
+
+		.tabbed-content .item.active .item-content {
+			opacity: 1;
+			visibility: visible;
+			height: auto;
+		}
+
+
+	@@media all and (min-width: 800px) {
+		.item.active .item-content {
+			padding-top: 0;
+		}
+
+		.tabs-side .tabs li {
+			margin-bottom: 2px;
+		}
+	}
+	/*
+		The project specific CSS starts here
+		This is the minimum CSS that you will need in order for this to work
+		*/
+	.tabbed-content .tabs {
+		display: none;
+	}
+
+	.tabbed-content .item {
+		min-height: 2em;
+	}
+
+		.tabbed-content .item::before {
+			content: attr(data-title);
+		}
+
+		.tabbed-content .item .item-content {
+			opacity: 0;
+			visibility: hidden;
+			height: 0;
+		}
+
+		.tabbed-content .item.active .item-content {
+			opacity: 1;
+			visibility: visible;
+			height: auto;
+		}
+
+	@@media all and (min-width: 800px) {
+		.tabbed-content .tabs {
+			display: block;
+		}
+
+			.tabbed-content .tabs li {
+				display: inline-block;
+			}
+
+				.tabbed-content .tabs li a {
+					display: block;
+				}
+
+		.tabbed-content .item {
+			min-height: 0;
+		}
+
+			.tabbed-content .item::before {
+				display: none;
+			}
+
+		.tabbed-content.tabs-side .tabs {
+			width: 350px;
+			float: left;
+		}
+
+			.tabbed-content.tabs-side .tabs li {
+				display: block;
+			}
+
+		.tabbed-content.tabs-side .item {
+			margin-left: 350px;
+		}
+	}
+</style>
