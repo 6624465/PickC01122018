@@ -3,13 +3,14 @@
 
                 <div class="row">
                     <div class="col-md-3 col-sm-6 col-xs-12" id="AppDownloadsBox" onclick="getDownloadList();">
-                        <div class="info-box">
+                        
                             <span class="info-box-icon bg-aqua"><i class="fa fa-download" aria-hidden="true"></i></span>
+                        <div class="info-box">
                             <div class="info-box-content">
                                 <span class="info-box-text">User App Downloads</span>
                                 <span class="info-box-number">IOS:</span>
                                 <span class="info-box-number"> Android:</span>
-                                <span class="info-box-number">Total Downloads:</span>
+                                <span class="info-box-number total-box">Total Downloads:</span>
                             </div>
                             <!-- /.info-box-content -->
                         </div>
@@ -17,29 +18,31 @@
                     </div>
                     
                     <div class="col-md-3 col-sm-6 col-xs-12 hand" id="RegisteredBox" onclick="getRegisteredList();">
-                        <div class="info-box">
+                        
                             <span class="info-box-icon bg-green"><i class="fa fa-registered" aria-hidden="true"></i></span>
+                        <div class="info-box">
                             <div class="info-box-content">
                                 <span class="info-box-text">Registered But Not Booked </span>
                                 <span class="info-box-number">Today Booked:@Model.userDataDashBoard.RegisteredNotBookDailyBasis</span>
                                 @*<span class="info-box-text">Total Count</span>*@
-                                <span class="info-box-number">Total Booked:@Model.userDataDashBoard.RegisteredNotBook</span>
+                                <span class="info-box-number total-box" style="margin-top: 38px; background:#00a65a;">Total Booked:@Model.userDataDashBoard.RegisteredNotBook</span>
                             </div>
                             @*<div class="info-box-content">
-                                <span class="info-box-text">Registered But Not Booked</span>
-                                <span class="info-box-number">@Model.userDataDashBoard.RegisteredNotBook</span>
-                            </div>*@
+                <span class="info-box-text">Registered But Not Booked</span>
+                <span class="info-box-number">@Model.userDataDashBoard.RegisteredNotBook</span>
+            </div>*@
                             <!-- /.info-box-content -->
                         </div>
                         <!-- /.info-box -->
                     </div>
                     <div class="col-md-3 col-sm-6 col-xs-12 hand" id="totaltripsBox" onclick="getTotalTrips();">
-                        <div class="info-box">
+                        
                             <span class="info-box-icon bg-red"><i class="fa fa-tripadvisor" aria-hidden="true"></i></span>
+                        <div class="info-box">
                             <div class="info-box-content">
                                 <span class="info-box-text">Total Trips </span>
                                 <span class="info-box-number">Today Trips:@Model.userDataDashBoard.TotalBookingsdailyBasis</span>
-                                <span class="info-box-number">Total Trips:@Model.userDataDashBoard.TotalBookings</span>
+                                <span class="info-box-number total-box" style="margin-top: 38px; background:#bdc0c4;">Total Trips:@Model.userDataDashBoard.TotalBookings</span>
                                 @*<span class="info-box-number">@Model.userDataDashBoard.TotalBookings</span>*@
                             </div>
                             <!-- /.info-box-content -->
@@ -47,13 +50,16 @@
                         <!-- /.info-box -->
                     </div>
                     <div class="col-md-3 col-sm-6 col-xs-12 hand" id="CancellationBox" onclick="getCancelledList();">
-                        <div class="info-box">
+                        
                             <span class="info-box-icon bg-yellow"><i class="ion ion-ios-people-outline"></i></span>
+                        <div class="info-box">
 
                             <div class="info-box-content">
                                 <span class="info-box-text">Cancellations</span>
                                 <span class="info-box-number">Driver: @Model.userDataDashBoard.DriverCancel</span>
-                                    <span class="info-box-number"> Customer:@Model.userDataDashBoard.CustomerCancel </span></div>
+                                <span class="info-box-number"> Customer:@Model.userDataDashBoard.CustomerCancel </span>
+                                <span class="info-box-number total-box" style="background:#f39c12;"> Total Customers:@Model.userDataDashBoard.CustomerCancel </span>
+                            </div>
                             <!-- /.info-box-content -->
                         </div>
                         <!-- /.info-box -->
@@ -61,6 +67,17 @@
                 </div>
             </div>
 
+<style>
+    .total-box{
+        margin-top: 14px;
+    color: #fff;
+    padding: 7px;
+    margin-left: -10px;
+    margin-right: -10px;
+    margin-bottom: -5px;
+    background: #8bdbef;
+    }
+</style>
 <script src="@Url.Content("~/Scripts/jquery.validate.js")"></script>
 
     <script type="text/javascript">
