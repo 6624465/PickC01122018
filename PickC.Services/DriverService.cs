@@ -45,6 +45,19 @@ namespace PickC.Services
             });
         }
 
+        public async Task<List<DriverDetailsWithPic>> DriverDetailListPicAsync()
+        {
+            IRestClient client = new RestClient(ApiBaseUrl);
+            var request = p_request;
+            request.Method = Method.GET;
+            request.Resource = "master/driver/profilepic/DriverDetailList";
+
+            return await Task.Run(() =>
+            {
+                return ServiceResponse<List<DriverDetailsWithPic>>(client.Execute<List<DriverDetailsWithPic>>(request));
+            });
+        }
+
         public async Task<string> SaveDriverAsync(DriverMdl driver)
         {
             IRestClient client = new RestClient(ApiBaseUrl);

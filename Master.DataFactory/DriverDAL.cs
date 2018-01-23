@@ -49,6 +49,12 @@ namespace Master.DataFactory
         {
             return db.ExecuteSprocAccessor(DBRoutine.DRIVERDETAILLIST, MapBuilder<DriverDetails>.BuildAllProperties()).ToList();
         }
+
+        public List<DriverDetailsWithPic> GetDriversDetailListWithPic()
+        {
+            return db.ExecuteSprocAccessor(DBRoutine.DRIVERDETAILLISTWITHPROFILEPIC, MapBuilder<DriverDetailsWithPic>.BuildAllProperties()).ToList();
+        }
+        
         public List<OperatorWiseDriverDetails> GetOperatorWiseDriverAttachList(string MobileNo)
         {
             return db.ExecuteSprocAccessor(DBRoutine.LISTDRIVEROPERATORWISEATTACH, MapBuilder<OperatorWiseDriverDetails>.BuildAllProperties(),MobileNo).ToList();
@@ -222,8 +228,8 @@ namespace Master.DataFactory
 					{
 						foreach (var driverAttachment in driver.driverAttachment)
 						{
-							driverAttachment.DriverId = driver.OperatorId;
-							driverAttachment.AttachmentId = driver.OperatorId + driverAttachment.LookupCode;
+							driverAttachment.DriverId = newDocumentNo;
+							driverAttachment.AttachmentId = newDocumentNo + driverAttachment.LookupCode;
 						}
 						result = new DriverAttachementDAL().SaveList(driver.driverAttachment, transaction) == true ? 1 : 0;
 					}

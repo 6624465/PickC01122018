@@ -22,7 +22,7 @@ namespace PickC.Internal2.Controllers
 
 		public async Task<ActionResult> Driver()
 		{
-			var driverList = await new DriverService(AUTHTOKEN, p_mobileNo).DriverDetailListAsync();
+			var driverList = await new DriverService(AUTHTOKEN, p_mobileNo).DriverDetailListPicAsync();
 			return View(driverList);
 		}
 
@@ -88,29 +88,29 @@ namespace PickC.Internal2.Controllers
 				var fileContent = Request.Files[file];
 				if (fileContent.ContentLength > 0)
 				{
-					if (file == "fphoto")
+					if (file == "fprofilepic")
 					{
-						lookupId = "1385";
+						lookupId = "1506";
 					}
 					if (file == "flicense")
 					{
-						lookupId = "1386";
+						lookupId = "1376";
 					}
 					if (file == "fpan")
 					{
-						lookupId = "1387";
+						lookupId = "1374";
 					}
-					if (file == "fadhaar")
+					if (file == "fadhar")
 					{
-						lookupId = "1388";
+						lookupId = "1375";
 					}
-					if (file == "faddressProof")
+					if (file == "fvoter")
 					{
-						lookupId = "1389";
+						lookupId = "1377";
 					}
 					if (file == "fothers")
 					{
-						lookupId = "1390";
+						lookupId = "1382";
 					}
 					string mapPath = Server.MapPath("~/DriverAttachments/");
 					if (!Directory.Exists(mapPath))
