@@ -17,7 +17,7 @@ using System.Collections.Generic;
 namespace PickCApi.Areas.Master.Controllers
 {
     [RoutePrefix("api/master/ADoperator")]
-   // [OperatorAPIAuthFilter]
+    // [OperatorAPIAuthFilter]
     public class ADOperatorController : ApiBase
     {
         [HttpGet]
@@ -48,7 +48,7 @@ namespace PickCApi.Areas.Master.Controllers
             {
                 var MOBILENO = HttpContext.Current.Request.Headers["MOBILENO"];
                 int tripCount = new DriverBO().GetTripCount(MOBILENO);
-                return Ok(new {tripCount });
+                return Ok(new { tripCount });
             }
             catch (Exception ex)
             {
@@ -64,7 +64,7 @@ namespace PickCApi.Areas.Master.Controllers
             {
                 var MOBILENO = HttpContext.Current.Request.Headers["MOBILENO"];
                 decimal tripAmount = new DriverBO().GetTripAmount(MOBILENO);
-                return Ok(new {tripAmount });
+                return Ok(new { tripAmount });
             }
             catch (Exception ex)
             {
@@ -79,7 +79,7 @@ namespace PickCApi.Areas.Master.Controllers
             try
             {
                 var MOBILENO = HttpContext.Current.Request.Headers["MOBILENO"];
-                var tripCountEarnings = new DriverBO().GetTripCountEarnings(MOBILENO,FromDate,ToDate);
+                var tripCountEarnings = new DriverBO().GetTripCountEarnings(MOBILENO, FromDate, ToDate);
                 return Ok(tripCountEarnings);
             }
             catch (Exception ex)
@@ -149,7 +149,7 @@ namespace PickCApi.Areas.Master.Controllers
             }
 
         }
-        
+
         [HttpGet]
         [Route("mobile/{mobile}")]
         public IHttpActionResult CheckMobile(string mobile)
@@ -157,7 +157,7 @@ namespace PickCApi.Areas.Master.Controllers
             try
             {
                 bool result = false;
-               // var mobile = HttpContext.Current.Request.Headers["MOBILENO"];
+                // var mobile = HttpContext.Current.Request.Headers["MOBILENO"];
                 var operatorList = new OperatorBO().GetList();
 
                 if (operatorList != null)
@@ -301,7 +301,7 @@ namespace PickCApi.Areas.Master.Controllers
         {
             try
             {
-                var operatorObj =new OperatorLogInBO().GetOperatorDriverMonitor(MobileNo);
+                var operatorObj = new OperatorLogInBO().GetOperatorDriverMonitor(MobileNo);
                 if (operatorObj != null)
                 {
                     return Ok(operatorObj);
@@ -322,7 +322,8 @@ namespace PickCApi.Areas.Master.Controllers
             try
             {
                 var MOBILENO = HttpContext.Current.Request.Headers["MOBILENO"];
-                var driverList = new DriverBO().OperatorWiseDriverAttachList(MOBILENO);
+                //var driverList = new DriverBO().OperatorWiseDriverAttachList(MOBILENO);
+                var driverList = new DriverBO().OperatorWiseDriverAttachList(MOBILENO).Where(x => x.Status = true);
                 if (driverList != null)
                     return Ok(driverList);
                 else
@@ -341,7 +342,7 @@ namespace PickCApi.Areas.Master.Controllers
             try
             {
                 var MOBILENO = HttpContext.Current.Request.Headers["MOBILENO"];
-                var driverList = new DriverBO().GetOperatorWiseDriversList().Where(x=>x.OperatorMobileNo== MOBILENO && x.Status==true);
+                var driverList = new DriverBO().GetOperatorWiseDriversList().Where(x => x.OperatorMobileNo == MOBILENO && x.Status == true);
                 if (driverList != null)
                     return Ok(driverList);
                 else
@@ -398,8 +399,8 @@ namespace PickCApi.Areas.Master.Controllers
             try
             {
                 var result = new OperatorBO().DetachOperatorwisedrivervehicleattachedlist(operatorWiseDriverVehicleAttachedTodayList);
-                if (result==true)
-                    return Ok(new { Status = UTILITY.SUCCESSMESSAGE});
+                if (result == true)
+                    return Ok(new { Status = UTILITY.SUCCESSMESSAGE });
                 else
                     return Ok(new { Status = UTILITY.FAILEDMESSAGE });
             }
