@@ -66,32 +66,34 @@
                             <div class="table-responsive">
                                 <table id="Table_drivercommission" class="table table-hover table-bordered">
                                     <thead>
-                                        <tr>
-                                            <th>Driver Id</th>
-                                            <th>Driver Name</th>
-                                            <th>Vehicle No.</th>
-                                            <th>Booking No.</th>
-                                            <th>Booking Date</th>
-                                            <th>Trip Amount</th>
-                                            <th>Payment Type</th>
-                                            <th>Commission Amount</th>
-                                        </tr>
+										<tr>
+											<th>Driver Id</th>
+											<th>Driver Name</th>
+											<th>Vehicle No.</th>
+											<th>Booking No.</th>
+											<th>Booking Date</th>
+											<th>Trip Amount</th>
+											<th>Payment Type</th>
+											<th>Commission Amount</th>
+											<th>Pending Amount</th>
+										</tr>
                                     </thead>
                                     <tbody>
                                         @foreach (var item in Model.driverPendingCommision)
                                         {
-                                            <tr>
+										<tr>
 
-                                                <td>@Html.DisplayFor(i => item.DriverId)</td>
-                                                <td>@Html.DisplayFor(i => item.DriverName)</td>
-                                                <td>@Html.DisplayFor(i => item.VehicleNo)</td>
-                                                <td>@Html.DisplayFor(i => item.BookingNo)</td>
-                                                <td>@Html.DisplayFor(i => item.BookingDate)</td>
-                                                <td>@Html.DisplayFor(i => item.TripAmount)</td>
-                                                <td>@Html.DisplayFor(i => item.PaymentType)</td>
-                                                <td>@Html.DisplayFor(i => item.CommissionAmount)</td>
+											<td>@Html.DisplayFor(i => item.DriverId)</td>
+											<td>@Html.DisplayFor(i => item.DriverName)</td>
+											<td>@Html.DisplayFor(i => item.VehicleNo)</td>
+											<td>@Html.DisplayFor(i => item.BookingNo)</td>
+											<td>@Html.DisplayFor(i => item.BookingDate)</td>
+											<td>@Html.DisplayFor(i => item.TripAmount)</td>
+											<td>@Html.DisplayFor(i => item.PaymentType)</td>
+											<td>@Html.DisplayFor(i => item.CommissionAmount)</td>
+											<td>@(item.TripAmount - item.CommissionAmount)</td>
 
-                                            </tr>
+										</tr>
                                         }
                                     </tbody>
                                 </table>

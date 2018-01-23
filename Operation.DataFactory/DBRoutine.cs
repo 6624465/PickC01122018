@@ -163,7 +163,7 @@ namespace Operation.DataFactory
         public const string DRIVERCOMMISIONPENDINGTOPICKC="[operation].[usp_CommisionPendingToPickc]";
 
         public const string  DASHBOARDCOUNT="[operation].[usp_dashBoardCountList]";
-        public const string TOTALTRIPDETAILSDAILYBASIS = "[master].[usp_getTotalTripsDetailDailyBasis_Temp]";
+        public const string TOTALTRIPDETAILSDAILYBASIS = "[master].[usp_getTotalTripsDetailDailyBasis]";
 
     }
 }
