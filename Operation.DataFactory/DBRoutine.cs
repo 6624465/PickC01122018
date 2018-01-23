@@ -28,6 +28,7 @@ namespace Operation.DataFactory
        /* shruthi*/
         public const string REGISTERDBUTNOTBOOKEDCOUNT = "[Operation].[usp_CustomerLoginCount]";/*shruthi*/
         public const string REGISTEREDBUTNOTBOOKEDLIST = "[Operation].[usp_RegisteredButNotBooked]";/*shruthi*/
+        public const string REGISTEREDBUTNOTBOOKEDLISTBYDATERANGE = "[Operation].[usp_RegisteredButNotBookedByDtRange]";
 
         /// <summary>
         /// [Operation].[Invoice]

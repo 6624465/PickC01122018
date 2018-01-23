@@ -63,10 +63,15 @@ namespace Operation.BusinessFactory
         {
             return tripDAL.GetuserDataDashBoard();
         }
-       
+
         public List<CustomerStatus> GetCustomerStatusList()
         {
             return tripDAL.GetCustomerStatusList();
+        }
+
+        public List<CustomerStatus> GetCustomerStatusList(RegButNotBookedSearch obj)
+        {
+            return tripDAL.GetCustomerStatusList(obj);
         }
         public List<CustomerCancellation> getCancelledList()
         {
