@@ -465,6 +465,11 @@
             });
 
         });
+        function AddAddress(index) {
+            $('#frmAddress input[type="text"]').removeClass('error');
+            $('#Address1, #Address2, #Address3, #Address4, #StateName, #CityName, #ZipCode').val('');
+            $('#addressModal').modal('show');
+        }
         //$('#SamsungModels').change(function () {
         //    debugger;
         //    var selectedText = $(this).find("option:selected").text();

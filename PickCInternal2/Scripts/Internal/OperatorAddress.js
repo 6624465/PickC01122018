@@ -1,4 +1,5 @@
 ﻿$(function () {
+    
     $('#frmAddress').validate({
         rules: {
             Address1: {
@@ -21,6 +22,28 @@
             },
             ZipCode: {
                 required: true
+            }
+        }, messages: {
+            Address1: {
+                required: ''
+            },
+            Address2: {
+                required: ''
+            },
+            Address3: {
+                required: ''
+            },            
+            Address4: {   
+                required: ''
+            },            
+            StateName: {  
+                required: ''
+            },            
+            CityName: {   
+                required: ''
+            },           
+            ZipCode: {    
+                required: ''
             }
         }
     });
