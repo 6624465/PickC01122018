@@ -80,13 +80,15 @@ namespace Master.DataFactory
 
         //
         public const string SELECTDRIVER = "[Master].[usp_DriverSelect]";
-        //public const string SELECTDRIVERS = "[Master].[usp_DriverSelects]";/*pickinternal by shruthi */
-        public const string LISTDRIVER = "[Master].[usp_DriverList]"; /*commented by shruthi */
-
-        public const string SELECTDRIVERLISTSTATUS = "[Operation].[usp_GetDriverListByLoginStatus]";
+		public const string SELECTDRIVERBYID = "[Master].[usp_DriverSelectById]";/*added by Kiran */
+		//public const string SELECTDRIVERS = "[Master].[usp_DriverSelects]";/*pickinternal by shruthi */
+		public const string LISTDRIVER = "[Master].[usp_DriverList]"; /*commented by shruthi */
+		public const string GETDRIVERLIST= "[Master].[usp_GetDriverList]";/*added by Kiran */
+		public const string SELECTDRIVERLISTSTATUS = "[Operation].[usp_GetDriverListByLoginStatus]";
         public const string DRIVERDETAILLIST = "[Master].[usp_DriverDetailList]";
         public const string SAVEDRIVER = "[Master].[usp_DriverSave]";
-        public const string DELETEDRIVER = "[Master].[usp_DriverDelete]";
+		public const string SAVEDRIVERDETAILS = "[Master].[usp_DriverDetailsSave]";/*added by Kiran */
+		public const string DELETEDRIVER = "[Master].[usp_DriverDelete]";
         public const string DRIVERUPDATEDEVICEID = "[Master].[usp_UpdateDriverDeviceID]";
         public const string DRIVERLISTBYLOGINSTATUS = "[Operation].[usp_GetDriverListByLoginStatus]";
         /*  public const string GETDRIVERBYSTATUS = "[Master].[usp_GetDriverByStatus]";*//* commented by shruthi*/

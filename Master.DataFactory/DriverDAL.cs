@@ -28,13 +28,20 @@ namespace Master.DataFactory
 
         }
 
+
         #region IDataFactory Members
 
         public List<Driver> GetList()
         {
             return db.ExecuteSprocAccessor(DBRoutine.LISTDRIVER, MapBuilder<Driver>.BuildAllProperties()).ToList();
         }
-        public List<Driver> GetList(short status)
+
+		//added by Kiran///
+		public List<DriverMdl> GetDriverList()
+		{
+			return db.ExecuteSprocAccessor(DBRoutine.GETDRIVERLIST, MapBuilder<DriverMdl>.BuildAllProperties()).ToList();
+		}
+		public List<Driver> GetList(short status)
         {
             return db.ExecuteSprocAccessor(DBRoutine.LISTDRIVER, MapBuilder<Driver>.BuildAllProperties()).ToList();
         }
@@ -156,7 +163,105 @@ namespace Master.DataFactory
             return (result > 0 ? true : false);
 
         }
-        public bool SaveDriverReferral<T>(T item, DbTransaction parentTransaction) where T : IContract
+
+
+
+		//// added by Kiran////
+		public bool SaveDriverDetails<T>(T item) where T : IContract
+		{
+			var result = 0;
+			var driver = (DriverMdl)(object)item;
+
+			if (currentTransaction == null)
+			{
+				connection = db.CreateConnection();
+				connection.Open();
+			}
+
+			var transaction = (currentTransaction == null ? connection.BeginTransaction() : currentTransaction);
+
+			try
+			{
+
+				var savecommand = db.GetStoredProcCommand(DBRoutine.SAVEDRIVERDETAILS);
+				db.AddInParameter(savecommand, "DriverID", System.Data.DbType.String, driver.DriverId);
+				db.AddInParameter(savecommand, "DriverName", System.Data.DbType.String, driver.DriverName);
+				db.AddInParameter(savecommand, "Password", System.Data.DbType.String, driver.Password);
+				db.AddInParameter(savecommand, "VehicleNo", System.Data.DbType.String, "");
+				db.AddInParameter(savecommand, "FatherName", System.Data.DbType.String, driver.FatherName);
+				db.AddInParameter(savecommand, "DateOfBirth", System.Data.DbType.DateTime, driver.DateOfBirth);
+				db.AddInParameter(savecommand, "PlaceOfBirth", System.Data.DbType.String, driver.PlaceOfBirth);
+				db.AddInParameter(savecommand, "Gender", System.Data.DbType.Int16, driver.Gender);
+				db.AddInParameter(savecommand, "MaritialStatus", System.Data.DbType.Int16, driver.MaritialStatus);
+				db.AddInParameter(savecommand, "MobileNo", System.Data.DbType.String, driver.MobileNo);
+				db.AddInParameter(savecommand, "PhoneNo", System.Data.DbType.String, driver.PhoneNo);
+				db.AddInParameter(savecommand, "PANNo", System.Data.DbType.String, driver.PANNo);
+				db.AddInParameter(savecommand, "AadharCardNo", System.Data.DbType.String, driver.AadharCardNo);
+				db.AddInParameter(savecommand, "LicenseNo", System.Data.DbType.String, driver.LicenseNo);
+				//db.AddInParameter(savecommand, "Status", System.Data.DbType.Boolean, driver.Status);
+				db.AddInParameter(savecommand, "CreatedBy", System.Data.DbType.String, driver.CreatedBy);
+				db.AddInParameter(savecommand, "ModifiedBy", System.Data.DbType.String, driver.ModifiedBy);
+				db.AddInParameter(savecommand, "Nationality", System.Data.DbType.String, driver.Nationality ?? "Indian");
+				db.AddInParameter(savecommand, "OperatorID", System.Data.DbType.String, driver.OperatorId);
+				//db.AddInParameter(savecommand, "DeviceID", System.Data.DbType.String, driver.DeviceID);
+
+				db.AddInParameter(savecommand, "MobileMake", System.Data.DbType.String, driver.MobileMake);
+				db.AddInParameter(savecommand, "ModelNo", System.Data.DbType.String, driver.ModelNo);
+				db.AddInParameter(savecommand, "DateofIssue", System.Data.DbType.DateTime, driver.DateofIssue);
+				db.AddInParameter(savecommand, "DateofReturn", System.Data.DbType.DateTime, driver.DateofReturn);
+				db.AddOutParameter(savecommand, "NewDocumentNo", System.Data.DbType.String, 50);
+				db.AddInParameter(savecommand, "DriverRemarks", System.Data.DbType.String, driver.DriverRemarks);
+
+				result = db.ExecuteNonQuery(savecommand, transaction);
+
+				if (result > 0)
+				{
+					var newDocumentNo = savecommand.Parameters["@NewDocumentNo"].Value.ToString();
+					// var newDocumentNo = db.GetParameterValue(savecommand, "NewDocumentNo").ToString();
+					if (driver.driverAttachment != null && driver.driverAttachment.Count > 0)
+					{
+						foreach (var driverAttachment in driver.driverAttachment)
+						{
+							driverAttachment.DriverId = driver.OperatorId;
+							driverAttachment.AttachmentId = driver.OperatorId + driverAttachment.LookupCode;
+						}
+						result = new DriverAttachementDAL().SaveList(driver.driverAttachment, transaction) == true ? 1 : 0;
+					}
+					if (driver.AddressList != null && driver.AddressList.Count > 0)
+					{
+						foreach (var addressItem in driver.AddressList)
+						{
+							addressItem.AddressLinkId = newDocumentNo;
+						}
+
+
+						driver.AddressList.ForEach(x =>
+						{
+							result = new AddressDAL().Save(x, transaction) == true ? 1 : 0;
+						});
+					}
+					if (currentTransaction == null)
+						transaction.Commit();
+				}
+			}
+			catch (Exception ex)
+			{
+				if (currentTransaction == null)
+					transaction.Rollback();
+
+				throw ex;
+			}
+			finally
+			{
+				transaction.Dispose();
+				connection.Close();
+
+			}
+
+			return (result > 0 ? true : false);
+
+		}
+		public bool SaveDriverReferral<T>(T item, DbTransaction parentTransaction) where T : IContract
         {
             currentTransaction = parentTransaction;
             return SaveDriverReferral(item);
@@ -283,6 +388,7 @@ namespace Master.DataFactory
             return result;
         }
 
+		//added by Kiran
         public IContract GetItem<T>(IContract lookupItem) where T : IContract
         {
             var item = ((Driver)lookupItem);
@@ -300,7 +406,27 @@ namespace Master.DataFactory
 
             return driverItem;
         }
-        public IContract GetDriverRating<T>(IContract lookupItem) where T : IContract
+
+		public IContract GetDriverByID<T>(IContract lookupItem) where T : IContract
+		{
+			var item = ((DriverMdl)lookupItem);
+
+			var driverItem = db.ExecuteSprocAccessor(DBRoutine.SELECTDRIVERBYID,
+													MapBuilder<DriverMdl>
+													.MapAllProperties()
+													.DoNotMap(x => x.Nationality).Build(),
+													item.DriverId).FirstOrDefault();
+
+			if (driverItem == null) return null;
+
+
+			driverItem.AddressList = new AddressDAL().GetList(driverItem.DriverId);
+
+			return driverItem;
+		}
+
+
+		public IContract GetDriverRating<T>(IContract lookupItem) where T : IContract
         {
             var item = ((DriverRating)lookupItem);
 

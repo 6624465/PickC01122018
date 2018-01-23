@@ -35,7 +35,27 @@ namespace PickCApi.Areas.Master.Controllers
                 return InternalServerError(ex);
             }
         }
-        [HttpGet]
+
+		[HttpGet]
+		[Route("driverlist")]
+		public IHttpActionResult GetDriverList()
+		{
+			try
+			{
+				var driverList = new DriverBO().GetDriverList();
+				if (driverList != null)
+					return Ok(driverList);
+				else
+					return NotFound();
+			}
+			catch (Exception ex)
+			{
+				return InternalServerError(ex);
+			}
+		}
+
+
+		[HttpGet]
         [Route("DriverDetailList")]
         public IHttpActionResult DriverDetailList()
         {
@@ -87,7 +107,43 @@ namespace PickCApi.Areas.Master.Controllers
             }
         }
 
-        [HttpDelete]
+		[HttpPost]
+		[Route("savedriver")]
+		public IHttpActionResult SaveDriver(DriverMdl driver)
+		{
+			try
+			{
+				driver.CreatedBy = UTILITY.DEFAULTUSER;
+				driver.ModifiedBy = UTILITY.DEFAULTUSER;
+				driver.CreatedOn = DateTime.Now;
+				driver.ModifiedOn = DateTime.Now;
+
+				if (driver.AddressList != null && driver.AddressList.Count > 0)
+				{
+					driver.AddressList.ForEach(x =>
+					{
+						x.AddressLinkId = driver.DriverId;
+						x.AddressType = "DRIVER";
+						x.CreatedBy = UTILITY.DEFAULTUSER;
+						x.CreatedOn = DateTime.Now;
+						x.ModifiedBy = UTILITY.DEFAULTUSER;
+						x.ModifiedOn = DateTime.Now;
+						x.IsActive = true;
+					});
+				}
+				var result = new DriverBO().SaveDriverDetails(driver);
+				if (result)
+					return Ok(UTILITY.SUCCESSMSG);
+				else
+					return BadRequest();
+			}
+			catch (Exception ex)
+			{
+				return InternalServerError(ex);
+			}
+		}
+
+		[HttpDelete]
         [Route("{driverID}")]
         public IHttpActionResult DeleteDriver(string driverID)
         {
@@ -145,7 +201,27 @@ namespace PickCApi.Areas.Master.Controllers
         }
 
 
-        [HttpGet]
+		//added by kiran
+		[HttpGet]
+		[Route("DriverInfoByID/{driverByID}")]
+		public IHttpActionResult DriverInfoByID(string driverByID)
+		{
+			try
+			{
+				var driver = new DriverBO().GetDriverByID(new DriverMdl { DriverId = driverByID });
+				if (driver != null)
+					return Ok(driver);
+				else
+					return NotFound();
+			}
+			catch (Exception ex)
+			{
+				return InternalServerError(ex);
+			}
+		}
+
+
+		[HttpGet]
         [Route("lookupdata")]
         public IHttpActionResult LookUpData()
         {

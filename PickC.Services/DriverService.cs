@@ -24,9 +24,10 @@ namespace PickC.Services
             IRestClient client = new RestClient(ApiBaseUrl);
             var request = p_request;
             request.Method = Method.GET;
-            request.Resource = "master/driver/list";
+			//request.Resource = "master/driver/list";
+			request.Resource = "master/driver/driverlist";
 
-            return await Task.Run(() =>
+			return await Task.Run(() =>
             {
                 return ServiceResponse<List<Driver>>(client.Execute<List<Driver>>(request));
             });
@@ -44,13 +45,14 @@ namespace PickC.Services
             });
         }
 
-        public async Task<string> SaveDriverAsync(Driver driver)
+        public async Task<string> SaveDriverAsync(DriverMdl driver)
         {
             IRestClient client = new RestClient(ApiBaseUrl);
             var request = p_request;
             request.Method = Method.POST;
-            request.Resource = "master/driver/save";
-            request.AddJsonBody(driver);
+			//request.Resource = "master/driver/save";
+			request.Resource = "master/driver/savedriver";
+			request.AddJsonBody(driver);
 
             return await Task.Run(() =>
             {
@@ -70,8 +72,23 @@ namespace PickC.Services
                 return ServiceResponse<Driver>(client.Execute<Driver>(request));
             });
         }
-     
-        public async Task<string> DeleteDriverAsync(string driverID)
+
+		//added by Kiran
+		public async Task<DriverMdl> DriverByIDInfoAsync(string driverID)
+		{
+			IRestClient client = new RestClient(ApiBaseUrl);
+			var request = p_request;
+			request.Method = Method.GET;
+			request.Resource = "master/driver/DriverInfoByID/{driverByID}";
+			request.AddParameter("driverByID", driverID, ParameterType.UrlSegment);
+
+			return await Task.Run(() =>
+			{
+				return ServiceResponse<DriverMdl>(client.Execute<DriverMdl>(request));
+			});
+		}
+
+		public async Task<string> DeleteDriverAsync(string driverID)
         {
             IRestClient client = new RestClient(ApiBaseUrl);
             var request = p_request;
