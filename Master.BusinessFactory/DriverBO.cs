@@ -146,5 +146,10 @@ namespace Master.BusinessFactory
         {
             return (DriverTripInvoice)driverDAL.GetDriverTripInvoice<DriverTripInvoice>(driverTripInvoice);
         }
+
+        public List<DriverPendingAmount> GetDriverPendingAmount()
+        {
+            return driverDAL.GetDriverPendingAmount();
+        }
     }
 }

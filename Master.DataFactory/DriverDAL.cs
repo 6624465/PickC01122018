@@ -743,5 +743,11 @@ namespace Master.DataFactory
             return driverItem;
         }
 
+        public List<DriverPendingAmount> GetDriverPendingAmount()
+        {
+            return db.ExecuteSprocAccessor(DBRoutine.DRIVERBALANCEAMOUNT, 
+                MapBuilder<DriverPendingAmount>.BuildAllProperties()).ToList();
+        }
+
     }
 }
