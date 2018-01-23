@@ -26,6 +26,11 @@ namespace Master.BusinessFactory
         {
             return driverDAL.GetDriversDetailList();
         }
+
+        public List<DriverDetailsWithPic> GetDriversDetailListWithPic()
+        {
+            return driverDAL.GetDriversDetailListWithPic();
+        }
         public int GetTripCount(string MobileNo)
         {
             return driverDAL.GetTripCount(MobileNo);

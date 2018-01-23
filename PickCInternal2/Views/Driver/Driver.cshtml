@@ -1,4 +1,4 @@
-﻿@model IEnumerable<Master.Contract.DriverDetails>
+﻿@model IEnumerable<Master.Contract.DriverDetailsWithPic>
 @using PickC.Internal2.HtmlHelpers
 @{
     ViewBag.Title = "Driver";
@@ -11,10 +11,10 @@
 
 <section class="content">
     @*<div class="row">
-        <div class="col-xs-12">
-            @{ Html.RenderPartial("DashboardMenuList"); }
-        </div>
-    </div>*@
+            <div class="col-xs-12">
+                @{ Html.RenderPartial("DashboardMenuList"); }
+            </div>
+        </div>*@
     <div class="row">
         <div class="col-xs-12">
             <div class="tab-main-content">
@@ -41,10 +41,16 @@
                                     @grid.Table(
          tableStyle: "table table-hover",
          columns: grid.Columns(
+              grid.Column("ImagePath", "Profile Pic",
+              format:
+            @<text>
+                <img src="@Url.Content("~/DriverAttachments/"+item.ImagePath)" class="img-circle" style="width:50px;height:50px" />
+            </text>
+              ),
              grid.Column("DriverID", "Driver ID"),
              grid.Column("DriverName", "Driver Name"),
              //grid.Column("VehicleNo", "VehicleNo"),
-             grid.Column("DriverID", "#Edit", format: @<text><a href="@Url.Content("~/driver/edit?driverID=" + item.DriverID)"><i class="fa fa-pencil "aria-hidden="true"></i></a></text>)
+             grid.Column("DriverID", "#Edit", format: @<text><a href="@Url.Content("~/driver/edit?driverID=" + item.DriverID)"><i class="fa fa-pencil " aria-hidden="true"></i></a></text>)
          ),
          htmlAttributes: new { id = "grid" })
                                 </div>

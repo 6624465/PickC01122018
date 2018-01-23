@@ -72,6 +72,25 @@ namespace PickCApi.Areas.Master.Controllers
                 return InternalServerError(ex);
             }
         }
+
+        [HttpGet]
+        [Route("profilepic/DriverDetailList")]
+        public IHttpActionResult DriverDetailListWithPic()
+        {
+            try
+            {
+                var driverList = new DriverBO().GetDriversDetailListWithPic();
+                if (driverList != null)
+                    return Ok(driverList);
+                else
+                    return NotFound();
+            }
+            catch (Exception ex)
+            {
+                return InternalServerError(ex);
+            }
+        }
+
         [HttpPost]
         [Route("save")]
         public IHttpActionResult SaveDriver(Driver driver)
