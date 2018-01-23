@@ -43,9 +43,19 @@ namespace PickC.Services
             request.Method = Method.GET;
             request.Resource = "operation/trip/CustomerStatus";
             return ServiceResponse(await client.ExecuteTaskAsync<List<CustomerStatus>>(request));
+        }
+
+        public async Task<List<CustomerStatus>> GetRegisteredButNotBookedList(DateTime DateFrom, DateTime DateTo)
+        {
+            IRestClient client = new RestClient(ApiBaseUrl);
+            var request = p_request;
+            request.Method = Method.POST;
+            request.Resource = "operation/trip/CustomerStatus";
+            request.AddJsonBody(new { DateFrom = DateFrom, DateTo = DateTo });
+            return ServiceResponse(await client.ExecuteTaskAsync<List<CustomerStatus>>(request));
 
         }
-     
+
         public async Task<List<CustomerCancellation>> getCancelledList()
         {
             IRestClient client = new RestClient(ApiBaseUrl);

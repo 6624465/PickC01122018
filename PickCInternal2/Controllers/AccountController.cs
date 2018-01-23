@@ -33,7 +33,7 @@ namespace PickC.Internal2.Controllers
                 var customerObj = await new CustomerService().GetCustomerInfoAsync(loginDTO.Token, customer.MobileNo);
                 HttpContext.Session["SSN_CUSTOMER"] = customerObj;
 
-                return RedirectToAction("GetDriversList", "Dashboard");
+                return RedirectToAction("UserApp", "Dashboard");
             }
             else
                 return View("Login");

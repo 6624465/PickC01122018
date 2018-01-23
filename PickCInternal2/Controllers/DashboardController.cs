@@ -172,7 +172,7 @@ namespace PickC.Internal2.Controllers
         public async Task<ActionResult> RegisteredList(UserData user)
         {
             var userData = new UserData();
-            var CustomerList = await new UserService(AUTHTOKEN, p_mobileNo).GetRegisteredButNotBookedList();
+            var CustomerList = await new UserService(AUTHTOKEN, p_mobileNo).GetRegisteredButNotBookedList(user.DateFrom, user.DateTo);
             userData.userDataDashBoard = await new UserService(AUTHTOKEN, p_mobileNo).GetDashBoardUserData();
             userData.customerStatusList = new List<CustomerStatus>();
             userData.customerStatusList = CustomerList;

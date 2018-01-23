@@ -46,7 +46,7 @@
                                     <div class="col-md-4">
                                         <div class="form-group">
                                             <label>Tonnage</label>
-                                            @Html.TextBoxFor(x => x.Tonnage, new { @class = "form-control" })
+                                            @Html.TextBoxFor(x => x.Tonnage, new { @class = "form-control numCss" })
                                         </div>
                                     </div>
                                 </div>
@@ -87,6 +87,13 @@
             }
         });
     })
+    $(document).on('keypress', '.numCss', function (evt) {
+        var charCode = (evt.which) ? evt.which : event.keyCode;
+        if ((charCode >= 48 && charCode <= 57) || charCode == 46)
+            return true;
+        else
+            return false;
+    });
     function onSave() {
         if($('#frmConfig').valid()){
             $('#frmConfig').submit();

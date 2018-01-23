@@ -2181,10 +2181,11 @@ a {
     display: block;
     min-height: 90px;
     background: #fff;
-    width: 100%;
+    width: 72%;
     box-shadow: 0 1px 1px rgba(0,0,0,0.1);
     border-radius: 2px;
     margin-bottom: 15px;
+    margin-left: 90px;
 }
 
     .info-box small {
@@ -2226,7 +2227,7 @@ a {
 
 .info-box-content {
     padding: 5px 10px;
-    margin-left: 90px;
+   
 }
 
 .info-box-number {
@@ -2409,9 +2410,11 @@ a {
         }
 
 .btn-default {
-    background-color: #f4f4f4;
-    color: #444;
+    background-color: #fffc00;
+    color: #191919;
     border-color: #ddd;
+    bottom: 1px;
+    border-radius:4px !important;
 }
 
     .btn-default:hover, .btn-default:active, .btn-default.hover {

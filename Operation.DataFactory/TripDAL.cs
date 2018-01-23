@@ -280,10 +280,15 @@ namespace Operation.DataFactory
         {
             return db.ExecuteSprocAccessor(DBRoutine.DASHBOARDCOUNT, MapBuilder<UserDataDashBoard>.BuildAllProperties()).FirstOrDefault();
         }
-        
+
         public List<CustomerStatus> GetCustomerStatusList()
         {
             return db.ExecuteSprocAccessor(DBRoutine.REGISTEREDBUTNOTBOOKEDLIST, MapBuilder<CustomerStatus>.BuildAllProperties()).ToList();
+        }
+
+        public List<CustomerStatus> GetCustomerStatusList(RegButNotBookedSearch obj)
+        {
+            return db.ExecuteSprocAccessor(DBRoutine.REGISTEREDBUTNOTBOOKEDLISTBYDATERANGE, MapBuilder<CustomerStatus>.BuildAllProperties(),obj.DateFrom,obj.DateTo).ToList();
         }
         public List<CustomerCancellation> getCancelledListByCustomer()
         {

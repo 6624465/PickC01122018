@@ -75,7 +75,8 @@
                     <td>@Html.DisplayFor(m => item.MobileNo)</td>
                     <td>@Html.DisplayFor(m => item.EmailId)</td>
                     <td>@Html.DisplayFor(m => item.RegisteredDate)</td>
-                    <td>@Html.DisplayFor(m => item.LastLoginDate)</td>
+                    <td>@Html.DisplayFor(m=>item.LastLoginDate)</td>
+                    @*<td>@Html.DisplayFor(m => item.LastLoginDate== DateTime.MinValue?"":item.LastLoginDate.ToString())</td>*@
                 </tr>
             }
             }

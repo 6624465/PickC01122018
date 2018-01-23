@@ -31,11 +31,11 @@ namespace Master.DataFactory
         #region IDataFactory Members
         public List<TruckList> GetList(string MobileNo)
         {
-            return db.ExecuteSprocAccessor(DBRoutine.LISTTRUCK, MapBuilder<TruckList>.MapAllProperties().DoNotMap(x => x.Maker).Build(), MobileNo).ToList();
+            return db.ExecuteSprocAccessor(DBRoutine.LISTTRUCK, MapBuilder<TruckList>.BuildAllProperties(), MobileNo).ToList();
         }
         public List<TruckList> GetListByType(int VehicleType,string MobileNo)
         {
-            return db.ExecuteSprocAccessor(DBRoutine.SELECTTRUCK, MapBuilder<TruckList>.MapAllProperties().DoNotMap(x => x.Maker).Build(), VehicleType, MobileNo).ToList();
+            return db.ExecuteSprocAccessor(DBRoutine.SELECTTRUCK, MapBuilder<TruckList>.BuildAllProperties(), VehicleType, MobileNo).ToList();
         }
 
 
