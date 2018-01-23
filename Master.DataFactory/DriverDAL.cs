@@ -42,13 +42,13 @@ namespace Master.DataFactory
         {
             return db.ExecuteSprocAccessor(DBRoutine.DRIVERDETAILLIST, MapBuilder<DriverDetails>.BuildAllProperties()).ToList();
         }
-        public List<Driver> GetOperatorWiseDriverAttachList(string MobileNo)
+        public List<OperatorWiseDriverDetails> GetOperatorWiseDriverAttachList(string MobileNo)
         {
-            return db.ExecuteSprocAccessor(DBRoutine.LISTDRIVEROPERATORWISEATTACH, MapBuilder<Driver>.BuildAllProperties(),MobileNo).ToList();
+            return db.ExecuteSprocAccessor(DBRoutine.LISTDRIVEROPERATORWISEATTACH, MapBuilder<OperatorWiseDriverDetails>.BuildAllProperties(),MobileNo).ToList();
         }
-        public List<Driver> GetOperatorWiseDriversList(string MobileNo)
+        public List<OperatorWiseDriverDetails> GetOperatorWiseDriversList()
         {
-            return db.ExecuteSprocAccessor(DBRoutine.LISTOFTOTALDRIVEROPERATORWISE, MapBuilder<Driver>.BuildAllProperties(), MobileNo).ToList();
+            return db.ExecuteSprocAccessor(DBRoutine.LISTOFTOTALDRIVEROPERATORWISE, MapBuilder<OperatorWiseDriverDetails>.BuildAllProperties()).ToList();
         }
 
         public bool Save<T>(T item, DbTransaction parentTransaction) where T : IContract

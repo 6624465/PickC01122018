@@ -341,7 +341,7 @@ namespace PickCApi.Areas.Master.Controllers
             try
             {
                 var MOBILENO = HttpContext.Current.Request.Headers["MOBILENO"];
-                var driverList = new DriverBO().GetOperatorWiseDriversList(MOBILENO);
+                var driverList = new DriverBO().GetOperatorWiseDriversList().Where(x=>x.OperatorMobileNo== MOBILENO && x.Status==true);
                 if (driverList != null)
                     return Ok(driverList);
                 else

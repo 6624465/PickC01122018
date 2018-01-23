@@ -108,13 +108,13 @@ namespace Master.BusinessFactory
         {
             return driverDAL.UpdateDriverPassword(item);
         }
-        public List<Driver> OperatorWiseDriverAttachList(string MobileNo)
+        public List<OperatorWiseDriverDetails> OperatorWiseDriverAttachList(string MobileNo)
         {
             return driverDAL.GetOperatorWiseDriverAttachList(MobileNo);
         }
-        public List<Driver> GetOperatorWiseDriversList(string MobileNo)
+        public List<OperatorWiseDriverDetails> GetOperatorWiseDriversList()
         {
-            return driverDAL.GetOperatorWiseDriversList(MobileNo);
+            return driverDAL.GetOperatorWiseDriversList();
         }
         public bool SaveDriverRating(DriverRating driverRating)
         {
