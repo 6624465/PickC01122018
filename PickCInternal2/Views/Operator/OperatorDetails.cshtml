@@ -702,7 +702,7 @@ new { @class = "form-control" })
         <form id="frmVehicle" name="frmVehicle">
             <div class="modal-content">
                 <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <button type="button" class="close" data-dismiss="modal" id="vehicle_cancel" aria-label="Close" >
                         <span aria-hidden="true">×</span>
                     </button>
                     <h4 class="modal-title">Vehicle Info</h4>
@@ -812,7 +812,7 @@ new { @class = "form-control" })
                         </div>
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-default pull-left" data-dismiss="modal" id="vehicle_cancel" >Close</button>
                         <button type="button" onclick="btnSaveVehicle();" class="btn btn-primary btn-them">Save</button><!--onclick="btnSaveVehicle();"-->
                     </div>
                 </div>
@@ -826,7 +826,7 @@ new { @class = "form-control" })
         <form id="frmAddress" name="frmAddress">
             <div class="modal-content">
                 <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal"  id="address_cancel" onclick="ClearFields();"aria-label="Close">
+                    <button type="button" class="close" data-dismiss="modal"  id="address_cancel" aria-label="Close">
                         <span aria-hidden="true">×</span>
                     </button>
                     <h4 class="modal-title">Address Info</h4>
@@ -866,12 +866,12 @@ new { @class = "form-control" })
                     <div class="row">
                         <div class="col-md-6">
                             <label>Zipcode</label>
-                            <input class="form-control" id="ZipCode" name="ZipCode" type="text" value="">
+                            <input class="form-control number" id="ZipCode" name="ZipCode" type="text" value="" maxlength=6>
                         </div>
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-default pull-left" data-dismiss="modal"  onclick="ClearFields();">Close</button>
+                    <button type="button" class="btn btn-default pull-left" data-dismiss="modal" >Close</button>
                     <button type="button" onclick="btnSaveAddress();" class="btn btn-primary btn-them ">Save</button>
                 </div>
             </div>
@@ -911,7 +911,7 @@ new { @class = "form-control" })
         <form id="frmBank" name="frmBank">
             <div class="modal-content">
                 <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal" id="bank_cancel" onclick="ClearBankDetails();" aria-label="Close">
+                    <button type="button" class="close" data-dismiss="modal" id="bank_cancel"  aria-label="Close">
                         <span aria-hidden="true">×</span>
                     </button>
                     <h4 class="modal-title">Bank Details</h4>
@@ -930,7 +930,7 @@ new { @class = "form-control" })
                     <div class="row">
                         <div class="col-md-6">
                             <label>Account Number</label>
-                            <input type="text" id="txtAccNumber" name="txtAccNumber" class="form-control" />
+                            <input type="text" id="txtAccNumber" name="txtAccNumber" class="form-control number" maxlength="20"/>
                         </div>
                         <div class="col-md-6">
                             <label>Account Type</label>
@@ -939,7 +939,7 @@ new { @class = "form-control" })
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-default pull-left" data-dismiss="modal" id="bank_cancel" onclick="ClearBankDetails();">Close</button>
+                    <button type="button" class="btn btn-default pull-left" data-dismiss="modal" id="bank_cancel" >Close</button>
                     <button id="btnSave" type="button" class="btn btn-primary btn-them " onclick="btnSaveBank();">Save</button>
                 </div>
             </div>
@@ -1311,28 +1311,38 @@ new { @class = "form-control" })
         //    return false;
 
         //});
-        function ClearFields() {
-            debugger
-            $('#Address1, #Address2, #Address3, #Address4, #CityName, #StateName, #ZipCode').val('');
-            $('#addressModal').modal('hide');
-        }
-   
-        function ClearBankDetails() {
-            debugger
-            gIndex = -1;
-            //$("#bank_cancel").on("click", function () {
-            $('#frmBank input[type="text"]').removeClass('error');
-            $('#frmBank label').removeClass('error');
-            //$('#frmBank label').empty();
+      
+       
+        //function ClearBankDetails() {
+        //    $('#frmBank input[type="text"]').removeClass('error');
+        //    $('#frmBank label').removeClass('error');
+        //    //$('#frmBank label').empty();
            
-                //$("form div").removeClass("error");
-                //$("form label").removeClass("error");
-                //$("form")[0].reset();
-            //});
-            //$("#frmBank")[0].reset();
-            $('#txtBankName, #txtBranch, #txtAccNumber, #txtAccType').val('');
-            $('#bankDetailsModal').modal('hide');
+        //        //$("form div").removeClass("error");
+        //        //$("form label").removeClass("error");
+        //        //$("form")[0].reset();
+        //    //});
+        //    //$("#frmBank")[0].reset();
+        //    $('#txtBankName, #txtBranch, #txtAccNumber, #txtAccType').val('');
+        //    $('#bankDetailsModal').modal('hide');
+        //}
+        function AddVehicle(index) {
+            $('#frmVehicle input[type="text"]').removeClass('error');
+            $('#frmVehicle select').removeClass('error');
+            $('#VehicleRegistrationNo, #VehicleType, #VehicleCategory, #Model, #Tonnage').val('');
+            $('#VehicleModal').modal('show');
         }
+        function bankDetails(index) {
+            $('#frmBank input[type="text"]').removeClass('error');
+            $('#txtBankName, #txtBranch, #txtAccNumber, #txtAccType').val('');
+            $('#bankDetailsModal').modal('show');
+        }
+        function AddAddress() {
+            $('#frmAddress input[type="text"]').removeClass('error');
+            $('#Address1, #Address2, #Address3, #Address4, #StateName, #CityName, #ZipCode').val('');
+            $('#addressModal').modal('show');
+        }
+
 
             $('#Btn_SendOperatorId').bind('click', function () {
                 debugger;
@@ -1341,6 +1351,16 @@ new { @class = "form-control" })
                // $.cookie("OperatorValue", $('#OperatorId').val());
                 window.location.href = '@Url.Action("Add", "Driver")';
             });
+        $('.number').keypress(function (e) {
+            if (window.event)
+                code = e.keyCode;
+            else
+                code = e.which;
+            if (code >= 48 && code <= 57)
+                return true;
+            else
+                return false;
+        });
 
     </script>
 }

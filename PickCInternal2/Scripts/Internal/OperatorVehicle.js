@@ -1,4 +1,5 @@
 ﻿$(function () {
+    
     $('#frmVehicle').validate({
         rules: {
             VehicleRegistrationNo: {
@@ -17,7 +18,25 @@
                 required: true
             }
            
+        },
+        messages: {
+            VehicleRegistrationNo: {
+                required: ''
+            },
+            VehicleType: {
+                required: ''
+            },
+            VehicleCategory: {
+                required: ''
+            },
+            Model: {
+                required: ''
+            },
+            Tonnage: {
+                required: ''
+            }
         }
+
     });
 });
 var gIndex = -1;
