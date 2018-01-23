@@ -336,16 +336,17 @@ namespace PickCApi.Areas.Master.Controllers
         }
 
         [HttpGet]
+        [Route("driverpendingamount")]
         public IHttpActionResult GetDriverPendingAmount()
         {
             try
             {
-
+                var driverPendingAmountList = new DriverBO().GetDriverPendingAmount();
+                return Ok(driverPendingAmountList);
             }
             catch (Exception ex)
             {
-
-                throw;
+                return InternalServerError(ex);
             }
         }
         
