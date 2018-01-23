@@ -89,9 +89,10 @@ namespace PickCApi.Areas.Operation.Controllers
         {
             try
             {
+                
                 var bookingResult = new SearchBO().SearchBookingsHistory(
-                    bookingDTO.DateFrom,
-                    bookingDTO.DateTo);
+                    bookingDTO.DateFrom.ToLocalTime(),
+                    bookingDTO.DateTo.ToLocalTime());
 
                 return Ok(bookingResult);
             }
