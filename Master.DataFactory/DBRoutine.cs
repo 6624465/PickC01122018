@@ -32,11 +32,11 @@ namespace Master.DataFactory
         /// [Master].[VehicleConfig]
         /// </summary>
 
-        public const string SELECTVEHICLECONFIG = "[Master].[usp_VehicleConfigSelect]";
-        public const string LISTVEHICLECONFIG = "[Master].[usp_VehicleConfigList]";
-        public const string SAVEVEHICLECONFIG = "[Master].[usp_VehicleConfigSave]";
-        public const string DELETEVEHICLECONFIG = "[Master].[usp_VehicleConfigDelete]";
-        public const string INSERTVEHICLECONFIG= "[Master].[usp_VehicleConfigInsert]";
+        public const string SELECTVEHICLECONFIG = "[Master].[usp_VehicleConfigSelect]";/*based on id*/
+        public const string LISTVEHICLECONFIG = "[Master].[usp_VehicleConfigList]";/*total list*/
+        public const string SAVEVEHICLECONFIG = "[Master].[usp_VehicleConfigSave]";/*save*/
+        public const string DELETEVEHICLECONFIG = "[Master].[usp_VehicleConfigDelete]";/*delete based on id*/
+        public const string INSERTVEHICLECONFIG= "[Master].[usp_VehicleConfigInsert]";/*insert */
 
 
 

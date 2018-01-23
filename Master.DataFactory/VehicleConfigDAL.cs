@@ -57,8 +57,8 @@ namespace Master.DataFactory
             try
             {
 
-                var savecommand = db.GetStoredProcCommand(DBRoutine.INSERTVEHICLECONFIG);
-                //db.AddInParameter(savecommand, "VehicleType", System.Data.DbType.Int16, vehicleconfig.VehicleType);
+                var savecommand = db.GetStoredProcCommand(DBRoutine.SAVEVEHICLECONFIG);
+                db.AddInParameter(savecommand, "VehicleModelId", System.Data.DbType.Int32, vehicleconfig.VehicleModelId);
                 //db.AddInParameter(savecommand, "VehicleDescription", System.Data.DbType.String, vehicleconfig.VehicleDescription);
                 db.AddInParameter(savecommand, "Maker", System.Data.DbType.String, vehicleconfig.Maker);
                 db.AddInParameter(savecommand, "Model", System.Data.DbType.String, vehicleconfig.Model);
