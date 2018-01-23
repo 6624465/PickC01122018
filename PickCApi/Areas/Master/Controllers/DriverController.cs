@@ -334,6 +334,20 @@ namespace PickCApi.Areas.Master.Controllers
                 return InternalServerError(ex);
             }
         }
+
+        [HttpGet]
+        public IHttpActionResult GetDriverPendingAmount()
+        {
+            try
+            {
+
+            }
+            catch (Exception ex)
+            {
+
+                throw;
+            }
+        }
         
 
     }

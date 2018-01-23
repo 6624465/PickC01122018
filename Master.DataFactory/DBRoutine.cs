@@ -160,6 +160,7 @@ namespace Master.DataFactory
         public const string SAVEDRIVERRATING = "[Master].[usp_DriverRatingSave]";
         public const string DELETEDRIVERRATING = "[Master].[usp_DriverRatingDelete]";
         public const string SELECTDRIVERAVERAGERATING = "[Master].[usp_DriverRatingSelectByDriverID]";
+        public const string DRIVERBALANCEAMOUNT = "[Operation].[usp_DriverBalanceAmount]";
         /// </summary>
 
         /// <summary>

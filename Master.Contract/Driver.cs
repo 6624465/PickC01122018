@@ -120,6 +120,19 @@ namespace Master.Contract
 
     }
 
+    public class DriverPendingAmount : IContract
+    {
+        public DriverPendingAmount() { }
+
+        public string InvoiceNo { get; set; }
+
+        public string TripID { get; set; }
+
+        public decimal BalanceAmount { get; set; }
+
+        public string DriverID { get; set; }
+    }
+
 
 	public class DriverMdl : IContract
 	{
