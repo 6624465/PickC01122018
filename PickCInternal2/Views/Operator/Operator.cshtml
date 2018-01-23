@@ -61,7 +61,7 @@
                                 grid.Column("Edit", "#Edit", format:
                                 @<text><a href="@Url.Content("~/Operator/Edit?OperatorID=" + item.OperatorID)"><i class="fa fa-pencil" aria-hidden="true"></i></a></text>),
                                 grid.Column("View", "#View", format:
-                                @<text><a class="hand" onclick="location.href='@Url.Content("~/Operator/Operator?OperatorID=" + item.OperatorID)'"><i class="fa fa-eye" aria-hidden="true"></i></a></text>)
+                                @<text><a class="hand" onclick="driverListView('@item.OperatorID')"><i class="fa fa-eye" aria-hidden="true"></i></a></text>)
                             ),
                             htmlAttributes: new { id = "grid" })
                             </div>
@@ -136,7 +136,11 @@
         </form>
     </div>
 </div>
-
+@using (Html.BeginForm("Operator", "Operator", FormMethod.Post, new { id = "frmDriverList2", name = "frmDriverList2" }))
+{
+    <input type="hidden" name="OperatorID" id="OperatorID" value="OP170600003" />
+    <button style="display:none;" type="submit">CLick</button>
+}
 <div id="popover-content-login" class="hide">
 </div>
 
@@ -144,8 +148,13 @@
     <script src="@Url.Content("~/Scripts/jquery.validate.js")"></script>
     <script src="@Url.Content("~/Scripts/moment.min.js")"></script>
     <script type="text/javascript">
+        function driverListView(operatorID) {
+            debugger;
+            $('#OperatorID').val(operatorID);
+            $('#frmDriverList2').submit();
+        }
         $(function () {
-            @if (driverList!=null)
+            @if (driverList != null)
             {
                 <text>
             $('#DriverListModal').modal('show');

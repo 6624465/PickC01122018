@@ -75,6 +75,7 @@
     <Compile Include="OperatorVehicle.cs" />
     <Compile Include="OperatorVehicles.cs" />
     <Compile Include="OperatorVehuicleAttachedNo.cs" />
+    <Compile Include="OperatorWiseDriverDetails.cs" />
     <Compile Include="OperatorWiseDriverVehicleAttachedTodayList.cs" />
     <Compile Include="PendingAmount.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
