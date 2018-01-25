@@ -254,61 +254,58 @@
                         <h3 class="box-title">Device Details</h3>
                     </div>
                     <div class="box-body">
-                        <div class="row">
-                            <div class="col-md-4">
-                                <div class="form-group">
-                                    <label>Mobile Make</label>
-                                    @Html.TextBoxFor(x => x.driver.MobileMake, new
-                               {
-                                   @class = "form-control",
-                                   placeholder = "Mobile Make"
-                               })
-                                </div>
-                            </div>
-                            <div class="col-md-4">
-                                <div class="form-group">
-                                    <label>Model No</label>
-                                    @Html.TextBoxFor(x => x.driver.ModelNo, new
-                               {
-                                   @class = "form-control",
-                                   placeholder = "Model No"
-                               })
-                                </div>
-                            </div>
-                            <div class="col-md-4">
-                                <div class="form-group">
-                                    <label>Date of Issue</label>
-                                    <div class="input-group dtCss">
-                                        @Html.TextBoxFor(x => x.driver.DateofIssue,
-                                              new
-                                              {
-                                                  @class = "form-control",
-                                                  placeholder = "Date Of Issue"
-                                              })
-                                        <span class="input-group-btn">
-                                            <button type="button" class="btn btn-default"><i class="fa fa-calendar" aria-hidden="true"></i></button>
-                                        </span>
-                                    </div>
-                                </div>
-                            </div>
+						<div class="row">
+							<div class="col-md-4">
+								<div class="form-group">
+									<label>Mobile Make</label>
+									@}
+							/**/
 
-                            <div class="col-md-4">
-                                <div class="form-group">
-                                    <label>Date of Return</label>
-                                    <div class="input-group dtCss">
-                                        @Html.TextBoxFor(x => x.driver.DateofReturn,
-                                              new
-                                              {
-                                                  @class = "form-control",
-                                                  placeholder = "Date Of Return"
-                                              })
-                                        <span class="input-group-btn">
-                                            <button type="button" class="btn btn-default"><i class="fa fa-calendar" aria-hidden="true"></i></button>
-                                        </span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+#line default
+#line hidden
+								</div>
+							</div>
+							<div class="col-md-4">
+								<div class="form-group">
+									<label>Model No</label>
+									@#line default
+#line hidden
+								</div>
+							</div>
+							<div class="col-md-4">
+								<div class="form-group">
+									<label>Date of Issue</label>
+									<div class="input-group dtCss">
+										@#line default
+#line hidden
+
+										<span class="input-group-btn">
+											<button type="button" class="btn btn-default"><i class="fa fa-calendar" aria-hidden="true"></i></button>
+										</span>
+									</div>
+								</div>
+							</div>
+
+							<div class="col-md-4">
+								<div class="form-group">
+									<label>Date of Return</label>
+									<div class="input-group dtCss">
+										@#line default
+#line hidden
+
+										<span class="input-group-btn">
+											<button type="button" class="btn btn-default"><i class="fa fa-calendar" aria-hidden="true"></i></button>
+										</span>
+									</div>
+								</div>
+							</div>
+							<div class="col-md-4">
+								<div class="form-group">
+									<label>Device Remarks</label>
+									@Html.TextBoxFor(x => x.driver.DeviceRemarks, new { @class = "form-control", placeholder = "Device Remarks" })
+								</div>
+							</div>
+						</div>
                     </div>
                 </div>
             </div>

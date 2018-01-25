@@ -223,7 +223,7 @@ namespace Master.Contract
 		public List<BankDetails> BankDetails { get; set; }
 		public List<DriverAttachment> driverAttachment { get; set; }
 
-		public string DriverRemarks { get; set; }
+		public string DeviceRemarks { get; set; }
 	}
 }
 

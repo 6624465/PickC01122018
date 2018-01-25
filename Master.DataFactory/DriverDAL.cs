@@ -216,7 +216,7 @@ namespace Master.DataFactory
 				db.AddInParameter(savecommand, "DateofIssue", System.Data.DbType.DateTime, driver.DateofIssue);
 				db.AddInParameter(savecommand, "DateofReturn", System.Data.DbType.DateTime, driver.DateofReturn);
 				db.AddOutParameter(savecommand, "NewDocumentNo", System.Data.DbType.String, 50);
-				db.AddInParameter(savecommand, "DriverRemarks", System.Data.DbType.String, driver.DriverRemarks);
+				db.AddInParameter(savecommand, "DriverRemarks", System.Data.DbType.String, driver.DeviceRemarks);
 
 				result = db.ExecuteNonQuery(savecommand, transaction);
 
