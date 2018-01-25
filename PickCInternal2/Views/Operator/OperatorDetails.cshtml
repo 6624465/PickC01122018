@@ -1348,7 +1348,7 @@ new { @class = "form-control" })
             $('#Btn_SendOperatorId').bind('click', function () {
                 debugger;
                 var data = $('#OperatorId').val();
-                localStorage.setItem('OperatorValue', JSON.stringify(data));
+                //localStorage.setItem('OperatorValue', JSON.stringify(data));
                // $.cookie("OperatorValue", $('#OperatorId').val());
 				//window.location.href = '@Url.Action("Add", "Driver")';
 				var url = '@Url.Content("~/Driver/Add")';

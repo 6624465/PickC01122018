@@ -59,12 +59,6 @@
 									@Html.HiddenFor(x => x.driver.Password)
 								</div>
 							</div>
-							<div class="col-md-4">
-								<div class="form-group">
-									<label>Driver Remarks</label>
-									@Html.TextBoxFor(x => x.driver.DriverRemarks, new { @class = "form-control", placeholder = "Driver Remarks" })
-								</div>
-							</div>
 							@*<div class="col-md-4">
 			<div class="form-group">
 				<label>Vehicle No</label>
@@ -173,13 +167,13 @@
                             <div class="col-md-4">
                                 <div class="form-group">
                                     <label>Aadhar Card No</label>
-                                    @Html.TextBoxFor(x => x.driver.AadharCardNo, new { @class = "form-control number",@maxlength=12, placeholder = "Aadhar Card No" })
+									@Html.TextBoxFor(x => x.driver.AadharCardNo, new { @class = "form-control number", @maxlength = 12, placeholder = "Aadhar Card No" })
                                 </div>
                             </div>
                             <div class="col-md-4">
                                 <div class="form-group">
                                     <label>License No</label>
-                                    @Html.TextBoxFor(x => x.driver.LicenseNo, new { @class = "form-control",@maxlength=16, placeholder = "License No" })
+									@Html.TextBoxFor(x => x.driver.LicenseNo, new { @class = "form-control", @maxlength = 16, placeholder = "License No" })
                                 </div>
                             </div>
                         </div>
@@ -273,8 +267,8 @@
                                     <label>Model No</label>
                                     @Html.TextBoxFor(x => x.driver.ModelNo, new
                                {
-                                   @class ="form-control",
-                                   placeholder ="Model No"
+										@class = "form-control",
+										placeholder = "Model No"
                                })                                
                                 </div>
                             </div>
@@ -310,20 +304,87 @@
                                     </div>
                                 </div>
                             </div>
+							<div class="col-md-4">
+								<div class="form-group">
+									<label>Device Remarks</label>
+									@Html.TextBoxFor(x => x.driver.DeviceRemarks, new { @class = "form-control", placeholder = "Device Remarks" })
                     </div>
                 </div>
             </div>
         </div>
      </div>
+			</div>
+		</div>
         <div class="row">
             <div class="col-md-12">
                 <div class="box">
+                    <div class="box-header">
+                        <h3 class="box-title">Driver Attachments</h3>
+                    </div>
                     <div class="box-body">
-                        <div class="col-md-1">
-                            <button type="button" class="btn btn-primary btn-them" onclick="btnSave();">Save</button>
+                        <div class="row">
+                            <div class="col-md-3">
+                                <label>AADHAR CARD</label>
+                            </div>
+                            <div class="col-md-3">
+                                <input type="file" id="fadhar" name="fadhar" value="1375" />
+                            </div>
                         </div>
-                        <div class="col-md-1">
-                            <button type="button" class="btn btn-default btn-block" onclick="location.href = '@Url.Content("~/Driver/Driver")'">Cancel</button>
+                        <div class="row" style="padding-top:5px">
+                            <div class="col-md-3">
+                                <label>PAN CARD</label>
+                            </div>
+                            <div class="col-md-3">
+                                <input type="file" id="fpan" name="fpan" value="1374" />
+                            </div>
+                        </div>
+                        <div class="row" style="padding-top:5px">
+                            <div class="col-md-3">
+                                <label>DRIVING LICENCE</label>
+                            </div>
+                            <div class="col-md-3">
+                                <input type="file" id="flicense" name="flicense" value="1376" />
+                            </div>
+                        </div>
+                        <div class="row" style="padding-top:5px">
+                            <div class="col-md-3">
+                                <label>VOTER ID</label>
+                            </div>
+                            <div class="col-md-3">
+                                <input type="file" id="fvoter" name="fvoter" value="1377" />
+                            </div>
+                        </div>
+                        <div class="row" style="padding-top:5px">
+                            <div class="col-md-3">
+                                <label>PROFILE PIC</label>
+                            </div>
+                            <div class="col-md-3">
+                                <input type="file" id="fvoter" name="fprofilepic" value="1506" />
+                            </div>
+                        </div>
+                        <div class="row" style="padding-top:5px">
+                            <div class="col-md-3">
+                                <label>OTHERS</label>
+                            </div>
+                            <div class="col-md-3">
+                                <input type="file" id="fothers" name="fothers" value="1382" multiple="multiple" />
+                                @*@Html.TextBoxFor(model => model.files, "", new { @type = "file", @multiple = "multiple" })*@
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+       
+    
+        <div class="row">
+            <div class="col-md-12">
+                <div class="box">
+                    <div class="box-body" style="padding-bottom:15px;">
+                        <div class="text-left">
+                            <button type="button" class="btn btn-primary btn-them" onclick="btnSave();">Save</button>
+                            <button type="button" class="btn btn-default" onclick="location.href = '@Url.Content("~/Driver/Driver")'">Cancel</button>
                         </div>
                     </div>
                 </div>
@@ -389,6 +450,7 @@
         </form>
     </div>
 </div>
+
 @section secscripts{
     <script src="@Url.Content("~/Scripts/jquery.validate.js")"></script>
     <script src="@Url.Content("~/Scripts/moment.js")"></script>
@@ -438,16 +500,16 @@
                         required: true
                     },
                     'driver.MobileMake': {
-                        required:true
+						required: true
                     },
                     'driver.ModelNo': {
-                        required:true
+						required: true
                     },
                     'driver.DateofIssue': {
-                        required:true
+						required: true
                     },
                     'driver.DateofReturn': {
-                        required:true
+						required: true
                     }
                 }
             });
