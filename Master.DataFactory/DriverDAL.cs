@@ -148,6 +148,19 @@ namespace Master.DataFactory
                             result = new AddressDAL().Save(x, transaction) == true ? 1 : 0;
                         });
                     }
+
+                    if(driver.BankDetails != null && driver.BankDetails.Count > 0)
+                    {
+                        foreach(var bankItem in driver.BankDetails)
+                        {
+                            bankItem.OperatorBankID = driver.DriverId;
+                        }
+
+                        driver.BankDetails.ForEach(x => {
+                            new BankDetailsDAL().Save(x);
+                        });
+                    }
+
                     if (currentTransaction == null)
                         transaction.Commit();
                 }
@@ -427,6 +440,7 @@ namespace Master.DataFactory
 
 
 			driverItem.AddressList = new AddressDAL().GetList(driverItem.DriverId);
+            driverItem.BankDetails = new BankDetailsDAL().GetList(driverItem.DriverId);
 
 			return driverItem;
 		}
