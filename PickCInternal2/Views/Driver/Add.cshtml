@@ -36,176 +36,176 @@
 
 
 
-								</div>
-							</div>
-							@*<div class="col-md-4">
-									<button type="button" class="btn btn-primary" style="margin-top: 25px;" onclick="Check();">Valid</button>
-								</div>*@
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-		<div class="row" id="DriverInfo" style="display:none;">
-			<div class="col-xs-12">
-				<div class="box">
-					<div class="box-header">
-						<h3 class="box-title">Driver Info</h3>
-					</div>
-					<div class="box-body">
-						<div class="row">
-							<div class="col-md-4">
-								<div class="form-group">
-									<label>Driver ID</label>
-									@Html.TextBoxFor(x => x.driver.DriverId, new { @class = "form-control", placeholder = "Driver ID", @readonly = "readonly" })
-								</div>
-							</div>
-							<div class="col-md-4">
-								<div class="form-group">
-									<label>Driver Name</label>
-									@Html.TextBoxFor(x => x.driver.DriverName, new { @class = "form-control", placeholder = "Driver Name" })
-								</div>
-							</div>
-							@*<div class="col-md-4">
-									<div class="form-group">
-										<label>Vehicle No</label>
-										@Html.TextBoxFor(x => x.driver.VehicleNo, new { @class = "form-control", placeholder = "Vehicle No" })
-									</div>
-								</div>*@
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-		<div class="row" style="display:none;" id="PersonalInfo">
-			<div class="col-xs-12">
-				<div class="box">
-					<div class="box-header">
-						<h3 class="box-title">Personal Info</h3>
-					</div>
-					<div class="box-body">
-						<div class="row">
-							<div class="col-md-4">
-								<div class="form-group">
-									<label>Father Name</label>
-									@Html.TextBoxFor(x => x.driver.FatherName, new { @class = "form-control", placeholder = "Father Name" })
-								</div>
-							</div>
-							<div class="col-md-4">
-								<div class="form-group">
-									<label>Date Of Birth</label>
-									<div class="input-group dtCss">
-										@Html.TextBoxFor(x => x.driver.DateOfBirth,
-																				 new
-																				 {
-																					 @class = "form-control",
-																					 placeholder = "Date Of Birth"
-																				 })
-										<span class="input-group-btn">
-											<button type="button" class="btn btn-default"><i class="fa fa-calendar" aria-hidden="true"></i></button>
-										</span>
-									</div>
-								</div>
-							</div>
-							<div class="col-md-4">
-								<div class="form-group">
-									<label>Place Of Birth</label>
-									@Html.TextBoxFor(x => x.driver.PlaceOfBirth,
-																				 new
-																				 {
-																					 @class = "form-control",
-																					 placeholder = "Place Of Birth"
-																				 })
-								</div>
-							</div>
-						</div>
-						<div class="row">
-							<div class="col-md-4">
-								<div class="form-group">
-									<label>Gender</label>
-									@Html.DropDownListFor(x => x.driver.Gender,
-																			 new SelectList(Model.driverLookupDTO.genderOptions, "LookupId", "LookupDescription"),
-																			 "Select Gender",
-																			 new { @class = "form-control" })
-								</div>
-							</div>
-							<div class="col-md-4">
-								<div class="form-group">
-									<label>Maritial Status</label>
-									@Html.DropDownListFor(x => x.driver.MaritialStatus,
-																			 new SelectList(Model.driverLookupDTO.maritalOptions, "LookupId", "LookupDescription"),
-																			 "Select Maritial Status",
-																			 new { @class = "form-control" })
-								</div>
-							</div>
-							<div class="col-md-4">
-								<div class="form-group">
-									<label>Mobile No</label>
-									@Html.TextBoxFor(x => x.driver.MobileNo, new { @class = "form-control number", @maxlength = 10, placeholder = "Mobile No" })
-								</div>
-							</div>
-						</div>
-						<div class="row">
-							<div class="col-md-4">
-								<div class="form-group">
-									<label>Phone No</label>
-									@Html.TextBoxFor(x => x.driver.PhoneNo, new { @class = "form-control number", @maxlength = 10, placeholder = "Phone No" })
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-		<div class="row" style="display:none;" id="IdentificationInfo">
-			<div class="col-xs-12">
-				<div class="box">
-					<div class="box-header">
-						<h3 class="box-title">Identification Info</h3>
-					</div>
-					<div class="box-body">
-						<div class="row">
-							<div class="col-md-4">
-								<div class="form-group">
-									<label>PAN No</label>
-									@Html.TextBoxFor(x => x.driver.PANNo, new { @class = "form-control", @maxlength = 10, placeholder = "PAN No" })
-								</div>
-							</div>
-							<div class="col-md-4">
-								<div class="form-group">
-									<label>Aadhar Card No</label>
-									@Html.TextBoxFor(x => x.driver.AadharCardNo, new { @class = "form-control number", @maxlength = 12, placeholder = "Aadhar Card No" })
-								</div>
-							</div>
-							<div class="col-md-4">
-								<div class="form-group">
-									<label>License No</label>
-									@Html.TextBoxFor(x => x.driver.LicenseNo, new { @class = "form-control", @maxlength = 16, placeholder = "License No" })
-								</div>
-							</div>
-						</div>
-						@*<div class="row">
-								<div class="col-md-4">
-									<div class="form-group">
-										<label>Vehicle No</label>
-										@Html.TextBoxFor(x => x.driver.DriverVehicleNo, new { @class = "form-control" })
-									</div>
-								</div>
-							</div>*@
-					</div>
-				</div>
-			</div>
-		</div>
-		<div class="row" style="display:none;" id="AddressInfo">
-			<div class="col-md-12">
-				<div class="box">
-					<div class="box-header">
-						<h3 class="box-title">Address Info</h3>
-						<div class="box-tools">
-							<button class="btn btn-box-tool" type="button" onclick="AddAddress('-1')"><i class="fa fa-plus" aria-hidden="true"></i></button>
-						</div>
-					</div>
-					<div class="box-body" style="padding-bottom:15px;">
+                                </div>
+                            </div>
+                            @*<div class="col-md-4">
+                                    <button type="button" class="btn btn-primary" style="margin-top: 25px;" onclick="Check();">Valid</button>
+                                </div>*@
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row" id="DriverInfo" style="display:none;">
+            <div class="col-xs-12">
+                <div class="box">
+                    <div class="box-header">
+                        <h3 class="box-title">Driver Info</h3>
+                    </div>
+                    <div class="box-body">
+                        <div class="row">
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label>Driver ID</label>
+                                    @Html.TextBoxFor(x => x.driver.DriverId, new { @class = "form-control", placeholder = "Driver ID", @readonly = "readonly" })
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label>Driver Name</label>
+                                    @Html.TextBoxFor(x => x.driver.DriverName, new { @class = "form-control", placeholder = "Driver Name" })
+                                </div>
+                            </div>
+                            @*<div class="col-md-4">
+                                    <div class="form-group">
+                                        <label>Vehicle No</label>
+                                        @Html.TextBoxFor(x => x.driver.VehicleNo, new { @class = "form-control", placeholder = "Vehicle No" })
+                                    </div>
+                                </div>*@
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row" style="display:none;" id="PersonalInfo">
+            <div class="col-xs-12">
+                <div class="box">
+                    <div class="box-header">
+                        <h3 class="box-title">Personal Info</h3>
+                    </div>
+                    <div class="box-body">
+                        <div class="row">
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label>Father Name</label>
+                                    @Html.TextBoxFor(x => x.driver.FatherName, new { @class = "form-control", placeholder = "Father Name" })
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label>Date Of Birth</label>
+                                    <div class="input-group dtCss">
+                                        @Html.TextBoxFor(x => x.driver.DateOfBirth,
+                                              new
+                                              {
+                                                  @class = "form-control",
+                                                  placeholder = "Date Of Birth"
+                                              })
+                                        <span class="input-group-btn">
+                                            <button type="button" class="btn btn-default"><i class="fa fa-calendar" aria-hidden="true"></i></button>
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label>Place Of Birth</label>
+                                    @Html.TextBoxFor(x => x.driver.PlaceOfBirth,
+                                              new
+                                              {
+                                                  @class = "form-control",
+                                                  placeholder = "Place Of Birth"
+                                              })
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label>Gender</label>
+                                    @Html.DropDownListFor(x => x.driver.Gender,
+                                          new SelectList(Model.driverLookupDTO.genderOptions, "LookupId", "LookupDescription"),
+                                          "Select Gender",
+                                          new { @class = "form-control" })
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label>Maritial Status</label>
+                                    @Html.DropDownListFor(x => x.driver.MaritialStatus,
+                                          new SelectList(Model.driverLookupDTO.maritalOptions, "LookupId", "LookupDescription"),
+                                          "Select Maritial Status",
+                                          new { @class = "form-control" })
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label>Mobile No</label>
+                                    @Html.TextBoxFor(x => x.driver.MobileNo, new { @class = "form-control number", @maxlength = 10, placeholder = "Mobile No" })
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label>Phone No</label>
+                                    @Html.TextBoxFor(x => x.driver.PhoneNo, new { @class = "form-control number", @maxlength = 10, placeholder = "Phone No" })
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row" style="display:none;" id="IdentificationInfo">
+            <div class="col-xs-12">
+                <div class="box">
+                    <div class="box-header">
+                        <h3 class="box-title">Identification Info</h3>
+                    </div>
+                    <div class="box-body">
+                        <div class="row">
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label>PAN No</label>
+                                    @Html.TextBoxFor(x => x.driver.PANNo, new { @class = "form-control", @maxlength = 10, placeholder = "PAN No" })
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label>Aadhar Card No</label>
+                                    @Html.TextBoxFor(x => x.driver.AadharCardNo, new { @class = "form-control number", @maxlength = 12, placeholder = "Aadhar Card No" })
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label>License No</label>
+                                    @Html.TextBoxFor(x => x.driver.LicenseNo, new { @class = "form-control", @maxlength = 16, placeholder = "License No" })
+                                </div>
+                            </div>
+                        </div>
+                        @*<div class="row">
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <label>Vehicle No</label>
+                                        @Html.TextBoxFor(x => x.driver.DriverVehicleNo, new { @class = "form-control" })
+                                    </div>
+                                </div>
+                            </div>*@
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row" style="display:none;" id="AddressInfo">
+            <div class="col-md-12">
+                <div class="box">
+                    <div class="box-header">
+                        <h3 class="box-title">Address Info</h3>
+                        <div class="box-tools">
+                            <button class="btn btn-box-tool" type="button" onclick="AddAddress('-1')"><i class="fa fa-plus" aria-hidden="true"></i></button>
+                        </div>
+                    </div>
+                    <div class="box-body" style="padding-bottom:15px;">
 
 						<table class="table table-hover table-bordered">
 							<thead>
@@ -243,189 +243,183 @@
 							</tbody>
 						</table>
 
-					</div>
-				</div>
-			</div>
-		</div>
-		<div id="DeviceDetails" class="row" style="display:none;">
-			<div class="col-xs-12">
-				<div class="box">
-					<div class="box-header">
-						<h3 class="box-title">Device Details</h3>
-					</div>
-					<div class="box-body">
-						<div class="row">
-							<div class="col-md-4">
-								<div class="form-group">
-									<label>Mobile Make</label>
-									@Html.TextBoxFor(x => x.driver.MobileMake, new
-									{
-										@class = "form-control",
-										placeholder = "Mobile Make"
-									})
-								</div>
-							</div>
-							<div class="col-md-4">
-								<div class="form-group">
-									<label>Model No</label>
-									@Html.TextBoxFor(x => x.driver.ModelNo, new
-									{
-										@class = "form-control",
-										placeholder = "Model No"
-									})
-								</div>
-							</div>
-							<div class="col-md-4">
-								<div class="form-group">
-									<label>Date of Issue</label>
-									<div class="input-group dtCss">
-										@Html.TextBoxFor(x => x.driver.DateofIssue,
-new
-{
-@class = "form-control",
-placeholder = "Date Of Issue"
-})
-										<span class="input-group-btn">
-											<button type="button" class="btn btn-default"><i class="fa fa-calendar" aria-hidden="true"></i></button>
-										</span>
-									</div>
-								</div>
-							</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="DeviceDetails" class="row" style="display:none;">
+            <div class="col-xs-12">
+                <div class="box">
+                    <div class="box-header">
+                        <h3 class="box-title">Device Details</h3>
+                    </div>
+                    <div class="box-body">
+                        <div class="row">
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label>Mobile Make</label>
+                                    @Html.TextBoxFor(x => x.driver.MobileMake, new
+                               {
+                                   @class = "form-control",
+                                   placeholder = "Mobile Make"
+                               })
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label>Model No</label>
+                                    @Html.TextBoxFor(x => x.driver.ModelNo, new
+                               {
+                                   @class = "form-control",
+                                   placeholder = "Model No"
+                               })
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label>Date of Issue</label>
+                                    <div class="input-group dtCss">
+                                        @Html.TextBoxFor(x => x.driver.DateofIssue,
+                                              new
+                                              {
+                                                  @class = "form-control",
+                                                  placeholder = "Date Of Issue"
+                                              })
+                                        <span class="input-group-btn">
+                                            <button type="button" class="btn btn-default"><i class="fa fa-calendar" aria-hidden="true"></i></button>
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
 
-							<div class="col-md-4">
-								<div class="form-group">
-									<label>Date of Return</label>
-									<div class="input-group dtCss">
-										@Html.TextBoxFor(x => x.driver.DateofReturn,
-new
-{
-@class = "form-control",
-placeholder = "Date Of Return"
-})
-										<span class="input-group-btn">
-											<button type="button" class="btn btn-default"><i class="fa fa-calendar" aria-hidden="true"></i></button>
-										</span>
-									</div>
-								</div>
-							</div>
-							<div class="col-md-4">
-								<div class="form-group">
-									<label>Device Remarks</label>
-									@Html.TextBoxFor(x => x.driver.DeviceRemarks, new { @class = "form-control", placeholder = "Device Remarks" })
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-		<div class="row" style="display:none;" id="Attachments">
-			<div class="col-md-12">
-				<div class="box">
-					<div class="box-header">
-						<h3 class="box-title">Attachments</h3>
-						@*<div class="box-tools">
-								<button class="btn btn-box-tool" type="button" onclick="AddAttachments()"><i class="fa fa-plus" aria-hidden="true"></i></button>
-							</div>*@
-					</div>
-					<div class="box-body">
-						<div class="row">
-							<div class="col-md-3">
-								<label>AADHAR CARD</label>
-							</div>
-							<div class="col-md-3">
-								<input type="file" id="fadhar" name="fadhar" value="1375" />
-							</div>
-						</div>
-						<div class="row" style="padding-top:5px">
-							<div class="col-md-3">
-								<label>PAN CARD</label>
-							</div>
-							<div class="col-md-3">
-								<input type="file" id="fpan" name="fpan" value="1374" />
-							</div>
-						</div>
-						<div class="row" style="padding-top:5px">
-							<div class="col-md-3">
-								<label>DRIVING LICENCE</label>
-							</div>
-							<div class="col-md-3">
-								<input type="file" id="flicense" name="flicense" value="1376" />
-							</div>
-						</div>
-						<div class="row" style="padding-top:5px">
-							<div class="col-md-3">
-								<label>VOTER ID</label>
-							</div>
-							<div class="col-md-3">
-								<input type="file" id="fvoter" name="fvoter" value="1377" />
-							</div>
-						</div>
-						<div class="row" style="padding-top:5px">
-							<div class="col-md-3">
-								<label>PROFILE PIC</label>
-							</div>
-							<div class="col-md-3">
-								<input type="file" id="fvoter" name="fprofilepic" value="1506" />
-							</div>
-						</div>
-						<div class="row" style="padding-top:5px">
-							<div class="col-md-3">
-								<label>OTHERS</label>
-							</div>
-							<div class="col-md-3">
-								<input type="file" id="fothers" name="fothers" value="1382" multiple="multiple" />
-								@*@Html.TextBoxFor(model => model.files, "", new { @type = "file", @multiple = "multiple" })*@
-							</div>
-						</div>
-						@*<div class="row">
-								<div class="col-md-2">
-									<label>PHOTO</label>
-								</div>
-								<div class="col-md-3">
-									<input type="file" id="fphoto" name="fphoto" value="1385" />
-								</div>
-							</div>
-							<div class="row">
-								<div class="col-md-2">
-									<label>DRIVING LICENSE</label>
-								</div>
-								<div class="col-md-3">
-									<input type="file" id="flicense" name="flicense" value="1386" />
-								</div>
-							</div>
-							<div class="row">
-								<div class="col-md-2">
-									<label>PAN CARD</label>
-								</div>
-								<div class="col-md-3">
-									<input type="file" id="fpan" name="fpan" value="1387" />
-								</div>
-							</div>
-							<div class="row">
-								<div class="col-md-2">
-									<label>AADHAR CARD</label>
-								</div>
-								<div class="col-md-3">
-									<input type="file" id="fadhaar" name="fadhaar" value="1388" />
-								</div>
-							</div>
-							<div class="row">
-								<div class="col-md-2">
-									<label>ADDRESS PROOF</label>
-								</div>
-								<div class="col-md-3">
-									<input type="file" id="faddressProof" name="faddressProof" value="1389" />
-								</div>
-							</div>
-							<div class="row">
-								<div class="col-md-2">
-									<label>OTHERS</label>
-								</div>
-								<div class="col-md-3">
-									<input type="file" id="fothers" name="fothers" value="1390" multiple="multiple" />
-								</div>
-							</div>*@
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label>Date of Return</label>
+                                    <div class="input-group dtCss">
+                                        @Html.TextBoxFor(x => x.driver.DateofReturn,
+                                              new
+                                              {
+                                                  @class = "form-control",
+                                                  placeholder = "Date Of Return"
+                                              })
+                                        <span class="input-group-btn">
+                                            <button type="button" class="btn btn-default"><i class="fa fa-calendar" aria-hidden="true"></i></button>
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row" style="display:none;" id="Attachments">
+            <div class="col-md-12">
+                <div class="box">
+                    <div class="box-header">
+                        <h3 class="box-title">Attachments</h3>
+                        @*<div class="box-tools">
+                                <button class="btn btn-box-tool" type="button" onclick="AddAttachments()"><i class="fa fa-plus" aria-hidden="true"></i></button>
+                            </div>*@
+                    </div>
+                    <div class="box-body">
+                        <div class="row">
+                            <div class="col-md-3">
+                                <label>AADHAR CARD</label>
+                            </div>
+                            <div class="col-md-3">
+                                <input type="file" id="fadhar" name="fadhar" value="1375" />
+                            </div>
+                        </div>
+                        <div class="row" style="padding-top:5px">
+                            <div class="col-md-3">
+                                <label>PAN CARD</label>
+                            </div>
+                            <div class="col-md-3">
+                                <input type="file" id="fpan" name="fpan" value="1374" />
+                            </div>
+                        </div>
+                        <div class="row" style="padding-top:5px">
+                            <div class="col-md-3">
+                                <label>DRIVING LICENCE</label>
+                            </div>
+                            <div class="col-md-3">
+                                <input type="file" id="flicense" name="flicense" value="1376" />
+                            </div>
+                        </div>
+                        <div class="row" style="padding-top:5px">
+                            <div class="col-md-3">
+                                <label>VOTER ID</label>
+                            </div>
+                            <div class="col-md-3">
+                                <input type="file" id="fvoter" name="fvoter" value="1377" />
+                            </div>
+                        </div>
+                        <div class="row" style="padding-top:5px">
+                            <div class="col-md-3">
+                                <label>PROFILE PIC</label>
+                            </div>
+                            <div class="col-md-3">
+                                <input type="file" id="fvoter" name="fprofilepic" value="1506" />
+                            </div>
+                        </div>
+                        <div class="row" style="padding-top:5px">
+                            <div class="col-md-3">
+                                <label>OTHERS</label>
+                            </div>
+                            <div class="col-md-3">
+                                <input type="file" id="fothers" name="fothers" value="1382" multiple="multiple" />
+                                @*@Html.TextBoxFor(model => model.files, "", new { @type = "file", @multiple = "multiple" })*@
+                            </div>
+                        </div>
+                        @*<div class="row">
+                                <div class="col-md-2">
+                                    <label>PHOTO</label>
+                                </div>
+                                <div class="col-md-3">
+                                    <input type="file" id="fphoto" name="fphoto" value="1385" />
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-2">
+                                    <label>DRIVING LICENSE</label>
+                                </div>
+                                <div class="col-md-3">
+                                    <input type="file" id="flicense" name="flicense" value="1386" />
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-2">
+                                    <label>PAN CARD</label>
+                                </div>
+                                <div class="col-md-3">
+                                    <input type="file" id="fpan" name="fpan" value="1387" />
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-2">
+                                    <label>AADHAR CARD</label>
+                                </div>
+                                <div class="col-md-3">
+                                    <input type="file" id="fadhaar" name="fadhaar" value="1388" />
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-2">
+                                    <label>ADDRESS PROOF</label>
+                                </div>
+                                <div class="col-md-3">
+                                    <input type="file" id="faddressProof" name="faddressProof" value="1389" />
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-2">
+                                    <label>OTHERS</label>
+                                </div>
+                                <div class="col-md-3">
+                                    <input type="file" id="fothers" name="fothers" value="1390" multiple="multiple" />
+                                </div>
+                            </div>*@
 
 					</div>
 				</div>
@@ -505,12 +499,12 @@ placeholder = "Date Of Return"
 	</div>
 </div>
 @section secscripts{
-	<script src="@Url.Content("~/Scripts/jquery.validate.js")"></script>
-	<script src="@Url.Content("~/Scripts/moment.js")"></script>
-	<script src="@Url.Content("~/Scripts/bootstrap-datetimepicker.js")"></script>
-	<script src="@Url.Content("~/Scripts/Internal/DriverAddress.js")"></script>
-	<script src="@Url.Content("~/Scripts/jquery.cookie.js")"></script>
-	<script type="text/javascript">
+    <script src="@Url.Content("~/Scripts/jquery.validate.js")"></script>
+    <script src="@Url.Content("~/Scripts/moment.js")"></script>
+    <script src="@Url.Content("~/Scripts/bootstrap-datetimepicker.js")"></script>
+    <script src="@Url.Content("~/Scripts/Internal/DriverAddress.js")"></script>
+    <script src="@Url.Content("~/Scripts/jquery.cookie.js")"></script>
+    <script type="text/javascript">
         $(function () {
             @if(Model.driver.DriverId==null)
              {
