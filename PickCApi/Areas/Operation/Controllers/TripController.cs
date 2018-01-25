@@ -235,7 +235,7 @@ namespace PickCApi.Areas.Operation.Controllers
         }
 
         [HttpPost]
-        [Route("CustomerStatus")]
+        [Route("CustomerStatusSearch")]
         public IHttpActionResult CustomerStatus(RegButNotBookedSearch obj)
         {
             try
