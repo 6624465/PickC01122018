@@ -76,6 +76,12 @@ namespace Master.DataFactory
             }
             return result;
         }
+
+        public List<OperatorAttachment> GetList(string OperatorID)
+        {
+            return db.ExecuteSprocAccessor(DBRoutine.OPERATORATTACHMENTSLIST,
+                MapBuilder<OperatorAttachment>.BuildAllProperties(), OperatorID).ToList();
+        }
         #endregion
     }
 }
