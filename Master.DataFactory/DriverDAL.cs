@@ -213,8 +213,8 @@ namespace Master.DataFactory
 
 				db.AddInParameter(savecommand, "MobileMake", System.Data.DbType.String, driver.MobileMake);
 				db.AddInParameter(savecommand, "ModelNo", System.Data.DbType.String, driver.ModelNo);
-				db.AddInParameter(savecommand, "DateofIssue", System.Data.DbType.DateTime, driver.DateofIssue);
-				db.AddInParameter(savecommand, "DateofReturn", System.Data.DbType.DateTime, driver.DateofReturn);
+				db.AddInParameter(savecommand, "DateofIssue", System.Data.DbType.DateTime, driver.DateofIssue.ToLocalTime());
+				db.AddInParameter(savecommand, "DateofReturn", System.Data.DbType.DateTime, driver.DateofReturn.ToLocalTime());
 				db.AddOutParameter(savecommand, "NewDocumentNo", System.Data.DbType.String, 50);
 				db.AddInParameter(savecommand, "DeviceRemarks", System.Data.DbType.String, driver.DeviceRemarks);
 
