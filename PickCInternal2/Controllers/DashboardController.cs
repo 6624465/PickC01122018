@@ -154,6 +154,7 @@ namespace PickC.Internal2.Controllers
             userData.userDataDashBoard = await new UserService(AUTHTOKEN, p_mobileNo).GetDashBoardUserData();
             userData.tripDailyBasis = new List<TripDailyBasis>();
             userData.tripDailyBasis = await new UserService(AUTHTOKEN, p_mobileNo).getTotalTripDailyBasis();
+           
             return View("UserApp", userData);
         }
         [HttpGet]
@@ -198,6 +199,7 @@ namespace PickC.Internal2.Controllers
             userData.customerCancellation = await new UserService(AUTHTOKEN, p_mobileNo).getCancelledList();
             userData.driverCancellation = await new UserService(AUTHTOKEN, p_mobileNo).getCancelledListDriver();
             userData.userDataDashBoard = await new UserService(AUTHTOKEN, p_mobileNo).GetDashBoardUserData();
+  
             return View("UserAppCancellation", userData);
         }
         //[HttpPost]

@@ -58,7 +58,12 @@
                                 <span class="info-box-text">Cancellations</span>
                                 <span class="info-box-number">Driver: @Model.userDataDashBoard.DriverCancel</span>
                                 <span class="info-box-number"> Customer:@Model.userDataDashBoard.CustomerCancel </span>
-                                <span class="info-box-number total-box" style="background:#f39c12;"> Total Customers:@Model.userDataDashBoard.CustomerCancel </span>
+                                @*@{ var data =(Operation.Contract.UserDataDashBoard)TempData["count"];
+
+                                 }*@
+                               
+                                <span class="info-box-number total-box" style="background:#f39c12;"> Total Cancellations:@Model.userDataDashBoard.TotalCancellations</span>
+                               
                             </div>
                             <!-- /.info-box-content -->
                         </div>
@@ -69,31 +74,32 @@
 
 <style>
     .total-box{
-        margin-top: 14px;
-    color: #fff;
+                                    margin-top: 14px;
+                                    color: #fff;
     padding: 7px;
-    margin-left: -10px;
-    margin-right: -10px;
-    margin-bottom: -5px;
-    background: #8bdbef;
+                                    margin-left: -10px;
+                                    margin-right: -10px;
+                                    margin-bottom: -5px;
+                                    background: #8bdbef;
     }
 </style>
 <script src="@Url.Content("~/Scripts/jquery.validate.js")"></script>
 
     <script type="text/javascript">
-            $(function () {
-                $('#userApp').parent().addClass('active');
-            });
-            function getTotalTrips() {
-                window.location = "@Url.Content("~/Dashboard/UserApp")";
-            }
-            function getRegisteredList() {
-                window.location = "@Url.Content("~/Dashboard/RegisteredList")";
-            }
-            function getCancelledList() {
-                window.location = "@Url.Content("~/Dashboard/UserAppCancellation")";
-            }
-    
+        $(function () {
+            $('#userApp').parent().addClass('active');
+                                });
+                                function getTotalTrips() {
+                                    window.location = "@Url.Content("~/Dashboard/UserApp")";
+                                }
+                                function getRegisteredList() {
+                                    window.location = "@Url.Content("~/Dashboard/RegisteredList")";
+                                }
+                                function getCancelledList() {
+                                    window.location = "@Url.Content("~/Dashboard/UserAppCancellation")";
+                                }
+
+
     </script>
 
 
