@@ -612,12 +612,12 @@
         });*@
         // return string.match(/^[^a-zA-Z0-9]+$/) ? true : false;
 
-        debugger;
-        var values = localStorage.getItem('OperatorValue');
-        var value = JSON.parse(values);
+        //debugger;
+        //var values = localStorage.getItem('OperatorValue');
+        //var value = JSON.parse(values);
         debugger;
         if ('@ViewBag.PassedOperatorId' != '') {
-            onChangeOperator(value);
+            onChangeOperator('@ViewBag.PassedOperatorId');
         }
         function onChangeOperator(val) {
             debugger;

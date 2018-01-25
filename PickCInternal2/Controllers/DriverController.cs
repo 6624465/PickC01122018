@@ -54,8 +54,8 @@ namespace PickC.Internal2.Controllers
 				driverLookupDTO = await taskDriverLookupDTO,
 				driver = await taskDriver
 			};
-			driverVm.driver.DateofIssue = DateTime.Now;
-			driverVm.driver.DateofReturn = DateTime.Now;
+			//driverVm.driver.DateofIssue = 
+			//driverVm.driver.DateofReturn = DateTime.Now;
 
 			if (Request.IsAjaxRequest())
 			{
