@@ -15,10 +15,10 @@
 {
     <section class="content">
         @*<div class="row">
-            <div class="col-xs-12">
-                @{ Html.RenderPartial("DashboardMenuList"); }
-            </div>
-        </div>*@
+                <div class="col-xs-12">
+                    @{ Html.RenderPartial("DashboardMenuList"); }
+                </div>
+            </div>*@
         <div class="row" style="margin:5px 0 0 -15px;">
             <div class="col-xs-12">
                 <div class="box">
@@ -45,27 +45,27 @@
                         <h3 class="box-title">Driver Info</h3>
                     </div>
                     <div class="box-body">
-						<div class="row">
-							<div class="col-md-4">
-								<div class="form-group">
-									<label>Driver ID</label>
-									@Html.TextBoxFor(x => x.driver.DriverId, new { @class = "form-control", placeholder = "Driver ID", @readonly = "readonly" })
-								</div>
-							</div>
-							<div class="col-md-4">
-								<div class="form-group">
-									<label>Driver Name</label>
-									@Html.TextBoxFor(x => x.driver.DriverName, new { @class = "form-control", placeholder = "Driver Name" })
-									@Html.HiddenFor(x => x.driver.Password)
-								</div>
-							</div>
-							@*<div class="col-md-4">
-			<div class="form-group">
-				<label>Vehicle No</label>
-				@Html.TextBoxFor(x => x.driver.VehicleNo, new { @class = "form-control", placeholder = "Vehicle No" })
-			</div>
-		</div>*@
-						</div>
+                        <div class="row">
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label>Driver ID</label>
+                                    @Html.TextBoxFor(x => x.driver.DriverId, new { @class = "form-control", placeholder = "Driver ID", @readonly = "readonly" })
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label>Driver Name</label>
+                                    @Html.TextBoxFor(x => x.driver.DriverName, new { @class = "form-control", placeholder = "Driver Name" })
+                                    @Html.HiddenFor(x => x.driver.Password)
+                                </div>
+                            </div>
+                            @*<div class="col-md-4">
+                                    <div class="form-group">
+                                        <label>Vehicle No</label>
+                                        @Html.TextBoxFor(x => x.driver.VehicleNo, new { @class = "form-control", placeholder = "Vehicle No" })
+                                    </div>
+                                </div>*@
+                        </div>
                     </div>
                 </div>
             </div>
@@ -89,11 +89,11 @@
                                     <label>Date Of Birth</label>
                                     <div class="input-group dtCss">
                                         @Html.TextBoxFor(x => x.driver.DateOfBirth,
-                                         new
-                                         {
-                                             @class = "form-control",
-                                             placeholder = "Date Of Birth"
-                                         })
+                                                   new
+                                                   {
+                                                       @class = "form-control",
+                                                       placeholder = "Date Of Birth"
+                                                   })
                                         <span class="input-group-btn">
                                             <button type="button" class="btn btn-default"><i class="fa fa-calendar" aria-hidden="true"></i></button>
                                         </span>
@@ -104,11 +104,11 @@
                                 <div class="form-group">
                                     <label>Place Of Birth</label>
                                     @Html.TextBoxFor(x => x.driver.PlaceOfBirth,
-                                         new
-                                         {
-                                             @class = "form-control",
-                                             placeholder = "Place Of Birth"
-                                         })
+                                                   new
+                                                   {
+                                                       @class = "form-control",
+                                                       placeholder = "Place Of Birth"
+                                                   })
                                 </div>
                             </div>
                         </div>
@@ -117,18 +117,18 @@
                                 <div class="form-group">
                                     <label>Gender</label>
                                     @Html.DropDownListFor(x => x.driver.Gender,
-                                     new SelectList(Model.driverLookupDTO.genderOptions, "LookupId", "LookupDescription"),
-                                     "Select Gender",
-                                     new { @class = "form-control" })
+                                               new SelectList(Model.driverLookupDTO.genderOptions, "LookupId", "LookupDescription"),
+                                               "Select Gender",
+                                               new { @class = "form-control" })
                                 </div>
                             </div>
                             <div class="col-md-4">
                                 <div class="form-group">
                                     <label>Maritial Status</label>
                                     @Html.DropDownListFor(x => x.driver.MaritialStatus,
-                                     new SelectList(Model.driverLookupDTO.maritalOptions, "LookupId", "LookupDescription"),
-                                     "Select Maritial Status",
-                                     new { @class = "form-control" })
+                                               new SelectList(Model.driverLookupDTO.maritalOptions, "LookupId", "LookupDescription"),
+                                               "Select Maritial Status",
+                                               new { @class = "form-control" })
                                 </div>
                             </div>
                             <div class="col-md-4">
@@ -167,24 +167,24 @@
                             <div class="col-md-4">
                                 <div class="form-group">
                                     <label>Aadhar Card No</label>
-									@Html.TextBoxFor(x => x.driver.AadharCardNo, new { @class = "form-control number", @maxlength = 12, placeholder = "Aadhar Card No" })
+                                    @Html.TextBoxFor(x => x.driver.AadharCardNo, new { @class = "form-control number", @maxlength = 12, placeholder = "Aadhar Card No" })
                                 </div>
                             </div>
                             <div class="col-md-4">
                                 <div class="form-group">
                                     <label>License No</label>
-									@Html.TextBoxFor(x => x.driver.LicenseNo, new { @class = "form-control", @maxlength = 16, placeholder = "License No" })
+                                    @Html.TextBoxFor(x => x.driver.LicenseNo, new { @class = "form-control", @maxlength = 16, placeholder = "License No" })
                                 </div>
                             </div>
                         </div>
                         @*<div class="row">
-                                <div class="col-md-4">
-                                    <div class="form-group">
-                                        <label>Vehicle No</label>
-                                        @Html.TextBoxFor(x => x.driver.DriverVehicleNo, new { @class = "form-control" })
+                                    <div class="col-md-4">
+                                        <div class="form-group">
+                                            <label>Vehicle No</label>
+                                            @Html.TextBoxFor(x => x.driver.DriverVehicleNo, new { @class = "form-control" })
+                                        </div>
                                     </div>
-                                </div>
-                        </div>*@
+                            </div>*@
                     </div>
                 </div>
             </div>
@@ -254,22 +254,22 @@
                         <div class="row">
                             <div class="col-md-4">
                                 <div class="form-group">
-                                        <label>Mobile Make</label>
+                                    <label>Mobile Make</label>
                                     @Html.TextBoxFor(x => x.driver.MobileMake, new
-                               {
-                                   @class = "form-control",
-                                   placeholder = "Mobile Make"
-                               })
+                                    {
+                                        @class = "form-control",
+                                        placeholder = "Mobile Make"
+                                    })
                                 </div>
                             </div>
                             <div class="col-md-4">
                                 <div class="form-group">
                                     <label>Model No</label>
                                     @Html.TextBoxFor(x => x.driver.ModelNo, new
-                               {
-										@class = "form-control",
-										placeholder = "Model No"
-                               })                                
+                                    {
+                                        @class = "form-control",
+                                        placeholder = "Model No"
+                                    })
                                 </div>
                             </div>
                             <div class="col-md-4">
@@ -277,11 +277,11 @@
                                     <label>Date of Issue</label>
                                     <div class="input-group dtCss">
                                         @Html.TextBoxFor(x => x.driver.DateofIssue,
-                                         new
-                                         {
-                                             @class = "form-control",
-                                             placeholder = "Date Of Issue"
-                                         })
+                                                   new
+                                                   {
+                                                       @class = "form-control",
+                                                       placeholder = "Date Of Issue"
+                                                   })
                                         <span class="input-group-btn">
                                             <button type="button" class="btn btn-default"><i class="fa fa-calendar" aria-hidden="true"></i></button>
                                         </span>
@@ -293,28 +293,28 @@
                                     <label>Date of Return</label>
                                     <div class="input-group dtCss">
                                         @Html.TextBoxFor(x => x.driver.DateofReturn,
-                                         new
-                                         {
-                                             @class = "form-control",
-                                             placeholder = "Date Of Return"
-                                         })
+                                                   new
+                                                   {
+                                                       @class = "form-control",
+                                                       placeholder = "Date Of Return"
+                                                   })
                                         <span class="input-group-btn">
                                             <button type="button" class="btn btn-default"><i class="fa fa-calendar" aria-hidden="true"></i></button>
                                         </span>
                                     </div>
                                 </div>
                             </div>
-							<div class="col-md-4">
-								<div class="form-group">
-									<label>Device Remarks</label>
-									@Html.TextBoxFor(x => x.driver.DeviceRemarks, new { @class = "form-control", placeholder = "Device Remarks" })
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label>Device Remarks</label>
+                                    @Html.TextBoxFor(x => x.driver.DeviceRemarks, new { @class = "form-control", placeholder = "Device Remarks" })
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
-     </div>
-			</div>
-		</div>
         <div class="row">
             <div class="col-md-12">
                 <div class="box">
@@ -376,8 +376,68 @@
 
             </div>
         </div>
-       
-    
+        <div class="row" id="BankDetails">
+            <div class="col-md-12">
+                <div class="box">
+                    <div class="box-header">
+                        <h3 class="box-title">Bank Details</h3>
+                        <div class="box-tools">
+                            <button class="btn btn-box-tool" type="button" onclick="bankDetails('-1')"><i class="fa fa-plus" aria-hidden="true"></i></button>
+                        </div>
+                    </div>
+                    <div class="box-body">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <table class="table table-hover table-bordered">
+                                    <thead>
+                                        <tr>
+                                            <th>Bank Name</th>
+                                            <th>Branch</th>
+                                            <th>Account Number</th>
+                                            <th>Account Type</th>
+                                            <th>#Action</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="trBodyBank">
+                                        @if (Model.driver.BankDetails != null)
+                                        {
+                                            for (var i = 0; i < Model.driver.BankDetails.Count; i++)
+                                            {
+                                                <tr id="trRow_Bank_@i" class="trRowCss">
+                                                    <td>
+                                                        <span id="txtBankName_span_@i">@Model.driver.BankDetails[i].BankName</span>
+                                                        @Html.HiddenFor(x => Model.driver.BankDetails[i].BankName)
+                                                        @Html.HiddenFor(x => Model.driver.BankDetails[i].OperatorBankID)
+                                                    </td>
+                                                    <td>
+                                                        <span id="txtBranch_span_@i">@Model.driver.BankDetails[i].Branch</span>
+                                                        @Html.HiddenFor(x => Model.driver.BankDetails[i].Branch)
+                                                    </td>
+                                                    <td>
+                                                        <span id="txtAccNumber_span_@i">@Model.driver.BankDetails[i].AccountNumber</span>
+                                                        @Html.HiddenFor(x => Model.driver.BankDetails[i].AccountNumber)
+                                                    </td>
+                                                    <td>
+                                                        <span id="txtAccType_span_@i">@Model.driver.BankDetails[i].AccountType</span>
+                                                        @Html.HiddenFor(x => Model.driver.BankDetails[i].AccountType)
+                                                    </td>
+                                                    <td>
+                                                        <a class="hand" onclick="EditBankDetails('@i')">Edit</a>
+                                                        @*&nbsp;|&nbsp;
+        <a class="hand" onclick="DeleteBankDetails('@i')">Delete</a>*@
+                                                    </td>
+                                                </tr>
+                                            }
+                                        }
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
         <div class="row">
             <div class="col-md-12">
                 <div class="box">
@@ -391,7 +451,7 @@
             </div>
         </div>
     </section>
-                    }
+}
 
 <div class="modal" id="addressModal">
     <div class="modal-dialog modal-md">
@@ -450,12 +510,60 @@
         </form>
     </div>
 </div>
-
+<div class="modal" id="bankDetailsModal">
+    <div class="modal-dialog modal-md">
+        <form id="frmBank" name="frmBank">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" id="bank_cancel" aria-label="Close">
+                        <span aria-hidden="true">×</span>
+                    </button>
+                    <h4 class="modal-title">Bank Details</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <label>Bank Name</label>
+                            <input type="text" id="txtBankName" name="txtBankName" class="form-control" />
+                        </div>
+                        <div class="col-md-6">
+                            <label>Branch</label>
+                            <input type="text" id="txtBranch" name="txtBranch" class="form-control" />
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <label>Account Number</label>
+                            <input type="text" id="txtAccNumber" name="txtAccNumber" class="form-control number" maxlength="20" />
+                        </div>
+                        <div class="col-md-6">
+                            <label>Account Type</label>
+                            <input type="text" id="txtAccType" name="txtAccType" class="form-control" />
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default pull-left" data-dismiss="modal" id="bank_cancel">Close</button>
+                    <button id="btnSave" type="button" class="btn btn-primary btn-them " onclick="btnSaveBank();">Save</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+@*@using (Html.BeginForm("BankDetailInfo", "Driver", FormMethod.Post, new { id = "frmBankDetail", name = "frmBankDetail" }))
+{
+    @Html.Hidden("OperatorBankID")
+    @Html.Hidden("BankName")
+    @Html.Hidden("Branch")
+    @Html.Hidden("AccountNumber")
+    @Html.Hidden("AccountType")
+}*@
 @section secscripts{
     <script src="@Url.Content("~/Scripts/jquery.validate.js")"></script>
     <script src="@Url.Content("~/Scripts/moment.js")"></script>
     <script src="@Url.Content("~/Scripts/bootstrap-datetimepicker.js")"></script>
     <script src="@Url.Content("~/Scripts/Internal/DriverAddress.js")"></script>
+    <script src="@Url.Content("~/Scripts/Internal/DriverBankDetails.js")"></script>
     <script type="text/javascript">
         $(function () {
             $('#frmDriverAdd').validate({
@@ -500,20 +608,20 @@
                         required: true
                     },
                     'driver.MobileMake': {
-						required: true
+                        required: true
                     },
                     'driver.ModelNo': {
-						required: true
+                        required: true
                     },
                     'driver.DateofIssue': {
-						required: true
+                        required: true
                     },
                     'driver.DateofReturn': {
-						required: true
+                        required: true
                     }
                 }
             });
-           
+
             $('.dtCss').datetimepicker({
                 icons: {
                     time: 'fa fa-clock-o',
@@ -553,6 +661,7 @@
             }
         }
 
+        
     </script>
 }
 
