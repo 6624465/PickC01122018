@@ -266,6 +266,7 @@ namespace Master.DataFactory
             operatorItem.OperatorDriverList= new OperatorDriverDAL().GetList().Where(x=>x.OperatorID== OperatorID).ToList();
             operatorItem.OperatorVehicle = new OperatorVehicleDAL().GetOperatorVehicleListById(OperatorID);
             operatorItem.BankDetails = new BankDetailsDAL().GetList(operatorItem.OperatorID);
+            operatorItem.operatorAttachment = new OperatorAttachementDAL().GetList(operatorItem.OperatorID);
 
             return operatorItem;
         }

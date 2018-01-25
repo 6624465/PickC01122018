@@ -79,5 +79,10 @@ namespace Master.BusinessFactory
         {
             return operatorDAL.DetachOperatorwisedrivervehicleattachedlist(item);
         }
+
+        public List<OperatorAttachment> GetAttachmentList(string OperatorID)
+        {
+            return new OperatorAttachementDAL().GetList(OperatorID);
+        }
     }
 }

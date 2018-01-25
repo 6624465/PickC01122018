@@ -216,6 +216,8 @@ namespace Master.DataFactory
         //public const string  CUSTOMERSELECTBYMOBILENO= "[Master].[usp_CustomerListByMobileNo]";
         public const string  CUSTOMERLISTWITHBOOKING="[Master].[usp_CustomerListwithBookings]";
 
+        public const string OPERATORATTACHMENTSLIST = "[Master].[usp_OperatorAttachmentsList]";
+
 
     }
 }
