@@ -15,10 +15,10 @@
 {
     <section class="content">
         @*<div class="row">
-                <div class="col-xs-12">
-                    @{ Html.RenderPartial("DashboardMenuList"); }
-                </div>
-            </div>*@
+            <div class="col-xs-12">
+                @{ Html.RenderPartial("DashboardMenuList"); }
+            </div>
+        </div>*@
         <div class="row" style="margin:5px 0 0 -15px;">
             <div class="col-xs-12">
                 <div class="box">
@@ -45,33 +45,27 @@
                         <h3 class="box-title">Driver Info</h3>
                     </div>
                     <div class="box-body">
-                        <div class="row">
-                            <div class="col-md-4">
-                                <div class="form-group">
-                                    <label>Driver ID</label>
-                                    @Html.TextBoxFor(x => x.driver.DriverId, new { @class = "form-control", placeholder = "Driver ID", @readonly = "readonly" })
-                                </div>
-                            </div>
-                            <div class="col-md-4">
-                                <div class="form-group">
-                                    <label>Driver Name</label>
-                                    @Html.TextBoxFor(x => x.driver.DriverName, new { @class = "form-control", placeholder = "Driver Name" })
-                                    @Html.HiddenFor(x => x.driver.Password)
-                                </div>
-                            </div>
-                            <div class="col-md-4">
-                                <div class="form-group">
-                                    <label>Driver Remarks</label>
-                                    @Html.TextBoxFor(x => x.driver.DriverRemarks, new { @class = "form-control", placeholder = "Driver Remarks" })
-                                </div>
-                            </div>
-                            @*<div class="col-md-4">
-                                    <div class="form-group">
-                                        <label>Vehicle No</label>
-                                        @Html.TextBoxFor(x => x.driver.VehicleNo, new { @class = "form-control", placeholder = "Vehicle No" })
-                                    </div>
-                                </div>*@
-                        </div>
+						<div class="row">
+							<div class="col-md-4">
+								<div class="form-group">
+									<label>Driver ID</label>
+									@Html.TextBoxFor(x => x.driver.DriverId, new { @class = "form-control", placeholder = "Driver ID", @readonly = "readonly" })
+								</div>
+							</div>
+							<div class="col-md-4">
+								<div class="form-group">
+									<label>Driver Name</label>
+									@Html.TextBoxFor(x => x.driver.DriverName, new { @class = "form-control", placeholder = "Driver Name" })
+									@Html.HiddenFor(x => x.driver.Password)
+								</div>
+							</div>
+							@*<div class="col-md-4">
+			<div class="form-group">
+				<label>Vehicle No</label>
+				@Html.TextBoxFor(x => x.driver.VehicleNo, new { @class = "form-control", placeholder = "Vehicle No" })
+			</div>
+		</div>*@
+						</div>
                     </div>
                 </div>
             </div>
@@ -173,24 +167,24 @@
                             <div class="col-md-4">
                                 <div class="form-group">
                                     <label>Aadhar Card No</label>
-                                    @Html.TextBoxFor(x => x.driver.AadharCardNo, new { @class = "form-control number", @maxlength = 12, placeholder = "Aadhar Card No" })
+									@Html.TextBoxFor(x => x.driver.AadharCardNo, new { @class = "form-control number", @maxlength = 12, placeholder = "Aadhar Card No" })
                                 </div>
                             </div>
                             <div class="col-md-4">
                                 <div class="form-group">
                                     <label>License No</label>
-                                    @Html.TextBoxFor(x => x.driver.LicenseNo, new { @class = "form-control", @maxlength = 16, placeholder = "License No" })
+									@Html.TextBoxFor(x => x.driver.LicenseNo, new { @class = "form-control", @maxlength = 16, placeholder = "License No" })
                                 </div>
                             </div>
                         </div>
                         @*<div class="row">
-                                    <div class="col-md-4">
-                                        <div class="form-group">
-                                            <label>Vehicle No</label>
-                                            @Html.TextBoxFor(x => x.driver.DriverVehicleNo, new { @class = "form-control" })
-                                        </div>
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <label>Vehicle No</label>
+                                        @Html.TextBoxFor(x => x.driver.DriverVehicleNo, new { @class = "form-control" })
                                     </div>
-                            </div>*@
+                                </div>
+                        </div>*@
                     </div>
                 </div>
             </div>
@@ -260,7 +254,7 @@
                         <div class="row">
                             <div class="col-md-4">
                                 <div class="form-group">
-                                    <label>Mobile Make</label>
+                                        <label>Mobile Make</label>
                                     @Html.TextBoxFor(x => x.driver.MobileMake, new
                                {
                                    @class = "form-control",
@@ -273,9 +267,9 @@
                                     <label>Model No</label>
                                     @Html.TextBoxFor(x => x.driver.ModelNo, new
                                {
-                                   @class = "form-control",
-                                   placeholder = "Model No"
-                               })
+										@class = "form-control",
+										placeholder = "Model No"
+                               })                                
                                 </div>
                             </div>
                             <div class="col-md-4">
@@ -310,11 +304,17 @@
                                     </div>
                                 </div>
                             </div>
-                        </div>
+							<div class="col-md-4">
+								<div class="form-group">
+									<label>Device Remarks</label>
+									@Html.TextBoxFor(x => x.driver.DeviceRemarks, new { @class = "form-control", placeholder = "Device Remarks" })
                     </div>
                 </div>
             </div>
         </div>
+     </div>
+			</div>
+		</div>
         <div class="row">
             <div class="col-md-12">
                 <div class="box">
@@ -391,7 +391,7 @@
             </div>
         </div>
     </section>
-}
+                    }
 
 <div class="modal" id="addressModal">
     <div class="modal-dialog modal-md">
@@ -500,16 +500,16 @@
                         required: true
                     },
                     'driver.MobileMake': {
-                        required:true
+						required: true
                     },
                     'driver.ModelNo': {
-                        required:true
+						required: true
                     },
                     'driver.DateofIssue': {
-                        required:true
+						required: true
                     },
                     'driver.DateofReturn': {
-                        required:true
+						required: true
                     }
                 }
             });
