@@ -43,28 +43,51 @@ namespace PickC.Internal2.Controllers
 		[HttpGet]
 		public async Task<ActionResult> Edit(string driverID)
 		{
-			//Task<Driver> taskDriver = new DriverService(AUTHTOKEN, p_mobileNo).DriverInfoAsync(driverID);
-			Task<DriverMdl> taskDriver = new DriverService(AUTHTOKEN, p_mobileNo).DriverByIDInfoAsync(driverID);
-			Task<DriverLookupDTO> taskDriverLookupDTO = new DriverService(AUTHTOKEN, p_mobileNo).LookUpDataAsync();
-
-			await Task.WhenAll(taskDriver, taskDriverLookupDTO);
-
-			var driverVm = new DriverVm
-			{
-				driverLookupDTO = await taskDriverLookupDTO,
-				driver = await taskDriver
-			};
-			//driverVm.driver.DateofIssue = 
-			//driverVm.driver.DateofReturn = DateTime.Now;
-
-			if (Request.IsAjaxRequest())
+            var driverVm = await GetDriverInfo(driverID);
+            if (Request.IsAjaxRequest())
 			{
 				return Json(driverVm, JsonRequestBehavior.AllowGet);
 			}
 			return View(driverVm);
 
 		}
-		[HttpGet]
+
+        private async Task<DriverVm> GetDriverInfo(string DriverID)
+        {
+            Task<DriverMdl> taskDriver = new DriverService(AUTHTOKEN, p_mobileNo).DriverByIDInfoAsync(DriverID);
+            Task<DriverLookupDTO> taskDriverLookupDTO = new DriverService(AUTHTOKEN, p_mobileNo).LookUpDataAsync();
+
+            await Task.WhenAll(taskDriver, taskDriverLookupDTO);
+
+            var driverVm = new DriverVm
+            {
+                driverLookupDTO = await taskDriverLookupDTO,
+                driver = await taskDriver
+            };
+
+            return driverVm;
+        }
+
+        /*
+        [HttpPost]
+        public async Task<ActionResult> BankDetailInfo()
+        {
+            var driverID = Request.Form["hdnDriverID"];
+            var _bankDetailID = Request.Form["hdnDriverBankDetailID"];
+            var driverVm = await GetDriverInfo(driverID);
+
+            if(!string.IsNullOrWhiteSpace(_bankDetailID))
+            {
+                BankDetails bankDetails = null;
+                var bankDetailID = Convert.ToInt32(_bankDetailID);
+                if(bankDetailID == -1)
+                    bankDetails = new BankDetails();
+                else
+
+            }
+        }
+        */
+        [HttpGet]
 		public async Task<ActionResult> DeleteDriver(string driverID)
 		{
 			try

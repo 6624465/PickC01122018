@@ -236,8 +236,9 @@ namespace Master.DataFactory
 				if (result > 0)
 				{
 					var newDocumentNo = savecommand.Parameters["@NewDocumentNo"].Value.ToString();
-					// var newDocumentNo = db.GetParameterValue(savecommand, "NewDocumentNo").ToString();
-					if (driver.driverAttachment != null && driver.driverAttachment.Count > 0)
+                    driver.DriverId = newDocumentNo;
+                    // var newDocumentNo = db.GetParameterValue(savecommand, "NewDocumentNo").ToString();
+                    if (driver.driverAttachment != null && driver.driverAttachment.Count > 0)
 					{
 						foreach (var driverAttachment in driver.driverAttachment)
 						{
@@ -259,7 +260,19 @@ namespace Master.DataFactory
 							result = new AddressDAL().Save(x, transaction) == true ? 1 : 0;
 						});
 					}
-					if (currentTransaction == null)
+
+                    if (driver.BankDetails != null && driver.BankDetails.Count > 0)
+                    {
+                        foreach (var bankItem in driver.BankDetails)
+                        {
+                            bankItem.OperatorBankID = driver.DriverId;
+                        }
+
+                        driver.BankDetails.ForEach(x => {
+                            new BankDetailsDAL().Save(x);
+                        });
+                    }
+                    if (currentTransaction == null)
 						transaction.Commit();
 				}
 			}
