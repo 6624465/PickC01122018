@@ -5299,7 +5299,7 @@ table.text-center, table.text-center td, table.text-center th {
 
 .box-body {
     padding-bottom: 0px;
-    overflow: hidden;
+    overflow: initial;
     border-radius: 2px;
 }
 

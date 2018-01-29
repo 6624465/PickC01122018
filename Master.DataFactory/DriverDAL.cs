@@ -148,6 +148,19 @@ namespace Master.DataFactory
                             result = new AddressDAL().Save(x, transaction) == true ? 1 : 0;
                         });
                     }
+
+                    if(driver.BankDetails != null && driver.BankDetails.Count > 0)
+                    {
+                        foreach(var bankItem in driver.BankDetails)
+                        {
+                            bankItem.OperatorBankID = driver.DriverId;
+                        }
+
+                        driver.BankDetails.ForEach(x => {
+                            new BankDetailsDAL().Save(x);
+                        });
+                    }
+
                     if (currentTransaction == null)
                         transaction.Commit();
                 }
@@ -213,8 +226,8 @@ namespace Master.DataFactory
 
 				db.AddInParameter(savecommand, "MobileMake", System.Data.DbType.String, driver.MobileMake);
 				db.AddInParameter(savecommand, "ModelNo", System.Data.DbType.String, driver.ModelNo);
-				db.AddInParameter(savecommand, "DateofIssue", System.Data.DbType.DateTime, driver.DateofIssue);
-				db.AddInParameter(savecommand, "DateofReturn", System.Data.DbType.DateTime, driver.DateofReturn);
+				db.AddInParameter(savecommand, "DateofIssue", System.Data.DbType.DateTime, driver.DateofIssue.ToLocalTime());
+				db.AddInParameter(savecommand, "DateofReturn", System.Data.DbType.DateTime, driver.DateofReturn.ToLocalTime());
 				db.AddOutParameter(savecommand, "NewDocumentNo", System.Data.DbType.String, 50);
 				db.AddInParameter(savecommand, "DeviceRemarks", System.Data.DbType.String, driver.DeviceRemarks);
 
@@ -223,8 +236,9 @@ namespace Master.DataFactory
 				if (result > 0)
 				{
 					var newDocumentNo = savecommand.Parameters["@NewDocumentNo"].Value.ToString();
-					// var newDocumentNo = db.GetParameterValue(savecommand, "NewDocumentNo").ToString();
-					if (driver.driverAttachment != null && driver.driverAttachment.Count > 0)
+                    driver.DriverId = newDocumentNo;
+                    // var newDocumentNo = db.GetParameterValue(savecommand, "NewDocumentNo").ToString();
+                    if (driver.driverAttachment != null && driver.driverAttachment.Count > 0)
 					{
 						foreach (var driverAttachment in driver.driverAttachment)
 						{
@@ -246,7 +260,19 @@ namespace Master.DataFactory
 							result = new AddressDAL().Save(x, transaction) == true ? 1 : 0;
 						});
 					}
-					if (currentTransaction == null)
+
+                    if (driver.BankDetails != null && driver.BankDetails.Count > 0)
+                    {
+                        foreach (var bankItem in driver.BankDetails)
+                        {
+                            bankItem.OperatorBankID = driver.DriverId;
+                        }
+
+                        driver.BankDetails.ForEach(x => {
+                            new BankDetailsDAL().Save(x);
+                        });
+                    }
+                    if (currentTransaction == null)
 						transaction.Commit();
 				}
 			}
@@ -427,6 +453,7 @@ namespace Master.DataFactory
 
 
 			driverItem.AddressList = new AddressDAL().GetList(driverItem.DriverId);
+            driverItem.BankDetails = new BankDetailsDAL().GetList(driverItem.DriverId);
 
 			return driverItem;
 		}
