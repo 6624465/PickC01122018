@@ -701,7 +701,12 @@
             $('#Address1, #Address2, #Address3, #Address4, #StateName, #CityName, #ZipCode').val('');
             $('#addressModal').modal('show');
         }
-
+        function bankDetails(index) {
+            $('#frmBank input[type="text"]').removeClass('error');
+            $('#txtBankName,#txtBranch,#txtAccNumber,#txtAccType').val('');
+            $('#bankDetailsModal').modal('show');
+        }
+        
         @*$('.NoSpecialCharacter').keypress(function () {
             var format = /[!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]+/;
 
