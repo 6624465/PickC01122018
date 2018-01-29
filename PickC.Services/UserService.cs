@@ -50,7 +50,7 @@ namespace PickC.Services
             IRestClient client = new RestClient(ApiBaseUrl);
             var request = p_request;
             request.Method = Method.POST;
-            request.Resource = "operation/trip/CustomerStatus";
+            request.Resource = "operation/trip/CustomerStatusSearch";
             request.AddJsonBody(new { DateFrom = DateFrom, DateTo = DateTo });
             return ServiceResponse(await client.ExecuteTaskAsync<List<CustomerStatus>>(request));
 

@@ -195,11 +195,11 @@
                                                 <label>Date Of Birth</label>
                                                 <div class="input-group dtCss">
                                                     @Html.TextBoxFor(x => x.OPerator.DateOfBirth,
-                                                       new
-                                                       {
-                                                           @class = "form-control",
-                                                           placeholder = "Date Of Birth"
-                                                       })
+        new
+        {
+            @class = "form-control",
+            placeholder = "Date Of Birth"
+        })
                                                     <span class="input-group-btn">
                                                         <button type="button" class="btn btn-default"><i class="fa fa-calendar" aria-hidden="true"></i></button>
                                                     </span>
@@ -221,11 +221,11 @@
                                             <div class="form-group">
                                                 <label>Place Of Birth</label>
                                                 @Html.TextBoxFor(x => x.OPerator.PlaceOfBirth,
-   new
-   {
-       @class = "form-control",
-       placeholder = "Place Of Birth"
-   })
+new
+{
+    @class = "form-control",
+    placeholder = "Place Of Birth"
+})
                                             </div>
                                         </div>
                                     </div>
@@ -554,7 +554,7 @@ new { @class = "form-control" })
                                                                                     <td>
                                                                                         @*<a class="hand" onclick="EditOperatorDriver('@i')">Edit</a>&nbsp;|&nbsp;*@
                                                                                         @*<a class="hand" href="@Url.Content(string.Format("~/Driver/Edit?driverID={0}", Model.OPerator.OperatorDriverList[i].DriverID))">Edit</a>&nbsp;|&nbsp;*@
-                                                                                        <a class="hand" href="@Url.Content("~/Driver/Edit?driverID="+ Model.OPerator.OperatorDriverList[i].DriverID)">Edit</a>&nbsp;|&nbsp;
+                                                                                        <a class="hand" href="@Url.Content("~/Driver/Edit?driverID=" + Model.OPerator.OperatorDriverList[i].DriverID)">Edit</a>&nbsp;|&nbsp;
                                                                                         <a class="hand" onclick="DeleteOperatorDriver('@Model.OPerator.OperatorDriverList[i].DriverID','@Model.OPerator.OperatorDriverList[i].DriverName')">Delete</a>
                                                                                     </td>
                                                                                 </tr>
@@ -577,12 +577,93 @@ new { @class = "form-control" })
                                                     <h3 class="box-title">Attachments</h3>
                                                 </div>
                                                 <div class="box-body">
+                                                    @*<div class="row">
+            <div class="col-md-3">
+                <label>AADHAR CARD</label>
+            </div>
+            <div class="col-md-3">
+                <input type="file" id="fadhar" name="fadhar" value="1375" />
+            </div>
+        </div>*@
+                                                    @{ 
+                                                        var adharStr = "";
+                                                        var panStr = "";
+                                                        var licenseStr = "";
+                                                        var voterStr = "";
+                                                        var profilepicStr = "";
+                                                        if (Model.OPerator.operatorAttachment != null && Model.OPerator.operatorAttachment.Count > 0)
+                                                        {
+
+                                                            var fadharObj = Model.OPerator.operatorAttachment
+                                                                              .Where(x => x.lookupCode == "1375")
+                                                                              .FirstOrDefault();
+
+                                                            if (fadharObj != null)
+                                                            {
+                                                                adharStr = fadharObj.imagePath;
+                                                            }
+
+
+                                                            var fpanObj = Model.OPerator.operatorAttachment
+                                                                              .Where(x => x.lookupCode == "1374")
+                                                                              .FirstOrDefault();
+
+                                                            if (fpanObj != null)
+                                                            {
+                                                                panStr = fpanObj.imagePath;
+                                                            }
+
+
+                                                            var flicenseObj = Model.OPerator.operatorAttachment
+                                                                              .Where(x => x.lookupCode == "1376")
+                                                                              .FirstOrDefault();
+
+                                                            if (flicenseObj != null)
+                                                            {
+                                                                licenseStr = flicenseObj.imagePath;
+                                                            }
+
+
+                                                            var fvoterObj = Model.OPerator.operatorAttachment
+                                                                              .Where(x => x.lookupCode == "1377")
+                                                                              .FirstOrDefault();
+
+                                                            if (fvoterObj != null)
+                                                            {
+                                                                voterStr = fvoterObj.imagePath;
+                                                            }
+
+
+                                                            var fprofilepicObj = Model.OPerator.operatorAttachment
+                                                                              .Where(x => x.lookupCode == "1506")
+                                                                              .FirstOrDefault();
+
+                                                            if (fprofilepicObj != null)
+                                                            {
+                                                                profilepicStr = fprofilepicObj.imagePath;
+                                                            }
+                                                        }
+                                                    }
                                                     <div class="row">
                                                         <div class="col-md-3">
                                                             <label>AADHAR CARD</label>
                                                         </div>
                                                         <div class="col-md-3">
-                                                            <input type="file" id="fadhar" name="fadhar" value="1375" />
+                                                            <div class="file-upload">
+                                                                <div class="file-select">
+                                                                    <div class="file-select-button" id="fileName">Choose File</div>
+                                                                    <input type="file" 
+                                                                           id="fadhar" 
+                                                                           name="fadhar" 
+                                                                           value="1375"
+                                                                           onchange="onFileChange(this, 'fadhardocFile','hdnfadhardocFile')" />
+                                                                </div>
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="col-md-3">
+                                                            <div id="fadhardocFile">@adharStr</div>
+                                                            <input type="hidden" name="hdnfadhardocFile" id="hdnfadhardocFile" />
                                                         </div>
                                                     </div>
                                                     <div class="row" style="padding-top:5px">
@@ -590,7 +671,20 @@ new { @class = "form-control" })
                                                             <label>PAN CARD</label>
                                                         </div>
                                                         <div class="col-md-3">
-                                                            <input type="file" id="fpan" name="fpan" value="1374" />
+                                                            <div class="file-upload">
+                                                                <div class="file-select">
+                                                                    <div class="file-select-button" id="fileName">Choose File</div>
+                                                                    <input type="file"
+                                                                           id="fpan"
+                                                                           name="fpan"
+                                                                           value="1374"
+                                                                           onchange="onFileChange(this, 'fpandocFile','hdnfpandocFile')" />
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-3">
+                                                            <div id="fpandocFile">@panStr</div>
+                                                            <input type="hidden" name="hdnfpandocFile" id="hdnfpandocFile" />
                                                         </div>
                                                     </div>
                                                     <div class="row" style="padding-top:5px">
@@ -598,7 +692,21 @@ new { @class = "form-control" })
                                                             <label>DRIVING LICENCE</label>
                                                         </div>
                                                         <div class="col-md-3">
-                                                            <input type="file" id="flicense" name="flicense" value="1376" />
+
+                                                            <div class="file-upload">
+                                                                <div class="file-select">
+                                                                    <div class="file-select-button" id="fileName">Choose File</div>
+                                                                    <input type="file"
+                                                                           id="flicense"
+                                                                           name="flicense"
+                                                                           value="1376"
+                                                                           onchange="onFileChange(this, 'flicensedocFile','hdnflicensedocFile')" />
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-3">
+                                                            <div id="flicensedocFile">@licenseStr</div>
+                                                            <input type="hidden" name="hdnflicensedocFile" id="hdnflicensedocFile" />
                                                         </div>
                                                     </div>
                                                     <div class="row" style="padding-top:5px">
@@ -606,7 +714,20 @@ new { @class = "form-control" })
                                                             <label>VOTER ID</label>
                                                         </div>
                                                         <div class="col-md-3">
-                                                            <input type="file" id="fvoter" name="fvoter" value="1377" />
+                                                            <div class="file-upload">
+                                                                <div class="file-select">
+                                                                    <div class="file-select-button" id="fileName">Choose File</div>
+                                                                    <input type="file"
+                                                                           id="fvoter"
+                                                                           name="fvoter"
+                                                                           value="1377"
+                                                                           onchange="onFileChange(this, 'fvoterdocFile','hdnfvoterdocFile')" />
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-3">
+                                                            <div id="fvoterdocFile">@voterStr</div>
+                                                            <input type="hidden" name="hdnfvoterdocFile" id="hdnfvoterdocFile" />
                                                         </div>
                                                     </div>
                                                     <div class="row" style="padding-top:5px">
@@ -614,7 +735,20 @@ new { @class = "form-control" })
                                                             <label>PROFILE PIC</label>
                                                         </div>
                                                         <div class="col-md-3">
-                                                            <input type="file" id="fvoter" name="fprofilepic" value="1506" />
+                                                            <div class="file-upload">
+                                                                <div class="file-select">
+                                                                    <div class="file-select-button" id="fileName">Choose File</div>
+                                                                    <input type="file"
+                                                                           id="fprofilepic"
+                                                                           name="fprofilepic"
+                                                                           value="1506"
+                                                                           onchange="onFileChange(this, 'fprofilepicdocFile','hdnfprofilepicdocFile')" />
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-3">
+                                                            <div id="fprofilepicdocFile">@profilepicStr</div>
+                                                            <input type="hidden" name="hdnfprofilepicdocFile" id="hdnfprofilepicdocFile" />
                                                         </div>
                                                     </div>
                                                     <div class="row" style="padding-top:5px">
@@ -742,8 +876,7 @@ new { @class = "form-control" })
                         <div class="col-md-3">
                             <label>Registration (RC)</label>
                         </div>
-                        <div class="col-md-3">
-                            @*<input type="file" id="registrationdoc" name="registrationdoc" value="1391" onchange="onFileChange(this, 'registrationdocFile')" />*@
+                        <div class="col-md-3">                            
                             <div class="file-upload">
                                 <div class="file-select">
                                     <div class="file-select-button" id="fileName">Choose File</div>                                    
@@ -878,7 +1011,7 @@ new { @class = "form-control" })
     </div>
 </div>
 
-<div class="modal" id="attachmentModal">
+@*<div class="modal" id="attachmentModal">
     <div class="modal-dialog modal-md">
         <form id="frmAttachments" method="post">
             <div class="modal-content">
@@ -904,7 +1037,7 @@ new { @class = "form-control" })
             </div>
         </form>
     </div>
-</div>
+</div>*@
 <div class="modal" id="bankDetailsModal">
     <div class="modal-dialog modal-md">
         <form id="frmBank" name="frmBank">
@@ -958,6 +1091,7 @@ new { @class = "form-control" })
     <script type="text/javascript">
 
         function onFileChange(el, id, hdn) {
+            debugger;
             $('#' + id).text(el.files[0].name); 
             $('#' + hdn).val(el.files[0].name); 
         }

@@ -43,6 +43,7 @@ namespace Operation.Contract
         public Int64 RegisteredNotBookDailyBasis { get; set; }
         public Int64 DrivercancelDailyBasis { get; set; }
         public Int64 CustomercanceldailyBasis { get; set; }
+        public Int64 TotalCancellations { get; set; }
 
     }
     //public class Cancellation
