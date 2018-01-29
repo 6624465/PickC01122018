@@ -1,4 +1,20 @@
-﻿<aside class="main-sidebar">
+﻿<style>
+    .skin-blue .treeview-menu > li > a:hover .img-hover{
+        display:initial;
+       
+    }
+    .skin-blue .treeview-menu > li > a:hover .img-normal{
+        display:none;
+    }
+    .img-hover{
+        display:none;
+    }
+    .treeview-menu img{
+        width:18px;
+        
+    }
+</style>
+<aside class="main-sidebar">
 	<section class="sidebar">
 		<div class="user-panel">
 			@*<div class="pull-left image">
@@ -44,7 +60,7 @@
 				<ul class="treeview-menu">
 					<li><a href="@Url.Content("~/Customers/Index")"><i class="fa fa-users" aria-hidden="true"></i>Customers</a></li>
 					<li><a href="@Url.Content("~/Operator/Operator")"><i class="fa fa-user" aria-hidden="true"></i>Operator</a></li>
-					<li><a href="@Url.Content("~/Driver/Driver")"><i class="fa fa-car" aria-hidden="true"></i>Drivers</a></li>
+					<li><a href="@Url.Content("~/Driver/Driver")"><img class="img-normal"src="~/images/driver.png"><img class="img-hover" src="~/images/driver2.png">Drivers</a></li>
 					<li><a href="@Url.Content("~/Vehicle/getVehicleModelList")"><i class="fa fa-car" aria-hidden="true"></i>Vehicle Models</a></li>
 
 					@*<li><a href="@Url.Content("~/OperatorVehicle/OperatorVehicleList")"><i class="fa fa-car" aria-hidden="true"></i>Operator Vehicles</a></li>
