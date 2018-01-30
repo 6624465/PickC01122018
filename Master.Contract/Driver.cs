@@ -233,6 +233,7 @@ namespace Master.Contract
 		public string LocationTo { get; set; }
 		public DateTime StartTime { get; set; }
 		
+
 	}
 }
 
