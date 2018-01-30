@@ -6,14 +6,17 @@
                         
                             <span class="info-box-icon bg-aqua"><i class="fa fa-download" aria-hidden="true"></i></span>
                         <div class="info-box">
-                            <div class="info-box-content" style="margin-left:25px;">
+                            <div class="info-box-content" >
                                 <span class="info-box-text">User App Downloads</span>
                                 <span class="info-box-number">IOS: <span>200</span></span></span>
-                                <span class="info-box-number"> Android: <span>300</span></span>
+                                <span class="info-box-number"> Android: <span>300</span></span><br />
+                                
                             </div>
-                            <span class="info-box-number total-box">Total: <span>300</span></span>
+                            
+                            <span class="info-box-number total-box" style="margin-top:-10px; "><b>Total:</b> <span>300</span></span>
                             <!-- /.info-box-content -->
                         </div>
+                       
                         <!-- /.info-box -->
                     </div>
                     
@@ -24,10 +27,11 @@
                             <div class="info-box-content">
                                 <span class="info-box-text">Registered But Not Booked </span>
                                 <span class="info-box-number">Today Booked:<span>@Model.userDataDashBoard.RegisteredNotBookDailyBasis</span></span>
+                                <br/>
                                 @*<span class="info-box-text">Total Count</span>*@
                                 
                             </div>
-                            <span class="info-box-number total-box" style="margin-top: 35px; background:#209660;">Total: <span>@Model.userDataDashBoard.RegisteredNotBook</span></span>
+                            <span class="info-box-number total-box" style="background:#209660;"><b>Total:</b><span>@Model.userDataDashBoard.RegisteredNotBook</span></span>
                             @*<div class="info-box-content">
                 <span class="info-box-text">Registered But Not Booked</span>
                 <span class="info-box-number">@Model.userDataDashBoard.RegisteredNotBook</span>
@@ -42,11 +46,11 @@
                         <div class="info-box">
                             <div class="info-box-content">
                                 <span class="info-box-text">Total Trips </span>
-                                <span class="info-box-number">Today Trips: <span>@Model.userDataDashBoard.TotalBookingsdailyBasis</span></span>
+                                <span class="info-box-number">Today Trips: <span>@Model.userDataDashBoard.TotalBookingsdailyBasis</span></span><br/>
                                 
                                 @*<span class="info-box-number">@Model.userDataDashBoard.TotalBookings</span>*@
                             </div>
-                            <span class="info-box-number total-box" style="margin-top: 35px; background:#a5a7a9;">Total: <span>@Model.userDataDashBoard.TotalBookings</span></span>
+                            <span class="info-box-number total-box" style="background:#a5a7a9; margin-top:15px;"><b>Total:</b><span>@Model.userDataDashBoard.TotalBookings</span></span>
                             <!-- /.info-box-content -->
                         </div>
                         <!-- /.info-box -->
@@ -64,7 +68,7 @@
 
                                  }*@
                             </div>
-                            <span class="info-box-number total-box" style="background:#ce830c;"> Total: <span>@Model.userDataDashBoard.TotalCancellations</span></span>
+                            <span class="info-box-number total-box" style="background:#ce830c;"> <b>Total:</b> <span>@Model.userDataDashBoard.TotalCancellations</span></span>
                             <!-- /.info-box-content -->
                         </div>
                         <!-- /.info-box -->
@@ -84,6 +88,17 @@
         margin-right:10px;
         font-weight:bold;
     }
+  .info-box-number > p{
+      background:#fff;
+  }
+  .total-box b{
+          background: #fff;
+    color: #000;
+    padding: 0.35em 1.28em;
+    position: relative;
+    left: -25px;
+
+  }
 </style>
 <script src="@Url.Content("~/Scripts/jquery.validate.js")"></script>
 
