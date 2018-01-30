@@ -43,7 +43,7 @@
                             <div class="col-md-2">
                                 <div class="form-group">
                                     <label>Date From</label>
-                                    <div class="input-group dtCss">
+                                    <div class="input-group dtCss" id="FromDate">
                                         @Html.TextBoxFor(x => x.bookings.DateFrom, new { @id = "startDate", @class = "form-control" })
                                         <span class="input-group-btn">
                                             <button type="button" class="btn btn-default"><i class="fa fa-calendar" aria-hidden="true"></i></button>
@@ -54,7 +54,7 @@
                             <div class="col-md-2">
                                 <div class="form-group">
                                     <label>Date To</label>
-                                    <div class="input-group dtCss">
+                                    <div class="input-group dtCss" id="ToDate">
                                         @Html.TextBoxFor(x => x.bookings.DateTo, new { @id = "endDate", @class = "form-control", })
                                         <span class="input-group-btn">
                                             <button type="button" class="btn btn-default"><i class="fa fa-calendar" aria-hidden="true"></i></button>
@@ -160,10 +160,11 @@
 
 
                 $(document).ready(function () {
-                    //   $('#startDate').val(new Date(monthStartDay.toDateString()));
+                       //$('#startDate').val(new Date(monthStartDay.toDateString()));
                 });
 
                 //  console.log(monthStartDay);
+
                 $('.dtCss').datetimepicker({
                     icons: {
                         time: 'fa fa-clock-o',
@@ -176,7 +177,9 @@
                     format: 'DD/MM/YYYY'
                     //  Datefrom: monthStartDay
                 });
-
+                $("#FromDate").on("dp.change", function (e) {
+                    $('#ToDate').data("DateTimePicker").minDate(e.date);
+                });
                 //$('#Datefrom,#DateTo').datetimepicker({
                 //    icons: {
                 //        time: 'fa fa-clock-o',

@@ -6,14 +6,17 @@
                         
                             <span class="info-box-icon bg-aqua"><i class="fa fa-download" aria-hidden="true"></i></span>
                         <div class="info-box">
-                            <div class="info-box-content">
+                            <div class="info-box-content" >
                                 <span class="info-box-text">User App Downloads</span>
-                                <span class="info-box-number">IOS:</span>
-                                <span class="info-box-number"> Android:</span>
-                                <span class="info-box-number total-box">Total Downloads:</span>
+                                <span class="info-box-number">IOS: <span>200</span></span></span>
+                                <span class="info-box-number"> Android: <span>300</span></span><br />
+                                
                             </div>
+                            
+                            <span class="info-box-number total-box" style="margin-top:-10px; "><b>Total:</b> <span>300</span></span>
                             <!-- /.info-box-content -->
                         </div>
+                       
                         <!-- /.info-box -->
                     </div>
                     
@@ -23,10 +26,12 @@
                         <div class="info-box">
                             <div class="info-box-content">
                                 <span class="info-box-text">Registered But Not Booked </span>
-                                <span class="info-box-number">Today Booked:@Model.userDataDashBoard.RegisteredNotBookDailyBasis</span>
+                                <span class="info-box-number">Today Booked:<span>@Model.userDataDashBoard.RegisteredNotBookDailyBasis</span></span>
+                                <br/>
                                 @*<span class="info-box-text">Total Count</span>*@
-                                <span class="info-box-number total-box" style="margin-top: 38px; background:#00a65a;">Total Booked:@Model.userDataDashBoard.RegisteredNotBook</span>
+                                
                             </div>
+                            <span class="info-box-number total-box" style="background:#209660;"><b>Total:</b><span>@Model.userDataDashBoard.RegisteredNotBook</span></span>
                             @*<div class="info-box-content">
                 <span class="info-box-text">Registered But Not Booked</span>
                 <span class="info-box-number">@Model.userDataDashBoard.RegisteredNotBook</span>
@@ -41,10 +46,11 @@
                         <div class="info-box">
                             <div class="info-box-content">
                                 <span class="info-box-text">Total Trips </span>
-                                <span class="info-box-number">Today Trips:@Model.userDataDashBoard.TotalBookingsdailyBasis</span>
-                                <span class="info-box-number total-box" style="margin-top: 38px; background:#bdc0c4;">Total Trips:@Model.userDataDashBoard.TotalBookings</span>
+                                <span class="info-box-number">Today Trips: <span>@Model.userDataDashBoard.TotalBookingsdailyBasis</span></span><br/>
+                                
                                 @*<span class="info-box-number">@Model.userDataDashBoard.TotalBookings</span>*@
                             </div>
+                            <span class="info-box-number total-box" style="background:#a5a7a9; margin-top:15px;"><b>Total:</b><span>@Model.userDataDashBoard.TotalBookings</span></span>
                             <!-- /.info-box-content -->
                         </div>
                         <!-- /.info-box -->
@@ -56,15 +62,13 @@
 
                             <div class="info-box-content">
                                 <span class="info-box-text">Cancellations</span>
-                                <span class="info-box-number">Driver: @Model.userDataDashBoard.DriverCancel</span>
-                                <span class="info-box-number"> Customer:@Model.userDataDashBoard.CustomerCancel </span>
+                                <span class="info-box-number">Driver: <span>@Model.userDataDashBoard.DriverCancel</span></span>
+                                <span class="info-box-number"> Customer: <span>@Model.userDataDashBoard.CustomerCancel</span> </span>
                                 @*@{ var data =(Operation.Contract.UserDataDashBoard)TempData["count"];
 
                                  }*@
-                               
-                                <span class="info-box-number total-box" style="background:#f39c12;"> Total Cancellations:@Model.userDataDashBoard.TotalCancellations</span>
-                               
                             </div>
+                            <span class="info-box-number total-box" style="background:#ce830c;"> <b>Total:</b> <span>@Model.userDataDashBoard.TotalCancellations</span></span>
                             <!-- /.info-box-content -->
                         </div>
                         <!-- /.info-box -->
@@ -74,14 +78,27 @@
 
 <style>
     .total-box{
-                                    margin-top: 14px;
-                                    color: #fff;
-    padding: 7px;
-                                    margin-left: -10px;
-                                    margin-right: -10px;
-                                    margin-bottom: -5px;
-                                    background: #8bdbef;
+    margin-top: 10px;
+    color: #fff;
+    padding: 5px 0px 5px 25px;
+    background: #51b3cc;
     }
+    .info-box-number > span{
+        float:right;
+        margin-right:10px;
+        font-weight:bold;
+    }
+  .info-box-number > p{
+      background:#fff;
+  }
+  .total-box b{
+          background: #fff;
+    color: #000;
+    padding: 0.35em 1.28em;
+    position: relative;
+    left: -25px;
+
+  }
 </style>
 <script src="@Url.Content("~/Scripts/jquery.validate.js")"></script>
 

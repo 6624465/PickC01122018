@@ -2181,11 +2181,10 @@ a {
     display: block;
     min-height: 90px;
     background: #fff;
-    width: 72%;
     box-shadow: 0 1px 1px rgba(0,0,0,0.1);
     border-radius: 2px;
     margin-bottom: 15px;
-    margin-left: 90px;
+    
 }
 
     .info-box small {
@@ -2207,10 +2206,10 @@ a {
             }
 
 .info-box-icon {
-    border-top-left-radius: 2px;
+    /*border-top-left-radius: 2px;
     border-top-right-radius: 0;
     border-bottom-right-radius: 0;
-    border-bottom-left-radius: 2px;
+    border-bottom-left-radius: 2px;*/
     display: block;
     float: left;
     height: 90px;
@@ -2227,12 +2226,14 @@ a {
 
 .info-box-content {
     padding: 5px 10px;
+    position: relative;
+    left: 10px;
    
 }
 
 .info-box-number {
     display: block;
-    font-weight: bold;
+    font-weight: normal;
     font-size: 18px;
 }
 
@@ -2245,6 +2246,7 @@ a {
 
 .info-box-text {
     text-transform: uppercase;
+    font-weight:bold;
 }
 
 .info-box-more {
@@ -2407,6 +2409,9 @@ a {
             background: white;
             cursor: inherit;
             display: block;
+        }
+        input[type=search]{
+            border:1px solid #d2d6de;
         }
 
 .btn-default {
@@ -5298,7 +5303,7 @@ table.text-center, table.text-center td, table.text-center th {
 }
 
 .box-body {
-    padding-bottom: 0px;
+    padding-bottom: 10px;
     overflow: initial;
     border-radius: 2px;
 }

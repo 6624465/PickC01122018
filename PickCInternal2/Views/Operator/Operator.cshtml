@@ -58,9 +58,9 @@
                                 grid.Column("OperatorName", "Operator Name"),
                                 grid.Column("OperatorID", "Operator ID"),
                                 grid.Column("MobileNo", "Mobile No"),
-                                grid.Column("Edit", "#Edit", format:
+                                grid.Column("Edit", "Edit", format:
                                 @<text><a href="@Url.Content("~/Operator/Edit?OperatorID=" + item.OperatorID)"><i class="fa fa-pencil" aria-hidden="true"></i></a></text>),
-                                grid.Column("View", "#View", format:
+                                grid.Column("View", "View", format:
                                 @<text><a class="hand" onclick="driverListView('@item.OperatorID')"><i class="fa fa-eye" aria-hidden="true"></i></a></text>)
                             ),
                             htmlAttributes: new { id = "grid" })
