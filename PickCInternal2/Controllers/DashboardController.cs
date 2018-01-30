@@ -79,22 +79,83 @@ namespace PickC.Internal2.Controllers
             var currentbookings = await new SearchService(AUTHTOKEN, p_mobileNo).SearchCurrentBookingAsync(search);
             var bookingSearchVM = new BookingSearchDTO();
             bookingSearchVM.booking = currentbookings;
+
+            var tripMonitorData = new List<TripMonitorVm>();
+            if (currentbookings != null)
+            {
+                for (var i = 0; i < currentbookings.Count; i++)
+                {
+                    var tripMonitor = new TripMonitorVm();
+                    tripMonitor.address = new ViewModals.Address
+                    {
+                        address = "",
+                        lat = currentbookings[i].Latitude.ToString(),
+                        lng = currentbookings[i].Longitude.ToString(),
+                    };
+                    tripMonitor.title = currentbookings[i].DriverId;
+                    tripMonitorData.Add(tripMonitor);
+                }
+
+                ViewBag.trips = tripMonitorData;
+            }
             return View("SearchBookingHistory", bookingSearchVM);
         }
         [HttpGet]
         public async Task<ActionResult> CurrentBookings()
         {
-            var currentbookings = await new SearchService(AUTHTOKEN, p_mobileNo).BookingListAsync();
+            //var currentbookings = await new SearchService(AUTHTOKEN, p_mobileNo).BookingListAsync();
+            var currentbookings = await new SearchService(AUTHTOKEN, p_mobileNo).GetCustomerBySearch(0);
             var bookingSearchVM = new BookingSearchDTO();
             bookingSearchVM.booking = currentbookings;
-            var tripMonitor = await GetTripMonitorData();
-            ViewBag.trips = tripMonitor;
+            //var tripMonitor = await GetTripMonitorData();
+            //ViewBag.trips = tripMonitor;
+            var tripMonitorData = new List<TripMonitorVm>();
+            if (currentbookings != null)
+            {
+                for (var i = 0; i < currentbookings.Count; i++)
+                {
+                    var tripMonitor = new TripMonitorVm();
+                    tripMonitor.address = new ViewModals.Address
+                    {
+                        address = "",
+                        lat = currentbookings[i].Latitude.ToString(),
+                        lng = currentbookings[i].Longitude.ToString(),
+                    };
+                    tripMonitor.title = currentbookings[i].DriverId;
+                    tripMonitorData.Add(tripMonitor);
+                }
+
+                ViewBag.trips = tripMonitorData;
+            }
             return View(bookingSearchVM);
         }
-        public async Task<JsonResult> GetCustomerBySearch(int? status)
+
+        [HttpPost]
+        public async Task<ActionResult> GetCustomerBySearch(int? status)
         {
-            var customerlist = await new SearchService(AUTHTOKEN, p_mobileNo).GetCustomerBySearch(status);
-            return Json(customerlist, JsonRequestBehavior.AllowGet);
+            ViewBag.Status = status;
+            var currentbookings = await new SearchService(AUTHTOKEN, p_mobileNo).GetCustomerBySearch(status);
+            var bookingSearchVM = new BookingSearchDTO();
+            bookingSearchVM.booking = currentbookings;
+            var tripMonitorData = new List<TripMonitorVm>();
+            if (currentbookings != null)
+            {
+                for (var i = 0; i < currentbookings.Count; i++)
+                {
+                    var tripMonitor = new TripMonitorVm();
+                    tripMonitor.address = new ViewModals.Address
+                    {
+                        address = "",
+                        lat = currentbookings[i].Latitude.ToString(),
+                        lng = currentbookings[i].Longitude.ToString(),
+                    };
+                    tripMonitor.title = currentbookings[i].DriverId.ToUpper() + " - " + currentbookings[i].BookingNo.ToUpper();
+                    tripMonitorData.Add(tripMonitor);
+                }
+
+                ViewBag.trips = tripMonitorData;
+            }
+            return View("CurrentBookings", bookingSearchVM);
         }
 
         [HttpPost]
@@ -207,6 +268,7 @@ namespace PickC.Internal2.Controllers
   
             return View("UserAppCancellation", userData);
         }
+
         //[HttpPost]
         //public ActionResult UserAppCancellation(Cancellation cancellist)
         //{
@@ -267,7 +329,7 @@ namespace PickC.Internal2.Controllers
         }
         public async Task<JsonResult> GetDriverDetails(string id)
         {
-            var driverlist = await new DriverService(AUTHTOKEN, p_mobileNo).DriverInfoAsync(id);
+			var driverlist = await new DriverService(AUTHTOKEN, p_mobileNo).DriverByIDInfoAsync(id); //DriverInfoAsync(id); added by Kiran
             return Json(driverlist, JsonRequestBehavior.AllowGet);
         }
 
