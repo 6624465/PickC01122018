@@ -9,7 +9,6 @@ using System.Web;
 using System.Web.Http;
 using System.Configuration;
 
-using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 
 using PickCApi.Areas.Operation.DTO;
@@ -31,7 +30,7 @@ namespace PickCApi
             }
             return headerVal;
         }
-
+        //https://firebase.google.com/docs/cloud-messaging/concept-options
         public void PushNotification(string toDeviceId, string bookingNo, string message)
         {
             try
@@ -39,7 +38,7 @@ namespace PickCApi
                 string applicationID = ConfigurationManager.AppSettings["appApplicationKey"];
                 string senderId = ConfigurationManager.AppSettings["appSenderId"];
 
-                WebRequest tRequest = WebRequest.Create("https://fcm.googleapis.com/fcm/send");
+                WebRequest tRequest = WebRequest.Create(string.Format("https://fcm.googleapis.com/fcm/send?ts={0}", DateTime.Now.Ticks));
                 tRequest.Method = "post";
                 tRequest.ContentType = "application/json";
                 var data = new
@@ -55,6 +54,14 @@ namespace PickCApi
                     {
                         bookingNo = bookingNo,
                         body = message
+                    },
+                    android = new {
+                        priority = "high"
+                    },
+                    webpush = new {
+                        headers = new {
+                            Urgency = "high"
+                        }
                     }
                 };
 
