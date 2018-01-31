@@ -59,7 +59,7 @@ namespace Operation.Contract
         public string BookingNo { get; set; }
         public DateTime BookingDate { get; set; }
         public string Reason { get; set; }
-        public bool Status { get; set; }
+        //public bool Status { get; set; }
 
     }
     public class DriverCancellation

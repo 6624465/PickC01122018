@@ -225,7 +225,7 @@ namespace Master.Contract
 
 		public string DeviceRemarks { get; set; }
 		public DateTime LoginDate { get; set; }
-		public DateTime LogoutDate { get; set; }
+		public DateTime? LogoutDate { get; set; }
 		public bool IsLogin { get; set; }
 
 		public string BookingNo { get; set; }
