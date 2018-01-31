@@ -26,7 +26,7 @@
                     <div class="col-md-2">
                         <div class="form-group">
                             <label>Date From</label>
-                            <div class="input-group dtCss">
+                            <div class="input-group dtCss" id="FromDate">
                                 @Html.TextBoxFor(x => x.DateFrom, new { id = "datefrom", @class = "form-control" })
                                 <span class="input-group-btn">
                                     <button type="button" class="btn btn-default"><i class="fa fa-calendar" aria-hidden="true"></i></button>
@@ -37,7 +37,7 @@
                     <div class="col-md-2">
                         <div class="form-group">
                             <label>Date To</label>
-                            <div class="input-group dtCss">
+                            <div class="input-group dtCss" id="ToDate">
                                 @Html.TextBoxFor(x => x.DateTo, new { id = "dateto", @class = "form-control" })
                                 <span class="input-group-btn">
                                     <button type="button" class="btn btn-default"><i class="fa fa-calendar" aria-hidden="true"></i></button>
@@ -107,6 +107,9 @@
                 next: 'fa fa-arrow-right'
             },
             format: 'DD/MM/YYYY'
+        });
+        $("#FromDate").on("dp.change", function (e) {
+            $('#ToDate').data("DateTimePicker").minDate(e.date);
         });
     </script>
     }
