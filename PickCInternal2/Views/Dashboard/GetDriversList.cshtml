@@ -1,110 +1,132 @@
 ﻿@model  PickC.Internal2.ViewModals.DriverMonitorVm
 @{
-    ViewBag.Title = "GetDriversList";
-    Layout = "~/Views/Shared/_Layout.cshtml";
+	ViewBag.Title = "GetDriversList";
+	Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
 @section seccss{
-    <style type="text/css">
-        #map {
-            height: 530px;
-            width: 100%;
-            margin: 0px;
-            padding: 0px;
-        }
-    </style>
+	<style type="text/css">
+		#map {
+			height: 530px;
+			width: 100%;
+			margin: 0px;
+			padding: 0px;
+		}
+	</style>
 }
 <section class="content">
-    @using (Html.BeginForm())
-    {
+	@using (Html.BeginForm())
+	{
 
-        <div class="row">
-            <div class="col-xs-12">
-                @{ Html.RenderPartial("DashboardMenuList"); }
-                <div id="myTabContent" class="tab-content">
-                    <div class="tab-pane fade in active" id="home">
-                        <div class="row map-container">
-                            <div class="col-md-3">
-                                <div class="search-map">
-                                    @*<input type="text" id="txtDriverName" placeholder="search by name" class="form-control" />*@
-                                    <select id="ddlSearchByStatus" class="form-control">
-                                        <option value="ALL">All</option>
-                                        <option value="LOGIN">Login</option>
-                                        <option value="LOGOFF">Logoff</option>
-                                        <option value="INTRIP">Intrip</option>
-                                    </select>
-                                </div>
-                                <div class="dr-list" id="driverList">
-                                    <ul class="listofvhl">
-                                        @foreach (var item in Model.driverList)
-                                        {
-                                            <li onclick="getDriverDetails(this)" id="@item.DriverId">
-                                                <img src="~/images/icon.png" class="img-circle" alt="driver" height="20" style="float:left;" />
-                                                <div style="float:left;padding-left:10px;">
-                                                    <span style="display:block"> @item.DriverName</span>
-                                                    <span style="display:block"> @item.VehicleNo </span>
-                                                    <span style="display:block">@item.MobileNo</span>
-                                                </div>
-                                                <div class="clearfix"></div>
-                                                <span class="active-dr">
-                                                    @if (item.Status)
-                                                    {
-                                                        <i class="fa fa-circle text-success"></i>
-                                                    }
-                                                    else
-                                                    {
-                                                        <i class="fa fa-circle text-danger"></i>
-                                                    }
-                                                </span>
+		<div class="row">
+			<div class="col-xs-12">
+				@{ Html.RenderPartial("DashboardMenuList"); }
+				<div id="myTabContent" class="tab-content">
+					<div class="tab-pane fade in active" id="home">
+						<div class="row map-container">
+							<div class="col-md-3">
+								<div class="search-map">
+									@*<input type="text" id="txtDriverName" placeholder="search by name" class="form-control" />*@
+									<select id="ddlSearchByStatus" class="form-control">
+										<option value="ALL">All</option>
+										<option value="LOGIN">Login</option>
+										<option value="LOGOFF">Logoff</option>
+										<option value="INTRIP">Intrip</option>
+									</select>
+								</div>
+								<div class="dr-list" id="driverList">
+									<ul class="listofvhl">
+										@foreach (var item in Model.driverList)
+										{
+											<li id="@item.DriverId" class="drvrList" data-id="@item.DriverId" data-status="@item.Status">
+												<img src="~/images/icon.png" class="img-circle" alt="driver" height="20" style="float:left;" />
+												<div style="float:left;padding-left:10px;">
+													<span style="display:block"> @item.DriverName</span>
+													<span style="display:block"> @item.VehicleNo </span>
+													<span style="display:block">@item.MobileNo</span>
+												</div>
+												<div class="clearfix"></div>
+												<span class="active-dr">
+													@if (item.Status)
+													{
+														<i class="fa fa-circle text-success"></i>
+													}
+													else
+													{
+														<i class="fa fa-circle text-danger"></i>
+													}
+												</span>
 
-                                            </li>
-                                        }
-                                    </ul>
-                                </div>
-                            </div>
+											</li>
+										}
+									</ul>
+								</div>
+							</div>
 
-                            <div class="col-md-9">
-                                <div id="map" style="border: 1px solid rgba(255,255,255,0.15);"></div>
-                            </div>
+							<div class="col-md-9">
+								<div id="map" style="border: 1px solid rgba(255,255,255,0.15);"></div>
+							</div>
 
-                        </div>
-                    </div>
+						</div>
+					</div>
 
-                </div>
-                <div id="driverDetailsModal" class="modal fade" role="dialog">
-                    <div class="modal-dialog">
+				</div>
+				<div id="driverDetailsModal" class="modal fade" role="dialog">
+					<div class="modal-dialog">
 
-                        <!-- Modal content-->
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <button type="button" class="close" data-dismiss="modal">&times;</button>
-                                <h4 class="modal-title">Driver Details</h4>
-                            </div>
-                            <div class="modal-body" id="driverData">
-                                <img id="driverImage" src="" alt="driver" height="40" />
-                                <label>Driver Name</label>
-                                <div id="driverName"></div>
-                                <label>License No</label>
-                                <div id="licenseNumber"></div>
-                                <label>Vehicle No</label>
-                                <div id="vehicleNumber"></div>
-                                <label>Vehicle Type</label>
-                                <div id="vehicletype"></div>
-                                <label>Contact No</label>
-                                <div id="phoneNo"></div>
-                                <label>Driver Photo</label>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-                    }
+						<!-- Modal content-->
+						<div class="modal-content">
+							<div class="modal-header">
+								<button type="button" class="close" data-dismiss="modal">&times;</button>
+								<h4 class="modal-title">Driver Details</h4>
+							</div>
+							<div class="modal-body" id="driverData">
+								<img id="driverImage" src="" alt="driver" height="40" /><br />
+								<label>Driver Name</label>
+								<div id="driverName"></div>
+								<label>Contact No</label>
+								<div id="phoneNo"></div>
+								<label>Vehicle No</label>
+								<div id="vehicleNumber"></div>
+								<label>Vehicle Type</label>
+								<div id="vehicletype"></div>
+								<label>Vehicle Category</label>
+								<div id="vehiclecategory"></div>
+								<label>License No</label>
+								<div id="licenseNumber"></div>
+								<label>Status</label>
+								<div id="status"></div>
+								<div id="driverLogin">
+									<label>Latest Login Date Time</label>
+									<div id="latestlogin"></div>
+								</div>
+								<div id="driverLogoff">
+									<label>Last Log Off Date Time</label>
+									<div id="latestlogoff"></div>
+								</div>
+								<div id="intrip">
+									<label>Booking No</label>
+									<div id="bookingno"></div>
+									<label>Location From</label>
+									<div id="locationfrom"></div>
+									<label>Location To</label>
+									<div id="locationto"></div>
+									<label>Start Time</label>
+									<div id="starttime"></div>									
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	}
 
 </section>
 @section secscripts{
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD7WVBL9AmhKs1QAr4x7mArA2mKZY-9nUo&v=3.exp&libraries=places&sensor=true"></script>
-    <script type="text/javascript">
+	<script src="~/Scripts/moment.min.js"></script>
+	<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD7WVBL9AmhKs1QAr4x7mArA2mKZY-9nUo&v=3.exp&libraries=places&sensor=true"></script>
+	<script type="text/javascript">
         var MapPoints = '@Html.Raw(Newtonsoft.Json.JsonConvert.SerializeObject(Model.tripMonitorVmList))';
         var MY_MAPTYPE_ID = 'custom_style';
         var directionsDisplay;
@@ -208,9 +230,7 @@
         $(function () {
             Looping();
 
-
             $('#ddlSearchByStatus').on("change", function () {
-                debugger;
                 $.ajax({
                     url: '@Url.Content("~/Dashboard/GetDriverBySearch")',
                     method: 'POST',
@@ -218,13 +238,12 @@
                     dataType: 'json',
                     data: JSON.stringify({ 'status': $('#ddlSearchByStatus').val() }),
                     success: function (data) {
-
                         $('#driverList').val();
-                        var html = '';   
-                        $.each(data, function (key, val) {
+						var html = '';
+						html += '<ul class="listofvhl">';
+						$.each(data, function (key, val) {
                             var vehicleno = val.VehicleNo == null ? '' : val.VehicleNo;
-                            html += '<ul class="listofvhl">'
-                            html += '<li onclick="getDriverDetails(this)" id=' + val.DriverID + '><img src="@Url.Content( "~/images/icon.png")" class="img-circle" alt="driver" height="20" style="float:left;">';
+							html += '<li class="drvrList" data-id=' + val.DriverId + ' data-status=' + val.Status + ' id=' + val.DriverId + '><img src="@Url.Content( "~/images/icon.png")" class="img-circle" alt="driver" height="20" style="float:left;">';
                             html += '<div style="float:left;padding-left:10px;">';
                             html += '<span style="display:block"> ' + val.DriverName + '</span>';
                             html += '<span style="display:block"> ' + vehicleno + '</span>';
@@ -237,15 +256,11 @@
                             else {
                                 html += '<i class="fa fa-circle text-danger"></i>';
                             }
-                            html += '</span></li></ul>';
+                            html += '</span></li>';
 
-
-
-                        });
-
+						});
+						html +='</ul >';
                         $('#driverList').html(html);
-
-
                     },
                     error: function (err) {
 
@@ -289,32 +304,95 @@
         }
 
 
-        function getDriverDetails(obj) {
-            $.ajax({
-                url: '@Url.Content("~/Internal/Dashboard/GetDriverDetails")',
-                method: 'POST',
-                contentType: 'application/json',
-                dataType: 'json',
-                data: JSON.stringify({ 'id': obj.id }),
-                success: function (res) {
-                    $('#driverDetailsModal').modal('show');
+		//function getDriverDetails(obj) {
 
-                    var source = '@Url.Content("~/images/icon.png")';
-                    $("#driverImage").attr('src', source);
-                    $("#driverName").text(res.DriverName);
-                    $("#licenseNumber").text(res.LicenseNo);
-                    $("#vehicleNumber").text(res.VehicleNo);
-                    $("#phoneNo").text(res.PhoneNo);
-                    $("#vehicletype").text(res.VehicleType);
-                    //debugger;
-                },
-                error: function (err) {
-                    //
-                }
-            });
-        }
+		@*$('.drvrList').click(function () {
+			debugger;
+			$.ajax({
+				url: '@Url.Content("~/Internal/Dashboard/GetDriverDetails")',
+				method: 'POST',
+				contentType: 'application/json',
+				dataType: 'json',
+				data: JSON.stringify({ 'id': obj.id }),
+				success: function (res) {
+					$('#driverDetailsModal').modal('show');
+
+					var source = '@Url.Content("~/images/icon.png")';
+					$("#driverImage").attr('src', source);
+					$("#driverName").text(res.DriverName);
+					$("#licenseNumber").text(res.LicenseNo);
+					$("#vehicleNumber").text(res.VehicleNo);
+					$("#phoneNo").text(res.PhoneNo);
+					$("#vehicletype").text(res.VehicleType);
+					//debugger;
+				},
+				error: function (err) {
+					//
+				}
+			});
+		});*@
+
         $(function () {
-            $('#driverStatus').parent().addClass('active');
-        });
-    </script>
+			$('#driverStatus').parent().addClass('active');
+
+
+
+		});
+
+		$(document).on('click','.drvrList', function () {
+				var driverid = $(this).data("status");
+			//debugger;
+			$.ajax({
+				url: '@Url.Content("~/Dashboard/GetDriverDetails")',
+				method: 'POST',
+				contentType: 'application/json',
+				dataType: 'json',
+				data: JSON.stringify({ 'id': $(this).data("id") }),
+				success: function (res) {
+				//debugger;
+					$('#driverDetailsModal').modal('show');
+
+					var source = '@Url.Content("~/images/icon.png")';
+					$("#driverImage").attr('src', source);
+					$("#driverName").text(res.DriverName);
+					$("#licenseNumber").text(res.LicenseNo);
+					$("#vehicleNumber").text(res.VehicleNo);
+					$("#phoneNo").text(res.PhoneNo);
+					$("#vehicletype").text(res.VehicleType);
+					$("#vehiclecatogory").text(res.VehicleGroup);
+					$("#status").text($("#ddlSearchByStatus").val());
+					$("#bookingno").text(res.BookingNo);
+					
+					$("#fromlocation").text(res.LocationFrom);
+					$("#tolocation").text(res.LocationTo);
+					$("#starttime").text(moment(res.StartTime).format('DD/MM/YYYY HH:mm:ss'));					
+					//debugger;
+					if (res.Status === true) {
+						$("#latestlogin").text(moment(res.LoginDate).format('DD/MM/YYYY'));
+						$("#driverLogin").show();
+						$("#driverLogoff").hide();
+						$("#intrip").hide();
+
+
+					} else if (res.Status === false){
+						$("#latestlogoff").text(moment(res.LogoutDate).format('DD/MM/YYYY'));
+						$("#driverLogin").hide();
+						$("#driverLogoff").show();
+						$("#intrip").hide();
+					}
+					//debugger;
+					 if ($("#ddlSearchByStatus").val() == "INTRIP") {
+						 $("#intrip").show();
+						 $("#driverLogin").hide();
+						 $("#driverLogoff").hide();
+
+					}
+					//debugger;
+				},
+				error: function (err) {
+					//
+				}
+			});
+		});
+	</script>
 }

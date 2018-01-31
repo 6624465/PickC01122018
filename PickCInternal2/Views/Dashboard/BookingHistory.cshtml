@@ -76,7 +76,7 @@
                         </div>
                     </div>
                 </div>
-
+                <div class="box">
                 <div class="box-body" id="ajaxGrid">
                     @*@if (Model.booking.Count != 0)
                         {*@
@@ -122,6 +122,7 @@
                             </div>
                         </div>*@
                 </div>
+                </div>
                     }
 </section>
 <div class="modal" id="InvoiceModal">
@@ -155,27 +156,12 @@
                     $('#table_id').dataTable();
                 });
 
-               
+
                 //var date = new Date();
                 //var monthStartDay = new Date(date.getFullYear(), date.getMonth(), 1);
                 //console.log(monthStartDay);
 
-                //startDate, endDate
-               
-                //$(function () {
-                //    $("#startDate").datetimepicker({
-                //        onSelect: function (selected) {
-                //            $("#endDate").datetimepicker("option", "minDate", selected)
-                //        }
-                //    });
-                //    $("#endDate").datetimepicker({
-                //        onSelect: function (selected) {
-                //            $("#startDate").datetimepicker("option", "maxDate", selected)
-                //        }
-                //    });
-                //});
-
-
+                //  console.log(monthStartDay);
 
                 $('.dtCss').datetimepicker({
                     icons: {
@@ -201,7 +187,7 @@
                         'bookings.DateFrom': {
                             required: true
                         }
-                    }
+                        }
                 });
                 //$('#endDate').blur(function () {
                 //    debugger
