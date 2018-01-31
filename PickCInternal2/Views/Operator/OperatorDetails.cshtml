@@ -241,10 +241,10 @@ new { @class = "form-control" })
                                         </div>
                                         <div class="col-md-4">
                                             <div class="form-group">
-                                                <label>Maritial Status</label>
+                                                <label>Marital Status</label>
                                                 @Html.DropDownListFor(x => x.OPerator.MaritialStatus,
 new SelectList(Model.operatorLookupDTO.maritalOptions, "LookupId", "LookupDescription"),
-"Select Maritial Status",
+"Select Marital Status",
 new { @class = "form-control" })
                                             </div>
                                         </div>
@@ -519,7 +519,7 @@ new { @class = "form-control" })
                                                                         <tr>
                                                                             <th class="hidden">Driver ID</th>
                                                                             <th>Driver Name</th>
-                                                                            <th>Driver License No</th>
+                                                                            <th>Driving Licence No</th>
                                                                             <th>Driver Mobile No</th>
                                                                             @*<th>Driver Vehicle No</th>*@
                                                                             <th>Action</th>
@@ -802,7 +802,7 @@ new { @class = "form-control" })
                     </div>
                     <div class="row">
                         <div class="col-md-6">
-                            <label>Driving License No</label>
+                            <label>Driving Licence No</label>
                             <input class="form-control" id="operatorDriverList_DriverLicenseNo" name="operatorDriverList_DriverLicenseNo" type="text" value="" readonly="readonly">
                         </div>
                     </div>

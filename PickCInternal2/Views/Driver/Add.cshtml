@@ -131,10 +131,10 @@
                         </div>
                         <div class="col-md-4">
                             <div class="form-group">
-                                <label>Maritial Status</label>
+                                <label>Marital Status</label>
                                 @Html.DropDownListFor(x => x.driver.MaritialStatus,
                                                 new SelectList(Model.driverLookupDTO.maritalOptions, "LookupId", "LookupDescription"),
-                                                "Select Maritial Status",
+                                                "Select Marital Status",
                                                 new { @class = "form-control" })
                             </div>
                         </div>
@@ -179,8 +179,8 @@
                         </div>
                         <div class="col-md-4">
                             <div class="form-group">
-                                <label>License No</label>
-                                @Html.TextBoxFor(x => x.driver.LicenseNo, new { @class = "form-control", @maxlength = 16, placeholder = "License No" })
+                                <label>Driving Licence No</label>
+                                @Html.TextBoxFor(x => x.driver.LicenseNo, new { @class = "form-control", @maxlength = 16, placeholder = "Driving Licence No" })
                             </div>
                         </div>
                     </div>
