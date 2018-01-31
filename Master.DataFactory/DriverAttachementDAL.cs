@@ -74,6 +74,11 @@ namespace Master.DataFactory
         }
         return result;
     }
-    #endregion
-}
+        public List<DriverAttachment> GetList(string DriverID)
+        {
+            return db.ExecuteSprocAccessor(DBRoutine.SELECTDRIVERATTACHMENTSLIST,
+                MapBuilder<DriverAttachment>.BuildAllProperties(), DriverID).ToList();
+        }
+        #endregion
+    }
 }

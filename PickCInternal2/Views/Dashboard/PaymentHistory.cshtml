@@ -29,7 +29,7 @@
         <div class="col-md-2">
             <div class="form-group">
                 <label>Date From</label>
-                <div class="input-group dtCss">
+                <div class="input-group dtCss" id="fromdate">
                     @Html.TextBoxFor(x => x.paymentsearch.DateFrom, new { @id = "startDate", @class = "form-control" })
                     <span class="input-group-btn">
                         <button type="button" class="btn btn-default"><i class="fa fa-calendar" aria-hidden="true"></i></button>
@@ -40,7 +40,7 @@
         <div class="col-md-2">
             <div class="form-group">
                 <label>Date To</label>
-                <div class="input-group dtCss">
+                <div class="input-group dtCss" id="todate">
                     @Html.TextBoxFor(x => x.paymentsearch.DateTo, new { @id = "enddate", @class = "form-control", })
                     <span class="input-group-btn">
                         <button type="button" class="btn btn-default"><i class="fa fa-calendar" aria-hidden="true"></i></button>
@@ -61,7 +61,7 @@
                 <li><a href="#side_tab1" class="active accordion-section-title btn btn-default btn-sm btn-them">TOTAL AMOUNT RECEIVED FROM CUSTOMER : &#8377;  @Model.dailyPaymentHistory.CustomerAmount</a></li>
                 <li><a href="#side_tab3" class="accordion-section-title btn btn-default btn-sm btn-them">DRIVER COMISSION :  &#8377; @Model.dailyPaymentHistory.DriverAmount</a></li>
                 <li><a href="#side_tab2" class="accordion-section-title btn btn-default btn-sm btn-them">PICK - C COMISSION :  &#8377; @Model.dailyPaymentHistory.PickcAmount</a></li>
-                <li><a href="#side_tab4" class="accordion-section-title btn btn-default btn-sm btn-them">CANCELLATION CHARGES COLLECTED : &#8377;0</a></li>
+                <li><a href="#side_tab4" class="accordion-section-title btn btn-default btn-sm btn-them">CANCELLATION CHARGES COLLECTED : &#8377; 0</a></li>
             </ul>
         </nav>
         <section id="side_tab1" class="item active" data-title="Tab 1">
@@ -74,7 +74,7 @@
                                     <tr>
                                         <th>Invoice No.</th>
                                         <th>Invoice Date</th>
-                                        <th>Invoice Amount</th>
+                                        <th>Trip Amount</th>
                                         <th>GST</th>
                                         <th>Total Amount</th>
                                     </tr>
@@ -142,7 +142,7 @@
                                         <th>Invoice No.</th>
                                         <th>Driver Name</th>
                                         <th>Vehicle No.</th>
-                                        <th>TripID</th>
+                                        <th>Trip ID</th>
                                         <th>Driver Commission</th>
                                     </tr>
                                 </thead>
@@ -175,20 +175,16 @@
                             <table id="Accordian_DriverCommision" class="table table-hover table-bordered">
                                 <thead>
                                     <tr>
-                                        <th>DateTime</th>
+                                        <th>Date Time</th>
                                         <th>Driver Name</th>
                                         <th>Vehicle No.</th>
-                                        <th>Booking No.</th>
-                                        
+                                        <th>Booking No.</th>                                        
                                     </tr>
                                 </thead>
                             </table>
                         </div>
                     </div>
                 </div>
-
-
-
             </div>
         </section>
     </article>
@@ -217,6 +213,9 @@
             },
             format: 'DD/MM/YYYY'
             //  Datefrom: monthStartDay
+        });
+        $('#fromdate').on('dp.change', function (e) {
+            $('#todate').data("DateTimePicker").minDate(e.date);
         });
 
         $('#frmBookingHistory').validate({
