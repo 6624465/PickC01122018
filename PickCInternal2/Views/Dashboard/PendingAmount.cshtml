@@ -227,6 +227,9 @@
 				},
 				format: 'DD/MM/YYYY'
 			});
+			$('#fromdate').on('dp.change', function (e) {
+			    $('#todate').data("DateTimePicker").minDate(e.date);
+			});
 		});
 
 		$(document).ready(function () {

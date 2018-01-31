@@ -454,7 +454,7 @@ namespace Master.DataFactory
 
 			driverItem.AddressList = new AddressDAL().GetList(driverItem.DriverId);
             driverItem.BankDetails = new BankDetailsDAL().GetList(driverItem.DriverId);
-
+            driverItem.driverAttachment = new DriverAttachementDAL().GetList(driverItem.DriverId);
 			return driverItem;
 		}
 

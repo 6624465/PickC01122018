@@ -215,6 +215,7 @@ namespace Master.DataFactory
         public const string  SAVEDRIVERATTACHMENTS= "[Master].[usp_DriverAttachmentsSave]";/*shruthi*/
         //public const string  CUSTOMERSELECTBYMOBILENO= "[Master].[usp_CustomerListByMobileNo]";
         public const string  CUSTOMERLISTWITHBOOKING="[Master].[usp_CustomerListwithBookings]";
+        public const string SELECTDRIVERATTACHMENTSLIST= "[master].[usp_DriverAttachmentsList]";
 
         public const string OPERATORATTACHMENTSLIST = "[Master].[usp_OperatorAttachmentsList]";
 
