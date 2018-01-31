@@ -7,6 +7,7 @@
 }
 @section seccss{
     <link href="@Url.Content("~/Css/bootstrap-datetimepicker.css")" rel="stylesheet" />
+<link href="@Url.Content("~/Css/file-upload.css")" rel="stylesheet" />
 }
 <section class="content-header">
     <h1>Driver Details</h1>
@@ -315,7 +316,7 @@
                 </div>
             </div>
         </div>
-        <div class="row">
+        @*<div class="row">
             <div class="col-md-12">
                 <div class="box">
                     <div class="box-header">
@@ -368,14 +369,14 @@
                             </div>
                             <div class="col-md-3">
                                 <input type="file" id="fothers" name="fothers" value="1382" multiple="multiple" />
-                                @*@Html.TextBoxFor(model => model.files, "", new { @type = "file", @multiple = "multiple" })*@
-                            </div>
+                                @Html.TextBoxFor(model => model.files, "", new { @type = "file", @multiple = "multiple" })*@
+                            @*</div>
                         </div>
                     </div>
                 </div>
 
             </div>
-        </div>
+        </div>*@
         <div class="row" id="BankDetails">
             <div class="col-md-12">
                 <div class="box">
@@ -437,7 +438,202 @@
                 </div>
             </div>
         </div>
+        <div class="row"  id="Attachments">
+            <div class="col-md-6">
+                @*<h5>Attachments</h5>*@
+                <div class="box">
+                    <div class="box-header">
+                        <h3 class="box-title">Attachments</h3>
+                    </div>
+                    <div class="box-body">
+                        @*<div class="row">
+                            <div class="col-md-3">
+                                <label>AADHAR CARD</label>
+                            </div>
+                            <div class="col-md-3">
+                                <input type="file" id="fadhar" name="fadhar" value="1375" />
+                            </div>
+                        </div>*@
+                        @{
+                            var adharStr = "";
+                            var panStr = "";
+                            var licenseStr = "";
+                            var voterStr = "";
+                            var profilepicStr = "";
+                            if (Model.driver.driverAttachment != null && Model.driver.driverAttachment.Count > 0)
+                            {
 
+                                var fadharObj = Model.driver.driverAttachment
+                                                  .Where(x => x.LookupCode == "1375")
+                                                  .FirstOrDefault();
+
+                                if (fadharObj != null)
+                                {
+                                    adharStr = fadharObj.ImagePath;
+                                }
+
+
+                                var fpanObj = Model.driver.driverAttachment
+                                                  .Where(x => x.LookupCode == "1374")
+                                                  .FirstOrDefault();
+
+                                if (fpanObj != null)
+                                {
+                                    panStr = fpanObj.ImagePath;
+                                }
+
+
+                                var flicenseObj = Model.driver.driverAttachment
+                                                  .Where(x => x.LookupCode == "1376")
+                                                  .FirstOrDefault();
+
+                                if (flicenseObj != null)
+                                {
+                                    licenseStr = flicenseObj.ImagePath;
+                                }
+
+
+                                var fvoterObj = Model.driver.driverAttachment
+                                                  .Where(x => x.LookupCode == "1377")
+                                                  .FirstOrDefault();
+
+                                if (fvoterObj != null)
+                                {
+                                    voterStr = fvoterObj.ImagePath;
+                                }
+
+
+                                var fprofilepicObj = Model.driver.driverAttachment
+                                                  .Where(x => x.LookupCode == "1506")
+                                                  .FirstOrDefault();
+
+                                if (fprofilepicObj != null)
+                                {
+                                    profilepicStr = fprofilepicObj.ImagePath;
+                                }
+                            }
+                        }
+                        <div class="row">
+                            <div class="col-md-3">
+                                <label>AADHAR CARD</label>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="file-upload">
+                                    <div class="file-select">
+                                        <div class="file-select-button" id="fileName">Choose File</div>
+                                        <input type="file"
+                                               id="fadhar"
+                                               name="fadhar"
+                                               value="1375"
+                                               onchange="onFileChange(this, 'fadhardocFile','hdnfadhardocFile')" />
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-md-3">
+                                <div id="fadhardocFile">@adharStr</div>
+                                <input type="hidden" name="hdnfadhardocFile" id="hdnfadhardocFile" />
+                            </div>
+                        </div>
+                        <div class="row" style="padding-top:5px">
+                            <div class="col-md-3">
+                                <label>PAN CARD</label>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="file-upload">
+                                    <div class="file-select">
+                                        <div class="file-select-button" id="fileName">Choose File</div>
+                                        <input type="file"
+                                               id="fpan"
+                                               name="fpan"
+                                               value="1374"
+                                               onchange="onFileChange(this, 'fpandocFile','hdnfpandocFile')" />
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <div id="fpandocFile">@panStr</div>
+                                <input type="hidden" name="hdnfpandocFile" id="hdnfpandocFile" />
+                            </div>
+                        </div>
+                        <div class="row" style="padding-top:5px">
+                            <div class="col-md-3">
+                                <label>DRIVING LICENCE</label>
+                            </div>
+                            <div class="col-md-3">
+
+                                <div class="file-upload">
+                                    <div class="file-select">
+                                        <div class="file-select-button" id="fileName">Choose File</div>
+                                        <input type="file"
+                                               id="flicense"
+                                               name="flicense"
+                                               value="1376"
+                                               onchange="onFileChange(this, 'flicensedocFile','hdnflicensedocFile')" />
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <div id="flicensedocFile">@licenseStr</div>
+                                <input type="hidden" name="hdnflicensedocFile" id="hdnflicensedocFile" />
+                            </div>
+                        </div>
+                        <div class="row" style="padding-top:5px">
+                            <div class="col-md-3">
+                                <label>VOTER ID</label>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="file-upload">
+                                    <div class="file-select">
+                                        <div class="file-select-button" id="fileName">Choose File</div>
+                                        <input type="file"
+                                               id="fvoter"
+                                               name="fvoter"
+                                               value="1377"
+                                               onchange="onFileChange(this, 'fvoterdocFile','hdnfvoterdocFile')" />
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <div id="fvoterdocFile">@voterStr</div>
+                                <input type="hidden" name="hdnfvoterdocFile" id="hdnfvoterdocFile" />
+                            </div>
+                        </div>
+                        <div class="row" style="padding-top:5px">
+                            <div class="col-md-3">
+                                <label>PROFILE PIC</label>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="file-upload">
+                                    <div class="file-select">
+                                        <div class="file-select-button" id="fileName">Choose File</div>
+                                        <input type="file"
+                                               id="fprofilepic"
+                                               name="fprofilepic"
+                                               value="1506"
+                                               onchange="onFileChange(this, 'fprofilepicdocFile','hdnfprofilepicdocFile')" />
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <div id="fprofilepicdocFile">@profilepicStr</div>
+                                <input type="hidden" name="hdnfprofilepicdocFile" id="hdnfprofilepicdocFile" />
+                            </div>
+                        </div>
+                        <div class="row" style="padding-top:5px">
+                            <div class="col-md-3">
+                                <label>OTHERS</label>
+                            </div>
+                            <div class="col-md-3">
+                                <input type="file" id="fothers" name="fothers" value="1382" multiple="multiple" />
+                                @*@Html.TextBoxFor(model => model.files, "", new { @type = "file", @multiple = "multiple" })*@
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
         <div class="row">
             <div class="col-md-12">
                 <div class="box">
@@ -565,6 +761,11 @@
     <script src="@Url.Content("~/Scripts/Internal/DriverAddress.js")"></script>
     <script src="@Url.Content("~/Scripts/Internal/DriverBankDetails.js")"></script>
     <script type="text/javascript">
+        function onFileChange(el, id, hdn) {
+            debugger;
+            $('#' + id).text(el.files[0].name);
+            $('#' + hdn).val(el.files[0].name);
+        }
         $(function () {
             $('#frmDriverAdd').validate({
                 rules: {

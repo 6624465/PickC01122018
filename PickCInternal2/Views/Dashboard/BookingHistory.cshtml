@@ -43,7 +43,7 @@
                             <div class="col-md-2">
                                 <div class="form-group">
                                     <label>Date From</label>
-                                    <div class="input-group dtCss">
+                                    <div class="input-group dtCss" id="fromdate">
                                         @Html.TextBoxFor(x => x.bookings.DateFrom, new { @id = "startDate", @class = "form-control" })
                                         <span class="input-group-btn">
                                             <button type="button" class="btn btn-default"><i class="fa fa-calendar" aria-hidden="true"></i></button>
@@ -54,7 +54,7 @@
                             <div class="col-md-2">
                                 <div class="form-group">
                                     <label>Date To</label>
-                                    <div class="input-group dtCss">
+                                    <div class="input-group dtCss" id="todate">
                                         @Html.TextBoxFor(x => x.bookings.DateTo, new { @id = "endDate", @class = "form-control", })
                                         <span class="input-group-btn">
                                             <button type="button" class="btn btn-default"><i class="fa fa-calendar" aria-hidden="true"></i></button>
@@ -154,16 +154,29 @@
                 $(document).ready(function () {
                     $('#table_id').dataTable();
                 });
-                var date = new Date();
-                var monthStartDay = new Date(date.getFullYear(), date.getMonth(), 1);
-                console.log(monthStartDay);
+
+               
+                //var date = new Date();
+                //var monthStartDay = new Date(date.getFullYear(), date.getMonth(), 1);
+                //console.log(monthStartDay);
+
+                //startDate, endDate
+               
+                //$(function () {
+                //    $("#startDate").datetimepicker({
+                //        onSelect: function (selected) {
+                //            $("#endDate").datetimepicker("option", "minDate", selected)
+                //        }
+                //    });
+                //    $("#endDate").datetimepicker({
+                //        onSelect: function (selected) {
+                //            $("#startDate").datetimepicker("option", "maxDate", selected)
+                //        }
+                //    });
+                //});
 
 
-                $(document).ready(function () {
-                    //   $('#startDate').val(new Date(monthStartDay.toDateString()));
-                });
 
-                //  console.log(monthStartDay);
                 $('.dtCss').datetimepicker({
                     icons: {
                         time: 'fa fa-clock-o',
@@ -176,18 +189,10 @@
                     format: 'DD/MM/YYYY'
                     //  Datefrom: monthStartDay
                 });
+                $('#fromdate').on('dp.change', function (e) {
+                    $('#todate').data("DateTimePicker").minDate(e.date);
+                });
 
-                //$('#Datefrom,#DateTo').datetimepicker({
-                //    icons: {
-                //        time: 'fa fa-clock-o',
-                //        date: 'fa fa-calendar',
-                //        up: 'fa fa-arrow-up',
-                //        down: 'fa fa-arrow-down'
-                //    },
-                //    format: 'DD/MM/YYYY'
-                //});
-                //$('#DateTo,#Datefrom').datepicker();
-                //$('#Datefrom').datepicker();
                 $('#frmBookingHistory').validate({
                     rules: {
                         'bookings.DateTo': {
@@ -198,20 +203,15 @@
                         }
                     }
                 });
-                $('#endDate').blur(function () {
-                    debugger
-                    var startD = $('#startDate').val();
-                    var endD = $('#endDate').val();
-                    if (startD != '' && endD != '')
-                        if (startD >= endD) {
-                            alert("DateTo should be greater than DateFrom");
-                        }
-                });
-                $(function () {
-                    debugger;
-                    //   $("#startDate").html(monthStartDay);
-                });
-
+                //$('#endDate').blur(function () {
+                //    debugger
+                //    var startD = $('#startDate').val();
+                //    var endD = $('#endDate').val();
+                //    if (startD != '' && endD != '')
+                //        if (startD >= endD) {
+                //            alert("DateTo should be greater than DateFrom");
+                //        }
+                //});
             });
 
         function DisplayInvoice(bookingNo) {
