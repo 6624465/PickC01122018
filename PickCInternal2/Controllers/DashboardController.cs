@@ -268,6 +268,7 @@ namespace PickC.Internal2.Controllers
   
             return View("UserAppCancellation", userData);
         }
+
         //[HttpPost]
         //public ActionResult UserAppCancellation(Cancellation cancellist)
         //{
@@ -328,7 +329,7 @@ namespace PickC.Internal2.Controllers
         }
         public async Task<JsonResult> GetDriverDetails(string id)
         {
-            var driverlist = await new DriverService(AUTHTOKEN, p_mobileNo).DriverInfoAsync(id);
+			var driverlist = await new DriverService(AUTHTOKEN, p_mobileNo).DriverByIDInfoAsync(id); //DriverInfoAsync(id); added by Kiran
             return Json(driverlist, JsonRequestBehavior.AllowGet);
         }
 
