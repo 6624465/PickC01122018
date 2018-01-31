@@ -54,35 +54,40 @@
         </div>
 
     </div>
-    <table id="table_id" class="table table-hover">
-        <thead>
-            <tr>
-               
-                <th>Customer Name</th>
-                <th>Customer Mobile</th>
-                <th>Email Id</th>
-                <th>Registered Date</th>
-                <th>Last LoginDate</th>
+    <div class="box">
+        <div class="box-body">
+            <table id="table_id" class="table table-hover">
+                <thead>
+                    <tr>
 
-            </tr>
-        </thead>
-        <tbody>
-            @if(Model.customerStatusList !=null){
-            foreach (var item in Model.customerStatusList)
-            {
-                <tr>
-                    <td>@Html.DisplayFor(m => item.Name)</td>
-                    <td>@Html.DisplayFor(m => item.MobileNo)</td>
-                    <td>@Html.DisplayFor(m => item.EmailId)</td>
-                    <td>@Html.DisplayFor(m => item.RegisteredDate)</td>
-                    <td>@Html.DisplayFor(m=>item.LastLoginDate)</td>
-                    @*<td>@Html.DisplayFor(m => item.LastLoginDate== DateTime.MinValue?"":item.LastLoginDate.ToString())</td>*@
-                </tr>
-            }
-            }
-        </tbody>
+                        <th>Customer Name</th>
+                        <th>Customer Mobile</th>
+                        <th>Email Id</th>
+                        <th>Registered Date</th>
+                        <th>Last Login Date</th>
 
-    </table>
+                    </tr>
+                </thead>
+                <tbody>
+                    @if (Model.customerStatusList != null)
+                    {
+                        foreach (var item in Model.customerStatusList)
+                        {
+                            <tr>
+                                <td>@Html.DisplayFor(m => item.Name)</td>
+                                <td>@Html.DisplayFor(m => item.MobileNo)</td>
+                                <td>@Html.DisplayFor(m => item.EmailId)</td>
+                                <td>@Html.DisplayFor(m => item.RegisteredDate)</td>
+                                <td>@Html.DisplayFor(m => item.LastLoginDate)</td>
+                                @*<td>@Html.DisplayFor(m => item.LastLoginDate== DateTime.MinValue?"":item.LastLoginDate.ToString())</td>*@
+                            </tr>
+                        }
+                    }
+                </tbody>
+
+            </table>
+        </div>
+        </div>
 
     </section>
 @section secscripts{

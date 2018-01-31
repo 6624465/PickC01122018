@@ -36,7 +36,7 @@ namespace Operation.DataFactory
             payment.customerdetails = new List<CustomerDetails>();
             payment.pickCCommissiondetails = new List<pickCCommissionDetails>();
             payment.driverCommissiondetails = new List<DriverCommissionDetails>();
-            payment.customerdetails = db.ExecuteSprocAccessor(DBRoutine.TOTALAMOUNTRECEIVEDFROMCUSTOMER, MapBuilder<CustomerDetails>.BuildAllProperties(), datefrom,dateto).ToList();
+            payment.customerdetails = db.ExecuteSprocAccessor(DBRoutine.TOTALAMOUNTRECEIVEDFROMCUSTOMER, MapBuilder<CustomerDetails>.BuildAllProperties(), datefrom.ToLocalTime(),dateto.ToLocalTime()).ToList();
             payment.pickCCommissiondetails = db.ExecuteSprocAccessor(DBRoutine.PICKCCOMMISSION, MapBuilder<pickCCommissionDetails>.BuildAllProperties(),datefrom,dateto).ToList();
             payment.driverCommissiondetails  = db.ExecuteSprocAccessor(DBRoutine.DRIVERCOMMISSION, MapBuilder<DriverCommissionDetails>.BuildAllProperties(),datefrom, dateto).ToList();
             return payment;

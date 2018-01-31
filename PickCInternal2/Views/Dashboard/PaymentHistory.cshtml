@@ -29,7 +29,7 @@
         <div class="col-md-2">
             <div class="form-group">
                 <label>Date From</label>
-                <div class="input-group dtCss">
+                <div class="input-group dtCss" id="fromdate">
                     @Html.TextBoxFor(x => x.paymentsearch.DateFrom, new { @id = "startDate", @class = "form-control" })
                     <span class="input-group-btn">
                         <button type="button" class="btn btn-default"><i class="fa fa-calendar" aria-hidden="true"></i></button>
@@ -40,7 +40,7 @@
         <div class="col-md-2">
             <div class="form-group">
                 <label>Date To</label>
-                <div class="input-group dtCss">
+                <div class="input-group dtCss" id="todate">
                     @Html.TextBoxFor(x => x.paymentsearch.DateTo, new { @id = "enddate", @class = "form-control", })
                     <span class="input-group-btn">
                         <button type="button" class="btn btn-default"><i class="fa fa-calendar" aria-hidden="true"></i></button>
@@ -74,7 +74,7 @@
                                     <tr>
                                         <th>Invoice No.</th>
                                         <th>Invoice Date</th>
-                                        <th>Invoice Amount</th>
+                                        <th>Trip Amount</th>
                                         <th>GST</th>
                                         <th>Total Amount</th>
                                     </tr>
@@ -142,7 +142,7 @@
                                         <th>Invoice No.</th>
                                         <th>Driver Name</th>
                                         <th>Vehicle No.</th>
-                                        <th>TripID</th>
+                                        <th>Trip ID</th>
                                         <th>Driver Commission</th>
                                     </tr>
                                 </thead>
@@ -213,6 +213,9 @@
             },
             format: 'DD/MM/YYYY'
             //  Datefrom: monthStartDay
+        });
+        $('#fromdate').on('dp.change', function (e) {
+            $('#todate').data("DateTimePicker").minDate(e.date);
         });
 
         $('#frmBookingHistory').validate({

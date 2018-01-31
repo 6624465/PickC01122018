@@ -305,6 +305,8 @@ namespace PickC.Internal2.Controllers
         public async Task<ActionResult> PaymentHistory(PaymentHistory payment)
         {
             var data = await new PaymentService(AUTHTOKEN, p_mobileNo).PaymentHistoryDetails(payment.paymentsearch);
+            data.dailyPaymentHistory = new DailyPaymentHistory();
+            data.dailyPaymentHistory = await new PaymentService(AUTHTOKEN, p_mobileNo).DailyPaymentHistory();
 
             return View("PaymentHistory", data);
         }
