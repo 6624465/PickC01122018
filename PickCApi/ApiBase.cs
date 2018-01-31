@@ -114,6 +114,17 @@ namespace PickCApi
                     {
                         bookingNo = bookingNo,
                         body = message
+                    },
+                    android = new
+                    {
+                        priority = "high"
+                    },
+                    webpush = new
+                    {
+                        headers = new
+                        {
+                            Urgency = "high"
+                        }
                     }
                 };
 
