@@ -50,7 +50,7 @@
                                 @grid.Table(
                             tableStyle: "table table-hover",
                             columns: grid.Columns(
-                                grid.Column("ImagePath", "Profile Pic",
+                                grid.Column("ImagePath", "Profile Picture",
                                 format:
                                 @<text>
                                     <img src="@Url.Content("~/Attachments/" + item.ImagePath)" class="img-circle" style="width:50px;height:50px" />
@@ -95,7 +95,7 @@
                                 <thead>
                                     <tr>
                                         <th>Driver Name</th>
-                                        <th>Driver License No</th>
+                                        <th>Driving Licence No</th>
                                         <th>Driver Mobile No</th>
                                         @*<th>View Info</th>*@
                                     </tr>
@@ -185,7 +185,7 @@
                         //$('#popover-content-login').append('<li class="list-group-item"><b>Date Of Birth: </b>' + moment.format(m,'MM/DD/YYYY') + '</li>');
                         $('#popover-content-login').append('<li class="list-group-item"><b>Place Of Birth: </b>' + data.driver.PlaceOfBirth + '</li>');
                         $('#popover-content-login').append('<li class="list-group-item"><b>Gender: </b>' + data.driver.GenderDescription + '</li>');
-                        $('#popover-content-login').append('<li class="list-group-item"><b>Maritial Status: </b>' + data.driver.MaritialStatusDescription + '</li>');
+                        $('#popover-content-login').append('<li class="list-group-item"><b>Marital Status: </b>' + data.driver.MaritialStatusDescription + '</li>');
                         $('#popover-content-login').append('<li class="list-group-item"><b>Phone No: </b>' + data.driver.PhoneNo + '</li>');
                         $('#popover-content-login').append('</ul');
 

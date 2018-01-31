@@ -240,10 +240,10 @@
                     success: function (data) {
                         $('#driverList').val();
 						var html = '';
-						html += '<ul class="listofvhl">';
+						html += '<ul class="listofvhl"  >';
 						$.each(data, function (key, val) {
                             var vehicleno = val.VehicleNo == null ? '' : val.VehicleNo;
-							html += '<li class="drvrList" data-id=' + val.DriverId + ' data-status=' + val.Status + ' id=' + val.DriverId + '><img src="@Url.Content( "~/images/icon.png")" class="img-circle" alt="driver" height="20" style="float:left;">';
+                            html += '<li class="drvrList hand"  data-id=' + val.DriverId + ' data-status=' + val.Status + ' id=' + val.DriverId + '><img src="@Url.Content( "~/images/icon.png")" class="img-circle" alt="driver" height="20" style="float:left;">';
                             html += '<div style="float:left;padding-left:10px;">';
                             html += '<span style="display:block"> ' + val.DriverName + '</span>';
                             html += '<span style="display:block"> ' + vehicleno + '</span>';
@@ -374,8 +374,8 @@
 						$("#intrip").hide();
 
 
-					} else if (res.Status === false){
-						$("#latestlogoff").text(moment(res.LogoutDate).format('DD/MM/YYYY'));
+					} else if (res.Status === false) {
+					    res.LogoutDate ==null ?"":$("#latestlogoff").text(moment(res.LogoutDate).format('DD/MM/YYYY'));
 						$("#driverLogin").hide();
 						$("#driverLogoff").show();
 						$("#intrip").hide();
@@ -396,3 +396,8 @@
 		});
 	</script>
 }
+<style>
+    .hand{
+        cursor:pointer;
+    }
+</style>

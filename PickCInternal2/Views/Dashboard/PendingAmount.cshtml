@@ -165,7 +165,7 @@
 											<th>Driver Id</th>
 											<th>Invoice No</th>
 											<th>Trip Id</th>
-											<th>Balance Amt</th>											
+											<th>Balance Amount</th>											
 										</tr>
 									</thead>
 									<tbody>
@@ -226,6 +226,9 @@
 					next: 'fa fa-arrow-right'
 				},
 				format: 'DD/MM/YYYY'
+			});
+			$('#fromdate').on('dp.change', function (e) {
+			    $('#todate').data("DateTimePicker").minDate(e.date);
 			});
 		});
 
