@@ -92,7 +92,7 @@
                                         <div class="col-md-4">
                                             <div class="form-group">
                                                 <label>Place Of Birth</label>
-                                                @Html.TextBoxFor(x => x.OPerator.PlaceOfBirth,new{@class = "form-control",placeholder = "Place Of Birth"})
+                                                @Html.TextBoxFor(x => x.OPerator.PlaceOfBirth,new{@class = "form-control alphaonly", placeholder = "Place Of Birth"})
                                             </div>
                                         </div>
                                     </div>
@@ -112,7 +112,7 @@
                                         <div class="col-md-4">
                                             <div class="form-group">
                                                 <label>Mobile No</label>
-                                                @Html.TextBoxFor(x => x.OPerator.MobileNo, new { @class = "form-control", placeholder = "Mobile No" })
+                                                @Html.TextBoxFor(x => x.OPerator.MobileNo, new { @class = "form-control numCss", placeholder = "Mobile No", maxlength= 10 })
                                             </div>
                                         </div>
                                     </div>
@@ -120,7 +120,7 @@
                                         <div class="col-md-4">
                                             <div class="form-group">
                                                 <label>Phone No</label>
-                                                @Html.TextBoxFor(x => x.OPerator.PhoneNo, new { @class = "form-control", placeholder = "Phone No" })
+                                                @Html.TextBoxFor(x => x.OPerator.PhoneNo, new { @class = "form-control numCss", placeholder = "Phone No", maxlength = 10 })
                                             </div>
                                         </div>
                                         <div class="col-md-4">
@@ -138,13 +138,13 @@
                                         <div class="col-md-4">
                                             <div class="form-group">
                                                 <label>PAN No</label>
-												@Html.TextBoxFor(x => x.OPerator.PANNo, new { @class = "form-control", placeholder = "PAN No", @id = "panno", maxLength = 10 })
+												@Html.TextBoxFor(x => x.OPerator.PANNo, new { @class = "form-control noSpecialChar", placeholder = "PAN No", @id = "panno", maxLength = 10 })
                                             </div>
 										</div>
                                         <div class="col-md-4">
                                             <div class="form-group">
                                                 <label>Aadhar Card No</label>
-												@Html.TextBoxFor(x => x.OPerator.AadharCardNo, new { @class = "form-control", placeholder = "Aadhar Card No", maxLength = 16, @id = "AadharCardNo" })
+												@Html.TextBoxFor(x => x.OPerator.AadharCardNo, new { @class = "form-control", placeholder = "Aadhar Card No", maxLength = 12, @id = "AadharCardNo" })
                                             </div>
                                         </div>
                                         @*<div class="col-md-4">
@@ -517,6 +517,7 @@
                                                                            id="fadhar" 
                                                                            name="fadhar" 
                                                                            value="1375"
+                                                                           title="@adharStr"
                                                                            onchange="onFileChange(this, 'fadhardocFile','hdnfadhardocFile')" />
                                                                 </div>
                                                             </div>
@@ -539,6 +540,7 @@
                                                                            id="fpan"
                                                                            name="fpan"
                                                                            value="1374"
+                                                                           title="@panStr"
                                                                            onchange="onFileChange(this, 'fpandocFile','hdnfpandocFile')" />
                                                                 </div>
                                                             </div>
@@ -561,6 +563,7 @@
                                                                            id="flicense"
                                                                            name="flicense"
                                                                            value="1376"
+                                                                           title="@licenseStr"
                                                                            onchange="onFileChange(this, 'flicensedocFile','hdnflicensedocFile')" />
                                                                 </div>
                                                             </div>
@@ -582,6 +585,7 @@
                                                                            id="fvoter"
                                                                            name="fvoter"
                                                                            value="1377"
+                                                                           title="@voterStr"
                                                                            onchange="onFileChange(this, 'fvoterdocFile','hdnfvoterdocFile')" />
                                                                 </div>
                                                             </div>
@@ -603,6 +607,7 @@
                                                                            id="fprofilepic"
                                                                            name="fprofilepic"
                                                                            value="1506"
+                                                                           title="@profilepicStr"
                                                                            onchange="onFileChange(this, 'fprofilepicdocFile','hdnfprofilepicdocFile')" />
                                                                 </div>
                                                             </div>
@@ -1130,7 +1135,8 @@
                                 required: true
                             },
                             'OPerator.MobileNo': {
-                                required: true
+                                required: true,
+                                
                             },
                             'OPerator.PhoneNo': {
                                 required: false
@@ -1148,7 +1154,7 @@
                         }
                     });
                     $('.dtCss').datetimepicker({
-                        format: 'DD/MM/YY'
+                        format: 'DD/MM/YYYY'
                     });
                 });
 
@@ -1267,41 +1273,41 @@
                     });
 
                 }
-        $('#panno').keypress(function (e) {
-            debugger
-            var regex = new RegExp("^[a-zA-Z0-9]+$");
-            var str = String.fromCharCode(!e.charCode ? e.which : e.charCode);
-            if (this.value.length+1 < 10) {
-                $('#panno').css('border-color', 'red');
-            }
-            else {
-                if (regex.test(str)) {
-                    //$(this).css({ 'border-color': '' })
-                    return true;
-                }
-                e.preventDefault();
-                return false;
-            }
-        });
+        //$('#panno').keypress(function (e) {
+        //    debugger
+        //    var regex = new RegExp("^[a-zA-Z0-9]+$");
+        //    var str = String.fromCharCode(!e.charCode ? e.which : e.charCode);
+        //    if (this.value.length+1 < 10) {
+        //        $('#panno').css('border-color', 'red');
+        //    }
+        //    else {
+        //        if (regex.test(str)) {
+        //            //$(this).css({ 'border-color': '' })
+        //            return true;
+        //        }
+        //        e.preventDefault();
+        //        return false;
+        //    }
+        //});
         
-        $(document).on('keypress', '.alphaonly', function (evt) {
-            evt = (evt) ? evt : window.event;
-            var charCode = parseInt((evt.which) ? evt.which : evt.keyCode);
-            if ((charCode >= 65 && charCode <= 90) || (charCode >= 97 && charCode <= 122))
-                return true;
-            else
-                return false;
-        });
+        //$(document).on('keypress', '.alphaonly', function (evt) {
+        //    evt = (evt) ? evt : window.event;
+        //    var charCode = parseInt((evt.which) ? evt.which : evt.keyCode);
+        //    if ((charCode >= 65 && charCode <= 90) || (charCode >= 97 && charCode <= 122))
+        //        return true;
+        //    else
+        //        return false;
+        //});
 
-        $('#panno').blur(function () {
-            debugger;
-            if (this.value.length< 10) {
-                    $(this).css('border-color', 'red');
-            }
-            else {
-                    $(this).css({ 'border-color': '' })
-            }
-        });
+        //$('#panno').blur(function () {
+        //    debugger;
+        //    if (this.value.length< 10) {
+        //            $(this).css('border-color', 'red');
+        //    }
+        //    else {
+        //            $(this).css({ 'border-color': '' })
+        //    }
+        //});
         //$('#AadharCardNo').keypress(function (e) {
         //    debugger
         //    var regex = new RegExp("/[^0-9\.]/g");
@@ -1370,6 +1376,7 @@
                 return false;
         });
 
+       
 			@*function GoToAddDriver() {
 				var OperatorId = $('#OperatorId').val()
 				var url = '@Url.Content("~/Driver/Add")';
