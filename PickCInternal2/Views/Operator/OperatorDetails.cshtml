@@ -48,7 +48,7 @@
                                         <div class="col-md-4">
                                             <div class="form-group">
                                                 <label>Operator Name</label>
-                                                @Html.TextBoxFor(x => x.OPerator.OperatorName, new { @class = "form-control", placeholder = "Operator Name" })
+                                                @Html.TextBoxFor(x => x.OPerator.OperatorName, new { @class = "form-control alphaonly", placeholder = "Operator Name" })
                                             </div>
                                         </div>
                                         @*<div class="col-md-4">
@@ -64,19 +64,14 @@
                                         <div class="col-md-4">
                                             <div class="form-group">
                                                 <label>Father Name</label>
-                                                @Html.TextBoxFor(x => x.OPerator.FatherName, new { @class = "form-control", placeholder = "Father Name" })
+                                                @Html.TextBoxFor(x => x.OPerator.FatherName, new { @class = "form-control alphaonly", placeholder = "Father Name" })
                                             </div>
                                         </div>
                                         <div class="col-md-4">
                                             <div class="form-group">
                                                 <label>Date Of Birth</label>
                                                 <div class="input-group dtCss">
-                                                    @Html.TextBoxFor(x => x.OPerator.DateOfBirth,
-        new
-        {
-            @class = "form-control",
-            placeholder = "Date Of Birth"
-        })
+                                                    @Html.TextBoxFor(x => x.OPerator.DateOfBirth,new{@class = "form-control",placeholder = "Date Of Birth"})
                                                     <span class="input-group-btn">
                                                         <button type="button" class="btn btn-default"><i class="fa fa-calendar" aria-hidden="true"></i></button>
                                                     </span>
@@ -111,10 +106,7 @@
                                         <div class="col-md-4">
                                             <div class="form-group">
                                                 <label>Marital Status</label>
-                                                @Html.DropDownListFor(x => x.OPerator.MaritialStatus,
-new SelectList(Model.operatorLookupDTO.maritalOptions, "LookupId", "LookupDescription"),
-"Select Marital Status",
-new { @class = "form-control" })
+                                                @Html.DropDownListFor(x => x.OPerator.MaritialStatus,new SelectList(Model.operatorLookupDTO.maritalOptions, "LookupId", "LookupDescription"),"Select Marital Status",new { @class = "form-control" })
                                             </div>
                                         </div>
                                         <div class="col-md-4">
@@ -977,7 +969,7 @@ new { @class = "form-control" })
                 }
           function DeleteOperatorDriver(driverID,driverName) {
                 
-                var result = confirm('Are you sure,Do you want to delete'+' '+ driverName);
+                var result = confirm('Are you sure, Do you want to delete'+' '+ driverName);
                 if (result) {
                     $.ajax({
                         url:  "@Url.Content("~/Driver/DeleteDriver")" + "?driverID=" + driverID,
@@ -1116,7 +1108,7 @@ new { @class = "form-control" })
                             'OPerator.OPeratorID': {
                                 required: true
                             },
-                            'OPerator.OPeratorName': {
+                            'OPerator.OperatorName': {
                                 required: true
                             },
                             'OPerator.VehicleNo': {
@@ -1291,6 +1283,16 @@ new { @class = "form-control" })
                 return false;
             }
         });
+        
+        $(document).on('keypress', '.alphaonly', function (evt) {
+            evt = (evt) ? evt : window.event;
+            var charCode = parseInt((evt.which) ? evt.which : evt.keyCode);
+            if ((charCode >= 65 && charCode <= 90) || (charCode >= 97 && charCode <= 122))
+                return true;
+            else
+                return false;
+        });
+
         $('#panno').blur(function () {
             debugger;
             if (this.value.length< 10) {
