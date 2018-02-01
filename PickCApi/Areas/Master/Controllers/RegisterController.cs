@@ -606,7 +606,7 @@ namespace PickCApi.Areas.Master.Controllers
         [HttpGet]
         [Route("pay/{bookingNo}/{driverId}")]
         [ApiAuthFilter]
-        public IHttpActionResult DriverPayReceived(string BookingNo, string Driverid)
+        public IHttpActionResult CustomerPaymentProcessed(string BookingNo, string Driverid)
         {
             var driver = new DriverBO().GetDriver(new Driver { DriverId = Driverid });
             if (driver != null)
@@ -619,8 +619,6 @@ namespace PickCApi.Areas.Master.Controllers
             {
                 return Ok(UTILITY.FAIL);
             }
-
-
         }
         [HttpGet]
         [Route("billDetails/{bookingNo}")]

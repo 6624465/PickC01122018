@@ -415,7 +415,7 @@ namespace PickCApi.Areas.Operation.Controllers
 
         [HttpGet]
         [Route("DriverReceivedConfirm/{BookingNo}")]
-        public IHttpActionResult DriverReceivedConfirm(string BookingNo)
+        public IHttpActionResult DriverReceivedConfirmCheck(string BookingNo)
         {
             var result = new BookingBO().CustomerPaymentUpdate(BookingNo);
             if (result)
