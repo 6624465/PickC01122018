@@ -423,7 +423,7 @@ new { @class = "form-control" })
                                                                                     <td>
                                                                                         @*<a class="hand" onclick="EditOperatorDriver('@i')">Edit</a>&nbsp;|&nbsp;*@
                                                                                         @*<a class="hand" href="@Url.Content(string.Format("~/Driver/Edit?driverID={0}", Model.OPerator.OperatorDriverList[i].DriverID))">Edit</a>&nbsp;|&nbsp;*@
-                                                                                        <a class="hand" href="@Url.Content("~/Driver/Edit?driverID=" + Model.OPerator.OperatorDriverList[i].DriverID)">Edit</a>&nbsp;|&nbsp;
+                                                                                        <a class="hand" href="@Url.Content("~/Driver/Edit?driverID=" + Model.OPerator.OperatorDriverList[i].DriverID+"&OperatorId="+Model.OPerator.OperatorID)">Edit</a>&nbsp;|&nbsp;
                                                                                         <a class="hand" onclick="DeleteOperatorDriver('@Model.OPerator.OperatorDriverList[i].DriverID','@Model.OPerator.OperatorDriverList[i].DriverName')">Delete</a>
                                                                                     </td>
                                                                                 </tr>

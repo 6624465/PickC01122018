@@ -689,6 +689,7 @@
                             <div class="text-left">
                                 <button class="btn btn-primary btn-them" type="button" onclick="btnSave()">Save</button>
                                 @*<button type="button" class="btn btn-primary btn-them" onclick="btnSave();">Save</button>*@
+                              
                                 <button type="button" class="btn btn-default " onclick="location.href = '@Url.Content("~/Driver/Driver")'">Cancel</button>
                             </div>
                         </div>
@@ -852,6 +853,18 @@
                         required: true
                     },
                     'driver.LicenseNo': {
+                        required: true
+                    },
+                    'driver.MobileMake': {
+                        required: true
+                    },
+                    'driver.ModelNo': {
+                        required: true
+                    },
+                    'driver.DateofIssue': {
+                        required: true
+                    },
+                    'driver.DateofReturn': {
                         required: true
                     }
                 }

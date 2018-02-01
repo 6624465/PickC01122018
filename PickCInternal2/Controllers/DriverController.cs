@@ -11,6 +11,7 @@ using PickC.Services;
 using PickC.Services.DTO;
 using PickC.Internal2.ViewModals;
 using System.IO;
+using System.Web.Routing;
 
 namespace PickC.Internal2.Controllers
 {
@@ -38,12 +39,14 @@ namespace PickC.Internal2.Controllers
 			driverVm.driver.DateofIssue = DateTime.Now;
 			driverVm.driver.DateofReturn = DateTime.Now;
 			ViewBag.PassedOperatorId = OperatorId;
-			return View(driverVm);
+            TempData["operatorId"] = OperatorId;
+
+            return View(driverVm);
 		}
 		[HttpGet]
-		public async Task<ActionResult> Edit(string driverID)
+		public async Task<ActionResult> Edit(string driverID,string OperatorId)
 		{
-            
+            TempData["operatorIdEdit"] = OperatorId;
             var driverVm = await GetDriverInfo(driverID);
             if (Request.IsAjaxRequest())
 			{
@@ -65,7 +68,7 @@ namespace PickC.Internal2.Controllers
                 driverLookupDTO = await taskDriverLookupDTO,
                 driver = await taskDriver
             };
-
+            ViewData["EditOperator"] = driverVm.driver.OperatorId;
             return driverVm;
         }
 
@@ -152,8 +155,21 @@ namespace PickC.Internal2.Controllers
 					driver.driverAttachment.Add(attachment);
 				}
 			}
-			var result = await new DriverService(AUTHTOKEN, p_mobileNo).SaveDriverAsync(driver);
-			return RedirectToAction("Driver", "Driver");
-		}
+			var result = await new DriverService(AUTHTOKEN, p_mobileNo).SaveDriverAsync(driver); ;
+
+
+            var operatorId = TempData["operatorId"] as string;
+            var editOperatorid = TempData["operatorIdEdit"] as string;
+            var op = (operatorId != null ? operatorId : editOperatorid != null ? editOperatorid : "");
+
+
+            RouteValueDictionary routeValueDictionary = new System.Web.Routing.RouteValueDictionary();
+            routeValueDictionary.Add("operatorID", op);
+            if (!string.IsNullOrWhiteSpace(op))
+            {
+                return RedirectToAction("Edit", "Operator", routeValueDictionary);
+            }
+            return RedirectToAction("Driver", "Driver");
+        }
 	}
 }
