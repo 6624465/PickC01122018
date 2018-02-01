@@ -132,7 +132,7 @@ namespace PickC.Internal2.Controllers
 					tripMonitor.DriverName = getName(Driver, currentbookings[i].DriverId);
 					tripMonitor.LocationFrom = currentbookings[i].LocationFrom;
 					tripMonitor.LocationTo = currentbookings[i].LocationTo;
-					//tripMonitor.VehicleNo = (await new OperatorDriverService(AUTHTOKEN, p_mobileNo).GetvehicleNoList()).Where(x=>x.VehicleRegistrationNo).Select(x => new  x.VehicleRegistrationNo == currentbookings[i].VehicleNo).ToString(); //currentbookings[i].VehicleNo;
+					tripMonitor.VehicleNo = getName(VehicleNo,currentbookings[i].VehicleNo;
 					tripMonitor.VehicleType = getSName(VehicleType, currentbookings[i].VehicleType);//(await new OperatorVehicleService(AUTHTOKEN, p_mobileNo).GetOperatorVehicleList()).Where(x => x.LookupId == currentbookings[i].VehicleType).Select(x => x.LookupCode).ToString(); //currentbookings[i].VehicleTypeDescription;
 					tripMonitor.VehicleCategory = getSName(VehicleCategory, currentbookings[i].VehicleGroup);//(await new OperatorVehicleService(AUTHTOKEN, p_mobileNo).GetOperatorVehicleCategoryList()).Where(x => x.LookupId == currentbookings[i].VehicleGroup).Select(x => x.LookupCode).ToString();
 					tripMonitor.ETA = "";
@@ -174,6 +174,11 @@ namespace PickC.Internal2.Controllers
 		public async Task<ActionResult> GetCustomerBySearch(int? status)
 		{
 			ViewBag.Status = status;
+			var Driver = (await new OperatorDriverService(AUTHTOKEN, p_mobileNo).GetDriverList()).Select(x => new SelectValueText() { Value = x.DriverID, Text = x.DriverName }).ToList();
+			var VehicleNo = (await new OperatorDriverService(AUTHTOKEN, p_mobileNo).GetvehicleNoList()).Select(x => new SelectValueText() { Value = x.VehicleRegistrationNo, Text = x.VehicleRegistrationNo }).ToList();
+			var VehicleType = (await new OperatorVehicleService(AUTHTOKEN, p_mobileNo).GetOperatorVehicleList()).Select(x => new SelectValueText() { Value = x.LookupId.ToString(), Text = x.LookupCode }).ToList();
+			var VehicleCategory = (await new OperatorVehicleService(AUTHTOKEN, p_mobileNo).GetOperatorVehicleCategoryList()).Select(x => new SelectValueText { Value = x.LookupId.ToString(), Text = x.LookupCode }).ToList();
+
 			var currentbookings = await new SearchService(AUTHTOKEN, p_mobileNo).GetCustomerBySearch(status);
 			var bookingSearchVM = new BookingSearchDTO();
 			bookingSearchVM.booking = currentbookings;
@@ -190,7 +195,21 @@ namespace PickC.Internal2.Controllers
 						lng = currentbookings[i].Longitude.ToString(),
 					};
 					tripMonitor.title = currentbookings[i].DriverId.ToUpper() + " - " + currentbookings[i].BookingNo.ToUpper();
+					tripMonitor.BookingNo = currentbookings[i].BookingNo;
+					tripMonitor.DriverName = Driver.AsEnumerable().Where(x => x.Value == currentbookings[i].DriverId).Select(x => x.Text).ToString();
+					tripMonitor.DriverName = getName(Driver, currentbookings[i].DriverId);
+					tripMonitor.LocationFrom = currentbookings[i].LocationFrom;
+					tripMonitor.LocationTo = currentbookings[i].LocationTo;
+					tripMonitor.VehicleNo = getName(VehicleNo,currentbookings[i].VehicleNo);
+					tripMonitor.VehicleType = getSName(VehicleType, currentbookings[i].VehicleType);//(await new OperatorVehicleService(AUTHTOKEN, p_mobileNo).GetOperatorVehicleList()).Where(x => x.LookupId == currentbookings[i].VehicleType).Select(x => x.LookupCode).ToString(); //currentbookings[i].VehicleTypeDescription;
+					tripMonitor.VehicleCategory = getSName(VehicleCategory, currentbookings[i].VehicleGroup);//(await new OperatorVehicleService(AUTHTOKEN, p_mobileNo).GetOperatorVehicleCategoryList()).Where(x => x.LookupId == currentbookings[i].VehicleGroup).Select(x => x.LookupCode).ToString();
+					tripMonitor.ETA = "";
+					tripMonitor.TripStartTime = "";
+					tripMonitor.ArrivalTime = "";
+					tripMonitor.WaitingTime = "";
+					tripMonitor.Status = currentbookings[i].Status;
 					tripMonitorData.Add(tripMonitor);
+
 				}
 
 				ViewBag.trips = tripMonitorData;
