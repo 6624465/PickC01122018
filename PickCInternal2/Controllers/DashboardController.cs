@@ -132,7 +132,7 @@ namespace PickC.Internal2.Controllers
 					tripMonitor.DriverName = getName(Driver, currentbookings[i].DriverId);
 					tripMonitor.LocationFrom = currentbookings[i].LocationFrom;
 					tripMonitor.LocationTo = currentbookings[i].LocationTo;
-					tripMonitor.VehicleNo = getName(VehicleNo,currentbookings[i].VehicleNo;
+					tripMonitor.VehicleNo = getName(VehicleNo,currentbookings[i].VehicleNo);
 					tripMonitor.VehicleType = getSName(VehicleType, currentbookings[i].VehicleType);//(await new OperatorVehicleService(AUTHTOKEN, p_mobileNo).GetOperatorVehicleList()).Where(x => x.LookupId == currentbookings[i].VehicleType).Select(x => x.LookupCode).ToString(); //currentbookings[i].VehicleTypeDescription;
 					tripMonitor.VehicleCategory = getSName(VehicleCategory, currentbookings[i].VehicleGroup);//(await new OperatorVehicleService(AUTHTOKEN, p_mobileNo).GetOperatorVehicleCategoryList()).Where(x => x.LookupId == currentbookings[i].VehicleGroup).Select(x => x.LookupCode).ToString();
 					tripMonitor.ETA = "";
