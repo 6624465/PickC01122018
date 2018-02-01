@@ -855,12 +855,12 @@ namespace PickCApi.Areas.Master.Controllers
             {
                 var CustomerMobNo = HttpContext.Current.Request.Headers["MOBILENO"];
                 var result = new CustomerBO().GetCustomerPaymentsCheck(CustomerMobNo);
-                if (string.IsNullOrWhiteSpace(result))
+                if (!(string.IsNullOrWhiteSpace(result)))
                 {
-                    return Ok(new { Status = UTILITY.SUCCESS, BookingNo = result });
+                    return Ok(new { Status = UTILITY.FAIL, BookingNo = result });
                 }
                 else
-                    return Ok(new { Status = UTILITY.FAIL, BookingNo = "" });
+                    return Ok(new { Status = UTILITY.SUCCESS, BookingNo = "" });
             }
             catch (Exception)
             {
