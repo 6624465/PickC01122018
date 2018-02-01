@@ -70,6 +70,13 @@
             else
                 return false;
         });
+        $(document).on('keypress', '.noSpecialChar', function (evt) {
+            var charCode = (evt.which) ? evt.which : event.keyCode;
+            if (((charCode >= 48 && charCode <= 57) || charCode == 8) || (charCode >= 65 && charCode <= 90) || (charCode >= 97 && charCode <= 122))
+                return true;
+            else
+                return false;
+        });
     </script>
     @RenderSection("secscripts", false)
     <!-- netstat -n -->
