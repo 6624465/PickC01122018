@@ -217,7 +217,7 @@
         $('#fromdate').on('dp.change', function (e) {
             $('#todate').data("DateTimePicker").minDate(e.date);
         });
-
+       
         $('#frmBookingHistory').validate({
             rules: {
                 'paymentsearch.datefrom': {
@@ -227,6 +227,10 @@
                     required: true
                 }
             }
+        });
+
+        $('#fromdate').on('click', function () {
+            $('#todate').data("DateTimePicker").clear();
         });
 
         $(document).ready(function () {
