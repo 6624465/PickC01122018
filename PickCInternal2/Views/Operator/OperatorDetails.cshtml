@@ -545,6 +545,7 @@
                                                                            id="fadhar"
                                                                            name="fadhar"
                                                                            value="1375"
+                                                                           title="@adharStr"
                                                                            onchange="onFileChange(this, 'fadhardocFile','hdnfadhardocFile')" />
                                                                 </div>
                                                             </div>
@@ -567,6 +568,7 @@
                                                                            id="fpan"
                                                                            name="fpan"
                                                                            value="1374"
+                                                                           title="@panStr"
                                                                            onchange="onFileChange(this, 'fpandocFile','hdnfpandocFile')" />
                                                                 </div>
                                                             </div>
@@ -589,6 +591,7 @@
                                                                            id="flicense"
                                                                            name="flicense"
                                                                            value="1376"
+                                                                           title="@licenseStr"
                                                                            onchange="onFileChange(this, 'flicensedocFile','hdnflicensedocFile')" />
                                                                 </div>
                                                             </div>
@@ -610,6 +613,7 @@
                                                                            id="fvoter"
                                                                            name="fvoter"
                                                                            value="1377"
+                                                                           title="@voterStr"
                                                                            onchange="onFileChange(this, 'fvoterdocFile','hdnfvoterdocFile')" />
                                                                 </div>
                                                             </div>
@@ -631,6 +635,7 @@
                                                                            id="fprofilepic"
                                                                            name="fprofilepic"
                                                                            value="1506"
+                                                                           title="@profilepicStr"
                                                                            onchange="onFileChange(this, 'fprofilepicdocFile','hdnfprofilepicdocFile')" />
                                                                 </div>
                                                             </div>
@@ -1182,7 +1187,7 @@
                         }
                     });
                     $('.dtCss').datetimepicker({
-                        format: 'DD/MM/YY'
+                        format: 'DD/MM/YYYY'
                     });
                 });
 
@@ -1301,22 +1306,22 @@
                     });
 
                 }
-        $('#panno').keypress(function (e) {
-            debugger
-            var regex = new RegExp("^[a-zA-Z0-9]+$");
-            var str = String.fromCharCode(!e.charCode ? e.which : e.charCode);
-            if (this.value.length+1 < 10) {
-                $('#panno').css('border-color', 'red');
-            }
-            else {
-                if (regex.test(str)) {
-                    //$(this).css({ 'border-color': '' })
-                    return true;
-                }
-                e.preventDefault();
-                return false;
-            }
-        });
+        //$('#panno').keypress(function (e) {
+        //    debugger
+        //    var regex = new RegExp("^[a-zA-Z0-9]+$");
+        //    var str = String.fromCharCode(!e.charCode ? e.which : e.charCode);
+        //    if (this.value.length+1 < 10) {
+        //        $('#panno').css('border-color', 'red');
+        //    }
+        //    else {
+        //        if (regex.test(str)) {
+        //            //$(this).css({ 'border-color': '' })
+        //            return true;
+        //        }
+        //        e.preventDefault();
+        //        return false;
+        //    }
+        //});
         
         //$(document).on('keypress', '.alphaonly', function (evt) {
         //    evt = (evt) ? evt : window.event;
@@ -1327,15 +1332,15 @@
         //        return false;
         //});
 
-        $('#panno').blur(function () {
-            debugger;
-            if (this.value.length< 10) {
-                    $(this).css('border-color', 'red');
-            }
-            else {
-                    $(this).css({ 'border-color': '' })
-            }
-        });
+        //$('#panno').blur(function () {
+        //    debugger;
+        //    if (this.value.length< 10) {
+        //            $(this).css('border-color', 'red');
+        //    }
+        //    else {
+        //            $(this).css({ 'border-color': '' })
+        //    }
+        //});
         //$('#AadharCardNo').keypress(function (e) {
         //    debugger
         //    var regex = new RegExp("/[^0-9\.]/g");
@@ -1404,6 +1409,7 @@
                 return false;
         });
 
+       
 			@*function GoToAddDriver() {
 				var OperatorId = $('#OperatorId').val()
 				var url = '@Url.Content("~/Driver/Add")';

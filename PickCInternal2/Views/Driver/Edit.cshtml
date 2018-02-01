@@ -152,7 +152,7 @@
                             <div class="col-md-4">
                                 <div class="form-group">
                                     <label>PAN No</label>
-                                    @Html.TextBoxFor(x => x.driver.PANNo, new { @class = "form-control", @maxlength = 10, placeholder = "PAN No" })
+                                    @Html.TextBoxFor(x => x.driver.PANNo, new { @class = "form-control noSpecialChar", @maxlength = 10, placeholder = "PAN No" })
                                 </div>
                             </div>
                             <div class="col-md-4">
@@ -164,7 +164,7 @@
                             <div class="col-md-4">
                                 <div class="form-group">
                                     <label>Driving Licence No</label>
-                                    @Html.TextBoxFor(x => x.driver.LicenseNo, new { @class = "form-control", @maxlength = 16, placeholder = "Driving Licence No" })
+                                    @Html.TextBoxFor(x => x.driver.LicenseNo, new { @class = "form-control noSpecialChar", @maxlength = 16, placeholder = "Driving Licence No" })
                                 </div>
                             </div>
                         </div>
@@ -515,6 +515,7 @@
                                                id="fadhar"
                                                name="fadhar"
                                                value="1375"
+                                               title="@adharStr"
                                                onchange="onFileChange(this, 'fadhardocFile','hdnfadhardocFile')" />
                                     </div>
                                 </div>
@@ -537,6 +538,7 @@
                                                id="fpan"
                                                name="fpan"
                                                value="1374"
+                                               title="@panStr"
                                                onchange="onFileChange(this, 'fpandocFile','hdnfpandocFile')" />
                                     </div>
                                 </div>
@@ -559,6 +561,7 @@
                                                id="flicense"
                                                name="flicense"
                                                value="1376"
+                                               title="@licenseStr"
                                                onchange="onFileChange(this, 'flicensedocFile','hdnflicensedocFile')" />
                                     </div>
                                 </div>
@@ -580,6 +583,7 @@
                                                id="fvoter"
                                                name="fvoter"
                                                value="1377"
+                                               title="@voterStr"
                                                onchange="onFileChange(this, 'fvoterdocFile','hdnfvoterdocFile')" />
                                     </div>
                                 </div>
@@ -601,6 +605,7 @@
                                                id="fprofilepic"
                                                name="fprofilepic"
                                                value="1506"
+                                               title="@profilepicStr"
                                                onchange="onFileChange(this, 'fprofilepicdocFile','hdnfprofilepicdocFile')" />
                                     </div>
                                 </div>
