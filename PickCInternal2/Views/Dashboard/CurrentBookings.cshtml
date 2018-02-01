@@ -105,7 +105,12 @@
                 }
             });
         });
-        $(function () {
+		$(function () {
+
+			setInterval(function () {
+				location.reload();
+			}, 30000);
+
             $('#currentBookings').parent().addClass('active');
 
             @if(ViewBag.Status != null)
