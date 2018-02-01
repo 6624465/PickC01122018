@@ -482,11 +482,11 @@ namespace PickCApi.Areas.Operation.Controllers
                 };
                 if (new DriverBO().UpdateDriverBusyStatus(driverActivity.DriverId, driverActivity.TokenNo))
                 {
-                    return Ok(new { UTILITY.SUCCESS });
+                    return Ok(true);
                 }
                 else
                 {
-                    return Ok(new { UTILITY.FAIL });
+                    return Ok(false);
                 }
             }
             catch (Exception)
