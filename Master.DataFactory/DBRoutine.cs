@@ -99,6 +99,7 @@ namespace Master.DataFactory
         public const string DRIVERUPDATEPASSWORD = "[Master].[usp_DriverUpdatePassword]";
         public const string GETDRIVERTRIPAMOUNTBYPAYMENTTYPE = "[Operation].[usp_SumDriverWiseDailyAmountPaymentType]";
         public const string DRIVERWISEDAILYAMOUNTPAYMENTTYPELIST = "[Operation].[usp_SumDriverWiseDailyAmountPaymentTypeList]";
+        public const string DRIVERISBUSYSTATUSUPDATE = "[Operation].[usp_UpdateDriverIsBusyStatus]";
         /// <summary>
         /// [Master].[Operator]
         /// </summary>

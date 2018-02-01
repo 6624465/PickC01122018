@@ -52,9 +52,13 @@ namespace Master.BusinessFactory
 
             return driverDAL.Save(newItem);
         }
+        public bool UpdateDriverBusyStatus(string DriverID, string TokenNo)
+        {
+            return driverDAL.UpdateDriverBusyStatus(DriverID, TokenNo);
+        }
 
-		//// added by Kiran////
-		public bool SaveDriverDetails(DriverMdl newItem)
+        //// added by Kiran////
+        public bool SaveDriverDetails(DriverMdl newItem)
 		{
 			return driverDAL.SaveDriverDetails(newItem);
 		}

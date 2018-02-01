@@ -278,7 +278,7 @@ namespace PickCApi.Areas.Operation.Controllers
 
         [HttpPost]
         [Route("cancel")]
-        public IHttpActionResult  CancelBookingByDriver(BookingCancelDTO bookingCancelDTO)
+        public IHttpActionResult CancelBookingByDriver(BookingCancelDTO bookingCancelDTO)
         {
             try
             {
@@ -457,11 +457,11 @@ namespace PickCApi.Areas.Operation.Controllers
                        BookingNo,
                        UTILITY.NotifyCustomerPickupStart);
                 var BookingConfirm = new BookingBO().CustomerCurrentConfirmTrip(HeaderValueByKey("MOBILENO"));
-                var  Isintrip = BookingConfirm != null ? true : false;      
-                if(Isintrip)
+                var Isintrip = BookingConfirm != null ? true : false;
+                if (Isintrip)
                 {
                     return Ok(new { BookingConfirm.BookingNo, BookingConfirm.OTP });
-                }                 
+                }
                 return Ok(UTILITY.NotifyCustomerPickupStart);
             }
             catch (Exception ex)
@@ -469,5 +469,31 @@ namespace PickCApi.Areas.Operation.Controllers
                 return InternalServerError(ex);
             }
         }
+        [HttpGet]
+        [Route("UpdateDriverBusyStatus")]
+        public IHttpActionResult ChangeDriverIsBusyStatus()
+        {
+            try
+            {
+                var driverActivity = new DriverActivity
+                {
+                    DriverId = HeaderValueByKey("DRIVERID"),
+                    TokenNo = HeaderValueByKey("AUTH_TOKEN")
+                };
+                if (new DriverBO().UpdateDriverBusyStatus(driverActivity.DriverId, driverActivity.TokenNo))
+                {
+                    return Ok(new { UTILITY.SUCCESS });
+                }
+                else
+                {
+                    return Ok(new { UTILITY.FAIL });
+                }
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+
     }
 }
