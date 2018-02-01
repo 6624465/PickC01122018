@@ -1,6 +1,7 @@
 ﻿@model PickC.Internal2.ViewModals.OperatorVm
 @{
     ViewBag.Title = "OperatorDetails";
+    //Model.OPerator.DateOfBirth = DateTime.Now;
     Layout = "~/Views/Shared/_Layout.cshtml";
 
     //var OperatorVehicle = new List<Master.Contract.OperatorVehicle>();
@@ -20,198 +21,224 @@
     <link href="@Url.Content("~/Css/bootstrap-datetimepicker.css")" rel="stylesheet" />
     <link href="@Url.Content("~/Css/file-upload.css")" rel="stylesheet" />
 }
+<style>
+    .content-header h3{
+        margin:0;
+    }
+</style>
 <section class="content-header">
-    <h1>Operator Details</h1>
+    <h3>Operator Details</h3>
 </section>
 
 @using (Html.BeginForm("SaveOperator", "Operator", FormMethod.Post, new { id = "frmOperatorAdd", name = "frmOperatorAdd", enctype = "multipart/form-data" }))
 {
     <section class="content">
         <div class="row">
-            <div class="col-md-12">
+            
                 <div class="tab-main-content">
-                    <div class="row">
-                        <div class="col-xs-12">
-                            <div class="box">
+                    
+                       <div class="col-md-12">
+                           
                                 <div class="box-header">
-                                    <h3 class="box-title">Operator</h3>
+                                    <h3 class="box-title">Operator Info</h3>
                                 </div>
-                                <div class="box-body">
-                                    <h5>Operator Info</h5>
-                                    <div class="row">
-                                        <div class="col-md-4">
-                                            <div class="form-group">
-                                                <label>Operator ID</label>
-												@Html.TextBoxFor(x => x.OPerator.OperatorID, new { @class = "form-control", placeholder = "Operator ID", @readonly = "readonly", @id = "OperatorId" })
-                                            </div>
-                                        </div>
-                                        <div class="col-md-4">
-                                            <div class="form-group">
-                                                <label>Operator Name</label>
-                                                @Html.TextBoxFor(x => x.OPerator.OperatorName, new { @class = "form-control alphaonly", placeholder = "Operator Name" })
-                                            </div>
-                                        </div>
-                                        @*<div class="col-md-4">
-                                                <div class="form-group">
-                                                    <label>Vehicle No</label>
-                                                    @Html.TextBoxFor(x => x.OPerator.VehicleNo, new { @class = "form-control", placeholder = "Vehicle No" })
-                                                </div>
-                                            </div>*@
-                                    </div>
-                                    <hr />
-                                    <h5>Personal Info</h5>
-                                    <div class="row">
-                                        <div class="col-md-4">
-                                            <div class="form-group">
-                                                <label>Father Name</label>
-                                                @Html.TextBoxFor(x => x.OPerator.FatherName, new { @class = "form-control alphaonly", placeholder = "Father Name" })
-                                            </div>
-                                        </div>
-                                        <div class="col-md-4">
-                                            <div class="form-group">
-                                                <label>Date Of Birth</label>
-                                                <div class="input-group dtCss">
-                                                    @Html.TextBoxFor(x => x.OPerator.DateOfBirth,new{@class = "form-control",placeholder = "Date Of Birth"})
-                                                    <span class="input-group-btn">
-                                                        <button type="button" class="btn btn-default"><i class="fa fa-calendar" aria-hidden="true"></i></button>
-                                                    </span>
-                                                </div>
-                                                @*<div class="input-group dtCss">
-                                                        @Html.TextBoxFor(x => x.OPerator.DateOfBirth,
-                                                           new
+                           <div class="box">
+                           <div class="box-body">
+
+                               <div class="row">
+                                   <div class="col-md-4">
+                                       <div class="form-group">
+                                           <label>Operator ID</label>
+                                           @Html.TextBoxFor(x => x.OPerator.OperatorID, new { @class = "form-control", placeholder = "Operator ID", @readonly = "readonly", @id = "OperatorId" })
+                                       </div>
+                                   </div>
+                                   <div class="col-md-4">
+                                       <div class="form-group">
+                                           <label>Operator Name</label>
+                                           @Html.TextBoxFor(x => x.OPerator.OperatorName, new { @class = "form-control alphaonly", placeholder = "Operator Name" })
+                                       </div>
+                                       </div>
+                                   </div>
+                                   @*<div class="col-md-4">
+                    <div class="form-group">
+                        <label>Vehicle No</label>
+                        @Html.TextBoxFor(x => x.OPerator.VehicleNo, new { @class = "form-control", placeholder = "Vehicle No" })
+                    </div>
+                </div>*@
+                               </div>
+                           </div>
+                           <div class="col-md-12">
+                               <div class="row">
+                                   <div class="box-header">
+                                       <h3 class="box-title">Personal Info</h3>
+                                   </div>
+                                   <div class="box">
+                                       <div class="box-body">
+                                           <div class="row">
+                                               <div class="col-md-4">
+                                                   <div class="form-group">
+                                                       <label>Father Name</label>
+                                                       @Html.TextBoxFor(x => x.OPerator.FatherName, new { @class = "form-control alphaonly", placeholder = "Father Name" })
+                                                   </div>
+                                               </div>
+                                               <div class="col-md-4">
+                                                   <div class="form-group">
+                                                       <label>Date Of Birth</label>
+                                                       <div class="input-group dtCss">
+                                                           @Html.TextBoxFor(x => x.OPerator.DateOfBirth, new { @class = "form-control", placeholder = "Date Of Birth" })
+                                                           <span class="input-group-btn">
+                                                               <button type="button" class="btn btn-default"><i class="fa fa-calendar" aria-hidden="true"></i></button>
+                                                           </span>
+                                                       </div>
+                                                       @*<div class="input-group dtCss">
+                        @Html.TextBoxFor(x => x.OPerator.DateOfBirth,
+                           new
+                           {
+                               @class = "form-control",
+                               placeholder = "Date Of Birth"
+                           })
+                        <span class="input-group-btn">
+                            <button type="button" class="btn btn-default"><i class="fa fa-calendar" aria-hidden="true"></i></button>
+                        </span>
+                    </div>*@
+                                                   </div>
+                                               </div>
+                                               <div class="col-md-4">
+                                                   <div class="form-group">
+                                                       <label>Place Of Birth</label>
+                                                       @Html.TextBoxFor(x => x.OPerator.PlaceOfBirth, new { @class = "form-control alphaonly", placeholder = "Place Of Birth" })
+                                                   </div>
+                                               </div>
+                                           </div>
+                               <div class="row">
+                                   <div class="col-md-4">
+                                       <div class="form-group">
+                                           <label>Gender</label>
+                                           @Html.DropDownListFor(x => x.OPerator.Gender, new SelectList(Model.operatorLookupDTO.genderOptions, "LookupId", "LookupDescription"), "Select Gender", new { @class = "form-control" })
+                                       </div>
+                                   </div>
+                                   <div class="col-md-4">
+                                       <div class="form-group">
+                                           <label>Marital Status</label>
+                                           @Html.DropDownListFor(x => x.OPerator.MaritialStatus, new SelectList(Model.operatorLookupDTO.maritalOptions, "LookupId", "LookupDescription"), "Select Marital Status", new { @class = "form-control" })
+                                       </div>
+                                   </div>
+                                   <div class="col-md-4">
+                                       <div class="form-group">
+                                           <label>Mobile No</label>
+                                           @Html.TextBoxFor(x => x.OPerator.MobileNo, new { @class = "form-control numCss", placeholder = "Mobile No", maxlength = 10 })
+                                       </div>
+                                   </div>
+                               </div>
+                                       <div class="row">
+                                           <div class="col-md-4">
+                                               <div class="form-group">
+                                                   <label>Phone No</label>
+                                                   @Html.TextBoxFor(x => x.OPerator.PhoneNo, new { @class = "form-control numCss", placeholder = "Phone No", maxlength = 10 })
+                                               </div>
+                                           </div>
+                                           <div class="col-md-4">
+                                               <label>Nationality</label>
+                                               <div class="form-group">
+                                                   <select id="ddlNationality" class="form-control">
+                                                       <option value="Indian" ;Text="Indian">Indian</option>
+                                                   </select>
+                                               </div>
+                                           </div>
+                                       </div>
+                                   </div>
+                               </div>
+                           </div>
+                             
+                               
+                                   <div class="row">
+                                       <div class="box-header">
+                                           <h3 class="box-title">Identification Info</h3>
+                                       </div>
+                                       <div class="box">
+                                           <div class="box-body">
+                                               <div class="col-md-4">
+                                                   <div class="form-group">
+                                                       <label>PAN No</label>
+                                                       @Html.TextBoxFor(x => x.OPerator.PANNo, new { @class = "form-control", placeholder = "PAN No", @id = "panno", maxLength = 10 })
+                                                   </div>
+                                               </div>
+                                               <div class="col-md-4">
+                                                   <div class="form-group">
+                                                       <label>Aadhar Card No</label>
+                                                       @Html.TextBoxFor(x => x.OPerator.AadharCardNo, new { @class = "form-control", placeholder = "Aadhar Card No", maxLength = 12, @id = "AadharCardNo" })
+                                                   </div>
+
+                                                   @*<div class="col-md-4">
+                    <div class="form-group">
+                        <label>License No</label>
+                        @Html.TextBoxFor(x => x.OPerator.LicenseNo, new { @class = "form-control", placeholder = "License No" })
+                    </div>
+                </div>*@
+                                               </div>
+                                           </div>
+                                       </div>
+                                   </div>
+                               
+                                   
+                               <div class="row">
+
+                                   @*<h5>Address Info</h5>*@
+                                   <div class="box">
+                                       <div class="box-header">
+                                           <h3 class="box-title">Address Info</h3>
+                                           <div class="box-tools">
+                                               <button class="btn btn-box-tool" type="button" onclick="AddAddress('-1')"><i class="fa fa-plus" aria-hidden="true"></i></button>
+                                           </div>
+                                       </div>
+                                       <div class="box-body">
+                                           <div class="row">
+                                               <div class="col-md-12">
+                                                   <table class="table table-hover table-bordered">
+                                                       <thead>
+                                                           <tr>
+                                                               <th>Address 1</th>
+                                                               <th>Address 2</th>
+                                                               <th>Action</th>
+                                                           </tr>
+                                                       </thead>
+                                                       <tbody id="trBodyAddress">
+                                                           @if (Model.OPerator.AddressList != null)
                                                            {
-                                                               @class = "form-control",
-                                                               placeholder = "Date Of Birth"
-                                                           })
-                                                        <span class="input-group-btn">
-                                                            <button type="button" class="btn btn-default"><i class="fa fa-calendar" aria-hidden="true"></i></button>
-                                                        </span>
-                                                    </div>*@
-                                            </div>
-                                        </div>
-                                        <div class="col-md-4">
-                                            <div class="form-group">
-                                                <label>Place Of Birth</label>
-                                                @Html.TextBoxFor(x => x.OPerator.PlaceOfBirth,new{@class = "form-control alphaonly", placeholder = "Place Of Birth"})
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col-md-4">
-                                            <div class="form-group">
-                                                <label>Gender</label>
-                                                @Html.DropDownListFor(x => x.OPerator.Gender,new SelectList(Model.operatorLookupDTO.genderOptions, "LookupId", "LookupDescription"),"Select Gender",new { @class = "form-control" })
-                                            </div>
-                                        </div>
-                                        <div class="col-md-4">
-                                            <div class="form-group">
-                                                <label>Marital Status</label>
-                                                @Html.DropDownListFor(x => x.OPerator.MaritialStatus,new SelectList(Model.operatorLookupDTO.maritalOptions, "LookupId", "LookupDescription"),"Select Marital Status",new { @class = "form-control" })
-                                            </div>
-                                        </div>
-                                        <div class="col-md-4">
-                                            <div class="form-group">
-                                                <label>Mobile No</label>
-                                                @Html.TextBoxFor(x => x.OPerator.MobileNo, new { @class = "form-control numCss", placeholder = "Mobile No", maxlength= 10 })
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col-md-4">
-                                            <div class="form-group">
-                                                <label>Phone No</label>
-                                                @Html.TextBoxFor(x => x.OPerator.PhoneNo, new { @class = "form-control numCss", placeholder = "Phone No", maxlength = 10 })
-                                            </div>
-                                        </div>
-                                        <div class="col-md-4">
-                                            <label>Nationality</label>
-                                            <div class="form-group">
-                                                <select id="ddlNationality" class="form-control">
-                                                    <option value="Indian" ;Text="Indian">Indian</option>
-                                                </select>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <hr />
-                                    <h5>Identification Info</h5>
-                                    <div class="row">
-                                        <div class="col-md-4">
-                                            <div class="form-group">
-                                                <label>PAN No</label>
-												@Html.TextBoxFor(x => x.OPerator.PANNo, new { @class = "form-control noSpecialChar", placeholder = "PAN No", @id = "panno", maxLength = 10 })
-                                            </div>
-										</div>
-                                        <div class="col-md-4">
-                                            <div class="form-group">
-                                                <label>Aadhar Card No</label>
-												@Html.TextBoxFor(x => x.OPerator.AadharCardNo, new { @class = "form-control", placeholder = "Aadhar Card No", maxLength = 12, @id = "AadharCardNo" })
-                                            </div>
-                                        </div>
-                                        @*<div class="col-md-4">
-                                                <div class="form-group">
-                                                    <label>License No</label>
-                                                    @Html.TextBoxFor(x => x.OPerator.LicenseNo, new { @class = "form-control", placeholder = "License No" })
-                                                </div>
-                                            </div>*@
-                                    </div>
-                                    <hr />
-                                    <div class="row">
-                                        <div class="col-md-6">
-                                            @*<h5>Address Info</h5>*@
-                                            <div class="box">
-                                                <div class="box-header">
-                                                    <h3 class="box-title">Address Info</h3>
-                                                    <div class="box-tools">
-                                                        <button class="btn btn-box-tool" type="button" onclick="AddAddress('-1')"><i class="fa fa-plus" aria-hidden="true"></i></button>
-                                                    </div>
-                                                </div>
-                                                <div class="box-body">
-                                                    <div class="row">
-                                                        <div class="col-md-12">
-                                                            <table class="table table-hover table-bordered">
-                                                                <thead>
-                                                                    <tr>
-                                                                        <th>Address 1</th>
-                                                                        <th>Address 2</th>
-                                                                        <th>Action</th>
-                                                                    </tr>
-                                                                </thead>
-                                                                <tbody id="trBodyAddress">
-                                                                    @if (Model.OPerator.AddressList != null)
-                                                                    {
-                                                                        for (var i = 0; i < Model.OPerator.AddressList.Count; i++)
-                                                                        {
-                                                                            <tr id="trRow_Address_@i" class="trRowCss">
-                                                                                <td>
-                                                                                    <span id="Address1_span_@i">@Model.OPerator.AddressList[i].Address1</span>
-                                                                                    @Html.HiddenFor(x => Model.OPerator.AddressList[i].Address1)
-                                                                                </td>
-                                                                                <td>
-                                                                                    <span id="Address2_span_@i">
-                                                                                        @Model.OPerator.AddressList[i].Address2
-                                                                                    </span>
-                                                                                    @Html.HiddenFor(x => Model.OPerator.AddressList[i].Address2)
-                                                                                </td>
-                                                                                <td>
-                                                                                    @Html.HiddenFor(x => Model.OPerator.AddressList[i].Address3)
-                                                                                    @Html.HiddenFor(x => Model.OPerator.AddressList[i].Address4)
-                                                                                    @Html.HiddenFor(x => Model.OPerator.AddressList[i].CityName)
-                                                                                    @Html.HiddenFor(x => Model.OPerator.AddressList[i].StateName)
-                                                                                    @Html.HiddenFor(x => Model.OPerator.AddressList[i].ZipCode)
-                                                                                    @Html.HiddenFor(x => Model.OPerator.AddressList[i].IsActive)
-                                                                                    <a class="hand" onclick="EditAddress('@i')">Edit</a>&nbsp;|&nbsp;
-                                                                                    <a class="hand" onclick="DeleteAddress('@i')">Delete</a>
-                                                                                </td>
-                                                                            </tr>
-                                                                        }
-                                                                    }
-                                                                </tbody>
-                                                            </table>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
+                                                               for (var i = 0; i < Model.OPerator.AddressList.Count; i++)
+                                                               {
+                                                                   <tr id="trRow_Address_@i" class="trRowCss">
+                                                                       <td>
+                                                                           <span id="Address1_span_@i">@Model.OPerator.AddressList[i].Address1</span>
+                                                                           @Html.HiddenFor(x => Model.OPerator.AddressList[i].Address1)
+                                                                       </td>
+                                                                       <td>
+                                                                           <span id="Address2_span_@i">
+                                                                               @Model.OPerator.AddressList[i].Address2
+                                                                           </span>
+                                                                           @Html.HiddenFor(x => Model.OPerator.AddressList[i].Address2)
+                                                                       </td>
+                                                                       <td>
+                                                                           @Html.HiddenFor(x => Model.OPerator.AddressList[i].Address3)
+                                                                           @Html.HiddenFor(x => Model.OPerator.AddressList[i].Address4)
+                                                                           @Html.HiddenFor(x => Model.OPerator.AddressList[i].CityName)
+                                                                           @Html.HiddenFor(x => Model.OPerator.AddressList[i].StateName)
+                                                                           @Html.HiddenFor(x => Model.OPerator.AddressList[i].ZipCode)
+                                                                           @Html.HiddenFor(x => Model.OPerator.AddressList[i].IsActive)
+                                                                           <a class="hand" onclick="EditAddress('@i')">Edit</a>&nbsp;|&nbsp;
+                                                                           <a class="hand" onclick="DeleteAddress('@i')">Delete</a>
+                                                                       </td>
+                                                                   </tr>
+                                                               }
+                                                           }
+                                                       </tbody>
+                                                   </table>
+                                               </div>
+                                           </div>
+                                       </div>
+                                   </div>
+                               </div>
+
                                         @*<div class="col-md-6">
                                                 <h5>Attachments</h5>
                                                 <div class="box">
@@ -226,7 +253,7 @@
                                                     </div>
                                                 </div>
                                             </div>*@
-                                        <div class="col-md-6">
+                                        <div class="row">
                                             @*<h5>Bank Details</h5>*@
                                             <div class="box">
                                                 <div class="box-header">
@@ -285,8 +312,8 @@
                                             </div>
                                         </div>
 
-                                    </div>
-                                    <hr />
+                                    
+                                   
                                     @if (Model.OPerator.OperatorID != null)
                                     {
                                         <div class="row">
@@ -431,7 +458,8 @@
                                         </div>
                                     }
                                     <div class="row">
-                                        <div class="col-md-6">
+                                        <div class="row">
+                                            <div class="col-md-6">
                                             @*<h5>Attachments</h5>*@
                                             <div class="box">
                                                 <div class="box-header">
@@ -439,14 +467,14 @@
                                                 </div>
                                                 <div class="box-body">
                                                     @*<div class="row">
-            <div class="col-md-3">
-                <label>AADHAR CARD</label>
-            </div>
-            <div class="col-md-3">
-                <input type="file" id="fadhar" name="fadhar" value="1375" />
-            </div>
-        </div>*@
-                                                    @{ 
+                <div class="col-md-3">
+                    <label>AADHAR CARD</label>
+                </div>
+                <div class="col-md-3">
+                    <input type="file" id="fadhar" name="fadhar" value="1375" />
+                </div>
+            </div>*@
+                                                    @{
                                                         var adharStr = "";
                                                         var panStr = "";
                                                         var licenseStr = "";
@@ -513,9 +541,9 @@
                                                             <div class="file-upload">
                                                                 <div class="file-select">
                                                                     <div class="file-select-button" id="fileName">Choose File</div>
-                                                                    <input type="file" 
-                                                                           id="fadhar" 
-                                                                           name="fadhar" 
+                                                                    <input type="file"
+                                                                           id="fadhar"
+                                                                           name="fadhar"
                                                                            value="1375"
                                                                            title="@adharStr"
                                                                            onchange="onFileChange(this, 'fadhardocFile','hdnfadhardocFile')" />
@@ -626,29 +654,33 @@
                                                             @*@Html.TextBoxFor(model => model.files, "", new { @type = "file", @multiple = "multiple" })*@
                                                         </div>
                                                     </div>
-                                                    <hr />
 
-                                                    <div class="row" style="margin-bottom:15px;">
-                                                        <div class="col-md-6">
-                                                            <button type="button" class="btn btn-primary btn-them" onclick="btnSave();">Save</button>
-
-                                                            <button type="button" class="btn btn-default " onclick="location.href = '@Url.Content("~/Operator/Operator")'">Cancel</button>
-                                                        </div>
-                                                    </div>
+                                                </div>
+                                                   
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
-                            </div>
+                           
+                </div>
+            
+        </div>
+    </section>
+    <div class="col-md-12">
+        <div class="box">
+            <div class="box-body" style="padding-bottom:15px;">
+                <div class="text-left">
+                    <button class="btn btn-primary btn-them" type="button" onclick="btnSave()">Save</button>
 
-                        </div>
-                    </div>
+
+                    <button type="button" class="btn btn-default " onclick="location.href = '/Driver/Driver'">Cancel</button>
                 </div>
             </div>
         </div>
-    </section>
-}
+    </div>
+    <div class="clearfix"></div>
+                                                        }
 <div id="DriverModal" class="modal">
     <div class="modal-dialog modal-md">
         <form id="frmDriver" name="frmDriver">
@@ -942,8 +974,11 @@
                 </div>
             </div>
         </form>
+       
     </div>
+    
 </div>
+
 @section secscripts{
     <script src="@Url.Content("~/Scripts/jquery.validate.js")"></script>
     <script src="@Url.Content("~/Scripts/moment.js")"></script>
@@ -1102,8 +1137,6 @@
                     });
                 }
                 $(function () {
-                    
-
                     @if(Model.OPerator.OperatorID==null)
                     {
                         <text> $('#OPerator_DateOfBirth').val('');</text>
