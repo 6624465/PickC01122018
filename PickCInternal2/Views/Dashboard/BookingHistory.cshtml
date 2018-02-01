@@ -216,7 +216,9 @@
                 }
             });
         }
-
+        $('#fromdate').on('click', function () {
+            $('#todate').data("DateTimePicker").clear();
+        });
 
             function HistorySearch() {
                 $('#frmBookingHistory').validate();

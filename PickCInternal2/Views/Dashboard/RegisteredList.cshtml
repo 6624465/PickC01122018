@@ -113,8 +113,12 @@
             },
             format: 'DD/MM/YYYY'
         });
+
         $("#FromDate").on("dp.change", function (e) {
             $('#ToDate').data("DateTimePicker").minDate(e.date);
+        });
+        $('#FromDate').on('click', function () {
+            $('#ToDate').data("DateTimePicker").clear();
         });
     </script>
     }
