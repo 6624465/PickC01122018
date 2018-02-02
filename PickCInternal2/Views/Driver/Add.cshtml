@@ -140,7 +140,7 @@
                         <div class="col-md-4">
                             <div class="form-group">
                                 <label>Phone No</label>
-                                @Html.TextBoxFor(x => x.driver.PhoneNo, new { @class = "form-control number", @maxlength = 10, placeholder = "Phone No" })
+                                @Html.TextBoxFor(x => x.driver.PhoneNo, new { @class = "form-control number", @maxlength = 10, placeholder = "Phone No",@minlength=10 })
                             </div>
                         </div>
                     </div>
@@ -695,7 +695,7 @@
                                 <button class="btn btn-primary btn-them" type="button" onclick="btnSave()">Save</button>
                                 @*<button type="button" class="btn btn-primary btn-them" onclick="btnSave();">Save</button>*@
                               
-                                <button type="button" class="btn btn-default " onclick="location.href = '@Url.Content("~/Driver/Driver")'">Cancel</button>
+                                <button type="button" class="btn btn-default " onclick="OnCancel();">Cancel</button>
                             </div>
                         </div>
                     </div>
@@ -848,7 +848,8 @@
                         required: true
                     },
                     'driver.MobileNo': {
-                        required: true
+                        required: true,
+                        minlength: 10
                     },
                    
                     'driver.PANNo': {
@@ -871,6 +872,9 @@
                     },
                     'driver.DateofReturn': {
                         required: true
+                    },
+                    'driver.DeviceRemarks':{
+                        required:true
                     }
                 }
             });
@@ -905,6 +909,18 @@
             else
                 return false;
         });
+
+        function OnCancel() {
+            debugger
+            var op = '@TempData["operatorId"]';
+            if (op != null && op != '') {
+                location.href = "/Operator/Edit?operatorID=" + op;
+            }
+            else {
+                location.href = "Driver/Driver";
+            }
+            
+        }
 
 
         //function isValidCharacter(txtTitle) {
@@ -1005,3 +1021,11 @@
         }
     </script>
 }
+<style>
+    .input-sm {
+        height: 35px;
+        padding: 5px 10px;
+        font-size: 14px;
+        line-height: 1.5;
+    }
+</style>
