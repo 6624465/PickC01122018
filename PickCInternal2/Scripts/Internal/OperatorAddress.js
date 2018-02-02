@@ -51,6 +51,7 @@
 
 var gIndex = -1;
 function EditAddress(index) {
+    debugger
     /*
     $.ajax({
         url: UrlAddress + '/Address?addressID=' + addressID,
@@ -76,6 +77,7 @@ function EditAddress(index) {
 }
 
 function btnSaveAddress() {
+    debugger
     if (!$('#frmAddress').valid())
         return;
     if (gIndex != -1) {

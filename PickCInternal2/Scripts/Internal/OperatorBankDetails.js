@@ -97,7 +97,7 @@ function btnSaveBank() {
                         '</td>' +
                         '<td>' +
                             '<span id="txtBranch_span_' + index + '">' + $('#txtBranch').val() + '</span>' +
-                            '<input id="OPerator_BankDetails_' + index + '__Branch" name="OPerator.BankDetails[' + index + '].Branch" type="hidden" value="' + $('#txtBranch').val() + '">' +
+                            '<input id="OPerator_BankDetails_' + index + '__Branch" name="OPerator.BankDetails[' + index + '].Branch" type="hidden"  value="' + $('#txtBranch').val() + '">' +
                         '</td>' +
                          '<td>' +
                             '<span id="txtAccNumber_span_' + index + '">' + $('#txtAccNumber').val() + '</span>' +
@@ -105,7 +105,7 @@ function btnSaveBank() {
                         '</td>' +
                          '<td>' +
                             '<span id="txtAccType_span_' + index + '">' + $('#txtAccType').val() + '</span>' +
-                            '<input id="OPerator_BankDetails_' + index + '__AccountType" name="OPerator.BankDetails[' + index + '].AccountType" type="hidden" value="' + $('#txtAccType').val() + '">' +
+                            '<input id="OPerator_BankDetails_' + index + '__AccountType" name="OPerator.BankDetails[' + index + '].AccountType"  type="hidden" value="' + $('#txtAccType').val() + '">' +
                         '</td>' +
                         '<td>' +
                          '<a class="hand" onclick="EditBankDetails(\'' + index + '\')">Edit</a>&nbsp;|&nbsp;' +

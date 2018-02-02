@@ -160,13 +160,13 @@
                                                <div class="col-md-4">
                                                    <div class="form-group">
                                                        <label>PAN No</label>
-                                                       @Html.TextBoxFor(x => x.OPerator.PANNo, new { @class = "form-control", placeholder = "PAN No", @id = "panno", maxLength = 10 })
+                                                       @Html.TextBoxFor(x => x.OPerator.PANNo, new { @class = "form-control noSpecialChar", placeholder = "PAN No", @id = "panno", maxLength = 10 })
                                                    </div>
                                                </div>
                                                <div class="col-md-4">
                                                    <div class="form-group">
                                                        <label>Aadhar Card No</label>
-                                                       @Html.TextBoxFor(x => x.OPerator.AadharCardNo, new { @class = "form-control", placeholder = "Aadhar Card No", maxLength = 12, @id = "AadharCardNo" })
+                                                       @Html.TextBoxFor(x => x.OPerator.AadharCardNo, new { @class = "form-control numCss", placeholder = "Aadhar Card No", maxLength = 12, @id = "AadharCardNo" })
                                                    </div>
 
                                                    @*<div class="col-md-4">
@@ -667,19 +667,7 @@
             </div>
         </div>
     </section>
-    <div class="col-md-12">
-        <div class="box">
-            <div class="box-body" style="padding-bottom:15px;">
-                <div class="text-left">
-                    <button class="btn btn-primary btn-them" type="button" onclick="btnSave()">Save</button>
-
-
-                    <button type="button" class="btn btn-default " onclick="location.href = '/Driver/Driver'">Cancel</button>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="clearfix"></div>
+   
                                                         }
 <div id="DriverModal" class="modal">
     <div class="modal-dialog modal-md">
@@ -778,7 +766,7 @@
                             <div class="file-upload">
                                 <div class="file-select">
                                     <div class="file-select-button" id="fileName">Choose File</div>                                    
-                                    <input type="file" id="registrationdoc" name="registrationdoc" value="1391" onchange="onFileChange(this, 'registrationdocFile','hdnRegistrationdocFile')" />
+                                    <input type="file" id="registrationdoc" name="registrationdoc" value="1391" title=" " onchange="onFileChange(this, 'registrationdocFile','hdnRegistrationdocFile')" />
                                 </div>
                             </div>
                         </div>
@@ -795,7 +783,7 @@
                             <div class="file-upload">
                                 <div class="file-select">
                                     <div class="file-select-button" id="fileName">Choose File</div>
-                                    <input type="file" id="insurancedoc" name="insurancedoc" value="1392" onchange="onFileChange(this, 'insurancedocFile','hdnInsurancedocFile')" />
+                                    <input type="file" id="insurancedoc" name="insurancedoc" value="1392"  title=" " onchange="onFileChange(this, 'insurancedocFile','hdnInsurancedocFile')" />
                                 </div>
                             </div>
                             
@@ -813,7 +801,7 @@
                             <div class="file-upload">
                                 <div class="file-select">
                                     <div class="file-select-button" id="fileName">Choose File</div>
-                                    <input type="file" id="pollutioncheckdoc" name="pollutioncheckdoc" value="1393" onchange="onFileChange(this, 'pollutioncheckdocFile','hdnPollutioncheckdocFile')" />
+                                    <input type="file" id="pollutioncheckdoc" name="pollutioncheckdoc" value="1393"  title=" " onchange="onFileChange(this, 'pollutioncheckdocFile','hdnPollutioncheckdocFile')" />
                                 </div>
                             </div>
                             
@@ -831,7 +819,7 @@
                             <div class="file-upload">
                                 <div class="file-select">
                                     <div class="file-select-button" id="fileName">Choose File</div>
-                                    <input type="file" id="othersdoc" name="othersdoc" value="1394" onchange="onFileChange(this, 'othersdocFile','hdnOthersdocFile')" />
+                                    <input type="file" id="othersdoc" name="othersdoc" value="1394"  title=" " onchange="onFileChange(this, 'othersdocFile','hdnOthersdocFile')" />
                                 </div>
                             </div>
                             
@@ -964,7 +952,7 @@
                         </div>
                         <div class="col-md-6">
                             <label>Account Type</label>
-                            <input type="text" id="txtAccType" name="txtAccType" class="form-control" />
+                            <input type="text" id="txtAccType" name="txtAccType noSpecialChar" class="form-control" />
                         </div>
                     </div>
                 </div>
@@ -978,7 +966,19 @@
     </div>
     
 </div>
+<div class="col-md-12">
+    <div class="box">
+        <div class="box-body" style="padding-bottom:15px;">
+            <div class="text-left">
+                <button class="btn btn-primary btn-them" type="button" onclick="btnSave()">Save</button>
 
+
+                <button type="button" class="btn btn-default " onclick="location.href = '/Operator/Operator'">Cancel</button>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="clearfix"></div>
 @section secscripts{
     <script src="@Url.Content("~/Scripts/jquery.validate.js")"></script>
     <script src="@Url.Content("~/Scripts/moment.js")"></script>
@@ -994,7 +994,8 @@
         function onFileChange(el, id, hdn) {
             debugger;
             $('#' + id).text(el.files[0].name); 
-            $('#' + hdn).val(el.files[0].name); 
+            $('#' + hdn).val(el.files[0].name);
+            
         }
                 function AddAddress() {
                     $('#addressModal').modal('show');
@@ -1169,10 +1170,12 @@
                             },
                             'OPerator.MobileNo': {
                                 required: true,
+                                minlength: 10
                                 
                             },
                             'OPerator.PhoneNo': {
-                                required: false
+                                required: false,
+                                minlength:10
                             },
                             'OPerator.PANNo': {
                                 required: true
@@ -1418,9 +1421,5 @@
 
     </script>
 }
-<style>
-     /*#panno select.error {
-            border: 1px solid red;
-        }*/
-</style>
+
 

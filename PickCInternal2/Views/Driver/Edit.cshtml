@@ -125,7 +125,7 @@
                             <div class="col-md-4">
                                 <div class="form-group">
                                     <label>Mobile No</label>
-                                    @Html.TextBoxFor(x => x.driver.MobileNo, new { @maxlength = "10", @class = "form-control input-sm number", placeholder = "Mobile No" })
+                                    @Html.TextBoxFor(x => x.driver.MobileNo, new { @maxlength = "10", @class = "form-control input-sm numCss", placeholder = "Mobile No" })
                                 </div>
                             </div>
                         </div>
@@ -133,7 +133,7 @@
                             <div class="col-md-4">
                                 <div class="form-group">
                                     <label>Phone No</label>
-                                    @Html.TextBoxFor(x => x.driver.PhoneNo, new { @maxlength = "10", @class = "form-control input-sm number", placeholder = "Phone No" })
+                                    @Html.TextBoxFor(x => x.driver.PhoneNo, new { @maxlength = "10",@minlength=10, @class = "form-control input-sm numCss", placeholder = "Phone No" })
                                 </div>
                             </div>
                         </div>
@@ -515,7 +515,7 @@
                                                id="fadhar"
                                                name="fadhar"
                                                value="1375"
-                                               title="@adharStr"
+                                               title=""
                                                onchange="onFileChange(this, 'fadhardocFile','hdnfadhardocFile')" />
                                     </div>
                                 </div>
@@ -538,7 +538,7 @@
                                                id="fpan"
                                                name="fpan"
                                                value="1374"
-                                               title="@panStr"
+                                               title=""
                                                onchange="onFileChange(this, 'fpandocFile','hdnfpandocFile')" />
                                     </div>
                                 </div>
@@ -635,7 +635,7 @@
                     <div class="box-body" style="padding-bottom:15px;">
                         <div class="text-left">
                             <button type="button" class="btn btn-primary btn-them" onclick="btnSave();">Save</button>
-                            <button type="button" class="btn btn-default" onclick="location.href = '@Url.Content("~/Driver/Driver")'">Cancel</button>
+                            <button type="button" class="btn btn-default" onclick="onCancel();">Cancel</button>
                         </div>
                     </div>
                 </div>
@@ -706,7 +706,7 @@
         <form id="frmBank" name="frmBank">
             <div class="modal-content">
                 <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal" id="bank_cancel" aria-label="Close">
+                    <button type="button" class="close" data-dismiss="modal" id="bank_cancel" aria-label="Close" >
                         <span aria-hidden="true">×</span>
                     </button>
                     <h4 class="modal-title">Bank Details</h4>
@@ -734,7 +734,7 @@
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-default pull-left" data-dismiss="modal" id="bank_cancel">Close</button>
+                    <button type="button" class="btn btn-default pull-left" data-dismiss="modal" id="bank_cancel" >Close</button>
                     <button id="btnSave" type="button" class="btn btn-primary btn-them " onclick="btnSaveBank();">Save</button>
                 </div>
             </div>
@@ -789,9 +789,10 @@
                         required: true
                     },
                     'driver.MobileNo': {
-                        required: true
+                        required: true,
+                        minlength:10
                     },
-                    
+
                     'driver.PANNo': {
                         required: true
                     },
@@ -812,7 +813,11 @@
                     },
                     'driver.DateofReturn': {
                         required: true
+                    },
+                    'driver.DeviceRemarks': {
+                        required:true
                     }
+
                 }
             });
 
@@ -855,7 +860,29 @@
             }
         }
 
-        
+
+        function onCancel(){
+            debugger
+
+           var editOp = '@TempData["operatorIdEdit"]';
+
+           // var op = (addOp != null ? addOp : editOp != null ? editOp : "");
+            if (editOp != null && editOp != '') {
+            location.href = "/Operator/Edit?operatorID=" + editOp;
+                }
+                else {
+            location.href = "Driver/Driver";
+                }
+        }
+
     </script>
 }
+<style>
+        .input-sm {
+    height: 35px;
+    padding: 5px 10px;
+    font-size: 14px;
+    line-height: 1.5;
+    }
+</style>
 
