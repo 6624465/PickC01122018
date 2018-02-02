@@ -32,6 +32,7 @@ namespace PickC.Internal2.Controllers
                 HttpContext.Session["SSN_TOKEN"] = loginDTO.Token;
                 var customerObj = await new CustomerService().GetCustomerInfoAsync(loginDTO.Token, customer.MobileNo);
                 HttpContext.Session["SSN_CUSTOMER"] = customerObj;
+                Session["SSN_CUSTOMER_NAME"] = customerObj.Name;
 
                 return RedirectToAction("UserApp", "Dashboard");
             }
