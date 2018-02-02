@@ -119,5 +119,10 @@ namespace Operation.BusinessFactory
         {
             return bookingDAL.GetCustomerCurrentConfirmTrip(mobileNo);
         }
+
+        public string CustomerIsReachPickupPending(string mobileNo)
+        {
+            return bookingDAL.CustomerIsReachPickupPending(mobileNo);
+        }
     }
 }

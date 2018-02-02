@@ -1095,6 +1095,22 @@ namespace PickCApi.Areas.Master.Controllers
                 return Ok(new CustomerInfo());
             }
         }
+
+        [HttpGet]
+        [Route("isReachPickupWaiting")]
+        [ApiAuthFilter]
+        public IHttpActionResult IsCustomerWaitingPickup()
+        {
+            try
+            {
+                var bookingNo = new BookingBO().CustomerIsReachPickupPending(HeaderValueByKey("MOBILENO"));
+                return Ok(bookingNo != null ? bookingNo : "");
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
         #endregion
 
     }
