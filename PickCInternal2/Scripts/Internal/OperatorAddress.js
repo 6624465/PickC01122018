@@ -51,6 +51,7 @@
 
 var gIndex = -1;
 function EditAddress(index) {
+    debugger
     /*
     $.ajax({
         url: UrlAddress + '/Address?addressID=' + addressID,
@@ -76,6 +77,7 @@ function EditAddress(index) {
 }
 
 function btnSaveAddress() {
+    debugger
     if (!$('#frmAddress').valid())
         return;
     if (gIndex != -1) {
@@ -101,6 +103,7 @@ function btnSaveAddress() {
         $('#' + baseID + 'ZipCode').val($('#ZipCode').val());
         $('#' + 'ZipCode_span_' + gIndex).val($('#ZipCode').val());
     } else {
+        debugger
         var index = ($('#trBodyAddress tr').length);
         //var index = $('.trRowCss').length;
         var html = '<tr id="trRow_Address_' + index + '">' +

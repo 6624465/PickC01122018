@@ -155,7 +155,7 @@ namespace PickC.Internal2.Controllers
 					driver.driverAttachment.Add(attachment);
 				}
 			}
-			var result = await new DriverService(AUTHTOKEN, p_mobileNo).SaveDriverAsync(driver); ;
+			var result = await new DriverService(AUTHTOKEN, p_mobileNo).SaveDriverAsync(driver); 
 
 
             var operatorId = TempData["operatorId"] as string;
