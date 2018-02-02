@@ -20,7 +20,7 @@
                     @{ Html.RenderPartial("DashboardMenuList"); }
                 </div>
             </div>*@
-        <div class="row" style="margin:5px 0 0 -15px;">
+        <div class="row">
             <div class="col-xs-12">
                 <div class="box">
                     <div class="box-header">
@@ -179,62 +179,7 @@
                     </div>
                 </div>
             </div>
-        </div>
-        <div class="row">
-            <div class="col-md-12">
-                <div class="box">
-                    <div class="box-header">
-                        <h3 class="box-title">Address Info</h3>
-                        <div class="box-tools">
-                            <button class="btn btn-box-tool" type="button" onclick="AddAddress('-1')"><i class="fa fa-plus" aria-hidden="true"></i></button>
-                        </div>
-                    </div>
-                    <div class="box-body">
-                        <div class="col-md-12">
-                            <table class="table table-hover table-bordered">
-                                <thead>
-                                    <tr>
-                                        <th>Address 1</th>
-                                        <th>Address 2</th>
-                                        <th>Action</th>
-                                    </tr>
-                                </thead>
-                                @if (Model.driver.AddressList.Count != 0)
-                                {
-                                    <tbody id="trBody">
-                                        @for (var i = 0; i < Model.driver.AddressList.Count; i++)
-                                        {
-                                            <tr id="trRow_@i" class="trRowCss">
-                                                <td>
-                                                    <span id="Address1_span_@i">@Model.driver.AddressList[i].Address1</span>
-                                                    @Html.HiddenFor(x => Model.driver.AddressList[i].Address1)
-                                                </td>
-                                                <td>
-                                                    <span id="Address2_span_@i">
-                                                        @Model.driver.AddressList[i].Address2
-                                                    </span>
-                                                    @Html.HiddenFor(x => Model.driver.AddressList[i].Address2)
-                                                </td>
-                                                <td>
-                                                    @Html.HiddenFor(x => Model.driver.AddressList[i].Address3)
-                                                    @Html.HiddenFor(x => Model.driver.AddressList[i].Address4)
-                                                    @Html.HiddenFor(x => Model.driver.AddressList[i].CityName)
-                                                    @Html.HiddenFor(x => Model.driver.AddressList[i].StateName)
-                                                    @Html.HiddenFor(x => Model.driver.AddressList[i].ZipCode)
-                                                    @Html.HiddenFor(x => Model.driver.AddressList[i].IsActive)
-                                                    <a class="hand" onclick="EditAddress('@i')">Edit</a>&nbsp;|&nbsp;
-                                                    <a class="hand" onclick="DeleteAddress('@i')">Delete</a>
-                                                </td>
-                                            </tr>
-                                        }
-                                    </tbody>
-                                }
-                            </table>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
+        </div>       
         <div class="row">
             <div class="col-xs-12">
                 <div class="box">
@@ -367,6 +312,61 @@
 
             </div>
         </div>*@
+        <div class="row">
+            <div class="col-md-12">
+                <div class="box">
+                    <div class="box-header">
+                        <h3 class="box-title">Address Info</h3>
+                        <div class="box-tools">
+                            <button class="btn btn-box-tool" type="button" onclick="AddAddress('-1')"><i class="fa fa-plus" aria-hidden="true"></i></button>
+                        </div>
+                    </div>
+                    <div class="box-body">
+                        <div class="col-md-12">
+                            <table class="table table-hover table-bordered">
+                                <thead>
+                                    <tr>
+                                        <th>Address 1</th>
+                                        <th>Address 2</th>
+                                        <th>Action</th>
+                                    </tr>
+                                </thead>
+                                @if (Model.driver.AddressList.Count != 0)
+                                {
+                                    <tbody id="trBody">
+                                        @for (var i = 0; i < Model.driver.AddressList.Count; i++)
+                                        {
+                                            <tr id="trRow_@i" class="trRowCss">
+                                                <td>
+                                                    <span id="Address1_span_@i">@Model.driver.AddressList[i].Address1</span>
+                                                    @Html.HiddenFor(x => Model.driver.AddressList[i].Address1)
+                                                </td>
+                                                <td>
+                                                    <span id="Address2_span_@i">
+                                                        @Model.driver.AddressList[i].Address2
+                                                    </span>
+                                                    @Html.HiddenFor(x => Model.driver.AddressList[i].Address2)
+                                                </td>
+                                                <td>
+                                                    @Html.HiddenFor(x => Model.driver.AddressList[i].Address3)
+                                                    @Html.HiddenFor(x => Model.driver.AddressList[i].Address4)
+                                                    @Html.HiddenFor(x => Model.driver.AddressList[i].CityName)
+                                                    @Html.HiddenFor(x => Model.driver.AddressList[i].StateName)
+                                                    @Html.HiddenFor(x => Model.driver.AddressList[i].ZipCode)
+                                                    @Html.HiddenFor(x => Model.driver.AddressList[i].IsActive)
+                                                    <a class="hand" onclick="EditAddress('@i')">Edit</a>&nbsp;|&nbsp;
+                                                    <a class="hand" onclick="DeleteAddress('@i')">Delete</a>
+                                                </td>
+                                            </tr>
+                                        }
+                                    </tbody>
+                                }
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
         <div class="row" id="BankDetails">
             <div class="col-md-12">
                 <div class="box">
