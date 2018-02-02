@@ -132,7 +132,7 @@ namespace PickCApi.Areas.Master.Controllers
         }
         [HttpGet]
         [Route("verifyOtp/{mobile}/{otp}")]
-        [ApiAuthFilter]
+        //[ApiAuthFilter]
         public IHttpActionResult VerifyOTP(string mobile, string otp)
         {
             var customer = new CustomerBO().GetCustomer(new Customer { MobileNo = mobile });
