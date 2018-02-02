@@ -331,11 +331,12 @@
                                         <th>Action</th>
                                     </tr>
                                 </thead>
+                               
+                                    <tbody id="trBody">
                                 @if (Model.driver.AddressList.Count != 0)
                                 {
-                                    <tbody id="trBody">
-                                        @for (var i = 0; i < Model.driver.AddressList.Count; i++)
-                                        {
+                                    for (var i = 0; i < Model.driver.AddressList.Count; i++)
+                                    {
                                             <tr id="trRow_@i" class="trRowCss">
                                                 <td>
                                                     <span id="Address1_span_@i">@Model.driver.AddressList[i].Address1</span>
@@ -358,9 +359,10 @@
                                                     <a class="hand" onclick="DeleteAddress('@i')">Delete</a>
                                                 </td>
                                             </tr>
-                                        }
-                                    </tbody>
+                                    }
                                 }
+                                    </tbody>
+                                
                             </table>
                         </div>
                     </div>
@@ -753,7 +755,8 @@
     <script src="@Url.Content("~/Scripts/jquery.validate.js")"></script>
     <script src="@Url.Content("~/Scripts/moment.js")"></script>
     <script src="@Url.Content("~/Scripts/bootstrap-datetimepicker.js")"></script>
-    <script src="@Url.Content("~/Scripts/Internal/DriverAddress.js")"></script>
+    @*<script src="@Url.Content("~/Scripts/Internal/DriverAddress.js")"></script>*@
+<script src="@Url.Content("~/Scripts/Internal/DriverAddress.js")"></script>
     <script src="@Url.Content("~/Scripts/Internal/DriverBankDetails.js")"></script>
     <script type="text/javascript">
         function onFileChange(el, id, hdn) {

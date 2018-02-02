@@ -82,6 +82,7 @@ function btnSaveAddress() {
         $('#' + 'ZipCode_span_' + gIndex).val($('#ZipCode').val());
     } else {
         var index = $('.trRowCss').length;
+        debugger
         var html = '<tr id="trRow_' + index + '">' +
                         '<td>' +
                             '<span id="Address1_span_' + index + '">' + $('#Address1').val() + '</span>' +
@@ -102,6 +103,13 @@ function btnSaveAddress() {
                         '</td>' +
                     '</tr>';
         $('#trBody').append(html);
+        $('#Address1').val('');
+        $('#Address2').val('');
+        $('#Address3').val('');
+        $('#Address4').val('');
+        $('#StateName').val('');
+        $('#CityName').val('');
+        $('#ZipCode').val('');
     }
 
 
@@ -117,6 +125,7 @@ function AddAddress(index) {
 }
 
 function DeleteAddress(index) {
+    debugger
     $('#trRow_' + index).remove();
     $('#Address1').val('');
     $('#Address2').val('');

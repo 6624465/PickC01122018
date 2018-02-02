@@ -51,8 +51,8 @@ $(function () {
 });
 var gIndex = -1;
 function EditBankDetails(index) {
+    debugger
     gIndex = index;
- 
     var baseID = 'OPerator_BankDetails_' + index + '__';
     $('#txtBankName').val($('#' + baseID + 'BankName').val());
     $('#txtBranch').val($('#' + baseID + 'Branch').val());
@@ -64,6 +64,7 @@ function EditBankDetails(index) {
 function DeleteBankDetails(index) {
     //var id = '#OPerator_BankDetails_' + index + '__IsActive';
     //$(id).val('False');trRow_Bank_
+    debugger;
     $('#trRow_Bank_' + index).remove();
     $('#txtBankName').val('');
     $('#txtBranch').val('');
@@ -71,7 +72,7 @@ function DeleteBankDetails(index) {
     $('#txtAccType').val('');
 }
 function btnSaveBank() {
-
+    debugger;
     if (!$('#frmBank').valid())
         return;  
 
@@ -90,6 +91,7 @@ function btnSaveBank() {
         $('#' + 'txtAccType_span_' + gIndex).text($('#txtAccType').val());
     } else {
         var index = ($('#trBodyBank tr').length);
+        debugger
         var html = '<tr id="trRow_Bank_' + index + '">' +
                         '<td>' +
                             '<span id="txtBankName_span_' + index + '">' + $('#txtBankName').val() + '</span>' +

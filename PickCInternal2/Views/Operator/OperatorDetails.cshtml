@@ -731,7 +731,7 @@
                         <div class="col-md-6">
                             <label>Vehicle Registration No</label>
                             @Html.Hidden("OperatorVehicleID", Model.OPerator.OperatorID)
-                            @Html.TextBox("VehicleRegistrationNo", "", new { @class = "form-control", onchange = "VehicleNo(this)" })
+                            @Html.TextBox("VehicleRegistrationNo", "", new { @class = "form-control noSpecialChar", onchange = "VehicleNo(this)" })
                         </div>
                     </div>
                     <div class="row">
@@ -952,7 +952,7 @@
                         </div>
                         <div class="col-md-6">
                             <label>Account Type</label>
-                            <input type="text" id="txtAccType" name="txtAccType noSpecialChar" class="form-control" />
+                            <input type="text" id="txtAccType" name="txtAccType" class="form-control noSpecialChar" />
                         </div>
                     </div>
                 </div>

@@ -809,6 +809,7 @@
     <script src="@Url.Content("~/Scripts/moment.js")"></script>
     <script src="@Url.Content("~/Scripts/bootstrap-datetimepicker.js")"></script>
     <script src="@Url.Content("~/Scripts/Internal/DriverAddress.js")"></script>
+    @*<script src="@Url.Content("~/Scripts/Internal/DriverAddress.js")"></script>*@
     <script src="@Url.Content("~/Scripts/Internal/DriverBankDetails.js")"></script>
     <script src="@Url.Content("~/Scripts/jquery.cookie.js")"></script>
     <script type="text/javascript">
@@ -851,7 +852,7 @@
                         required: true,
                         minlength: 10
                     },
-                   
+
                     'driver.PANNo': {
                         required: true
                     },
@@ -912,14 +913,14 @@
 
         function OnCancel() {
             debugger
-            var op = '@TempData["operatorId"]';
+            var op = '@ViewBag.PassedOperatorId';
             if (op != null && op != '') {
                 location.href = "/Operator/Edit?operatorID=" + op;
             }
             else {
                 location.href = "Driver/Driver";
             }
-            
+
         }
 
 
@@ -944,7 +945,7 @@
             $('#txtBankName,#txtBranch,#txtAccNumber,#txtAccType').val('');
             $('#bankDetailsModal').modal('show');
         }
-        
+
         @*$('.NoSpecialCharacter').keypress(function () {
             var format = /[!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]+/;
 
