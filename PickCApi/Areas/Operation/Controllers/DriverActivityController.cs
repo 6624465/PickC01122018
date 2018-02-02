@@ -306,7 +306,7 @@ namespace PickCApi.Areas.Operation.Controllers
                     PushNotification(driver.DeviceId,
                                 BookingNo, UTILITY.NotifyBookingCancelledByUser);
 
-                    return Ok(UTILITY.NotifyBookingCancelledByUser);
+                    return Ok(new { status = UTILITY.NotifyBookingCancelledByUser });
                 }
             }
             catch (Exception ex)
@@ -315,9 +315,9 @@ namespace PickCApi.Areas.Operation.Controllers
                 {
                     var bookingInfo = new BookingBO().GetBooking(new Booking { BookingNo = BookingNo });
                     if (bookingInfo.DriverId == HeaderValueByKey("DRIVERID"))
-                        return Ok("Booking is Already Confirmed by you..!");
+                        return Ok(new { status = "Booking is Already Confirmed by you" });
                     else
-                        return Ok("Booking is Already Confirmed by Other Driver..!");
+                        return Ok(new { status = "Booking is Already Confirmed by Other Driver" });
                 }
                 else
                 {

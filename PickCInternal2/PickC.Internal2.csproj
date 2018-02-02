@@ -112,7 +112,7 @@
     </Reference>
     <Reference Include="System.Web.WebPages, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>C:\Users\My\Desktop\System.Web.WebPages.dll</HintPath>
+      <HintPath>C:\dlls\System.Web.WebPages.dll</HintPath>
     </Reference>
     <Reference Include="System.Xml" />
     <Reference Include="System.Configuration" />
@@ -217,6 +217,8 @@
     <Content Include="Css\_all-skins.min.css" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
+    <Content Include="images\driver.png" />
+    <Content Include="images\driver2.png" />
     <Content Include="images\gooleicon.jpg" />
     <Content Include="images\icon.png" />
     <Content Include="images\pickc-logo.png" />

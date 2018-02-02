@@ -36,5 +36,13 @@ namespace PickC.Internal2
                 return obj.EmailId;
             }
         }
+        public string DriverImagePath
+        {
+            get
+            {
+                return "~/images/icon.png";
+            }
+
+        }
     }
 }

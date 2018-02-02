@@ -178,7 +178,9 @@
                 $('#fromdate').on('dp.change', function (e) {
                     $('#todate').data("DateTimePicker").minDate(e.date);
                 });
-
+                $('#fromdate').on('click', function () {
+                    $('#todate').data("DateTimePicker").clear();
+                });
                 $('#frmBookingHistory').validate({
                     rules: {
                         'bookings.DateTo': {
@@ -216,7 +218,7 @@
                 }
             });
         }
-
+     
 
             function HistorySearch() {
                 $('#frmBookingHistory').validate();

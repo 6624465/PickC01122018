@@ -109,7 +109,7 @@ namespace PickCApi.Areas.Operation.Controllers
                 {
                      tripInfo = new TripBO().GetTrip(new Trip { TripID = tripEndDTO.TripId });                    
                     var customerObj = new CustomerBO().GetCustomer(new Customer { MobileNo = tripInfo.CustomerMobile });
-                    PushNotification(customerObj.DeviceId, "", UTILITY.NotifyTripEnd);
+                    PushNotification(customerObj.DeviceId, tripInfo.BookingNo, UTILITY.NotifyTripEnd);
                     return Ok(new
                     {
                         tripID = tripEndDTO.TripId,

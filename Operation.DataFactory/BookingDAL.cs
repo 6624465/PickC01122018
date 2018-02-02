@@ -210,7 +210,7 @@ namespace Operation.DataFactory
             return db.ExecuteSprocAccessor(DBRoutine.LISTNEARTRUCKSINRANGE,
                                             MapBuilder<NearTrucksInRange>
                                             .BuildAllProperties(),
-                                            "", (decimal)latitude, (decimal)longitude, minDistance, vehicleType, vehicleGroup).ToList();
+                                            CustomerID, latitude, longitude, minDistance, vehicleType, vehicleGroup).ToList();
         }
         public bool BookingRejectedByDriver(string tokenNo, string driverID, string vehicleNo, string bookingNo, string cancelRemarks, bool isTripStarted, bool IsLoadingUnloading)
         {

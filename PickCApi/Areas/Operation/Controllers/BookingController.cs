@@ -200,54 +200,54 @@ namespace PickCApi.Areas.Operation.Controllers
         //    }
         //}
 
-        //[HttpGet]
-        //[Route("{bookingNo}")]
-        //public IHttpActionResult BookingByBookingNo(string bookingNo)
-        //{
-        //    try
-        //    {
-        //        var booking = new BookingBO().GetBooking(new Booking
-        //        {
-        //            BookingNo = bookingNo
-        //        });
+        [HttpGet]
+        [Route("{bookingNo}")]
+        public IHttpActionResult BookingByBookingNo(string bookingNo)
+        {
+            try
+            {
+                var booking = new BookingBO().GetBooking(new Booking
+                {
+                    BookingNo = bookingNo
+                });
 
-        //        if (booking != null)
-        //            return Ok(booking);
-        //        else
-        //            return NotFound();
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        return InternalServerError(ex);
-        //    }
-        //}
+                if (booking != null)
+                    return Ok(booking);
+                else
+                    return NotFound();
+            }
+            catch (Exception ex)
+            {
+                return InternalServerError(ex);
+            }
+        }
 
-        //[HttpPost]
-        //[Route("delete")]
-        //public IHttpActionResult DeleteByBookingNo(DeleteBookingDTO deleteBookingDTO)
-        //{
-        //    try
-        //    {
-        //        var result = new BookingBO().DeleteBooking(new Booking { BookingNo = deleteBookingDTO.BookingNo });
-        //        if (result)
-        //        {
-        //            string GetDriverDeviceIDByBookingNo = new BookingBO().GetDriverDeviceIDByBookingNo(deleteBookingDTO.BookingNo);
-        //            if (!string.IsNullOrWhiteSpace(GetDriverDeviceIDByBookingNo))
-        //            {
-        //                PushNotification(GetDriverDeviceIDByBookingNo, deleteBookingDTO.BookingNo, UTILITY.NotifyBookingCancelledByUser);
-        //                return Ok(UTILITY.DELETEMSG);
-        //            }
-        //            else
-        //                return Ok(UTILITY.DELETEMSG);
-        //        }
-        //        else
-        //            return NotFound();
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        return InternalServerError(ex);
-        //    }
-        //}
+        [HttpPost]
+        [Route("delete")]
+        public IHttpActionResult DeleteByBookingNo(DeleteBookingDTO deleteBookingDTO)
+        {
+            try
+            {
+                var result = new BookingBO().DeleteBooking(new Booking { BookingNo = deleteBookingDTO.BookingNo });
+                if (result)
+                {
+                    string GetDriverDeviceIDByBookingNo = new BookingBO().GetDriverDeviceIDByBookingNo(deleteBookingDTO.BookingNo);
+                    if (!string.IsNullOrWhiteSpace(GetDriverDeviceIDByBookingNo))
+                    {
+                        PushNotification(GetDriverDeviceIDByBookingNo, deleteBookingDTO.BookingNo, UTILITY.NotifyBookingCancelledByUser);
+                        return Ok(UTILITY.DELETEMSG);
+                    }
+                    else
+                        return Ok(UTILITY.DELETEMSG);
+                }
+                else
+                    return NotFound();
+            }
+            catch (Exception ex)
+            {
+                return InternalServerError(ex);
+            }
+        }
 
         /* only for driver */
         [HttpGet]
@@ -278,7 +278,7 @@ namespace PickCApi.Areas.Operation.Controllers
 
         [HttpPost]
         [Route("cancel")]
-        public IHttpActionResult  CancelBookingByDriver(BookingCancelDTO bookingCancelDTO)
+        public IHttpActionResult CancelBookingByDriver(BookingCancelDTO bookingCancelDTO)
         {
             try
             {
@@ -415,7 +415,7 @@ namespace PickCApi.Areas.Operation.Controllers
 
         [HttpGet]
         [Route("DriverReceivedConfirm/{BookingNo}")]
-        public IHttpActionResult DriverReceivedConfirm(string BookingNo)
+        public IHttpActionResult DriverReceivedConfirmCheck(string BookingNo)
         {
             var result = new BookingBO().CustomerPaymentUpdate(BookingNo);
             if (result)
@@ -457,11 +457,11 @@ namespace PickCApi.Areas.Operation.Controllers
                        BookingNo,
                        UTILITY.NotifyCustomerPickupStart);
                 var BookingConfirm = new BookingBO().CustomerCurrentConfirmTrip(HeaderValueByKey("MOBILENO"));
-                var  Isintrip = BookingConfirm != null ? true : false;      
-                if(Isintrip)
+                var Isintrip = BookingConfirm != null ? true : false;
+                if (Isintrip)
                 {
                     return Ok(new { BookingConfirm.BookingNo, BookingConfirm.OTP });
-                }                 
+                }
                 return Ok(UTILITY.NotifyCustomerPickupStart);
             }
             catch (Exception ex)
@@ -469,5 +469,31 @@ namespace PickCApi.Areas.Operation.Controllers
                 return InternalServerError(ex);
             }
         }
+        [HttpGet]
+        [Route("UpdateDriverBusyStatus")]
+        public IHttpActionResult ChangeDriverIsBusyStatus()
+        {
+            try
+            {
+                var driverActivity = new DriverActivity
+                {
+                    DriverId = HeaderValueByKey("DRIVERID"),
+                    TokenNo = HeaderValueByKey("AUTH_TOKEN")
+                };
+                if (new DriverBO().UpdateDriverBusyStatus(driverActivity.DriverId, driverActivity.TokenNo))
+                {
+                    return Ok(true);
+                }
+                else
+                {
+                    return Ok(false);
+                }
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+
     }
 }

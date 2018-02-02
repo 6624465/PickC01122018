@@ -384,7 +384,7 @@ namespace PickCApi.Areas.Master.Controllers
                 if (driverList != null)
                     return Ok(new { Status = UTILITY.SUCCESSMESSAGE, driverList });
                 else
-                    return Ok(new { Status = UTILITY.FAILEDMESSAGE });
+                    return Ok(new { Status = UTILITY.FAILEDMESSAGE, driverList });
             }
             catch (Exception ex)
             {

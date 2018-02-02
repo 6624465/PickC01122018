@@ -182,11 +182,34 @@ namespace Master.DataFactory
             return (result > 0 ? true : false);
 
         }
+        public bool UpdateDriverBusyStatus(string DriverID, string TokenNo)
+        {
+            var result = false;
+            var connnection = db.CreateConnection();
+            connnection.Open();
+
+            var transaction = connnection.BeginTransaction();
+            try
+            {
+                var updateCommand = db.GetStoredProcCommand(DBRoutine.DRIVERISBUSYSTATUSUPDATE);
+                db.AddInParameter(updateCommand, "DriverID", System.Data.DbType.String, DriverID);
+                db.AddInParameter(updateCommand, "TokenNo", System.Data.DbType.String, TokenNo);
+
+                result = Convert.ToBoolean(db.ExecuteNonQuery(updateCommand, transaction));
+
+                transaction.Commit();
+            }
+            catch (Exception)
+            {
+                transaction.Rollback();
+                throw;
+            }
+            return result;
+        }
 
 
-
-		//// added by Kiran////
-		public bool SaveDriverDetails<T>(T item) where T : IContract
+        //// added by Kiran////
+        public bool SaveDriverDetails<T>(T item) where T : IContract
 		{
 			var result = 0;
 			var driver = (DriverMdl)(object)item;

@@ -143,8 +143,13 @@ function btnSaveBank() {
     gIndex = -1;
 }
 function bankDetails(index) {
-    debugger;
     gIndex = -1;
+    $('#frmBank input[type="text"]').removeClass('error');
     $('#txtBankName, #txtBranch, #txtAccNumber, #txtAccType').val('');
     $('#bankDetailsModal').modal('show');
 }
+//function bankDetails(index) {
+//    $('#frmBank input[type="text"]').removeClass('error');
+//    $('#txtBankName,#txtBranch,#txtAccNumber,#txtAccType').val('');
+//    $('#bankDetailsModal').modal('show');
+//}
