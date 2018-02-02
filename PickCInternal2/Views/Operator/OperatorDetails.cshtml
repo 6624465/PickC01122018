@@ -319,6 +319,7 @@
                                         <div class="row">
                                             <div class="col-md-6">
                                                 @*<h5>Vehicle Details</h5>*@
+                                                <div class="row">
                                                 <div class="box">
                                                     <div class="box-header">
                                                         <h3 class="box-title">Vehicle Details</h3>
@@ -369,7 +370,7 @@
                                                                                         @Html.HiddenFor(X => Model.OPerator.OperatorVehicle[i].pollutioncheckdoc)
                                                                                         @Html.HiddenFor(X => Model.OPerator.OperatorVehicle[i].insurancedoc)
                                                                                         @Html.HiddenFor(X => Model.OPerator.OperatorVehicle[i].othersdoc)
-                                                                                        
+
                                                                                     </td>
                                                                                     <td>
                                                                                         <a class="hand" onclick="EditOperatorVehicle('@i')">Edit</a>&nbsp;|&nbsp;
@@ -383,78 +384,85 @@
                                                             </div>
                                                         </div>
                                                     </div>
+                                                    </div>
                                                     @*}*@
                                                 </div>
                                             </div>
+                                            <div class="row">
                                             <div class="col-md-6">
                                                 @*<h5>Driver Details</h5>*@
-                                                <div class="box">
-                                                    <div class="box-header">
-                                                        <h3 class="box-title">Driver Details</h3>
-                                                        <div class="box-tools">
-                                                            @*<button class="btn btn-box-tool" type="button" onclick="bankDetails()">Add</button>*@
-                                                            @*<button type="button" class="btn btn-box-tool" data-toggle="modal" data-target="#myModal"><i class="fa fa-plus" aria-hidden="true"></i></button>*@
-															<button class="btn btn-default btn-sm btn-them " type="button" id="Btn_SendOperatorId">Add Driver</button>
-                                                            @*<button class="btn btn-default btn-sm btn-them " type="button" onclick="AddDriver('-1')">Add</button>*@
-															@*<button class="btn btn-box-tool" type="button" onclick="AddDriver('-1')"><i class="fa fa-plus" aria-hidden="true"></i></button>location.href="@Url.Content("~/Driver/Add?OperatorID=OP171100001")"*@
-                                                        </div>
-                                                    </div>
-                                                    <div class="box-body">
-                                                        <div class="row">
-                                                            <div class="col-md-12">
-                                                                <table class="table table-hover table-bordered">
-                                                                    <thead>
-                                                                        <tr>
-                                                                            <th class="hidden">Driver ID</th>
-                                                                            <th>Driver Name</th>
-                                                                            <th>Driving Licence No</th>
-                                                                            <th>Driver Mobile No</th>
-                                                                            @*<th>Driver Vehicle No</th>*@
-                                                                            <th>Action</th>
-                                                                        </tr>
-                                                                    </thead>
-                                                                    <tbody id="trBodyDriver">
-                                                                        @if (Model.OPerator.OperatorDriverList != null)
-                                                                        {
-                                                                            for (var i = 0; i < Model.OPerator.OperatorDriverList.Count; i++)
-                                                                            {
-                                                                                <tr id="trRow_Driver_@i" class="trRowCss">
-                                                                                    <td class="hidden">
-                                                                                        <span id="operatorDriverList_DriverID_span_@i">@Model.OPerator.OperatorDriverList[i].DriverID</span>
-                                                                                        @Html.HiddenFor(x => Model.OPerator.OperatorDriverList[i].DriverID)
-                                                                                    </td>
-                                                                                    <td>
-                                                                                        <span id="operatorDriverList_DriverName_span_@i">@Model.OPerator.OperatorDriverList[i].DriverName</span>
-                                                                                        @Html.HiddenFor(x => Model.OPerator.OperatorDriverList[i].DriverName)
-                                                                                    </td>
-                                                                                    <td>
-                                                                                        <span id="operatorDriverList_DriverLicenseNo_span_@i">@Model.OPerator.OperatorDriverList[i].LicenseNo</span>
-                                                                                        @Html.HiddenFor(x => Model.OPerator.OperatorDriverList[i].LicenseNo)
-                                                                                    </td>
-                                                                                    <td>
-                                                                                        <span id="operatorDriverList_DriverMobileNo_span_@i">@Model.OPerator.OperatorDriverList[i].MobileNo</span>
-                                                                                        @Html.HiddenFor(x => Model.OPerator.OperatorDriverList[i].MobileNo)
-                                                                                    </td>
-                                                                                    @*<td>
-                                                                                            <span id="operatorDriverList_VehicleNo_span_@i">@Model.OPerator.OperatorDriverList[i].VehicleattachedNo</span>
-                                                                                            @Html.HiddenFor(x => Model.OPerator.OperatorDriverList[i].VehicleattachedNo)
-                                                                                        </td>*@
-                                                                                    <td>
-                                                                                        @*<a class="hand" onclick="EditOperatorDriver('@i')">Edit</a>&nbsp;|&nbsp;*@
-                                                                                        @*<a class="hand" href="@Url.Content(string.Format("~/Driver/Edit?driverID={0}", Model.OPerator.OperatorDriverList[i].DriverID))">Edit</a>&nbsp;|&nbsp;*@
-                                                                                        <a class="hand" href="@Url.Content("~/Driver/Edit?driverID=" + Model.OPerator.OperatorDriverList[i].DriverID+"&OperatorId="+Model.OPerator.OperatorID)">Edit</a>&nbsp;|&nbsp;
-                                                                                        <a class="hand" onclick="DeleteOperatorDriver('@Model.OPerator.OperatorDriverList[i].DriverID','@Model.OPerator.OperatorDriverList[i].DriverName')">Delete</a>
-                                                                                    </td>
-                                                                                </tr>
-                                                                            }
-                                                                        }
-                                                                    </tbody>
-                                                                </table>
+                                                
+                                                    
+                                                        <div class="box">
+                                                            <div class="box-header">
+                                                                <h3 class="box-title">Driver Details</h3>
+                                                                <div class="box-tools">
+                                                                    @*<button class="btn btn-box-tool" type="button" onclick="bankDetails()">Add</button>*@
+                                                                    @*<button type="button" class="btn btn-box-tool" data-toggle="modal" data-target="#myModal"><i class="fa fa-plus" aria-hidden="true"></i></button>*@
+                                                                    <button class="btn btn-default btn-sm btn-them " type="button" id="Btn_SendOperatorId">Add Driver</button>
+                                                                    @*<button class="btn btn-default btn-sm btn-them " type="button" onclick="AddDriver('-1')">Add</button>*@
+                                                                    @*<button class="btn btn-box-tool" type="button" onclick="AddDriver('-1')"><i class="fa fa-plus" aria-hidden="true"></i></button>location.href="@Url.Content("~/Driver/Add?OperatorID=OP171100001")"*@
+                                                                </div>
                                                             </div>
+                                                            <div class="box-body">
+                                                                <div class="row">
+                                                                    <div class="col-md-12">
+                                                                        <table class="table table-hover table-bordered">
+                                                                            <thead>
+                                                                                <tr>
+                                                                                    <th class="hidden">Driver ID</th>
+                                                                                    <th>Driver Name</th>
+                                                                                    <th>Driving Licence No</th>
+                                                                                    <th>Driver Mobile No</th>
+                                                                                    @*<th>Driver Vehicle No</th>*@
+                                                                                    <th>Action</th>
+                                                                                </tr>
+                                                                            </thead>
+                                                                            <tbody id="trBodyDriver">
+                                                                                @if (Model.OPerator.OperatorDriverList != null)
+                                                                                {
+                                                                                    for (var i = 0; i < Model.OPerator.OperatorDriverList.Count; i++)
+                                                                                    {
+                                                                                        <tr id="trRow_Driver_@i" class="trRowCss">
+                                                                                            <td class="hidden">
+                                                                                                <span id="operatorDriverList_DriverID_span_@i">@Model.OPerator.OperatorDriverList[i].DriverID</span>
+                                                                                                @Html.HiddenFor(x => Model.OPerator.OperatorDriverList[i].DriverID)
+                                                                                            </td>
+                                                                                            <td>
+                                                                                                <span id="operatorDriverList_DriverName_span_@i">@Model.OPerator.OperatorDriverList[i].DriverName</span>
+                                                                                                @Html.HiddenFor(x => Model.OPerator.OperatorDriverList[i].DriverName)
+                                                                                            </td>
+                                                                                            <td>
+                                                                                                <span id="operatorDriverList_DriverLicenseNo_span_@i">@Model.OPerator.OperatorDriverList[i].LicenseNo</span>
+                                                                                                @Html.HiddenFor(x => Model.OPerator.OperatorDriverList[i].LicenseNo)
+                                                                                            </td>
+                                                                                            <td>
+                                                                                                <span id="operatorDriverList_DriverMobileNo_span_@i">@Model.OPerator.OperatorDriverList[i].MobileNo</span>
+                                                                                                @Html.HiddenFor(x => Model.OPerator.OperatorDriverList[i].MobileNo)
+                                                                                            </td>
+                                                                                            @*<td>
+                                                <span id="operatorDriverList_VehicleNo_span_@i">@Model.OPerator.OperatorDriverList[i].VehicleattachedNo</span>
+                                                @Html.HiddenFor(x => Model.OPerator.OperatorDriverList[i].VehicleattachedNo)
+                                            </td>*@
+                                                                                            <td>
+                                                                                                @*<a class="hand" onclick="EditOperatorDriver('@i')">Edit</a>&nbsp;|&nbsp;*@
+                                                                                                @*<a class="hand" href="@Url.Content(string.Format("~/Driver/Edit?driverID={0}", Model.OPerator.OperatorDriverList[i].DriverID))">Edit</a>&nbsp;|&nbsp;*@
+                                                                                                <a class="hand" href="@Url.Content("~/Driver/Edit?driverID=" + Model.OPerator.OperatorDriverList[i].DriverID+"&OperatorId="+Model.OPerator.OperatorID)">Edit</a>&nbsp;|&nbsp;
+                                                                                                <a class="hand" onclick="DeleteOperatorDriver('@Model.OPerator.OperatorDriverList[i].DriverID','@Model.OPerator.OperatorDriverList[i].DriverName')">Delete</a>
+                                                                                            </td>
+                                                                                        </tr>
+                                                                                    }
+                                                                                }
+                                                                            </tbody>
+                                                                        </table>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        
+                                                    
                                                         </div>
                                                     </div>
                                                 </div>
-                                            </div>
                                         </div>
                                     }
                                     <div class="row">
