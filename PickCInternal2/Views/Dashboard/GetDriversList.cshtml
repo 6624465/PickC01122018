@@ -84,10 +84,12 @@
 								<h4 class="modal-title"><img id="driverImage" src="" alt="driver" height="20" />&nbsp;Driver Details</h4>
 							</div>
 							<div class="modal-body" id="driverData">
-                                <ul class="list-group">
+                                <ul class="list-group ">
                                     <li class="list-group-item">
-                                        <label>Driver Name</label>
-                                        <div id="driverName"></div>
+                                       
+                                            <label>Driver Name</label>
+                                            <div id="driverName"></div>
+                                        
                                     </li>
                                     <li class="list-group-item">
                                         <label>Contact No</label>
@@ -374,7 +376,7 @@
 				dataType: 'json',
 				data: JSON.stringify({ 'id': $(this).data("id") }),
 				success: function (res) {
-				//debugger;
+				debugger;
 					$('#driverDetailsModal').modal('show');
 
 					var source = '@Url.Content("~/images/icon.png")';
@@ -382,9 +384,9 @@
 					$("#driverName").text(res.DriverName);
 					$("#licenseNumber").text(res.LicenseNo);
 					$("#vehicleNumber").text(res.VehicleNo);
-					$("#phoneNo").text(res.PhoneNo);
+					$("#phoneNo").text(res.MobileNo);
 					$("#vehicletype").text(res.VehicleType);
-					$("#vehiclecatogory").text(res.VehicleGroup);
+					$("#vehiclecategory").text(res.VehicleGroup);
 					$("#status").text($("#ddlSearchByStatus").val());
 					$("#bookingno").text(res.BookingNo);
 					
@@ -430,4 +432,4 @@
     #imgId{
         background-image:url('https://media1.giphy.com/media/3oEjI6SIIHBdRxXI40/giphy.gif')
     }
-</style>
+    </style>
