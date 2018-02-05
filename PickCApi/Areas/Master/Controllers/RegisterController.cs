@@ -1106,7 +1106,7 @@ namespace PickCApi.Areas.Master.Controllers
                 var bookingNo = new BookingBO().CustomerIsReachPickupPending(HeaderValueByKey("MOBILENO"));
                 return Ok(bookingNo != null ? bookingNo : "");
             }
-            catch (Exception)
+            catch (Exception ex)
             {
                 throw;
             }
