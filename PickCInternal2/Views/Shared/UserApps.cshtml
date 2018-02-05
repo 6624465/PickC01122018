@@ -24,7 +24,7 @@
                             <span class="info-box-icon bg-green"><i class="fa fa-registered" aria-hidden="true"></i></span>
                         <div class="info-box">
                             <div class="info-box-content">
-                                <span class="info-box-text">Registered But Not Booked </span>
+                                <span class="info-box-text1">Registered But Not Booked </span>
                                 <span class="info-box-number">Today Booked:<span>@Model.userDataDashBoard.RegisteredNotBookDailyBasis</span></span><br />
                                
                                 @*<span class="info-box-text">Total Count</span>*@
@@ -120,7 +120,14 @@
 
     </script>
 
-
+<style>
+  .info-box-text1 {
+    display: block;
+    font-size: 11px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+</style>
 
 
 
