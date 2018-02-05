@@ -1,0 +1,2 @@
+select * from [Master].[Address]
+select * from[Operation].[CustomerLogin] order by logintime desc
