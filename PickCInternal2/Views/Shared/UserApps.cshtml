@@ -7,7 +7,7 @@
                             <span class="info-box-icon bg-aqua"><i class="fa fa-download" aria-hidden="true"></i></span>
                         <div class="info-box">
                             <div class="info-box-content" >
-                                <span class="info-box-text">User App Downloads</span>
+                                <span class="info-box-text sm-font">User App Downloads</span>
                                 <span class="info-box-number">IOS: <span>200</span></span></span>
                                 <span class="info-box-number"> Android: <span>300</span></span><br />
                                 
@@ -24,7 +24,7 @@
                             <span class="info-box-icon bg-green"><i class="fa fa-registered" aria-hidden="true"></i></span>
                         <div class="info-box">
                             <div class="info-box-content">
-                                <span class="info-box-text1">Registered But Not Booked </span>
+                                <span class="info-box-text sm-font">Registered But Not Booked </span>
                                 <span class="info-box-number">Today Booked:<span>@Model.userDataDashBoard.RegisteredNotBookDailyBasis</span></span><br />
                                
                                 @*<span class="info-box-text">Total Count</span>*@
@@ -44,7 +44,7 @@
                             <span class="info-box-icon bg-red"><i class="fa fa-tripadvisor" aria-hidden="true"></i></span>
                         <div class="info-box">
                             <div class="info-box-content">
-                                <span class="info-box-text">Total Trips </span>
+                                <span class="info-box-text sm-font">Total Trips </span>
                                 <span class="info-box-number">Today Trips: <span>@Model.userDataDashBoard.TotalBookingsdailyBasis</span></span><br/>
                                 
                                 @*<span class="info-box-number">@Model.userDataDashBoard.TotalBookings</span>*@
@@ -60,7 +60,7 @@
                         <div class="info-box">
 
                             <div class="info-box-content">
-                                <span class="info-box-text">Cancellations</span>
+                                <span class="info-box-text sm-font">Cancellations</span>
                                 <span class="info-box-number">Driver: <span>@Model.userDataDashBoard.DriverCancel</span></span>
                                 <span class="info-box-number"> Customer: <span>@Model.userDataDashBoard.CustomerCancel</span> </span>
                                 @*@{ var data =(Operation.Contract.UserDataDashBoard)TempData["count"];
@@ -121,12 +121,18 @@
     </script>
 
 <style>
-  .info-box-text1 {
-    display: block;
-    font-size: 11px;
-    overflow: hidden;
-    text-overflow: ellipsis;
+    @@media screen and (max-width: 1400px){
+  .sm-font {
+    font-size:12px;
+    font-weight:bold;
+    }
+  .info-box span{
+      
+  }
 }
+  .info-box{
+      width:270px;
+  }
 </style>
 
 
