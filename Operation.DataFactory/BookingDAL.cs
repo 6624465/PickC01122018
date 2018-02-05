@@ -105,7 +105,7 @@ namespace Operation.DataFactory
                 db.AddInParameter(savecommand, "Longitude", System.Data.DbType.Decimal, booking.Longitude);
                 db.AddInParameter(savecommand, "ToLatitude", System.Data.DbType.Decimal, booking.ToLatitude);
                 db.AddInParameter(savecommand, "ToLongitude", System.Data.DbType.Decimal, booking.ToLongitude);
-                db.AddInParameter(savecommand, "ReceiverMobileNo", System.Data.DbType.String, "9666245400");
+                db.AddInParameter(savecommand, "ReceiverMobileNo", System.Data.DbType.String, booking.ReceiverMobileNo);
                 db.AddInParameter(savecommand, "LoadingUnLoading", System.Data.DbType.Int16, booking.LoadingUnLoading);
                 db.AddOutParameter(savecommand, "NewBookingNo", System.Data.DbType.String, 50);
 
