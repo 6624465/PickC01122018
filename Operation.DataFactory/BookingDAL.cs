@@ -512,6 +512,12 @@ namespace Operation.DataFactory
             return result;
 
         }
+        public string CustomerIsReachPickupPending(string mobileNo)
+        {
+            var recordcommand = db.GetStoredProcCommand(DBRoutine.GETCUSTOMERISREACHPICKUPPENDINGBOOKINGNO, mobileNo);
+            var result = db.ExecuteScalar(recordcommand).ToString();
+            return result;
+        }
         public Booking GetCustomerCurrentConfirmTrip(string mobileNo)
         {
             var tripItem = db.ExecuteSprocAccessor(DBRoutine.CUSTOMERCURRENTTRIPBEFORETRIPSTART,
@@ -523,15 +529,7 @@ namespace Operation.DataFactory
             return tripItem;
         }
 
-        public string CustomerIsReachPickupPending(string mobileNo)
-        {
-            var recordcommand = db.GetStoredProcCommand(DBRoutine.GETCUSTOMERISREACHPICKUPPENDINGBOOKINGNO, mobileNo);
-            var result = db.ExecuteScalar(recordcommand).ToString();
-
-            if (result == null) return null;
-
-            return result;
-        }
+        
 
     }
 }
