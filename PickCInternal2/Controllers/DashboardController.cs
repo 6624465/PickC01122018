@@ -150,9 +150,10 @@ namespace PickC.Internal2.Controllers
 					};
 					tripMonitor.title = currentbookings[i].DriverId;
 					tripMonitor.BookingNo = currentbookings[i].BookingNo;
-					tripMonitor.DriverName = Driver.AsEnumerable().Where(x => x.Value == currentbookings[i].DriverId).Select(x => x.Text).ToString();
-					tripMonitor.DriverName = getName(Driver, currentbookings[i].DriverId);
-					tripMonitor.LocationFrom = currentbookings[i].LocationFrom;
+                    //tripMonitor.DriverName = Driver.AsEnumerable().Where(x => x.Value == currentbookings[i].DriverId).Select(x => x.Text).ToString();
+                    tripMonitor.DriverName = currentbookings[i].DriverName;//getName(Driver, currentbookings[i].DriverId);
+
+                    tripMonitor.LocationFrom = currentbookings[i].LocationFrom;
 					tripMonitor.LocationTo = currentbookings[i].LocationTo;
 					tripMonitor.VehicleNo = getName(VehicleNo,currentbookings[i].VehicleNo);
 					tripMonitor.VehicleType = getSName(VehicleType, currentbookings[i].VehicleType);//(await new OperatorVehicleService(AUTHTOKEN, p_mobileNo).GetOperatorVehicleList()).Where(x => x.LookupId == currentbookings[i].VehicleType).Select(x => x.LookupCode).ToString(); //currentbookings[i].VehicleTypeDescription;
@@ -218,7 +219,7 @@ namespace PickC.Internal2.Controllers
 					};
 					tripMonitor.title = currentbookings[i].DriverId.ToUpper() + " - " + currentbookings[i].BookingNo.ToUpper();
 					tripMonitor.BookingNo = currentbookings[i].BookingNo;
-					tripMonitor.DriverName = Driver.AsEnumerable().Where(x => x.Value == currentbookings[i].DriverId).Select(x => x.Text).ToString();
+					//tripMonitor.DriverName = Driver.AsEnumerable().Where(x => x.Value == currentbookings[i].DriverId).Select(x => x.Text).ToString();
                     tripMonitor.DriverName = currentbookings[i].DriverName;
 					tripMonitor.LocationFrom = currentbookings[i].LocationFrom;
 					tripMonitor.LocationTo = currentbookings[i].LocationTo;
