@@ -27,7 +27,7 @@ namespace PickC.Internal2.Controllers
         public async Task<ActionResult> Login(Customer customer)
         {
             var loginDTO = await new CustomerService().LoginAsync(customer);
-            if(loginDTO != null && !string.IsNullOrWhiteSpace(loginDTO.Token))
+            if (loginDTO != null && !string.IsNullOrWhiteSpace(loginDTO.Token))
             {
                 HttpContext.Session["SSN_TOKEN"] = loginDTO.Token;
                 var customerObj = await new CustomerService().GetCustomerInfoAsync(loginDTO.Token, customer.MobileNo);
@@ -37,7 +37,10 @@ namespace PickC.Internal2.Controllers
                 return RedirectToAction("UserApp", "Dashboard");
             }
             else
+            {
+                ViewBag.Message = "Invalid Username or Password";
                 return View("Login");
+            }
         }
 
         [HttpGet]

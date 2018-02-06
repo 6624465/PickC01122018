@@ -26,8 +26,8 @@
 <body class="hold-transition login-page">
     <div class="login-box" id="loginOnEnterId">
         <div class="login-logo">
-            <img src="~/images/pickc-logo32.png" style="margin-bottom: 10px;"/><b>&nbsp;&nbsp;Pick</b>Cargo Internal
-            
+            <img src="~/images/pickc-logo32.png" style="margin-bottom: 10px;" /><b>&nbsp;&nbsp;Pick</b>Cargo Internal
+
         </div>
         <!-- /.login-logo -->
         <div class="login-box-body">
@@ -39,22 +39,41 @@
                     <span class="fa fa-phone form-control-feedback"></span>
                 </div>
                 <div class="form-group has-feedback">
-                    @Html.PasswordFor(x => x.Password, new { id= "passwd",placeholder = "Password", @class = "form-control" })
+                    @Html.PasswordFor(x => x.Password, new { id = "passwd", placeholder = "Password", @class = "form-control" })
                     <span class="fa fa-lock form-control-feedback"></span>
                 </div>
-                <div class="row">                    
+                <div class="row">
                     <div class="col-xs-12">
                         <button type="button" id="login_Submit" class="btn btn-primary btn-block btn-flat" onclick="btnLogin();"><i class="fa fa-sign-in" aria-hidden="true"></i>&nbsp;Sign In</button>
-                    </div>                    
+                    </div>
                 </div>
+
             }
-        </div>       
-    </div>    
+        </div>
+    </div>
+    @if (ViewBag.Message != null)
+    {
+    <div class="row">
+        <div class="col-md-12">
+            <span class="label-danger">@ViewBag.Message</span>
+        </div>
+    </div>
+    }
+    @if (!string.IsNullOrWhiteSpace(Request.QueryString["error"]))
+    {
+    <div class="row">
+        <div class="col-md-5"></div>
+        <div class="col-md-2">
+            <span class="label label-danger" style="text-align:center;display:block;">OOPS something went wrong...!</span>
+        </div>
+        <div class="col-md-5"></div>
+    </div>
+    }
     <script src="@Url.Content("~/Scripts/jquery-2.2.3.min.js")"></script>
     <script src="@Url.Content("~/Scripts/jquery.validate.js")"></script>
     <script src="@Url.Content("~/Scripts/bootstrap.min.js")"></script>
     <script type="text/javascript">
-        $(function () {            
+        $(function () {
             $('#frmLogin').validate({
                 rules: {
                     MobileNo: {
@@ -68,7 +87,7 @@
             });
         });
 
-        function btnLogin() {            
+        function btnLogin() {
             if ($('#frmLogin').valid())
                 $('#frmLogin').submit();
             else {
@@ -81,12 +100,12 @@
             }
         });
 
-        //$("#login_Submit").keypress(function (event) {
-        //    debugger
-        //    if (event.keyCode === 13) {
-        //        $("#login_Submit").click();
-        //    }
-        //});
+                    //$("#login_Submit").keypress(function (event) {
+                    //    debugger
+                    //    if (event.keyCode === 13) {
+                    //        $("#login_Submit").click();
+                    //    }
+                    //});
     </script>
 </body>
 </html>
