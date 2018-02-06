@@ -25,12 +25,12 @@
                         <div class="info-box">
                             <div class="info-box-content">
                                 <span class="info-box-text sm-font">Regd But Not Booked </span>
-                                <span class="info-box-number">Today Registered:<span>@Model.userDataDashBoard.RegisteredNotBookDailyBasis</span></span><br />
-                               
+                                <span class="info-box-number">Today Registered:<span>@(Model.userDataDashBoard.RegisteredNotBookDailyBasis==0?0: Model.userDataDashBoard.RegisteredNotBookDailyBasis )</span></span><br />
+
                                 @*<span class="info-box-text">Total Count</span>*@
                                 
                             </div>
-                            <span class="info-box-number total-box" style="background:#00a65a; margin-top:15px;"><span class="total-text">Total:</span><span>@Model.userDataDashBoard.RegisteredNotBook</span></span>
+                            <span class="info-box-number total-box" style="background:#00a65a; margin-top:15px;"><span class="total-text">Total:</span><span>@(Model.userDataDashBoard.RegisteredNotBook==0?0: Model.userDataDashBoard.RegisteredNotBook )</span></span>
                             @*<div class="info-box-content">
                 <span class="info-box-text">Registered But Not Booked</span>
                 <span class="info-box-number">@Model.userDataDashBoard.RegisteredNotBook</span>
@@ -45,11 +45,11 @@
                         <div class="info-box">
                             <div class="info-box-content">
                                 <span class="info-box-text sm-font">Total Trips </span>
-                                <span class="info-box-number">Today Trips: <span>@Model.userDataDashBoard.TotalBookingsdailyBasis</span></span><br/>
-                                
+                                <span class="info-box-number">Today Trips: <span>@(Model.userDataDashBoard.TotalBookingsdailyBasis==0?0: Model.userDataDashBoard.TotalBookingsdailyBasis )</span></span><br/>
+
                                 @*<span class="info-box-number">@Model.userDataDashBoard.TotalBookings</span>*@
                             </div>
-                            <span class="info-box-number total-box" style="background:#cccccc; margin-top:15px;"><span class="total-text">Total:</span><span>@Model.userDataDashBoard.TotalBookings</span></span>
+                            <span class="info-box-number total-box" style="background:#cccccc; margin-top:15px;"><span class="total-text">Total:</span><span>@(Model.userDataDashBoard.TotalBookings==0?0: Model.userDataDashBoard.TotalBookings )</span></span>
                             <!-- /.info-box-content -->
                         </div>
                         <!-- /.info-box -->
@@ -61,13 +61,13 @@
 
                             <div class="info-box-content">
                                 <span class="info-box-text sm-font">Cancellations</span>
-                                <span class="info-box-number">Driver: <span>@Model.userDataDashBoard.DrivercancelDailyBasis</span></span>
-                                <span class="info-box-number"> Customer: <span>@Model.userDataDashBoard.CustomercanceldailyBasis</span> </span>
+                                <span class="info-box-number">Driver: <span>@(Model.userDataDashBoard.DrivercancelDailyBasis==0?0: Model.userDataDashBoard.DrivercancelDailyBasis )</span></span>
+                                <span class="info-box-number"> Customer: <span>@(Model.userDataDashBoard.CustomercanceldailyBasis==0?0: Model.userDataDashBoard.CustomercanceldailyBasis )</span> </span>
                                 @*@{ var data =(Operation.Contract.UserDataDashBoard)TempData["count"];
 
                                  }*@
                             </div>
-                            <span class="info-box-number total-box" style="background:#f39c12;"> <span class="total-text">Total:</span> <span>@Model.userDataDashBoard.TotalCancellations</span></span>
+                            <span class="info-box-number total-box" style="background:#f39c12;"> <span class="total-text">Total:</span> <span>@(Model.userDataDashBoard.TotalCancellations==0?0: Model.userDataDashBoard.TotalCancellations)</span></span>
                             <!-- /.info-box-content -->
                         </div>
                         <!-- /.info-box -->
