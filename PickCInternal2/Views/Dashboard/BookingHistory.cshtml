@@ -93,7 +93,7 @@
                                         <th>Vehicle No.</th>
                                         <th>Driver Name</th>
                                         <th>Invoice Amount</th>
-
+                                        <th>Status</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -109,6 +109,16 @@
                                             <td>@Html.DisplayFor(m => item.VehicleNo)</td>
                                             <td>@Html.DisplayFor(m => item.DriverName)</td>
                                             <td>@Html.DisplayFor(m => item.InvoiceAmount)</td>
+                                            <td>
+                                                @if(item.IsCancel)
+                                                {
+                                                <span class="label label-danger">Cancelled</span>
+                                                }
+                                                else
+                                                {
+                                                <span class="label label-success">Confirmed</span>
+                                                }
+                                            </td>
                                         </tr>
                                     }
                                 </tbody>
