@@ -162,9 +162,6 @@
                         </div>
                     </div>
                 </div>
-
-
-
             </div>
         </section>
         <section id="side_tab4" class="item" data-title="Tab 3">
@@ -172,17 +169,30 @@
                 <div class="box-body">
                     <div class="row">
                         <div class="col-md-12">
-                            <table id="Accordian_DriverCommision" class="table table-hover table-bordered">
-                                <thead>
-                                    <tr>
-                                        <th>Date Time</th>
-                                        <th>Driver Name</th>
-                                        <th>Vehicle No.</th>
-                                        <th>Booking No.</th>                                        
-                                    </tr>
-                                </thead>
-                            </table>
-                        </div>
+                            <div class="table-responsive">
+                                <table id="Accordian_CancellationCharges" class="table table-hover table-bordered">
+                                    <thead>
+                                        <tr>
+                                            <th>Date Time</th>
+                                            <th>Driver Name</th>
+                                            <th>Vehicle No.</th>
+                                            <th>Booking No.</th>
+                                        </tr>
+                                    </thead>
+                                    @*<tbody>
+                    @foreach (var item in Model.driverCommissiondetails)
+                    {
+                        <tr>
+                            <td>@Html.DisplayFor(i => item.InvoiceNo)</td>
+                            <td>@Html.DisplayFor(i => item.DriverName)</td>
+                            <td>@Html.DisplayFor(i => item.VehicleNo)</td>
+                            <td>@Html.DisplayFor(i => item.TripId)</td>
+                        </tr>
+                    }
+                </tbody>*@
+                                </table>
+                                </div>
+                            </div>
                     </div>
                 </div>
             </div>
@@ -238,6 +248,7 @@
             $('#Accordian_customerDetails').dataTable();
             $('#Accordian_pickcCommision').dataTable();
             $('#Accordian_DriverCommision').dataTable();
+            $('#Accordian_CancellationCharges').dataTable();
             
         });
 
