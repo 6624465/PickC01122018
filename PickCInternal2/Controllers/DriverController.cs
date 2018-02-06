@@ -44,9 +44,12 @@ namespace PickC.Internal2.Controllers
             return View(driverVm);
 		}
 		[HttpGet]
-		public async Task<ActionResult> Edit(string driverID,string OperatorId)
+		public async Task<ActionResult> Edit(string driverID,string OperatorID)
 		{
-            TempData["operatorIdEdit"] = OperatorId;
+            TempData["operatorIdEdit"] = OperatorID;
+            ViewBag.OperatorId = OperatorID;
+            //TempData.Keep("operatorIdEdit");
+
             var driverVm = await GetDriverInfo(driverID);
             if (Request.IsAjaxRequest())
 			{
@@ -58,6 +61,7 @@ namespace PickC.Internal2.Controllers
 
         private async Task<DriverVm> GetDriverInfo(string DriverID)
         {
+            
             Task<DriverMdl> taskDriver = new DriverService(AUTHTOKEN, p_mobileNo).DriverByIDInfoAsync(DriverID);
             Task<DriverLookupDTO> taskDriverLookupDTO = new DriverService(AUTHTOKEN, p_mobileNo).LookUpDataAsync();
 
@@ -158,15 +162,16 @@ namespace PickC.Internal2.Controllers
 			var result = await new DriverService(AUTHTOKEN, p_mobileNo).SaveDriverAsync(driver);
 
 
-            var operatorId = TempData["operatorId"].ToString();
-            //TempData["operatorId"];
-            var editOperatorid = TempData["operatorIdEdit"].ToString();
-            var op = (operatorId != "" ? operatorId : editOperatorid != "" ? editOperatorid : "");
+            var operatorId = TempData["operatorId"];
+            TempData.Remove("operatorId");
+            var editOperatorid = TempData["operatorIdEdit"];
+            TempData.Remove("operatorIdEdit");
+            var op = (operatorId != null ? operatorId : editOperatorid != null ? editOperatorid : "");
 
 
             RouteValueDictionary routeValueDictionary = new System.Web.Routing.RouteValueDictionary();
             routeValueDictionary.Add("operatorID", op);
-            if (!string.IsNullOrWhiteSpace(op))
+            if (!string.IsNullOrWhiteSpace(op.ToString()))
             {
                 return RedirectToAction("Edit", "Operator", routeValueDictionary);
             }

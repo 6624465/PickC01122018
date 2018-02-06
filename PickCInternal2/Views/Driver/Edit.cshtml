@@ -793,7 +793,7 @@
                     },
                     'driver.MobileNo': {
                         required: true,
-                        minlength:10
+                        minlength: 10
                     },
 
                     'driver.PANNo': {
@@ -818,7 +818,7 @@
                         required: true
                     },
                     'driver.DeviceRemarks': {
-                        required:true
+                        required: true
                     }
 
                 }
@@ -864,18 +864,18 @@
         }
 
 
-        function onCancel(){
+        function onCancel() {
             debugger
 
-           var editOp = '@TempData["operatorIdEdit"]';
+            var editOp = '@ViewBag.OperatorId';
 
-           // var op = (addOp != null ? addOp : editOp != null ? editOp : "");
+            // var op = (addOp != null ? addOp : editOp != null ? editOp : "");
             if (editOp != null && editOp != '') {
-            location.href = "/Operator/Edit?operatorID=" + editOp;
-                }
-                else {
-            location.href = "Driver/Driver";
-                }
+                location.href = "/Operator/Edit?operatorID=" + editOp;
+            }
+            else {
+                location.href = "Driver/Driver";
+            }
         }
 
     </script>
