@@ -116,6 +116,12 @@ namespace Master.Contract
 		public string MobileNo { get; set; }
 		public string VehicleNo { get; set; }
 		public bool Status { get; set; }
+        public float Latitude { get; set; }
+        public float Longitude { get; set; }
+        public float CurrentLat { get; set; }
+        public float CurrentLong { get; set; }
+        public float LogOutLat { get; set; }
+        public float LogOutLong { get; set; }
 		//public string Status { get; set; }
 
 	}

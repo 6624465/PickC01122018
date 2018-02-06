@@ -44,7 +44,7 @@
 											<li id="@item.DriverId" class="drvrList" data-id="@item.DriverId" data-status="@item.Status">
 												<img src="~/images/icon.png" class="img-circle" alt="driver" height="20" style="float:left;" />
 												<div style="float:left;padding-left:10px;">
-													<span style="display:block"> @item.DriverName</span>
+													<span style="display:block"> @item.DriverName - @item.DriverId</span>
 													<span style="display:block"> @item.VehicleNo </span>
 													<span style="display:block">@item.MobileNo</span>
 												</div>
@@ -251,14 +251,19 @@
             });
         }
         */
-        // google.maps.event.addDomListener(window, 'load', initialize);
+        google.maps.event.addDomListener(window, 'load', initialize);
         map = new google.maps.Map(document.getElementById('map'), mapOptions)
 
         $(function () {
-            Looping();
+            //Looping();
+            @if(ViewBag.Status != null && ViewBag.Status != "")
+            {
+                <text>$('#ddlSearchByStatus').val('@ViewBag.Status')</text>
+            }
 
             $('#ddlSearchByStatus').on("change", function () {
-                $.ajax({
+                location.href = '@Url.Content("~/Dashboard/GetDriversList?status=")' + $('#ddlSearchByStatus').val();
+                @*$.ajax({
                     url: '@Url.Content("~/Dashboard/GetDriverBySearch")',
                     method: 'POST',
                     contentType: 'application/json',
@@ -295,7 +300,7 @@
                     failure: function (fail) {
 
                     }
-                });
+                });*@
             });
         });
 

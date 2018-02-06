@@ -58,17 +58,39 @@ namespace PickC.Internal2.Controllers
 			return tripMonitorData;
 		}
 
-		public async Task<ActionResult> GetDriversList()
+		public async Task<ActionResult> GetDriversList(string status = "ALL")
 		{
-			var status = "ALL";
-			var driverList = await new DriverService(AUTHTOKEN, p_mobileNo).GetDriverBySearch(status);
-			var tripMonitor = await GetTripMonitorData();
+            //var status = "ALL";
+            ViewBag.Status = status;
 
-			var driverMonitorVm = new DriverMonitorVm()
+            var driverList = await new DriverService(AUTHTOKEN, p_mobileNo).GetDriverBySearch(status);
+			//var tripMonitor = await GetTripMonitorData();
+
+            var tripMonitorData = new List<TripMonitorVm>();
+            if (driverList != null)
+            {
+                for (var i = 0; i < driverList.Count; i++)
+                {
+                    if (driverList[i].CurrentLat != 0 && driverList[i].CurrentLong != 0)
+                    {
+                        var tripMonitor = new TripMonitorVm();
+                        tripMonitor.address = new ViewModals.Address
+                        {
+                            address = "",
+                            lat = driverList[i].CurrentLat.ToString(),
+                            lng = driverList[i].CurrentLong.ToString(),
+                        };
+                        tripMonitor.title = driverList[i].DriverId;
+                        tripMonitorData.Add(tripMonitor);
+                    }
+                }
+            }
+
+            var driverMonitorVm = new DriverMonitorVm()
 			{
 				driverList = driverList,
-				tripMonitorVmList = tripMonitor
-			};
+				tripMonitorVmList = tripMonitorData
+            };
 
 			return View(driverMonitorVm);
 			//return View();
