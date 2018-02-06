@@ -218,12 +218,12 @@
             $('#todate').data("DateTimePicker").minDate(e.date);
         });
        
-        $('#frmBookingHistory').validate({
+        $('#frmPaymentHistory').validate({
             rules: {
-                'paymentsearch.datefrom': {
+                'paymentsearch.DateFrom': {
                     required: true
                 },
-                'paymentsearch.dateto': {
+                'paymentsearch.DateTo': {
                     required: true
                 }
             }

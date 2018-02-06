@@ -117,6 +117,17 @@
         $("#FromDate").on("dp.change", function (e) {
             $('#ToDate').data("DateTimePicker").minDate(e.date);
         });
+        $('#frmRegistereduser').validate({
+            rules: {
+                'DateFrom': {
+                    required: true
+                },
+                'DateTo': {
+                    required: true
+                }
+            }
+        });
+
         $('#FromDate').on('click', function () {
             $('#ToDate').data("DateTimePicker").clear();
         });
