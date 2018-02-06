@@ -68,7 +68,7 @@ namespace PickC.Internal2.Controllers
                 driverLookupDTO = await taskDriverLookupDTO,
                 driver = await taskDriver
             };
-            ViewData["EditOperator"] = driverVm.driver.OperatorId;
+            //ViewData["EditOperator"] = driverVm.driver.OperatorId;
             return driverVm;
         }
 
@@ -155,12 +155,13 @@ namespace PickC.Internal2.Controllers
 					driver.driverAttachment.Add(attachment);
 				}
 			}
-			var result = await new DriverService(AUTHTOKEN, p_mobileNo).SaveDriverAsync(driver); 
+			var result = await new DriverService(AUTHTOKEN, p_mobileNo).SaveDriverAsync(driver);
 
 
-            var operatorId = TempData["operatorId"] as string;
-            var editOperatorid = TempData["operatorIdEdit"] as string;
-            var op = (operatorId != null ? operatorId : editOperatorid != null ? editOperatorid : "");
+            var operatorId = TempData["operatorId"].ToString();
+            //TempData["operatorId"];
+            var editOperatorid = TempData["operatorIdEdit"].ToString();
+            var op = (operatorId != "" ? operatorId : editOperatorid != "" ? editOperatorid : "");
 
 
             RouteValueDictionary routeValueDictionary = new System.Web.Routing.RouteValueDictionary();
