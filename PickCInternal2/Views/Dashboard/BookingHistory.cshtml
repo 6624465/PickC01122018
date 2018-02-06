@@ -101,7 +101,14 @@
                                     {
                                         <tr>
                                             <td>
+                                                @if (item.IsCancel)
+                                                {
+                                                    @Html.DisplayFor(m => item.BookingNo)
+                                                }
+                                                else
+                                                {
                                                 <a class="hand" onclick="DisplayInvoice('@item.BookingNo')">@item.BookingNo</a>
+                                                }
                                             </td>
                                             <td>@Html.DisplayFor(m => item.BookingDate)</td>
                                             <td>@Html.DisplayFor(m => item.CustomerName)</td>
