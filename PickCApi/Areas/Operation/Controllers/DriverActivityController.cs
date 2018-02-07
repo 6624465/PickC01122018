@@ -111,10 +111,10 @@ namespace PickCApi.Areas.Operation.Controllers
             try
             {
                 bool result = false;
-                var bookingList = new BookingBO().GetList();
-                if (bookingList != null)
+                var bookingObj = new BookingBO().GetBooking(new Booking { BookingNo = BookingNo });
+                if (bookingObj != null)
                 {
-                    result = bookingList.Where(x => x.BookingNo == BookingNo && x.OTP == OTP).ToList().Count() > 0;
+                    result = bookingObj.OTP == OTP;
                     if (result == true)
                         return Ok(new { Status = UTILITY.SUCCESSMESSAGE });
                     else
