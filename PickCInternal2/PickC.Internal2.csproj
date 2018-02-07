@@ -223,6 +223,7 @@
     <Content Include="Global.asax" />
     <Content Include="images\driver.png" />
     <Content Include="images\driver2.png" />
+    <Content Include="images\favicon.png" />
     <Content Include="images\gooleicon.jpg" />
     <Content Include="images\icon.png" />
     <Content Include="images\pickc-logo.png" />
