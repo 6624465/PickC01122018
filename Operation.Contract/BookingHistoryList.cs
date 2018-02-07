@@ -90,5 +90,7 @@ namespace Operation.Contract
         public int PaymentType { get; set; }        
 
         public int DriverRating { get; set; }
+
+        public bool IsPaid { get; set; }
     }
 }
