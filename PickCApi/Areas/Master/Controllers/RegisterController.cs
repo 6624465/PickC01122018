@@ -416,7 +416,8 @@ namespace PickCApi.Areas.Master.Controllers
                         Latitude = driverActivity.CurrentLat,
                         Longitude = driverActivity.CurrentLong,
                         OTP = booking.OTP,
-                        VehicleType = booking.VehicleType
+                        VehicleType = booking.VehicleType,
+                        VehicleCategory = booking.VehicleGroup
                     });
                 else
                     return Ok(new
@@ -430,7 +431,8 @@ namespace PickCApi.Areas.Master.Controllers
                         Latitude = 0,
                         Longitude = 0,
                         OTP = "",
-                        VehicleType = 0
+                        VehicleType = 0,
+                        VehicleCategory = 0
                     });
             }
             catch (Exception ex)
@@ -446,7 +448,8 @@ namespace PickCApi.Areas.Master.Controllers
                     Latitude = 0,
                     Longitude = 0,
                     OTP = "",
-                    VehicleType = 0
+                    VehicleType = 0,
+                    VehicleCategory = 0
                 });
             }
         }
