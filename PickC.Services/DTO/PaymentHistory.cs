@@ -28,6 +28,7 @@ namespace PickC.Services.DTO
         public string VehicleNo { get; set; }
         public string TripId { get; set; }
         public decimal DriverCommission { get; set; }
+        public DateTime InvoiceDate { get; set; }
 
     }
     public class pickCCommissionDetails

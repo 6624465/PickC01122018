@@ -78,7 +78,7 @@ namespace PickCApi.Areas.Master.Controllers
             }
             catch (Exception ex)
             {
-                return Ok(new { Token = "", Status = UTILITY.FAIL });
+                return InternalServerError(ex);
             }
         }
         [HttpGet]
@@ -101,7 +101,7 @@ namespace PickCApi.Areas.Master.Controllers
             }
             catch (Exception ex)
             {
-                return Ok(result);
+                return InternalServerError(ex);
             }
         }
         [HttpPost]
@@ -127,7 +127,7 @@ namespace PickCApi.Areas.Master.Controllers
             }
             catch (Exception ex)
             {
-                return Ok(UTILITY.FAIL);
+                return InternalServerError(ex);
             }
         }
         [HttpGet]
@@ -135,17 +135,22 @@ namespace PickCApi.Areas.Master.Controllers
         //[ApiAuthFilter]
         public IHttpActionResult VerifyOTP(string mobile, string otp)
         {
-            var customer = new CustomerBO().GetCustomer(new Customer { MobileNo = mobile });
-            if (customer.OTP == otp)
+            try {
+                var customer = new CustomerBO().GetCustomer(new Customer { MobileNo = mobile });
+                if (customer.OTP == otp)
+                {
+                    customer.IsOTPVerified = true;
+                    customer.OTPVerifiedDate = DateTime.UtcNow;
+                    new CustomerBO().SaveCustomer(customer);
+                    return Ok(UTILITY.SUCCESS);
+                }
+                else
+                {
+                    return Ok(UTILITY.FAIL);
+                }
+            }catch(Exception ex)
             {
-                customer.IsOTPVerified = true;
-                customer.OTPVerifiedDate = DateTime.UtcNow;
-                new CustomerBO().SaveCustomer(customer);
-                return Ok(UTILITY.SUCCESS);
-            }
-            else
-            {
-                return Ok(UTILITY.FAIL);
+                return InternalServerError(ex);
             }
         }
         [HttpGet]
@@ -169,7 +174,7 @@ namespace PickCApi.Areas.Master.Controllers
             }
             catch (Exception ex)
             {
-                return Ok(new { MobileNo = "", Name = "", EmailID = "", Status = UTILITY.FAIL });
+                return InternalServerError(ex);
             }
         }
         [HttpPost]
@@ -198,7 +203,7 @@ namespace PickCApi.Areas.Master.Controllers
             }
             catch (Exception ex)
             {
-                return Ok(UTILITY.FAIL);
+                return InternalServerError(ex);
             }
         }
 
@@ -215,7 +220,7 @@ namespace PickCApi.Areas.Master.Controllers
             }
             catch (Exception ex)
             {
-                return Ok(result);
+                return InternalServerError(ex);
             }
         }
 
@@ -223,16 +228,22 @@ namespace PickCApi.Areas.Master.Controllers
         [Route("forgotPassword/{mobile}")]
         public IHttpActionResult Forgotpassword(string mobile)
         {
-            var customer = new CustomerBO().GetCustomer(new Customer { MobileNo = mobile });
-            if (customer != null)
-            {
-                customer.OTP = GenerateOTP();
-                new CustomerBO().SaveCustomer(customer);
-                SendOTP(customer.MobileNo, customer.OTP);
-                return Ok(UTILITY.SUCCESS);
+            try {
+                var customer = new CustomerBO().GetCustomer(new Customer { MobileNo = mobile });
+                if (customer != null)
+                {
+                    customer.OTP = GenerateOTP();
+                    new CustomerBO().SaveCustomer(customer);
+                    SendOTP(customer.MobileNo, customer.OTP);
+                    return Ok(UTILITY.SUCCESS);
+                }
+                else
+                    return Ok(UTILITY.FAIL);
             }
-            else
-                return Ok(UTILITY.FAIL);
+            catch(Exception ex)
+            {
+                return InternalServerError(ex);
+            }
 
         }
         [HttpPost]
@@ -240,16 +251,21 @@ namespace PickCApi.Areas.Master.Controllers
 
         public IHttpActionResult Forgotpassword(ForgotPasswordDTO forgot)
         {
-            var customer = new CustomerBO().GetCustomer(new Customer { MobileNo = forgot.MobileNo });
-            if (customer != null && customer.OTP == forgot.OTP)
-            {
-                customer.Password = forgot.NewPassword;
-                new CustomerBO().SaveCustomer(customer);
+            try {
+                var customer = new CustomerBO().GetCustomer(new Customer { MobileNo = forgot.MobileNo });
+                if (customer != null && customer.OTP == forgot.OTP)
+                {
+                    customer.Password = forgot.NewPassword;
+                    new CustomerBO().SaveCustomer(customer);
 
-                return Ok(UTILITY.SUCCESS);
+                    return Ok(UTILITY.SUCCESS);
+                }
+                else
+                    return Ok(UTILITY.FAIL);
+            }catch(Exception ex)
+            {
+                return InternalServerError(ex);
             }
-            else
-                return Ok(UTILITY.FAIL);
         }
         [HttpGet]
         [Route("bookingHistoryListbyCustomerMobileNo/{mobileNo}")]
@@ -266,7 +282,7 @@ namespace PickCApi.Areas.Master.Controllers
             }
             catch (Exception ex)
             {
-                return Ok(new List<BookingHistoryList>());
+                return InternalServerError(ex);
             }
         }
         [HttpGet]
@@ -289,7 +305,7 @@ namespace PickCApi.Areas.Master.Controllers
             }
             catch (Exception ex)
             {
-                return Ok(UTILITY.FAIL);
+                return InternalServerError(ex);
             }
         }
         [HttpPost]
@@ -311,7 +327,7 @@ namespace PickCApi.Areas.Master.Controllers
             }
             catch (Exception ex)
             {
-                return Ok(new List<NearTrucksInRange>());
+                return InternalServerError(ex);
             }
         }
         [HttpGet]
@@ -330,11 +346,7 @@ namespace PickCApi.Areas.Master.Controllers
             }
             catch (Exception ex)
             {
-                return Ok(new
-                {
-                    IsInTrip = false,
-                    BookingNo = ""
-                });
+                return InternalServerError(ex);
             }
         }
         [HttpPost]
@@ -435,19 +447,7 @@ namespace PickCApi.Areas.Master.Controllers
             }
             catch (Exception ex)
             {
-                return Ok(new
-                {
-                    IsConfirm = false,
-                    DriverId = "",
-                    VehicleNo = "",
-                    DriverName = "",
-                    DriverImage = "",
-                    MobileNo = "",
-                    Latitude = 0,
-                    Longitude = 0,
-                    OTP = "",
-                    VehicleType = 0
-                });
+                return InternalServerError(ex);
             }
         }
 
@@ -489,7 +489,7 @@ namespace PickCApi.Areas.Master.Controllers
             }
             catch (Exception ex)
             {
-                return Ok(new List<TripEstimateForCustomer>());
+                return InternalServerError(ex);
             }
         }
         [HttpGet]
@@ -535,11 +535,16 @@ namespace PickCApi.Areas.Master.Controllers
         [ApiAuthFilter]
         public IHttpActionResult GetDriverRatingDetails(string DriverID)
         {
-            var driverRating = new DriverBO().GetDriverRating(new DriverRating { DriverId = DriverID });
-            if (driverRating != null)
-                return Ok(driverRating);
-            else
-                return Ok(new DriverRating());
+            try {
+                var driverRating = new DriverBO().GetDriverRating(new DriverRating { DriverId = DriverID });
+                if (driverRating != null)
+                    return Ok(driverRating);
+                else
+                    return Ok(new DriverRating());
+            }catch(Exception ex)
+            {
+                return InternalServerError(ex);
+            }
         }
         [HttpPost]
         [Route("cancelBooking")]
@@ -566,7 +571,7 @@ namespace PickCApi.Areas.Master.Controllers
             }
             catch (Exception ex)
             {
-                return Ok(result);
+                return InternalServerError(ex);
             }
         }
         [HttpGet]
@@ -596,11 +601,7 @@ namespace PickCApi.Areas.Master.Controllers
             }
             catch (Exception ex)
             {
-                return Ok(new
-                {
-                    CurrentLat = 0.0,
-                    CurrentLong = 0.0
-                });
+                return InternalServerError(ex);
             }
         }
         [HttpGet]
@@ -608,16 +609,21 @@ namespace PickCApi.Areas.Master.Controllers
         [ApiAuthFilter]
         public IHttpActionResult CustomerPaymentProcessed(string BookingNo, string Driverid)
         {
-            var driver = new DriverBO().GetDriver(new Driver { DriverId = Driverid });
-            if (driver != null)
+            try {
+                var driver = new DriverBO().GetDriver(new Driver { DriverId = Driverid });
+                if (driver != null)
+                {
+                    PushNotification(driver.DeviceId,
+                                BookingNo, UTILITY.NotifyPaymentDriver);
+                    return Ok(UTILITY.SUCCESS);
+                }
+                else
+                {
+                    return Ok(UTILITY.FAIL);
+                }
+            }catch(Exception ex)
             {
-                PushNotification(driver.DeviceId,
-                            BookingNo, UTILITY.NotifyPaymentDriver);
-                return Ok(UTILITY.SUCCESS);
-            }
-            else
-            {
-                return Ok(UTILITY.FAIL);
+                return InternalServerError(ex);
             }
         }
         [HttpGet]
@@ -625,13 +631,19 @@ namespace PickCApi.Areas.Master.Controllers
         [ApiAuthFilter]
         public IHttpActionResult CustomerPaymentDetails(string bookingNo)
         {
-            var customer = new CustomerBO().GetCustomerPaymentDetails(bookingNo);
-            if (customer != null)
-            {
-                return Ok(customer);
+            try {
+                var customer = new CustomerBO().GetCustomerPaymentDetails(bookingNo);
+                if (customer != null)
+                {
+                    return Ok(customer);
+                }
+                else
+                    return Ok(new List<CustomerBillDetails>());
             }
-            else
-                return Ok(new List<CustomerBillDetails>());
+            catch(Exception ex)
+            {
+                return InternalServerError(ex);
+            }
         }
         [HttpGet]
         [Route("tripInvoice/{bookingNo}")]
@@ -648,7 +660,7 @@ namespace PickCApi.Areas.Master.Controllers
             }
             catch (Exception ex)
             {
-                return Ok(new TripInvoice());
+                return InternalServerError(ex);
             }
         }
         [HttpGet]
@@ -711,7 +723,7 @@ namespace PickCApi.Areas.Master.Controllers
             }
             catch (Exception ex)
             {
-                return Ok(UTILITY.FAIL);
+                return InternalServerError(ex);
             }
         }
         [HttpPost]
@@ -743,9 +755,9 @@ namespace PickCApi.Areas.Master.Controllers
                     return Ok(result);
 
             }
-            catch (Exception exception)
+            catch (Exception ex)
             {
-                return Ok(UTILITY.FAIL);
+                return InternalServerError(ex);
             }
         }
 
@@ -754,13 +766,18 @@ namespace PickCApi.Areas.Master.Controllers
         [ApiAuthFilter]
         public IHttpActionResult DriverRatingDetails(DriverRating driverRating)
         {
-            var DriverRating = new DriverBO().SaveDriverRating(driverRating);
-            if (DriverRating)
+            try {
+                var DriverRating = new DriverBO().SaveDriverRating(driverRating);
+                if (DriverRating)
+                {
+                    return Ok(UTILITY.SUCCESS);
+                }
+                else
+                    return Ok(UTILITY.FAIL);
+            }catch(Exception ex)
             {
-                return Ok(UTILITY.SUCCESS);
+                return InternalServerError(ex);
             }
-            else
-                return Ok(UTILITY.FAIL);
         }
 
         [HttpGet]
@@ -777,7 +794,7 @@ namespace PickCApi.Areas.Master.Controllers
             }
             catch (Exception ex)
             {
-                return Ok(new List<LookUp>());
+                return InternalServerError(ex);
             }
         }
 
@@ -796,7 +813,7 @@ namespace PickCApi.Areas.Master.Controllers
             }
             catch (Exception ex)
             {
-                return Ok(UTILITY.FAIL);
+                return InternalServerError(ex);
             }
         }
 
@@ -823,7 +840,7 @@ namespace PickCApi.Areas.Master.Controllers
             }
             catch (Exception ex)
             {
-                return Ok(UTILITY.FAIL);
+                return InternalServerError(ex);
             }
         }
         [HttpGet]
@@ -840,7 +857,7 @@ namespace PickCApi.Areas.Master.Controllers
             }
             catch (Exception ex)
             {
-                return Ok(new List<LookUp>());
+                return InternalServerError(ex);
             }
         }
 
@@ -860,9 +877,9 @@ namespace PickCApi.Areas.Master.Controllers
                 else
                     return Ok(new { Status = UTILITY.SUCCESS, BookingNo = "" });
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-                return Ok(new { Status = UTILITY.FAIL, BookingNo = "" });
+                return InternalServerError(ex);
             }
         }
         [HttpGet]
@@ -884,31 +901,36 @@ namespace PickCApi.Areas.Master.Controllers
             }
             catch (Exception ex)
             {
-                return Ok(new Booking());
+                return InternalServerError(ex);
             }
         }
         [HttpPost]
         [Route("getRSAKey")]
         public IHttpActionResult getRSAKey(RSAObject obj)
         {
-            var CCAVENUE_ACCESS_CODE = ConfigurationManager.AppSettings["CCAVENUE_ACCESS_CODE"];
-            if (CCAVENUE_ACCESS_CODE == obj.Access_code)
-            {
-                string vParams = "access_code=" + obj.Access_code + "&" + "order_id=" + obj.Order_id;
-                string queryUrl = "https://secure.ccavenue.com/transaction/getRSAKey";
-                var encStr = postPaymentRequestToGateway(queryUrl, vParams);
-                if (encStr != null && encStr != "")
+            try {
+                var CCAVENUE_ACCESS_CODE = ConfigurationManager.AppSettings["CCAVENUE_ACCESS_CODE"];
+                if (CCAVENUE_ACCESS_CODE == obj.Access_code)
                 {
-                    return Ok(new { RSAKey = encStr, Status = UTILITY.SUCCESS });
+                    string vParams = "access_code=" + obj.Access_code + "&" + "order_id=" + obj.Order_id;
+                    string queryUrl = "https://secure.ccavenue.com/transaction/getRSAKey";
+                    var encStr = postPaymentRequestToGateway(queryUrl, vParams);
+                    if (encStr != null && encStr != "")
+                    {
+                        return Ok(new { RSAKey = encStr, Status = UTILITY.SUCCESS });
+                    }
+                    else
+                    {
+                        return Ok(new { RSAKey = "", Status = UTILITY.FAIL });
+                    }
                 }
                 else
                 {
                     return Ok(new { RSAKey = "", Status = UTILITY.FAIL });
                 }
-            }
-            else
+            }catch(Exception ex)
             {
-                return Ok(new { RSAKey = "", Status = UTILITY.FAIL });
+                return InternalServerError(ex);
             }
         }
         #region apart from customer app
@@ -959,7 +981,7 @@ namespace PickCApi.Areas.Master.Controllers
             }
             catch (Exception ex)
             {
-                return Ok(new DriverMonitorInCustomer());
+                return InternalServerError(ex);
             }
         }
 
@@ -1108,7 +1130,7 @@ namespace PickCApi.Areas.Master.Controllers
             }
             catch (Exception ex)
             {
-                throw;
+                return InternalServerError(ex);
             }
         }
         #endregion

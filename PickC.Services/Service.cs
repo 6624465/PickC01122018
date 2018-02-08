@@ -42,7 +42,7 @@ namespace PickC.Services
         }
 
         public string ServiceResponse(IRestResponse response)
-        {
+        { 
             if (response.StatusCode == HttpStatusCode.OK)
                 return response.Content;
             else if (response.StatusCode == HttpStatusCode.Unauthorized)
