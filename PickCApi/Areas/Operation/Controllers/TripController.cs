@@ -76,7 +76,7 @@ namespace PickCApi.Areas.Operation.Controllers
 
                     new DriverActivityBO().DriverActivityUpdate(driverActivity);
 
-                    PushNotification(customerObj.DeviceId, "", UTILITY.NotifyTripStart);
+                    PushNotification(customerObj.DeviceId, trip.BookingNo, UTILITY.NotifyTripStart);
                     return Ok(new
                     {
                         tripID = trip.TripID,

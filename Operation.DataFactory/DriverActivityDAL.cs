@@ -9,6 +9,7 @@ using Microsoft.Practices.EnterpriseLibrary.Data;
 using Microsoft.Practices.EnterpriseLibrary.Data.Sql;
 using Operation.Contract;
 using Operation.DataFactory;
+using System.Data;
 
 namespace Operation.DataFactory
 {
@@ -263,17 +264,86 @@ namespace Operation.DataFactory
         //    return driverMonitorInCustomer;
         //}
 
+        public object ChangeType(object value, Type type)
+        {
+            if (value == null && type.IsGenericType) return Activator.CreateInstance(type);
+            if (value == null) return null;
+            if (type == value.GetType()) return value;
+            if (type.IsEnum)
+            {
+                if (value is string)
+                    return Enum.Parse(type, value as string);
+                else
+                    return Enum.ToObject(type, value);
+            }
+            if (!type.IsInterface && type.IsGenericType)
+            {
+                Type innerType = type.GetGenericArguments()[0];
+                object innerValue = ChangeType(value, innerType);
+                return Activator.CreateInstance(type, new object[] { innerValue });
+            }
+            if (value is string && type == typeof(Guid)) return new Guid(value as string);
+            if (value is string && type == typeof(Version)) return new Version(value as string);
+            if (!(value is IConvertible)) return value;
+            return Convert.ChangeType(value, type);
+        }
         public IContract GetItem<T>(IContract lookupItem) where T : IContract
         {
-            var item = ((DriverActivity)lookupItem);
+            //try
+            //{
+            //    var item = ((DriverActivity)lookupItem);
 
-            var driveractivityItem = db.ExecuteSprocAccessor(DBRoutine.SELECTDRIVERACTIVITY,
-                                                    MapBuilder<DriverActivity>.BuildAllProperties(),
-                                                    item.TokenNo, item.DriverId).FirstOrDefault();
+            //    //var guid = ChangeType(item.TokenNo, typeof(Guid));
+            //    //var guid = new Guid(item.TokenNo);
 
-            if (driveractivityItem == null) return null;
+            //    var driveractivityItem = db.ExecuteSprocAccessor(DBRoutine.SELECTDRIVERACTIVITY,
+            //                                            MapBuilder<DriverActivity>.BuildAllProperties(),
+            //                                            item.TokenNo,item.DriverId).FirstOrDefault();
 
-            return driveractivityItem;
+            //    if (driveractivityItem == null) return null;
+
+            //    return driveractivityItem;
+            //}
+            //catch (Exception ex)
+            //{
+
+            //    throw ex;
+            //}
+
+           /* Problem with token uniqueidentifier */
+           var item = ((DriverActivity)lookupItem);
+           string sSql = " Declare @Token nvarchar(100) = '"+ item.TokenNo  + "'; " +
+                         " Declare @DriverID nvarchar(20) = '" + item.DriverId + "';" +
+                         " SELECT [TokenNo], [DriverID],VehicleNo, [IsLogIn], [LoginDate], [LogoutDate], [IsOnDuty], [DutyOnDate], " +
+                         " [DutyOffDate], [Latitude], [Longitude],CurrentLat,CurrentLong,LogOutLat,LogOutLong " +
+                         " FROM [Operation].[DriverActivity] " +
+                         " WHERE [TokenNo] =  CAST(@Token AS UNIQUEIDENTIFIER)  " +
+                         " AND [DriverID] = @DriverID";
+            
+            DbCommand dbCmdWrapper = db.GetSqlStringCommand(sSql);
+            System.Data.DataSet driverActivity = db.ExecuteDataSet(dbCmdWrapper);
+
+            var daTbl = driverActivity.Tables[0];
+            var da = daTbl.AsEnumerable().Select(x => new DriverActivity
+            {
+                TokenNo = x["TokenNo"].ToString(),
+                DriverId = x["DriverId"].ToString(),
+                //VehicleNo
+                IsLogIn = Convert.ToBoolean(x["IsLogIn"] != DBNull.Value ? x["IsLogIn"] : 0),
+                LoginDate = Convert.ToDateTime(x["LoginDate"] != DBNull.Value ? x["LoginDate"] : DateTime.Now),
+                LogoutDate = Convert.ToDateTime(x["LogoutDate"] != DBNull.Value ? x["LogoutDate"] : DateTime.Now),
+                IsOnDuty = Convert.ToBoolean(x["IsOnDuty"] != DBNull.Value ? x["IsOnDuty"] : 0),
+                DutyOnDate = Convert.ToDateTime(x["DutyOnDate"] != DBNull.Value ? x["DutyOnDate"] : DateTime.Now),
+                DutyOffDate = Convert.ToDateTime(x["DutyOffDate"] != DBNull.Value ? x["DutyOffDate"] : DateTime.Now),
+                Latitude = Convert.ToDecimal(x["Latitude"] != DBNull.Value ? x["Latitude"] : 0),
+                Longitude = Convert.ToDecimal(x["Longitude"] != DBNull.Value? x["Longitude"] : 0),
+                CurrentLat = Convert.ToDecimal(x["CurrentLat"] != DBNull.Value ? x["CurrentLat"] : 0),
+                CurrentLong = Convert.ToDecimal(x["CurrentLong"] != DBNull.Value ? x["CurrentLong"] : 0),
+                LogOutLat = Convert.ToDecimal(x["LogOutLat"] != DBNull.Value ? x["LogOutLat"] : 0),
+                LogOutLong = Convert.ToDecimal(x["LogOutLong"] != DBNull.Value ? x["LogOutLong"] : 0),
+            }).FirstOrDefault();
+            
+            return da;
         }
 
         public IContract GetDriverActivityByDriverID<T>(IContract lookupItem) where T : IContract
