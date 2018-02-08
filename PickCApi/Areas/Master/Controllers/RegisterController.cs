@@ -136,22 +136,22 @@ namespace PickCApi.Areas.Master.Controllers
         public IHttpActionResult VerifyOTP(string mobile, string otp)
         {
             try {
-                var customer = new CustomerBO().GetCustomer(new Customer { MobileNo = mobile });
-                if (customer.OTP == otp)
-                {
-                    customer.IsOTPVerified = true;
-                    customer.OTPVerifiedDate = DateTime.UtcNow;
-                    new CustomerBO().SaveCustomer(customer);
-                    return Ok(UTILITY.SUCCESS);
-                }
-                else
-                {
-                    return Ok(UTILITY.FAIL);
-                }
+            var customer = new CustomerBO().GetCustomer(new Customer { MobileNo = mobile });
+            if (customer.OTP == otp)
+            {
+                customer.IsOTPVerified = true;
+                customer.OTPVerifiedDate = DateTime.UtcNow;
+                new CustomerBO().SaveCustomer(customer);
+                return Ok(UTILITY.SUCCESS);
+            }
+            else
+            {
+                return Ok(UTILITY.FAIL);
+            }
             }catch(Exception ex)
             {
                 return InternalServerError(ex);
-            }
+        }
         }
         [HttpGet]
         [Route("{mobile}")]
@@ -229,16 +229,16 @@ namespace PickCApi.Areas.Master.Controllers
         public IHttpActionResult Forgotpassword(string mobile)
         {
             try {
-                var customer = new CustomerBO().GetCustomer(new Customer { MobileNo = mobile });
-                if (customer != null)
-                {
-                    customer.OTP = GenerateOTP();
-                    new CustomerBO().SaveCustomer(customer);
-                    SendOTP(customer.MobileNo, customer.OTP);
-                    return Ok(UTILITY.SUCCESS);
-                }
-                else
-                    return Ok(UTILITY.FAIL);
+            var customer = new CustomerBO().GetCustomer(new Customer { MobileNo = mobile });
+            if (customer != null)
+            {
+                customer.OTP = GenerateOTP();
+                new CustomerBO().SaveCustomer(customer);
+                SendOTP(customer.MobileNo, customer.OTP);
+                return Ok(UTILITY.SUCCESS);
+            }
+            else
+                return Ok(UTILITY.FAIL);
             }
             catch(Exception ex)
             {
@@ -252,20 +252,20 @@ namespace PickCApi.Areas.Master.Controllers
         public IHttpActionResult Forgotpassword(ForgotPasswordDTO forgot)
         {
             try {
-                var customer = new CustomerBO().GetCustomer(new Customer { MobileNo = forgot.MobileNo });
-                if (customer != null && customer.OTP == forgot.OTP)
-                {
-                    customer.Password = forgot.NewPassword;
-                    new CustomerBO().SaveCustomer(customer);
+            var customer = new CustomerBO().GetCustomer(new Customer { MobileNo = forgot.MobileNo });
+            if (customer != null && customer.OTP == forgot.OTP)
+            {
+                customer.Password = forgot.NewPassword;
+                new CustomerBO().SaveCustomer(customer);
 
-                    return Ok(UTILITY.SUCCESS);
-                }
-                else
-                    return Ok(UTILITY.FAIL);
+                return Ok(UTILITY.SUCCESS);
+            }
+            else
+                return Ok(UTILITY.FAIL);
             }catch(Exception ex)
             {
                 return InternalServerError(ex);
-            }
+        }
         }
         [HttpGet]
         [Route("bookingHistoryListbyCustomerMobileNo/{mobileNo}")]
@@ -428,7 +428,8 @@ namespace PickCApi.Areas.Master.Controllers
                         Latitude = driverActivity.CurrentLat,
                         Longitude = driverActivity.CurrentLong,
                         OTP = booking.OTP,
-                        VehicleType = booking.VehicleType
+                        VehicleType = booking.VehicleType,
+                        VehicleCategory = booking.VehicleGroup
                     });
                 else
                     return Ok(new
@@ -442,7 +443,8 @@ namespace PickCApi.Areas.Master.Controllers
                         Latitude = 0,
                         Longitude = 0,
                         OTP = "",
-                        VehicleType = 0
+                        VehicleType = 0,
+                        VehicleCategory = 0
                     });
             }
             catch (Exception ex)
@@ -536,11 +538,11 @@ namespace PickCApi.Areas.Master.Controllers
         public IHttpActionResult GetDriverRatingDetails(string DriverID)
         {
             try {
-                var driverRating = new DriverBO().GetDriverRating(new DriverRating { DriverId = DriverID });
-                if (driverRating != null)
-                    return Ok(driverRating);
-                else
-                    return Ok(new DriverRating());
+            var driverRating = new DriverBO().GetDriverRating(new DriverRating { DriverId = DriverID });
+            if (driverRating != null)
+                return Ok(driverRating);
+            else
+                return Ok(new DriverRating());
             }catch(Exception ex)
             {
                 return InternalServerError(ex);
@@ -610,17 +612,17 @@ namespace PickCApi.Areas.Master.Controllers
         public IHttpActionResult CustomerPaymentProcessed(string BookingNo, string Driverid)
         {
             try {
-                var driver = new DriverBO().GetDriver(new Driver { DriverId = Driverid });
-                if (driver != null)
-                {
-                    PushNotification(driver.DeviceId,
-                                BookingNo, UTILITY.NotifyPaymentDriver);
-                    return Ok(UTILITY.SUCCESS);
-                }
-                else
-                {
-                    return Ok(UTILITY.FAIL);
-                }
+            var driver = new DriverBO().GetDriver(new Driver { DriverId = Driverid });
+            if (driver != null)
+            {
+                PushNotification(driver.DeviceId,
+                            BookingNo, UTILITY.NotifyPaymentDriver);
+                return Ok(UTILITY.SUCCESS);
+            }
+            else
+            {
+                return Ok(UTILITY.FAIL);
+            }
             }catch(Exception ex)
             {
                 return InternalServerError(ex);
@@ -632,14 +634,14 @@ namespace PickCApi.Areas.Master.Controllers
         public IHttpActionResult CustomerPaymentDetails(string bookingNo)
         {
             try {
-                var customer = new CustomerBO().GetCustomerPaymentDetails(bookingNo);
-                if (customer != null)
-                {
-                    return Ok(customer);
-                }
-                else
-                    return Ok(new List<CustomerBillDetails>());
+            var customer = new CustomerBO().GetCustomerPaymentDetails(bookingNo);
+            if (customer != null)
+            {
+                return Ok(customer);
             }
+            else
+                return Ok(new List<CustomerBillDetails>());
+        }
             catch(Exception ex)
             {
                 return InternalServerError(ex);
@@ -767,13 +769,13 @@ namespace PickCApi.Areas.Master.Controllers
         public IHttpActionResult DriverRatingDetails(DriverRating driverRating)
         {
             try {
-                var DriverRating = new DriverBO().SaveDriverRating(driverRating);
-                if (DriverRating)
-                {
-                    return Ok(UTILITY.SUCCESS);
-                }
-                else
-                    return Ok(UTILITY.FAIL);
+            var DriverRating = new DriverBO().SaveDriverRating(driverRating);
+            if (DriverRating)
+            {
+                return Ok(UTILITY.SUCCESS);
+            }
+            else
+                return Ok(UTILITY.FAIL);
             }catch(Exception ex)
             {
                 return InternalServerError(ex);
@@ -909,25 +911,25 @@ namespace PickCApi.Areas.Master.Controllers
         public IHttpActionResult getRSAKey(RSAObject obj)
         {
             try {
-                var CCAVENUE_ACCESS_CODE = ConfigurationManager.AppSettings["CCAVENUE_ACCESS_CODE"];
-                if (CCAVENUE_ACCESS_CODE == obj.Access_code)
+            var CCAVENUE_ACCESS_CODE = ConfigurationManager.AppSettings["CCAVENUE_ACCESS_CODE"];
+            if (CCAVENUE_ACCESS_CODE == obj.Access_code)
+            {
+                string vParams = "access_code=" + obj.Access_code + "&" + "order_id=" + obj.Order_id;
+                string queryUrl = "https://secure.ccavenue.com/transaction/getRSAKey";
+                var encStr = postPaymentRequestToGateway(queryUrl, vParams);
+                if (encStr != null && encStr != "")
                 {
-                    string vParams = "access_code=" + obj.Access_code + "&" + "order_id=" + obj.Order_id;
-                    string queryUrl = "https://secure.ccavenue.com/transaction/getRSAKey";
-                    var encStr = postPaymentRequestToGateway(queryUrl, vParams);
-                    if (encStr != null && encStr != "")
-                    {
-                        return Ok(new { RSAKey = encStr, Status = UTILITY.SUCCESS });
-                    }
-                    else
-                    {
-                        return Ok(new { RSAKey = "", Status = UTILITY.FAIL });
-                    }
+                    return Ok(new { RSAKey = encStr, Status = UTILITY.SUCCESS });
                 }
                 else
                 {
                     return Ok(new { RSAKey = "", Status = UTILITY.FAIL });
                 }
+            }
+            else
+            {
+                return Ok(new { RSAKey = "", Status = UTILITY.FAIL });
+            }
             }catch(Exception ex)
             {
                 return InternalServerError(ex);
