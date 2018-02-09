@@ -1134,16 +1134,16 @@ namespace PickCApi.Areas.Master.Controllers
                     var customerBookingNo = new BookingBO().CustomerAfterReachPickupTripStartPending(HeaderValueByKey("MOBILENO"));
                     if(!string.IsNullOrWhiteSpace(customerBookingNo))
                     {
-                        return Ok(new { customerBookingNo, UTILITY.DRIVERPICKUPREACHEDTRIPNOTSTARTED });
+                        return Ok(new { BookingNo = customerBookingNo, Message = UTILITY.DRIVERPICKUPREACHEDTRIPNOTSTARTED });
                     }
                     else
                     {
-                        return Ok(new { BookingNo = "", UTILITY.NOACTIONPERFOMED });
+                        return Ok(new { BookingNo = "", Message = UTILITY.NOACTIONPERFOMED });
                     }
                 }
                 else
                 {
-                    return Ok(new { bookingNo, UTILITY.DRIVERISREACHPICKUPPENDING });
+                    return Ok(new { BookingNo = bookingNo, Message = UTILITY.DRIVERISREACHPICKUPPENDING });
                 }
             }
             catch (Exception ex)
