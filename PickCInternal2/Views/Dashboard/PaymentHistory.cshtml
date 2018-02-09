@@ -140,6 +140,7 @@
                                 <thead>
                                     <tr>
                                         <th>Invoice No.</th>
+                                        <th>Invoice Date</th>
                                         <th>Driver Name</th>
                                         <th>Vehicle No.</th>
                                         <th>Trip ID</th>
@@ -151,10 +152,12 @@
                                     {
                                         <tr>
                                             <td>@Html.DisplayFor(i => item.InvoiceNo)</td>
+                                            <td>@Html.DisplayFor(i => item.InvoiceDate)</td>
                                             <td>@Html.DisplayFor(i => item.DriverName)</td>
                                             <td>@Html.DisplayFor(i => item.VehicleNo)</td>
                                             <td>@Html.DisplayFor(i => item.TripId)</td>
                                             <td>@Html.DisplayFor(i => item.DriverCommission)</td>
+
                                         </tr>
                                     }
                                 </tbody>
