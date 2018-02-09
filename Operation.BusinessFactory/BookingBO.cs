@@ -124,5 +124,9 @@ namespace Operation.BusinessFactory
         {
             return bookingDAL.CustomerIsReachPickupPending(mobileNo);
         }
+        public string CustomerAfterReachPickupTripStartPending(string mobileNo)
+        {
+            return bookingDAL.CustomerAfterReachPickupTripStartPending(mobileNo);
+        }
     }
 }
