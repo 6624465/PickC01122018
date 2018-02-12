@@ -57,9 +57,11 @@ namespace PickCApi
         public static string SUCCESSTATUS = "True";
         public static string FAILURESTATUS = "False";
         public static bool  FAIL = false;
-
         public static bool SUCCESS = true;
         public static string BOOKINGSUCCESS = "Booked Successfully";
+        public const string DRIVERISREACHPICKUPPENDING = "Driver Is Reach Pickup Pending";
+        public const string DRIVERPICKUPREACHEDTRIPNOTSTARTED = "Driver Pickup Reached  Trip Not Started";
+        public const string NOACTIONPERFOMED = "No Action Perfomed";
 
 
 

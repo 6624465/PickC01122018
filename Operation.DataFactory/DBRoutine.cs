@@ -167,6 +167,7 @@ namespace Operation.DataFactory
         public const string TOTALTRIPDETAILSDAILYBASIS = "[master].[usp_getTotalTripsDetailDailyBasis]";
         public const string PAYMENTHISTORYDAILYBASIS="[operation].[usp_paymenthistoryDailyBasis]";
         public const string GETCUSTOMERISREACHPICKUPPENDINGBOOKINGNO = "[Operation].[usp_GetCustomerIsReachPickupPendingBookingNo]";
+        public const string GETCUSTOMERAFTERREACHPICKUPTRIPSTARTPENDINGBOOKINGNO = "[Operation].[usp_GetCustomerAfterReachPickupPendingBookingNo]";
 
     }
 }

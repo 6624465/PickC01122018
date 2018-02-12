@@ -1120,6 +1120,7 @@ namespace PickCApi.Areas.Master.Controllers
             }
         }
 
+        /* only for customer */
         [HttpGet]
         [Route("isReachPickupWaiting")]
         [ApiAuthFilter]
@@ -1128,7 +1129,22 @@ namespace PickCApi.Areas.Master.Controllers
             try
             {
                 var bookingNo = new BookingBO().CustomerIsReachPickupPending(HeaderValueByKey("MOBILENO"));
-                return Ok(bookingNo != null ? bookingNo : "");
+                if(string.IsNullOrWhiteSpace(bookingNo))
+                {
+                    var customerBookingNo = new BookingBO().CustomerAfterReachPickupTripStartPending(HeaderValueByKey("MOBILENO"));
+                    if(!string.IsNullOrWhiteSpace(customerBookingNo))
+                    {
+                        return Ok(new { BookingNo = customerBookingNo, Message = UTILITY.DRIVERPICKUPREACHEDTRIPNOTSTARTED });
+                    }
+                    else
+                    {
+                        return Ok(new { BookingNo = "", Message = UTILITY.NOACTIONPERFOMED });
+                    }
+                }
+                else
+                {
+                    return Ok(new { BookingNo = bookingNo, Message = UTILITY.DRIVERISREACHPICKUPPENDING });
+                }
             }
             catch (Exception ex)
             {

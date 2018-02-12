@@ -518,6 +518,12 @@ namespace Operation.DataFactory
             var result = db.ExecuteScalar(recordcommand).ToString();
             return result;
         }
+        public string CustomerAfterReachPickupTripStartPending(string mobileNo)
+        {
+            var recordcommand = db.GetStoredProcCommand(DBRoutine.GETCUSTOMERAFTERREACHPICKUPTRIPSTARTPENDINGBOOKINGNO, mobileNo);
+            var result = db.ExecuteScalar(recordcommand).ToString();
+            return result;
+        }
         public Booking GetCustomerCurrentConfirmTrip(string mobileNo)
         {
             var tripItem = db.ExecuteSprocAccessor(DBRoutine.CUSTOMERCURRENTTRIPBEFORETRIPSTART,

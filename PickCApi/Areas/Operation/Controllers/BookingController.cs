@@ -278,7 +278,7 @@ namespace PickCApi.Areas.Operation.Controllers
 
         [HttpPost]
         [Route("cancel")]
-        public IHttpActionResult CancelBookingByDriver(BookingCancelDTO bookingCancelDTO)
+        public IHttpActionResult AfterPickupreachCancelBookingByDriver(BookingCancelDTO bookingCancelDTO)
         {
             try
             {
@@ -290,7 +290,7 @@ namespace PickCApi.Areas.Operation.Controllers
                     bookingCancelDTO.cancelRemarks,
                     bookingCancelDTO.istripstarted,
                     bookingCancelDTO.IsLoadingUnloading);
-                if (result == true)
+                if (result)
                 {
                     PushNotification(new BookingBO().GetCustomerDeviceIDByBookingNo(bookingCancelDTO.bookingNo),
                       bookingCancelDTO.bookingNo,
