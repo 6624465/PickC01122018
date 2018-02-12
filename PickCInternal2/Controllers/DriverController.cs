@@ -144,13 +144,21 @@ namespace PickC.Internal2.Controllers
 						lookupId = "1382";
 					}
 					string mapPath = Server.MapPath("~/DriverAttachments/");
-					if (!Directory.Exists(mapPath))
-					{
-						Directory.CreateDirectory(mapPath);
-					}
-					fileContent.SaveAs(mapPath + fileContent.FileName);
+                    if (!Directory.Exists(mapPath))
+                    {
+                        Directory.CreateDirectory(mapPath);
+                    }
+                    fileContent.SaveAs(mapPath + fileContent.FileName);
+                    //string path = Server.MapPath("~/PickCApi/DriverImages");
 
-					DriverAttachment attachment = new DriverAttachment()
+                    //if (!Directory.Exists(path))
+                    //{
+                    //    Directory.CreateDirectory(path);
+                    //}
+                    //fileContent.SaveAs(path + fileContent.FileName);
+
+
+                    DriverAttachment attachment = new DriverAttachment()
 					{
 						ImagePath = fileContent.FileName,
 						LookupCode = lookupId

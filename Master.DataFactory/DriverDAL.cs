@@ -161,6 +161,14 @@ namespace Master.DataFactory
                         });
                     }
 
+                    //string path = Server.MapPath("~/PickCApi/DriverImages");
+
+                    //if (!Directory.Exists(path))
+                    //{
+                    //    Directory.CreateDirectory(path);
+                    //}
+                    //fileContent.SaveAs(path + fileContent.FileName);
+
                     if (currentTransaction == null)
                         transaction.Commit();
                 }
