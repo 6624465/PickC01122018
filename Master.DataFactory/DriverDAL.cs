@@ -35,9 +35,14 @@ namespace Master.DataFactory
         {
             return db.ExecuteSprocAccessor(DBRoutine.LISTDRIVER, MapBuilder<Driver>.BuildAllProperties()).ToList();
         }
-
-		//added by Kiran///
-		public List<DriverMdl> GetDriverList()
+        public string BookingConfirmIsStartTripCheck(string DriverID)
+        {
+            var recordcommand = db.GetStoredProcCommand(DBRoutine.BOOKINGCONFIRMISSTARTTRIPCHECK, DriverID);
+            var result = db.ExecuteScalar(recordcommand).ToString();
+            return result;
+        }
+        //added by Kiran///
+        public List<DriverMdl> GetDriverList()
 		{
 			return db.ExecuteSprocAccessor(DBRoutine.GETDRIVERLIST, MapBuilder<DriverMdl>.BuildAllProperties()).ToList();
 		}
