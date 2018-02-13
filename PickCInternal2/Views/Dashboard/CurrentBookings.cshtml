@@ -91,7 +91,7 @@
 @section secscripts{
 	<script src="@Url.Content("~/Scripts/jquery.validate.js")"></script>
 	<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD7WVBL9AmhKs1QAr4x7mArA2mKZY-9nUo&v=3.exp&libraries=places&sensor=true"></script>
-	<script type="text/javascript">
+    <script type="text/javascript">
         $(document).ready(function () {
             $('#dates_fromDate,#dates_toDate').datepicker();
             $('#frmCurrentBookings').validate({
@@ -207,7 +207,7 @@
                     marker = new google.maps.Marker({
                         position: new google.maps.LatLng(locations[i].address.lat, locations[i].address.lng),
                         map: map,
-                        icon: '@Url.Content("~/images/truck.png")'
+                        icon: getVehicleImage(locations[i].VehicleType, locations[i].VehicleCategory)//Url.Content("~/images/truck.png")'
                     });
                     flightPlanCoordinates.push(marker.getPosition());
                     bounds.extend(marker.position);
@@ -261,6 +261,32 @@
             }
         }
 
+        function getVehicleImage(type, group) {
+            var imgBaseUrl = '@Url.Content("~/images/web/")';
+            if (type == 'Open')//Open
+            {
+                if (group == 'Mini')//Mini
+                    return imgBaseUrl + 'open_0_75_ton_selected.png';
+                else if (group == 'Small')//Small
+                    return imgBaseUrl + 'open_selected_1_ton.png';
+                else if (group == 'Medium')//Medium
+                    return imgBaseUrl + 'open_selected_1_5_ton.png';
+                else if (group == 'Large')//Large
+                    return imgBaseUrl + 'open_2_ton_selected.png';
+            }
+            else if (type == 'Closed')//Closed
+            {
+                if (group == 'Mini')//Mini
+                    return imgBaseUrl + 'closed_0_75_ton_selected.png';
+                else if (group == 'Small')//Small
+                    return imgBaseUrl + 'closed_selected_1_ton.png';
+                else if (group == 'Medium')//Medium
+                    return imgBaseUrl + 'closed_selected_1_5_ton.png';
+                else if (group == 'Large')//Large
+                    return imgBaseUrl + 'closed_2_ton_selected.png';
+            }
+        }
+
         /*
         function calcRoute(start, end, waypts) {
             var request = {
@@ -291,5 +317,5 @@
         google.maps.event.addDomListener(window, 'load', initialize);
         map = new google.maps.Map(document.getElementById('map'), mapOptions)
 
-	</script>
+    </script>
 }

@@ -181,7 +181,7 @@
                     marker = new google.maps.Marker({
                         position: new google.maps.LatLng(locations[i].address.lat, locations[i].address.lng),
                         map: map,
-                        //icon: '@Url.Content("~/images/truck.png")'
+                        //icon: 'Url.Content("~/images/truck.png")'
                         icon: getVehicleImage(locations[i].VehicleType, locations[i].VehicleCategory)
                     });
                     flightPlanCoordinates.push(marker.getPosition());
@@ -219,8 +219,7 @@
         }
 
 
-        function getVehicleImage(type, group) {
-            debugger;
+        function getVehicleImage(type, group) {            
             var imgBaseUrl = '@Url.Content("~/images/web/")';
             if (type == '1300')//Open
             {
@@ -417,13 +416,13 @@
 					$("#vehiclecategory").text(res.VehicleGroup);
 					$("#status").text($("#ddlSearchByStatus").val());
 					$("#bookingno").text(res.BookingNo);
-					
-					$("#fromlocation").text(res.LocationFrom);
-					$("#tolocation").text(res.LocationTo);
+                    
+                    $("#locationfrom").text(res.LocationFrom);
+                    $("#locationto").text(res.LocationTo);
 					$("#starttime").text(moment(res.StartTime).format('DD/MM/YYYY HH:mm:ss'));					
-					//debugger;
+					debugger;
 					if (res.Status === true) {
-						$("#latestlogin").text(moment(res.LoginDate).format('DD/MM/YYYY'));
+                        $("#latestlogin").text(moment(res.LoginDate).format('DD/MM/YYYY HH:mm:ss'));
 						$("#driverLogin").show();
 						$("#driverLogoff").hide();
 						$("#intrip").hide();
@@ -435,7 +434,7 @@
 						$("#driverLogoff").show();
 						$("#intrip").hide();
 					}
-					//debugger;
+					
 					 if ($("#ddlSearchByStatus").val() == "INTRIP") {
 						 $("#intrip").show();
 						 $("#driverLogin").hide();
