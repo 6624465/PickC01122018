@@ -218,12 +218,6 @@
     <Content Include="Css\jquery.dataTables.min.css" />
     <Content Include="Css\ratecard.css" />
     <Content Include="Css\_all-skins.min.css" />
-    <Content Include="DriverAttachments\boy.jpg" />
-    <Content Include="DriverAttachments\dinosaur.jpg" />
-    <Content Include="DriverAttachments\driverpan.jpg" />
-    <Content Include="DriverAttachments\flower.jpg" />
-    <Content Include="DriverAttachments\pexe.jpg" />
-    <Content Include="DriverAttachments\selena.jpg" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="images\all_selected_closed.png" />
@@ -347,16 +341,6 @@
     <Content Include="Scripts\moment-with-locales.min.js" />
     <Content Include="Scripts\moment.js" />
     <Content Include="Scripts\moment.min.js" />
-    <Content Include="VehicleAttachments\OP170600003\2321456698\othe.jpg" />
-    <Content Include="VehicleAttachments\OP170600003\AP5A327714\userappcancellation.png" />
-    <Content Include="VehicleAttachments\OP170600004\TS99HN6556\postman.txt" />
-    <Content Include="VehicleAttachments\OP180200001\APIK465645\driverpan.jpg" />
-    <Content Include="VehicleAttachments\OP180200001\APIK465645\flower.jpg" />
-    <Content Include="VehicleAttachments\OP180200001\APIK465645\othe.jpg" />
-    <Content Include="VehicleAttachments\OP180200001\SDfdf44565\boy.jpg" />
-    <Content Include="VehicleAttachments\OP180200001\SDfdf44565\dinosaur.jpg" />
-    <Content Include="VehicleAttachments\OP180200001\SDfdf44565\flower.jpg" />
-    <Content Include="VehicleAttachments\OP180200001\SDfdf44565\pexe.jpg" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>
@@ -438,7 +422,9 @@
   <ItemGroup>
     <Folder Include="App_Start\App_Data\" />
     <Folder Include="Attachments\" />
+    <Folder Include="DriverAttachments\" />
     <Folder Include="Models\" />
+    <Folder Include="VehicleAttachments\" />
     <Folder Include="Views\UsersData\" />
   </ItemGroup>
   <ItemGroup>

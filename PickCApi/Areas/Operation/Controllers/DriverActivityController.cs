@@ -129,6 +129,22 @@ namespace PickCApi.Areas.Operation.Controllers
             }
         }
         [HttpGet]
+        [Route("BookingConfirm/IsStartCheck")]
+        [ApiAuthFilter]
+        public IHttpActionResult AfterBookingConfirmIsStartTripCheck()
+        {
+            try
+            {
+                var DRIVERID = HttpContext.Current.Request.Headers["DRIVERID"];
+                var result = new DriverBO().BookingConfirmIsStartTripCheck(DRIVERID);
+                    return Ok(result);
+            }
+            catch (Exception ex)
+            {
+                return InternalServerError(ex);
+            }
+        }
+        [HttpGet]
         [Route("dutystatus/{status}/{isintrip}/{tripID}")]
         [ApiAuthFilter]
         public IHttpActionResult UpdateDriverDutyStatus(bool status, bool isintrip, string tripID)
