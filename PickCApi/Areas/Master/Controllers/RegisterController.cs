@@ -556,7 +556,7 @@ namespace PickCApi.Areas.Master.Controllers
             var result = false;
             try
             {
-                result = new BookingBO().DeleteBooking(new Booking { BookingNo = deleteBookingDTO.BookingNo });
+                result = new BookingBO().DeleteBooking(new Booking { BookingNo = deleteBookingDTO.BookingNo,Remarks=deleteBookingDTO.Remarks });
                 if (result)
                 {
                     string GetDriverDeviceIDByBookingNo = new BookingBO().GetDriverDeviceIDByBookingNo(deleteBookingDTO.BookingNo);
