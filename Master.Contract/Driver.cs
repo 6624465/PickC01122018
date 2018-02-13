@@ -122,6 +122,8 @@ namespace Master.Contract
         public float CurrentLong { get; set; }
         public float LogOutLat { get; set; }
         public float LogOutLong { get; set; }
+        public Int16 VehicleGroup { get; set; }
+        public Int16 VehicleType { get; set; }
 		//public string Status { get; set; }
 
 	}

@@ -170,24 +170,19 @@
             directionsDisplay = new google.maps.DirectionsRenderer({ suppressMarkers: true });
 
             if (jQuery('#map').length > 0) {
-
                 var locations = jQuery.parseJSON(MapPoints);
-
                 map = new google.maps.Map(document.getElementById('map'), mapOptions);
-
                 directionsDisplay.setMap(mapOptions);
-
                 var infowindow = new google.maps.InfoWindow();
                 var flightPlanCoordinates = [];
                 var bounds = new google.maps.LatLngBounds();
 
                 for (i = 0; i < locations.length; i++) {
-
                     marker = new google.maps.Marker({
-
                         position: new google.maps.LatLng(locations[i].address.lat, locations[i].address.lng),
                         map: map,
-                        icon: '@Url.Content("~/images/truck.png")'
+                        //icon: '@Url.Content("~/images/truck.png")'
+                        icon: getVehicleImage(locations[i].VehicleType, locations[i].VehicleCategory)
                     });
                     flightPlanCoordinates.push(marker.getPosition());
                     bounds.extend(marker.position);
@@ -221,7 +216,35 @@
                 }
                 //calcRoute(start, end, waypts);
             }
-		}
+        }
+
+
+        function getVehicleImage(type, group) {
+            debugger;
+            var imgBaseUrl = '@Url.Content("~/images/web/")';
+            if (type == '1300')//Open
+            {
+                if (group == '1000')//Mini
+                    return imgBaseUrl + 'open_0_75_ton_selected.png';
+                else if (group == '1001')//Small
+                    return imgBaseUrl + 'open_selected_1_ton.png';
+                else if (group == '1002')//Medium
+                    return imgBaseUrl + 'open_selected_1_5_ton.png';
+                else if (group == '1003')//Large
+                    return imgBaseUrl + 'open_2_ton_selected.png';
+            }
+            else if (type == '1301')//Closed
+            {
+                if (group == '1000')//Mini
+                    return imgBaseUrl + 'closed_0_75_ton_selected.png';
+                else if (group == '1001')//Small
+                    return imgBaseUrl + 'closed_selected_1_ton.png';
+                else if (group == '1002')//Medium
+                    return imgBaseUrl + 'closed_selected_1_5_ton.png';
+                else if (group == '1003')//Large
+                    return imgBaseUrl + 'closed_2_ton_selected.png';
+            }
+        }
 
 
         /*

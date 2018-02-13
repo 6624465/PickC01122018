@@ -81,6 +81,9 @@ namespace PickC.Internal2.Controllers
                             lng = driverList[i].CurrentLong.ToString(),
                         };
                         tripMonitor.title = driverList[i].DriverId;
+                        tripMonitor.VehicleType = driverList[i].VehicleType.ToString();
+                        tripMonitor.VehicleCategory = driverList[i].VehicleGroup.ToString();
+
                         tripMonitorData.Add(tripMonitor);
                     }
                 }
