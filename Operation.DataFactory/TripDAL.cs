@@ -215,11 +215,11 @@ namespace Operation.DataFactory
             return tripItem;
         }
 
-        public Trip DriverCurrentTrip(string driverID)
+        public Trip DriverCurrentTrip(string driverID,int Status)
         {
             var tripItem = db.ExecuteSprocAccessor(DBRoutine.DRIVERCURRENTTRIP,
                                                     MapBuilder<Trip>.BuildAllProperties(),
-                                                    driverID).FirstOrDefault();
+                                                    driverID,Status).FirstOrDefault();
 
             if (tripItem == null) return null;
 

@@ -104,10 +104,10 @@ namespace PickCApi.Areas.Operation.Controllers
                 decimal distance = GetTravelTimeBetweenTwoLocations(frmLatLong, toLatLong).distance;
                 tripEndDTO.Token = HeaderValueByKey("AUTH_TOKEN");
                 tripEndDTO.DriverId = HeaderValueByKey("DRIVERID");
-                var result = new TripBO().EndTrip(tripEndDTO,distance);
+                var result = new TripBO().EndTrip(tripEndDTO, distance);
                 if (result)
                 {
-                     tripInfo = new TripBO().GetTrip(new Trip { TripID = tripEndDTO.TripId });                    
+                    tripInfo = new TripBO().GetTrip(new Trip { TripID = tripEndDTO.TripId });
                     var customerObj = new CustomerBO().GetCustomer(new Customer { MobileNo = tripInfo.CustomerMobile });
                     PushNotification(customerObj.DeviceId, tripInfo.BookingNo, UTILITY.NotifyTripEnd);
                     return Ok(new
@@ -185,19 +185,50 @@ namespace PickCApi.Areas.Operation.Controllers
         {
             try
             {
-                try
+                //var trip = new TripBO().DriverCurrentTrip(HeaderValueByKey("DRIVERID"));
+                //return Ok(new
+                //{
+                //    isintrip = trip != null ? true : false,
+                //    tripid = (trip != null ? trip.TripID : ""),
+                //    bookingno = (trip != null ? trip.BookingNo : "")
+                //});
+                int Status = 1;
+                var trip = new TripBO().DriverCurrentTrip(HeaderValueByKey("DRIVERID"), Status);
+                if (trip != null)
                 {
-                    var trip = new TripBO().DriverCurrentTrip(HeaderValueByKey("DRIVERID"));
+                    Status = 0;
+                    var afterDestReach = new TripBO().DriverCurrentTrip(HeaderValueByKey("DRIVERID"), Status);
+                    if (afterDestReach != null)
+                    {
+                        return Ok(new
+                        {
+                            isintrip = true,
+                            tripid = afterDestReach.TripID,
+                            bookingno = afterDestReach.BookingNo,
+                            Message = UTILITY.DESTINATIONREACHEDTRIPENDPENDING
+                        });
+                        
+                    }
+                    else
+                    {
+                        return Ok(new
+                        {
+                            isintrip = true,
+                            tripid = trip.TripID,
+                            bookingno = trip.BookingNo,
+                            Message=UTILITY.TRIPSTARTEDTRIPENDPENDING
+                        });
+                    }
+                }
+                else
+                {
                     return Ok(new
                     {
-                        isintrip = trip != null ? true : false,
-                        tripid = (trip != null ? trip.TripID : ""),
-                        bookingno = (trip != null ? trip.BookingNo : "")
+                        isintrip = false,
+                        tripid = "",
+                        bookingno = "",
+                        Message=""
                     });
-                }
-                catch (Exception ex)
-                {
-                    return InternalServerError(ex);
                 }
             }
             catch (Exception ex)
@@ -209,7 +240,8 @@ namespace PickCApi.Areas.Operation.Controllers
         [Route("userDataDashBoard")]
         public IHttpActionResult BookingCount()
         {
-            try {
+            try
+            {
                 var count = new TripBO().GetuserDataDashBoard();
                 return Ok(count);
             }
