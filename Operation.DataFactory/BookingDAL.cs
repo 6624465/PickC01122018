@@ -155,7 +155,7 @@ namespace Operation.DataFactory
             {
                 var deleteCommand = db.GetStoredProcCommand(DBRoutine.DELETEBOOKING);
                 db.AddInParameter(deleteCommand, "BookingNo", System.Data.DbType.String, booking.BookingNo);
-
+                db.AddInParameter(deleteCommand, "Remarks", System.Data.DbType.String, booking.Remarks);
 
                 result = Convert.ToBoolean(db.ExecuteNonQuery(deleteCommand, transaction));
 
