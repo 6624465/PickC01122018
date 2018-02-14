@@ -22,7 +22,6 @@
 @functions{
     public string GetImgUrl(Int16 type, Int16 group)
     {
-        
         var img = "";
         if (type == 1300)
         {
@@ -194,7 +193,7 @@
 	<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD7WVBL9AmhKs1QAr4x7mArA2mKZY-9nUo&v=3.exp&libraries=places&sensor=true"></script>
     <script type="text/javascript">
         var hasData = false;
-        @if (Model.tripMonitorVmList != null && Model.tripMonitorVmList.Count > 0)
+        @if(Model.tripMonitorVmList != null && Model.tripMonitorVmList.Count > 0)
         {
             <text>
         var MapPoints = '@Html.Raw(Newtonsoft.Json.JsonConvert.SerializeObject(Model.tripMonitorVmList))';
@@ -335,7 +334,7 @@
 
         $(function () {
             //Looping();
-            @if (ViewBag.Status != null && ViewBag.Status != "")
+            @if(ViewBag.Status != null && ViewBag.Status != "")
             {
                 <text>$('#ddlSearchByStatus').val('@ViewBag.Status')</text>
             }
@@ -475,8 +474,13 @@
                         $("#phoneNo").text(res.MobileNo);
                         $("#vehicletype").text(res.VehicleType);
                         $("#vehiclecategory").text(res.VehicleGroup);
-                            if (res.Status)
+                        if (res.Status) {
+                            var ddlStatus = $("#ddlSearchByStatus").val();
+                            if (ddlStatus == 'INTRIP')
+                                $("#status").text('INTRIP');
+                            else
                             $("#status").text('LOGIN');
+                        }
                         else
                             $("#status").text('LOGOFF');
                         $("#bookingno").text(res.BookingNo);
@@ -490,6 +494,8 @@
                                 var temp2 = moment(parseJsonDate(res.LoginDate)).format('DD/MM/YYYY HH:mm:ss');
                                 var temp3 = new Date(res.LoginDate.match(/\d+/)[0] * 1);
                                 debugger;
+                    var temp4 = new Date(res.LoginDate);
+                    debugger;
                         $("#latestlogin").text(temp2);
 						$("#driverLogin").show();
 						$("#driverLogoff").hide();
@@ -516,32 +522,7 @@
             }
         });
     });
-        function getImageValue(type,group){
-            debugger;
-            var img = "";
-            if (type == 'Open')
-            {
-                if (group == 'Mini')
-                    img = "open_0_75_ton_selected.png";
-                else if (group == 'Small')
-                    img = "open_selected_1_ton.png";
-                else if (group == 'Medium')
-                    img = "open_selected_1_5_ton.png";
-                else if (group == 'Large')
-                    img = "open_2_ton_selected.png";
-            }
-            else if (type == 'Closed') {
-                if (group == 'Mini')
-                    img = "closed_0_75_ton_selected.png";
-                else if (group == 'Small')
-                    img = "closed_selected_1_ton.png";
-                else if (group == 'Medium')
-                    img = "closed_selected_1_5_ton.png";
-                else if (group == 'Large')
-                    img = "closed_2_ton_selected.png";
-            }
-            return img;
-        }
+
     </script>
 }
 
