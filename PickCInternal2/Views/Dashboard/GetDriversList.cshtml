@@ -17,11 +17,42 @@
 		}
 	</style>
 }
+
+
+@functions{
+    public string GetImgUrl(Int16 type, Int16 group)
+    {
+        var img = "";
+        if (type == 1300)
+        {
+            if (group == 1000)
+                img = "open_0_75_ton_selected.png";
+            else if (group == 1001)
+                img = "open_selected_1_ton.png";
+            else if (group == 1002)
+                img = "open_selected_1_5_ton.png";
+            else if (group == 1003)
+                img = "open_2_ton_selected.png";
+        }
+        else if (type == 1301) {
+            if (group == 1000)
+                img = "closed_0_75_ton_selected.png";
+            else if (group == 1001)
+                img = "closed_selected_1_ton.png";
+            else if (group == 1002)
+                img = "closed_selected_1_5_ton.png";
+            else if (group == 1003)
+                img = "closed_2_ton_selected.png";
+        }
+        return img;
+    }
+        }
 <section class="content">
 	@using (Html.BeginForm())
-	{
+        {
 
-		<div class="row">
+
+        <div class="row">
 			<div class="col-xs-12">
 				@{ Html.RenderPartial("DashboardMenuList"); }
 				<div id="myTabContent" class="tab-content">
@@ -32,44 +63,44 @@
 									@*<input type="text" id="txtDriverName" placeholder="search by name" class="form-control" />*@
 									<select id="ddlSearchByStatus" class="form-control">
 										<option value="ALL">All</option>
-										<option value="LOGIN">Login</option>
+
+                                        <option value="LOGIN">Login</option>
 										<option value="LOGOFF">Logoff</option>
-										<option value="INTRIP">Intrip</option>
+
+                                        <option value="INTRIP">Intrip</option>
 									</select>
 								</div>
 								<div class="dr-list" id="driverList">
 									<ul class="listofvhl">
 										@foreach (var item in Model.driverList)
-										{
-											<li id="@item.DriverId" class="drvrList" data-id="@item.DriverId" data-status="@item.Status">
-												<img src="~/images/icon.png" class="img-circle" alt="driver" height="20" style="float:left;" />
+                                        {
+
+                                            <li id="@item.DriverId" class="drvrList" data-id="@item.DriverId" data-status="@item.Status">
+												<img src="@Url.Content("~/images/web/" + GetImgUrl(item.VehicleType, item.VehicleGroup))" class="img-circle" alt="driver" height="20" style="float:left;" />
 												<div style="float:left;padding-left:10px;">
-													<span style="display:block"> @item.DriverName - @item.DriverId</span>
+                                                    <span style="display:block"> @item.DriverName - @item.DriverId</span>
 													<span style="display:block"> @item.VehicleNo </span>
-													<span style="display:block">@item.MobileNo</span>
+                                                    <span style="display:block">@item.MobileNo</span>
 												</div>
 												<div class="clearfix"></div>
 												<span class="active-dr">
 													@if (item.Status)
-													{
-														<i class="fa fa-circle text-success"></i>
+                                                    {
+                                                        <i class="fa fa-circle text-success"></i>
 													}
 													else
 													{
 														<i class="fa fa-circle text-danger"></i>
 													}
 												</span>
-
 											</li>
 										}
 									</ul>
 								</div>
 							</div>
-
 							<div class="col-md-9">
 								<div id="map" style="border: 1px solid rgba(255,255,255,0.15);"></div>
 							</div>
-
 						</div>
 					</div>
 
@@ -89,7 +120,8 @@
                                        
                                             <label>Driver Name</label>
                                             <div id="driverName"></div>
-                                        
+
+
                                     </li>
                                     <li class="list-group-item">
                                         <label>Contact No</label>
@@ -126,8 +158,9 @@
                                             <label>Last Log Off Date Time</label>
                                             <div id="latestlogoff"></div>
                                         </div>
-                            
-                                   
+
+
+
                                         <div id="intrip">
                                             <label>Booking No</label>
                                             <div id="bookingno"></div>
@@ -140,232 +173,253 @@
                                         </div>
                                     </li>
 </ul>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
 	}
 
 </section>
 @section secscripts{
 	<script src="~/Scripts/moment.min.js"></script>
 	<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD7WVBL9AmhKs1QAr4x7mArA2mKZY-9nUo&v=3.exp&libraries=places&sensor=true"></script>
-	<script type="text/javascript">
+    <script type="text/javascript">
+        var hasData = false;
+        @if(Model.tripMonitorVmList != null && Model.tripMonitorVmList.Count > 0)
+        {
+            <text>
         var MapPoints = '@Html.Raw(Newtonsoft.Json.JsonConvert.SerializeObject(Model.tripMonitorVmList))';
+        hasData = true;
+            </text>
+        }
+        else
+        {
+            <text>
+        var MapPoints = `[{"address":{"address":"Madhapur","lat":"17.4508344000","lng":"78.3873859000"},"title":"PickC Office"}]`
+        hasData = false;
+            </text>
+        }
+
         var MY_MAPTYPE_ID = 'custom_style';
         var directionsDisplay;
         var directionsService = new google.maps.DirectionsService();
         var map;
 
-        var hyd = new google.maps.LatLng(17.24, 78.27);
+        var hyd = new google.maps.LatLng(17.4508344000, 78.3873859000);
         var mapOptions = {
             zoom: 10,
             center: hyd,
             mapTypeId: google.maps.MapTypeId.ROADMAP
         };
 
-        function initialize() {
-            directionsDisplay = new google.maps.DirectionsRenderer({ suppressMarkers: true });
+    function initialize() {
+        directionsDisplay = new google.maps.DirectionsRenderer({ suppressMarkers: true });
 
-            if (jQuery('#map').length > 0) {
-                var locations = jQuery.parseJSON(MapPoints);
-                map = new google.maps.Map(document.getElementById('map'), mapOptions);
-                directionsDisplay.setMap(mapOptions);
-                var infowindow = new google.maps.InfoWindow();
-                var flightPlanCoordinates = [];
-                var bounds = new google.maps.LatLngBounds();
+        if (jQuery('#map').length > 0 && hasData) {
+            var locations = jQuery.parseJSON(MapPoints);
+            map = new google.maps.Map(document.getElementById('map'), mapOptions);
+            directionsDisplay.setMap(mapOptions);
+            var infowindow = new google.maps.InfoWindow();
+            var flightPlanCoordinates = [];
+            var bounds = new google.maps.LatLngBounds();
 
-                for (i = 0; i < locations.length; i++) {
-                    marker = new google.maps.Marker({
+            for (i = 0; i < locations.length; i++) {
+                marker = new google.maps.Marker({
                         position: new google.maps.LatLng(locations[i].address.lat, locations[i].address.lng),
                         map: map,
                         //icon: 'Url.Content("~/images/truck.png")'
                         icon: getVehicleImage(locations[i].VehicleType, locations[i].VehicleCategory)
                     });
-                    flightPlanCoordinates.push(marker.getPosition());
-                    bounds.extend(marker.position);
+            flightPlanCoordinates.push(marker.getPosition());
+            bounds.extend(marker.position);
 
-                    google.maps.event.addListener(marker, 'click', (function (marker, i) {
-                        return function () {
-                            infowindow.setContent(locations[i]['title']);
-                            infowindow.open(map, marker);
-                        }
-                    })(marker, i));
+            google.maps.event.addListener(marker, 'click', (function (marker, i) {
+                return function () {
+                    infowindow.setContent(locations[i]['title']);
+                    infowindow.open(map, marker);
                 }
+            })(marker, i));
+        }
 
-                map.fitBounds(bounds);
-                /* polyline
-                    var flightPath = new google.maps.Polyline({
-                        map: map,
-                        path: flightPlanCoordinates,
-                        strokeColor: "#FF0000",
-                        strokeOpacity: 1.0,
-                        strokeWeight: 2
-                    }); */
-                // directions service
-                var start = flightPlanCoordinates[0];
-                var end = flightPlanCoordinates[flightPlanCoordinates.length - 1];
-                var waypts = [];
-                for (var i = 1; i < flightPlanCoordinates.length - 1; i++) {
-                    waypts.push({
-                        location: flightPlanCoordinates[i],
+        map.fitBounds(bounds);
+        /* polyline
+            var flightPath = new google.maps.Polyline({
+                map: map,
+                path: flightPlanCoordinates,
+                strokeColor: "#FF0000",
+                strokeOpacity: 1.0,
+                strokeWeight: 2
+            }); */
+        // directions service
+        var start = flightPlanCoordinates[0];
+        var end = flightPlanCoordinates[flightPlanCoordinates.length - 1];
+        var waypts = [];
+        for (var i = 1; i < flightPlanCoordinates.length - 1; i++) {
+            waypts.push({
+                location: flightPlanCoordinates[i],
                         stopover: true
                     });
-                }
+    }
                 //calcRoute(start, end, waypts);
             }
         }
 
 
-        function getVehicleImage(type, group) {            
-            var imgBaseUrl = '@Url.Content("~/images/web/")';
-            if (type == '1300')//Open
-            {
-                return imgBaseUrl + 'open.png';
-                //if (group == '1000')//Mini
-                //    return imgBaseUrl + 'open_0_75_ton_selected.png';
-                //else if (group == '1001')//Small
-                //    return imgBaseUrl + 'open_selected_1_ton.png';
-                //else if (group == '1002')//Medium
-                //    return imgBaseUrl + 'open_selected_1_5_ton.png';
-                //else if (group == '1003')//Large
-                //    return imgBaseUrl + 'open_2_ton_selected.png';
-            }
-            else if (type == '1301')//Closed
-            {
-                return imgBaseUrl + 'close.png';
-                //if (group == '1000')//Mini
-                //    return imgBaseUrl + 'closed_0_75_ton_selected.png';
-                //else if (group == '1001')//Small
-                //    return imgBaseUrl + 'closed_selected_1_ton.png';
-                //else if (group == '1002')//Medium
-                //    return imgBaseUrl + 'closed_selected_1_5_ton.png';
-                //else if (group == '1003')//Large
-                //    return imgBaseUrl + 'closed_2_ton_selected.png';
-            }
+        function getVehicleImage(type, group) {
+        var imgBaseUrl = '@Url.Content("~/images/web/")';
+        if (type == '1300')//Open
+        {
+            return imgBaseUrl + 'open.png';
+            //if (group == '1000')//Mini
+            //    return imgBaseUrl + 'open_0_75_ton_selected.png';
+            //else if (group == '1001')//Small
+            //    return imgBaseUrl + 'open_selected_1_ton.png';
+            //else if (group == '1002')//Medium
+            //    return imgBaseUrl + 'open_selected_1_5_ton.png';
+            //else if (group == '1003')//Large
+            //    return imgBaseUrl + 'open_2_ton_selected.png';
         }
+        else if (type == '1301')//Closed
+        {
+            return imgBaseUrl + 'close.png';
+            //if (group == '1000')//Mini
+            //    return imgBaseUrl + 'closed_0_75_ton_selected.png';
+            //else if (group == '1001')//Small
+            //    return imgBaseUrl + 'closed_selected_1_ton.png';
+            //else if (group == '1002')//Medium
+            //    return imgBaseUrl + 'closed_selected_1_5_ton.png';
+            //else if (group == '1003')//Large
+            //    return imgBaseUrl + 'closed_2_ton_selected.png';
+        }
+    }
 
 
-        /*
-        function calcRoute(start, end, waypts) {
-            var request = {
-                origin: start,
-                destination: end,
-                waypoints: waypts,
-                optimizeWaypoints: true,
-                travelMode: google.maps.TravelMode.DRIVING
-            };
-            directionsService.route(request, function (response, status) {
-                if (status == google.maps.DirectionsStatus.OK) {
-                    directionsDisplay.setDirections(response);
-                    var route = response.routes[0];
+    /*
+    function calcRoute(start, end, waypts) {
+        var request = {
+            origin: start,
+            destination: end,
+            waypoints: waypts,
+            optimizeWaypoints: true,
+            travelMode: google.maps.TravelMode.DRIVING
+        };
+        directionsService.route(request, function (response, status) {
+            if (status == google.maps.DirectionsStatus.OK) {
+                directionsDisplay.setDirections(response);
+                var route = response.routes[0];
 
-                    var summaryPanel = document.getElementById('directions_panel');
-                    summaryPanel.innerHTML = '';
-                    for (var i = 0; i < route.legs.length; i++) {
-                        var routeSegment = i + 1;
-                        summaryPanel.innerHTML += '<b>Route Segment: ' + routeSegment + '</b><br>';
-                        summaryPanel.innerHTML += route.legs[i].start_address + ' to ';
-                        summaryPanel.innerHTML += route.legs[i].end_address + '<br>';
-                        summaryPanel.innerHTML += route.legs[i].distance.text + '<br><br>';
-                    }
+                var summaryPanel = document.getElementById('directions_panel');
+                summaryPanel.innerHTML = '';
+                for (var i = 0; i < route.legs.length; i++) {
+                    var routeSegment = i + 1;
+                    summaryPanel.innerHTML += '<b>Route Segment: ' + routeSegment + '</b><br>';
+                    summaryPanel.innerHTML += route.legs[i].start_address + ' to ';
+                    summaryPanel.innerHTML += route.legs[i].end_address + '<br>';
+                    summaryPanel.innerHTML += route.legs[i].distance.text + '<br><br>';
                 }
-            });
-        }
-        */
-        google.maps.event.addDomListener(window, 'load', initialize);
-        map = new google.maps.Map(document.getElementById('map'), mapOptions)
+            }
+        });
+    }
+    */
+    google.maps.event.addDomListener(window, 'load', initialize);
+    map = new google.maps.Map(document.getElementById('map'), mapOptions)
 
         $(function () {
             //Looping();
             @if(ViewBag.Status != null && ViewBag.Status != "")
-            {
+    {
                 <text>$('#ddlSearchByStatus').val('@ViewBag.Status')</text>
             }
 
             $('#ddlSearchByStatus').on("change", function () {
-                location.href = '@Url.Content("~/Dashboard/GetDriversList?status=")' + $('#ddlSearchByStatus').val();
+        location.href = '@Url.Content("~/Dashboard/GetDriversList?status=")' + $('#ddlSearchByStatus').val();
                 @*$.ajax({
-                    url: '@Url.Content("~/Dashboard/GetDriverBySearch")',
+            url: '@Url.Content("~/Dashboard/GetDriverBySearch")',
                     method: 'POST',
                     contentType: 'application/json',
                     dataType: 'json',
                     data: JSON.stringify({ 'status': $('#ddlSearchByStatus').val() }),
                     success: function (data) {
                         $('#driverList').val();
-						var html = '';
-						html += '<ul class="listofvhl"  >';
+                var html = '';
+                html += '<ul class="listofvhl"  >';
 						$.each(data, function (key, val) {
-                            var vehicleno = val.VehicleNo == null ? '' : val.VehicleNo;
-                            html += '<li class="drvrList hand"  data-id=' + val.DriverId + ' data-status=' + val.Status + ' id=' + val.DriverId + '><img src="@Url.Content( "~/images/icon.png")" class="img-circle" alt="driver" height="20" style="float:left;">';
-                            html += '<div style="float:left;padding-left:10px;">';
-                            html += '<span style="display:block"> ' + val.DriverName + '</span>';
-                            html += '<span style="display:block"> ' + vehicleno + '</span>';
-                            html += '<span style="display:block"> ' + val.MobileNo +' </span> </div>';
-                            html += '<div class="clearfix"></div>';
-                            html += '<span class="active-dr">';
-                            if (val.Status) {
-                                html += '<i class="fa fa-circle text-success"></i>';
-                            }
-                            else {
-                                html += '<i class="fa fa-circle text-danger"></i>';
-                            }
-                            html += '</span></li>';
+                    var vehicleno = val.VehicleNo == null ? '' : val.VehicleNo;
+                    html += '<li class="drvrList hand"  data-id=' + val.DriverId + ' data-status=' + val.Status + ' id=' + val.DriverId + '><img src="@Url.Content( "~/images/icon.png")" class="img-circle" alt="driver" height="20" style="float:left;">';
+                    html += '<div style="float:left;padding-left:10px;">';
+                    html += '<span style="display:block"> ' + val.DriverName + '</span>';
+                    html += '<span style="display:block"> ' + vehicleno + '</span>';
+                    html += '<span style="display:block"> ' + val.MobileNo +' </span> </div>';
+                    html += '<div class="clearfix"></div>';
+                    html += '<span class="active-dr">';
+                    if (val.Status) {
+                        html += '<i class="fa fa-circle text-success"></i>';
+                    }
+                    else {
+                        html += '<i class="fa fa-circle text-danger"></i>';
+                    }
+                    html += '</span></li>';
 
-						});
-						html +='</ul >';
+                });
+                html +='</ul >';
                         $('#driverList').html(html);
-                    },
+            },
                     error: function (err) {
 
-                    },
+            },
                     failure: function (fail) {
 
-                    }
-                });*@
+            }
+        });*@
             });
         });
 
         function Looping() {
-            setTimeout(function () {
-                var promise = GetTripMonitorData();
+        setTimeout(function () {
+            var promise = GetTripMonitorData();
                 $.when(promise).done(function (data) {
-                    MapPoints = JSON.stringify(data);
-                    initialize();
-                    Looping();
-                });
-            }, 1000 * 60);
-        }
+                MapPoints = JSON.stringify(data);
+                initialize();
+                Looping();
+            });
+        }, 1000 * 60);
+    }
 
-        function GetTripMonitorData() {
-            var def = $.Deferred();
+    function GetTripMonitorData() {
+        var def = $.Deferred();
             $.ajax({
-                url: '@Url.Content("~/Internal/Dashboard/GetTripMonitorInfo")',
+            url: '@Url.Content("~/Internal/Dashboard/GetTripMonitorInfo")',
                 method: 'GET',
                 contentType: 'application/json',
                 dataType: 'json',
                 success: function (res) {
-                    def.resolve(res);
-                },
+                def.resolve(res);
+            },
                 error: function (err) {
-                    def.reject(err);
-                },
+                def.reject(err);
+            },
                 failure: function (fail) {
-                    def.reject(fail)
+                def.reject(fail)
                 }
-            });
-            return def.promise();
-        }
+        });
+        return def.promise();
+    }
 
 
 		//function getDriverDetails(obj) {
 
 		@*$('.drvrList').click(function () {
-			debugger;
+        debugger;
 			$.ajax({
-				url: '@Url.Content("~/Internal/Dashboard/GetDriverDetails")',
+            url: '@Url.Content("~/Internal/Dashboard/GetDriverDetails")',
 				method: 'POST',
 				contentType: 'application/json',
 				dataType: 'json',
@@ -373,20 +427,20 @@
 				success: function (res) {
 					$('#driverDetailsModal').modal('show');
 
-					var source = '@Url.Content("~/images/icon.png")';
+                var source = '@Url.Content("~/images/icon.png")';
 					$("#driverImage").attr('src', source);
 					$("#driverName").text(res.DriverName);
 					$("#licenseNumber").text(res.LicenseNo);
 					$("#vehicleNumber").text(res.VehicleNo);
 					$("#phoneNo").text(res.PhoneNo);
 					$("#vehicletype").text(res.VehicleType);
-					//debugger;
-				},
+                //debugger;
+            },
 				error: function (err) {
-					//
-				}
-			});
-		});*@
+                //
+            }
+        });
+    });*@
 
         $(function () {
 			$('#driverStatus').parent().addClass('active');
@@ -396,23 +450,23 @@
         });
 
         function parseJsonDate(jsonDateString) {
-            return new Date(parseInt(jsonDateString.replace('/Date(', '')));
-        }
+        return new Date(parseInt(jsonDateString.replace('/Date(', '')));
+    }
 
 		$(document).on('click','.drvrList', function () {
-				var driverid = $(this).data("status");
+        var driverid = $(this).data("status");
 			//debugger;
                 $.ajax({
-                    url: '@Url.Content("~/Dashboard/GetDriverDetails")',
+            url: '@Url.Content("~/Dashboard/GetDriverDetails")',
                     method: 'POST',
                     contentType: 'application/json',
                     dataType: 'json',
                     data: JSON.stringify({ 'id': $(this).data("id") }),
                     success: function (res) {
-                        debugger;
+                debugger;
                         $('#driverDetailsModal').modal('show');
 
-                        var source = '@Url.Content("~/images/icon.png")';
+                var source = '@Url.Content("~/images/icon.png")';
                         $("#driverImage").attr('src', source);
                         $("#driverName").text(res.DriverName);
                         $("#licenseNumber").text(res.LicenseNo);
@@ -426,40 +480,40 @@
                         $("#locationfrom").text(res.LocationFrom);
                         $("#locationto").text(res.LocationTo);
                         $("#starttime").text(moment(res.StartTime).format('DD/MM/YYYY HH:mm:ss'));
-                        debugger;
-                        if (res.Status === true) {
-                            var temp = moment(res.LoginDate).format('DD/MM/YYYY HH:mm:ss');
-                            var temp2 = moment(parseJsonDate(res.LoginDate)).format('DD/MM/YYYY HH:mm:ss');
-                            var temp3 = new Date(res.LoginDate.match(/\d+/)[0] * 1);
-                        debugger;
+                debugger;
+                if (res.Status === true) {
+                    var temp = moment(res.LoginDate).format('DD/MM/YYYY HH:mm:ss');
+                    var temp2 = moment(parseJsonDate(res.LoginDate)).format('DD/MM/YYYY HH:mm:ss');
+                    var temp3 = new Date(res.LoginDate.match(/\d+/)[0] * 1);
+                    debugger;
                         $("#latestlogin").text(temp2);
 						$("#driverLogin").show();
 						$("#driverLogoff").hide();
 						$("#intrip").hide();
 
 
-					} else if (res.Status === false) {
-					    res.LogoutDate ==null ?"":$("#latestlogoff").text(moment(res.LogoutDate).format('DD/MM/YYYY'));
+                } else if (res.Status === false) {
+                    res.LogoutDate ==null ?"":$("#latestlogoff").text(moment(res.LogoutDate).format('DD/MM/YYYY'));
 						$("#driverLogin").hide();
 						$("#driverLogoff").show();
 						$("#intrip").hide();
-					}
-					
-					 if ($("#ddlSearchByStatus").val() == "INTRIP") {
+                }
+
+                if ($("#ddlSearchByStatus").val() == "INTRIP") {
 						 $("#intrip").show();
 						 $("#driverLogin").hide();
 						 $("#driverLogoff").hide();
 
-					}
-					//debugger;
-				},
+                }
+                //debugger;
+            },
 				error: function (err) {
-					//
-				}
-			});
-		});
-       
-	</script>
+                //
+            }
+        });
+    });
+
+    </script>
 }
 
 <style>
