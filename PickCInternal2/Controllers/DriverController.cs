@@ -12,6 +12,8 @@ using PickC.Services.DTO;
 using PickC.Internal2.ViewModals;
 using System.IO;
 using System.Web.Routing;
+using Newtonsoft.Json.Linq;
+using Newtonsoft.Json;
 
 namespace PickC.Internal2.Controllers
 {
@@ -153,9 +155,11 @@ namespace PickC.Internal2.Controllers
 					driver.driverAttachment.Add(attachment);
 				}
 			}
-			var driverID = await new DriverService(AUTHTOKEN, p_mobileNo).SaveDriverAsync(driver);
+			var driverObj = await new DriverService(AUTHTOKEN, p_mobileNo).SaveDriverAsync(driver);
 
-
+            var anonymousType = new { DriverId = "" };
+            //var temp = JObject.Parse(driverObj);
+            var json = JsonConvert.DeserializeAnonymousType(driverObj, anonymousType);
             foreach (string file in Request.Files)
             {
                 var fileContent = Request.Files[file];
@@ -185,7 +189,7 @@ namespace PickC.Internal2.Controllers
                     {
                         lookupId = "1382";
                     }
-                    string mapPath = Server.MapPath($"~/DriverAttachments/{driverID}/");
+                    string mapPath = Server.MapPath($"~/DriverAttachments/{json.DriverId}/");
                     if (!Directory.Exists(mapPath))
                     {
                         Directory.CreateDirectory(mapPath);

@@ -152,7 +152,7 @@ namespace PickCApi.Areas.Master.Controllers
 				}
 				var result = new DriverBO().SaveDriverDetails(driver);
 				if (result)
-                    return Ok(driver.DriverId);
+                    return Ok(new { DriverId =  driver.DriverId});
                 else
 					return BadRequest();
 			}
