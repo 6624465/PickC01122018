@@ -136,7 +136,9 @@
         //}
 
         $(document).ready(function () {
-            $('#table_id').dataTable();
+            $('#table_id').dataTable({
+                "order": [[0, "desc"]]
+            });
         });
         $('.dtCss').datetimepicker({
             icons: {
@@ -156,7 +158,6 @@
         });
 
         function DisplayInvoice(bookingNo) {
-            debugger;
             $.ajax({
                 url: '@Url.Content("~/Dashboard/BookingInvoice?bookingNo=")' + bookingNo,
                 method: 'get',

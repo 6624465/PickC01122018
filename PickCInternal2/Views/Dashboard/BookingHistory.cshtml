@@ -170,7 +170,9 @@
                 $('.pagination ul li a').attr('href', '#');
 
                 $(document).ready(function () {
-                    $('#table_id').dataTable();
+                    $('#table_id').dataTable({
+                        "order": [[0, "desc"]]
+                    });
                 });
 
 

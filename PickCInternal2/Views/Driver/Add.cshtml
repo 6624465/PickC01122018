@@ -894,9 +894,20 @@
             format: 'DD/MM/YYYY'
         });
         function btnSave() {
+            debugger
             if ($('#frmDriverAdd').valid()) {
+                var addressLength = $('#trBody tr').length;
+                var bankDetailslength = $('#trBodyBank tr').length;
                 $("#txt-Operator-Number").removeAttr("disabled", "disabled");
-                $('#frmDriverAdd').submit();
+                if (addressLength > 0 && bankDetailslength > 0) {
+                    $('#frmDriverAdd').submit();
+                }
+                else {
+                    if (addressLength == 0)
+                        alert("Please enter address details");
+                    else
+                        alert("Please enter bank details");
+                }
             }
         }
 

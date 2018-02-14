@@ -248,7 +248,9 @@
 
         $(document).ready(function () {
             $('#accordion').accordion();
-            $('#Accordian_customerDetails').dataTable();
+            $('#Accordian_customerDetails').dataTable({
+                "order": [[0, "desc"]]
+            });
             $('#Accordian_pickcCommision').dataTable();
             $('#Accordian_DriverCommision').dataTable();
             $('#Accordian_CancellationCharges').dataTable();
