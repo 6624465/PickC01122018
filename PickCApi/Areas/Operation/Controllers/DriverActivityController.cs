@@ -128,6 +128,7 @@ namespace PickCApi.Areas.Operation.Controllers
                 return InternalServerError(ex);
             }
         }
+        /* Only For Driver */
         [HttpGet]
         [Route("BookingConfirm/IsStartCheck")]
         [ApiAuthFilter]
@@ -144,6 +145,7 @@ namespace PickCApi.Areas.Operation.Controllers
                 return InternalServerError(ex);
             }
         }
+        /* Only For Driver */
         [HttpGet]
         [Route("dutystatus/{status}/{isintrip}/{tripID}")]
         [ApiAuthFilter]

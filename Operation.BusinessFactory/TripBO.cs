@@ -45,9 +45,9 @@ namespace Operation.BusinessFactory
             return tripDAL.CustomerCurrentTrip(mobileNo);
         }
 
-        public Trip DriverCurrentTrip(string driverID)
+        public Trip DriverCurrentTrip(string driverID,int Status)
         {
-            return tripDAL.DriverCurrentTrip(driverID);
+            return tripDAL.DriverCurrentTrip(driverID, Status);
         }
 
         public bool TripUpdateTravelledDistance(string tripID, decimal distanceTravelled)

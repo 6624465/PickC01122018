@@ -51,6 +51,8 @@ namespace PickCApi
         public static string MESSAGESENT = "Message Sent to Driver";
         public static string ACCEPTREQUEST = "Accepted request by driver";
         public static string REJECTREQUEST = "Rejected request by driver";
+        public static string DESTINATIONREACHEDTRIPENDPENDING = "DESTINATION REACHED TRIP END PENDING";
+        public static string TRIPSTARTEDTRIPENDPENDING = "TRIP STARTED TRIP END PENDING";
         public static string UPDATESUCCESSMSG = "UPDATED  SUCCESSFULLY";
         public static string UPDATEFAILUREMSG = "UPDATION FAILED";
         public static string LOGIN = "USER LOGGEDIN SUCCESSFULLY";
