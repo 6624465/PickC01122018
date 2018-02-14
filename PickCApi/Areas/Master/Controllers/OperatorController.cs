@@ -145,7 +145,7 @@ namespace PickCApi.Areas.Master.Controllers
                 }
                 var result = new OperatorBO().SaveOperator(OPerator);
                 if (result)
-                    return Ok(UTILITY.SUCCESSMSG);
+                    return Ok(OPerator.OperatorID);
                 else
                     return BadRequest();
             }

@@ -81,13 +81,7 @@ namespace PickCInternal2.Controllers
                     if (file == "fprofilepic")
                     {
                         lookupId = "1506";
-                    }
-                    string mapPath = Server.MapPath("~/Attachments/");
-                    if (!Directory.Exists(mapPath))
-                    {
-                        Directory.CreateDirectory(mapPath);
-                    }
-                    fileContent.SaveAs(mapPath + fileContent.FileName);
+                    }                   
 
                     OperatorAttachment attachment = new OperatorAttachment()
                     {
@@ -97,54 +91,47 @@ namespace PickCInternal2.Controllers
 
                     OPerator.operatorAttachment.Add(attachment);
                 }
+            }           
+            
+            var OperatorID = await new OperatorService(AUTHTOKEN, p_mobileNo).SaveOperatorAsync(OPerator);
+
+            foreach (string file in Request.Files)
+            {
+                var fileContent = Request.Files[file];
+                if (fileContent.ContentLength > 0)
+                {
+                    if (file == "fadhar")
+                    {
+                        lookupId = "1375";
+                    }
+                    if (file == "fpan")
+                    {
+                        lookupId = "1374";
+                    }
+                    if (file == "flicense")
+                    {
+                        lookupId = "1376";
+                    }
+                    if (file == "fvoter")
+                    {
+                        lookupId = "1377";
+                    }
+                    if (file == "fothers")
+                    {
+                        lookupId = "1382";
+                    }
+                    if (file == "fprofilepic")
+                    {
+                        lookupId = "1506";
+                    }
+                    string mapPath = Server.MapPath($"~/Attachments/{OperatorID}/");
+                    if (!Directory.Exists(mapPath))
+                    {
+                        Directory.CreateDirectory(mapPath);
+                    }
+                    fileContent.SaveAs(mapPath + fileContent.FileName);                    
+                }
             }
-           
-            //foreach (string file in Request.Files)
-            //{
-            //    var fileContent = Request.Files[file];
-            //    if(file== "fadhar")
-            //    {
-            //         lookupId = "1375";
-            //    }
-            //    if(file == "fpan") 
-            //    {
-            //        lookupId = "1374";
-            //    }
-            //    if(file == "flicense")
-            //    {
-            //        lookupId = "1376";
-            //    }
-            //    if(file == "fvoter")
-            //    {
-            //        lookupId = "1377";
-            //    }
-            //    if(file== "fothers")
-            //    {
-            //        lookupId = "1382";
-            //    }
-            //    string mapPath = Server.MapPath("~/Attachments/");
-            //    if (!Directory.Exists(mapPath))
-            //    {
-            //        Directory.CreateDirectory(mapPath);
-            //    }
-            //    fileContent.SaveAs(mapPath + fileContent.FileName);
-
-            //    OperatorAttachment attachment = new OperatorAttachment()
-            //    {
-            //        imagePath = fileContent.FileName,
-            //        lookupCode = lookupId
-            //    };
-
-            //    attachmentsList.Add(attachment);
-            //}
-            // OPerator.operatorAttachment = attachmentsList;
-            //Operator o = new Operator();
-            //o.OperatorVehicle = new List<OperatorVehicle>();
-            //OPerator.OperatorVehicle.ForEach(x =>
-            //{
-            //    x.VehicleType =
-            //});
-            var result = await new OperatorService(AUTHTOKEN, p_mobileNo).SaveOperatorAsync(OPerator);
             return RedirectToAction("Operator", "Operator");
         }
         [HttpGet]
