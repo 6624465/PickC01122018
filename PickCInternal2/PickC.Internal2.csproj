@@ -303,10 +303,12 @@
     <Content Include="images\vehicle_open1.png" />
     <Content Include="images\vehicle_open1_black.png" />
     <Content Include="images\vehicle_open1_selected.png" />
+    <Content Include="images\web\close.png" />
     <Content Include="images\web\closed_0_75_ton_selected.png" />
     <Content Include="images\web\closed_2_ton_selected.png" />
     <Content Include="images\web\closed_selected_1_5_ton.png" />
     <Content Include="images\web\closed_selected_1_ton.png" />
+    <Content Include="images\web\open.png" />
     <Content Include="images\web\open_0_75_ton_selected.png" />
     <Content Include="images\web\open_2_ton_selected.png" />
     <Content Include="images\web\open_selected_1_5_ton.png" />
