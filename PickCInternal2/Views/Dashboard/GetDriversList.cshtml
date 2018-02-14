@@ -474,8 +474,13 @@
                         $("#phoneNo").text(res.MobileNo);
                         $("#vehicletype").text(res.VehicleType);
                         $("#vehiclecategory").text(res.VehicleGroup);
-                        if (res.Status)
-                            $("#status").text('LOGIN');
+                        if (res.Status) {
+                            var ddlStatus = $("#ddlSearchByStatus").val();
+                            if (ddlStatus == 'INTRIP')
+                                $("#status").text('INTRIP');
+                            else
+                                $("#status").text('LOGIN');
+                        }
                         else
                             $("#status").text('LOGOFF');
                         $("#bookingno").text(res.BookingNo);
@@ -489,7 +494,9 @@
                     var temp2 = moment(parseJsonDate(res.LoginDate)).format('DD/MM/YYYY HH:mm:ss');
                     var temp3 = new Date(res.LoginDate.match(/\d+/)[0] * 1);
                     debugger;
-                        $("#latestlogin").text(temp2);
+                    var temp4 = new Date(res.LoginDate);
+                    debugger;
+                    $("#latestlogin").text(temp2);
 						$("#driverLogin").show();
 						$("#driverLogoff").hide();
 						$("#intrip").hide();

@@ -143,20 +143,6 @@ namespace PickC.Internal2.Controllers
 					{
 						lookupId = "1382";
 					}
-					string mapPath = Server.MapPath("~/DriverAttachments/");
-                    if (!Directory.Exists(mapPath))
-                    {
-                        Directory.CreateDirectory(mapPath);
-                    }
-                    fileContent.SaveAs(mapPath + fileContent.FileName);
-                    //string path = Server.MapPath("~/PickCApi/DriverImages");
-
-                    //if (!Directory.Exists(path))
-                    //{
-                    //    Directory.CreateDirectory(path);
-                    //}
-                    //fileContent.SaveAs(path + fileContent.FileName);
-
 
                     DriverAttachment attachment = new DriverAttachment()
 					{
@@ -167,8 +153,46 @@ namespace PickC.Internal2.Controllers
 					driver.driverAttachment.Add(attachment);
 				}
 			}
-			var result = await new DriverService(AUTHTOKEN, p_mobileNo).SaveDriverAsync(driver);
+			var driverID = await new DriverService(AUTHTOKEN, p_mobileNo).SaveDriverAsync(driver);
 
+
+            foreach (string file in Request.Files)
+            {
+                var fileContent = Request.Files[file];
+                if (fileContent.ContentLength > 0)
+                {
+                    if (file == "fprofilepic")
+                    {
+                        lookupId = "1506";
+                    }
+                    if (file == "flicense")
+                    {
+                        lookupId = "1376";
+                    }
+                    if (file == "fpan")
+                    {
+                        lookupId = "1374";
+                    }
+                    if (file == "fadhar")
+                    {
+                        lookupId = "1375";
+                    }
+                    if (file == "fvoter")
+                    {
+                        lookupId = "1377";
+                    }
+                    if (file == "fothers")
+                    {
+                        lookupId = "1382";
+                    }
+                    string mapPath = Server.MapPath($"~/DriverAttachments/{driverID}/");
+                    if (!Directory.Exists(mapPath))
+                    {
+                        Directory.CreateDirectory(mapPath);
+                    }
+                    fileContent.SaveAs(mapPath + fileContent.FileName);
+                }
+            }
 
             var operatorId = TempData["operatorId"];
             TempData.Remove("operatorId");
