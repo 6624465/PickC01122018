@@ -743,6 +743,9 @@
         </form>
     </div>
 </div>
+@*<div id="alertBody" style="float:right">
+   
+</div>*@
 @*@using (Html.BeginForm("BankDetailInfo", "Driver", FormMethod.Post, new { id = "frmBankDetail", name = "frmBankDetail" }))
 {
     @Html.Hidden("OperatorBankID")
@@ -858,10 +861,43 @@
                 return false;
         });
         function btnSave() {
+            debugger
             if ($('#frmDriverAdd').valid()) {
-                $('#frmDriverAdd').submit();
+                var addressLength = $('#trBody tr').length;
+                var bankDetailslength = $('#trBodyBank tr').length;
+                if (addressLength > 0 && bankDetailslength > 0) {
+                    $('#frmDriverAdd').submit();
+                }
+                else {
+                    if (addressLength == 0)
+                        alert("Please enter address Details");
+                    //{
+                    //    var html = '';
+                    //    html += '<div class="row">' + '<div class="col-md-4"></div>' + '<div class="col-md-4 label-danger">'
+                    //        + '<h4>Warning !<h4>' + '<p>Please enter Address Details</p>' + '</div>' + '</div>';
+                    //    setTimeout(
+                    //    $('#alertBody').append(html), 3000);
+                    //}
+                    else
+                        alert("Please enter bank Details");
+                }
             }
         }
+       //             <div class="row">
+       //    <div class="col-md-4"></div>
+       //    <div class="col-md-4 label-danger">
+       //        <div class="callout callout-danger">
+       //            <h4>Warning!</h4>
+
+       //            <p>
+       //                OOPS Something went wrong...!
+       //            </p>
+       //        </div>
+       //    </div>
+       //    <div class="col-md-4"></div>
+       //</div>
+                
+          
 
 
         function onCancel() {
