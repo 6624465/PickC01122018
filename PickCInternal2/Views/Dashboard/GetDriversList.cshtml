@@ -466,14 +466,8 @@
                     success: function (res) {
                 debugger;
                 $('#driverDetailsModal').modal('show');
-
-                      //var vehicleType = res.VehicleType;
-
-                      //  var vehicleGroup=   res.VehicleGroup;
-                var src2 = getImageValue(res.VehicleType, res.VehicleGroup);
-                console.log(src2);
-                            var src = '@Url.Content("~/images/web/")' + src2;
-                        debugger;
+                        var src2 = getImageValue(res.VehicleType, res.VehicleGroup);
+                        var src = '@Url.Content("~/images/web/")' + src2;
                         $("#driverImage").attr('src', src);
                         $("#driverName").text(res.DriverName);
                         $("#licenseNumber").text(res.LicenseNo);
