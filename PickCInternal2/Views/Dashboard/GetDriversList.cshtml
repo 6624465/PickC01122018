@@ -464,7 +464,7 @@
                     data: JSON.stringify({ 'id': $(this).data("id") }),
                     success: function (res) {
                 debugger;
-                $('#driverDetailsModal').modal('show');
+                        $('#driverDetailsModal').modal('show');
                         var src2 = getImageValue(res.VehicleType, res.VehicleGroup);
                         var src = '@Url.Content("~/images/web/")' + src2;
                         $("#driverImage").attr('src', src);
@@ -521,7 +521,33 @@
                 //
             }
         });
-    });
+        });
+
+        function getImageValue(type, group) {
+            debugger;
+            var img = "";
+            if (type == 'Open') {
+                if (group == 'Mini')
+                    img = "open_0_75_ton_selected.png";
+                else if (group == 'Small')
+                    img = "open_selected_1_ton.png";
+                else if (group == 'Medium')
+                    img = "open_selected_1_5_ton.png";
+                else if (group == 'Large')
+                    img = "open_2_ton_selected.png";
+            }
+            else if (type == 'Closed') {
+                if (group == 'Mini')
+                    img = "closed_0_75_ton_selected.png";
+                else if (group == 'Small')
+                    img = "closed_selected_1_ton.png";
+                else if (group == 'Medium')
+                    img = "closed_selected_1_5_ton.png";
+                else if (group == 'Large')
+                    img = "closed_2_ton_selected.png";
+            }
+            return img;
+        }
 
     </script>
 }
