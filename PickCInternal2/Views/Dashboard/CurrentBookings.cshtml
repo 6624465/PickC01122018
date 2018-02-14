@@ -265,25 +265,27 @@
             var imgBaseUrl = '@Url.Content("~/images/web/")';
             if (type == 'Open')//Open
             {
-                if (group == 'Mini')//Mini
-                    return imgBaseUrl + 'open_0_75_ton_selected.png';
-                else if (group == 'Small')//Small
-                    return imgBaseUrl + 'open_selected_1_ton.png';
-                else if (group == 'Medium')//Medium
-                    return imgBaseUrl + 'open_selected_1_5_ton.png';
-                else if (group == 'Large')//Large
-                    return imgBaseUrl + 'open_2_ton_selected.png';
+                return imgBaseUrl + 'open.png';
+                //if (group == 'Mini')//Mini
+                //    return imgBaseUrl + 'open_0_75_ton_selected.png';
+                //else if (group == 'Small')//Small
+                //    return imgBaseUrl + 'open_selected_1_ton.png';
+                //else if (group == 'Medium')//Medium
+                //    return imgBaseUrl + 'open_selected_1_5_ton.png';
+                //else if (group == 'Large')//Large
+                //    return imgBaseUrl + 'open_2_ton_selected.png';
             }
             else if (type == 'Closed')//Closed
             {
-                if (group == 'Mini')//Mini
-                    return imgBaseUrl + 'closed_0_75_ton_selected.png';
-                else if (group == 'Small')//Small
-                    return imgBaseUrl + 'closed_selected_1_ton.png';
-                else if (group == 'Medium')//Medium
-                    return imgBaseUrl + 'closed_selected_1_5_ton.png';
-                else if (group == 'Large')//Large
-                    return imgBaseUrl + 'closed_2_ton_selected.png';
+                return imgBaseUrl + 'close.png';
+                //if (group == 'Mini')//Mini
+                //    return imgBaseUrl + 'closed_0_75_ton_selected.png';
+                //else if (group == 'Small')//Small
+                //    return imgBaseUrl + 'closed_selected_1_ton.png';
+                //else if (group == 'Medium')//Medium
+                //    return imgBaseUrl + 'closed_selected_1_5_ton.png';
+                //else if (group == 'Large')//Large
+                //    return imgBaseUrl + 'closed_2_ton_selected.png';
             }
         }
 

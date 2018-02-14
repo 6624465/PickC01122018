@@ -223,25 +223,27 @@
             var imgBaseUrl = '@Url.Content("~/images/web/")';
             if (type == '1300')//Open
             {
-                if (group == '1000')//Mini
-                    return imgBaseUrl + 'open_0_75_ton_selected.png';
-                else if (group == '1001')//Small
-                    return imgBaseUrl + 'open_selected_1_ton.png';
-                else if (group == '1002')//Medium
-                    return imgBaseUrl + 'open_selected_1_5_ton.png';
-                else if (group == '1003')//Large
-                    return imgBaseUrl + 'open_2_ton_selected.png';
+                return imgBaseUrl + 'open.png';
+                //if (group == '1000')//Mini
+                //    return imgBaseUrl + 'open_0_75_ton_selected.png';
+                //else if (group == '1001')//Small
+                //    return imgBaseUrl + 'open_selected_1_ton.png';
+                //else if (group == '1002')//Medium
+                //    return imgBaseUrl + 'open_selected_1_5_ton.png';
+                //else if (group == '1003')//Large
+                //    return imgBaseUrl + 'open_2_ton_selected.png';
             }
             else if (type == '1301')//Closed
             {
-                if (group == '1000')//Mini
-                    return imgBaseUrl + 'closed_0_75_ton_selected.png';
-                else if (group == '1001')//Small
-                    return imgBaseUrl + 'closed_selected_1_ton.png';
-                else if (group == '1002')//Medium
-                    return imgBaseUrl + 'closed_selected_1_5_ton.png';
-                else if (group == '1003')//Large
-                    return imgBaseUrl + 'closed_2_ton_selected.png';
+                return imgBaseUrl + 'close.png';
+                //if (group == '1000')//Mini
+                //    return imgBaseUrl + 'closed_0_75_ton_selected.png';
+                //else if (group == '1001')//Small
+                //    return imgBaseUrl + 'closed_selected_1_ton.png';
+                //else if (group == '1002')//Medium
+                //    return imgBaseUrl + 'closed_selected_1_5_ton.png';
+                //else if (group == '1003')//Large
+                //    return imgBaseUrl + 'closed_2_ton_selected.png';
             }
         }
 
@@ -391,38 +393,46 @@
 
 
 
-		});
+        });
+
+        function parseJsonDate(jsonDateString) {
+            return new Date(parseInt(jsonDateString.replace('/Date(', '')));
+        }
 
 		$(document).on('click','.drvrList', function () {
 				var driverid = $(this).data("status");
 			//debugger;
-			$.ajax({
-				url: '@Url.Content("~/Dashboard/GetDriverDetails")',
-				method: 'POST',
-				contentType: 'application/json',
-				dataType: 'json',
-				data: JSON.stringify({ 'id': $(this).data("id") }),
-				success: function (res) {
-				debugger;
-					$('#driverDetailsModal').modal('show');
+                $.ajax({
+                    url: '@Url.Content("~/Dashboard/GetDriverDetails")',
+                    method: 'POST',
+                    contentType: 'application/json',
+                    dataType: 'json',
+                    data: JSON.stringify({ 'id': $(this).data("id") }),
+                    success: function (res) {
+                        debugger;
+                        $('#driverDetailsModal').modal('show');
 
-					var source = '@Url.Content("~/images/icon.png")';
-					$("#driverImage").attr('src', source);
-					$("#driverName").text(res.DriverName);
-					$("#licenseNumber").text(res.LicenseNo);
-					$("#vehicleNumber").text(res.VehicleNo);
-					$("#phoneNo").text(res.MobileNo);
-					$("#vehicletype").text(res.VehicleType);
-					$("#vehiclecategory").text(res.VehicleGroup);
-					$("#status").text($("#ddlSearchByStatus").val());
-					$("#bookingno").text(res.BookingNo);
-                    
-                    $("#locationfrom").text(res.LocationFrom);
-                    $("#locationto").text(res.LocationTo);
-					$("#starttime").text(moment(res.StartTime).format('DD/MM/YYYY HH:mm:ss'));					
-					debugger;
-					if (res.Status === true) {
-                        $("#latestlogin").text(moment(res.LoginDate).format('DD/MM/YYYY HH:mm:ss'));
+                        var source = '@Url.Content("~/images/icon.png")';
+                        $("#driverImage").attr('src', source);
+                        $("#driverName").text(res.DriverName);
+                        $("#licenseNumber").text(res.LicenseNo);
+                        $("#vehicleNumber").text(res.VehicleNo);
+                        $("#phoneNo").text(res.MobileNo);
+                        $("#vehicletype").text(res.VehicleType);
+                        $("#vehiclecategory").text(res.VehicleGroup);
+                        $("#status").text($("#ddlSearchByStatus").val());
+                        $("#bookingno").text(res.BookingNo);
+
+                        $("#locationfrom").text(res.LocationFrom);
+                        $("#locationto").text(res.LocationTo);
+                        $("#starttime").text(moment(res.StartTime).format('DD/MM/YYYY HH:mm:ss'));
+                        debugger;
+                        if (res.Status === true) {
+                            var temp = moment(res.LoginDate).format('DD/MM/YYYY HH:mm:ss');
+                            var temp2 = moment(parseJsonDate(res.LoginDate)).format('DD/MM/YYYY HH:mm:ss');
+                            var temp3 = new Date(res.LoginDate.match(/\d+/)[0] * 1);
+                        debugger;
+                        $("#latestlogin").text(temp2);
 						$("#driverLogin").show();
 						$("#driverLogoff").hide();
 						$("#intrip").hide();
