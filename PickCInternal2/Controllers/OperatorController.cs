@@ -12,6 +12,7 @@ using PickC.Services.DTO;
 using PickC.Internal2.ViewModals;
 using PickC.Internal2;
 using System.IO;
+using Newtonsoft.Json;
 
 namespace PickCInternal2.Controllers
 {
@@ -51,7 +52,7 @@ namespace PickCInternal2.Controllers
         [HttpPost]
         public async Task<ActionResult> SaveOperator(Operator OPerator)
         {
-             OPerator.operatorAttachment = new List<OperatorAttachment>();
+            OPerator.operatorAttachment = new List<OperatorAttachment>();
             var lookupId = "";
             foreach (string file in Request.Files)
             {
@@ -81,7 +82,7 @@ namespace PickCInternal2.Controllers
                     if (file == "fprofilepic")
                     {
                         lookupId = "1506";
-                    }                   
+                    }
 
                     OperatorAttachment attachment = new OperatorAttachment()
                     {
@@ -91,10 +92,14 @@ namespace PickCInternal2.Controllers
 
                     OPerator.operatorAttachment.Add(attachment);
                 }
-            }           
-            
-            var OperatorID = await new OperatorService(AUTHTOKEN, p_mobileNo).SaveOperatorAsync(OPerator);
+            }
 
+            var OperatorIDObj = await new OperatorService(AUTHTOKEN, p_mobileNo).SaveOperatorAsync(OPerator);
+
+            var anonymous = new { OperatorId =""};
+            
+            
+            var json = JsonConvert.DeserializeAnonymousType(OperatorIDObj, anonymous);
             foreach (string file in Request.Files)
             {
                 var fileContent = Request.Files[file];
@@ -124,7 +129,7 @@ namespace PickCInternal2.Controllers
                     {
                         lookupId = "1506";
                     }
-                    string mapPath = Server.MapPath($"~/Attachments/{OperatorID}/");
+                    string mapPath = Server.MapPath($"~/Attachments/{json.OperatorId}/");
                     if (!Directory.Exists(mapPath))
                     {
                         Directory.CreateDirectory(mapPath);
