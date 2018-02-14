@@ -149,8 +149,8 @@ namespace PickC.Internal2.Controllers
                         Directory.CreateDirectory(mapPath);
                     }
                     fileContent.SaveAs(mapPath + fileContent.FileName);
-                    //string path = Server.MapPath("~/PickCApi/DriverImages");
 
+                    //string path = Server.MapPath("~/PickCApi/DriverImages");
                     //if (!Directory.Exists(path))
                     //{
                     //    Directory.CreateDirectory(path);

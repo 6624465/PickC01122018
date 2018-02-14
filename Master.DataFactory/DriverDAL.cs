@@ -10,6 +10,9 @@ using Microsoft.Practices.EnterpriseLibrary.Data.Sql;
 using Master.Contract;
 using Master.DataFactory;
 using PickC.Services.DTO;
+using System.IO;
+using System.Net.Http;
+using System.Web;
 
 namespace Master.DataFactory
 {
@@ -133,6 +136,10 @@ namespace Master.DataFactory
                         {
                             driverAttachment.DriverId = newDocumentNo;
                             driverAttachment.AttachmentId = newDocumentNo + driverAttachment.LookupCode;
+                           
+                            //postedFile.SaveAs(filePath);
+                            
+                          
                         }
                         result = new DriverAttachementDAL().SaveList(driver.driverAttachment, transaction) == true ? 1 : 0;
                     }
@@ -173,6 +180,19 @@ namespace Master.DataFactory
                     //    Directory.CreateDirectory(path);
                     //}
                     //fileContent.SaveAs(path + fileContent.FileName);
+
+
+                    //for (int i = 0; i < request.Files.Count; i++)
+                    //{
+                    //    var file = request.Files[i];
+
+                    //    var ext = new FileInfo(file.FileName).Extension;
+                    //    var fullPath = Path.Combine(StorageRoot, Path.GetFileName(Guid.NewGuid() + ext));
+
+                    //    file.SaveAs(fullPath);
+                    //}
+            
+        
 
                     if (currentTransaction == null)
                         transaction.Commit();
@@ -278,10 +298,18 @@ namespace Master.DataFactory
 					{
 						foreach (var driverAttachment in driver.driverAttachment)
 						{
-							driverAttachment.DriverId = newDocumentNo;
+                             
+                            driverAttachment.DriverId = newDocumentNo;
 							driverAttachment.AttachmentId = newDocumentNo + driverAttachment.LookupCode;
-						}
-						result = new DriverAttachementDAL().SaveList(driver.driverAttachment, transaction) == true ? 1 : 0;
+                            //var postedFile = driverAttachment.ImagePath;
+                            //var ext = postedFile.Substring(postedFile.LastIndexOf('.'));
+
+                            //var extension = ext.ToLower();
+                            //var filePath = HttpContext.Current.Server.MapPath("~/DriverImages/");
+                            //System.IO.Path.Combine(filePath, newDocumentNo + extension);
+
+                        }
+                        result = new DriverAttachementDAL().SaveList(driver.driverAttachment, transaction) == true ? 1 : 0;
 					}
 					if (driver.AddressList != null && driver.AddressList.Count > 0)
 					{

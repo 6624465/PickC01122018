@@ -1202,9 +1202,28 @@
                     });
                 });
 
-                function btnSave() {
+        function btnSave() {
+            debugger;
                     if ($('#frmOperatorAdd').valid()) {
-                        $('#frmOperatorAdd').submit();
+                        var bankDetailsLength = $('#trBodyBank tr').length;
+                        var addressLength = $('#trBodyAddress tr').length;
+                        var vehicleLength = $('#trBodyVehicle tr').length;
+                      //  var driverLength = $('#trBodyDriver tr').length;
+                        if (bankDetailsLength > 0 && addressLength > 0 ) {
+
+                            $('#frmOperatorAdd').submit();
+                        }
+                        else {
+                            if (addressLength == 0)
+                                alert("Please enter address details");
+                            else 
+                                alert("Please enter bank details");
+                            //else 
+                            //    alert("Please enter vehicle details");
+                            //else
+                            //    alert("Please enter driver details");
+
+                        }
                     }
                 }
                 function onChangeVehicleCategory(selectedCategory) {
