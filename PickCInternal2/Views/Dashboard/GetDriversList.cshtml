@@ -474,7 +474,10 @@
                         $("#phoneNo").text(res.MobileNo);
                         $("#vehicletype").text(res.VehicleType);
                         $("#vehiclecategory").text(res.VehicleGroup);
-                        $("#status").text($("#ddlSearchByStatus").val());
+                        if (res.Status)
+                            $("#status").text('LOGIN');
+                        else
+                            $("#status").text('LOGOFF');
                         $("#bookingno").text(res.BookingNo);
 
                         $("#locationfrom").text(res.LocationFrom);
