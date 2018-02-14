@@ -155,7 +155,9 @@
                 });
             });
             $(document).ready(function () {
-                $('#totalTrips').dataTable();
+                $('#totalTrips').dataTable({
+                    "order": [[0, "desc"]]
+                });
             });
 
             @*var chart = Highcharts.chart('chartcontainer', {

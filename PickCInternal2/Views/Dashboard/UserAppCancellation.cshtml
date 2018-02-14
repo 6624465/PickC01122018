@@ -117,8 +117,14 @@
         });
 
         $(document).ready(function () {
-            $('#driver_cancellation').dataTable();
-            $('#customer_cancellation').dataTable();
+            $('#customer_cancellation').dataTable({
+                "order": [[0, "desc"]]
+            });
+
+            $('#driver_cancellation').dataTable({
+                "order": [[0, "desc"]]
+            });
+            
         });
     </script>
 }
