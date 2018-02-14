@@ -116,7 +116,7 @@ namespace PickCApi.Areas.Master.Controllers
                 }
                 var result = new DriverBO().SaveDriver(driver);
                 if (result)
-                    return Ok(UTILITY.SUCCESSMSG);
+                    return Ok(result);
                 else
                     return BadRequest();
             }
@@ -152,8 +152,8 @@ namespace PickCApi.Areas.Master.Controllers
 				}
 				var result = new DriverBO().SaveDriverDetails(driver);
 				if (result)
-					return Ok(UTILITY.SUCCESSMSG);
-				else
+                    return Ok(new { DriverId =  driver.DriverId});
+                else
 					return BadRequest();
 			}
 			catch (Exception ex)
@@ -228,6 +228,7 @@ namespace PickCApi.Areas.Master.Controllers
 			try
 			{
 				var driver = new DriverBO().GetDriverByID(new DriverMdl { DriverId = driverByID });
+                
 				if (driver != null)
 					return Ok(driver);
 				else

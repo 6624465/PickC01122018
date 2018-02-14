@@ -12,6 +12,7 @@ using PickC.Services.DTO;
 using PickC.Internal2.ViewModals;
 using PickC.Internal2;
 using System.IO;
+using Newtonsoft.Json;
 
 namespace PickCInternal2.Controllers
 {
@@ -51,7 +52,7 @@ namespace PickCInternal2.Controllers
         [HttpPost]
         public async Task<ActionResult> SaveOperator(Operator OPerator)
         {
-             OPerator.operatorAttachment = new List<OperatorAttachment>();
+            OPerator.operatorAttachment = new List<OperatorAttachment>();
             var lookupId = "";
             foreach (string file in Request.Files)
             {
@@ -82,12 +83,6 @@ namespace PickCInternal2.Controllers
                     {
                         lookupId = "1506";
                     }
-                    string mapPath = Server.MapPath("~/Attachments/");
-                    if (!Directory.Exists(mapPath))
-                    {
-                        Directory.CreateDirectory(mapPath);
-                    }
-                    fileContent.SaveAs(mapPath + fileContent.FileName);
 
                     OperatorAttachment attachment = new OperatorAttachment()
                     {
@@ -98,53 +93,50 @@ namespace PickCInternal2.Controllers
                     OPerator.operatorAttachment.Add(attachment);
                 }
             }
-           
-            //foreach (string file in Request.Files)
-            //{
-            //    var fileContent = Request.Files[file];
-            //    if(file== "fadhar")
-            //    {
-            //         lookupId = "1375";
-            //    }
-            //    if(file == "fpan") 
-            //    {
-            //        lookupId = "1374";
-            //    }
-            //    if(file == "flicense")
-            //    {
-            //        lookupId = "1376";
-            //    }
-            //    if(file == "fvoter")
-            //    {
-            //        lookupId = "1377";
-            //    }
-            //    if(file== "fothers")
-            //    {
-            //        lookupId = "1382";
-            //    }
-            //    string mapPath = Server.MapPath("~/Attachments/");
-            //    if (!Directory.Exists(mapPath))
-            //    {
-            //        Directory.CreateDirectory(mapPath);
-            //    }
-            //    fileContent.SaveAs(mapPath + fileContent.FileName);
 
-            //    OperatorAttachment attachment = new OperatorAttachment()
-            //    {
-            //        imagePath = fileContent.FileName,
-            //        lookupCode = lookupId
-            //    };
+            var OperatorIDObj = await new OperatorService(AUTHTOKEN, p_mobileNo).SaveOperatorAsync(OPerator);
 
-            //    attachmentsList.Add(attachment);
-            //}
-            // OPerator.operatorAttachment = attachmentsList;
-            //Operator o = new Operator();
-            //o.OperatorVehicle = new List<OperatorVehicle>();
-            //OPerator.OperatorVehicle.ForEach(x =>
-            //{
-            //    x.VehicleType =
-            //});
-            var result = await new OperatorService(AUTHTOKEN, p_mobileNo).SaveOperatorAsync(OPerator);
+            var anonymous = new { OperatorId =""};
+            
+            
+            var json = JsonConvert.DeserializeAnonymousType(OperatorIDObj, anonymous);
+            foreach (string file in Request.Files)
+            {
+                var fileContent = Request.Files[file];
+                if (fileContent.ContentLength > 0)
+                {
+                    if (file == "fadhar")
+                    {
+                        lookupId = "1375";
+                    }
+                    if (file == "fpan")
+                    {
+                        lookupId = "1374";
+                    }
+                    if (file == "flicense")
+                    {
+                        lookupId = "1376";
+                    }
+                    if (file == "fvoter")
+                    {
+                        lookupId = "1377";
+                    }
+                    if (file == "fothers")
+                    {
+                        lookupId = "1382";
+                    }
+                    if (file == "fprofilepic")
+                    {
+                        lookupId = "1506";
+                    }
+                    string mapPath = Server.MapPath($"~/Attachments/{json.OperatorId}/");
+                    if (!Directory.Exists(mapPath))
+                    {
+                        Directory.CreateDirectory(mapPath);
+                    }
+                    fileContent.SaveAs(mapPath + fileContent.FileName);                    
+                }
+            }
             return RedirectToAction("Operator", "Operator");
         }
         [HttpGet]
