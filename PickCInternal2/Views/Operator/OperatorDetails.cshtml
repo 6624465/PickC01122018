@@ -298,6 +298,7 @@
                                                                                 <td>
                                                                                     <span id="txtAccType_span_@i">@Model.OPerator.BankDetails[i].AccountType</span>
                                                                                     @Html.HiddenFor(x => Model.OPerator.BankDetails[i].AccountType)
+                                                                                    @Html.HiddenFor(x=>Model.OPerator.BankDetails[i].OperatorBankID)
                                                                                 </td>
                                                                                 <td>
                                                                                     <a class="hand" onclick="EditBankDetails('@i')">Edit</a>&nbsp;|&nbsp;
@@ -966,6 +967,7 @@
                             <label>Account Type</label>
                             <input type="text" id="txtAccType" name="txtAccType" class="form-control noSpecialChar" />
                         </div>
+                        <input type="hidden" id="OperatorBankID" name="OperatorBankID" value="" />
                     </div>
                 </div>
                 <div class="modal-footer">

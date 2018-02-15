@@ -13,6 +13,7 @@ namespace Operation.Contract
         public List<DriverPendingCommission> driverPendingCommision { get; set; }
 
         public List<DriverPendingAmount> driverPendingAmount { get; set; }
+        public DriverPendingCommisionAmount driverPendingCommisionAmount { get; set; }
     }
     public class DriverPendingCommission
     {
@@ -25,5 +26,9 @@ namespace Operation.Contract
             public string PaymentType { get; set; }
             public Decimal CommissionAmount { get; set; }
         
+    }
+    public class DriverPendingCommisionAmount
+    {
+        public decimal CommissionAmount { get; set; }
     }
 }

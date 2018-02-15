@@ -401,8 +401,10 @@ namespace PickC.Internal2.Controllers
 			PendingCommission pending = new PendingCommission();
 			pending.driverPendingCommision = await new PaymentService(AUTHTOKEN, p_mobileNo).driverpendingAmountDetails();
 			pending.driverPendingAmount = await new DriverService(AUTHTOKEN, p_mobileNo).DriverPendingAmountAsync();
+            pending.driverPendingCommisionAmount = new DriverPendingCommisionAmount();
+            pending.driverPendingCommisionAmount = await new PaymentService(AUTHTOKEN, p_mobileNo).driverPendingAmount();
 
-			return View(pending);
+            return View(pending);
 		}
 		[HttpPost]
 		public ActionResult PendingAmounts(PendingAmountDTO pendingAmountDTO)

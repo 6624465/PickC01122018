@@ -37,5 +37,9 @@ namespace Operation.BusinessFactory
         {
             return summaryDAL.DailyPaymentHistory();
         }
+        public DriverPendingCommisionAmount DailyPaymentHistoryAmount()
+        {
+            return summaryDAL.DailyPaymentHistoryAmount();
+        }
     }
 }
