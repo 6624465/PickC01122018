@@ -186,7 +186,7 @@
         function GetDriverDetails(driverId) {
             var def = $.Deferred();
             $.ajax({
-                url: '@Url.Content("~/Driver/Edit?driverID=")' + driverId,
+                url: '@Url.Content("~/Driver/DriverById?driverID=")' + driverId,
                 method: 'get',
                 contentType: 'application/json',
                 success: function (data) {
@@ -212,17 +212,22 @@
                     //return '<div class="media"><a href="#" class="pull-left"><img src=".." class="media-object" alt="Sample Image"></a><div class="media-body"><h4 class="media-heading">' + 'some name' + '</h4><p>Excellent Bootstrap popover! I really love it.</p></div></div>'
                     var promise = GetDriverDetails($(this).data('driverid'));
                     $.when(promise).done(function (data) {
+                        
                         $('.popover-content').empty();
-                        $('.popover-content').append('<ul class="list-group" id="DriverContent"> <h4><b>Driver Details</b></h4>');
-                        $('.popover-content').append('<li class="list-group-item"><b>Aadhar Card No: </b>' + data.driver.AadharCardNo + '</li>');
-                        $('.popover-content').append('<li class="list-group-item"><b>PAN No: </b>' + data.driver.PANNo + '</li>');
-                        $('#popover-content-login').append('<li class="list-group-item"><b>Father Name: </b>' + data.driver.FatherName + '</li>');
-                        //$('#popover-content-login').append('<li class="list-group-item"><b>Date Of Birth: </b>' + moment.format(m,'MM/DD/YYYY') + '</li>');
-                        $('.popover-content').append('<li class="list-group-item"><b>Place Of Birth: </b>' + data.driver.PlaceOfBirth + '</li>');
-                        $('.popover-content').append('<li class="list-group-item"><b>Gender: </b>' + data.driver.GenderDescription + '</li>');
-                        $('.popover-content').append('<li class="list-group-item"><b>Marital Status: </b>' + data.driver.MaritialStatusDescription + '</li>');
-                        $('.popover-content').append('<li class="list-group-item"><b>Phone No: </b>' + data.driver.PhoneNo + '</li>');
-                        $('.popover-content').append('</ul');
+                        if (data.driver != null) {
+                            $('.popover-content').append('<ul class="list-group" id="DriverContent"> <h4><b>Driver Details</b></h4>');
+                            $('.popover-content').append('<li class="list-group-item"><b>Aadhar Card No: </b>' + data.driver.AadharCardNo + '</li>');
+                            $('.popover-content').append('<li class="list-group-item"><b>PAN No: </b>' + data.driver.PANNo + '</li>');
+                            $('#popover-content-login').append('<li class="list-group-item"><b>Father Name: </b>' + data.driver.FatherName + '</li>');
+                            //$('#popover-content-login').append('<li class="list-group-item"><b>Date Of Birth: </b>' + moment.format(m,'MM/DD/YYYY') + '</li>');
+                            $('.popover-content').append('<li class="list-group-item"><b>Place Of Birth: </b>' + data.driver.PlaceOfBirth + '</li>');
+                            $('.popover-content').append('<li class="list-group-item"><b>Gender: </b>' + data.driver.GenderDescription + '</li>');
+                            $('.popover-content').append('<li class="list-group-item"><b>Marital Status: </b>' + data.driver.MaritialStatusDescription + '</li>');
+                            $('.popover-content').append('<li class="list-group-item"><b>Phone No: </b>' + data.driver.PhoneNo + '</li>');
+                            $('.popover-content').append('</ul');
+                        } else {
+                            $('.popover-content').append('Details Not Found.');
+                        }
                     });
                 }
             });
