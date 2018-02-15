@@ -5,10 +5,10 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 @section seccss{
-        <link href="@Url.Content("~/Css/bootstrap-datetimepicker.css")" rel="stylesheet" />
-        <link href="~/Css/jquery.dataTables.min.css" rel="stylesheet" />
-    }
-<section class="content" >
+    <link href="@Url.Content("~/Css/bootstrap-datetimepicker.css")" rel="stylesheet" />
+    <link href="~/Css/jquery.dataTables.min.css" rel="stylesheet" />
+}
+<section class="content">
     @using (Html.BeginForm("BookingsHistory", "Dashboard", FormMethod.Post, new { id = "frmSearchBookingHistory", name = "frmSearchBookingHistory" }))
     {
         <div class="row">
@@ -53,58 +53,61 @@
                 </div>
             </div>
         </div>
-    <table id="table_id" class="table table-hover">
-        <thead>
-            <tr>
-                <th>Booking No.</th>
-                <th>Booking Date</th>
-                <th>Customer Name</th>
-                <th>Customer Mobile</th>
-                <th>Vehicle No.</th>
-                <th>Driver Name</th>
-                <th>Invoice Amount</th>
-                <th>Status</th>
-            </tr>
-        </thead>
-        <tbody>
-            
-            @foreach (var item in Model.booking)
-            {
-            <tr>
-                <td>
-                    @if (item.IsCancel)
+        <table id="table_id" class="table table-hover">
+            <thead>
+                <tr>
+                    <th>Booking No.</th>
+                    <th>Booking Date</th>
+                    <th>Customer Name</th>
+                    <th>Customer Mobile</th>
+                    <th>Vehicle No.</th>
+                    <th>Driver Name</th>
+                    <th>Invoice Amount</th>
+                    <th>Status</th>
+                </tr>
+            </thead>
+            <tbody>
+                @if (Model.booking != null)
+                {
+                    foreach (var item in Model.booking)
                     {
-                        @Html.DisplayFor(m => item.BookingNo)
-                    }
-                    else
-                    {
-                        <a class="hand" onclick="DisplayInvoice('@item.BookingNo')">@item.BookingNo</a>
-                    }
-                </td>
+                        <tr>
+                            <td>
+                                @if (item.IsCancel)
+                                {
+                                    @Html.DisplayFor(m => item.BookingNo)
+                                }
+                                else
+                                {
+                                    <a class="hand" onclick="DisplayInvoice('@item.BookingNo')">@item.BookingNo</a>
+                                }
+                            </td>
 
-                <td>@Html.DisplayFor(m => item.BookingDate)</td>
-                <td>@Html.DisplayFor(m => item.CustomerName)</td>
-                <td>@Html.DisplayFor(m => item.CustomerId)</td>
-                <td>@Html.DisplayFor(m => item.VehicleNo)</td>
-                <td>@Html.DisplayFor(m => item.DriverName)</td>
-                <td>@Html.DisplayFor(m => item.InvoiceAmount)</td>
-                <td>
-                    @if (item.IsCancel)
-                    {
-                        <span class="label label-danger">Cancelled</span>
-                    }
-                    else
-                    {
-                        <span class="label label-success">Confirmed</span>
-                    }
-                </td>
+                            <td>@Html.DisplayFor(m => item.BookingDate)</td>
+                            <td>@Html.DisplayFor(m => item.CustomerName)</td>
+                            <td>@Html.DisplayFor(m => item.CustomerId)</td>
+                            <td>@Html.DisplayFor(m => item.VehicleNo)</td>
+                            <td>@Html.DisplayFor(m => item.DriverName)</td>
+                            <td>@Html.DisplayFor(m => item.InvoiceAmount)</td>
+                            <td>
+                                @if (item.IsCancel)
+                                {
+                                    <span class="label label-danger">Cancelled</span>
+                                }
+                                else
+                                {
+                                    <span class="label label-success">Confirmed</span>
+                                }
+                            </td>
 
-            </tr>
-            }
-        </tbody>
+                        </tr>
+                    }
+                }
 
-    </table>
-           }
+            </tbody>
+
+        </table>
+    }
 </section>
 <div class="modal" id="InvoiceModal">
     <div class="modal-dialog modal-md">
@@ -149,7 +152,7 @@
                 previous: 'fa fa-arrow-left',
                 next: 'fa fa-arrow-right'
             },
-            format: 'DD/MM/YYYY'
+            format: DateFormat
         });
         $(function () {
             $('#SearchBookingHistory').parent().addClass('active');
