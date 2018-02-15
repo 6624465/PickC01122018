@@ -162,6 +162,7 @@ namespace Operation.DataFactory
         public const string BOOKINGCANCELLEDBYCUSTOMER = "[operation].[usp_getListCancelledByCustomer]";/*shruthi*/
         public const string BOOKINGCANCELLEDBYDRIVERLIST = "[operation].[usp_getListCancelledByDriver]";/*shruthi*/
         public const string DRIVERCOMMISIONPENDINGTOPICKC="[operation].[usp_CommisionPendingToPickc]";
+        public const string DRIVERCOMMISIONPENDINGTOPICKTOTAL = "[operation].[usp_CommisionPendingToPickcAmount]";
 
         public const string  DASHBOARDCOUNT="[operation].[usp_dashBoardCountList]";
         public const string TOTALTRIPDETAILSDAILYBASIS = "[master].[usp_getTotalTripsDetailDailyBasis]";

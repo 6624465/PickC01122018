@@ -526,7 +526,7 @@
                             </div>
 
                             <div class="col-md-3">
-                                <div id="fadhardocFile">@adharStr</div>
+                                <div id="fadhardocFile" >@adharStr</div>
                                 <input type="hidden" name="hdnfadhardocFile" id="hdnfadhardocFile" />
                             </div>
                         </div>
@@ -615,7 +615,9 @@
                                 </div>
                             </div>
                             <div class="col-md-3">
-                                <div id="fprofilepicdocFile">@profilepicStr</div>
+                                <div id="fprofilepicdocFile">@profilepicStr
+                                @*<span  class="label label-default" onclick="onClickEvent('@profilepicStr')"><i class="fa fa-remove" style="font-size:12px" aria-hidden="true">@profilepicStr</i></span>*@
+                                </div>
                                 <input type="hidden" name="hdnfprofilepicdocFile" id="hdnfprofilepicdocFile" />
                             </div>
                         </div>
@@ -901,7 +903,18 @@
        //</div>
                 
           
+        @*function onClickEvent(str) {
+            debugger;
+            @if (Model.driver.driverAttachment != null)
+             {
+                 for(var i = 0; i <= Model.driver.driverAttachment.Count; i++)
+                 {
+                     var v = Model.driver.driverAttachment[i].ImagePath;
+                 //alert("event fired");
+                 }
 
+             }
+        }*@
 
         function onCancel() {
             debugger
