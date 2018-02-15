@@ -84,6 +84,39 @@ namespace PickCApi.Areas.Master.Controllers
                 return InternalServerError(ex);
             }
         }
+
+        /* Android Only */
+        [HttpGet]
+        [Route("GetDriverDetails")]
+        [ApiAuthFilter]
+        public IHttpActionResult GetDriverProfile ()
+        {
+            try
+            {
+                var driverBO = new DriverBO();
+                var DRIVERID = HttpContext.Current.Request.Headers["DRIVERID"]; ;
+                var driverObj = driverBO.GetDriver(new Driver { DriverId = DRIVERID });
+                if (driverObj != null)
+                {
+                    return Ok(new {
+                        DRIVERID =driverObj.DriverId,
+                        DriverName =driverObj.DriverName,
+                        VehicleGroup = driverObj.VehicleGroup,
+                        VehicleType =driverObj.VehicleType,
+                        VehicleNo=driverObj.VehicleNo,
+                        MobileNo=driverObj.MobileNo
+                    });
+                }
+                else
+                    return NotFound();
+            }
+            catch (Exception ex)
+            {
+                return InternalServerError(ex);
+            }
+        }
+      /* Android Only */
+
         [HttpGet]
         [Route("DriverListOfTrips/{FromDate}/{ToDate}")]
         [ApiAuthFilter]
