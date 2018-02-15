@@ -355,6 +355,8 @@
                                                     @Html.HiddenFor(x => Model.driver.AddressList[i].StateName)
                                                     @Html.HiddenFor(x => Model.driver.AddressList[i].ZipCode)
                                                     @Html.HiddenFor(x => Model.driver.AddressList[i].IsActive)
+                                                    @Html.HiddenFor(x => Model.driver.AddressList[i].AddressLinkId)
+                                                    @Html.HiddenFor(x => Model.driver.AddressList[i].AddressId)
                                                     <a class="hand" onclick="EditAddress('@i')">Edit</a>&nbsp;|&nbsp;
                                                     <a class="hand" onclick="DeleteAddress('@i')">Delete</a>
                                                 </td>
@@ -686,7 +688,8 @@
                             <label>City</label>
                             <input class="form-control" id="CityName" name="CityName" type="text" value="">
                         </div>
-                        <input id="AddressLinkID" name="AddressLinkID" type="hidden" value="">
+                        <input id="AddressLinkId" name="AddressLinkId" type="hidden" value="">
+                        <input id="AddressId" name="AddressId" type="hidden" value="">
                     </div>
                     <div class="row">
                         <div class="col-md-6">

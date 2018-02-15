@@ -65,6 +65,7 @@ function EditAddress(index) {
     }); */
     gIndex = index;
     var baseID = 'OPerator_AddressList_' + index + '__';
+    //$('#AddressId').val($('#' + baseId + 'AddressId').val());
     $('#Address1').val($('#' + baseID + 'Address1').val());
     $('#Address2').val($('#' + baseID + 'Address2').val());
     $('#Address3').val($('#' + baseID + 'Address3').val());
@@ -121,6 +122,7 @@ function btnSaveAddress() {
                             '<input id="OPerator_AddressList_' + index + '__CityName" name="OPerator.AddressList[' + index + '].CityName" type="hidden" value="' + $('#CityName').val() + '">' +
                             '<input id="OPerator_AddressList_' + index + '__StateName" name="OPerator.AddressList[' + index + '].StateName" type="hidden" value="' + $('#StateName').val() + '">' +
                             '<input id="OPerator_AddressList_' + index + '__ZipCode" name="OPerator.AddressList[' + index + '].ZipCode" type="hidden" value="' + $('#ZipCode').val() + '">' +
+                            '<input id="OPerator_AddressList_' + index + '__AddressId" name="OPerator.AddressList[' + index + '].AddressId" type="hidden" value="Operator.AddressList['+index+'].AddressId">' +
                             '<a class="hand" onclick="EditAddress(\'' + index + '\')">Edit</a>&nbsp;|&nbsp;' +
                             '<a class="hand" onclick="DeleteAddress(\'' + index + '\')">Delete</a>' +
                         '</td>' +
