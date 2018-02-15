@@ -96,7 +96,7 @@
                             <div class="form-group">
                                 <label>Date Of Birth</label>
                                 <div class="input-group dtCss">
-                                    @Html.TextBoxFor(x => x.driver.DateOfBirth,new{@class = "form-control",placeholder = "Date Of Birth"})
+                                    @Html.TextBoxFor(x => x.driver.DateOfBirth, "{0:dd/MM/yyyy}", new {@class = "form-control",placeholder = "Date Of Birth"})
                                     <span class="input-group-btn">
                                         <button type="button" class="btn btn-default"><i class="fa fa-calendar" aria-hidden="true"></i></button>
                                     </span>
@@ -219,7 +219,7 @@
                             <div class="form-group">
                                 <label>Date of Issue</label>
                                 <div class="input-group dtCss">
-                                    @Html.TextBoxFor(x => x.driver.DateofIssue,
+                                    @Html.TextBoxFor(x => x.driver.DateofIssue, "{0:dd/MM/yyyy}",
                                                     new
                                                     {
                                                         @class = "form-control",
@@ -236,7 +236,7 @@
                             <div class="form-group">
                                 <label>Date of Return</label>
                                 <div class="input-group dtCss">
-                                    @Html.TextBoxFor(x => x.driver.DateofReturn,
+                                    @Html.TextBoxFor(x => x.driver.DateofReturn, "{0:dd/MM/yyyy}",
                                                     new
                                                     {
                                                         @class = "form-control",
@@ -824,6 +824,17 @@
         }
 
         $(function () {
+            $('.dtCss').datetimepicker({
+                icons: {
+                    time: 'fa fa-clock-o',
+                    date: 'fa fa-calendar',
+                    up: 'fa fa-arrow-up',
+                    down: 'fa fa-arrow-down',
+                    previous: 'fa fa-arrow-left',
+                    next: 'fa fa-arrow-right'
+                },
+                format: DateFormat
+            });
             @if(Model.driver.DriverId==null)
              {
                  <text>  $('#driver_DateOfBirth').val('');</text>
@@ -885,17 +896,7 @@
 
         });
 
-        $('.dtCss').datetimepicker({
-            icons: {
-                time: 'fa fa-clock-o',
-                date: 'fa fa-calendar',
-                up: 'fa fa-arrow-up',
-                down: 'fa fa-arrow-down',
-                previous: 'fa fa-arrow-left',
-                next: 'fa fa-arrow-right'
-            },
-            format: DateFormat
-        });
+        
         function btnSave() {
             debugger
             if ($('#frmDriverAdd').valid()) {

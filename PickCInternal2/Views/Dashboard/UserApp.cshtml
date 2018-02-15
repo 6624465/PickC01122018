@@ -128,19 +128,21 @@
         <script type="text/javascript">
             $(function () {
                 $('#userApp').parent().addClass('active');
+
+                $('.dtCss').datetimepicker({
+                    icons: {
+                        time: 'fa fa-clock-o',
+                        date: 'fa fa-calendar',
+                        up: 'fa fa-arrow-up',
+                        down: 'fa fa-arrow-down',
+                        previous: 'fa fa-arrow-left',
+                        next: 'fa fa-arrow-right'
+                    },
+                    format: DateFormat
+                });
             });
 
-            $('.dtCss').datetimepicker({
-                icons: {
-                    time: 'fa fa-clock-o',
-                    date: 'fa fa-calendar',
-                    up: 'fa fa-arrow-up',
-                    down: 'fa fa-arrow-down',
-                    previous: 'fa fa-arrow-left',
-                    next: 'fa fa-arrow-right'
-                },
-                format: DateFormat
-            });
+            
 
             $(document).ready(function () {
                 $('#frmuser').validate({
