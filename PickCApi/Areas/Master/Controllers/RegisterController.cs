@@ -711,7 +711,9 @@ namespace PickCApi.Areas.Master.Controllers
                         }
                         document.Close();
                         pdf = memoryStream.ToArray();
-                        bool sendCustomerMail = new EmailGenerator().ConfigMail(EmailId, true, "PickC Invoice", "<div>"+BookingNo+"_"+DateTime.Now+"</div>", pdf);
+                        DateTime d = DateTime.Now;
+                        string Date = d.ToString("ddMMyyyy");
+                        bool sendCustomerMail = new EmailGenerator().ConfigMail(EmailId, true, BookingNo+"_"+ Date, "<div>PickC Invoice</div>", pdf);
                         if (sendCustomerMail)
                             return Ok(UTILITY.SUCCESS);
                         else
