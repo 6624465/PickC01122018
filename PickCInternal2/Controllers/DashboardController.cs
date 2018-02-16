@@ -289,7 +289,10 @@ namespace PickC.Internal2.Controllers
 			var bookingSearchVM = new BookingHistoryDTO();
 			bookingSearchVM.booking = bookingHistory;
 
-			return View("SearchBookingHistory", bookingSearchVM);
+            ViewBag.SearchData = search.bookings;
+
+
+            return View("SearchBookingHistory", bookingSearchVM);
 		}
 
 		[HttpGet]

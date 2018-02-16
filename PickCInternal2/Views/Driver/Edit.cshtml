@@ -333,7 +333,7 @@
                                 </thead>
                                
                                     <tbody id="trBody">
-                                @if (Model.driver.AddressList.Count != 0)
+                                @if (Model.driver != null && Model.driver.AddressList != null && Model.driver.AddressList.Count != 0)
                                 {
                                     for (var i = 0; i < Model.driver.AddressList.Count; i++)
                                     {
@@ -394,7 +394,7 @@
                                         </tr>
                                     </thead>
                                     <tbody id="trBodyBank">
-                                        @if (Model.driver.BankDetails != null)
+                                        @if (Model.driver != null && Model.driver.BankDetails != null && Model.driver.BankDetails != null)
                                         {
                                             for (var i = 0; i < Model.driver.BankDetails.Count; i++)
                                             {
@@ -454,7 +454,7 @@
                             var licenseStr = "";
                             var voterStr = "";
                             var profilepicStr = "";
-                            if (Model.driver.driverAttachment != null && Model.driver.driverAttachment.Count > 0)
+                            if (Model.driver != null && Model.driver.driverAttachment != null && Model.driver.driverAttachment.Count > 0)
                             {
 
                                 var fadharObj = Model.driver.driverAttachment
