@@ -185,13 +185,6 @@ namespace PickCApi.Areas.Operation.Controllers
         {
             try
             {
-                //var trip = new TripBO().DriverCurrentTrip(HeaderValueByKey("DRIVERID"));
-                //return Ok(new
-                //{
-                //    isintrip = trip != null ? true : false,
-                //    tripid = (trip != null ? trip.TripID : ""),
-                //    bookingno = (trip != null ? trip.BookingNo : "")
-                //});
                 int Status = 1;
                 var trip = new TripBO().DriverCurrentTrip(HeaderValueByKey("DRIVERID"), Status);
                 if (trip != null)

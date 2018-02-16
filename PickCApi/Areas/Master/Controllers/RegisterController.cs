@@ -711,7 +711,7 @@ namespace PickCApi.Areas.Master.Controllers
                         }
                         document.Close();
                         pdf = memoryStream.ToArray();
-                        bool sendCustomerMail = new EmailGenerator().ConfigMail(EmailId, true, "PickC Invoice", "<div>PickC Invoice</div>", pdf);
+                        bool sendCustomerMail = new EmailGenerator().ConfigMail(EmailId, true, "PickC Invoice", "<div>"+BookingNo+"_"+DateTime.Now+"</div>", pdf);
                         if (sendCustomerMail)
                             return Ok(UTILITY.SUCCESS);
                         else
@@ -1123,7 +1123,7 @@ namespace PickCApi.Areas.Master.Controllers
         /* only for customer */
         [HttpGet]
         [Route("isReachPickupWaiting")]
-        [ApiAuthFilter]
+      //  [ApiAuthFilter]
         public IHttpActionResult IsCustomerWaitingPickup()
         {
             try
