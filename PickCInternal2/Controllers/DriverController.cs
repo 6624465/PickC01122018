@@ -61,6 +61,15 @@ namespace PickC.Internal2.Controllers
 
 		}
 
+        [HttpGet]
+        public async Task<JsonResult> DriverById(string driverID)
+        {
+            Task<DriverMdl> taskDriver = new DriverService(AUTHTOKEN, p_mobileNo).DriverByIDInfoAsync(driverID);
+            return Json(new {
+                driver = await taskDriver
+            }, JsonRequestBehavior.AllowGet);
+        }
+
         private async Task<DriverVm> GetDriverInfo(string DriverID)
         {
             

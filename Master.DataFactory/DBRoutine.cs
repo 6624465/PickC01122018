@@ -73,6 +73,7 @@ namespace Master.DataFactory
         public const string LISTADDRESS = "[Master].[usp_AddressList]";
         public const string SAVEADDRESS = "[Master].[usp_AddressSave]";
         public const string DELETEADDRESS = "[Master].[usp_AddressDelete]";
+        public const string DELETEADDRESSALL = "[Master].[usp_AddressDeleteALL]";
 
         /// <summary>
         /// [Master].[Driver]

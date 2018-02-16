@@ -85,7 +85,7 @@
                                                    <div class="form-group">
                                                        <label>Date Of Birth</label>
                                                        <div class="input-group dtCss">
-                                                           @Html.TextBoxFor(x => x.OPerator.DateOfBirth, new { @class = "form-control", placeholder = "Date Of Birth" })
+                                                           @Html.TextBoxFor(x => x.OPerator.DateOfBirth, "{0:dd/MM/yyyy}", new { @class = "form-control", placeholder = "Date Of Birth" })
                                                            <span class="input-group-btn">
                                                                <button type="button" class="btn btn-default"><i class="fa fa-calendar" aria-hidden="true"></i></button>
                                                            </span>
@@ -225,6 +225,8 @@
                                                                            @Html.HiddenFor(x => Model.OPerator.AddressList[i].StateName)
                                                                            @Html.HiddenFor(x => Model.OPerator.AddressList[i].ZipCode)
                                                                            @Html.HiddenFor(x => Model.OPerator.AddressList[i].IsActive)
+                                                                           @Html.HiddenFor(x => Model.OPerator.AddressList[i].AddressId)
+                                                                           @Html.HiddenFor(x => Model.OPerator.AddressList[i].AddressLinkId)
                                                                            <a class="hand" onclick="EditAddress('@i')">Edit</a>&nbsp;|&nbsp;
                                                                            <a class="hand" onclick="DeleteAddress('@i')">Delete</a>
                                                                        </td>
@@ -296,6 +298,7 @@
                                                                                 <td>
                                                                                     <span id="txtAccType_span_@i">@Model.OPerator.BankDetails[i].AccountType</span>
                                                                                     @Html.HiddenFor(x => Model.OPerator.BankDetails[i].AccountType)
+                                                                                    @Html.HiddenFor(x=>Model.OPerator.BankDetails[i].OperatorBankID)
                                                                                 </td>
                                                                                 <td>
                                                                                     <a class="hand" onclick="EditBankDetails('@i')">Edit</a>&nbsp;|&nbsp;
@@ -861,6 +864,7 @@
                     <div class="row">
                         <div class="col-md-6">
                             <label>Address 1</label>
+                        
                             <input class="form-control" id="Address1" name="Address1" type="text" value="">
                         </div>
                         <div class="col-md-6">
@@ -887,7 +891,8 @@
                             <label>City</label>
                             <input class="form-control" id="CityName" name="CityName" type="text" value="">
                         </div>
-                        <input id="AddressLinkID" name="AddressLinkID" type="hidden" value="">
+                        <input id="AddressLinkId" name="AddressLinkId" type="hidden" value="">
+                        <input id="AddressId" name="AddressId" type="hidden" value="">
                     </div>
                     <div class="row">
                         <div class="col-md-6">
@@ -962,6 +967,7 @@
                             <label>Account Type</label>
                             <input type="text" id="txtAccType" name="txtAccType" class="form-control noSpecialChar" />
                         </div>
+                        <input type="hidden" id="OperatorBankID" name="OperatorBankID" value="" />
                     </div>
                 </div>
                 <div class="modal-footer">
@@ -1198,7 +1204,7 @@
                         }
                     });
                     $('.dtCss').datetimepicker({
-                        format: 'DD/MM/YYYY'
+                        format: DateFormat
                     });
                 });
 

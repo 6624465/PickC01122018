@@ -81,7 +81,7 @@ function btnSaveAddress() {
         $('#' + baseID + 'ZipCode').val($('#ZipCode').val());
         $('#' + 'ZipCode_span_' + gIndex).val($('#ZipCode').val());
     } else {
-        var index = $('.trRowCss').length;
+        var index = $('#trBody tr').length;
         debugger
         var html = '<tr id="trRow_' + index + '">' +
                         '<td>' +
@@ -98,6 +98,7 @@ function btnSaveAddress() {
                             '<input id="driver_AddressList_' + index + '__CityName" name="driver.AddressList[' + index + '].CityName" type="hidden" value="' + $('#CityName').val() + '">' +
                             '<input id="driver_AddressList_' + index + '__StateName" name="driver.AddressList[' + index + '].StateName" type="hidden" value="' + $('#StateName').val() + '">' +
                             '<input id="driver_AddressList_' + index + '__ZipCode" name="driver.AddressList[' + index + '].ZipCode" type="hidden" value="' + $('#ZipCode').val() + '">' +
+                            '<input id="driver_AddressList_' + index + '__AddressId" name="driver.AddressList[' + index + '].AddressId" type="hidden" value="driver.AddressList[' + index + '].AddressId">' +
                             '<a class="hand" onclick="EditAddress(\'' + index + '\')">Edit</a>&nbsp;|&nbsp;' +
                             '<a class="hand" onclick="DeleteAddress(\'' + index + '\')">Delete</a>' +
                         '</td>' +

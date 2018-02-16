@@ -301,29 +301,32 @@ namespace Master.DataFactory
                              
                             driverAttachment.DriverId = newDocumentNo;
 							driverAttachment.AttachmentId = newDocumentNo + driverAttachment.LookupCode;
-                            //var postedFile = driverAttachment.ImagePath;
-                            //var ext = postedFile.Substring(postedFile.LastIndexOf('.'));
-
-                            //var extension = ext.ToLower();
-                            //var filePath = HttpContext.Current.Server.MapPath("~/DriverImages/");
-                            //System.IO.Path.Combine(filePath, newDocumentNo + extension);
 
                         }
                         result = new DriverAttachementDAL().SaveList(driver.driverAttachment, transaction) == true ? 1 : 0;
 					}
 					if (driver.AddressList != null && driver.AddressList.Count > 0)
 					{
-						foreach (var addressItem in driver.AddressList)
-						{
-							addressItem.AddressLinkId = newDocumentNo;
-						}
+                        //foreach (var addressItem in driver.AddressList)
+                        //{
+                        //	addressItem.AddressLinkId = newDocumentNo;
+                        //}
+                        //driver.AddressList.ForEach(y =>
+                        //  {
+                        //      y.AddressLinkId = newDocumentNo;
+                        //  });
 
-
-						driver.AddressList.ForEach(x =>
+                        driver.AddressList.ForEach(y => {
+                            y.AddressLinkId = newDocumentNo;
+                            new AddressDAL().DeleteAll(y);
+                        });
+                        driver.AddressList.ForEach(x =>
 						{
+                            x.AddressLinkId = newDocumentNo;
 							result = new AddressDAL().Save(x, transaction) == true ? 1 : 0;
 						});
 					}
+                    
 
                     if (driver.BankDetails != null && driver.BankDetails.Count > 0)
                     {

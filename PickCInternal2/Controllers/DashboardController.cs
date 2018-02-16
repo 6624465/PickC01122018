@@ -286,10 +286,17 @@ namespace PickC.Internal2.Controllers
 		public async Task<ActionResult> BookingsHistory(BookingHistoryDTO search)
 		{
 			var bookingHistory = await new SearchService(AUTHTOKEN, p_mobileNo).SearchBookingAsync(search.bookings);
-			var bookingSearchVM = new BookingHistoryDTO();
+            var bookingSearchVM = new BookingHistoryDTO {
+                bookings = new BookingSearchsDTO { }
+            };
 			bookingSearchVM.booking = bookingHistory;
+            bookingSearchVM.bookings.DateFrom = search.bookings.DateFrom;
+            bookingSearchVM.bookings.DateTo = search.bookings.DateTo;
 
-			return View("SearchBookingHistory", bookingSearchVM);
+
+
+            ModelState.Clear();
+            return View("SearchBookingHistory", bookingSearchVM);
 		}
 
 		[HttpGet]
@@ -392,7 +399,10 @@ namespace PickC.Internal2.Controllers
 		{
 			var data = await new PaymentService(AUTHTOKEN, p_mobileNo).PaymentHistoryDetails(payment.paymentsearch);
             data.dailyPaymentHistory = await new PaymentService(AUTHTOKEN, p_mobileNo).DailyPaymentHistory();
-
+            data.paymentsearch = new Paymentsearch();
+            data.paymentsearch.DateFrom = payment.paymentsearch.DateFrom;
+            data.paymentsearch.DateTo = payment.paymentsearch.DateTo;
+            
             return View("PaymentHistory", data);
 		}
 		[HttpGet]
@@ -401,8 +411,10 @@ namespace PickC.Internal2.Controllers
 			PendingCommission pending = new PendingCommission();
 			pending.driverPendingCommision = await new PaymentService(AUTHTOKEN, p_mobileNo).driverpendingAmountDetails();
 			pending.driverPendingAmount = await new DriverService(AUTHTOKEN, p_mobileNo).DriverPendingAmountAsync();
+            pending.driverPendingCommisionAmount = new DriverPendingCommisionAmount();
+            pending.driverPendingCommisionAmount = await new PaymentService(AUTHTOKEN, p_mobileNo).driverPendingAmount();
 
-			return View(pending);
+            return View(pending);
 		}
 		[HttpPost]
 		public ActionResult PendingAmounts(PendingAmountDTO pendingAmountDTO)

@@ -49,5 +49,10 @@ namespace Operation.DataFactory
         {
             return db.ExecuteSprocAccessor(DBRoutine.PAYMENTHISTORYDAILYBASIS, MapBuilder<DailyPaymentHistory>.BuildAllProperties()).FirstOrDefault();
         }
+        public DriverPendingCommisionAmount DailyPaymentHistoryAmount()
+        {
+            return db.ExecuteSprocAccessor(DBRoutine.DRIVERCOMMISIONPENDINGTOPICKTOTAL, MapBuilder<DriverPendingCommisionAmount>.BuildAllProperties()).FirstOrDefault();
+        }
+        
     }
 }

@@ -37,6 +37,16 @@ namespace PickC.Services
             return ServiceResponse(
                 await client.ExecuteTaskAsync<List<DriverPendingCommission>>(request));
         }
+        public async Task<DriverPendingCommisionAmount> driverPendingAmount()
+        {
+            IRestClient client = new RestClient(ApiBaseUrl);
+            var request = p_request;
+            request.Method = Method.GET;
+            request.Resource = "opearation/payment/DriverPendingAmount";
+            return ServiceResponse(
+                await client.ExecuteTaskAsync<DriverPendingCommisionAmount>(request));
+
+        }
         public async Task<DailyPaymentHistory> DailyPaymentHistory()
         {
             IRestClient client = new RestClient(ApiBaseUrl);

@@ -123,6 +123,10 @@ namespace Master.DataFactory
                         //{
                         //    addressItem.AddressLinkID = operatorItem.OperatorID;
                         //}
+                        operatorItem.AddressList.ForEach(y => {
+                            y.AddressLinkId = operatorItem.OperatorID;
+                            new AddressDAL().DeleteAll(y);
+                        });
                         operatorItem.AddressList.ForEach(x =>
                         { x.AddressLinkId= operatorItem.OperatorID;
                             result = new AddressDAL().Save(x, transaction) == true ? 1 : 0;

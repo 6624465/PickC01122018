@@ -89,7 +89,7 @@
                                 <div class="form-group">
                                     <label>Date Of Birth</label>
                                     <div class="input-group dtCss">
-                                        @Html.TextBoxFor(x => x.driver.DateOfBirth,new{@class = "form-control",placeholder = "Date Of Birth"})
+                                        @Html.TextBoxFor(x => x.driver.DateOfBirth, "{0:dd/MM/yyyy}",new {@class = "form-control",placeholder = "Date Of Birth"})
                                         <span class="input-group-btn">
                                             <button type="button" class="btn btn-default"><i class="fa fa-calendar" aria-hidden="true"></i></button>
                                         </span>
@@ -212,7 +212,7 @@
                                 <div class="form-group">
                                     <label>Date of Issue</label>
                                     <div class="input-group dtCss">
-                                        @Html.TextBoxFor(x => x.driver.DateofIssue,
+                                        @Html.TextBoxFor(x => x.driver.DateofIssue, "{0:dd/MM/yyyy}",
                                                    new
                                                    {
                                                        @class = "form-control",
@@ -228,7 +228,7 @@
                                 <div class="form-group">
                                     <label>Date of Return</label>
                                     <div class="input-group dtCss">
-                                        @Html.TextBoxFor(x => x.driver.DateofReturn,
+                                        @Html.TextBoxFor(x => x.driver.DateofReturn, "{0:dd/MM/yyyy}",
                                                    new
                                                    {
                                                        @class = "form-control",
@@ -333,7 +333,7 @@
                                 </thead>
                                
                                     <tbody id="trBody">
-                                @if (Model.driver.AddressList.Count != 0)
+                                @if (Model.driver != null && Model.driver.AddressList != null && Model.driver.AddressList.Count != 0)
                                 {
                                     for (var i = 0; i < Model.driver.AddressList.Count; i++)
                                     {
@@ -355,6 +355,8 @@
                                                     @Html.HiddenFor(x => Model.driver.AddressList[i].StateName)
                                                     @Html.HiddenFor(x => Model.driver.AddressList[i].ZipCode)
                                                     @Html.HiddenFor(x => Model.driver.AddressList[i].IsActive)
+                                                    @Html.HiddenFor(x => Model.driver.AddressList[i].AddressLinkId)
+                                                    @Html.HiddenFor(x => Model.driver.AddressList[i].AddressId)
                                                     <a class="hand" onclick="EditAddress('@i')">Edit</a>&nbsp;|&nbsp;
                                                     <a class="hand" onclick="DeleteAddress('@i')">Delete</a>
                                                 </td>
@@ -392,7 +394,7 @@
                                         </tr>
                                     </thead>
                                     <tbody id="trBodyBank">
-                                        @if (Model.driver.BankDetails != null)
+                                        @if (Model.driver != null && Model.driver.BankDetails != null && Model.driver.BankDetails != null)
                                         {
                                             for (var i = 0; i < Model.driver.BankDetails.Count; i++)
                                             {
@@ -452,7 +454,7 @@
                             var licenseStr = "";
                             var voterStr = "";
                             var profilepicStr = "";
-                            if (Model.driver.driverAttachment != null && Model.driver.driverAttachment.Count > 0)
+                            if (Model.driver != null && Model.driver.driverAttachment != null && Model.driver.driverAttachment.Count > 0)
                             {
 
                                 var fadharObj = Model.driver.driverAttachment
@@ -517,14 +519,14 @@
                                                id="fadhar"
                                                name="fadhar"
                                                value="1375"
-                                               title=""
+                                               title="@adharStr"
                                                onchange="onFileChange(this, 'fadhardocFile','hdnfadhardocFile')" />
                                     </div>
                                 </div>
                             </div>
 
                             <div class="col-md-3">
-                                <div id="fadhardocFile">@adharStr</div>
+                                <div id="fadhardocFile" >@adharStr</div>
                                 <input type="hidden" name="hdnfadhardocFile" id="hdnfadhardocFile" />
                             </div>
                         </div>
@@ -540,7 +542,7 @@
                                                id="fpan"
                                                name="fpan"
                                                value="1374"
-                                               title=""
+                                               title="@panStr"
                                                onchange="onFileChange(this, 'fpandocFile','hdnfpandocFile')" />
                                     </div>
                                 </div>
@@ -613,7 +615,9 @@
                                 </div>
                             </div>
                             <div class="col-md-3">
-                                <div id="fprofilepicdocFile">@profilepicStr</div>
+                                <div id="fprofilepicdocFile">@profilepicStr
+                                @*<span  class="label label-default" onclick="onClickEvent('@profilepicStr')"><i class="fa fa-remove" style="font-size:12px" aria-hidden="true">@profilepicStr</i></span>*@
+                                </div>
                                 <input type="hidden" name="hdnfprofilepicdocFile" id="hdnfprofilepicdocFile" />
                             </div>
                         </div>
@@ -686,7 +690,8 @@
                             <label>City</label>
                             <input class="form-control" id="CityName" name="CityName" type="text" value="">
                         </div>
-                        <input id="AddressLinkID" name="AddressLinkID" type="hidden" value="">
+                        <input id="AddressLinkId" name="AddressLinkId" type="hidden" value="">
+                        <input id="AddressId" name="AddressId" type="hidden" value="">
                     </div>
                     <div class="row">
                         <div class="col-md-6">
@@ -836,7 +841,7 @@
                     previous: 'fa fa-arrow-left',
                     next: 'fa fa-arrow-right'
                 },
-                format: 'DD/MM/YYYY'
+                format: DateFormat
             });
 
         });
@@ -898,7 +903,18 @@
        //</div>
                 
           
+        @*function onClickEvent(str) {
+            debugger;
+            @if (Model.driver.driverAttachment != null)
+             {
+                 for(var i = 0; i <= Model.driver.driverAttachment.Count; i++)
+                 {
+                     var v = Model.driver.driverAttachment[i].ImagePath;
+                 //alert("event fired");
+                 }
 
+             }
+        }*@
 
         function onCancel() {
             debugger

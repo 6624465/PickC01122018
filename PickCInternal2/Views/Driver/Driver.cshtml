@@ -49,7 +49,7 @@
              grid.Column("DriverID", "Driver ID"),
              grid.Column("DriverName", "Driver Name"),
              //grid.Column("VehicleNo", "VehicleNo"),
-             grid.Column("DriverID", "Edit", canSort: false, style: "color", format: @<text><a href="@Url.Content("~/driver/edit?driverID=" + item.DriverID)"><i class="fa fa-pencil " aria-hidden="true"></i></a></text>)
+             grid.Column("DriverID", "Edit", canSort: false, style: "color", format: @<text><a class="btn btn-primary btn-sm" href="@Url.Content("~/driver/edit?driverID=" + item.DriverID)"><i class="fa fa-pencil " aria-hidden="true"></i>&nbsp;Edit</a></text>)
          ),
          htmlAttributes: new { id = "grid" })
                                 </div>

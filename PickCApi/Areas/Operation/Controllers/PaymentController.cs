@@ -163,7 +163,22 @@ namespace PickCApi.Areas.Operation.Controllers
                 return InternalServerError(ex);
             }
         }
+        [HttpGet]
+        [Route("DriverPendingAmount")]
+        public IHttpActionResult GetDriverPendingAmount()
+        {
+            try
+            {
+                var result = new SummaryBO().DailyPaymentHistoryAmount();
+                return Ok(result);
+            }
+            catch (Exception ex)
+            {
+                return InternalServerError(ex);
+            }
+        }
     }
+   
 
     public class RSAObject
     {
