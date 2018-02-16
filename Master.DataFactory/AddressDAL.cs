@@ -105,6 +105,35 @@ namespace Master.DataFactory
 
         }
 
+
+        public bool DeleteAll<T>(T item) where T : IContract
+        {
+            var result = false;
+            var address = (Address)(object)item;
+            var connection = db.CreateConnection();
+            connection.Open();
+
+            var transaction = connection.BeginTransaction();
+            try
+            {
+                var deleteAllCommand = db.GetStoredProcCommand(DBRoutine.DELETEADDRESSALL);
+                db.AddInParameter(deleteAllCommand, "AddressLinkId", System.Data.DbType.String, address.AddressLinkId);
+
+                result = Convert.ToBoolean(db.ExecuteNonQuery(deleteAllCommand, transaction));
+                transaction.Commit();
+            }
+            catch (Exception ex)
+            {
+                transaction.Rollback();
+                throw ex;
+            }
+            finally
+            {
+                transaction.Dispose();
+                connection.Close();
+            }
+            return result;
+        }
         public bool Delete<T>(T item) where T : IContract
         {
             var result = false;
