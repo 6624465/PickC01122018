@@ -286,12 +286,16 @@ namespace PickC.Internal2.Controllers
 		public async Task<ActionResult> BookingsHistory(BookingHistoryDTO search)
 		{
 			var bookingHistory = await new SearchService(AUTHTOKEN, p_mobileNo).SearchBookingAsync(search.bookings);
-			var bookingSearchVM = new BookingHistoryDTO();
+            var bookingSearchVM = new BookingHistoryDTO {
+                bookings = new BookingSearchsDTO { }
+            };
 			bookingSearchVM.booking = bookingHistory;
+            bookingSearchVM.bookings.DateFrom = search.bookings.DateFrom;
+            bookingSearchVM.bookings.DateTo = search.bookings.DateTo;
 
-            ViewBag.SearchData = search.bookings;
 
 
+            ModelState.Clear();
             return View("SearchBookingHistory", bookingSearchVM);
 		}
 
@@ -395,7 +399,10 @@ namespace PickC.Internal2.Controllers
 		{
 			var data = await new PaymentService(AUTHTOKEN, p_mobileNo).PaymentHistoryDetails(payment.paymentsearch);
             data.dailyPaymentHistory = await new PaymentService(AUTHTOKEN, p_mobileNo).DailyPaymentHistory();
-
+            data.paymentsearch = new Paymentsearch();
+            data.paymentsearch.DateFrom = payment.paymentsearch.DateFrom;
+            data.paymentsearch.DateTo = payment.paymentsearch.DateTo;
+            
             return View("PaymentHistory", data);
 		}
 		[HttpGet]

@@ -11,17 +11,27 @@ namespace PickC.Internal2
     {
         public override void OnException(ExceptionContext filterContext)
         {
-            Exception ex = filterContext.Exception;
-            filterContext.ExceptionHandled = true;
-            var model = new HandleErrorInfo(filterContext.Exception, "Controller", "Action");
-            /*
-            filterContext.Result = new ViewResult()
+            var Uri = filterContext.HttpContext.Request.UrlReferrer;
+            if (Uri.Host.Contains("localhost"))
             {
-                ViewName = "Error1",
-                ViewData = new ViewDataDictionary(model)
-            };*/    
-            
-            filterContext.Result = new RedirectResult("~/Account/Login?error=true");
+
+            }
+            else
+            {
+                Exception ex = filterContext.Exception;
+                filterContext.ExceptionHandled = true;
+                var model = new HandleErrorInfo(filterContext.Exception, "Controller", "Action");
+
+
+                filterContext.Result = new RedirectResult("~/Account/Login?error=true");/*
+                /*
+                filterContext.Result = new ViewResult()
+                {
+                    ViewName = "Error1",
+                    ViewData = new ViewDataDictionary(model)
+                };*/
+            }
+             
         }
     }
 }
