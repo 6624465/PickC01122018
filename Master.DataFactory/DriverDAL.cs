@@ -313,17 +313,19 @@ namespace Master.DataFactory
 					}
 					if (driver.AddressList != null && driver.AddressList.Count > 0)
 					{
-						foreach (var addressItem in driver.AddressList)
-						{
-							addressItem.AddressLinkId = newDocumentNo;
-						}
+						//foreach (var addressItem in driver.AddressList)
+						//{
+						//	addressItem.AddressLinkId = newDocumentNo;
+						//}
 
 
 						driver.AddressList.ForEach(x =>
 						{
+                            x.AddressLinkId = newDocumentNo;
 							result = new AddressDAL().Save(x, transaction) == true ? 1 : 0;
 						});
 					}
+                    
 
                     if (driver.BankDetails != null && driver.BankDetails.Count > 0)
                     {
