@@ -14,6 +14,7 @@
     </style>
 }
 
+
 @functions{
     public string GetImgUrl(Int16 type, Int16 group)
     {
@@ -78,30 +79,15 @@
                                     <li>
                                         <img src="@Url.Content("~/images/web/" + GetImgUrl(item.VehicleType, item.VehicleGroup))" alt="customer" height="25" style="float:left;" />
                                         <div style="float:left;padding-left:10px;">
-                                            <span style="display:block">@item.CustomerName</span>
-                                            <span style="display:block"> @item.ReceiverMobileNo</span>
+                                            <span style="display:block">@item.DriverName</span>
+                                            <span style="display:block"> @item.DriverId</span>
                                             <span style="display:block"> @item.BookingNo</span>
                                         </div>
-                                        <div class="clearfix"></div>
-                                        @*<span class="active-dr">
-                                                @if (item.Status >= 1)
-                                                {
-                                                    <i class="fa fa-circle text-success"></i>
-                                                }
-                                                @if (item.Status == 2)
-                                                {
-                                                    <i class="fa fa-circle text-success"></i>
-                                                }
-                                                @if (item.Status == 3)
-                                                {
-                                                    <i class="fa fa-circle text-warning"></i>
-                                                }
-                                            </span>*@
+                                        <div class="clearfix"></div>                                        
                                     </li>
                                 }
                             </ul>
                         </div>
-
                     </div>
                     <div class="col-md-9">
                         <div id="map" style="border: 1px solid rgba(255,255,255,0.15);"></div>

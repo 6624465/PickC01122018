@@ -85,7 +85,7 @@
                                                    <div class="form-group">
                                                        <label>Date Of Birth</label>
                                                        <div class="input-group dtCss">
-                                                           @Html.TextBoxFor(x => x.OPerator.DateOfBirth, new { @class = "form-control", placeholder = "Date Of Birth" })
+                                                           @Html.TextBoxFor(x => x.OPerator.DateOfBirth, "{0:dd/MM/yyyy}", new { @class = "form-control", placeholder = "Date Of Birth" })
                                                            <span class="input-group-btn">
                                                                <button type="button" class="btn btn-default"><i class="fa fa-calendar" aria-hidden="true"></i></button>
                                                            </span>
@@ -1204,7 +1204,7 @@
                         }
                     });
                     $('.dtCss').datetimepicker({
-                        format: 'DD/MM/YYYY'
+                        format: DateFormat
                     });
                 });
 
