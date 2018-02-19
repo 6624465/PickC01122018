@@ -62,7 +62,7 @@
         $(document).on('keypress', '.alphaonly', function (evt) {
             evt = (evt) ? evt : window.event;
             var charCode = parseInt((evt.which) ? evt.which : evt.keyCode);
-            if ((charCode >= 65 && charCode <= 90) || (charCode >= 97 && charCode <= 122)||(charCode=32))
+            if ((charCode >= 65 && charCode <= 90) || (charCode >= 97 && charCode <= 122))
                 return true;
             else
                 return false;
@@ -81,18 +81,18 @@
             else
                 return false;
         });
-        $(document).ready(function () {
-            $('input').on('keydown', function (event) {
-                if (this.selectionStart == 0 && event.keyCode >= 65 && event.keyCode <= 90 && !(event.shiftKey) && !(event.ctrlKey) && !(event.metaKey) && !(event.altKey)) {
-                    var $t = $(this);
-                    event.preventDefault();
-                    var char = String.fromCharCode(event.keyCode);
-                    $t.val(char + $t.val().slice(this.selectionEnd));
-                    this.setSelectionRange(1, 1);
-                }
-               // return string.charAt(0).toUpperCase() + string.slice(1);
-            });
-        });
+        //$(document).ready(function () {
+        //    $('input').on('keydown', function (event) {
+        //        if (this.selectionStart == 0 && event.keyCode >= 65 && event.keyCode <= 90 && !(event.shiftKey) && !(event.ctrlKey) && !(event.metaKey) && !(event.altKey)) {
+        //            var $t = $(this);
+        //            event.preventDefault();
+        //            var char = String.fromCharCode(event.keyCode);
+        //            $t.val(char + $t.val().slice(this.selectionEnd));
+        //            this.setSelectionRange(1, 1);
+        //        }
+        //       // return string.charAt(0).toUpperCase() + string.slice(1);
+        //    });
+        //});
     </script>
     @RenderSection("secscripts", false)
     <!-- netstat -n -->
