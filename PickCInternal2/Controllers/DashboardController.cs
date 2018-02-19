@@ -192,10 +192,6 @@ namespace PickC.Internal2.Controllers
 			}
 			return "";
 		}
-
-		
-
-
 		[HttpPost]
 		public async Task<ActionResult> GetCustomerBySearch(int? status)
 		{

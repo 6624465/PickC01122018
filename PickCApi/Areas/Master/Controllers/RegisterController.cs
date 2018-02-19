@@ -710,10 +710,11 @@ namespace PickCApi.Areas.Master.Controllers
                             }
                         }
                         document.Close();
+                        //new System.Threading.Thread(x => {
+                        //    new EmailGenerator().ConfigMail(EmailId, true, "PickC Invoice", "<div>PickC Invoice</div>", pdf, BookingNo);
+                        //}).Start();
                         pdf = memoryStream.ToArray();
-                        DateTime d = DateTime.Now;
-                        string Date = d.ToString("ddMMyyyy");
-                        bool sendCustomerMail = new EmailGenerator().ConfigMail(EmailId, true, BookingNo+"_"+ Date, "<div>PickC Invoice</div>", pdf);
+                        bool sendCustomerMail = new EmailGenerator().ConfigMail(EmailId, true, "PickC Invoice", "<div>PickC Invoice</div>", pdf, BookingNo);
                         if (sendCustomerMail)
                             return Ok(UTILITY.SUCCESS);
                         else

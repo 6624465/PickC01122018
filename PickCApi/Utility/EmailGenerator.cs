@@ -93,7 +93,23 @@ namespace PickCApi.Utility
 
             return SendMail(msg);
         }
+        public bool ConfigMail(string to, bool isHtml, string subject, string body, byte[] attBytes,string BookingNo)
+        {
+            MailMessage msg = new MailMessage();
 
+            msg.To.Add(new MailAddress(to));
+            msg.Subject = subject;
+            msg.Body = body;
+            msg.BodyEncoding = UTF8Encoding.UTF8;
+            msg.IsBodyHtml = isHtml;
+            DateTime d = DateTime.Now;
+            string Date = d.ToString("ddMMyyyy");
+
+            Attachment att = new Attachment(new MemoryStream(attBytes), $"{BookingNo}_{Date}.pdf");
+            msg.Attachments.Add(att);
+
+            return SendMail(msg);
+        }
         public bool ConfigMail(string to, string bcc, bool isHtml, string subject, string body, string[] attachments)
         {
             MailMessage msg = new MailMessage();
