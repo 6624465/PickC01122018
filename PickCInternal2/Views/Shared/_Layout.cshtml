@@ -62,7 +62,7 @@
         $(document).on('keypress', '.alphaonly', function (evt) {
             evt = (evt) ? evt : window.event;
             var charCode = parseInt((evt.which) ? evt.which : evt.keyCode);
-            if ((charCode >= 65 && charCode <= 90) || (charCode >= 97 && charCode <= 122))
+            if ((charCode >= 65 && charCode <= 90) || (charCode >= 97 && charCode <= 122) || charCode == 32)
                 return true;
             else
                 return false;
