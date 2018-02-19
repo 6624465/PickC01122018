@@ -320,7 +320,7 @@ namespace PickCApi.Areas.Operation.Controllers
                     bookingCancelDTO.cancelRemarks,
                     bookingCancelDTO.istripstarted,
                     bookingCancelDTO.IsLoadingUnloading);
-                if (result == true)
+                if (result)
                 {
                     PushNotification(new BookingBO().GetCustomerDeviceIDByBookingNo(bookingCancelDTO.bookingNo),
                       bookingCancelDTO.bookingNo,
@@ -460,9 +460,13 @@ namespace PickCApi.Areas.Operation.Controllers
                 var Isintrip = BookingConfirm != null ? true : false;
                 if (Isintrip)
                 {
-                    return Ok(new { BookingConfirm.BookingNo, BookingConfirm.OTP });
+                    return Ok(new { BookingNo=BookingConfirm.BookingNo, OTP=BookingConfirm.OTP });
                 }
-                return Ok(UTILITY.NotifyCustomerPickupStart);
+                else
+                {
+                    return Ok(new { BookingNo="", OTP= "" });
+                }
+                //return Ok(UTILITY.NotifyCustomerPickupStart);
             }
             catch (Exception ex)
             {

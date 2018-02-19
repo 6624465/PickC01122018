@@ -82,7 +82,7 @@ namespace PickCApi.Areas.Operation.Controllers
 
         [HttpGet]
         [Route("ccavenue/redirect/{mobile}/{bookingNo}")]
-        public IHttpActionResult redirect(string mobile)
+        public IHttpActionResult redirect(string mobile,string bookingNo)
         {
             return Ok("redirected");
         }
