@@ -21,6 +21,10 @@ namespace Master.BusinessFactory
         {
             return driverDAL.BookingConfirmIsStartTripCheck(DriverID);
         }
+        public string PickupReachedStartTripPending(string DriverID)
+        {
+            return driverDAL.PickupReachedStartTripPending(DriverID);
+        }
 
         public List<DriverMdl> GetDriverList()
 		{

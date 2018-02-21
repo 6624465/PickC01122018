@@ -50,7 +50,7 @@ namespace PickCApi.Areas.Operation.Controllers
         //public IHttpActionResult getRSAKey(RSAObject obj)
         //{
         //    var CCAVENUE_ACCESS_CODE = ConfigurationManager.AppSettings["CCAVENUE_ACCESS_CODE"];
-        //    if(CCAVENUE_ACCESS_CODE == obj.access_code)
+        //    if (CCAVENUE_ACCESS_CODE == obj.access_code)
         //    {
         //        string vParams = "access_code=" + obj.access_code + "&" + "order_id=" + obj.order_id;
         //        string queryUrl = "https://secure.ccavenue.com/transaction/getRSAKey";
@@ -70,7 +70,7 @@ namespace PickCApi.Areas.Operation.Controllers
         //    else
         //    {
         //        return Unauthorized();
-        //    }            
+        //    }
         //}
 
         [HttpGet]

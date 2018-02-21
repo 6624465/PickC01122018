@@ -102,6 +102,7 @@ namespace Master.DataFactory
         public const string DRIVERWISEDAILYAMOUNTPAYMENTTYPELIST = "[Operation].[usp_SumDriverWiseDailyAmountPaymentTypeList]";
         public const string DRIVERISBUSYSTATUSUPDATE = "[Operation].[usp_UpdateDriverIsBusyStatus]";
         public const String BOOKINGCONFIRMISSTARTTRIPCHECK = "[Operation].[usp_BookingConfirmIsStartTripCheck]";
+        public const String PICKUPREACHEDISSTARTTRIPPENDING = "[Operation].[usp_PickupReachedIsStartTripPending]";
         /// <summary>
         /// [Master].[Operator]
         /// </summary>

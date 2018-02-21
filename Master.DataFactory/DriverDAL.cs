@@ -44,6 +44,12 @@ namespace Master.DataFactory
             var result = db.ExecuteScalar(recordcommand).ToString();
             return result;
         }
+        public string PickupReachedStartTripPending(string DriverID)
+        {
+            var recordcommand = db.GetStoredProcCommand(DBRoutine.PICKUPREACHEDISSTARTTRIPPENDING, DriverID);
+            var result = db.ExecuteScalar(recordcommand).ToString();
+            return result;
+        }
         //added by Kiran///
         public List<DriverMdl> GetDriverList()
 		{

@@ -115,21 +115,23 @@
                                     <tr>
                                         <th>Invoice No.</th>
                                         <th>Invoice Date</th>
-                                        <th>Invoice Amount</th>
+                                        <th>Trip Amount</th>
+                                        <th>Commission Amount</th>
                                         <th>GST</th>
-                                        <th>PickC Commission</th>
+                                        <th>Total Amount</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     @foreach (var item in Model.pickCCommissiondetails)
                                     {
-                                        <tr>
-                                            <td>@Html.DisplayFor(i => item.InvoiceNo)</td>
-                                            <td>@Html.DisplayFor(i => item.InvoiceDate)</td>
-                                            <td>@Html.DisplayFor(i => item.InvoiceAmount)</td>
-                                            <td>@Html.DisplayFor(i => item.GST)</td>
-                                            <td>@Html.DisplayFor(i => item.PickcCommision)</td>
-                                        </tr>
+                                    <tr>
+                                        <td>@Html.DisplayFor(i => item.InvoiceNo)</td>
+                                        <td>@Html.DisplayFor(i => item.InvoiceDate)</td>
+                                        <td>@Html.DisplayFor(i => item.TripAmount)</td>
+                                        <td>@Html.DisplayFor(i => item.CommissionAmount)</td>
+                                        <td>@Html.DisplayFor(i => item.GST)</td>
+                                        <td>@Html.DisplayFor(i => item.TotalAmount)</td>
+                                    </tr>
                                     }
                                 </tbody>
                             </table>

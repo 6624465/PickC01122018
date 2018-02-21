@@ -115,7 +115,7 @@ namespace PickCApi.Areas.Operation.Controllers
                 if (bookingObj != null)
                 {
                     result = bookingObj.OTP == OTP;
-                    if (result == true)
+                    if (result)
                         return Ok(new { Status = UTILITY.SUCCESSMESSAGE });
                     else
                         return Ok(new { Status = UTILITY.FAILEDMESSAGE });
@@ -138,7 +138,15 @@ namespace PickCApi.Areas.Operation.Controllers
             {
                 var DRIVERID = HttpContext.Current.Request.Headers["DRIVERID"];
                 var result = new DriverBO().BookingConfirmIsStartTripCheck(DRIVERID);
-                    return Ok(result);
+                if(result !="")
+                {
+                    return Ok(new {BookingNo= result,Message= UTILITY.DRIVERISCONFIRMPICKUPREACHEDPENDING });
+                }
+                else
+                {
+                    var AfterPickup = new DriverBO().PickupReachedStartTripPending(DRIVERID);
+                    return Ok(new { BookingNo=AfterPickup, Message= UTILITY.DRIVERISCONFIRMPICKUPREACHEDTRIPSTARTPENDING });
+                }
             }
             catch (Exception ex)
             {
