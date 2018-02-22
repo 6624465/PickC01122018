@@ -466,7 +466,7 @@ namespace PickCApi.Areas.Operation.Controllers
                 PushNotification(new BookingBO().GetCustomerDeviceIDByBookingNo(BookingNo),
                        BookingNo,
                        UTILITY.NotifyCustomerPickupStart);
-                var bookingDetails = new BookingBO().GetListByBookingNo(BookingNo).FirstOrDefault();
+                var bookingDetails = new BookingBO().GetList().Where(x => x.BookingNo == BookingNo).FirstOrDefault();
                 if (bookingDetails.CustomerId != bookingDetails.ReceiverMobileNo)
                 {
                     SendDriverDetailsToCustomer(bookingDetails.ReceiverMobileNo, UTILITY.NotifyCustomerPickupStart);
