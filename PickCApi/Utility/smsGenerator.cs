@@ -58,5 +58,20 @@ namespace PickCApi
                 return strRes;
             }
         }
+
+        //public bool TriggerSMSMessages(string customerMobile, string registeredMobile, string triggerEvent)
+        //{
+        //    var result = true;
+
+
+
+        //    if (customerMobile!= registeredMobile)
+        //    {
+        //        string DriverDetails = bookingDetails.BookingNo + bookingDetails.DriverId + bookingDetails.VehicleNo;
+        //        SendDriverDetailsToCustomer(bookingDetails.ReceiverMobileNo, bookingDetails.BookingNo);
+        //    }
+
+        //}
+
     }
 }

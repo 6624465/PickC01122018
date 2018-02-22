@@ -145,7 +145,11 @@ namespace PickCApi.Areas.Operation.Controllers
                 else
                 {
                     var AfterPickup = new DriverBO().PickupReachedStartTripPending(DRIVERID);
-                    return Ok(new { BookingNo=AfterPickup, Message= UTILITY.DRIVERISCONFIRMPICKUPREACHEDTRIPSTARTPENDING });
+                    if(AfterPickup !="")
+                    {
+                        return Ok(new { BookingNo = AfterPickup, Message = UTILITY.DRIVERISCONFIRMPICKUPREACHEDTRIPSTARTPENDING });
+                    }
+                    return Ok(new { BookingNo = "", Message = "" });
                 }
             }
             catch (Exception ex)
@@ -297,7 +301,7 @@ namespace PickCApi.Areas.Operation.Controllers
                     if (result)
                     {
                         PushNotification(new BookingBO().GetCustomerDeviceIDByBookingNo(BookingNo), BookingNo, UTILITY.NotifySuccess);
-                        SendOTP(bookingObj.CustomerId, CustomerOTP);
+                        SendOTP(bookingObj.CustomerId, CustomerOTP+ " ,please share this with your PICKC driver, to start the trip.");
                         var booking = new BookingBO().GetBooking(new Booking
                         {
                             BookingNo = BookingNo

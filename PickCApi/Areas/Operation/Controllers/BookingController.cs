@@ -368,6 +368,11 @@ namespace PickCApi.Areas.Operation.Controllers
                 var result = new BookingBO().SavePickupReachDateTime(obj.bookingNo, obj.PickupReachDateTime);
                 if (result)
                     PushNotification(new BookingBO().GetCustomerDeviceIDByBookingNo(obj.bookingNo), obj.bookingNo, UTILITY.NotifyPickUpReachDateTime);
+                var bookingDetails = new BookingBO().GetListByBookingNo(obj.bookingNo).FirstOrDefault();
+                if (bookingDetails.CustomerId != bookingDetails.ReceiverMobileNo)
+                {
+                    SendDriverDetailsToCustomer(bookingDetails.ReceiverMobileNo, UTILITY.NotifyPickUpReachDateTime);
+                }
                 return Ok(result ? UTILITY.SUCCESSMSG : UTILITY.FAILEDMSG);
             }
             catch (Exception ex)
@@ -385,6 +390,11 @@ namespace PickCApi.Areas.Operation.Controllers
                 var result = new BookingBO().SaveDestinationReachDateTime(obj.bookingNo, obj.DestinationReachDateTime);
                 if (result)
                     PushNotification(new BookingBO().GetCustomerDeviceIDByBookingNo(obj.bookingNo), obj.bookingNo, UTILITY.NotifyDestinationReachDateTime);
+                   var bookingDetails = new BookingBO().GetList().Where(x => x.BookingNo == obj.bookingNo).FirstOrDefault();
+                if (bookingDetails.CustomerId != bookingDetails.ReceiverMobileNo)
+                {
+                    SendDriverDetailsToCustomer(bookingDetails.ReceiverMobileNo, UTILITY.NotifyDestinationReachDateTime);
+                }
                 return Ok(result ? UTILITY.SUCCESSMSG : UTILITY.FAILEDMSG);
             }
             catch (Exception ex)
@@ -456,15 +466,20 @@ namespace PickCApi.Areas.Operation.Controllers
                 PushNotification(new BookingBO().GetCustomerDeviceIDByBookingNo(BookingNo),
                        BookingNo,
                        UTILITY.NotifyCustomerPickupStart);
+                var bookingDetails = new BookingBO().GetListByBookingNo(BookingNo).FirstOrDefault();
+                if (bookingDetails.CustomerId != bookingDetails.ReceiverMobileNo)
+                {
+                    SendDriverDetailsToCustomer(bookingDetails.ReceiverMobileNo, UTILITY.NotifyCustomerPickupStart);
+                }
                 var BookingConfirm = new BookingBO().CustomerCurrentConfirmTrip(HeaderValueByKey("MOBILENO"));
                 var Isintrip = BookingConfirm != null ? true : false;
                 if (Isintrip)
                 {
-                    return Ok(new { BookingNo=BookingConfirm.BookingNo, OTP=BookingConfirm.OTP });
+                    return Ok(new { BookingNo = BookingConfirm.BookingNo, OTP = BookingConfirm.OTP });
                 }
                 else
                 {
-                    return Ok(new { BookingNo="", OTP= "" });
+                    return Ok(new { BookingNo = "", OTP = "" });
                 }
                 //return Ok(UTILITY.NotifyCustomerPickupStart);
             }

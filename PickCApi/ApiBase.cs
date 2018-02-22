@@ -175,7 +175,10 @@ namespace PickCApi
         {
             return new smsGenerator().ConfigSms(To, string.Format(UTILITY.SmsOTP, OTP));
         }
-
+        public bool SendDriverDetailsToCustomer(string To, string Message)
+        {
+            return new smsGenerator().ConfigSms(To, Message);
+        }
         public bool SendOTP(string To)
         {
             return new smsGenerator().ConfigSms(To, string.Format(UTILITY.SmsOTP, GenerateOTP()));

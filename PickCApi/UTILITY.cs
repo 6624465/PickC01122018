@@ -17,13 +17,17 @@ namespace PickCApi
         public static string DEFAULTUSER = "ADMIN";
         public static string FAILEDMSG = "Operation failed";
 
+        public static string NOTIFYTORECEIVERTRIPSTART = "Trip started and the vehicle is on the way to delivery location";
+        public static string NOTIFYTORECEIVERTRIPEND = "Trip completed successfully. Please proceed for payment options";
+
+
         public static string NotifyCustomer = "Booking Cancelled by System";
         public static string NotifyCustomerFail = "Booking Cancelled by System is Failed";
         public static string NotifySuccess = "Booking Confirmed";//done
         public static string NotifyFailed = "Booking Failed";
         public static string NotifyCancelledByDriver = "Booking Cancelled by driver";//done
         public static string NotifyDriverpaymentReceived = "DriverpaymentReceived";
-        public static string NotifyCustomerPickupStart = "Driver is Started to reach pickup location";
+        public static string NotifyCustomerPickupStart = "Driver is about to reach pickup location";
         public static string NotifyTripStart = "Trip Started";//pending
         public static string NotifyTripEnd = "Trip End";//pending
         public static string NotifyInvoiceGenerated = "Invoice Generated";//pending
@@ -31,8 +35,8 @@ namespace PickCApi
         public static string NotifyBookingCancelledByUser = "Booking Cancelled by user";//done
         public static string NotifyPaymentDriver = "Customer Payment Received";//done
         public static string NotifyBookingAcceptedByOtherDriver = "Booking Accepted by other driver";
-        public static string NotifyPickUpReachDateTime = "Driver reached pickup location";
-        public static string NotifyDestinationReachDateTime = "Driver reached destination location";
+        public static string NotifyPickUpReachDateTime = "Driver has reached pick up location";
+        public static string NotifyDestinationReachDateTime = "Driver reached delivery location";
 
         public static short radius = 4;//2
         public static string SmsOTP = "OTP for PICKC: {0}";

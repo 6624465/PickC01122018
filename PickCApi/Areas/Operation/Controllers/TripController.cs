@@ -16,7 +16,7 @@ using PickCApi.Core;
 namespace PickCApi.Areas.Operation.Controllers
 {
     [RoutePrefix("api/operation/trip")]
-    [ApiAuthFilter]
+     [ApiAuthFilter]
     public class TripController : ApiBase
     {
         [HttpGet]
@@ -73,10 +73,15 @@ namespace PickCApi.Areas.Operation.Controllers
                         IsLogIn = true,
                         IsOnDuty = true
                     };
-
                     new DriverActivityBO().DriverActivityUpdate(driverActivity);
-
                     PushNotification(customerObj.DeviceId, trip.BookingNo, UTILITY.NotifyTripStart);
+                    var bookingDetails = new BookingBO().GetList().Where(x => x.BookingNo == trip.BookingNo).FirstOrDefault();
+                    var driverDetails = new DriverBO().GetDriver(new Driver { DriverId = bookingDetails.DriverId });
+                    if (bookingDetails.CustomerId != bookingDetails.ReceiverMobileNo)
+                    {
+                        string DriverDetails = bookingDetails.BookingNo + ' ' + UTILITY.NOTIFYTORECEIVERTRIPSTART + ' ' + "DriverID: " + bookingDetails.DriverId + ' ' + "MobileNo:" + driverDetails.MobileNo + ' ' + "VehicleNo: " + bookingDetails.VehicleNo;
+                        SendDriverDetailsToCustomer(bookingDetails.ReceiverMobileNo, DriverDetails);
+                    }
                     return Ok(new
                     {
                         tripID = trip.TripID,
@@ -110,6 +115,11 @@ namespace PickCApi.Areas.Operation.Controllers
                     tripInfo = new TripBO().GetTrip(new Trip { TripID = tripEndDTO.TripId });
                     var customerObj = new CustomerBO().GetCustomer(new Customer { MobileNo = tripInfo.CustomerMobile });
                     PushNotification(customerObj.DeviceId, tripInfo.BookingNo, UTILITY.NotifyTripEnd);
+                    var bookingDetails = new BookingBO().GetList().Where(x => x.BookingNo == tripInfo.BookingNo).FirstOrDefault();
+                    if (bookingDetails.CustomerId != bookingDetails.ReceiverMobileNo)
+                    {
+                        SendDriverDetailsToCustomer(bookingDetails.ReceiverMobileNo, UTILITY.NOTIFYTORECEIVERTRIPEND);
+                    }
                     return Ok(new
                     {
                         tripID = tripEndDTO.TripId,
