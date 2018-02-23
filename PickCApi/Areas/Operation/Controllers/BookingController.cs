@@ -368,7 +368,7 @@ namespace PickCApi.Areas.Operation.Controllers
                 var result = new BookingBO().SavePickupReachDateTime(obj.bookingNo, obj.PickupReachDateTime);
                 if (result)
                     PushNotification(new BookingBO().GetCustomerDeviceIDByBookingNo(obj.bookingNo), obj.bookingNo, UTILITY.NotifyPickUpReachDateTime);
-                var bookingDetails = new BookingBO().GetListByBookingNo(obj.bookingNo).FirstOrDefault();
+                var bookingDetails = new BookingBO().GetList().Where(x => x.BookingNo == obj.bookingNo).FirstOrDefault();
                 if (bookingDetails.CustomerId != bookingDetails.ReceiverMobileNo)
                 {
                     SendDriverDetailsToCustomer(bookingDetails.ReceiverMobileNo, UTILITY.NotifyPickUpReachDateTime);
@@ -464,8 +464,7 @@ namespace PickCApi.Areas.Operation.Controllers
             try
             {
                 PushNotification(new BookingBO().GetCustomerDeviceIDByBookingNo(BookingNo),
-                       BookingNo,
-                       UTILITY.NotifyCustomerPickupStart);
+                       BookingNo,UTILITY.NotifyCustomerPickupStart);
                 var bookingDetails = new BookingBO().GetList().Where(x => x.BookingNo == BookingNo).FirstOrDefault();
                 if (bookingDetails.CustomerId != bookingDetails.ReceiverMobileNo)
                 {

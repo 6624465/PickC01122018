@@ -104,6 +104,10 @@ namespace Master.BusinessFactory
         {
             return (Driver)driverDAL.GetItem<Driver>(item);
         }
+        public Driver GetDriverProfile(Driver item)
+        {
+            return (Driver)driverDAL.GetDriverProfile<Driver>(item);
+        }
 
 		// added by Kiran///
 		public DriverMdl GetDriverByID(DriverMdl item)

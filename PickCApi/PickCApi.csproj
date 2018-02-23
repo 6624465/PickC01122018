@@ -191,6 +191,8 @@
     <Content Include="Images\source2.png" />
     <Content Include="Images\thankyou.png" />
     <Content Include="Images\thumb.png" />
+    <None Include="Resources\InvoiceContent.txt" />
+    <Content Include="InvoiceContent.txt" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <None Include="Properties\PublishProfiles\PickcApiRelease.pubxml" />
@@ -259,6 +261,11 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
     <Compile Include="UTILITY.cs" />
     <Compile Include="Utility\EmailGenerator.cs" />
     <Compile Include="Utility\smsGenerator.cs" />
@@ -320,6 +327,12 @@
       <Project>{a3cef276-f503-45b0-8e74-0211475d2b09}</Project>
       <Name>PickC.Services</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

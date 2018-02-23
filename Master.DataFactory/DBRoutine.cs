@@ -81,6 +81,7 @@ namespace Master.DataFactory
 
         //
         public const string SELECTDRIVER = "[Master].[usp_DriverSelect]";
+        public const string DRIVERPROFILE = "[Master].[usp_DriverProfile]";
 		public const string SELECTDRIVERBYID = "[Master].[usp_DriverSelectById]";/*added by Kiran */
 		//public const string SELECTDRIVERS = "[Master].[usp_DriverSelects]";/*pickinternal by shruthi */
 		public const string LISTDRIVER = "[Master].[usp_DriverList]"; /*commented by shruthi */

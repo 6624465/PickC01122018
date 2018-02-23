@@ -1,0 +1,10 @@
+Namaskar {0}<br />
+We Thank you, for using Pick-C services on {1} get your trip and payment details in the attached invoice.<br /><br />
+
+Thank you,<br />
+Pick-C, Support Team<br /><br /><br />
+
+
+This is a system generated e-mail please do not reply to this e-mail, replies to this e-mail are routed to an unmonitored mailbox.<br /><br /> 
+
+If any quires or clarifications about this invoice, write to us at support@pickcargo.in

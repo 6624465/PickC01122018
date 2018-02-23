@@ -714,7 +714,17 @@ namespace PickCApi.Areas.Master.Controllers
                         //    new EmailGenerator().ConfigMail(EmailId, true, "PickC Invoice", "<div>PickC Invoice</div>", pdf, BookingNo);
                         //}).Start();
                         pdf = memoryStream.ToArray();
-                        bool sendCustomerMail = new EmailGenerator().ConfigMail(EmailId, true, "PickC Invoice", "<div>PickC Invoice</div>", pdf, BookingNo);
+                        var templatePath = System.Web.Hosting.HostingEnvironment.MapPath("~/Resources/InvoiceContent.txt");
+                        string strText = "";
+                        using (StreamReader sr = new StreamReader(templatePath))
+                        {
+                            while (sr.Peek() >= 0)
+                            {
+                                strText = sr.ReadToEnd();
+                            }
+                        }
+                        string mailBody = string.Format(strText,invoiceDTO.TripInvoice.CustomerName,DateTime.Now);
+                        bool sendCustomerMail = new EmailGenerator().ConfigMail(EmailId, true, "PickC Invoice", mailBody, pdf, BookingNo);
                         if (sendCustomerMail)
                             return Ok(UTILITY.SUCCESS);
                         else

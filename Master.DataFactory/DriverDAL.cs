@@ -511,8 +511,24 @@ namespace Master.DataFactory
 
             return driverItem;
         }
+        public IContract GetDriverProfile<T>(IContract lookupItem) where T : IContract
+        {
+            var item = ((Driver)lookupItem);
 
-		public IContract GetDriverByID<T>(IContract lookupItem) where T : IContract
+            var driverItem = db.ExecuteSprocAccessor(DBRoutine.DRIVERPROFILE,
+                                                    MapBuilder<Driver>
+                                                    .MapAllProperties()
+                                                    .DoNotMap(x => x.Nationality)
+                                                    .Build(), item.DriverId).FirstOrDefault();
+
+            if (driverItem == null) return null;
+
+
+            driverItem.AddressList = new AddressDAL().GetList(driverItem.DriverId);
+
+            return driverItem;
+        }
+        public IContract GetDriverByID<T>(IContract lookupItem) where T : IContract
 		{
 			var item = ((DriverMdl)lookupItem);
 
