@@ -285,6 +285,7 @@ namespace PickCApi.Areas.Master.Controllers
                 return InternalServerError(ex);
             }
         }
+
         [HttpGet]
         [Route("checkCustomerPassword/{mobile}/{password}")]
         [ApiAuthFilter]
