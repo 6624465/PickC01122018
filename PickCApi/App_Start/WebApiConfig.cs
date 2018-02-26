@@ -6,13 +6,17 @@ using System.Net.Http.Headers;
 using System.Web.Http;
 using System.Web.Http.Cors;
 
+using PickCApi.Core;
+
 namespace PickCApi
 {
     public static class WebApiConfig
     {
         public static void Register(HttpConfiguration config)
         {
+
             //var domains = System.Configuration.ConfigurationManager.AppSettings["AppdomainsClients"];
+            config.Filters.Add(new LoggingFilterAttribute());
             var cors = new EnableCorsAttribute("*", "*", "*");
             config.EnableCors(cors);
             config.MapHttpAttributeRoutes();

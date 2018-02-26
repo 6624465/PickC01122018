@@ -64,6 +64,7 @@ namespace Operation.DataFactory
         public const string LISTOFBOOKINGHISTORYLISTBYMOBILENO = "[Operation].[usp_BookingHistoryListByMobileNo]";
 
         public const string CUSTOMERRECEIVEDUPDATEPAYMENTVALUES = "[Operation].[usp_UpdateCustomerPaymentValues]";
+        public const string CUSTOMERPAYMENTTYPEUPDATE = "[Operation].[usp_UpdateCustomerPaymentTypeValues]";
 
         /// <summary>
         /// [Operation].[OperatorVehicle]

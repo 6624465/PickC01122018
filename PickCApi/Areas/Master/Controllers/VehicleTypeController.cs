@@ -21,6 +21,7 @@ namespace PickCApi.Areas.Master.Controllers
         {
             try
             {
+                
                 var typelist = new LookUpBO().GetVehicleTypeList();
                 if (typelist != null)
                     return Ok(typelist);

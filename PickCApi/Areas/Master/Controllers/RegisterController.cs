@@ -26,6 +26,7 @@ using iTextSharp.tool.xml;
 using PickCApi.Areas.Operation.DTO;
 using PickCApi.Areas.Operation.Controllers;
 using PickC.Services.DTO;
+using System.Web.Http.Tracing;
 
 namespace PickCApi.Areas.Master.Controllers
 {
@@ -608,23 +609,33 @@ namespace PickCApi.Areas.Master.Controllers
             }
         }
         [HttpGet]
-        [Route("pay/{bookingNo}/{driverId}")]
+        [Route("pay/{bookingNo}/{driverId}/{PaymentType}")]
         [ApiAuthFilter]
-        public IHttpActionResult CustomerPaymentProcessed(string BookingNo, string Driverid)
+        public IHttpActionResult CustomerPaymentProcessed(string BookingNo, string Driverid,int PaymentType)
         {
             try {
-            var driver = new DriverBO().GetDriver(new Driver { DriverId = Driverid });
-            if (driver != null)
-            {
-                PushNotification(driver.DeviceId,
-                            BookingNo, UTILITY.NotifyPaymentDriver);
-                return Ok(UTILITY.SUCCESS);
+                var result = new BookingBO().CustomerPaymentTypeUpdate(BookingNo, PaymentType);
+                if (result)
+                {
+                    var driver = new DriverBO().GetDriver(new Driver { DriverId = Driverid });
+
+                    if (driver != null)
+                    {
+                        PushNotification(driver.DeviceId,
+                                    BookingNo, UTILITY.NotifyPaymentDriver);
+                        return Ok(UTILITY.SUCCESS);
+                    }
+                    else
+                    {
+                        return Ok(UTILITY.FAIL);
+                    }
+                }
+                else
+                {
+                    return Ok(UTILITY.FAIL);
+                }
             }
-            else
-            {
-                return Ok(UTILITY.FAIL);
-            }
-            }catch(Exception ex)
+            catch (Exception ex)
             {
                 return InternalServerError(ex);
             }
@@ -715,7 +726,7 @@ namespace PickCApi.Areas.Master.Controllers
                         //    new EmailGenerator().ConfigMail(EmailId, true, "PickC Invoice", "<div>PickC Invoice</div>", pdf, BookingNo);
                         //}).Start();
                         pdf = memoryStream.ToArray();
-                        var templatePath = System.Web.Hosting.HostingEnvironment.MapPath("~/Resources/InvoiceContent.txt");
+                        var templatePath = System.Web.Hosting.HostingEnvironment.MapPath("~/InvoiceContent.txt");
                         string strText = "";
                         using (StreamReader sr = new StreamReader(templatePath))
                         {
@@ -724,7 +735,7 @@ namespace PickCApi.Areas.Master.Controllers
                                 strText = sr.ReadToEnd();
                             }
                         }
-                        string mailBody = string.Format(strText,invoiceDTO.TripInvoice.CustomerName,DateTime.Now);
+                        string mailBody = string.Format(strText,invoiceDTO.TripInvoice.CustomerName,DateTime.Now.ToString("dd/MM/yyyy"));
                         bool sendCustomerMail = new EmailGenerator().ConfigMail(EmailId, true, "PickC Invoice", mailBody, pdf, BookingNo);
                         if (sendCustomerMail)
                             return Ok(UTILITY.SUCCESS);
@@ -739,6 +750,11 @@ namespace PickCApi.Areas.Master.Controllers
             }
             catch (Exception ex)
             {
+                //HttpRequestMessage httpMsg = new HttpRequestMessage();
+                //httpMsg.Content = new StringContent("Some Error Content");
+                //var logger = new NLogger();
+                //TraceRecord record = new TraceRecord(httpMsg, "some category", TraceLevel.Error);
+                
                 return InternalServerError(ex);
             }
         }

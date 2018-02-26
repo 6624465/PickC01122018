@@ -368,11 +368,6 @@ namespace PickCApi.Areas.Operation.Controllers
                 var result = new BookingBO().SavePickupReachDateTime(obj.bookingNo, obj.PickupReachDateTime);
                 if (result)
                     PushNotification(new BookingBO().GetCustomerDeviceIDByBookingNo(obj.bookingNo), obj.bookingNo, UTILITY.NotifyPickUpReachDateTime);
-                var bookingDetails = new BookingBO().GetList().Where(x => x.BookingNo == obj.bookingNo).FirstOrDefault();
-                if (bookingDetails.CustomerId != bookingDetails.ReceiverMobileNo)
-                {
-                    SendDriverDetailsToCustomer(bookingDetails.ReceiverMobileNo, UTILITY.NotifyPickUpReachDateTime);
-                }
                 return Ok(result ? UTILITY.SUCCESSMSG : UTILITY.FAILEDMSG);
             }
             catch (Exception ex)
@@ -384,7 +379,7 @@ namespace PickCApi.Areas.Operation.Controllers
         [HttpPost]
         [Route("destinationreachdatetime")]
         public IHttpActionResult SaveDestinationReachDateTime(DestinationReachDateTimeDTO obj)
-        {
+           {
             try
             {
                 var result = new BookingBO().SaveDestinationReachDateTime(obj.bookingNo, obj.DestinationReachDateTime);
@@ -433,7 +428,14 @@ namespace PickCApi.Areas.Operation.Controllers
                 PushNotification(new BookingBO().GetCustomerDeviceIDByBookingNoByPaymentReceiveConfirm(BookingNo),
                        BookingNo,
                        UTILITY.NotifyDriverpaymentReceived);
-                return Ok(new { UTILITY.NotifyDriverpaymentReceived });
+                var invoiceAmount = new InvoiceBO().GetInvoice(new Invoice { BookingNo= BookingNo });
+                var bookingDetails = new BookingBO().GetList().Where(x => x.BookingNo == BookingNo).FirstOrDefault();
+                if (bookingDetails.CustomerId != bookingDetails.ReceiverMobileNo)
+                {
+                    string DriverDetails =string.Format("Payment for {0} of rupees {1} done successfully." ,bookingDetails.BookingNo, invoiceAmount.TotalAmount);
+                    SendDriverDetailsToCustomer(bookingDetails.ReceiverMobileNo, DriverDetails);
+                }
+                    return Ok(new { UTILITY.NotifyDriverpaymentReceived });
             }
             else
                 return Ok(new { UTILITY.FAILEDMESSAGE });
@@ -465,11 +467,11 @@ namespace PickCApi.Areas.Operation.Controllers
             {
                 PushNotification(new BookingBO().GetCustomerDeviceIDByBookingNo(BookingNo),
                        BookingNo,UTILITY.NotifyCustomerPickupStart);
-                var bookingDetails = new BookingBO().GetList().Where(x => x.BookingNo == BookingNo).FirstOrDefault();
-                if (bookingDetails.CustomerId != bookingDetails.ReceiverMobileNo)
-                {
-                    SendDriverDetailsToCustomer(bookingDetails.ReceiverMobileNo, UTILITY.NotifyCustomerPickupStart);
-                }
+                //var bookingDetails = new BookingBO().GetList().Where(x => x.BookingNo == BookingNo).FirstOrDefault();
+                //if (bookingDetails.CustomerId != bookingDetails.ReceiverMobileNo)
+                //{
+                //    SendDriverDetailsToCustomer(bookingDetails.ReceiverMobileNo, UTILITY.NotifyCustomerPickupStart);
+                //}
                 var BookingConfirm = new BookingBO().CustomerCurrentConfirmTrip(HeaderValueByKey("MOBILENO"));
                 var Isintrip = BookingConfirm != null ? true : false;
                 if (Isintrip)
