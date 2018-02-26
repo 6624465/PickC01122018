@@ -120,7 +120,7 @@ namespace PickCApi.Areas.Master.Controllers
                 var result = new CustomerBO().SaveCustomer(customer);
                 if (result)
                 {
-                    SendOTP(customer.MobileNo, "OTP for your SIGN UP is "+" " + customer.OTP);
+                    SendOTP(customer.MobileNo, $"Your Pick-C SIGN-UP OTP is: {customer.OTP}");
                     return Ok(UTILITY.SUCCESS);
                 }
                 else
