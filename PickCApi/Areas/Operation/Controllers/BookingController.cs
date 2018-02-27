@@ -417,9 +417,7 @@ namespace PickCApi.Areas.Operation.Controllers
         //        return InternalServerError(ex);
         //    }
         //}
-
-
-
+        
         [HttpGet]
         [Route("DriverReceivedConfirm/{BookingNo}")]
         public IHttpActionResult DriverReceivedConfirmCheck(string BookingNo)
