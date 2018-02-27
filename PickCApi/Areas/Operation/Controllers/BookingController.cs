@@ -418,12 +418,16 @@ namespace PickCApi.Areas.Operation.Controllers
         //    }
         //}
         
+        /* vijay: this is called only by driver. at the time of customer payment itself we are 
+           calling this functionality internally. to make independent
+        */
         [HttpGet]
         [Route("DriverReceivedConfirm/{BookingNo}")]
         public IHttpActionResult DriverReceivedConfirmCheck(string BookingNo)
         {
-            var result = new BookingBO().CustomerPaymentUpdate(BookingNo);
-            if (result)
+            /* calling below BO from customer side directly */
+            //var result = new BookingBO().CustomerPaymentUpdate(BookingNo);
+            if (true)
             {
                 PushNotification(new BookingBO().GetCustomerDeviceIDByBookingNoByPaymentReceiveConfirm(BookingNo),
                        BookingNo,

@@ -608,6 +608,8 @@ namespace PickCApi.Areas.Master.Controllers
                 return InternalServerError(ex);
             }
         }
+
+        /* vijay: only by customer */
         [HttpGet]
         [Route("pay/{bookingNo}/{driverId}/{PaymentType}")]
         [ApiAuthFilter]
@@ -615,6 +617,8 @@ namespace PickCApi.Areas.Master.Controllers
         {
             try {
                 var result = new BookingBO().CustomerPaymentTypeUpdate(BookingNo, PaymentType);
+                /* 2/27/2018 */
+                new BookingBO().CustomerPaymentUpdate(BookingNo);
                 if (result)
                 {
                     var driver = new DriverBO().GetDriver(new Driver { DriverId = Driverid });
