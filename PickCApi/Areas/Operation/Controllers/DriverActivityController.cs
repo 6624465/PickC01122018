@@ -302,7 +302,7 @@ namespace PickCApi.Areas.Operation.Controllers
                     if (result)
                     {
                         PushNotification(new BookingBO().GetCustomerDeviceIDByBookingNo(BookingNo), BookingNo, UTILITY.NotifySuccess);
-                        SendOTP(bookingObj.CustomerId, CustomerOTP+ " ,please share this with your PICKC driver, to start the trip.");
+                        //SendOTP(bookingObj.ReceiverMobileNo, CustomerOTP + " ,please share this with your PICKC driver, to start the trip.");
                         var booking = new BookingBO().GetBooking(new Booking
                         {
                             BookingNo = BookingNo

@@ -111,6 +111,10 @@ namespace Operation.BusinessFactory
         {
             return bookingDAL.UpdateCustomerPaymentValues(bookingNo);
         }
+        public bool CustomerPaymentTypeUpdate(string bookingNo,int PaymentType)
+        {
+            return bookingDAL.UpdateCustomerPaymentTypeValues(bookingNo,PaymentType);
+        }
         public string GetCustomerDeviceIDByBookingNoByPaymentReceiveConfirm(string bookingNo)
         {
             return bookingDAL.GetCustomerDeviceIDByBookingNoByPaymentReceiveConfirm(bookingNo);

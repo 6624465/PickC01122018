@@ -504,6 +504,38 @@ namespace Operation.DataFactory
             return result;
 
         }
+        public bool UpdateCustomerPaymentTypeValues(string bookingNo,int PaymentType)
+        {
+
+            var result = false;
+
+            connection = db.CreateConnection();
+            connection.Open();
+
+            var transaction = connection.BeginTransaction();
+
+            try
+            {
+                var updateCommand = db.GetStoredProcCommand(DBRoutine.CUSTOMERPAYMENTTYPEUPDATE);
+                db.AddInParameter(updateCommand, "BookingNo", System.Data.DbType.String, bookingNo);
+                db.AddInParameter(updateCommand, "PaymentType", System.Data.DbType.Int32, PaymentType);
+                result = Convert.ToBoolean(db.ExecuteNonQuery(updateCommand, transaction));
+                transaction.Commit();
+            }
+            catch (Exception ex)
+            {
+                transaction.Rollback();
+                throw ex;
+            }
+            finally
+            {
+                transaction.Dispose();
+                connection.Close();
+            }
+
+            return result;
+
+        }
         public string GetCustomerDeviceIDByBookingNoByPaymentReceiveConfirm(string bookingNo)
         {
 

@@ -79,7 +79,7 @@ namespace PickCApi.Areas.Operation.Controllers
                     var driverDetails = new DriverBO().GetDriver(new Driver { DriverId = bookingDetails.DriverId });
                     if (bookingDetails.CustomerId != bookingDetails.ReceiverMobileNo)
                     {
-                        string DriverDetails = bookingDetails.BookingNo + ' ' + UTILITY.NOTIFYTORECEIVERTRIPSTART + ' ' + "DriverID: " + bookingDetails.DriverId + ' ' + "MobileNo:" + driverDetails.MobileNo + ' ' + "VehicleNo: " + bookingDetails.VehicleNo;
+                        string DriverDetails = bookingDetails.BookingNo + ' ' + UTILITY.NOTIFYTORECEIVERTRIPSTART + ' ' + "DriverID: " + bookingDetails.DriverName + ' ' + "MobileNo:" + driverDetails.MobileNo + ' ' + "VehicleNo: " + bookingDetails.VehicleNo;
                         SendDriverDetailsToCustomer(bookingDetails.ReceiverMobileNo, DriverDetails);
                     }
                     return Ok(new

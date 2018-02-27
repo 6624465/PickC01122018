@@ -105,7 +105,7 @@ namespace PickCApi.Utility
             DateTime d = DateTime.Now;
             string Date = d.ToString("ddMMyyyy");
 
-            Attachment att = new Attachment(new MemoryStream(attBytes), $"{BookingNo}_{Date}.pdf");
+            Attachment att = new Attachment(new MemoryStream(attBytes), $"Pick-C_{BookingNo}_{Date}.pdf");
             msg.Attachments.Add(att);
 
             return SendMail(msg);
