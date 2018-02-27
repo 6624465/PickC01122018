@@ -79,7 +79,7 @@ namespace PickCApi.Areas.Operation.Controllers
                     var driverDetails = new DriverBO().GetDriver(new Driver { DriverId = bookingDetails.DriverId });
                     if (bookingDetails.CustomerId != bookingDetails.ReceiverMobileNo)
                     {
-                        string DriverDetails = bookingDetails.BookingNo + ' ' + UTILITY.NOTIFYTORECEIVERTRIPSTART + ' ' + "DriverID: " + bookingDetails.DriverName + ' ' + "MobileNo:" + driverDetails.MobileNo + ' ' + "VehicleNo: " + bookingDetails.VehicleNo;
+                        string DriverDetails = $"Pick-C booking no,{bookingDetails.BookingNo},{UTILITY.NOTIFYTORECEIVERTRIPSTART}Driver:{bookingDetails.DriverName},Mobile:{driverDetails.MobileNo},Truck No:{bookingDetails.VehicleNo}"; 
                         SendDriverDetailsToCustomer(bookingDetails.ReceiverMobileNo, DriverDetails);
                     }
                     return Ok(new
@@ -118,6 +118,7 @@ namespace PickCApi.Areas.Operation.Controllers
                     var bookingDetails = new BookingBO().GetList().Where(x => x.BookingNo == tripInfo.BookingNo).FirstOrDefault();
                     if (bookingDetails.CustomerId != bookingDetails.ReceiverMobileNo)
                     {
+                        var tripAmount = new InvoiceBO().GetInvoiceByBookingNo(tripInfo.BookingNo).TotalAmount;
                         SendDriverDetailsToCustomer(bookingDetails.ReceiverMobileNo, UTILITY.NOTIFYTORECEIVERTRIPEND);
                     }
                     return Ok(new

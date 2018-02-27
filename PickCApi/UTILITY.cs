@@ -17,7 +17,7 @@ namespace PickCApi
         public static string DEFAULTUSER = "ADMIN";
         public static string FAILEDMSG = "Operation failed";
 
-        public static string NOTIFYTORECEIVERTRIPSTART = "Trip started and the vehicle is on the way to delivery location";
+        public static string NOTIFYTORECEIVERTRIPSTART = "trip has started and the vehicle is on the way to delivery location.";
         public static string NOTIFYTORECEIVERTRIPEND = "Trip completed successfully. Please proceed for payment options";
 
 
