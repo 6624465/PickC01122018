@@ -5,7 +5,6 @@ using Master.DataFactory;
 
 namespace Master.BusinessFactory
 {
-
     public class AddressBO
     {
         private AddressDAL addressDAL;
