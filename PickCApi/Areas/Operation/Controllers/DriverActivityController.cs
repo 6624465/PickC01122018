@@ -289,7 +289,6 @@ namespace PickCApi.Areas.Operation.Controllers
         [HttpGet]
         [Route("{BookingNo}/{vehicleNo}")]
         [ApiAuthFilter]
-
         public IHttpActionResult ConfirmBooking(string BookingNo, string vehicleNo)
         {
             try
