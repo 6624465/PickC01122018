@@ -149,7 +149,7 @@ namespace PickCApi.Areas.Operation.Controllers
                     {
                         return Ok(new { BookingNo = AfterPickup, Message = UTILITY.DRIVERISCONFIRMPICKUPREACHEDTRIPSTARTPENDING });
                     }
-                    return Ok(new { BookingNo = "", Message = "" });
+                    return Ok(new { BookingNo = "", Message = "Booking Confirmed But Start is Pending" });
                 }
             }
             catch (Exception ex)
