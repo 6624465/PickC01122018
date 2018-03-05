@@ -368,6 +368,10 @@ namespace PickCApi.Areas.Operation.Controllers
                 var result = new BookingBO().SavePickupReachDateTime(obj.bookingNo, obj.PickupReachDateTime);
                 if (result)
                     PushNotification(new BookingBO().GetCustomerDeviceIDByBookingNo(obj.bookingNo), obj.bookingNo, UTILITY.NotifyPickUpReachDateTime);
+
+                var bookingDetails = new BookingBO().GetBooking(new Booking { BookingNo = obj.bookingNo });
+                SendDriverDetailsToCustomer(bookingDetails.CustomerId, string.Format(UTILITY.SmsNotifyPickUpReachDateTime, bookingDetails.VehicleNo));
+
                 return Ok(result ? UTILITY.SUCCESSMSG : UTILITY.FAILEDMSG);
             }
             catch (Exception ex)
@@ -385,11 +389,13 @@ namespace PickCApi.Areas.Operation.Controllers
                 var result = new BookingBO().SaveDestinationReachDateTime(obj.bookingNo, obj.DestinationReachDateTime);
                 if (result)
                     PushNotification(new BookingBO().GetCustomerDeviceIDByBookingNo(obj.bookingNo), obj.bookingNo, UTILITY.NotifyDestinationReachDateTime);
-                   var bookingDetails = new BookingBO().GetList().Where(x => x.BookingNo == obj.bookingNo).FirstOrDefault();
+
+                var bookingDetails = new BookingBO().GetBooking(new Booking { BookingNo = obj.bookingNo });
                 if (bookingDetails.CustomerId != bookingDetails.ReceiverMobileNo)
                 {
-                    SendDriverDetailsToCustomer(bookingDetails.ReceiverMobileNo, UTILITY.NotifyDestinationReachDateTime);
+                    SendDriverDetailsToCustomer(bookingDetails.ReceiverMobileNo, string.Format(UTILITY.SmsDestinationReachedDateTime, bookingDetails.VehicleNo));
                 }
+                SendDriverDetailsToCustomer(bookingDetails.CustomerId, string.Format(UTILITY.SmsDestinationReachedDateTime, bookingDetails.VehicleNo));
                 return Ok(result ? UTILITY.SUCCESSMSG : UTILITY.FAILEDMSG);
             }
             catch (Exception ex)

@@ -79,9 +79,11 @@ namespace PickCApi.Areas.Operation.Controllers
                     var driverDetails = new DriverBO().GetDriver(new Driver { DriverId = bookingDetails.DriverId });
                     if (bookingDetails.CustomerId != bookingDetails.ReceiverMobileNo)
                     {
-                        string DriverDetails = $"Pick-C booking no,{bookingDetails.BookingNo},{UTILITY.NOTIFYTORECEIVERTRIPSTART}Driver:{bookingDetails.DriverName},Mobile:{driverDetails.MobileNo},Truck No:{bookingDetails.VehicleNo}"; 
-                        SendDriverDetailsToCustomer(bookingDetails.ReceiverMobileNo, DriverDetails);
+                        SendDriverDetailsToCustomer(bookingDetails.ReceiverMobileNo, string.Format(UTILITY.SmsNotifyTripStart, bookingDetails.BookingNo, bookingDetails.DriverName, driverDetails.MobileNo, bookingDetails.VehicleNo));
                     }
+
+                    SendDriverDetailsToCustomer(bookingDetails.CustomerId, string.Format(UTILITY.SmsNotifyTripStart, bookingDetails.BookingNo, bookingDetails.DriverName, driverDetails.MobileNo, bookingDetails.VehicleNo));
+
                     return Ok(new
                     {
                         tripID = trip.TripID,
@@ -110,6 +112,7 @@ namespace PickCApi.Areas.Operation.Controllers
                 tripEndDTO.Token = HeaderValueByKey("AUTH_TOKEN");
                 tripEndDTO.DriverId = HeaderValueByKey("DRIVERID");
                 var result = new TripBO().EndTrip(tripEndDTO, distance);
+                decimal tripAmount = 0.00M;
                 if (result)
                 {
                     tripInfo = new TripBO().GetTrip(new Trip { TripID = tripEndDTO.TripId });
@@ -118,9 +121,12 @@ namespace PickCApi.Areas.Operation.Controllers
                     var bookingDetails = new BookingBO().GetList().Where(x => x.BookingNo == tripInfo.BookingNo).FirstOrDefault();
                     if (bookingDetails.CustomerId != bookingDetails.ReceiverMobileNo)
                     {
-                        var tripAmount = new InvoiceBO().GetInvoiceByBookingNo(tripInfo.BookingNo).TotalAmount;
-                        SendDriverDetailsToCustomer(bookingDetails.ReceiverMobileNo, UTILITY.NOTIFYTORECEIVERTRIPEND);
+                        tripAmount = new InvoiceBO().GetInvoiceByBookingNo(tripInfo.BookingNo).TotalAmount;
+                        SendDriverDetailsToCustomer(bookingDetails.ReceiverMobileNo, string.Format(UTILITY.SmsNotifyTripEndToReceiver, tripAmount));
                     }
+
+                    SendDriverDetailsToCustomer(bookingDetails.ReceiverMobileNo, string.Format(UTILITY.SmsNotifyTripEndToCustomer, tripAmount));
+                    
                     return Ok(new
                     {
                         tripID = tripEndDTO.TripId,

@@ -120,7 +120,7 @@ namespace PickCApi.Areas.Master.Controllers
                 var result = new CustomerBO().SaveCustomer(customer);
                 if (result)
                 {
-                    SendOTP(customer.MobileNo, $"Your Pick-C SIGN-UP OTP is: {customer.OTP}");
+                    SendOTP(customer.MobileNo, string.Format(UTILITY.SmsSignUpOTP, customer.OTP));
                     return Ok(UTILITY.SUCCESS);
                 }
                 else
@@ -625,8 +625,15 @@ namespace PickCApi.Areas.Master.Controllers
 
                     if (driver != null)
                     {
-                        PushNotification(driver.DeviceId,
-                                    BookingNo, UTILITY.NotifyPaymentDriver);
+                        PushNotification(driver.DeviceId, BookingNo, UTILITY.NotifyPaymentDriver);
+
+                        var bookingDetails = new BookingBO().GetBooking(new Booking { BookingNo = BookingNo });
+                        if (bookingDetails.CustomerId != bookingDetails.ReceiverMobileNo)
+                        {
+                            SendDriverDetailsToCustomer(bookingDetails.ReceiverMobileNo, string.Format(UTILITY.SmsNotifyPaymentCompleted, bookingDetails.BookingNo, bookingDetails.InvoiceAmount));
+                        }
+                        SendDriverDetailsToCustomer(bookingDetails.CustomerId, string.Format(UTILITY.SmsNotifyPaymentCompleted, bookingDetails.BookingNo, bookingDetails.InvoiceAmount));
+
                         return Ok(UTILITY.SUCCESS);
                     }
                     else
