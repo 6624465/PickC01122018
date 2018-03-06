@@ -154,8 +154,8 @@
                                 <td width="20%" style="font-size:10px; padding:7px;text-align:left;">@Model.TravelTime Min </td>
                             </tr>
                             <tr>
-                                <td style="vertical-align:middle; padding:7px; text-align:left; font-size:10px;">Vehicle Type and Make Description </td>
-                                <td width="20%" style="font-size:10px; padding:7px;text-align:left;">@Model.VehicleType & @Model.VehicleMaker  </td>
+                                <td style="vertical-align:middle; padding:7px; text-align:left; font-size:10px;">Vehicle Category, Type and Make Description </td>
+                                <td width="20%" style="font-size:10px; padding:7px;text-align:left;">@Model.VehicleGroup - @Model.VehicleType , @Model.VehicleMaker  </td>
                             </tr>
                         </tbody>
                     </table>
@@ -186,7 +186,7 @@
                         <tbody>
                             <tr>
                                 <td style="vertical-align:middle; padding:7px; text-align:left;  font-size:10px;">Paid By</td>
-                                <td width="20%" style="font-size:10px; padding:7px;text-align:left; ">Cash</td>
+                                <td width="20%" style="font-size:10px; padding:7px;text-align:left; ">@Model.PaymentType</td>
                             </tr>
 
                         </tbody>
