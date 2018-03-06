@@ -138,19 +138,24 @@ namespace PickCApi.Areas.Operation.Controllers
             {
                 var DRIVERID = HttpContext.Current.Request.Headers["DRIVERID"];
                 var result = new DriverBO().BookingConfirmIsStartTripCheck(DRIVERID);
-                if(result !="")
+                if(result != "")
                 {
-                    return Ok(new {BookingNo= result,Message= UTILITY.DRIVERISCONFIRMPICKUPREACHEDPENDING });
+                    //Driver Is Confirmed Pickup Reach Is Pending
+                    return Ok(new {
+                        BookingNo = result,
+                        Message = UTILITY.DRIVERISCONFIRMPICKUPREACHEDPENDING
+                    });
                 }
                 else
                 {
                     var AfterPickup = new DriverBO().PickupReachedStartTripPending(DRIVERID);
-                    if(AfterPickup !="")
+                    if(AfterPickup != "")
                     {
+                        //Driver Is Confirmed Pickup Reached Trip Start Is Pending
                         return Ok(new { BookingNo = AfterPickup, Message = UTILITY.DRIVERISCONFIRMPICKUPREACHEDTRIPSTARTPENDING });
-                    }
-                    return Ok(new { BookingNo = "", Message = "Booking Confirmed But Start is Pending" });
+                    }                    
                 }
+                return Ok(new { BookingNo = "", Message = "" });
             }
             catch (Exception ex)
             {
