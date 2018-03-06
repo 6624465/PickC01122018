@@ -1022,10 +1022,10 @@ namespace PickCApi.Areas.Master.Controllers
                 {
                     var driverActivity = new DriverActivityBO().GetDriverActivityByDriverID(new DriverActivity { DriverId = DriverID });
                     var latlongs = new DriverActivityBO().GetFiveLatLongsforDriver(DriverID, driverActivity.TokenNo).TrimEnd('|');
-                    var result = GetLatLongsValues(latlongs);
+                    var accuracyResult = GetLatLongsValues(latlongs);
                     return Ok(new {
                         driverMonitorList = driverMonitorList,
-                        accuracy = latlongs
+                        accuracy = accuracyResult
                     });
                 }
                 else

@@ -231,6 +231,7 @@ namespace PickCApi
             {
                 decimal distance = 0.00M;
                 decimal duration = 0.00M;
+                
                 using (var sr = new StreamReader(response.GetResponseStream()))
                 {
                     var obj = JsonConvert.DeserializeObject<GoogleApiResponse>(sr.ReadToEnd());
@@ -240,12 +241,12 @@ namespace PickCApi
                         {
                             if (obj.rows[0].elements[0].distance != null)
                             {
-                                distance = (obj.rows[0].elements[0].distance.value / 1000);
+                                distance = decimal.Divide(obj.rows[0].elements[0].distance.value, 1000); //(obj.rows[0].elements[0].distance.value / 1000);
                             }
 
                             if (obj.rows[0].elements[0].duration != null)
                             {
-                                duration = (obj.rows[0].elements[0].duration.value / 60);
+                                duration = decimal.Divide(obj.rows[0].elements[0].duration.value, 60); //(obj.rows[0].elements[0].duration.value / 60);
                             }
                         }
                     }
