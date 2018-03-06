@@ -1016,17 +1016,23 @@ namespace PickCApi.Areas.Master.Controllers
         {
             try
             {
-                /*
+                
                 var driverMonitorList = new DriverActivityBO().GetDriverMonitorInCustomer(new DriverMonitorInCustomer { DriverId = DriverID });
                 if (driverMonitorList != null)
-                    return Ok(driverMonitorList);
+                {
+                    var driverActivity = new DriverActivityBO().GetDriverActivityByDriverID(new DriverActivity { DriverId = DriverID });
+                    var latlongs = new DriverActivityBO().GetFiveLatLongsforDriver(DriverID, driverActivity.TokenNo).TrimEnd('|');
+                    var result = GetLatLongsValues(latlongs);
+                    return Ok(new {
+                        driverMonitorList = driverMonitorList,
+                        accuracy = latlongs
+                    });
+                }
                 else
-                    return Ok(new DriverMonitorInCustomer());*/
+                    return Ok(new DriverMonitorInCustomer());
 
-                var driverActivity = new DriverActivityBO().GetDriverActivityByDriverID(new DriverActivity { DriverId = DriverID });
-                var latlongs = new DriverActivityBO().GetFiveLatLongsforDriver(DriverID, driverActivity.TokenNo).TrimEnd('|');
-                var result = GetLatLongsValues(latlongs);
-                return Ok(new { result });
+                
+                
             }
             catch (Exception ex)
             {
