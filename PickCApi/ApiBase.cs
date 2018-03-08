@@ -193,26 +193,43 @@ namespace PickCApi
         }
         public DriverLatLong GetLatLongsValues(string latlong)
         {
-            string API_KEY = ConfigurationManager.AppSettings["latlongGoogleAPIKey"];
+            try
+            {
+                string API_KEY = ConfigurationManager.AppSettings["latlongGoogleAPIKey"];
 
-            string API_URL = "https://roads.googleapis.com/v1/snapToRoads?path=" + latlong + "&interpolate=true&key=" + API_KEY;
-            return GetAPI(API_URL);
+                string API_URL = "https://roads.googleapis.com/v1/snapToRoads?path=" + latlong + "&interpolate=true&key=" + API_KEY;
+                return GetAPI(API_URL);
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+            
         }
         public DriverLatLong GetAPI(string url)
         {
-            WebRequest request = WebRequest.Create(url);
-            DriverLatLong _response = new DriverLatLong();
-            using (WebResponse response = request.GetResponse())
+            try
             {
-                using (var sr = new StreamReader(response.GetResponseStream()))
+                WebRequest request = WebRequest.Create(url);
+                DriverLatLong _response = new DriverLatLong();
+                using (WebResponse response = request.GetResponse())
                 {
-                    var obj = JsonConvert.DeserializeObject<RootObject>(sr.ReadToEnd());
+                    using (var sr = new StreamReader(response.GetResponseStream()))
+                    {
+                        var obj = JsonConvert.DeserializeObject<RootObject>(sr.ReadToEnd());
 
-                    _response.rootObject = obj;
-                    return _response;
+                        _response.rootObject = obj;
+                        return _response;
+                    }                    
                 }
-                //return Ok();
             }
+            catch (Exception)
+            {
+
+                throw;
+            }
+            
 
         }
         public TripEstimateResponse GetTravelTimeBetweenTwoLocations(string frmLatLong, string toLatLong)

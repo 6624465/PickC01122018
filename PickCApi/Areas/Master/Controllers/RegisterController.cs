@@ -1036,7 +1036,8 @@ namespace PickCApi.Areas.Master.Controllers
             }
             catch (Exception ex)
             {
-                return InternalServerError(ex);
+                return Ok(ex.Message + ":" + ex.InnerException + ":" + ex.StackTrace);
+                //return InternalServerError(ex);
             }
         }
 
