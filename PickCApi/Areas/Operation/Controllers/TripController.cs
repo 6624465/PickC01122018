@@ -125,7 +125,7 @@ namespace PickCApi.Areas.Operation.Controllers
                         SendDriverDetailsToCustomer(bookingDetails.ReceiverMobileNo, string.Format(UTILITY.SmsNotifyTripEndToReceiver, tripAmount));
                     }
 
-                    SendDriverDetailsToCustomer(bookingDetails.ReceiverMobileNo, string.Format(UTILITY.SmsNotifyTripEndToCustomer, tripAmount));
+                    SendDriverDetailsToCustomer(bookingDetails.CustomerId, string.Format(UTILITY.SmsNotifyTripEndToCustomer, tripAmount));
                     
                     return Ok(new
                     {

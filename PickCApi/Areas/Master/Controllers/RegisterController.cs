@@ -628,11 +628,12 @@ namespace PickCApi.Areas.Master.Controllers
                         PushNotification(driver.DeviceId, BookingNo, UTILITY.NotifyPaymentDriver);
 
                         var bookingDetails = new BookingBO().GetBooking(new Booking { BookingNo = BookingNo });
+                        var invoiceDetails = new InvoiceBO().GetInvoiceByBookingNo(BookingNo);
                         if (bookingDetails.CustomerId != bookingDetails.ReceiverMobileNo)
                         {
-                            SendDriverDetailsToCustomer(bookingDetails.ReceiverMobileNo, string.Format(UTILITY.SmsNotifyPaymentCompleted, bookingDetails.BookingNo, bookingDetails.InvoiceAmount));
+                            SendDriverDetailsToCustomer(bookingDetails.ReceiverMobileNo, string.Format(UTILITY.SmsNotifyPaymentCompleted, bookingDetails.BookingNo, invoiceDetails.TotalAmount));
                         }
-                        SendDriverDetailsToCustomer(bookingDetails.CustomerId, string.Format(UTILITY.SmsNotifyPaymentCompleted, bookingDetails.BookingNo, bookingDetails.InvoiceAmount));
+                        SendDriverDetailsToCustomer(bookingDetails.CustomerId, string.Format(UTILITY.SmsNotifyPaymentCompleted, bookingDetails.BookingNo, invoiceDetails.TotalAmount));
 
                         return Ok(UTILITY.SUCCESS);
                     }
