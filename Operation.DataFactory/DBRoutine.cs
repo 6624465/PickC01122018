@@ -124,6 +124,7 @@ namespace Operation.DataFactory
         public const string AUTHENTICATEDRIVER = "[Operation].[usp_AUTHENTICATE_DRIVER]";
         public const string SELECTDRIVERACTIVITYBYDRIVERID = "[Operation].[usp_DriverActivitySelectByDriverID]";
 
+        public const string SELECTDRIVERACTIVITYLOG = "[Operation].[usp_DriverActivityLogSelect]";
 
         public const string UPDATEDRIVERCURRENTLOCATIONVALUES = "[Operation].[usp_UpdateDriverCurrentLocationValues]";
 

@@ -49,6 +49,7 @@
     <Compile Include="CustomerLoginDAL.cs" />
     <Compile Include="DBRoutine.cs" />
     <Compile Include="DriverActivityDAL.cs" />
+    <Compile Include="DriverActivityLogDAL.cs" />
     <Compile Include="InvoiceDAL.cs" />
     <Compile Include="OperatorLogInDAL.cs" />
     <Compile Include="OperatorVehicleDAL.cs" />

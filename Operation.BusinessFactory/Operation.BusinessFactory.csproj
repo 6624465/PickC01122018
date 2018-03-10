@@ -42,6 +42,7 @@
     <Compile Include="BookingBO.cs" />
     <Compile Include="CustomerLogInBO.cs" />
     <Compile Include="DriverActivityBO.cs" />
+    <Compile Include="DriverActivityLogBO.cs" />
     <Compile Include="InvoiceBO.cs" />
     <Compile Include="OperatorLogInBO.cs" />
     <Compile Include="OperatorVehicleBO.cs" />

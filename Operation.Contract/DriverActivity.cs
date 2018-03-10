@@ -39,6 +39,25 @@ namespace Operation.Contract
         public decimal LogOutLong { get; set; }
 
     }
+
+    public class DriverActivityLog : IContract
+    {
+        public decimal ID { get; set; }
+
+        public string TokenNo { get; set; }
+
+        public string DriverID { get; set; }
+
+        public decimal Latitude { get; set; }
+
+        public decimal Longitude { get; set; }
+
+        public decimal Accuracy { get; set; }
+
+        public DateTime CreatedOn { get; set; }
+
+        public decimal Bearing { get; set; }
+    }
 }
 
 

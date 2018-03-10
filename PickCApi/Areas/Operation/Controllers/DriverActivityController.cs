@@ -363,9 +363,9 @@ namespace PickCApi.Areas.Operation.Controllers
         }
 
         [HttpPost]
-        [Route("UpdateDriverCurrentLocation")]
+        [Route("UpdateDriverCurrentLocation/{Accuracy}/{BREARING}")]
         [ApiAuthFilter]
-        public IHttpActionResult UpdateCurrentDriverLocation()
+        public IHttpActionResult UpdateCurrentDriverLocation(decimal Accuracy, decimal BREARING)
         {
             try
             {
@@ -376,7 +376,9 @@ namespace PickCApi.Areas.Operation.Controllers
                     CurrentLatitude = Convert.ToDecimal(HeaderValueByKey("LATITUDE")),
                     CurrentLongitude = Convert.ToDecimal(HeaderValueByKey("LONGITUDE")),
                     IsLogIn = true,
-                    IsOnDuty = true
+                    IsOnDuty = true,
+                    Accuracy = Accuracy,
+                    Bearing = BREARING
                 };
                 var result = new DriverActivityBO().UpdateCurrentDriverLocation(updateDriverCurrentLocation);
                 if (result)
