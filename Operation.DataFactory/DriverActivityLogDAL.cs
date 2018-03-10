@@ -26,8 +26,8 @@ namespace Operation.DataFactory
 
         public DriverActivityLog GetItem(DriverActivityLog driverActivityLog)
         {
-            var driveractivityLogItem = db.ExecuteSprocAccessor(DBRoutine.SELECTDRIVERACTIVITYBYDRIVERID,
-                                                    MapBuilder<DriverActivity>.BuildAllProperties(),
+            var driveractivityLogItem = db.ExecuteSprocAccessor(DBRoutine.SELECTDRIVERACTIVITYLOG,
+                                                    MapBuilder<DriverActivityLog>.BuildAllProperties(),
                                                     driverActivityLog.DriverID, driverActivityLog.TokenNo).FirstOrDefault();
 
             if (driveractivityLogItem == null) return null;
