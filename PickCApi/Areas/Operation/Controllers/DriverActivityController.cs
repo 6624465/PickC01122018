@@ -363,7 +363,7 @@ namespace PickCApi.Areas.Operation.Controllers
         }
 
         [HttpPost]
-        [Route("UpdateDriverCurrentLocation/{Accuracy}/{BREARING}")]
+        [Route("UpdateDriverCurrentLocation/{Accuracy}/{BREARING}/")]
         [ApiAuthFilter]
         public IHttpActionResult UpdateCurrentDriverLocation(decimal Accuracy, decimal BREARING)
         {
