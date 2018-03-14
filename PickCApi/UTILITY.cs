@@ -43,11 +43,11 @@ namespace PickCApi
         public static string SmsConfirmTrip = "Your booking has been confirmed. Your trip will be started soon...PICKC";
         public static string SmsConfirmBooking = "Your booking has been confirmed. Your booking no. is {0}...PICKC";
         public static string SmsDestinationReachedDateTime = "Your Pick-C truck: {0} has reached delivery location.";
-        public static string SmsNotifyTripEndToCustomer = "Your Pick-C trip completed successfully. Please proceed for payment options of Rupees {0}.";
-        public static string SmsNotifyTripEndToReceiver = "Your Pick-C trip completed successfully. Please proceed for payment options (Cash / PayTM) of Rupees {0}.";
+        public static string SmsNotifyTripEndToCustomer = "Your Pick-C trip completed successfully. Please proceed for payment options of Rs. {0} /-";
+        public static string SmsNotifyTripEndToReceiver = "Your Pick-C trip completed successfully. Please proceed for payment options (Cash / PayTM) of Rs. {0} /-";
         public static string SmsNotifyTripStart = "Pick-C booking no: {0} ,trip has started and truck is on the way to delivery location. Driver: {1}, Mobile: {2}, Truck No:{3}";
         public static string SmsNotifyPickUpReachDateTime = "Your Pick-C truck: {0} has reached pickup location.";
-        public static string SmsNotifyPaymentCompleted = "Your Pick-C booking no: {0} of Rupees {1} is done successfully.";
+        public static string SmsNotifyPaymentCompleted = "Your Pick-C booking no: {0} of Rs. {1} /- is done successfully.";
         public static string SmsSignUpOTP = "Your Pick-C SIGN-UP OTP is: {0}";
         public static string SmsBookingAcceptOTP = "Your Pick-C OTP is: {0}, please share this with your Pick-C driver, to start the trip.";
 
