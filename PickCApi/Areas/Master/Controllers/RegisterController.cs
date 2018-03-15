@@ -383,7 +383,7 @@ namespace PickCApi.Areas.Master.Controllers
                     }
                     else
                     {
-                        var CancelBooking = new BookingBO().DeleteBooking(new Booking { BookingNo = booking.BookingNo });
+                        var CancelBooking = new BookingBO().DeleteBooking(new Booking { BookingNo = booking.BookingNo, Remarks = "Booking Cancelled by System" });
                         if (CancelBooking)
                             return Ok(new { BookingNo = "", Status = UTILITY.NotifyCustomer });
                         else
