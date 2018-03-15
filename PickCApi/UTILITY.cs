@@ -39,9 +39,9 @@ namespace PickCApi
         public static string NotifyDestinationReachDateTime = "Driver reached delivery location";
 
         public static short radius = 4;//2
-        public static string SmsOTP = "OTP for PICKC: {0}";
-        public static string SmsConfirmTrip = "Your booking has been confirmed. Your trip will be started soon...PICKC";
-        public static string SmsConfirmBooking = "Your booking has been confirmed. Your booking no. is {0}...PICKC";
+        public static string SmsOTP = "OTP for Pick-C: {0}";
+        public static string SmsConfirmTrip = "Your booking has been confirmed. Your trip will be started soon...Pick-C";
+        public static string SmsConfirmBooking = "Your booking has been confirmed. Your booking no. is {0}...Pick-C";
         public static string SmsDestinationReachedDateTime = "Your Pick-C truck: {0} has reached delivery location.";
         public static string SmsNotifyTripEndToCustomer = "Your Pick-C trip completed successfully. Please proceed for payment options of Rs. {0} /-";
         public static string SmsNotifyTripEndToReceiver = "Your Pick-C trip completed successfully. Please proceed for payment options (Cash / PayTM) of Rs. {0} /-";
