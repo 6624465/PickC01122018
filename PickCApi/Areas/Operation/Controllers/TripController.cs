@@ -119,9 +119,9 @@ namespace PickCApi.Areas.Operation.Controllers
                     var customerObj = new CustomerBO().GetCustomer(new Customer { MobileNo = tripInfo.CustomerMobile });
                     PushNotification(customerObj.DeviceId, tripInfo.BookingNo, UTILITY.NotifyTripEnd);
                     var bookingDetails = new BookingBO().GetList().Where(x => x.BookingNo == tripInfo.BookingNo).FirstOrDefault();
+                    tripAmount = new InvoiceBO().GetInvoiceByBookingNo(tripInfo.BookingNo).TotalAmount;
                     if (bookingDetails.CustomerId != bookingDetails.ReceiverMobileNo)
-                    {
-                        tripAmount = new InvoiceBO().GetInvoiceByBookingNo(tripInfo.BookingNo).TotalAmount;
+                    {                        
                         SendDriverDetailsToCustomer(bookingDetails.ReceiverMobileNo, string.Format(UTILITY.SmsNotifyTripEndToReceiver, tripAmount));
                     }
 
