@@ -106,8 +106,8 @@ namespace PickCApi.Areas.Operation.Controllers
             try
             {
                 var tripInfo = new TripBO().GetTrip(new Trip { TripID = tripEndDTO.TripId });
-                string frmLatLong = tripInfo.Latitude + "," + tripInfo.Longitude.ToString();
-                string toLatLong = tripEndDTO.TripEndLat + "," + tripEndDTO.TripEndLong.ToString();
+                string frmLatLong = tripInfo.Latitude.ToString() + "," + tripInfo.Longitude.ToString();
+                string toLatLong = tripEndDTO.TripEndLat.ToString() + "," + tripEndDTO.TripEndLong.ToString();
                 decimal distance = GetTravelTimeBetweenTwoLocations(frmLatLong, toLatLong).distance;
                 tripEndDTO.Token = HeaderValueByKey("AUTH_TOKEN");
                 tripEndDTO.DriverId = HeaderValueByKey("DRIVERID");
