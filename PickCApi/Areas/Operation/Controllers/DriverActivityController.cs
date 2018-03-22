@@ -166,7 +166,7 @@ namespace PickCApi.Areas.Operation.Controllers
         [HttpGet]
         [Route("dutystatus/{status}/{isintrip}/{tripID}")]
         [ApiAuthFilter]
-        public IHttpActionResult UpdateDriverDutyStatus(bool status, bool isintrip, string tripID = "")
+        public IHttpActionResult UpdateDriverDutyStatus(bool status, bool isintrip, string tripID)
         {
             try
             {
@@ -193,7 +193,7 @@ namespace PickCApi.Areas.Operation.Controllers
                     var toLatLong = driverActivity.Latitude + "," + driverActivity.Longitude;
                     var distance = GetTravelTimeBetweenTwoLocations(frmLatLong, toLatLong).distance;
 
-                    if(!string.IsNullOrWhiteSpace(tripID))
+                    if(tripID.ToLower() != "notrip")
                         new TripBO().TripUpdateTravelledDistance(tripID, distance);
 
                 }
