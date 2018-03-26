@@ -66,7 +66,7 @@ namespace Operation.DataFactory
                 db.AddInParameter(savecommand, "InvoiceDate", System.Data.DbType.DateTime, invoice.InvoiceDate);
                 db.AddInParameter(savecommand, "TripAmount", System.Data.DbType.Decimal, invoice.TripAmount);
                 db.AddInParameter(savecommand, "TaxAmount", System.Data.DbType.Decimal, invoice.TaxAmount);
-                db.AddInParameter(savecommand, "TotalAmount", System.Data.DbType.Decimal, invoice.TotalAmount);
+                db.AddInParameter(savecommand, "TotalAmount", System.Data.DbType.Decimal, Math.Round(invoice.TotalAmount,0));
                 db.AddInParameter(savecommand, "PaymentType", System.Data.DbType.Int16, invoice.PaymentType);
                 db.AddInParameter(savecommand, "PaidAmount", System.Data.DbType.Decimal, invoice.PaidAmount);
                 db.AddInParameter(savecommand, "IsMailSent", System.Data.DbType.Boolean, invoice.IsMailSent);
