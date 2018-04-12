@@ -368,21 +368,27 @@
     <Compile Include="Controllers\OperatorController.cs" />
     <Compile Include="Controllers\OperatorDriverController.cs" />
     <Compile Include="Controllers\OperatorVehicleController.cs" />
+    <Compile Include="Controllers\RolesController.cs" />
     <Compile Include="Controllers\VehicleController.cs" />
     <Compile Include="Core\PickCEx.cs" />
     <Compile Include="Core\WebAuthFilter.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="HtmlHelpers\CustomHelpers.cs" />
     <Compile Include="HtmlHelpers\MyDateTimeModelBinder.cs" />
+    <Compile Include="HtmlHelpers\UrlEncryptionHelper.cs" />
     <Compile Include="HtmlHelpers\WebGridExtensions.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="UTILITY.cs" />
     <Compile Include="ViewModals\DriverVm.cs" />
     <Compile Include="ViewModals\OperatorVm.cs" />
     <Compile Include="ViewModals\TripMonitorVm.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Views\web.config" />
+    <Content Include="Views\web.config">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="packages.config" />
     <Content Include="ApplicationInsights.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
@@ -423,6 +429,7 @@
     <Content Include="Views\Vehicle\Vehicle.cshtml" />
     <Content Include="Views\Vehicle\GetVehicleModelList.cshtml" />
     <Content Include="Views\Vehicle\edit.cshtml" />
+    <Content Include="Views\Roles\RoleRights.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
