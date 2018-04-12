@@ -103,7 +103,7 @@ namespace Master.DataFactory
             try
             {
                 var deleteCommand = db.GetStoredProcCommand(DBRoutine.DELETEVEHICLECONFIG);
-               // db.AddInParameter(deleteCommand, "VehicleType", System.Data.DbType.Int16, vehicleconfig.VehicleType);
+                db.AddInParameter(deleteCommand, "VehicleModelId", System.Data.DbType.Int16, vehicleconfig.VehicleModelId);
 
 
                 result = Convert.ToBoolean(db.ExecuteNonQuery(deleteCommand, transaction));

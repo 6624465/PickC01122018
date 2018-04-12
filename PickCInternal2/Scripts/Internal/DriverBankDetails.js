@@ -83,12 +83,18 @@ function EditBankDetails(index) {
 function DeleteBankDetails(index) {
     //var id = '#OPerator_BankDetails_' + index + '__IsActive';
     //$(id).val('False');trRow_Bank_
-    $('#trRow_Bank_' + index).remove();
-    $('#txtBankName').val('');
-    $('#txtBranch').val('');
-    $('#txtAccNumber').val('');
-    $('#txtAccType').val('');
+    debugger;
+    var con=confirm("Are you sure..Do you want to delete?")
+    if (con) {
+        $('#trRow_Bank_' + index).remove();
+        $('#txtBankName').val('');
+        $('#txtBranch').val('');
+        $('#txtAccNumber').val('');
+        $('#txtAccType').val('');
+    }
+    
 }
+
 function btnSaveBank() {
 
     if (!$('#frmBank').valid())

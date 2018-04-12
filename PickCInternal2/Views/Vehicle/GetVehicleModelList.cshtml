@@ -41,7 +41,8 @@
                                          grid.Column("Maker", "Maker"),
                                          grid.Column("Tonnage", "Tonnage"),
                                          grid.Column("VehicleGroupDescription", "Vehicle Group"),
-                                         grid.Column("Edit", "Edit", format:@<text><a href="@Url.Content("~/Vehicle/edit?VehicleModelId=" + item.VehicleModelId)"><i class="fa fa-pencil" aria-hidden="true"></i></a></text>)
+                                         grid.Column("Edit", "Edit", format:@<text><a href="@Url.Content("~/Vehicle/edit?VehicleModelId=" + item.VehicleModelId)"><i class="fa fa-pencil" aria-hidden="true"></i></a></text>),
+                                         grid.Column("Delete", "Delete", format:@<text><a href="@Url.Content("~/Vehicle/delete?VehicleModelId=" + item.VehicleModelId)"><i class="fa fa-trash-o" style="font-size:20px;color:red"></i></a></text>)
                                      ))
                                 </div>
                             </div>

@@ -31,6 +31,9 @@ $(function () {
             },
             txtAccType: {
                 required: true
+            },
+            txtIFSCcode: {
+                required: true
             }
         },
         messages: {
@@ -44,6 +47,9 @@ $(function () {
                 required: ''
             },
             txtAccType: {
+                required: ''
+            },
+            txtIFSCcode: {
                 required: ''
             }
         }

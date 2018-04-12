@@ -49,8 +49,9 @@
              grid.Column("DriverID", "Driver ID"),
              grid.Column("DriverName", "Driver Name"),
              //grid.Column("VehicleNo", "VehicleNo"),
-             grid.Column("DriverID", "Edit", canSort: false, style: "color", format: @<text><a class="btn btn-primary btn-sm" href="@Url.Content("~/driver/edit?driverID=" + item.DriverID)"><i class="fa fa-pencil " aria-hidden="true"></i>&nbsp;Edit</a></text>)
-         ),
+             grid.Column("DriverID", "Edit", canSort: false, style: "color", format: @<text><a class="btn btn-primary btn-sm" href="@Url.Content("~/driver/edit?driverID=" + item.DriverID)"><i class="fa fa-pencil " aria-hidden="true"></i>&nbsp;Edit</a></text>),
+             grid.Column("DriverID", "Delete", canSort: false, style: "color", format: @<text><a class="btn btn-danger btn-sm" href="@Url.Content("~/driver/DeleteDriver?driverID=" + item.DriverID)"><i class="fa fa-trash-o " aria-hidden="true"></i>&nbsp;Delete</a></text>)
+             ),
          htmlAttributes: new { id = "grid" })
                                 </div>
                             </div>

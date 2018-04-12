@@ -56,7 +56,7 @@
                             <div class="col-md-4">
                                 <div class="form-group">
                                     <label>Driver Name</label>
-                                    @Html.TextBoxFor(x => x.driver.DriverName, new { @class = "form-control alphaonly noSpecialChar", placeholder = "Driver Name" })
+                                    @Html.TextBoxFor(x => x.driver.DriverName, new { @class = "form-control alphaonly ", placeholder = "Driver Name" })
                                     @Html.HiddenFor(x => x.driver.Password)
                                 </div>
                             </div>
@@ -82,7 +82,7 @@
                             <div class="col-md-4">
                                 <div class="form-group">
                                     <label>Father Name</label>
-                                    @Html.TextBoxFor(x => x.driver.FatherName, new { @class = "form-control alphaonly noSpecialChar", placeholder = "Father Name" })
+                                    @Html.TextBoxFor(x => x.driver.FatherName, new { @class = "form-control alphaonly ", placeholder = "Father Name" })
                                 </div>
                             </div>
                             <div class="col-md-4">
@@ -99,7 +99,7 @@
                             <div class="col-md-4">
                                 <div class="form-group">
                                     <label>Place Of Birth</label>
-                                    @Html.TextBoxFor(x => x.driver.PlaceOfBirth,new{@class = "form-control alphaonly noSpecialChar", placeholder = "Place Of Birth"})
+                                    @Html.TextBoxFor(x => x.driver.PlaceOfBirth,new{@class = "form-control alphaonly ", placeholder = "Place Of Birth"})
                                 </div>
                             </div>
                         </div>
@@ -416,10 +416,11 @@
                                                         <span id="txtAccType_span_@i">@Model.driver.BankDetails[i].AccountType</span>
                                                         @Html.HiddenFor(x => Model.driver.BankDetails[i].AccountType)
                                                     </td>
+                                                    
                                                     <td>
                                                         <a class="hand" onclick="EditBankDetails('@i')">Edit</a>
-                                                        @*&nbsp;|&nbsp;
-        <a class="hand" onclick="DeleteBankDetails('@i')">Delete</a>*@
+                                                        &nbsp;|&nbsp;
+        <a class="hand" onclick="DeleteBankDetails('@i')">Delete</a>
                                                     </td>
                                                 </tr>
                                             }
@@ -515,12 +516,12 @@
                                 <div class="file-upload">
                                     <div class="file-select">
                                         <div class="file-select-button" id="fileName">Choose File</div>
-                                        @*<input type="file"
+                                        <input type="file"
                                                id="fadhar"
                                                name="fadhar"
                                                value="1375"
                                                title="@adharStr"
-                                               onchange="onFileChange(this, 'fadhardocFile','hdnfadhardocFile')" />*@
+                                               onchange="onFileChange(this, 'fadhardocFile','hdnfadhardocFile')" />
                                     </div>
                                 </div>
                             </div>
@@ -725,6 +726,7 @@
                             <input type="text" id="txtBankName" name="txtBankName" class="form-control noSpecialChar" />
                         </div>
                         <div class="col-md-6">
+                            <label>Branch</label>
                             <input type="text" id="txtBranch" name="txtBranch" class="form-control noSpecialChar" />
                         </div>
                     </div>
@@ -830,7 +832,8 @@
 
                 }
             });
-
+            var date1 = new Date();
+            debugger;
             $('.dtCss').datetimepicker({
                 icons: {
                     time: 'fa fa-clock-o',
@@ -840,9 +843,11 @@
                     previous: 'fa fa-arrow-left',
                     next: 'fa fa-arrow-right'
                 },
-                format: DateFormat
+                format: DateFormat,
+                maxDate: date1
             });
 
+           
         });
         function AddAddress(index) {
             $('#frmAddress input[type="text"]').removeClass('error');
