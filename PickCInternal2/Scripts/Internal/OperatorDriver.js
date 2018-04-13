@@ -69,11 +69,14 @@ function DeleteOperatorDriver(index) {
     //    'text-decoration': 'line-through',
     //    'font-style': 'italic'
     //});
-    $('#trRow_Driver_' + index).remove();
-    $('#operatorDriverList_DriverName').val('');
-    $('#operatorDriverList_DriverLicenseNo').val('');
-    $('#operatorDriverList_DriverMobileNo').val('');
-    $('#operatorDriverList_VehicleNo').val('');
+    var con = confirm("Are you sure..Do you want to delete?");
+    if (con) {
+        $('#trRow_Driver_' + index).remove();
+        $('#operatorDriverList_DriverName').val('');
+        $('#operatorDriverList_DriverLicenseNo').val('');
+        $('#operatorDriverList_DriverMobileNo').val('');
+        $('#operatorDriverList_VehicleNo').val('');
+    }
 }
 function btnSavedriver() {
     if (!$('#frmDriver').valid())

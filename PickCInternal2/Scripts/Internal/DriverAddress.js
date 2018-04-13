@@ -26,6 +26,8 @@
     });
 });
 
+
+
 var gIndex = -1;
 function EditAddress(index) {
     debugger;
@@ -127,13 +129,16 @@ function AddAddress(index) {
 
 function DeleteAddress(index) {
     debugger
-    $('#trRow_' + index).remove();
-    $('#Address1').val('');
-    $('#Address2').val('');
-    $('#Address3').val('');
-    $('#Address4').val('');
-    $('#StateName').val('');
-    $('#CityName').val('');
-    $('#ZipCode').val('');
+    var con=confirm("Are you sure..Do you want to delete?")
+    if (con) {
+        $('#trRow_' + index).remove();
+        $('#Address1').val('');
+        $('#Address2').val('');
+        $('#Address3').val('');
+        $('#Address4').val('');
+        $('#StateName').val('');
+        $('#CityName').val('');
+        $('#ZipCode').val('');
+    }
 }
 

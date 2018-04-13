@@ -390,6 +390,7 @@
                                             <th>Branch</th>
                                             <th>Account Number</th>
                                             <th>Account Type</th>
+                                            @*<th>IFSC Code</th>*@
                                             <th>Action</th>
                                         </tr>
                                     </thead>
@@ -416,8 +417,10 @@
                                                         <span id="txtAccType_span_@i">@Model.driver.BankDetails[i].AccountType</span>
                                                         @Html.HiddenFor(x => Model.driver.BankDetails[i].AccountType)
                                                     </td>
-                                                    
                                                     <td>
+
+                                                    @*</td>
+                                                    <td>*@
                                                         <a class="hand" onclick="EditBankDetails('@i')">Edit</a>
                                                         &nbsp;|&nbsp;
         <a class="hand" onclick="DeleteBankDetails('@i')">Delete</a>
@@ -530,6 +533,9 @@
                                 <div id="fadhardocFile" >@adharStr</div>
                                 <input type="hidden" name="hdnfadhardocFile" id="hdnfadhardocFile" />
                             </div>
+                            <div class="col-md-3">
+                                <a href="@Url.Content($"~/DriverAttachments/"+Model.driver.DriverId+"/" + adharStr )" target="_blank" download="@adharStr">download</a>
+                            </div>
                         </div>
                         <div class="row" style="padding-top:5px">
                             <div class="col-md-3">
@@ -551,6 +557,9 @@
                             <div class="col-md-3">
                                 <div id="fpandocFile">@panStr</div>
                                 <input type="hidden" name="hdnfpandocFile" id="hdnfpandocFile" />
+                            </div>
+                            <div class="col-md-3">
+                                <a href="@Url.Content($"~/DriverAttachments/"+Model.driver.DriverId+"/" + panStr )" target="_blank" download="@panStr">download</a>
                             </div>
                         </div>
                         <div class="row" style="padding-top:5px">
@@ -575,6 +584,10 @@
                                 <div id="flicensedocFile">@licenseStr</div>
                                 <input type="hidden" name="hdnflicensedocFile" id="hdnflicensedocFile" />
                             </div>
+
+                            <div class="col-md-3">
+                                <a href="@Url.Content($"~/DriverAttachments/"+Model.driver.DriverId+"/" + licenseStr )" target="_blank" download="@licenseStr">download</a>
+                            </div>
                         </div>
                         <div class="row" style="padding-top:5px">
                             <div class="col-md-3">
@@ -596,6 +609,9 @@
                             <div class="col-md-3">
                                 <div id="fvoterdocFile">@voterStr</div>
                                 <input type="hidden" name="hdnfvoterdocFile" id="hdnfvoterdocFile" />
+                            </div>
+                            <div class="col-md-3">
+                                <a href="@Url.Content($"~/DriverAttachments/"+Model.driver.DriverId+"/" + voterStr )" target="_blank" download="@voterStr">download</a>
                             </div>
                         </div>
                         <div class="row" style="padding-top:5px">
@@ -619,6 +635,10 @@
                                 <div id="fprofilepicdocFile">@profilepicStr
                                 @*<span  class="label label-default" onclick="onClickEvent('@profilepicStr')"><i class="fa fa-remove" style="font-size:12px" aria-hidden="true">@profilepicStr</i></span>*@
                                 </div>
+
+                                <div class="col-md-3">
+                                    <a href="@Url.Content($"~/DriverAttachments/"+Model.driver.DriverId+"/" + profilepicStr )" target="_blank" download="@profilepicStr">download</a>
+                                </div>
                                 <input type="hidden" name="hdnfprofilepicdocFile" id="hdnfprofilepicdocFile" />
                             </div>
                         </div>
@@ -630,6 +650,7 @@
                                 <input type="file" id="fothers" name="fothers" value="1382" multiple="multiple" />
                                 @*@Html.TextBoxFor(model => model.files, "", new { @type = "file", @multiple = "multiple" })*@
                             </div>
+                           
                         </div>
 
                     </div>
@@ -737,7 +758,18 @@
                         </div>
                         <div class="col-md-6">
                             <label>Account Type</label>
-                            <input type="text" id="txtAccType" name="txtAccType" class="form-control noSpecialChar" />
+                            @*<input type="text" id="txtAccType" name="txtAccType" class="form-control noSpecialChar" />*@
+                            <select id="txtAccType" name="txtAccType" class="form-control noSpecialChar">
+                                <option value="savings">savings</option>
+                                <option value="current">current</option>
+
+                            </select>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <label>IFSC Code</label>
+                            <input type="text" id="txtIFSCcode" name="txtIFSCcode" class="form-control" maxlength="20" />
                         </div>
                     </div>
                 </div>

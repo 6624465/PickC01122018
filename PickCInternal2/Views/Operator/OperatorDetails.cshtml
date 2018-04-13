@@ -274,6 +274,7 @@
                                                                         <th>Branch</th>
                                                                         <th>Account Number</th>
                                                                         <th>Account Type</th>
+                                                                        @*<th>IFSC Code</th>*@
                                                                         <th>Action</th>
                                                                     </tr>
                                                                 </thead>
@@ -300,6 +301,7 @@
                                                                                     @Html.HiddenFor(x => Model.OPerator.BankDetails[i].AccountType)
                                                                                     @Html.HiddenFor(x=>Model.OPerator.BankDetails[i].OperatorBankID)
                                                                                 </td>
+                                                                                @*<td></td>*@
                                                                                 <td>
                                                                                     <a class="hand" onclick="EditBankDetails('@i')">Edit</a>&nbsp;|&nbsp;
                                                                                     <a class="hand" onclick="DeleteBankDetails('@i')">Delete</a>
@@ -340,7 +342,8 @@
                                                                             <th>Vehicle Type</th>
                                                                             <th>Vehicle Category</th>
                                                                             <th>Model</th>
-                                                                            <th>Tonnage</th>
+                                                                            @*<th>Tonnage</th>*@
+                                                                            <th>Kg's</th>
                                                                             <th>Action</th>
                                                                         </tr>
                                                                     </thead>
@@ -765,7 +768,8 @@
                     </div>
                     <div class="row">
                         <div class="col-md-6">
-                            <label>Tonnage</label>                            
+                            @*<label>Tonnage</label>*@ 
+                            <label>Kg's</label>                           
                             @Html.TextBox("Tonnage", "", new { @class = "form-control", @readonly = "readonly" })
                         </div>
                     </div><br />
@@ -1169,8 +1173,7 @@
                     {
                         <text> $('#OPerator_DateOfBirth').val('');</text>
                     }
-           
-        
+          
 
             $('#frmOperatorAdd').validate({
                 rules: {
@@ -1226,7 +1229,7 @@
            
         });
        
-
+      
         function btnSave() {
             debugger;
             if ($('#frmOperatorAdd').valid()) {

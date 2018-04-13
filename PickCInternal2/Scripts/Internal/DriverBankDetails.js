@@ -50,6 +50,9 @@ $(function () {
             },
             txtAccType: {
                 required: true
+            },
+            txtIFSCcode:{
+                required: true
             }
         },
         messages: {
@@ -63,6 +66,9 @@ $(function () {
                 required: ''
             },
             txtAccType: {
+                required: ''
+            },
+            txtIFSCcode: {
                 required: ''
             }
         }
@@ -91,6 +97,7 @@ function DeleteBankDetails(index) {
         $('#txtBranch').val('');
         $('#txtAccNumber').val('');
         $('#txtAccType').val('');
+        $('#txtIFSCcode').val('');
     }
     
 }
@@ -151,7 +158,7 @@ function btnSaveBank() {
 function bankDetails(index) {
     gIndex = -1;
     $('#frmBank input[type="text"]').removeClass('error');
-    $('#txtBankName, #txtBranch, #txtAccNumber, #txtAccType').val('');
+    $('#txtBankName, #txtBranch, #txtAccNumber, #txtAccType,#txtAccType').val('');
     $('#bankDetailsModal').modal('show');
 }
 //function bankDetails(index) {

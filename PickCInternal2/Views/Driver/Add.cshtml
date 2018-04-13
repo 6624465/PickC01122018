@@ -585,6 +585,11 @@
                             <div id="fadhardocFile">@adharStr</div>
                             <input type="hidden" name="hdnfadhardocFile" id="hdnfadhardocFile" />
                         </div>
+
+                        <div class="col-md-3">
+                            <a href="@Url.Content($"~/Attachments/"+Model.driver.DriverId+"/" + adharStr )" target="_blank" download="@adharStr">download</a>
+                        </div>
+
                     </div>
                     <div class="row" style="padding-top:5px">
                         <div class="col-md-3">

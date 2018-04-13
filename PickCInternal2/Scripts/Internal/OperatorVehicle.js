@@ -127,12 +127,18 @@ function DeleteOperatorVehicle(index) {
     //    'text-decoration': 'line-through',
     //    'font-style': 'italic'
     //});
-    $('#trRow_Vehicle_' + index).remove();
-    $('#operatorVehicle_VehicleRegistrationNo').val('');
-    $('#operatorVehicle_VehicleType').val('');
-    $('#operatorVehicle_VehicleCategory').val('');
-    $('#operatorVehicle_Model').val('');
-    $('#operatorVehicle_Tonnage').val('');
+    var con = confirm("Are you sure..Do you want to delete?");
+    if (con) {
+        $('#trRow_Vehicle_' + index).remove();
+        $('#operatorVehicle_VehicleRegistrationNo').val('');
+        $('#operatorVehicle_VehicleType').val('');
+        $('#operatorVehicle_VehicleCategory').val('');
+        $('#operatorVehicle_Model').val('');
+        $('#operatorVehicle_Tonnage').val('');
+    }
+   // else {
+    //    return false;
+   // }
 }
 function btnSaveVehicle() {
     debugger;
