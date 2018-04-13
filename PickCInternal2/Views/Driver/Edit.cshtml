@@ -533,9 +533,12 @@
                                 <div id="fadhardocFile" >@adharStr</div>
                                 <input type="hidden" name="hdnfadhardocFile" id="hdnfadhardocFile" />
                             </div>
+                                    @if (!string.IsNullOrWhiteSpace(adharStr))
+                                    {
                             <div class="col-md-3">
-                                <a href="@Url.Content($"~/DriverAttachments/"+Model.driver.DriverId+"/" + adharStr )" target="_blank" download="@adharStr">download</a>
+                                <a href="@Url.Content($"~/DriverAttachments/" + Model.driver.DriverId + "/" + adharStr)" target="_blank" download="@adharStr">download</a>
                             </div>
+                                    }
                         </div>
                         <div class="row" style="padding-top:5px">
                             <div class="col-md-3">
@@ -558,9 +561,12 @@
                                 <div id="fpandocFile">@panStr</div>
                                 <input type="hidden" name="hdnfpandocFile" id="hdnfpandocFile" />
                             </div>
+                                @if (!string.IsNullOrWhiteSpace(panStr))
+                                    {
                             <div class="col-md-3">
-                                <a href="@Url.Content($"~/DriverAttachments/"+Model.driver.DriverId+"/" + panStr )" target="_blank" download="@panStr">download</a>
+                                <a href="@Url.Content($"~/DriverAttachments/" + Model.driver.DriverId + "/" + panStr)" target="_blank" download="@panStr">download</a>
                             </div>
+                                   }
                         </div>
                         <div class="row" style="padding-top:5px">
                             <div class="col-md-3">
@@ -584,10 +590,12 @@
                                 <div id="flicensedocFile">@licenseStr</div>
                                 <input type="hidden" name="hdnflicensedocFile" id="hdnflicensedocFile" />
                             </div>
-
+                                   @if (!string.IsNullOrWhiteSpace(licenseStr))
+                                      {
                             <div class="col-md-3">
-                                <a href="@Url.Content($"~/DriverAttachments/"+Model.driver.DriverId+"/" + licenseStr )" target="_blank" download="@licenseStr">download</a>
+                                <a href="@Url.Content($"~/DriverAttachments/" + Model.driver.DriverId + "/" + licenseStr)" target="_blank" download="@licenseStr">download</a>
                             </div>
+                                        }
                         </div>
                         <div class="row" style="padding-top:5px">
                             <div class="col-md-3">
@@ -610,9 +618,12 @@
                                 <div id="fvoterdocFile">@voterStr</div>
                                 <input type="hidden" name="hdnfvoterdocFile" id="hdnfvoterdocFile" />
                             </div>
+                                    @if (!string.IsNullOrWhiteSpace(voterStr))
+                                    {
                             <div class="col-md-3">
-                                <a href="@Url.Content($"~/DriverAttachments/"+Model.driver.DriverId+"/" + voterStr )" target="_blank" download="@voterStr">download</a>
+                                <a href="@Url.Content($"~/DriverAttachments/" + Model.driver.DriverId + "/" + voterStr)" target="_blank" download="@voterStr">download</a>
                             </div>
+                              }
                         </div>
                         <div class="row" style="padding-top:5px">
                             <div class="col-md-3">
@@ -635,12 +646,15 @@
                                 <div id="fprofilepicdocFile">@profilepicStr
                                 @*<span  class="label label-default" onclick="onClickEvent('@profilepicStr')"><i class="fa fa-remove" style="font-size:12px" aria-hidden="true">@profilepicStr</i></span>*@
                                 </div>
-
-                                <div class="col-md-3">
-                                    <a href="@Url.Content($"~/DriverAttachments/"+Model.driver.DriverId+"/" + profilepicStr )" target="_blank" download="@profilepicStr">download</a>
-                                </div>
                                 <input type="hidden" name="hdnfprofilepicdocFile" id="hdnfprofilepicdocFile" />
+                               
                             </div>
+                            @if (!string.IsNullOrWhiteSpace(profilepicStr))
+                            {
+                                <div class="col-md-3">
+                                    <a href="@Url.Content($"~/DriverAttachments/" + Model.driver.DriverId + "/" + profilepicStr)" target="_blank" download="@profilepicStr">download</a>
+                                </div>
+                            }
                         </div>
                         <div class="row" style="padding-top:5px">
                             <div class="col-md-3">

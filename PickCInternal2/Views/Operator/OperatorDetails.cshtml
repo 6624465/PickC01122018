@@ -570,14 +570,18 @@
                                                                            onchange="onFileChange(this, 'fadhardocFile','hdnfadhardocFile')" />                                                                  
                                                                 </div>
                                                             </div>
-                                                        </div>                                                
+                                                        </div>    
+                                                       
                                                         <div class="col-md-3">
                                                             <div id="fadhardocFile">@adharStr</div>
                                                             <input type="hidden" name="hdnfadhardocFile" id="hdnfadhardocFile" />
                                                         </div>
+                                                       @if (!string.IsNullOrWhiteSpace(adharStr))
+                                                       {
                                                         <div class="col-md-3">
-                                                            <a href="@Url.Content($"~/Attachments/"+Model.OPerator.OperatorID+"/" + adharStr )" target="_self" download="@adharStr">Download</a>
+                                                            <a href="@Url.Content($"~/Attachments/" + Model.OPerator.OperatorID + "/" + adharStr)" target="_self" download="@adharStr">Download</a>
                                                         </div>
+                                                        }
                                                     </div>
                                                     <div class="row" style="padding-top:5px">
                                                         <div class="col-md-3">
@@ -600,9 +604,12 @@
                                                             <div id="fpandocFile">@panStr</div>
                                                             <input type="hidden" name="hdnfpandocFile" id="hdnfpandocFile" />
                                                         </div>
+                                               @if (!string.IsNullOrWhiteSpace(panStr))
+                                                           {
                                                         <div class="col-md-3">
-                                                            <a href="@Url.Content($"~/Attachments/"+Model.OPerator.OperatorID+"/" + panStr )" target="_self" download="@panStr">Download</a>
+                                                            <a href="@Url.Content($"~/Attachments/" + Model.OPerator.OperatorID + "/" + panStr)" target="_self" download="@panStr">Download</a>
                                                         </div>
+                                                            }
                                                     </div>
                                                     <div class="row" style="padding-top:5px">
                                                         <div class="col-md-3">
@@ -626,9 +633,12 @@
                                                             <div id="flicensedocFile">@licenseStr</div>
                                                             <input type="hidden" name="hdnflicensedocFile" id="hdnflicensedocFile" />
                                                         </div>
+                                           @if (!string.IsNullOrWhiteSpace(licenseStr))
+                                                  {
                                                         <div class="col-md-3">
-                                                            <a href="@Url.Content($"~/Attachments/"+Model.OPerator.OperatorID+"/" + licenseStr )" target="_self" download="@licenseStr">Download</a>
+                                                            <a href="@Url.Content($"~/Attachments/" + Model.OPerator.OperatorID + "/" + licenseStr)" target="_self" download="@licenseStr">Download</a>
                                                         </div>
+                                                      }
                                                     </div>
                                                     <div class="row" style="padding-top:5px">
                                                         <div class="col-md-3">
@@ -651,9 +661,12 @@
                                                             <div id="fvoterdocFile">@voterStr</div>
                                                             <input type="hidden" name="hdnfvoterdocFile" id="hdnfvoterdocFile" />                                 
                                                         </div>
+                                                            @if (!string.IsNullOrWhiteSpace(voterStr))
+                                                            {
                                                         <div class="col-md-3">
-                                                            <a href="@Url.Content($"~/Attachments/"+Model.OPerator.OperatorID+"/" + voterStr )" target="_self" download="@voterStr">Download</a>
+                                                            <a href="@Url.Content($"~/Attachments/" + Model.OPerator.OperatorID + "/" + voterStr)" target="_self" download="@voterStr">Download</a>
                                                         </div>
+                                                                }
                                                     </div>
                                                     <div class="row" style="padding-top:5px">
                                                         <div class="col-md-3">
@@ -676,9 +689,12 @@
                                                             <div id="fprofilepicdocFile">@profilepicStr</div>
                                                             <input type="hidden" name="hdnfprofilepicdocFile" id="hdnfprofilepicdocFile" />
                                                         </div>
+                                                           @if (!string.IsNullOrWhiteSpace(profilepicStr))
+                                                              {
                                                         <div class="col-md-3">
-                                                            <a href="@Url.Content($"~/Attachments/"+Model.OPerator.OperatorID+"/" + profilepicStr )" target="_self" download="@profilepicStr">Download</a>
+                                                            <a href="@Url.Content($"~/Attachments/" + Model.OPerator.OperatorID + "/" + profilepicStr)" target="_self" download="@profilepicStr">Download</a>
                                                         </div>
+                                                         }
                                                     </div>
                                                     <div class="row" style="padding-top:5px">
                                                         <div class="col-md-3">
@@ -688,9 +704,9 @@
                                                             <input type="file" id="fothers" name="fothers" value="1382" multiple="multiple" />
                                                             @*@Html.TextBoxFor(model => model.files, "", new { @type = "file", @multiple = "multiple" })*@
                                                         </div>
-                                                        <div class="col-md-3">
+                                                        @*<div class="col-md-3">
                                                             <a href="@Url.Content($"~/Attachments/"+Model.OPerator.OperatorID+"/" + fothers )" target="_self" download="@fothers">Download</a>
-                                                        </div>
+                                                        </div>*@
                                                     </div>                                                    
                                                 </div>
                                                    
