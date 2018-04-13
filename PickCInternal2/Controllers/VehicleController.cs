@@ -40,5 +40,20 @@ namespace PickCInternal2.Controllers
             var result = await new VehicleGroupService(AUTHTOKEN, p_mobileNo).GetVehicleConfigById(VehicleModelId);
             return View(result);
         }
+        public async Task<ActionResult> delete(int VehicleModelId)
+        {
+            try
+            {
+                var result = await new VehicleGroupService(AUTHTOKEN, p_mobileNo).DeleteVehicleConfigById(VehicleModelId);
+                //return Json(result, JsonRequestBehavior.AllowGet);
+                var result1 = await new VehicleGroupService(AUTHTOKEN, p_mobileNo).GetVehicleConfig();
+                return View("getVehicleModelList", result1);
+            }
+            catch (Exception ex)
+            {
+                return Json(ex.Message, JsonRequestBehavior.AllowGet);
+            }
+
+        }
     }
 }

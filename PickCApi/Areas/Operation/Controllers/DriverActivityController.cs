@@ -193,7 +193,8 @@ namespace PickCApi.Areas.Operation.Controllers
                     var toLatLong = driverActivity.Latitude + "," + driverActivity.Longitude;
                     var distance = GetTravelTimeBetweenTwoLocations(frmLatLong, toLatLong).distance;
 
-                    new TripBO().TripUpdateTravelledDistance(tripID, distance);
+                    if(tripID.ToLower() != "notrip")
+                        new TripBO().TripUpdateTravelledDistance(tripID, distance);
 
                 }
                 var result = new DriverActivityBO().DriverActivityUpdate(driverActivity);

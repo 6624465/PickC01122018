@@ -49,8 +49,15 @@
              grid.Column("DriverID", "Driver ID"),
              grid.Column("DriverName", "Driver Name"),
              //grid.Column("VehicleNo", "VehicleNo"),
-             grid.Column("DriverID", "Edit", canSort: false, style: "color", format: @<text><a class="btn btn-primary btn-sm" href="@Url.Content("~/driver/edit?driverID=" + item.DriverID)"><i class="fa fa-pencil " aria-hidden="true"></i>&nbsp;Edit</a></text>)
-         ),
+             grid.Column("DriverID", "Edit", canSort: false, style: "color", format: @<text><a class="btn btn-primary btn-sm" href="@Url.Content("~/driver/edit?driverID=" + item.DriverID)"><i class="fa fa-pencil " aria-hidden="true"></i>&nbsp;Edit</a></text>),
+             @*grid.Column("DriverID", "Delete", canSort: false, style: "color", format: @<text><a class="btn btn-danger btn-sm" href="@Url.Content("~/driver/DeleteDriver?driverID=" + item.DriverID)"><i class="fa fa-trash-o " aria-hidden="true"></i>&nbsp;Delete</a></text>)*@
+             grid.Column("DriverID", "Delete", canSort: false, style: "color", format: @<text><button class="btn btn-xs btn-danger btn-sm" style="padding-left: 5px;margin-left: 6px;" onclick="deletedriver('@item.DriverID')">
+    <i class="fa fa-trash-o" style="padding-left: 5px;"></i>
+</button></text>)
+
+
+
+             ),
          htmlAttributes: new { id = "grid" })
                                 </div>
                             </div>
@@ -65,6 +72,24 @@
             </div>
         </div>
     </div>
+    <script src="@Url.Content("~/Scripts/moment.min.js")"></script>
+    <script type="text/javascript">
+        function deletedriver(driverid) {
+            //alert('test');
+            debugger;
+            var con = confirm("Are you sure that you want to delete?");
+            if (con) {
+                location.href = '@Url.Content("~/driver/DeleteDriver?driverID=")' + driverid;
+            }
+            else {
+                return false;
+            }
+
+        }
+
+
+
+    </script>
 
 </section>
 
@@ -73,3 +98,4 @@
         color: #3c8dbc;
     }
 </style>
+

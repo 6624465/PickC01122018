@@ -134,6 +134,7 @@ namespace PickCInternal2.Controllers
                     {
                         Directory.CreateDirectory(mapPath);
                     }
+                    ViewData["path"] = mapPath;
                     fileContent.SaveAs(mapPath + fileContent.FileName);                    
                 }
             }
@@ -291,7 +292,7 @@ namespace PickCInternal2.Controllers
                         Directory.CreateDirectory(mapPath);
                     }
                     fileContent.SaveAs(mapPath + fileContent.FileName);
-
+                    ViewData["path"] = mapPath;
                     OperatorAttachment atttachment = new OperatorAttachment()
                     {
                         //attachmentId = operatorId + lookupId,

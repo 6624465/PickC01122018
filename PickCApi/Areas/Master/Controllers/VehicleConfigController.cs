@@ -52,27 +52,27 @@ namespace PickCApi.Areas.Master.Controllers
             }
         }
 
-        //[HttpDelete]
-        //[Route("{vehicleType}")]
-        //public IHttpActionResult DeleteVehicleConfig(short vehicleType)
-        //{
-        //    try
-        //    {
-        //        var result = new VehicleConfigBO()
-        //                            .DeleteVehicleConfig(new VehicleConfig
-        //                            {
-        //                                VehicleType = vehicleType
-        //                            });
-        //        if (result)
-        //            return Ok(UTILITY.DELETEMSG);
-        //        else
-        //            return NotFound();
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        return InternalServerError(ex);
-        //    }
-        //}
+        [HttpDelete]
+        [Route("DeleteVehicle/{VehicleModelId}")]
+        public IHttpActionResult DeleteVehicleConfig(int VehicleModelId)
+        {
+            try
+            {
+                var result = new VehicleConfigBO()
+                                    .DeleteVehicleConfig(new VehicleConfig
+                                    {
+                                        VehicleModelId = VehicleModelId
+                                    });
+                if (result)
+                    return Ok(UTILITY.DELETEMSG);
+                else
+                    return NotFound();
+            }
+            catch (Exception ex)
+            {
+                return InternalServerError(ex);
+            }
+        }
 
         [HttpGet]
         [Route("list")]

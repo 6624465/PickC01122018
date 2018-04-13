@@ -50,6 +50,9 @@ $(function () {
             },
             txtAccType: {
                 required: true
+            },
+            txtIFSCcode:{
+                required: true
             }
         },
         messages: {
@@ -63,6 +66,9 @@ $(function () {
                 required: ''
             },
             txtAccType: {
+                required: ''
+            },
+            txtIFSCcode: {
                 required: ''
             }
         }
@@ -83,12 +89,19 @@ function EditBankDetails(index) {
 function DeleteBankDetails(index) {
     //var id = '#OPerator_BankDetails_' + index + '__IsActive';
     //$(id).val('False');trRow_Bank_
-    $('#trRow_Bank_' + index).remove();
-    $('#txtBankName').val('');
-    $('#txtBranch').val('');
-    $('#txtAccNumber').val('');
-    $('#txtAccType').val('');
+    debugger;
+    var con=confirm("Are you sure..Do you want to delete?")
+    if (con) {
+        $('#trRow_Bank_' + index).remove();
+        $('#txtBankName').val('');
+        $('#txtBranch').val('');
+        $('#txtAccNumber').val('');
+        $('#txtAccType').val('');
+        $('#txtIFSCcode').val('');
+    }
+    
 }
+
 function btnSaveBank() {
 
     if (!$('#frmBank').valid())
@@ -145,7 +158,7 @@ function btnSaveBank() {
 function bankDetails(index) {
     gIndex = -1;
     $('#frmBank input[type="text"]').removeClass('error');
-    $('#txtBankName, #txtBranch, #txtAccNumber, #txtAccType').val('');
+    $('#txtBankName, #txtBranch, #txtAccNumber, #txtAccType,#txtAccType').val('');
     $('#bankDetailsModal').modal('show');
 }
 //function bankDetails(index) {

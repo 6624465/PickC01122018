@@ -60,5 +60,18 @@ namespace PickC.Services
                 return ServiceResponse<VehicleConfig>(client.Execute<VehicleConfig>(request));
             });
         }
+
+        public async Task<string> DeleteVehicleConfigById(int id)
+        {
+            IRestClient client = new RestClient(ApiBaseUrl);
+            var request = new RestRequest();
+            request.Method = Method.DELETE;
+            request.Resource = "master/vehicleconfig/DeleteVehicle/{VehicleModelId}";
+            request.AddParameter("VehicleModelId", id, ParameterType.UrlSegment);
+            return await Task.Run(() =>
+            {
+                return ServiceResponse(client.Execute(request));
+            });
+        }
     }
 }

@@ -85,7 +85,7 @@
                                                    <div class="form-group">
                                                        <label>Date Of Birth</label>
                                                        <div class="input-group dtCss">
-                                                           @Html.TextBoxFor(x => x.OPerator.DateOfBirth, "{0:dd/MM/yyyy}", new { @class = "form-control", placeholder = "Date Of Birth" })
+                                                           @Html.TextBoxFor(x => x.OPerator.DateOfBirth, "{0:dd/MM/yyyy}", new { @class = "form-control", placeholder = "Date Of Birth"})
                                                            <span class="input-group-btn">
                                                                <button type="button" class="btn btn-default"><i class="fa fa-calendar" aria-hidden="true"></i></button>
                                                            </span>
@@ -274,6 +274,7 @@
                                                                         <th>Branch</th>
                                                                         <th>Account Number</th>
                                                                         <th>Account Type</th>
+                                                                        @*<th>IFSC Code</th>*@
                                                                         <th>Action</th>
                                                                     </tr>
                                                                 </thead>
@@ -300,6 +301,7 @@
                                                                                     @Html.HiddenFor(x => Model.OPerator.BankDetails[i].AccountType)
                                                                                     @Html.HiddenFor(x=>Model.OPerator.BankDetails[i].OperatorBankID)
                                                                                 </td>
+                                                                                @*<td></td>*@
                                                                                 <td>
                                                                                     <a class="hand" onclick="EditBankDetails('@i')">Edit</a>&nbsp;|&nbsp;
                                                                                     <a class="hand" onclick="DeleteBankDetails('@i')">Delete</a>
@@ -340,7 +342,8 @@
                                                                             <th>Vehicle Type</th>
                                                                             <th>Vehicle Category</th>
                                                                             <th>Model</th>
-                                                                            <th>Tonnage</th>
+                                                                            @*<th>Tonnage</th>*@
+                                                                            <th>Kg's</th>
                                                                             <th>Action</th>
                                                                         </tr>
                                                                     </thead>
@@ -491,6 +494,7 @@
                                                         var licenseStr = "";
                                                         var voterStr = "";
                                                         var profilepicStr = "";
+                                                        var fothers = "";
                                                         if (Model.OPerator.operatorAttachment != null && Model.OPerator.operatorAttachment.Count > 0)
                                                         {
 
@@ -542,6 +546,12 @@
                                                             {
                                                                 profilepicStr = fprofilepicObj.imagePath;
                                                             }
+                                                            var fothersObj = Model.OPerator.operatorAttachment.Where(x => x.lookupCode == "1382").FirstOrDefault();
+                                                            if (fothersObj != null)
+                                                            {
+                                                                fothers = fothersObj.imagePath;
+                                                            }
+
                                                         }
                                                     }
                                                     <div class="row">
@@ -557,14 +567,16 @@
                                                                            name="fadhar"
                                                                            value="1375"
                                                                            title="@adharStr"
-                                                                           onchange="onFileChange(this, 'fadhardocFile','hdnfadhardocFile')" />
+                                                                           onchange="onFileChange(this, 'fadhardocFile','hdnfadhardocFile')" />                                                                  
                                                                 </div>
                                                             </div>
-                                                        </div>
-
+                                                        </div>                                                
                                                         <div class="col-md-3">
                                                             <div id="fadhardocFile">@adharStr</div>
                                                             <input type="hidden" name="hdnfadhardocFile" id="hdnfadhardocFile" />
+                                                        </div>
+                                                        <div class="col-md-3">
+                                                            <a href="@Url.Content($"~/Attachments/"+Model.OPerator.OperatorID+"/" + adharStr )" target="_self" download="@adharStr">Download</a>
                                                         </div>
                                                     </div>
                                                     <div class="row" style="padding-top:5px">
@@ -587,6 +599,9 @@
                                                         <div class="col-md-3">
                                                             <div id="fpandocFile">@panStr</div>
                                                             <input type="hidden" name="hdnfpandocFile" id="hdnfpandocFile" />
+                                                        </div>
+                                                        <div class="col-md-3">
+                                                            <a href="@Url.Content($"~/Attachments/"+Model.OPerator.OperatorID+"/" + panStr )" target="_self" download="@panStr">Download</a>
                                                         </div>
                                                     </div>
                                                     <div class="row" style="padding-top:5px">
@@ -611,6 +626,9 @@
                                                             <div id="flicensedocFile">@licenseStr</div>
                                                             <input type="hidden" name="hdnflicensedocFile" id="hdnflicensedocFile" />
                                                         </div>
+                                                        <div class="col-md-3">
+                                                            <a href="@Url.Content($"~/Attachments/"+Model.OPerator.OperatorID+"/" + licenseStr )" target="_self" download="@licenseStr">Download</a>
+                                                        </div>
                                                     </div>
                                                     <div class="row" style="padding-top:5px">
                                                         <div class="col-md-3">
@@ -631,7 +649,10 @@
                                                         </div>
                                                         <div class="col-md-3">
                                                             <div id="fvoterdocFile">@voterStr</div>
-                                                            <input type="hidden" name="hdnfvoterdocFile" id="hdnfvoterdocFile" />
+                                                            <input type="hidden" name="hdnfvoterdocFile" id="hdnfvoterdocFile" />                                 
+                                                        </div>
+                                                        <div class="col-md-3">
+                                                            <a href="@Url.Content($"~/Attachments/"+Model.OPerator.OperatorID+"/" + voterStr )" target="_self" download="@voterStr">Download</a>
                                                         </div>
                                                     </div>
                                                     <div class="row" style="padding-top:5px">
@@ -655,6 +676,9 @@
                                                             <div id="fprofilepicdocFile">@profilepicStr</div>
                                                             <input type="hidden" name="hdnfprofilepicdocFile" id="hdnfprofilepicdocFile" />
                                                         </div>
+                                                        <div class="col-md-3">
+                                                            <a href="@Url.Content($"~/Attachments/"+Model.OPerator.OperatorID+"/" + profilepicStr )" target="_self" download="@profilepicStr">Download</a>
+                                                        </div>
                                                     </div>
                                                     <div class="row" style="padding-top:5px">
                                                         <div class="col-md-3">
@@ -664,8 +688,10 @@
                                                             <input type="file" id="fothers" name="fothers" value="1382" multiple="multiple" />
                                                             @*@Html.TextBoxFor(model => model.files, "", new { @type = "file", @multiple = "multiple" })*@
                                                         </div>
-                                                    </div>
-
+                                                        <div class="col-md-3">
+                                                            <a href="@Url.Content($"~/Attachments/"+Model.OPerator.OperatorID+"/" + fothers )" target="_self" download="@fothers">Download</a>
+                                                        </div>
+                                                    </div>                                                    
                                                 </div>
                                                    
                                                 </div>
@@ -765,7 +791,8 @@
                     </div>
                     <div class="row">
                         <div class="col-md-6">
-                            <label>Tonnage</label>                            
+                            @*<label>Tonnage</label>*@ 
+                            <label>Kg's</label>                           
                             @Html.TextBox("Tonnage", "", new { @class = "form-control", @readonly = "readonly" })
                         </div>
                     </div><br />
@@ -965,7 +992,19 @@
                         </div>
                         <div class="col-md-6">
                             <label>Account Type</label>
-                            <input type="text" id="txtAccType" name="txtAccType" class="form-control noSpecialChar" />
+                            @*<input type="text" id="txtAccType" name="txtAccType" class="form-control noSpecialChar" />*@
+                            <select id="txtAccType" name="txtAccType" class="form-control noSpecialChar">
+                                <option value="savings">savings</option>
+                                <option value="current">current</option>
+                                
+                            </select>
+                           
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <label>IFSC Code</label>
+                                <input type="text" id="txtIFSCcode" name="txtIFSCcode" class="form-control" maxlength="20" />
+                            </div>
                         </div>
                         <input type="hidden" id="OperatorBankID" name="OperatorBankID" value="" />
                     </div>
@@ -1007,341 +1046,347 @@
 
         function onFileChange(el, id, hdn) {
             debugger;
-            $('#' + id).text(el.files[0].name); 
+            $('#' + id).text(el.files[0].name);
             $('#' + hdn).val(el.files[0].name);
-            
+
         }
-                function AddAddress() {
-                    $('#addressModal').modal('show');
-                }
-                function AddVehicle() {
-                    $('#VehicleModal').modal('show');
-                    $('#operatorVehicle_VehicleRegistrationNo').val('');
-                    $('#operatorVehicle_VehicleType').val('');
-                    $('#operatorVehicle_VehicleCategory').val('');
-                    $('#operatorVehicle_Model').val('');
-                    $('#operatorVehicle_Tonnage').val('');
-                }
-          function DeleteOperatorDriver(driverID,driverName) {
-                
-                var result = confirm('Are you sure, Do you want to delete'+' '+ driverName);
-                if (result) {
-                    $.ajax({
-                        url:  "@Url.Content("~/Driver/DeleteDriver")" + "?driverID=" + driverID,
-                        method: 'GET',
-                        contentType: 'application/json',
-                        success: function (data) {
-                            if(data)
-                                
+        function AddAddress() {
+            $('#addressModal').modal('show');
+        }
+        function AddVehicle() {
+            $('#VehicleModal').modal('show');
+            $('#operatorVehicle_VehicleRegistrationNo').val('');
+            $('#operatorVehicle_VehicleType').val('');
+            $('#operatorVehicle_VehicleCategory').val('');
+            $('#operatorVehicle_Model').val('');
+            $('#operatorVehicle_Tonnage').val('');
+        }
+        function DeleteOperatorDriver(driverID, driverName) {
+
+            var result = confirm('Are you sure, Do you want to delete' + ' ' + driverName);
+            if (result) {
+                $.ajax({
+                    url: "@Url.Content("~/Driver/DeleteDriver")" + "?driverID=" + driverID,
+                    method: 'GET',
+                    contentType: 'application/json',
+                    success: function (data) {
+                        if (data)
+
                             alert("Driver Deleted Successfully!");
-                            location.reload();
-                        },
-                        error: function (err) {
+                        location.reload();
+                    },
+                    error: function (err) {
 
-                        }
-                    });
-                }
-            }
-                function AddDriver() {
-                    debugger;
-                    $('#operatorDriverList_DriverName').val('');
-                    $('#operatorDriverList_DriverLicenseNo').val('');
-                    $('#operatorDriverList_DriverMobileNo').val('');
-                    $('#operatorDriverList_VehicleNo').val('');
-                    $('#DriverModal').modal('show');
-                    $('#operatorDriverList_VehicleNo option').each(function () {
-                        if ($(this).hasClass('new')) {
-                            $(this).remove();
-                        }
-                    });
-                    //var vehicles = $('.vehicleNoCss');
-                    //var newVehicleArr = new Array();
-
-                    //if (vehicles.length > 0) {
-                    //    $.each(vehicles, function (index, item) {
-                    //        //OPerator_OperatorVehicle_-1__VehicleRegistrationNo
-                    //        var vehicle = $('#OPerator_OperatorVehicle_' + index + '__VehicleRegistrationNo').val();
-                    //        newVehicleArr.push(vehicle);
-                    //    });
-                    //}
-                    //$.each(newVehicleArr, function (key, value) {
-                    //    $('#operatorDriverList_VehicleNo')
-                    //         .append($('<option class="new">', { value: value })
-                    //         .text(value));
-                    //});
-
-
-                }
-                //function DeleteBankDetails(index) {
-                //    $('#trRow_Bank_' + index).remove();
-                //}
-                //function bankDetails() {
-                //    gIndex = -1;
-                //    $("#bank_clear").on("click", function () {
-                //        $("form div").removeClass("error");
-                //        $("form label").removeClass("error");
-                //        $("form")[0].reset();
-                //    });
-                //    //$("#frmBank")[0].reset();
-                //    $('#txtBankName, #txtBranch, #txtAccNumber, #txtAccType').val('');
-                //    $('#bankDetailsModal').modal('hide');
-                //    $('#bankDetailsModal').modal('show');
-                //}
-                function AddAttachments() {
-                    $('#attachmentModal').modal('show');
-                    $.ajax({
-                        url: '@Url.Content("~/Operator/GetAttachmentData")',
-                        type: 'GET',
-                        contentType: 'application/json',
-                        dataType: 'json',
-                        success: function (data) {
-                            var html = '';
-                            $.each(data.attachments, function (key, val) {
-                                html += "<option value='" + val.LookupId + "'>" + val.LookupDescription + "</option>";
-                            });
-
-                            $('#ddlAttachment').html(html);
-                        },
-                        error: function (err) {
-                        }
-                    })
-                }
-                function driverChanged(el) {
-                    var DriverId = el.value;
-                    $.ajax({
-                        url: '@Url.Content("~/Operator/GetDriverDetails?DriverId=")' + DriverId,
-                        method: 'get',
-                        contentType: 'application/json',
-                        success: function (data) {
-                            $.each(data, function (i, item) {
-                                $('#operatorDriverList_DriverLicenseNo').val(item.Value);
-                                $('#operatorDriverList_DriverMobileNo').val(item.Text);
-                            });
-                        },
-                        error: function (err) {
-
-                        }
-                    });
-                }
-                function saveAttachment() {
-                    debugger;
-                    var formData = new FormData();
-                    var totalFiles = document.getElementById("fileAttachment").files.length;
-                    for (var i = 0; i < totalFiles; i++) {
-                        var file = document.getElementById("fileAttachment").files[i];
-                        var OPeratorId = $('#OPerator_OPeratorID').val();
-                        var lookupCode = $('#ddlAttachment').val();
-
-                        formData.append("imageUploadForm", file);
-                        formData.append("OPeratorId", OPeratorId);
-                        formData.append("lookupCode", lookupCode);
                     }
-
-
-                    $.ajax({
-                        url: '@Url.Content("~/Operator/AddAttachment")',
-                        type: 'POST',
-                        processData: false,
-                        contentType: false,
-                        dataType: 'json',
-                        data: formData, //JSON.stringify({ attachment: obj }),
-                        success: function (data) {
-                        },
-                        error: function (err) {
-                        }
-                    });
+                });
+            }
+        }
+        function AddDriver() {
+            debugger;
+            $('#operatorDriverList_DriverName').val('');
+            $('#operatorDriverList_DriverLicenseNo').val('');
+            $('#operatorDriverList_DriverMobileNo').val('');
+            $('#operatorDriverList_VehicleNo').val('');
+            $('#DriverModal').modal('show');
+            $('#operatorDriverList_VehicleNo option').each(function () {
+                if ($(this).hasClass('new')) {
+                    $(this).remove();
                 }
-                $(function () {
-                    @if(Model.OPerator.OperatorID==null)
+            });
+            //var vehicles = $('.vehicleNoCss');
+            //var newVehicleArr = new Array();
+
+            //if (vehicles.length > 0) {
+            //    $.each(vehicles, function (index, item) {
+            //        //OPerator_OperatorVehicle_-1__VehicleRegistrationNo
+            //        var vehicle = $('#OPerator_OperatorVehicle_' + index + '__VehicleRegistrationNo').val();
+            //        newVehicleArr.push(vehicle);
+            //    });
+            //}
+            //$.each(newVehicleArr, function (key, value) {
+            //    $('#operatorDriverList_VehicleNo')
+            //         .append($('<option class="new">', { value: value })
+            //         .text(value));
+            //});
+
+
+        }
+        //function DeleteBankDetails(index) {
+        //    $('#trRow_Bank_' + index).remove();
+        //}
+        //function bankDetails() {
+        //    gIndex = -1;
+        //    $("#bank_clear").on("click", function () {
+        //        $("form div").removeClass("error");
+        //        $("form label").removeClass("error");
+        //        $("form")[0].reset();
+        //    });
+        //    //$("#frmBank")[0].reset();
+        //    $('#txtBankName, #txtBranch, #txtAccNumber, #txtAccType').val('');
+        //    $('#bankDetailsModal').modal('hide');
+        //    $('#bankDetailsModal').modal('show');
+        //}
+        function AddAttachments() {
+            $('#attachmentModal').modal('show');
+            $.ajax({
+                url: '@Url.Content("~/Operator/GetAttachmentData")',
+                type: 'GET',
+                contentType: 'application/json',
+                dataType: 'json',
+                success: function (data) {
+                    var html = '';
+                    $.each(data.attachments, function (key, val) {
+                        html += "<option value='" + val.LookupId + "'>" + val.LookupDescription + "</option>";
+                    });
+
+                    $('#ddlAttachment').html(html);
+                },
+                error: function (err) {
+                }
+            })
+        }
+        function driverChanged(el) {
+            var DriverId = el.value;
+            $.ajax({
+                url: '@Url.Content("~/Operator/GetDriverDetails?DriverId=")' + DriverId,
+                method: 'get',
+                contentType: 'application/json',
+                success: function (data) {
+                    $.each(data, function (i, item) {
+                        $('#operatorDriverList_DriverLicenseNo').val(item.Value);
+                        $('#operatorDriverList_DriverMobileNo').val(item.Text);
+                    });
+                },
+                error: function (err) {
+
+                }
+            });
+        }
+        function saveAttachment() {
+            debugger;
+            var formData = new FormData();
+            var totalFiles = document.getElementById("fileAttachment").files.length;
+            for (var i = 0; i < totalFiles; i++) {
+                var file = document.getElementById("fileAttachment").files[i];
+                var OPeratorId = $('#OPerator_OPeratorID').val();
+                var lookupCode = $('#ddlAttachment').val();
+
+                formData.append("imageUploadForm", file);
+                formData.append("OPeratorId", OPeratorId);
+                formData.append("lookupCode", lookupCode);
+            }
+
+
+            $.ajax({
+                url: '@Url.Content("~/Operator/AddAttachment")',
+                type: 'POST',
+                processData: false,
+                contentType: false,
+                dataType: 'json',
+                data: formData, //JSON.stringify({ attachment: obj }),
+                success: function (data) {
+                },
+                error: function (err) {
+                }
+            });
+        }
+        $(function () {
+            var date1 = new Date();
+            @if(Model.OPerator.OperatorID==null)
                     {
                         <text> $('#OPerator_DateOfBirth').val('');</text>
                     }
-                    $('#frmOperatorAdd').validate({
-                        rules: {
-                            'OPerator.OPeratorID': {
-                                required: true
-                            },
-                            'OPerator.OperatorName': {
-                                required: true
-                            },
-                            'OPerator.VehicleNo': {
-                                required: true
-                            },
-                            'OPerator.FatherName': {
-                                required: true
-                            },
-                            'OPerator.DateOfBirth': {
-                                required: true
-                            },
-                            'OPerator.PlaceOfBirth': {
-                                required: true
-                            },
-                            'OPerator.Gender': {
-                                required: true
-                            },
-                            'OPerator.MaritialStatus': {
-                                required: true
-                            },
-                            'OPerator.MobileNo': {
-                                required: true,
-                                minlength: 10
-                                
-                            },
-                            'OPerator.PhoneNo': {
-                                required: false,
-                                minlength:10
-                            },
-                            'OPerator.PANNo': {
-                                required: true
-                            },
-                            'OPerator.AadharCardNo': {
-                                required: true,
-                                digits:true
-                            },
-                            'OPerator.LicenseNo': {
-                                required: true
-                            }
-                        }
-                    });
-                    $('.dtCss').datetimepicker({
-                        format: DateFormat
-                    });
-                });
+          
 
-        function btnSave() {
-            debugger;
-                    if ($('#frmOperatorAdd').valid()) {
-                        var bankDetailsLength = $('#trBodyBank tr').length;
-                        var addressLength = $('#trBodyAddress tr').length;
-                        var vehicleLength = $('#trBodyVehicle tr').length;
-                      //  var driverLength = $('#trBodyDriver tr').length;
-                        if (bankDetailsLength > 0 && addressLength > 0 ) {
+            $('#frmOperatorAdd').validate({
+                rules: {
+                    'OPerator.OPeratorID': {
+                        required: true
+                    },
+                    'OPerator.OperatorName': {
+                        required: true
+                    },
+                    'OPerator.VehicleNo': {
+                        required: true
+                    },
+                    'OPerator.FatherName': {
+                        required: true
+                    },
+                    'OPerator.DateOfBirth': {
+                        required: true
+                    },
+                    'OPerator.PlaceOfBirth': {
+                        required: true
+                    },
+                    'OPerator.Gender': {
+                        required: true
+                    },
+                    'OPerator.MaritialStatus': {
+                        required: true
+                    },
+                    'OPerator.MobileNo': {
+                        required: true,
+                        minlength: 10
 
-                            $('#frmOperatorAdd').submit();
-                        }
-                        else {
-                            if (addressLength == 0)
-                                alert("Please enter address details");
-                            else 
-                                alert("Please enter bank details");
-                            //else 
-                            //    alert("Please enter vehicle details");
-                            //else
-                            //    alert("Please enter driver details");
-
-                        }
+                    },
+                    'OPerator.PhoneNo': {
+                        required: false,
+                        minlength: 10
+                    },
+                    'OPerator.PANNo': {
+                        required: true
+                    },
+                    'OPerator.AadharCardNo': {
+                        required: true,
+                        digits: true
+                    },
+                    'OPerator.LicenseNo': {
+                        required: true
                     }
                 }
-                function onChangeVehicleCategory(selectedCategory) {
-                    debugger
-                    var category = selectedCategory.value;
-                    $.ajax({
-                        url: '@Url.Content("~/Operator/GetCategoryModel?categoryValue=")' + category,
-                        method: 'get',
-                        contentType: 'application/json',
-                        success: function (data) {
-                            debugger
-                            $('#Model').removeAttr("disabled");
-                            $("#Model").html(""); // clear before appending new list
-                            $("<option value='-1'>Select item</option>").appendTo("#Model");
-                            $.each(data, function (i, val) {
-                                $("#Model").append(
-                                    $('<option></option>').val(val.Text).html(val.Value));
-                            });
-                        },
-                        error: function (err) {
+            });
+            $('.dtCss').datetimepicker({
+                format: DateFormat,
+                maxDate: date1
+            });
+           
+        });
+       
+      
+        function btnSave() {
+            debugger;
+            if ($('#frmOperatorAdd').valid()) {
+                var bankDetailsLength = $('#trBodyBank tr').length;
+                var addressLength = $('#trBodyAddress tr').length;
+                var vehicleLength = $('#trBodyVehicle tr').length;
+                //  var driverLength = $('#trBodyDriver tr').length;
+                if (bankDetailsLength > 0 && addressLength > 0) {
 
-                        }
-                    });
+                    $('#frmOperatorAdd').submit();
                 }
+                else {
+                    if (addressLength == 0)
+                        alert("Please enter address details");
+                    else
+                        alert("Please enter bank details");
+                    //else
+                    //    alert("Please enter vehicle details");
+                    //else
+                    //    alert("Please enter driver details");
+
+                }
+            }
+        }
+        function onChangeVehicleCategory(selectedCategory) {
+            debugger
+            var category = selectedCategory.value;
+            $.ajax({
+                url: '@Url.Content("~/Operator/GetCategoryModel?categoryValue=")' + category,
+                method: 'get',
+                contentType: 'application/json',
+                success: function (data) {
+                    debugger
+                    $('#Model').removeAttr("disabled");
+                    $("#Model").html(""); // clear before appending new list
+                    $("<option value='-1'>Select item</option>").appendTo("#Model");
+                    $.each(data, function (i, val) {
+                        $("#Model").append(
+                            $('<option></option>').val(val.Text).html(val.Value));
+                    });
+                },
+                error: function (err) {
+
+                }
+            });
+        }
 
         function onChangeVehicleCategoryPromise(selectedCategory) {
             var def = $.Deferred();
-                    var category = selectedCategory.value;
-                    $.ajax({
-                        url: '@Url.Content("~/Operator/GetCategoryModel?categoryValue=")' + category,
-                        method: 'get',
-                        contentType: 'application/json',
-                        success: function (data) {
-                            //debugger
-                            //$('#Model').removeAttr("disabled");
-                            //$("#Model").html(""); // clear before appending new list
-                            //$("<option value='-1'>Select item</option>").appendTo("#Model");
-                            //$.each(data, function (i, val) {
-                            //    $("#Model").append(
-                            //        $('<option></option>').val(val.Text).html(val.Value));
-                            //});
-                            def.resolve(data);
-                        },
-                        error: function (err) {
+            var category = selectedCategory.value;
+            $.ajax({
+                url: '@Url.Content("~/Operator/GetCategoryModel?categoryValue=")' + category,
+                method: 'get',
+                contentType: 'application/json',
+                success: function (data) {
+                    //debugger
+                    //$('#Model').removeAttr("disabled");
+                    //$("#Model").html(""); // clear before appending new list
+                    //$("<option value='-1'>Select item</option>").appendTo("#Model");
+                    //$.each(data, function (i, val) {
+                    //    $("#Model").append(
+                    //        $('<option></option>').val(val.Text).html(val.Value));
+                    //});
+                    def.resolve(data);
+                },
+                error: function (err) {
 
-                        }
-                    });
-                    return def.promise();
                 }
+            });
+            return def.promise();
+        }
         function ModelChanged(el) {
             debugger;
             var tonnage = el.value;
 
-                //$('#operatorVehicle_Model option').val(tonnage);
+            //$('#operatorVehicle_Model option').val(tonnage);
 
-                    $.ajax({
-                        url: '@Url.Content("~/Operator/GetTonnage?tonnage=")' + tonnage,
-                        method: 'get',
-                        contentType: 'application/json',
-                        success: function (data) {
-                            debugger;
-                            $.each(data, function (i, item) {
-                                $('#Tonnage').val(item.Text);
-                            });
-                        },
-                        error: function (err) {
-
-                        }
+            $.ajax({
+                url: '@Url.Content("~/Operator/GetTonnage?tonnage=")' + tonnage,
+                method: 'get',
+                contentType: 'application/json',
+                success: function (data) {
+                    debugger;
+                    $.each(data, function (i, item) {
+                        $('#Tonnage').val(item.Text);
                     });
+                },
+                error: function (err) {
+
+                }
+            });
         }
 
         function ModelChangedPromise(el) {
             var def = $.Deferred();
-                    var tonnage = el.value;
+            var tonnage = el.value;
 
-                //$('#operatorVehicle_Model option').val(tonnage);
+            //$('#operatorVehicle_Model option').val(tonnage);
 
-                    $.ajax({
-                        url: '@Url.Content("~/Operator/GetTonnage?tonnage=")' + tonnage,
-                        method: 'get',
-                        contentType: 'application/json',
-                        success: function (data) {
-                            //debugger;
-                            //$.each(data, function (i, item) {
-                            //    $('#Tonnage').val(item.Text);
-                            //});
-                            def.resolve(data);
-                        },
-                        error: function (err) {
-
-                        }
-                    });
-                    return def.promise();
-                }
-                function VehicleNo(el) {
-                    var vehicleNo = el.value;
-                    $.ajax({
-                        url: '@Url.Content("~/Operator/GetVehicleNo?VehicleNo=")' + vehicleNo,
-                        method: 'get',
-                        contentType: 'application/json',
-                        success: function (data) {
-                            if (data == false) {
-                                alert('This VehicleNo is exist!')
-                                $('#VehicleRegistrationNo').val('');
-                            }
-                        },
-                        error: function (err) {
-
-                        }
-                    });
+            $.ajax({
+                url: '@Url.Content("~/Operator/GetTonnage?tonnage=")' + tonnage,
+                method: 'get',
+                contentType: 'application/json',
+                success: function (data) {
+                    //debugger;
+                    //$.each(data, function (i, item) {
+                    //    $('#Tonnage').val(item.Text);
+                    //});
+                    def.resolve(data);
+                },
+                error: function (err) {
 
                 }
+            });
+            return def.promise();
+        }
+        function VehicleNo(el) {
+            var vehicleNo = el.value;
+            $.ajax({
+                url: '@Url.Content("~/Operator/GetVehicleNo?VehicleNo=")' + vehicleNo,
+                method: 'get',
+                contentType: 'application/json',
+                success: function (data) {
+                    if (data == false) {
+                        alert('This VehicleNo is exist!')
+                        $('#VehicleRegistrationNo').val('');
+                    }
+                },
+                error: function (err) {
+
+                }
+            });
+
+        }
         //$('#panno').keypress(function (e) {
         //    debugger
         //    var regex = new RegExp("^[a-zA-Z0-9]+$");
@@ -1358,7 +1403,7 @@
         //        return false;
         //    }
         //});
-        
+
         //$(document).on('keypress', '.alphaonly', function (evt) {
         //    evt = (evt) ? evt : window.event;
         //    var charCode = parseInt((evt.which) ? evt.which : evt.keyCode);
@@ -1392,13 +1437,13 @@
         //    return false;
 
         //});
-      
-       
+
+
         //function ClearBankDetails() {
         //    $('#frmBank input[type="text"]').removeClass('error');
         //    $('#frmBank label').removeClass('error');
         //    //$('#frmBank label').empty();
-           
+
         //        //$("form div").removeClass("error");
         //        //$("form label").removeClass("error");
         //        //$("form")[0].reset();
@@ -1414,8 +1459,9 @@
             $('#VehicleModal').modal('show');
         }
         function bankDetails(index) {
+            debugger;
             $('#frmBank input[type="text"]').removeClass('error');
-            $('#txtBankName, #txtBranch, #txtAccNumber, #txtAccType').val('');
+            $('#txtBankName, #txtBranch, #txtAccNumber, #txtAccType ,#txtIFSCcode').val('');
             $('#bankDetailsModal').modal('show');
         }
         function AddAddress() {
@@ -1425,15 +1471,15 @@
         }
 
 
-            $('#Btn_SendOperatorId').bind('click', function () {
-                debugger;
-                var data = $('#OperatorId').val();
-                //localStorage.setItem('OperatorValue', JSON.stringify(data));
-               // $.cookie("OperatorValue", $('#OperatorId').val());
-				//window.location.href = '@Url.Action("Add", "Driver")';
-				var url = '@Url.Content("~/Driver/Add")';
-				location.href = url + "?OperatorId=" + data;
-            });
+        $('#Btn_SendOperatorId').bind('click', function () {
+            debugger;
+            var data = $('#OperatorId').val();
+            //localStorage.setItem('OperatorValue', JSON.stringify(data));
+            // $.cookie("OperatorValue", $('#OperatorId').val());
+            //window.location.href = '@Url.Action("Add", "Driver")';
+            var url = '@Url.Content("~/Driver/Add")';
+            location.href = url + "?OperatorId=" + data;
+        });
         $('.number').keypress(function (e) {
             if (window.event)
                 code = e.keyCode;
@@ -1445,8 +1491,8 @@
                 return false;
         });
 
-       
-			@*function GoToAddDriver() {
+
+        @*function GoToAddDriver() {
 				var OperatorId = $('#OperatorId').val()
 				var url = '@Url.Content("~/Driver/Add")';
 				location.href = url + "?OperatorId=" + OperatorId;

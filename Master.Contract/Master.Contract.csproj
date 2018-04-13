@@ -80,6 +80,7 @@
     <Compile Include="PendingAmount.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RateCard.cs" />
+    <Compile Include="Securables.cs" />
     <Compile Include="TrackCargoWithCRN.cs" />
     <Compile Include="TripCE.cs" />
     <Compile Include="TripAmont.cs" />
