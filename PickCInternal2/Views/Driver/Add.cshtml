@@ -67,6 +67,66 @@
                                 @Html.TextBoxFor(x => x.driver.DriverName, new { @class = "form-control alphaonly", placeholder = "Driver Name" })
                             </div>
                         </div>
+
+
+                        @{
+
+                            var profilepicStr1 = "";
+                            if (Model.driver != null && Model.driver.driverAttachment != null && Model.driver.driverAttachment.Count > 0)
+                            {
+
+
+                                var fprofilepicObj = Model.driver.driverAttachment
+                                                  .Where(x => x.LookupCode == "1506")
+                                                  .FirstOrDefault();
+
+                                if (fprofilepicObj != null)
+                                {
+                                    profilepicStr1 = fprofilepicObj.ImagePath;
+                                }
+                            }
+                        }
+                        <div class="col-md-4">
+                            <div class="col-md-2">
+                                <div>
+                                    <img src="@Url.Content("~/DriverAttachments/" + Model.driver.DriverId + "/" +profilepicStr1)" class="img-circle" style="width:50px;height:50px" />
+                                </div>
+                                </div>
+
+                                @*<div class="col-md-3">
+                <label>PROFILE PIC</label>
+            </div>*@
+                                <div class="col-md-10">
+                                    <div class="file-upload pull-left" style="margin-top:10px;">
+                                        <div class="file-select">
+                                            <div class="file-select-button" id="fileName">Upload Profile Pic</div>
+                                            <input type="file"
+                                                   id="fprofilepic"
+                                                   name="fprofilepic"
+                                                   value="1506"
+                                                   title="@profilepicStr1"
+                                                   onchange="onFileChange(this, 'fprofilepicdocFile','hdnfprofilepicdocFile')" />
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-12">
+                                    <div id="fprofilepicdocFile">
+                                        @profilepicStr1
+                                        @*<span  class="label label-default" onclick="onClickEvent('@profilepicStr')"><i class="fa fa-remove" style="font-size:12px" aria-hidden="true">@profilepicStr</i></span>*@
+                                    </div>
+
+                                </div>
+                            </div>
+
+                            @*@if (!string.IsNullOrWhiteSpace(profilepicStr1))
+            {
+                <div class="col-md-3">
+                    <a href="@Url.Content($"~/DriverAttachments/" + Model.driver.DriverId + "/" + profilepicStr1)" target="_blank" download="@profilepicStr1">download</a>
+                </div>
+            }*@
+
+
+
                         @*<div class="col-md-4">
                                 <div class="form-group">
                                     <label>Vehicle No</label>
@@ -658,7 +718,7 @@
                             <input type="hidden" name="hdnfvoterdocFile" id="hdnfvoterdocFile" />
                         </div>
                     </div>
-                    <div class="row" style="padding-top:5px">
+                    @*<div class="row" style="padding-top:5px">
                         <div class="col-md-3">
                             <label>PROFILE PIC</label>
                         </div>
@@ -679,7 +739,7 @@
                             <div id="fprofilepicdocFile">@profilepicStr</div>
                             <input type="hidden" name="hdnfprofilepicdocFile" id="hdnfprofilepicdocFile" />
                         </div>
-                    </div>
+                    </div>*@
                     <div class="row" style="padding-top:5px">
                         <div class="col-md-3">
                             <label>OTHERS</label>

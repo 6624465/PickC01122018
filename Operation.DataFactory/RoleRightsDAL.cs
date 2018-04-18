@@ -1,5 +1,5 @@
 ﻿using Microsoft.Practices.EnterpriseLibrary.Data;
-using EZY.RMAS.Contract;
+//using EZY.RMAS.Contract;
 using System;
 using System.Collections.Generic;
 using System.Data.Common;

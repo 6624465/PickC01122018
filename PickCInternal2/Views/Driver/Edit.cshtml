@@ -60,6 +60,61 @@
                                     @Html.HiddenFor(x => x.driver.Password)
                                 </div>
                             </div>
+
+                            @{
+
+                                var profilepicStr1 = "";
+                                if (Model.driver != null && Model.driver.driverAttachment != null && Model.driver.driverAttachment.Count > 0)
+                                {
+
+
+                                    var fprofilepicObj = Model.driver.driverAttachment
+                                                      .Where(x => x.LookupCode == "1506")
+                                                      .FirstOrDefault();
+
+                                    if (fprofilepicObj != null)
+                                    {
+                                        profilepicStr1 = fprofilepicObj.ImagePath;
+                                    }
+                                }
+                            }
+                            <div class="col-md-4">
+                                <div class="col-md-2">
+                                        <img src="@Url.Content("~/DriverAttachments/" + Model.driver.DriverId + "/" +profilepicStr1)" style="width:50px;height:50px" id="ppic" />
+                                    </div>
+                                    @*<div class="col-md-3">
+                <label>PROFILE PIC</label>
+            </div>*@
+                                    <div class="col-md-10">
+                                        <div class="file-upload pull-left " style="margin-top:10px;">
+                                            <div class="file-select">
+                                                <div class="file-select-button" id="fileName">Upload Profile Pic</div>
+                                                <input type="file"
+                                                       id="fprofilepic"
+                                                       name="fprofilepic"
+                                                       value="1506"
+                                                       title="@profilepicStr1"
+                                                       onchange="onFileChange(this, 'fprofilepicdocFile','hdnfprofilepicdocFile')" />
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-12">
+                                        <div id="fprofilepicdocFile">
+                                            @profilepicStr1
+                                            @*<span  class="label label-default" onclick="onClickEvent('@profilepicStr')"><i class="fa fa-remove" style="font-size:12px" aria-hidden="true">@profilepicStr</i></span>*@
+                                        </div>
+
+                                    </div>
+                                </div>
+                                
+                            @*@if (!string.IsNullOrWhiteSpace(profilepicStr1))
+                            {
+                                <div class="col-md-3">
+                                    <a href="@Url.Content($"~/DriverAttachments/" + Model.driver.DriverId + "/" + profilepicStr1)" target="_blank" download="@profilepicStr1">download</a>
+                                </div>
+                            }*@
+
+
                             @*<div class="col-md-4">
                                     <div class="form-group">
                                         <label>Vehicle No</label>
@@ -625,7 +680,7 @@
                             </div>
                               }
                         </div>
-                        <div class="row" style="padding-top:5px">
+                        @*<div class="row" style="padding-top:5px">
                             <div class="col-md-3">
                                 <label>PROFILE PIC</label>
                             </div>
@@ -644,7 +699,7 @@
                             </div>
                             <div class="col-md-3">
                                 <div id="fprofilepicdocFile">@profilepicStr
-                                @*<span  class="label label-default" onclick="onClickEvent('@profilepicStr')"><i class="fa fa-remove" style="font-size:12px" aria-hidden="true">@profilepicStr</i></span>*@
+                                <span  class="label label-default" onclick="onClickEvent('@profilepicStr')"><i class="fa fa-remove" style="font-size:12px" aria-hidden="true">@profilepicStr</i></span>
                                 </div>
                                 <input type="hidden" name="hdnfprofilepicdocFile" id="hdnfprofilepicdocFile" />
                                
@@ -655,7 +710,7 @@
                                     <a href="@Url.Content($"~/DriverAttachments/" + Model.driver.DriverId + "/" + profilepicStr)" target="_blank" download="@profilepicStr">download</a>
                                 </div>
                             }
-                        </div>
+                        </div>*@
                         <div class="row" style="padding-top:5px">
                             <div class="col-md-3">
                                 <label>OTHERS</label>
@@ -818,6 +873,20 @@
             debugger;
             $('#' + id).text(el.files[0].name);
             $('#' + hdn).val(el.files[0].name);
+
+
+            if (el.files && el.files[0]) {
+                var reader = new FileReader();
+
+                reader.onload = function (e) {
+                    $('#ppic')
+                        .attr('src', e.target.result)
+                        .width(150)
+                        .height(200);
+                };
+
+                reader.readAsDataURL(input.files[0]);
+            }
         }
         $(function () {
             $('#frmDriverAdd').validate({

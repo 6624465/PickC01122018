@@ -58,6 +58,65 @@
                                            @Html.TextBoxFor(x => x.OPerator.OperatorName, new { @class = "form-control alphaonly noSpecialChar", placeholder = "Operator Name" })
                                        </div>
                                        </div>
+
+
+                                   @{
+
+                                       var profilepicStr1 = "";
+
+                                       if (Model.OPerator.operatorAttachment != null && Model.OPerator.operatorAttachment.Count > 0)
+                                       {
+
+
+
+                                           var fprofilepicObj = Model.OPerator.operatorAttachment
+                                                             .Where(x => x.lookupCode == "1506")
+                                                             .FirstOrDefault();
+
+                                           if (fprofilepicObj != null)
+                                           {
+                                               profilepicStr1 = fprofilepicObj.imagePath;
+                                           }
+
+
+                                       }
+                                   }
+                                   <div class="col-md-4">
+                                       <div class="col-md-2">
+                                           <img src="@Url.Content("~/Attachments/" + Model.OPerator.OperatorID + "/" +profilepicStr1)" class="" style="width:50px;height:50px" />
+                                       </div>
+
+
+                                       @*<div class="col-md-3">
+                <label>PROFILE PICTURE</label>
+            </div>*@
+                                       <div class="col-md-10">
+                                           <div class="file-upload pull-left" style="margin-top:10px;">
+                                               <div class="file-select">
+                                                   <div class="file-select-button" id="fileName">Upload Profile Pic</div>
+                                                   <input type="file"
+                                                          id="fprofilepic"
+                                                          name="fprofilepic"
+                                                          value="1506"
+                                                          title="@profilepicStr1"
+                                                          onchange="onFileChange(this, 'fprofilepicdocFile','hdnfprofilepicdocFile')" />
+                                               </div>
+                                           </div>
+                                       </div>
+                                       <div class="col-md-12">
+                                           <div id="fprofilepicdocFile">@profilepicStr1</div>
+                                           <input type="hidden" name="hdnfprofilepicdocFile" id="hdnfprofilepicdocFile" />
+                                       </div>
+                                   </div>
+               @*@if (!string.IsNullOrWhiteSpace(profilepicStr1))
+                  {
+            <div class="col-md-3">
+                <a href="@Url.Content($"~/Attachments/" + Model.OPerator.OperatorID + "/" + profilepicStr1)" target="_self" download="@profilepicStr1">Download</a>
+            </div>
+             }*@
+
+
+
                                    </div>
                                    @*<div class="col-md-4">
                     <div class="form-group">
@@ -673,7 +732,7 @@
                                                         </div>
                                                                 }
                                                     </div>
-                                                    <div class="row" style="padding-top:5px">
+                                                    @*<div class="row" style="padding-top:5px">
                                                         <div class="col-md-3">
                                                             <label>PROFILE PICTURE</label>
                                                         </div>
@@ -700,7 +759,7 @@
                                                             <a href="@Url.Content($"~/Attachments/" + Model.OPerator.OperatorID + "/" + profilepicStr)" target="_self" download="@profilepicStr">Download</a>
                                                         </div>
                                                          }
-                                                    </div>
+                                                    </div>*@
                                                     <div class="row" style="padding-top:5px">
                                                         <div class="col-md-3">
                                                             <label>OTHERS</label>
