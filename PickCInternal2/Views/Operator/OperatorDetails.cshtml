@@ -301,6 +301,11 @@
                                                                                     @Html.HiddenFor(x => Model.OPerator.BankDetails[i].AccountType)
                                                                                     @Html.HiddenFor(x=>Model.OPerator.BankDetails[i].OperatorBankID)
                                                                                 </td>
+                                                                              @* <td>
+                                                                                  <span id="txtIfsc_span_@i">@Model.OPerator.BankDetails[i].IFSC</span>
+                                                                                  @Html.HiddenFor(x => Model.OPerator.BankDetails[i].IFSC)
+                                                                                   
+                                                                               </td>*@
                                                                                 @*<td></td>*@
                                                                                 <td>
                                                                                     <a class="hand" onclick="EditBankDetails('@i')">Edit</a>&nbsp;|&nbsp;
