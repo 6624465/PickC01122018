@@ -172,5 +172,51 @@ namespace Operation.DataFactory
         public const string GETCUSTOMERISREACHPICKUPPENDINGBOOKINGNO = "[Operation].[usp_GetCustomerIsReachPickupPendingBookingNo]";
         public const string GETCUSTOMERAFTERREACHPICKUPTRIPSTARTPENDINGBOOKINGNO = "[Operation].[usp_GetCustomerAfterReachPickupPendingBookingNo]";
 
+
+
+        /// <summary>
+        /// [Security].[RoleRights]
+        /// </summary>
+
+        public const string SELECTROLERIGHTS = "[Security].[usp_RoleRightsSelect]";
+        public const string LISTROLERIGHTS = "[Security].[usp_RoleRightsList]";
+        public const string SAVEROLERIGHTS = "[Security].[usp_RoleRightsSave]";
+        public const string DELETEROLERIGHTS = "[Security].[usp_RoleRightsDelete]";
+        public const string LISTROLERIGHTSBYROLE = "[Security].[usp_RoleRightsListByRole]";
+        public const string LISTSECURABLES = "[Security].[usp_SecurablesList]";
+        public const string DELETEALLRIGHTSOFROLE = "[Security].[usp_DeleteRightsOfRole]";
+        public const string LISTSECURABLESBYROLE = "[Security].[usp_SecurablesListByRole]";
+
+        /// <summary>
+        /// [Security].[Roles]
+        /// </summary>
+
+        public const string SELECTROLES = "[Security].[usp_RolesSelect]";
+        public const string LISTROLES = "[Security].[usp_RolesList]";
+        public const string SAVEROLES = "[Security].[usp_RolesSave]";
+        public const string DELETEROLES = "[Security].[usp_RolesDelete]";
+
+
+        /// <summary>
+        /// [Security].[Users]
+        /// </summary>
+
+        public const string SELECTUSERS = "[Security].[usp_UsersSelect]";
+        public const string LISTUSERS = "[Security].[usp_UsersList]";
+        public const string SAVEUSERS = "[Security].[usp_UsersSave]";
+        public const string DELETEUSERS = "[Security].[usp_UsersDelete]";
+        public const string USERBRANCHLIST = "[Master].[UserBranchList]";
+        public const string USERBRANCHSELECTEDLIST = "[Master].[UserBranchSelectedList]";
+
+        public const string VALIDATEUSERLOGIN = "[Security].[usp_ValidateUserLogin]";
+
+
+        public const string DELETEUSERRIGHTS = "[Security].[usp_UserRightsDelete]";
+        public const string LISTUSERRIGHTS = "[Security].[usp_UserRightsList]";
+        public const string LISTUSERRIGHTSBYUSER = "[Security].[usp_UserRightsListByUser]";
+
+        public const string SAVEUSERRIGHTS = "[Security].[usp_UserRightsSave]";
+        public const string SELECTUSERRIGHTS = "[Security].[usp_UserRightsSelect]";
+
     }
 }

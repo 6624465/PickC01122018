@@ -54,11 +54,16 @@
     <Compile Include="OperatorLogInDAL.cs" />
     <Compile Include="OperatorVehicleDAL.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="RoleRightsDAL.cs" />
+    <Compile Include="RolesDAL.cs" />
     <Compile Include="SearchDAL.cs" />
     <Compile Include="SummaryDAL.cs" />
     <Compile Include="TestDAL.cs" />
     <Compile Include="TripDAL.cs" />
     <Compile Include="TripMonitorDAL.cs" />
+    <Compile Include="UserBranchDAL.cs" />
+    <Compile Include="UserRightsDAL.cs" />
+    <Compile Include="UsersDAL.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Master.Contract\Master.Contract.csproj">
