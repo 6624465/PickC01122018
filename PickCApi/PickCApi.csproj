@@ -225,10 +225,12 @@
     <Compile Include="Areas\Operation\Controllers\OperatorVehicleListController.cs" />
     <Compile Include="Areas\Operation\Controllers\OTPController.cs" />
     <Compile Include="Areas\Operation\Controllers\PaymentController.cs" />
+    <Compile Include="Areas\Operation\Controllers\RolesController.cs" />
     <Compile Include="Areas\Operation\Controllers\SampleController.cs" />
     <Compile Include="Areas\Operation\Controllers\SearchController.cs" />
     <Compile Include="Areas\Operation\Controllers\TripController.cs" />
     <Compile Include="Areas\Operation\Controllers\TripMonitorController.cs" />
+    <Compile Include="Areas\Operation\Controllers\UserController.cs" />
     <Compile Include="Areas\Operation\DTO\BookingCancelDTO.cs" />
     <Compile Include="Areas\Operation\DTO\DeleteBookingDTO.cs" />
     <Compile Include="Areas\Operation\DTO\DriverLoginDTO.cs" />

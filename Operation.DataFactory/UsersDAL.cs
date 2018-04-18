@@ -41,17 +41,17 @@ namespace Operation.DataFactory
                                             ).ToList();
         }
 
-        public bool Save<T>(T item, string CompanyID, DbTransaction parentTransaction) where T : IContract
+        public bool Save<T>(T item,   DbTransaction parentTransaction) where T : IContract
         {
             currentTransaction = parentTransaction;
-            return Save(item, CompanyID);
+            return Save(item );
 
         }
 
 
 
 
-        public bool Save<T>(T item, string CompanyID) where T : IContract
+        public bool Save<T>(T item ) where T : IContract
         {
             var result = 0;
 

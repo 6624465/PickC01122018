@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 14
-VisualStudioVersion = 14.0.24720.0
+# Visual Studio 15
+VisualStudioVersion = 15.0.27428.2002
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PickC.Internal2", "PickCInternal2\PickC.Internal2.csproj", "{5EEBC5AF-3626-45C7-AC3D-B451FC679FD8}"
 EndProject
@@ -20,6 +20,11 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Operation.DataFactory", "Operation.DataFactory\Operation.DataFactory.csproj", "{37B63EEA-9A96-475B-8AF3-4D81ECE5753E}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PickCApi", "PickCApi\PickCApi.csproj", "{0984498E-9EEF-47A3-83EF-48E47770B082}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Snippets", "Snippets", "{EEA23694-DB2E-4CBF-942F-F2206292CC80}"
+	ProjectSection(SolutionItems) = preProject
+		PickCSnippet.snippet = PickCSnippet.snippet
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

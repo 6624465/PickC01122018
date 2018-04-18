@@ -1,20 +1,12 @@
-﻿using System;
+﻿using Master.BusinessFactory;
+using Operation.BusinessFactory;
+using Operation.Contract;
+using PickCApi.Areas.Operation.DTO;
+using PickCApi.Core;
+using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Net;
-using System.Net.Http;
 using System.Web.Http;
-
-using Operation.Contract;
-using Operation.BusinessFactory;
-
-using Master.Contract;
-using Master.BusinessFactory;
-
-using PickCApi.Core;
-using PickCApi.Areas.Operation.DTO;
-using PickC.Services.DTO;
-using System.Web;
 
 namespace PickCApi.Areas.Operation.Controllers
 {

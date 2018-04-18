@@ -22,10 +22,10 @@ namespace Operation.BusinessFactory
         }
 
 
-        public bool SaveUsers(Users newItem, string CompanyId)
+        public bool SaveUsers(Users newItem )
         {
 
-            return usersDAL.Save(newItem, CompanyId);
+            return usersDAL.Save(newItem);
 
         }
 

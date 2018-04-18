@@ -28,7 +28,15 @@ namespace Master.Contract
         public string pollutioncheckdoc { get; set; }
 
         public string othersdoc { get; set; }
-      
+
+
+        public string FrontImage { get; set; }
+        public string BackImage { get; set; }
+
+        public string LeftImage { get; set; }
+        public string RightImage { get; set; }
+
+
     }
     public class VehicleAttachment
     {

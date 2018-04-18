@@ -89,6 +89,10 @@ namespace Operation.DataFactory
                 db.AddInParameter(savecommand, "insurancedoc", System.Data.DbType.String, operatorvehicle.insurancedoc);
                 db.AddInParameter(savecommand, "pollutioncheckdoc", System.Data.DbType.String, operatorvehicle.pollutioncheckdoc);
                 db.AddInParameter(savecommand, "othersdoc", System.Data.DbType.String, operatorvehicle.othersdoc);
+                db.AddInParameter(savecommand, "FrontImage", System.Data.DbType.String, operatorvehicle.FrontImage);
+                db.AddInParameter(savecommand, "BackImage", System.Data.DbType.String, operatorvehicle.BackImage);
+                db.AddInParameter(savecommand, "LeftImage", System.Data.DbType.String, operatorvehicle.LeftImage);
+                db.AddInParameter(savecommand, "RightImage", System.Data.DbType.String, operatorvehicle.RightImage);
 
 
                 result = db.ExecuteNonQuery(savecommand, transaction);
