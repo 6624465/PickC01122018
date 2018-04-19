@@ -440,7 +440,12 @@
                                                                                         @Html.HiddenFor(X => Model.OPerator.OperatorVehicle[i].pollutioncheckdoc)
                                                                                         @Html.HiddenFor(X => Model.OPerator.OperatorVehicle[i].insurancedoc)
                                                                                         @Html.HiddenFor(X => Model.OPerator.OperatorVehicle[i].othersdoc)
-
+                                                                                        @Html.HiddenFor(x=> Model.OPerator.OperatorVehicle[i].FrontImage)
+                                                                                        @Html.HiddenFor(x => Model.OPerator.OperatorVehicle[i].BackImage)
+                                                                                        @Html.HiddenFor(x => Model.OPerator.OperatorVehicle[i].LeftImage)
+                                                                                        @Html.HiddenFor(x => Model.OPerator.OperatorVehicle[i].RightImage)
+                                                                                        
+                                                                                        
                                                                                     </td>
                                                                                     <td>
                                                                                         <a class="hand" onclick="EditOperatorVehicle('@i')">Edit</a>&nbsp;|&nbsp;
@@ -845,111 +850,48 @@
                 </div>
                 <div class="modal-body" id="vehicleModalBody">
                     <div class="row">
-                        <div class="col-md-6">
+                        <div class="col-md-4">
                             <label>Vehicle Registration No</label>
                             @Html.Hidden("OperatorVehicleID", Model.OPerator.OperatorID)
                             @Html.TextBox("VehicleRegistrationNo", "", new { @class = "form-control noSpecialChar", onchange = "VehicleNo(this)" })
                         </div>
-
+                        <div class="col-md-2">
+                           
+                            <div>
+                                <img src="@Url.Content("~/VehicleAttachments/" +  Model.OPerator.OperatorVehicle.FirstOrDefault().OperatorVehicleID + "/" + Model.OPerator.OperatorVehicle.FirstOrDefault().VehicleRegistrationNo+ "/" + Model.OPerator.OperatorVehicle.FirstOrDefault().FrontImage)" @*onerror="this.src='~/images/vehicle_open1_selected.png';"*@ style="width:50px;height:50px" />
+                            </div>
+                        </div>
                         <div class="col-md-3">
                             <div class="file-upload">
                                 <div class="file-select">
                                     <div class="file-select-button" id="fileName">Front Image</div>
                                     <input type="file" id="FrontImage" name="FrontImage" value="1395" title=" " onchange="onFileChange(this, 'frontimagedocFile', 'hdnfrontimagedocFile')" />
                                 </div>
+                                
                             </div>
                         </div>
                         <div class="col-md-3">
                             <div id="frontimagedocFile"></div>
                             <input type="hidden" name="hdnfrontimagedocFile" id="hdnfrontimagedocFile" />
+                    
                         </div>
-
-
-
-                        @*@{
-
-                            var frontimagestr = "";
-                            var backimagestr = "";
-                            var leftimagestr = "";
-                            var rightimagestr = "";
-                            if (Model.OPerator != null && Model.OPerator.OperatorVehicle != null && Model.OPerator.OperatorVehicle.Count > 0)
-                            {
-
-
-                                var fprofilepicObj = Model.OPerator.OperatorVehicle
-                                                  .Where(x => x.LookupCode == "1506")
-                                                  .FirstOrDefault();
-
-                                if (fprofilepicObj != null)
-                                {
-                                    frontimagestr = fprofilepicObj.ImagePath;
-                                }
-
-
-                                var backimageobj=Model.OPerator.OperatorVehicle
-                                    .Where(x=>x.LookupCode== "1506")
-                                    .FirstOrDefault();
-                                if(backimageobj!=null)
-                                {
-                                    backimagestr = backimageobj.ImagePath;
-                                }
-
-                                var leftimageobj = Model.OPerator.OperatorVehicle
-                                    .Where(x => x.LookupCode == "1506")
-                                    .FirstOrDefault();
-                                if (leftimageobj != null)
-                                {
-                                    leftimagestr = backimageobj.ImagePath;
-                                }
-
-                                var rightimageobj = Model.OPerator.OperatorVehicle
-                                    .Where(x => x.LookupCode == "1506")
-                                    .FirstOrDefault();
-                                if (rightimageobj != null)
-                                {
-                                    rightimagestr = backimageobj.ImagePath;
-                                }
-
-                            }
-                        }*@
-
-                        @*<div class="col-md-4">
-                            <div class="col-md-2">
-                                <img src="@Url.Content("~/VehicleAttachments/" + Model.OPerator.OperatorVehicle + "/" +frontimagestr)" style="width:50px;height:50px" id="ppic" />
-                            </div>
-                          
-                            <div class="col-md-10">
-                                <div class="file-upload pull-left " style="margin-top:10px;">
-                                    <div class="file-select">
-                                        <div class="file-select-button" id="fileName">Upload front image</div>
-                                        <input type="file"
-                                               id="fprofilepic"
-                                               name="fprofilepic"
-                                               value="1506"
-                                               title="@frontimagestr"
-                                               onchange="onFileChange(this, 'fimagepicdocFile','hdnfrontimagepicdocFile')" />
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-12">
-                                <div id="fimagepicdocFile">
-                                    @frontimagestr
-                                    
-                                </div>
-
-                            </div>
-                        </div>*@
-
 
 
                     </div>
                     <div class="row">
-                        <div class="col-md-6">
+                        <div class="col-md-4">
                             <label>Vehicle Type</label>
                             @Html.DropDownList("VehicleType", new SelectList(ViewBag.VehicleType, "Value", "Text"), "Select Category", new { @class = "form-control input-sm" })
                         </div>
 
+                       
+                        <div class="col-md-2">
 
+                            <div>
+                                <img src="@Url.Content("~/VehicleAttachments/" +  Model.OPerator.OperatorVehicle.FirstOrDefault().OperatorVehicleID + "/" + Model.OPerator.OperatorVehicle.FirstOrDefault().VehicleRegistrationNo+ "/" + Model.OPerator.OperatorVehicle.FirstOrDefault().BackImage)" style="width:50px;height:50px" />
+                            </div>
+                        </div>
+                        
                         <div class="col-md-3">
                             <div class="file-upload">
                                 <div class="file-select">
@@ -964,40 +906,23 @@
                         </div>
 
 
-                        @*<div class="col-md-4">
-                            <div class="col-md-2">
-                                <img src="@Url.Content("~/VehicleAttachments/" + Model.OPerator.OperatorVehicle + "/" +backimagestr)" style="width:50px;height:50px" id="ppic" />
-                            </div>
-                           
-                            <div class="col-md-10">
-                                <div class="file-upload pull-left " style="margin-top:10px;">
-                                    <div class="file-select">
-                                        <div class="file-select-button" id="fileName">Upload back image</div>
-                                        <input type="file"
-                                               id="fprofilepic"
-                                               name="fprofilepic"
-                                               value="1506"
-                                               title="@backimagestr"
-                                               onchange="onFileChange(this, 'bimagepicdocFile','hdnbackimagepicdocFile')" />
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-12">
-                                <div id="bimagepicdocFile">
-                                    @backimagestr
-                                 
-                                </div>
-
-                            </div>
-                        </div>*@
+                      
 
 
                     </div>
                     <div class="row">
-                        <div class="col-md-6">
+                        <div class="col-md-4">
                             <label>Vehicle Category</label>
                             @Html.DropDownList("VehicleCategory", new SelectList(ViewBag.VehicleCategory, "Value", "Text"), "Select Category", new { @class = "form-control input-sm", onchange = "onChangeVehicleCategory(this)" })
                         </div>
+
+                        <div class="col-md-2">
+
+                            <div>
+                                <img src="@Url.Content("~/VehicleAttachments/" +  Model.OPerator.OperatorVehicle.FirstOrDefault().OperatorVehicleID + "/" + Model.OPerator.OperatorVehicle.FirstOrDefault().VehicleRegistrationNo+ "/" + Model.OPerator.OperatorVehicle.FirstOrDefault().LeftImage)" style="width:50px;height:50px" />
+                            </div>
+                        </div>
+
 
                         <div class="col-md-3">
                             <div class="file-upload">
@@ -1010,48 +935,32 @@
                         <div class="col-md-3">
                             <div id="leftimagedocFile"></div>
                             <input type="hidden" name="hdnleftimagedocFile" id="hdnleftimagedocFile" />
+
+                            @*@Model.OPerator.OperatorVehicle.FirstOrDefault().LeftImage*@
                         </div>
 
 
-                        @*<div class="col-md-4">
-                            <div class="col-md-2">
-                                <img src="@Url.Content("~/VehicleAttachments/" + Model.OPerator.OperatorVehicle + "/" +leftimagestr)" style="width:50px;height:50px" id="ppic" />
-
-                                <div class="col-md-10">
-                                    <div class="file-upload pull-left " style="margin-top:10px;">
-                                        <div class="file-select">
-                                            <div class="file-select-button" id="fileName">Upload back image</div>
-                                            <input type="file"
-                                                   id="fprofilepic"
-                                                   name="fprofilepic"
-                                                   value="1506"
-                                                   title="@leftimagestr"
-                                                   onchange="onFileChange(this, 'limagepicdocFile','hdnleftimagepicdocFile')" />
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-md-12">
-                                    <div id="limagepicdocFile">
-                                        @leftimagestr
-
-                                    </div>
-
-                                </div>
-                            </div>
-
-                        </div>*@
+                       
                     </div>
                     <div class="row">
-                        <div class="col-md-6">
+                        <div class="col-md-4">
                             <label>Model</label>
                             @Html.DropDownList("Model", new SelectList("Value", "Text"), "Select Category", new { @class = "form-control input-sm", onchange = "ModelChanged(this)", @disabled = "disabled" })
                         </div>
 
 
+
+                        <div class="col-md-2">
+
+                            <div>
+                                <img src="@Url.Content("~/VehicleAttachments/" +  Model.OPerator.OperatorVehicle.FirstOrDefault().OperatorVehicleID + "/" + Model.OPerator.OperatorVehicle.FirstOrDefault().VehicleRegistrationNo+ "/" + Model.OPerator.OperatorVehicle.FirstOrDefault().RightImage)" style="width:50px;height:50px" />
+                            </div>
+                        </div>
+
                         <div class="col-md-3">
                             <div class="file-upload">
                                 <div class="file-select">
-                                    <div class="file-select-button" id="fileName">Right Image</div>
+                                    <div class="file-select-button" id="fileName">Upload Right Image</div>
                                     <input type="file" id="RightImage" name="RightImage" value="1398" title=" " onchange="onFileChange(this, 'rightimagedocFile', 'hdnrightimagedocFile')" />
                                 </div>
                             </div>
@@ -1061,31 +970,7 @@
                             <input type="hidden" name="hdnrightimagedocFile" id="hdnrightimagedocFile" />
                         </div>
 
-                        @*<div class="col-md-4">
-                            <div class="col-md-2">
-                                <img src="@Url.Content("~/VehicleAttachments/" + Model.OPerator.OperatorVehicle + "/" +rightimagestr)" style="width:50px;height:50px" id="ppic" />
-                            </div>
-                         
-                            <div class="col-md-10">
-                                <div class="file-upload pull-left " style="margin-top:10px;">
-                                    <div class="file-select">
-                                        <div class="file-select-button" id="fileName">Upload back image</div>
-                                        <input type="file"
-                                               id="fprofilepic"
-                                               name="fprofilepic"
-                                               value="1506"
-                                               title="@rightimagestr"
-                                               onchange="onFileChange(this, 'rimagepicdocFile','hdnrightimagepicdocFile')" />
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-12">
-                                <div id="rimagepicdocFile">
-                                    @rightimagestr
-                                </div>
-
-                            </div>
-                        </div>*@
+                        
 
 
                     </div>
