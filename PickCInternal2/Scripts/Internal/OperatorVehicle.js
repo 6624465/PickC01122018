@@ -43,6 +43,7 @@
 });
 var gIndex = -1;
 function EditOperatorVehicle(index) {
+    debugger;
     if (index != -1) {
         $('#VehicleRegistrationNo').attr('readonly', 'readonly');
     }
@@ -95,10 +96,21 @@ function EditOperatorVehicle(index) {
     $('#pollutioncheckdocFile').text($('#' + baseID + 'pollutioncheckdoc').val());
     $('#othersdocFile').text($('#' + baseID + 'othersdoc').val());
 
+    $('#hdnbackimagedocFile').text($('#' + baseID + 'BackImage').val());
+    $('#hdnfrontimagedocFile').text($('#' + baseID + 'FrontImage').val());
+    $('#hdnleftimagedocFile').text($('#' + baseID + 'leftImage').val());
+    $('#hdnrightimagedocFile').text($('#' + baseID + 'RightImage').val());
+
     $('#hdnRegistrationdocFile').val($('#' + baseID + 'registrationdoc').val());
     $('#hdnInsurancedocFile').val($('#' + baseID + 'insurancedoc').val());
     $('#hdnPollutioncheckdocFile').val($('#' + baseID + 'pollutioncheckdoc').val());
     $('#hdnOthersdocFile').val($('#' + baseID + 'othersdoc').val());
+
+    $('#hdnfrontimagedocFile').val($('#' + baseID + 'FrontImage').val());
+    $('#hdnbackimagedocFile').val($('#' + baseID + 'backimagedoc').val());
+    $('#hdnleftimagedocFile').val($('#' + baseID + 'leftImage').val());
+    $('#hdnrightimagedocFile').val($('#' + baseID + 'RightImage').val());
+
 
     //var regDoc2 = $('#registrationdoc');
     debugger;

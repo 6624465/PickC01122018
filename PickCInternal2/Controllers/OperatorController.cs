@@ -235,6 +235,31 @@ namespace PickCInternal2.Controllers
             else
                 operatorVehicle.othersdoc = null;
 
+
+            if (!string.IsNullOrWhiteSpace(Request.Form["hdnfrontimagedocFile"]))
+                operatorVehicle.FrontImage = Request.Form["hdnfrontimagedocFile"];
+            else
+                operatorVehicle.FrontImage = null;
+
+            if (!string.IsNullOrWhiteSpace(Request.Form["hdnbackimagedocFile"]))
+                operatorVehicle.BackImage = Request.Form["hdnbackimagedocFile"];
+            else
+                operatorVehicle.BackImage = null;
+
+            if (!string.IsNullOrWhiteSpace(Request.Form["hdnleftimagedocFile"]))
+                operatorVehicle.LeftImage = Request.Form["hdnleftimagedocFile"];
+            else
+                operatorVehicle.LeftImage = null;
+
+            if (!string.IsNullOrWhiteSpace(Request.Form["hdnrightimagedocFile"]))
+                operatorVehicle.RightImage = Request.Form["hdnrightimagedocFile"];
+            else
+                operatorVehicle.RightImage = null;
+
+
+
+
+
             var result = await new OperatorVehicleService(AUTHTOKEN, p_mobileNo).SaveOperatorVehicleList(operatorVehicle);
             return RedirectToAction("Edit", new { operatorID = operatorVehicle.OperatorVehicleID });
         }
