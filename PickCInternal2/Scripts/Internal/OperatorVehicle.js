@@ -89,28 +89,31 @@ function EditOperatorVehicle(index) {
         });
     });   
     
-     
+    $('#frontimagedocFile').text($('#' + baseID + 'FrontImage').val());
+    $('#backimagedocFile').text($('#' + baseID + 'BackImage').val());
+    $('#leftimagedocFile').text($('#' + baseID + 'LeftImage').val());
+    $('#rightimagedocFile').text($('#' + baseID + 'RightImage').val());
+
+
+
+    $('#hdnfrontimagedocFile').val($('#' + baseID + 'FrontImage').val());
+    $('#hdnbackimagedocFile').val($('#' + baseID + 'BackImage').val());
+    $('#hdnleftimagedocFile').val($('#' + baseID + 'LeftImage').val());
+    $('#hdnrightimagedocFile').val($('#' + baseID + 'RightImage').val());
    
     $('#registrationdocFile').text($('#' + baseID + 'registrationdoc').val());
     $('#insurancedocFile').text($('#' + baseID + 'insurancedoc').val());
     $('#pollutioncheckdocFile').text($('#' + baseID + 'pollutioncheckdoc').val());
     $('#othersdocFile').text($('#' + baseID + 'othersdoc').val());
 
-    
-    $('#frontimagedocFile').text($('#' + baseID + 'FrontImage').val());
-    $('#backimagedocFile').text($('#' + baseID + 'BackImage').val());
-    $('#leftimagedocFile').text($('#' + baseID + 'leftImage').val());
-    $('#rightimagedocFile').text($('#' + baseID + 'RightImage').val());
 
     $('#hdnRegistrationdocFile').val($('#' + baseID + 'registrationdoc').val());
     $('#hdnInsurancedocFile').val($('#' + baseID + 'insurancedoc').val());
     $('#hdnPollutioncheckdocFile').val($('#' + baseID + 'pollutioncheckdoc').val());
     $('#hdnOthersdocFile').val($('#' + baseID + 'othersdoc').val());
 
-    $('#hdnfrontimagedocFile').val($('#' + baseID + 'FrontImage').val());
-    $('#hdnbackimagedocFile').val($('#' + baseID + 'BackImage').val());
-    $('#hdnleftimagedocFile').val($('#' + baseID + 'leftImage').val());
-    $('#hdnrightimagedocFile').val($('#' + baseID + 'RightImage').val());
+    
+   
 
   
     //var regDoc2 = $('#registrationdoc');
