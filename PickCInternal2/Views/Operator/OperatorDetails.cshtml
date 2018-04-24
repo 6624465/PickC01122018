@@ -22,8 +22,11 @@
     <link href="@Url.Content("~/Css/file-upload.css")" rel="stylesheet" />
 }
 <style>
-    .content-header h3{
-        margin:0;
+    .content-header h3 {
+        margin: 0;
+    }
+    .white-space{
+        white-space:pre-line;
     }
 </style>
 <section class="content-header">
@@ -34,763 +37,764 @@
 {
     <section class="content">
         <div class="row">
-            
-                <div class="tab-main-content">
-                    
-                       <div class="col-md-12">
-                           
-                                <div class="box-header">
-                                    <h3 class="box-title">Operator Info</h3>
+
+            <div class="tab-main-content">
+
+                <div class="col-md-12">
+
+                    <div class="box-header">
+                        <h3 class="box-title">Operator Info</h3>
+                    </div>
+                    <div class="box">
+                        <div class="box-body">
+
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <label>Operator ID</label>
+                                        @Html.TextBoxFor(x => x.OPerator.OperatorID, new { @class = "form-control", placeholder = "Operator ID", @readonly = "readonly", @id = "OperatorId" })
+                                    </div>
                                 </div>
-                           <div class="box">
-                           <div class="box-body">
-
-                               <div class="row">
-                                   <div class="col-md-4">
-                                       <div class="form-group">
-                                           <label>Operator ID</label>
-                                           @Html.TextBoxFor(x => x.OPerator.OperatorID, new { @class = "form-control", placeholder = "Operator ID", @readonly = "readonly", @id = "OperatorId" })
-                                       </div>
-                                   </div>
-                                   <div class="col-md-4">
-                                       <div class="form-group">
-                                           <label>Operator Name</label>
-                                           @Html.TextBoxFor(x => x.OPerator.OperatorName, new { @class = "form-control alphaonly noSpecialChar", placeholder = "Operator Name" })
-                                       </div>
-                                       </div>
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <label>Operator Name</label>
+                                        @Html.TextBoxFor(x => x.OPerator.OperatorName, new { @class = "form-control alphaonly noSpecialChar", placeholder = "Operator Name" })
+                                    </div>
+                                </div>
 
 
-                                   @{
+                                @{
 
-                                       var profilepicStr1 = "";
+                                    var profilepicStr1 = "";
 
-                                       if (Model.OPerator.operatorAttachment != null && Model.OPerator.operatorAttachment.Count > 0)
-                                       {
-
-
-
-                                           var fprofilepicObj = Model.OPerator.operatorAttachment
-                                                             .Where(x => x.lookupCode == "1506")
-                                                             .FirstOrDefault();
-
-                                           if (fprofilepicObj != null)
-                                           {
-                                               profilepicStr1 = fprofilepicObj.imagePath;
-                                           }
-
-
-                                       }
-                                   }
-                                   <div class="col-md-4">
-                                       <div class="col-md-2">
-                                           <img src="@Url.Content("~/Attachments/" + Model.OPerator.OperatorID + "/" +profilepicStr1)" class="" style="width:50px;height:50px" />
-                                       </div>
-
-
-                                       @*<div class="col-md-3">
-                <label>PROFILE PICTURE</label>
-            </div>*@
-                                       <div class="col-md-10">
-                                           <div class="file-upload pull-left" style="margin-top:10px;">
-                                               <div class="file-select">
-                                                   <div class="file-select-button" id="fileName">Upload Profile Pic</div>
-                                                   <input type="file"
-                                                          id="fprofilepic"
-                                                          name="fprofilepic"
-                                                          value="1506"
-                                                          title="@profilepicStr1"
-                                                          onchange="onFileChange(this, 'fprofilepicdocFile','hdnfprofilepicdocFile')" />
-                                               </div>
-                                           </div>
-                                       </div>
-                                       <div class="col-md-12">
-                                           <div id="fprofilepicdocFile">@profilepicStr1</div>
-                                           <input type="hidden" name="hdnfprofilepicdocFile" id="hdnfprofilepicdocFile" />
-                                       </div>
-                                   </div>
-               @*@if (!string.IsNullOrWhiteSpace(profilepicStr1))
-                  {
-            <div class="col-md-3">
-                <a href="@Url.Content($"~/Attachments/" + Model.OPerator.OperatorID + "/" + profilepicStr1)" target="_self" download="@profilepicStr1">Download</a>
-            </div>
-             }*@
-
-
-
-                                   </div>
-                                   @*<div class="col-md-4">
-                    <div class="form-group">
-                        <label>Vehicle No</label>
-                        @Html.TextBoxFor(x => x.OPerator.VehicleNo, new { @class = "form-control", placeholder = "Vehicle No" })
-                    </div>
-                </div>*@
-                               </div>
-                           </div>
-                           <div class="col-md-12">
-                               <div class="row">
-                                   <div class="box-header">
-                                       <h3 class="box-title">Personal Info</h3>
-                                   </div>
-                                   <div class="box">
-                                       <div class="box-body">
-                                           <div class="row">
-                                               <div class="col-md-4">
-                                                   <div class="form-group">
-                                                       <label>Father Name</label>
-                                                       @Html.TextBoxFor(x => x.OPerator.FatherName, new { @class = "form-control alphaonly noSpecialChar", placeholder = "Father Name" })
-                                                   </div>
-                                               </div>
-                                               <div class="col-md-4">
-                                                   <div class="form-group">
-                                                       <label>Date Of Birth</label>
-                                                       <div class="input-group dtCss">
-                                                           @Html.TextBoxFor(x => x.OPerator.DateOfBirth, "{0:dd/MM/yyyy}", new { @class = "form-control", placeholder = "Date Of Birth"})
-                                                           <span class="input-group-btn">
-                                                               <button type="button" class="btn btn-default"><i class="fa fa-calendar" aria-hidden="true"></i></button>
-                                                           </span>
-                                                       </div>
-                                                       @*<div class="input-group dtCss">
-                        @Html.TextBoxFor(x => x.OPerator.DateOfBirth,
-                           new
-                           {
-                               @class = "form-control",
-                               placeholder = "Date Of Birth"
-                           })
-                        <span class="input-group-btn">
-                            <button type="button" class="btn btn-default"><i class="fa fa-calendar" aria-hidden="true"></i></button>
-                        </span>
-                    </div>*@
-                                                   </div>
-                                               </div>
-                                               <div class="col-md-4">
-                                                   <div class="form-group">
-                                                       <label>Place Of Birth</label>
-                                                       @Html.TextBoxFor(x => x.OPerator.PlaceOfBirth, new { @class = "form-control alphaonly noSpecialChar", placeholder = "Place Of Birth" })
-                                                   </div>
-                                               </div>
-                                           </div>
-                               <div class="row">
-                                   <div class="col-md-4">
-                                       <div class="form-group">
-                                           <label>Gender</label>
-                                           @Html.DropDownListFor(x => x.OPerator.Gender, new SelectList(Model.operatorLookupDTO.genderOptions, "LookupId", "LookupDescription"), "Select Gender", new { @class = "form-control" })
-                                       </div>
-                                   </div>
-                                   <div class="col-md-4">
-                                       <div class="form-group">
-                                           <label>Marital Status</label>
-                                           @Html.DropDownListFor(x => x.OPerator.MaritialStatus, new SelectList(Model.operatorLookupDTO.maritalOptions, "LookupId", "LookupDescription"), "Select Marital Status", new { @class = "form-control" })
-                                       </div>
-                                   </div>
-                                   <div class="col-md-4">
-                                       <div class="form-group">
-                                           <label>Mobile No</label>
-                                           @Html.TextBoxFor(x => x.OPerator.MobileNo, new { @class = "form-control numCss", placeholder = "Mobile No", maxlength = 10 })
-                                       </div>
-                                   </div>
-                               </div>
-                                       <div class="row">
-                                           <div class="col-md-4">
-                                               <div class="form-group">
-                                                   <label>Phone No</label>
-                                                   @Html.TextBoxFor(x => x.OPerator.PhoneNo, new { @class = "form-control numCss", placeholder = "Phone No", maxlength = 10 })
-                                               </div>
-                                           </div>
-                                           <div class="col-md-4">
-                                               <label>Nationality</label>
-                                               <div class="form-group">
-                                                   <select id="ddlNationality" class="form-control">
-                                                       <option value="Indian" ;Text="Indian">Indian</option>
-                                                   </select>
-                                               </div>
-                                           </div>
-                                       </div>
-                                   </div>
-                               </div>
-                           </div>
-                             
-                               
-                                   <div class="row">
-                                       <div class="box-header">
-                                           <h3 class="box-title">Identification Info</h3>
-                                       </div>
-                                       <div class="box">
-                                           <div class="box-body">
-                                               <div class="col-md-4">
-                                                   <div class="form-group">
-                                                       <label>PAN No</label>
-                                                       @Html.TextBoxFor(x => x.OPerator.PANNo, new { @class = "form-control noSpecialChar", placeholder = "PAN No", @id = "panno", maxLength = 10 })
-                                                   </div>
-                                               </div>
-                                               <div class="col-md-4">
-                                                   <div class="form-group">
-                                                       <label>Aadhar Card No</label>
-                                                       @Html.TextBoxFor(x => x.OPerator.AadharCardNo, new { @class = "form-control numCss", placeholder = "Aadhar Card No", maxLength = 12, @id = "AadharCardNo" })
-                                                   </div>
-
-                                                   @*<div class="col-md-4">
-                    <div class="form-group">
-                        <label>License No</label>
-                        @Html.TextBoxFor(x => x.OPerator.LicenseNo, new { @class = "form-control", placeholder = "License No" })
-                    </div>
-                </div>*@
-                                               </div>
-                                           </div>
-                                       </div>
-                                   </div>
-                               
-                                   
-                               <div class="row">
-
-                                   @*<h5>Address Info</h5>*@
-                                   <div class="box">
-                                       <div class="box-header">
-                                           <h3 class="box-title">Address Info</h3>
-                                           <div class="box-tools">
-                                               <button class="btn btn-box-tool" type="button" onclick="AddAddress('-1')"><i class="fa fa-plus" aria-hidden="true"></i></button>
-                                           </div>
-                                       </div>
-                                       <div class="box-body">
-                                           <div class="row">
-                                               <div class="col-md-12">
-                                                   <table class="table table-hover table-bordered">
-                                                       <thead>
-                                                           <tr>
-                                                               <th>Address 1</th>
-                                                               <th>Address 2</th>
-                                                               <th>Action</th>
-                                                           </tr>
-                                                       </thead>
-                                                       <tbody id="trBodyAddress">
-                                                           @if (Model.OPerator.AddressList != null)
-                                                           {
-                                                               for (var i = 0; i < Model.OPerator.AddressList.Count; i++)
-                                                               {
-                                                                   <tr id="trRow_Address_@i" class="trRowCss">
-                                                                       <td>
-                                                                           <span id="Address1_span_@i">@Model.OPerator.AddressList[i].Address1</span>
-                                                                           @Html.HiddenFor(x => Model.OPerator.AddressList[i].Address1)
-                                                                       </td>
-                                                                       <td>
-                                                                           <span id="Address2_span_@i">
-                                                                               @Model.OPerator.AddressList[i].Address2
-                                                                           </span>
-                                                                           @Html.HiddenFor(x => Model.OPerator.AddressList[i].Address2)
-                                                                       </td>
-                                                                       <td>
-                                                                           @Html.HiddenFor(x => Model.OPerator.AddressList[i].Address3)
-                                                                           @Html.HiddenFor(x => Model.OPerator.AddressList[i].Address4)
-                                                                           @Html.HiddenFor(x => Model.OPerator.AddressList[i].CityName)
-                                                                           @Html.HiddenFor(x => Model.OPerator.AddressList[i].StateName)
-                                                                           @Html.HiddenFor(x => Model.OPerator.AddressList[i].ZipCode)
-                                                                           @Html.HiddenFor(x => Model.OPerator.AddressList[i].IsActive)
-                                                                           @Html.HiddenFor(x => Model.OPerator.AddressList[i].AddressId)
-                                                                           @Html.HiddenFor(x => Model.OPerator.AddressList[i].AddressLinkId)
-                                                                           <a class="hand" onclick="EditAddress('@i')">Edit</a>&nbsp;|&nbsp;
-                                                                           <a class="hand" onclick="DeleteAddress('@i')">Delete</a>
-                                                                       </td>
-                                                                   </tr>
-                                                               }
-                                                           }
-                                                       </tbody>
-                                                   </table>
-                                               </div>
-                                           </div>
-                                       </div>
-                                   </div>
-                               </div>
-
-                                        @*<div class="col-md-6">
-                                                <h5>Attachments</h5>
-                                                <div class="box">
-                                                    <div class="box-header">
-                                                        <h3 class="box-title">Attachments</h3>
-                                                        <div class="box-tools">
-                                                            <button class="btn btn-box-tool" type="button" onclick="AddAttachments()"><i class="fa fa-plus" aria-hidden="true"></i></button>
-                                                        </div>
-                                                    </div>
-                                                    <div class="box-body">
-
-                                                    </div>
-                                                </div>
-                                            </div>*@
-                                        <div class="row">
-                                            @*<h5>Bank Details</h5>*@
-                                            <div class="box">
-                                                <div class="box-header">
-                                                    <h3 class="box-title">Bank Details</h3>
-                                                    <div class="box-tools">
-														<button class="btn btn-box-tool" type="button" onclick="bankDetails('-1')"><i class="fa fa-plus" aria-hidden="true"></i></button>
-                                                    </div>
-                                                </div>
-                                                <div class="box-body">
-                                                    <div class="row">
-                                                        <div class="col-md-12">
-                                                            <table class="table table-hover table-bordered">
-                                                                <thead>
-                                                                    <tr>
-                                                                        <th>Bank Name</th>
-                                                                        <th>Branch</th>
-                                                                        <th>Account Number</th>
-                                                                        <th>Account Type</th>
-                                                                        @*<th>IFSC Code</th>*@
-                                                                        <th>Action</th>
-                                                                    </tr>
-                                                                </thead>
-                                                                <tbody id="trBodyBank">
-                                                                    @if (Model.OPerator.BankDetails != null)
-                                                                    {
-                                                                        for (var i = 0; i < Model.OPerator.BankDetails.Count; i++)
-                                                                        {
-                                                                            <tr id="trRow_Bank_@i" class="trRowCss">
-                                                                                <td>
-                                                                                    <span id="txtBankName_span_@i">@Model.OPerator.BankDetails[i].BankName</span>
-                                                                                    @Html.HiddenFor(x => Model.OPerator.BankDetails[i].BankName)
-                                                                                </td>
-                                                                                <td>
-                                                                                    <span id="txtBranch_span_@i">@Model.OPerator.BankDetails[i].Branch</span>
-                                                                                    @Html.HiddenFor(x => Model.OPerator.BankDetails[i].Branch)
-                                                                                </td>
-                                                                                <td>
-                                                                                    <span id="txtAccNumber_span_@i">@Model.OPerator.BankDetails[i].AccountNumber</span>
-                                                                                    @Html.HiddenFor(x => Model.OPerator.BankDetails[i].AccountNumber)
-                                                                                </td>
-                                                                                <td>
-                                                                                    <span id="txtAccType_span_@i">@Model.OPerator.BankDetails[i].AccountType</span>
-                                                                                    @Html.HiddenFor(x => Model.OPerator.BankDetails[i].AccountType)
-                                                                                    @Html.HiddenFor(x=>Model.OPerator.BankDetails[i].OperatorBankID)
-                                                                                </td>
-                                                                              @* <td>
-                                                                                  <span id="txtIfsc_span_@i">@Model.OPerator.BankDetails[i].IFSC</span>
-                                                                                  @Html.HiddenFor(x => Model.OPerator.BankDetails[i].IFSC)
-                                                                                   
-                                                                               </td>*@
-                                                                                @*<td></td>*@
-                                                                                <td>
-                                                                                    <a class="hand" onclick="EditBankDetails('@i')">Edit</a>&nbsp;|&nbsp;
-                                                                                    <a class="hand" onclick="DeleteBankDetails('@i')">Delete</a>
-                                                                                </td>
-                                                                            </tr>
-                                                                        }
-                                                                    }
-                                                                </tbody>
-                                                            </table>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-
-                                    
-                                   
-                                    @if (Model.OPerator.OperatorID != null)
+                                    if (Model.OPerator.operatorAttachment != null && Model.OPerator.operatorAttachment.Count > 0)
                                     {
-                                        <div class="row">
-                                            <div class="col-md-6">
-                                                @*<h5>Vehicle Details</h5>*@
-                                                <div class="row">
-                                                <div class="box">
-                                                    <div class="box-header">
-                                                        <h3 class="box-title">Vehicle Details</h3>
-                                                        <div class="box-tools">
-                                                            <button class="btn btn-box-tool" type="button" onclick="AddVehicle('-1')"><i class="fa fa-plus" aria-hidden="true"></i></button>
-                                                        </div>
-                                                    </div>
-                                                    <div class="box-body">
-                                                        <div class="row">
-                                                            <div class="col-md-12">
-                                                                <table class="table table-hover table-bordered" id="tblVehicle">
-                                                                    <thead>
-                                                                        <tr>
-                                                                            <th>Vehicle Registration No</th>
-                                                                            <th>Vehicle Type</th>
-                                                                            <th>Vehicle Category</th>
-                                                                            <th>Model</th>
-                                                                            @*<th>Tonnage</th>*@
-                                                                            <th>Kg's</th>
-                                                                            <th>Action</th>
-                                                                        </tr>
-                                                                    </thead>
-                                                                    <tbody id="trBodyVehicle">
-                                                                        @if (Model.OPerator.OperatorVehicle != null)
-                                                                        {
-                                                                            for (var i = 0; i < Model.OPerator.OperatorVehicle.Count; i++)
-                                                                            {
-                                                                                <tr id="trRow_Vehicle_@i" class="trRowCss">
-                                                                                    <td>
-                                                                                        <span id="operatorVehicle_VehicleRegistrationNo_span_@i">@Model.OPerator.OperatorVehicle[i].VehicleRegistrationNo</span>
-                                                                                        @Html.HiddenFor(x => Model.OPerator.OperatorVehicle[i].VehicleRegistrationNo, new { @class = "vehicleNoCss" })
-                                                                                    </td>
-                                                                                    <td>
-                                                                                        <span id="operatorVehicle_VehicleType_span_@i">@Model.OPerator.OperatorVehicle[i].VehicleTypeDescription</span>
-                                                                                        @Html.HiddenFor(x => Model.OPerator.OperatorVehicle[i].VehicleType)
-                                                                                    </td>
-                                                                                    <td>
-                                                                                        <span id="operatorVehicle_VehicleCategory_span_@i">@Model.OPerator.OperatorVehicle[i].VehicleCategoryDescription</span>
-                                                                                        @Html.HiddenFor(x => Model.OPerator.OperatorVehicle[i].VehicleCategory)
-                                                                                    </td>
-                                                                                    <td>
-                                                                                        <span id="operatorVehicle_Model_span_@i">@Model.OPerator.OperatorVehicle[i].Model</span>
-                                                                                        @Html.HiddenFor(x => Model.OPerator.OperatorVehicle[i].Model)
-                                                                                    </td>
-                                                                                    <td>
-                                                                                        <span id="operatorVehicle_Tonnage_span_@i">@Model.OPerator.OperatorVehicle[i].Tonnage</span>
-                                                                                        @Html.HiddenFor(x => Model.OPerator.OperatorVehicle[i].Tonnage)
-                                                                                        @Html.HiddenFor(X => Model.OPerator.OperatorVehicle[i].registrationdoc)
-                                                                                        @Html.HiddenFor(X => Model.OPerator.OperatorVehicle[i].pollutioncheckdoc)
-                                                                                        @Html.HiddenFor(X => Model.OPerator.OperatorVehicle[i].insurancedoc)
-                                                                                        @Html.HiddenFor(X => Model.OPerator.OperatorVehicle[i].othersdoc)
-                                                                                        @Html.HiddenFor(x=> Model.OPerator.OperatorVehicle[i].FrontImage)
-                                                                                        @Html.HiddenFor(x => Model.OPerator.OperatorVehicle[i].BackImage)
-                                                                                        @Html.HiddenFor(x => Model.OPerator.OperatorVehicle[i].LeftImage)
-                                                                                        @Html.HiddenFor(x => Model.OPerator.OperatorVehicle[i].RightImage)
-                                                                                        
-                                                                                        
-                                                                                    </td>
-                                                                                    <td>
-                                                                                        <a class="hand" onclick="EditOperatorVehicle('@i')">Edit</a>&nbsp;|&nbsp;
-                                                                                        <a class="hand" onclick="DeleteOperatorVehicle('@i')">Delete</a>
-                                                                                    </td>
-                                                                                </tr>
-                                                                            }
-                                                                        }
-                                                                    </tbody>
-                                                                </table>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    </div>
-                                                    @*}*@
-                                                </div>
-                                            </div>
-                                            <div class="row">
-                                            <div class="col-md-6">
-                                                @*<h5>Driver Details</h5>*@
-                                                
-                                                    
-                                                        <div class="box">
-                                                            <div class="box-header">
-                                                                <h3 class="box-title">Driver Details</h3>
-                                                                <div class="box-tools">
-                                                                    @*<button class="btn btn-box-tool" type="button" onclick="bankDetails()">Add</button>*@
-                                                                    @*<button type="button" class="btn btn-box-tool" data-toggle="modal" data-target="#myModal"><i class="fa fa-plus" aria-hidden="true"></i></button>*@
-                                                                    <button class="btn btn-default btn-sm btn-them " type="button" id="Btn_SendOperatorId">Add Driver</button>
-                                                                    @*<button class="btn btn-default btn-sm btn-them " type="button" onclick="AddDriver('-1')">Add</button>*@
-                                                                    @*<button class="btn btn-box-tool" type="button" onclick="AddDriver('-1')"><i class="fa fa-plus" aria-hidden="true"></i></button>location.href="@Url.Content("~/Driver/Add?OperatorID=OP171100001")"*@
-                                                                </div>
-                                                            </div>
-                                                            <div class="box-body">
-                                                                <div class="row">
-                                                                    <div class="col-md-12">
-                                                                        <table class="table table-hover table-bordered">
-                                                                            <thead>
-                                                                                <tr>
-                                                                                    <th class="hidden">Driver ID</th>
-                                                                                    <th>Driver Name</th>
-                                                                                    <th>Driving Licence No</th>
-                                                                                    <th>Driver Mobile No</th>
-                                                                                    @*<th>Driver Vehicle No</th>*@
-                                                                                    <th>Action</th>
-                                                                                </tr>
-                                                                            </thead>
-                                                                            <tbody id="trBodyDriver">
-                                                                                @if (Model.OPerator.OperatorDriverList != null)
-                                                                                {
-                                                                                    for (var i = 0; i < Model.OPerator.OperatorDriverList.Count; i++)
-                                                                                    {
-                                                                                        <tr id="trRow_Driver_@i" class="trRowCss">
-                                                                                            <td class="hidden">
-                                                                                                <span id="operatorDriverList_DriverID_span_@i">@Model.OPerator.OperatorDriverList[i].DriverID</span>
-                                                                                                @Html.HiddenFor(x => Model.OPerator.OperatorDriverList[i].DriverID)
-                                                                                            </td>
-                                                                                            <td>
-                                                                                                <span id="operatorDriverList_DriverName_span_@i">@Model.OPerator.OperatorDriverList[i].DriverName</span>
-                                                                                                @Html.HiddenFor(x => Model.OPerator.OperatorDriverList[i].DriverName)
-                                                                                            </td>
-                                                                                            <td>
-                                                                                                <span id="operatorDriverList_DriverLicenseNo_span_@i">@Model.OPerator.OperatorDriverList[i].LicenseNo</span>
-                                                                                                @Html.HiddenFor(x => Model.OPerator.OperatorDriverList[i].LicenseNo)
-                                                                                            </td>
-                                                                                            <td>
-                                                                                                <span id="operatorDriverList_DriverMobileNo_span_@i">@Model.OPerator.OperatorDriverList[i].MobileNo</span>
-                                                                                                @Html.HiddenFor(x => Model.OPerator.OperatorDriverList[i].MobileNo)
-                                                                                            </td>
-                                                                                            @*<td>
-                                                <span id="operatorDriverList_VehicleNo_span_@i">@Model.OPerator.OperatorDriverList[i].VehicleattachedNo</span>
-                                                @Html.HiddenFor(x => Model.OPerator.OperatorDriverList[i].VehicleattachedNo)
-                                            </td>*@
-                                                                                            <td>
-                                                                                                @*<a class="hand" onclick="EditOperatorDriver('@i')">Edit</a>&nbsp;|&nbsp;*@
-                                                                                                @*<a class="hand" href="@Url.Content(string.Format("~/Driver/Edit?driverID={0}", Model.OPerator.OperatorDriverList[i].DriverID))">Edit</a>&nbsp;|&nbsp;*@
-                                                                                                <a class="hand" href="@Url.Content("~/Driver/Edit?driverID=" + Model.OPerator.OperatorDriverList[i].DriverID+"&OperatorID="+Model.OPerator.OperatorID)">Edit</a>&nbsp;|&nbsp;
-                                                                                                <a class="hand" onclick="DeleteOperatorDriver('@Model.OPerator.OperatorDriverList[i].DriverID','@Model.OPerator.OperatorDriverList[i].DriverName')">Delete</a>
-                                                                                            </td>
-                                                                                        </tr>
-                                                                                    }
-                                                                                }
-                                                                            </tbody>
-                                                                        </table>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        
-                                                    
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                        </div>
+
+
+
+                                        var fprofilepicObj = Model.OPerator.operatorAttachment
+                                                          .Where(x => x.lookupCode == "1506")
+                                                          .FirstOrDefault();
+
+                                        if (fprofilepicObj != null)
+                                        {
+                                            profilepicStr1 = fprofilepicObj.imagePath;
+                                        }
+
+
                                     }
+                                }
+                                <div class="col-md-4">
+                                    <div class="col-md-2">
+                                        <img src="@Url.Content("~/Attachments/" + Model.OPerator.OperatorID + "/" +profilepicStr1)" class="" style="width:50px;height:50px" />
+                                    </div>
+
+
+                                    @*<div class="col-md-3">
+                                            <label>PROFILE PICTURE</label>
+                                        </div>*@
+                                    <div class="col-md-10">
+                                        <div class="file-upload pull-left" style="margin-top:10px;">
+                                            <div class="file-select">
+                                                <div class="file-select-button" id="fileName">Upload Profile Pic</div>
+                                                <input type="file"
+                                                       id="fprofilepic"
+                                                       name="fprofilepic"
+                                                       value="1506"
+                                                       title="@profilepicStr1"
+                                                       onchange="onFileChange(this, 'fprofilepicdocFile','hdnfprofilepicdocFile')" />
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-12">
+                                        <div id="fprofilepicdocFile">@profilepicStr1</div>
+                                        <input type="hidden" name="hdnfprofilepicdocFile" id="hdnfprofilepicdocFile" />
+                                    </div>
+                                </div>
+                                @*@if (!string.IsNullOrWhiteSpace(profilepicStr1))
+                                          {
+                                    <div class="col-md-3">
+                                        <a href="@Url.Content($"~/Attachments/" + Model.OPerator.OperatorID + "/" + profilepicStr1)" target="_self" download="@profilepicStr1">Download</a>
+                                    </div>
+                                     }*@
+
+
+
+                            </div>
+                            @*<div class="col-md-4">
+                                    <div class="form-group">
+                                        <label>Vehicle No</label>
+                                        @Html.TextBoxFor(x => x.OPerator.VehicleNo, new { @class = "form-control", placeholder = "Vehicle No" })
+                                    </div>
+                                </div>*@
+                        </div>
+                    </div>
+                    <div class="col-md-12">
+                        <div class="row">
+                            <div class="box-header">
+                                <h3 class="box-title">Personal Info</h3>
+                            </div>
+                            <div class="box">
+                                <div class="box-body">
                                     <div class="row">
-                                        <div class="row">
-                                            <div class="col-md-6">
-                                            @*<h5>Attachments</h5>*@
-                                            <div class="box">
-                                                <div class="box-header">
-                                                    <h3 class="box-title">Attachments</h3>
+                                        <div class="col-md-4">
+                                            <div class="form-group">
+                                                <label>Father Name</label>
+                                                @Html.TextBoxFor(x => x.OPerator.FatherName, new { @class = "form-control alphaonly noSpecialChar", placeholder = "Father Name" })
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <div class="form-group">
+                                                <label>Date Of Birth</label>
+                                                <div class="input-group dtCss">
+                                                    @Html.TextBoxFor(x => x.OPerator.DateOfBirth, "{0:dd/MM/yyyy}", new { @class = "form-control", placeholder = "Date Of Birth" })
+                                                    <span class="input-group-btn">
+                                                        <button type="button" class="btn btn-default"><i class="fa fa-calendar" aria-hidden="true"></i></button>
+                                                    </span>
                                                 </div>
-                                                <div class="box-body">
-                                                    @*<div class="row">
-                <div class="col-md-3">
-                    <label>AADHAR CARD</label>
-                </div>
-                <div class="col-md-3">
-                    <input type="file" id="fadhar" name="fadhar" value="1375" />
-                </div>
-            </div>*@
-                                                    @{
-                                                        var adharStr = "";
-                                                        var panStr = "";
-                                                        var licenseStr = "";
-                                                        var voterStr = "";
-                                                        var profilepicStr = "";
-                                                        var fothers = "";
-                                                        if (Model.OPerator.operatorAttachment != null && Model.OPerator.operatorAttachment.Count > 0)
-                                                        {
-
-                                                            var fadharObj = Model.OPerator.operatorAttachment
-                                                                              .Where(x => x.lookupCode == "1375")
-                                                                              .FirstOrDefault();
-
-                                                            if (fadharObj != null)
-                                                            {
-                                                                adharStr = fadharObj.imagePath;
-                                                            }
-
-
-                                                            var fpanObj = Model.OPerator.operatorAttachment
-                                                                              .Where(x => x.lookupCode == "1374")
-                                                                              .FirstOrDefault();
-
-                                                            if (fpanObj != null)
-                                                            {
-                                                                panStr = fpanObj.imagePath;
-                                                            }
-
-
-                                                            var flicenseObj = Model.OPerator.operatorAttachment
-                                                                              .Where(x => x.lookupCode == "1376")
-                                                                              .FirstOrDefault();
-
-                                                            if (flicenseObj != null)
-                                                            {
-                                                                licenseStr = flicenseObj.imagePath;
-                                                            }
-
-
-                                                            var fvoterObj = Model.OPerator.operatorAttachment
-                                                                              .Where(x => x.lookupCode == "1377")
-                                                                              .FirstOrDefault();
-
-                                                            if (fvoterObj != null)
-                                                            {
-                                                                voterStr = fvoterObj.imagePath;
-                                                            }
-
-
-                                                            var fprofilepicObj = Model.OPerator.operatorAttachment
-                                                                              .Where(x => x.lookupCode == "1506")
-                                                                              .FirstOrDefault();
-
-                                                            if (fprofilepicObj != null)
-                                                            {
-                                                                profilepicStr = fprofilepicObj.imagePath;
-                                                            }
-                                                            var fothersObj = Model.OPerator.operatorAttachment.Where(x => x.lookupCode == "1382").FirstOrDefault();
-                                                            if (fothersObj != null)
-                                                            {
-                                                                fothers = fothersObj.imagePath;
-                                                            }
-
-                                                        }
-                                                    }
-                                                    <div class="row">
-                                                        <div class="col-md-3">
-                                                            <label>AADHAR CARD</label>
-                                                        </div>
-                                                        <div class="col-md-3">
-                                                            <div class="file-upload">
-                                                                <div class="file-select">
-                                                                    <div class="file-select-button" id="fileName">Choose File</div>
-                                                                    <input type="file"
-                                                                           id="fadhar"
-                                                                           name="fadhar"
-                                                                           value="1375"
-                                                                           title="@adharStr"
-                                                                           onchange="onFileChange(this, 'fadhardocFile','hdnfadhardocFile')" />                                                                  
-                                                                </div>
-                                                            </div>
-                                                        </div>    
-                                                       
-                                                        <div class="col-md-3">
-                                                            <div id="fadhardocFile">@adharStr</div>
-                                                            <input type="hidden" name="hdnfadhardocFile" id="hdnfadhardocFile" />
-                                                        </div>
-                                                       @if (!string.IsNullOrWhiteSpace(adharStr))
-                                                       {
-                                                        <div class="col-md-3">
-                                                            <a href="@Url.Content($"~/Attachments/" + Model.OPerator.OperatorID + "/" + adharStr)" target="_self" download="@adharStr">Download</a>
-                                                        </div>
-                                                        }
-                                                    </div>
-                                                    <div class="row" style="padding-top:5px">
-                                                        <div class="col-md-3">
-                                                            <label>PAN CARD</label>
-                                                        </div>
-                                                        <div class="col-md-3">
-                                                            <div class="file-upload">
-                                                                <div class="file-select">
-                                                                    <div class="file-select-button" id="fileName">Choose File</div>
-                                                                    <input type="file"
-                                                                           id="fpan"
-                                                                           name="fpan"
-                                                                           value="1374"
-                                                                           title="@panStr"
-                                                                           onchange="onFileChange(this, 'fpandocFile','hdnfpandocFile')" />
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                        <div class="col-md-3">
-                                                            <div id="fpandocFile">@panStr</div>
-                                                            <input type="hidden" name="hdnfpandocFile" id="hdnfpandocFile" />
-                                                        </div>
-                                               @if (!string.IsNullOrWhiteSpace(panStr))
+                                                @*<div class="input-group dtCss">
+                                                        @Html.TextBoxFor(x => x.OPerator.DateOfBirth,
+                                                           new
                                                            {
-                                                        <div class="col-md-3">
-                                                            <a href="@Url.Content($"~/Attachments/" + Model.OPerator.OperatorID + "/" + panStr)" target="_self" download="@panStr">Download</a>
-                                                        </div>
-                                                            }
-                                                    </div>
-                                                    <div class="row" style="padding-top:5px">
-                                                        <div class="col-md-3">
-                                                            <label>DRIVING LICENCE</label>
-                                                        </div>
-                                                        <div class="col-md-3">
-
-                                                            <div class="file-upload">
-                                                                <div class="file-select">
-                                                                    <div class="file-select-button" id="fileName">Choose File</div>
-                                                                    <input type="file"
-                                                                           id="flicense"
-                                                                           name="flicense"
-                                                                           value="1376"
-                                                                           title="@licenseStr"
-                                                                           onchange="onFileChange(this, 'flicensedocFile','hdnflicensedocFile')" />
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                        <div class="col-md-3">
-                                                            <div id="flicensedocFile">@licenseStr</div>
-                                                            <input type="hidden" name="hdnflicensedocFile" id="hdnflicensedocFile" />
-                                                        </div>
-                                           @if (!string.IsNullOrWhiteSpace(licenseStr))
-                                                  {
-                                                        <div class="col-md-3">
-                                                            <a href="@Url.Content($"~/Attachments/" + Model.OPerator.OperatorID + "/" + licenseStr)" target="_self" download="@licenseStr">Download</a>
-                                                        </div>
-                                                      }
-                                                    </div>
-                                                    <div class="row" style="padding-top:5px">
-                                                        <div class="col-md-3">
-                                                            <label>VOTER ID</label>
-                                                        </div>
-                                                        <div class="col-md-3">
-                                                            <div class="file-upload">
-                                                                <div class="file-select">
-                                                                    <div class="file-select-button" id="fileName">Choose File</div>
-                                                                    <input type="file"
-                                                                           id="fvoter"
-                                                                           name="fvoter"
-                                                                           value="1377"
-                                                                           title="@voterStr"
-                                                                           onchange="onFileChange(this, 'fvoterdocFile','hdnfvoterdocFile')" />
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                        <div class="col-md-3">
-                                                            <div id="fvoterdocFile">@voterStr</div>
-                                                            <input type="hidden" name="hdnfvoterdocFile" id="hdnfvoterdocFile" />                                 
-                                                        </div>
-                                                            @if (!string.IsNullOrWhiteSpace(voterStr))
-                                                            {
-                                                        <div class="col-md-3">
-                                                            <a href="@Url.Content($"~/Attachments/" + Model.OPerator.OperatorID + "/" + voterStr)" target="_self" download="@voterStr">Download</a>
-                                                        </div>
-                                                                }
-                                                    </div>
-                                                    @*<div class="row" style="padding-top:5px">
-                                                        <div class="col-md-3">
-                                                            <label>PROFILE PICTURE</label>
-                                                        </div>
-                                                        <div class="col-md-3">
-                                                            <div class="file-upload">
-                                                                <div class="file-select">
-                                                                    <div class="file-select-button" id="fileName">Choose File</div>
-                                                                    <input type="file"
-                                                                           id="fprofilepic"
-                                                                           name="fprofilepic"
-                                                                           value="1506"
-                                                                           title="@profilepicStr"
-                                                                           onchange="onFileChange(this, 'fprofilepicdocFile','hdnfprofilepicdocFile')" />
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                        <div class="col-md-3">
-                                                            <div id="fprofilepicdocFile">@profilepicStr</div>
-                                                            <input type="hidden" name="hdnfprofilepicdocFile" id="hdnfprofilepicdocFile" />
-                                                        </div>
-                                                           @if (!string.IsNullOrWhiteSpace(profilepicStr))
-                                                              {
-                                                        <div class="col-md-3">
-                                                            <a href="@Url.Content($"~/Attachments/" + Model.OPerator.OperatorID + "/" + profilepicStr)" target="_self" download="@profilepicStr">Download</a>
-                                                        </div>
-                                                         }
+                                                               @class = "form-control",
+                                                               placeholder = "Date Of Birth"
+                                                           })
+                                                        <span class="input-group-btn">
+                                                            <button type="button" class="btn btn-default"><i class="fa fa-calendar" aria-hidden="true"></i></button>
+                                                        </span>
                                                     </div>*@
-                                                    <div class="row" style="padding-top:5px">
-                                                        <div class="col-md-3">
-                                                            <label>OTHERS</label>
-                                                        </div>
-                                                        <div class="col-md-3">
-                                                            <input type="file" id="fothers" name="fothers" value="1382" multiple="multiple" />
-                                                            @*@Html.TextBoxFor(model => model.files, "", new { @type = "file", @multiple = "multiple" })*@
-                                                        </div>
-                                                        @*<div class="col-md-3">
-                                                            <a href="@Url.Content($"~/Attachments/"+Model.OPerator.OperatorID+"/" + fothers )" target="_self" download="@fothers">Download</a>
-                                                        </div>*@
-                                                    </div>                                                    
-                                                </div>
-                                                   
-                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <div class="form-group">
+                                                <label>Place Of Birth</label>
+                                                @Html.TextBoxFor(x => x.OPerator.PlaceOfBirth, new { @class = "form-control alphaonly noSpecialChar", placeholder = "Place Of Birth" })
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-4">
+                                            <div class="form-group">
+                                                <label>Gender</label>
+                                                @Html.DropDownListFor(x => x.OPerator.Gender, new SelectList(Model.operatorLookupDTO.genderOptions, "LookupId", "LookupDescription"), "Select Gender", new { @class = "form-control" })
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <div class="form-group">
+                                                <label>Marital Status</label>
+                                                @Html.DropDownListFor(x => x.OPerator.MaritialStatus, new SelectList(Model.operatorLookupDTO.maritalOptions, "LookupId", "LookupDescription"), "Select Marital Status", new { @class = "form-control" })
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <div class="form-group">
+                                                <label>Mobile No</label>
+                                                @Html.TextBoxFor(x => x.OPerator.MobileNo, new { @class = "form-control numCss", placeholder = "Mobile No", maxlength = 10 })
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-4">
+                                            <div class="form-group">
+                                                <label>Phone No</label>
+                                                @Html.TextBoxFor(x => x.OPerator.PhoneNo, new { @class = "form-control numCss", placeholder = "Phone No", maxlength = 10 })
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <label>Nationality</label>
+                                            <div class="form-group">
+                                                <select id="ddlNationality" class="form-control">
+                                                    <option value="Indian" ;Text="Indian">Indian</option>
+                                                </select>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
-                           
+                            </div>
+                        </div>
+
+
+                        <div class="row">
+                            <div class="box-header">
+                                <h3 class="box-title">Identification Info</h3>
+                            </div>
+                            <div class="box">
+                                <div class="box-body">
+                                    <div class="col-md-4">
+                                        <div class="form-group">
+                                            <label>PAN No</label>
+                                            @Html.TextBoxFor(x => x.OPerator.PANNo, new { @class = "form-control noSpecialChar", placeholder = "PAN No", @id = "panno", maxLength = 10 })
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="form-group">
+                                            <label>Aadhar Card No</label>
+                                            @Html.TextBoxFor(x => x.OPerator.AadharCardNo, new { @class = "form-control numCss", placeholder = "Aadhar Card No", maxLength = 12, @id = "AadharCardNo" })
+                                        </div>
+
+                                        @*<div class="col-md-4">
+                                                <div class="form-group">
+                                                    <label>License No</label>
+                                                    @Html.TextBoxFor(x => x.OPerator.LicenseNo, new { @class = "form-control", placeholder = "License No" })
+                                                </div>
+                                            </div>*@
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+
+                        <div class="row">
+
+                            @*<h5>Address Info</h5>*@
+                            <div class="box">
+                                <div class="box-header">
+                                    <h3 class="box-title">Address Info</h3>
+                                    <div class="box-tools">
+                                        <button class="btn btn-box-tool" type="button" onclick="AddAddress('-1')"><i class="fa fa-plus" aria-hidden="true"></i></button>
+                                    </div>
+                                </div>
+                                <div class="box-body">
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <table class="table table-hover table-bordered">
+                                                <thead>
+                                                    <tr>
+                                                        <th>Address 1</th>
+                                                        <th>Address 2</th>
+                                                        <th>Action</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody id="trBodyAddress">
+                                                    @if (Model.OPerator.AddressList != null)
+                                                    {
+                                                        for (var i = 0; i < Model.OPerator.AddressList.Count; i++)
+                                                        {
+                                                            <tr id="trRow_Address_@i" class="trRowCss">
+                                                                <td>
+                                                                    <span id="Address1_span_@i">@Model.OPerator.AddressList[i].Address1</span>
+                                                                    @Html.HiddenFor(x => Model.OPerator.AddressList[i].Address1)
+                                                                </td>
+                                                                <td>
+                                                                    <span id="Address2_span_@i">
+                                                                        @Model.OPerator.AddressList[i].Address2
+                                                                    </span>
+                                                                    @Html.HiddenFor(x => Model.OPerator.AddressList[i].Address2)
+                                                                </td>
+                                                                <td>
+                                                                    @Html.HiddenFor(x => Model.OPerator.AddressList[i].Address3)
+                                                                    @Html.HiddenFor(x => Model.OPerator.AddressList[i].Address4)
+                                                                    @Html.HiddenFor(x => Model.OPerator.AddressList[i].CityName)
+                                                                    @Html.HiddenFor(x => Model.OPerator.AddressList[i].StateName)
+                                                                    @Html.HiddenFor(x => Model.OPerator.AddressList[i].ZipCode)
+                                                                    @Html.HiddenFor(x => Model.OPerator.AddressList[i].IsActive)
+                                                                    @Html.HiddenFor(x => Model.OPerator.AddressList[i].AddressId)
+                                                                    @Html.HiddenFor(x => Model.OPerator.AddressList[i].AddressLinkId)
+                                                                    <a class="hand" onclick="EditAddress('@i')">Edit</a>&nbsp;|&nbsp;
+                                                                    <a class="hand" onclick="DeleteAddress('@i')">Delete</a>
+                                                                </td>
+                                                            </tr>
+                                                        }
+                                                    }
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        @*<div class="col-md-6">
+                                <h5>Attachments</h5>
+                                <div class="box">
+                                    <div class="box-header">
+                                        <h3 class="box-title">Attachments</h3>
+                                        <div class="box-tools">
+                                            <button class="btn btn-box-tool" type="button" onclick="AddAttachments()"><i class="fa fa-plus" aria-hidden="true"></i></button>
+                                        </div>
+                                    </div>
+                                    <div class="box-body">
+
+                                    </div>
+                                </div>
+                            </div>*@
+                        <div class="row">
+                            @*<h5>Bank Details</h5>*@
+                            <div class="box">
+                                <div class="box-header">
+                                    <h3 class="box-title">Bank Details</h3>
+                                    <div class="box-tools">
+                                        <button class="btn btn-box-tool" type="button" onclick="bankDetails('-1')"><i class="fa fa-plus" aria-hidden="true"></i></button>
+                                    </div>
+                                </div>
+                                <div class="box-body">
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <table class="table table-hover table-bordered">
+                                                <thead>
+                                                    <tr>
+                                                        <th>Bank Name</th>
+                                                        <th>Branch</th>
+                                                        <th>Account Number</th>
+                                                        <th>Account Type</th>
+                                                        @*<th>IFSC Code</th>*@
+                                                        <th>Action</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody id="trBodyBank">
+                                                    @if (Model.OPerator.BankDetails != null)
+                                                    {
+                                                        for (var i = 0; i < Model.OPerator.BankDetails.Count; i++)
+                                                        {
+                                                            <tr id="trRow_Bank_@i" class="trRowCss">
+                                                                <td>
+                                                                    <span id="txtBankName_span_@i">@Model.OPerator.BankDetails[i].BankName</span>
+                                                                    @Html.HiddenFor(x => Model.OPerator.BankDetails[i].BankName)
+                                                                </td>
+                                                                <td>
+                                                                    <span id="txtBranch_span_@i">@Model.OPerator.BankDetails[i].Branch</span>
+                                                                    @Html.HiddenFor(x => Model.OPerator.BankDetails[i].Branch)
+                                                                </td>
+                                                                <td>
+                                                                    <span id="txtAccNumber_span_@i">@Model.OPerator.BankDetails[i].AccountNumber</span>
+                                                                    @Html.HiddenFor(x => Model.OPerator.BankDetails[i].AccountNumber)
+                                                                </td>
+                                                                <td>
+                                                                    <span id="txtAccType_span_@i">@Model.OPerator.BankDetails[i].AccountType</span>
+                                                                    @Html.HiddenFor(x => Model.OPerator.BankDetails[i].AccountType)
+                                                                    @Html.HiddenFor(x => Model.OPerator.BankDetails[i].OperatorBankID)
+                                                                </td>
+                                                                @* <td>
+                                                                       <span id="txtIfsc_span_@i">@Model.OPerator.BankDetails[i].IFSC</span>
+                                                                       @Html.HiddenFor(x => Model.OPerator.BankDetails[i].IFSC)
+
+                                                                    </td>*@
+                                                                @*<td></td>*@
+                                                                <td>
+                                                                    <a class="hand" onclick="EditBankDetails('@i')">Edit</a>&nbsp;|&nbsp;
+                                                                    <a class="hand" onclick="DeleteBankDetails('@i')">Delete</a>
+                                                                </td>
+                                                            </tr>
+                                                        }
+                                                    }
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+
+
+                        @if (Model.OPerator.OperatorID != null)
+                        {
+                            <div class="row">
+                                <div class="col-md-6">
+                                    @*<h5>Vehicle Details</h5>*@
+                                    <div class="row">
+                                        <div class="box">
+                                            <div class="box-header">
+                                                <h3 class="box-title">Vehicle Details</h3>
+                                                <div class="box-tools">
+                                                    <button class="btn btn-box-tool" type="button" onclick="AddVehicle('-1')"><i class="fa fa-plus" aria-hidden="true"></i></button>
+                                                </div>
+                                            </div>
+                                            <div class="box-body">
+                                                <div class="row">
+                                                    <div class="col-md-12">
+                                                        <table class="table table-hover table-bordered" id="tblVehicle">
+                                                            <thead>
+                                                                <tr>
+                                                                    <th>Vehicle Registration No</th>
+                                                                    <th>Vehicle Type</th>
+                                                                    <th>Vehicle Category</th>
+                                                                    <th>Model</th>
+                                                                    @*<th>Tonnage</th>*@
+                                                                    <th>Kg's</th>
+                                                                    <th>Action</th>
+                                                                </tr>
+                                                            </thead>
+                                                            <tbody id="trBodyVehicle">
+                                                                @if (Model.OPerator.OperatorVehicle != null)
+                                                                {
+                                                                    for (var i = 0; i < Model.OPerator.OperatorVehicle.Count; i++)
+                                                                    {
+                                                                        <tr id="trRow_Vehicle_@i" class="trRowCss">
+                                                                            <td>
+                                                                                <span id="operatorVehicle_VehicleRegistrationNo_span_@i">@Model.OPerator.OperatorVehicle[i].VehicleRegistrationNo</span>
+                                                                                @Html.HiddenFor(x => Model.OPerator.OperatorVehicle[i].VehicleRegistrationNo, new { @class = "vehicleNoCss" })
+                                                                            </td>
+                                                                            <td>
+                                                                                <span id="operatorVehicle_VehicleType_span_@i">@Model.OPerator.OperatorVehicle[i].VehicleTypeDescription</span>
+                                                                                @Html.HiddenFor(x => Model.OPerator.OperatorVehicle[i].VehicleType)
+                                                                            </td>
+                                                                            <td>
+                                                                                <span id="operatorVehicle_VehicleCategory_span_@i">@Model.OPerator.OperatorVehicle[i].VehicleCategoryDescription</span>
+                                                                                @Html.HiddenFor(x => Model.OPerator.OperatorVehicle[i].VehicleCategory)
+                                                                            </td>
+                                                                            <td>
+                                                                                <span id="operatorVehicle_Model_span_@i">@Model.OPerator.OperatorVehicle[i].Model</span>
+                                                                                @Html.HiddenFor(x => Model.OPerator.OperatorVehicle[i].Model)
+                                                                            </td>
+                                                                            <td>
+                                                                                <span id="operatorVehicle_Tonnage_span_@i">@Model.OPerator.OperatorVehicle[i].Tonnage</span>
+                                                                                @Html.HiddenFor(x => Model.OPerator.OperatorVehicle[i].Tonnage)
+                                                                                @Html.HiddenFor(X => Model.OPerator.OperatorVehicle[i].registrationdoc)
+                                                                                @Html.HiddenFor(X => Model.OPerator.OperatorVehicle[i].pollutioncheckdoc)
+                                                                                @Html.HiddenFor(X => Model.OPerator.OperatorVehicle[i].insurancedoc)
+                                                                                @Html.HiddenFor(X => Model.OPerator.OperatorVehicle[i].othersdoc)
+                                                                                @Html.HiddenFor(x => Model.OPerator.OperatorVehicle[i].FrontImage)
+                                                                                @Html.HiddenFor(x => Model.OPerator.OperatorVehicle[i].BackImage)
+                                                                                @Html.HiddenFor(x => Model.OPerator.OperatorVehicle[i].LeftImage)
+                                                                                @Html.HiddenFor(x => Model.OPerator.OperatorVehicle[i].RightImage)
+                                                                                @Html.HiddenFor(x => Model.OPerator.OperatorVehicle[i].OperatorVehicleID)
+
+
+                                                                            </td>
+                                                                            <td>
+                                                                                <a class="hand" onclick="EditOperatorVehicle('@i')">Edit</a>&nbsp;|&nbsp;
+                                                                                <a class="hand" onclick="DeleteOperatorVehicle('@i')">Delete</a>
+                                                                            </td>
+                                                                        </tr>
+                                                                    }
+                                                                }
+                                                            </tbody>
+                                                        </table>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        @*}*@
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        @*<h5>Driver Details</h5>*@
+
+
+                                        <div class="box">
+                                            <div class="box-header">
+                                                <h3 class="box-title">Driver Details</h3>
+                                                <div class="box-tools">
+                                                    @*<button class="btn btn-box-tool" type="button" onclick="bankDetails()">Add</button>*@
+                                                    @*<button type="button" class="btn btn-box-tool" data-toggle="modal" data-target="#myModal"><i class="fa fa-plus" aria-hidden="true"></i></button>*@
+                                                    <button class="btn btn-default btn-sm btn-them " type="button" id="Btn_SendOperatorId">Add Driver</button>
+                                                    @*<button class="btn btn-default btn-sm btn-them " type="button" onclick="AddDriver('-1')">Add</button>*@
+                                                    @*<button class="btn btn-box-tool" type="button" onclick="AddDriver('-1')"><i class="fa fa-plus" aria-hidden="true"></i></button>location.href="@Url.Content("~/Driver/Add?OperatorID=OP171100001")"*@
+                                                </div>
+                                            </div>
+                                            <div class="box-body">
+                                                <div class="row">
+                                                    <div class="col-md-12">
+                                                        <table class="table table-hover table-bordered">
+                                                            <thead>
+                                                                <tr>
+                                                                    <th class="hidden">Driver ID</th>
+                                                                    <th>Driver Name</th>
+                                                                    <th>Driving Licence No</th>
+                                                                    <th>Driver Mobile No</th>
+                                                                    @*<th>Driver Vehicle No</th>*@
+                                                                    <th>Action</th>
+                                                                </tr>
+                                                            </thead>
+                                                            <tbody id="trBodyDriver">
+                                                                @if (Model.OPerator.OperatorDriverList != null)
+                                                                {
+                                                                    for (var i = 0; i < Model.OPerator.OperatorDriverList.Count; i++)
+                                                                    {
+                                                                        <tr id="trRow_Driver_@i" class="trRowCss">
+                                                                            <td class="hidden">
+                                                                                <span id="operatorDriverList_DriverID_span_@i">@Model.OPerator.OperatorDriverList[i].DriverID</span>
+                                                                                @Html.HiddenFor(x => Model.OPerator.OperatorDriverList[i].DriverID)
+                                                                            </td>
+                                                                            <td>
+                                                                                <span id="operatorDriverList_DriverName_span_@i">@Model.OPerator.OperatorDriverList[i].DriverName</span>
+                                                                                @Html.HiddenFor(x => Model.OPerator.OperatorDriverList[i].DriverName)
+                                                                            </td>
+                                                                            <td>
+                                                                                <span id="operatorDriverList_DriverLicenseNo_span_@i">@Model.OPerator.OperatorDriverList[i].LicenseNo</span>
+                                                                                @Html.HiddenFor(x => Model.OPerator.OperatorDriverList[i].LicenseNo)
+                                                                            </td>
+                                                                            <td>
+                                                                                <span id="operatorDriverList_DriverMobileNo_span_@i">@Model.OPerator.OperatorDriverList[i].MobileNo</span>
+                                                                                @Html.HiddenFor(x => Model.OPerator.OperatorDriverList[i].MobileNo)
+                                                                            </td>
+                                                                            @*<td>
+                                                                                    <span id="operatorDriverList_VehicleNo_span_@i">@Model.OPerator.OperatorDriverList[i].VehicleattachedNo</span>
+                                                                                    @Html.HiddenFor(x => Model.OPerator.OperatorDriverList[i].VehicleattachedNo)
+                                                                                </td>*@
+                                                                            <td>
+                                                                                @*<a class="hand" onclick="EditOperatorDriver('@i')">Edit</a>&nbsp;|&nbsp;*@
+                                                                                @*<a class="hand" href="@Url.Content(string.Format("~/Driver/Edit?driverID={0}", Model.OPerator.OperatorDriverList[i].DriverID))">Edit</a>&nbsp;|&nbsp;*@
+                                                                                <a class="hand" href="@Url.Content("~/Driver/Edit?driverID=" + Model.OPerator.OperatorDriverList[i].DriverID+"&OperatorID="+Model.OPerator.OperatorID)">Edit</a>&nbsp;|&nbsp;
+                                                                                <a class="hand" onclick="DeleteOperatorDriver('@Model.OPerator.OperatorDriverList[i].DriverID','@Model.OPerator.OperatorDriverList[i].DriverName')">Delete</a>
+                                                                            </td>
+                                                                        </tr>
+                                                                    }
+                                                                }
+                                                            </tbody>
+                                                        </table>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        }
+                        <div class="row">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    @*<h5>Attachments</h5>*@
+                                    <div class="box">
+                                        <div class="box-header">
+                                            <h3 class="box-title">Attachments</h3>
+                                        </div>
+                                        <div class="box-body">
+                                            @*<div class="row">
+                                                    <div class="col-md-3">
+                                                        <label>AADHAR CARD</label>
+                                                    </div>
+                                                    <div class="col-md-3">
+                                                        <input type="file" id="fadhar" name="fadhar" value="1375" />
+                                                    </div>
+                                                </div>*@
+                                            @{
+                                                var adharStr = "";
+                                                var panStr = "";
+                                                var licenseStr = "";
+                                                var voterStr = "";
+                                                var profilepicStr = "";
+                                                var fothers = "";
+                                                if (Model.OPerator.operatorAttachment != null && Model.OPerator.operatorAttachment.Count > 0)
+                                                {
+
+                                                    var fadharObj = Model.OPerator.operatorAttachment
+                                                                      .Where(x => x.lookupCode == "1375")
+                                                                      .FirstOrDefault();
+
+                                                    if (fadharObj != null)
+                                                    {
+                                                        adharStr = fadharObj.imagePath;
+                                                    }
+
+
+                                                    var fpanObj = Model.OPerator.operatorAttachment
+                                                                      .Where(x => x.lookupCode == "1374")
+                                                                      .FirstOrDefault();
+
+                                                    if (fpanObj != null)
+                                                    {
+                                                        panStr = fpanObj.imagePath;
+                                                    }
+
+
+                                                    var flicenseObj = Model.OPerator.operatorAttachment
+                                                                      .Where(x => x.lookupCode == "1376")
+                                                                      .FirstOrDefault();
+
+                                                    if (flicenseObj != null)
+                                                    {
+                                                        licenseStr = flicenseObj.imagePath;
+                                                    }
+
+
+                                                    var fvoterObj = Model.OPerator.operatorAttachment
+                                                                      .Where(x => x.lookupCode == "1377")
+                                                                      .FirstOrDefault();
+
+                                                    if (fvoterObj != null)
+                                                    {
+                                                        voterStr = fvoterObj.imagePath;
+                                                    }
+
+
+                                                    var fprofilepicObj = Model.OPerator.operatorAttachment
+                                                                      .Where(x => x.lookupCode == "1506")
+                                                                      .FirstOrDefault();
+
+                                                    if (fprofilepicObj != null)
+                                                    {
+                                                        profilepicStr = fprofilepicObj.imagePath;
+                                                    }
+                                                    var fothersObj = Model.OPerator.operatorAttachment.Where(x => x.lookupCode == "1382").FirstOrDefault();
+                                                    if (fothersObj != null)
+                                                    {
+                                                        fothers = fothersObj.imagePath;
+                                                    }
+
+                                                }
+                                            }
+                                            <div class="row">
+                                                <div class="col-md-3">
+                                                    <label>AADHAR CARD</label>
+                                                </div>
+                                                <div class="col-md-3">
+                                                    <div class="file-upload">
+                                                        <div class="file-select">
+                                                            <div class="file-select-button" id="fileName">Choose File</div>
+                                                            <input type="file"
+                                                                   id="fadhar"
+                                                                   name="fadhar"
+                                                                   value="1375"
+                                                                   title="@adharStr"
+                                                                   onchange="onFileChange(this, 'fadhardocFile','hdnfadhardocFile')" />
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <div class="col-md-3">
+                                                    <div id="fadhardocFile">@adharStr</div>
+                                                    <input type="hidden" name="hdnfadhardocFile" id="hdnfadhardocFile" class="white-space" />
+                                                </div>
+                                                @if (!string.IsNullOrWhiteSpace(adharStr))
+                                                {
+                                                    <div class="col-md-3">
+                                                        <a href="@Url.Content($"~/Attachments/" + Model.OPerator.OperatorID + "/" + adharStr)" target="_self" download="@adharStr">Download</a>
+                                                    </div>
+                                                }
+                                            </div>
+                                            <div class="row" style="padding-top:5px">
+                                                <div class="col-md-3">
+                                                    <label>PAN CARD</label>
+                                                </div>
+                                                <div class="col-md-3">
+                                                    <div class="file-upload">
+                                                        <div class="file-select">
+                                                            <div class="file-select-button" id="fileName">Choose File</div>
+                                                            <input type="file"
+                                                                   id="fpan"
+                                                                   name="fpan"
+                                                                   value="1374"
+                                                                   title="@panStr"
+                                                                   onchange="onFileChange(this, 'fpandocFile','hdnfpandocFile')" />
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-3">
+                                                    <div id="fpandocFile">@panStr</div>
+                                                    <input type="hidden" name="hdnfpandocFile" id="hdnfpandocFile" />
+                                                </div>
+                                                @if (!string.IsNullOrWhiteSpace(panStr))
+                                                {
+                                                    <div class="col-md-3">
+                                                        <a href="@Url.Content($"~/Attachments/" + Model.OPerator.OperatorID + "/" + panStr)" target="_self" download="@panStr">Download</a>
+                                                    </div>
+                                                }
+                                            </div>
+                                            <div class="row" style="padding-top:5px">
+                                                <div class="col-md-3">
+                                                    <label>DRIVING LICENCE</label>
+                                                </div>
+                                                <div class="col-md-3">
+
+                                                    <div class="file-upload">
+                                                        <div class="file-select">
+                                                            <div class="file-select-button" id="fileName">Choose File</div>
+                                                            <input type="file"
+                                                                   id="flicense"
+                                                                   name="flicense"
+                                                                   value="1376"
+                                                                   title="@licenseStr"
+                                                                   onchange="onFileChange(this, 'flicensedocFile','hdnflicensedocFile')" />
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-3">
+                                                    <div id="flicensedocFile">@licenseStr</div>
+                                                    <input type="hidden" name="hdnflicensedocFile" id="hdnflicensedocFile" />
+                                                </div>
+                                                @if (!string.IsNullOrWhiteSpace(licenseStr))
+                                                {
+                                                    <div class="col-md-3">
+                                                        <a href="@Url.Content($"~/Attachments/" + Model.OPerator.OperatorID + "/" + licenseStr)" target="_self" download="@licenseStr">Download</a>
+                                                    </div>
+                                                }
+                                            </div>
+                                            <div class="row" style="padding-top:5px">
+                                                <div class="col-md-3">
+                                                    <label>VOTER ID</label>
+                                                </div>
+                                                <div class="col-md-3">
+                                                    <div class="file-upload">
+                                                        <div class="file-select">
+                                                            <div class="file-select-button" id="fileName">Choose File</div>
+                                                            <input type="file"
+                                                                   id="fvoter"
+                                                                   name="fvoter"
+                                                                   value="1377"
+                                                                   title="@voterStr"
+                                                                   onchange="onFileChange(this, 'fvoterdocFile','hdnfvoterdocFile')" />
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-3">
+                                                    <div id="fvoterdocFile">@voterStr</div>
+                                                    <input type="hidden" name="hdnfvoterdocFile" id="hdnfvoterdocFile" />
+                                                </div>
+                                                @if (!string.IsNullOrWhiteSpace(voterStr))
+                                                {
+                                                    <div class="col-md-3">
+                                                        <a href="@Url.Content($"~/Attachments/" + Model.OPerator.OperatorID + "/" + voterStr)" target="_self" download="@voterStr">Download</a>
+                                                    </div>
+                                                }
+                                            </div>
+                                            @*<div class="row" style="padding-top:5px">
+                                                    <div class="col-md-3">
+                                                        <label>PROFILE PICTURE</label>
+                                                    </div>
+                                                    <div class="col-md-3">
+                                                        <div class="file-upload">
+                                                            <div class="file-select">
+                                                                <div class="file-select-button" id="fileName">Choose File</div>
+                                                                <input type="file"
+                                                                       id="fprofilepic"
+                                                                       name="fprofilepic"
+                                                                       value="1506"
+                                                                       title="@profilepicStr"
+                                                                       onchange="onFileChange(this, 'fprofilepicdocFile','hdnfprofilepicdocFile')" />
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-3">
+                                                        <div id="fprofilepicdocFile">@profilepicStr</div>
+                                                        <input type="hidden" name="hdnfprofilepicdocFile" id="hdnfprofilepicdocFile" />
+                                                    </div>
+                                                       @if (!string.IsNullOrWhiteSpace(profilepicStr))
+                                                          {
+                                                    <div class="col-md-3">
+                                                        <a href="@Url.Content($"~/Attachments/" + Model.OPerator.OperatorID + "/" + profilepicStr)" target="_self" download="@profilepicStr">Download</a>
+                                                    </div>
+                                                     }
+                                                </div>*@
+                                            <div class="row" style="padding-top:5px">
+                                                <div class="col-md-3">
+                                                    <label>OTHERS</label>
+                                                </div>
+                                                <div class="col-md-3">
+                                                    <input type="file" id="fothers" name="fothers" value="1382" multiple="multiple" />
+                                                    @*@Html.TextBoxFor(model => model.files, "", new { @type = "file", @multiple = "multiple" })*@
+                                                </div>
+                                                @*<div class="col-md-3">
+                                                        <a href="@Url.Content($"~/Attachments/"+Model.OPerator.OperatorID+"/" + fothers )" target="_self" download="@fothers">Download</a>
+                                                    </div>*@
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
                 </div>
             </div>
         </div>
     </section>
-   
-                                                        }
+
+                                                }
 <div id="DriverModal" class="modal">
     <div class="modal-dialog modal-md">
         <form id="frmDriver" name="frmDriver">
@@ -821,11 +825,11 @@
                         </div>
                     </div>
                     @*<div class="row">
-                        <div class="col-md-6">
-                            <label>Vehicle Attached No</label>
-                            @Html.DropDownList("operatorDriverList_VehicleNo", new SelectList(ViewBag.VehicleNo, "Value", "Text"), "Select Category", new { @class = "form-control input-sm" })
-                        </div>
-                    </div>*@<br />
+                            <div class="col-md-6">
+                                <label>Vehicle Attached No</label>
+                                @Html.DropDownList("operatorDriverList_VehicleNo", new SelectList(ViewBag.VehicleNo, "Value", "Text"), "Select Category", new { @class = "form-control input-sm" })
+                            </div>
+                        </div>*@<br />
                     <div class="modal-footer">
                         <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Close</button>
                         <button type="button" onclick="btnSavedriver();" class="btn btn-primary btn-them">Save</button>
@@ -838,236 +842,240 @@
 
 @using (Html.BeginForm("SaveVehicle", "Operator", FormMethod.Post, new { id = "frmVehicle", name = "frmVehicle", enctype = "multipart/form-data" }))
 {
-<div id="VehicleModal" class="modal">
-    <div class="modal-dialog modal-md">
-        <form id="frmVehicle" name="frmVehicle">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal" id="vehicle_cancel" aria-label="Close" >
-                        <span aria-hidden="true">×</span>
-                    </button>
-                    <h4 class="modal-title">Vehicle Info</h4>
+    <div id="VehicleModal" class="modal">
+        <div class="modal-dialog modal-md">
+            <form id="frmVehicle" name="frmVehicle">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" id="vehicle_cancel" aria-label="Close">
+                            <span aria-hidden="true">×</span>
+                        </button>
+                        <h4 class="modal-title">Vehicle Info</h4>
+                    </div>
+                    @if (Model.OPerator.OperatorVehicle != null)
+                    {
+                        <div class="modal-body" id="vehicleModalBody">
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <label>Vehicle Registration No</label>
+                                    @Html.Hidden("OperatorVehicleID", Model.OPerator.OperatorID)
+                                    @*<input type="hidden" name="hdnOperatorVehicleID" id="hdnOperatorVehicleID" />*@
+                                    @Html.TextBox("VehicleRegistrationNo", "", new { @class = "form-control noSpecialChar", onchange = "VehicleNo(this)" })
+                                </div>
+                                <div class="col-md-2">
+
+                                    <div>
+                                        <img id="imgFrontImage" @*onerror="this.src='~/images/vehicle_open1_selected.png';"*@ style="width:50px;height:50px" />
+                                    </div>
+                                </div>
+                                <div class="col-md-3">
+                                    <div class="file-upload">
+                                        <div class="file-select">
+                                            <div class="file-select-button" id="fileName">Front Image</div>
+                                            <input type="file" id="FrontImage" name="FrontImage" value="1395" title=" " onchange="onFileChange(this, 'frontimagedocFile', 'hdnfrontimagedocFile')" />
+                                        </div>
+
+                                    </div>
+                                </div>
+                                <div class="col-md-3">
+                                    <div id="frontimagedocFile"></div>
+                                    <input type="hidden" name="hdnfrontimagedocFile" id="hdnfrontimagedocFile" />
+
+                                </div>
+
+
+                            </div>
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <label>Vehicle Type</label>
+                                    @Html.DropDownList("VehicleType", new SelectList(ViewBag.VehicleType, "Value", "Text"), "Select Category", new { @class = "form-control input-sm" })
+                                </div>
+
+
+                                <div class="col-md-2">
+
+                                    <div>
+                                        <img id="imgBackImage" @*onerror="this.src='~/images/vehicle_open1_selected.png';"*@ style="width:50px;height:50px" />
+                                    </div>
+                                </div>
+
+                                <div class="col-md-3">
+                                    <div class="file-upload">
+                                        <div class="file-select">
+                                            <div class="file-select-button" id="fileName">Back Image</div>
+                                            <input type="file" id="BackImage" name="BackImage" value="1396" title=" " onchange="onFileChange(this, 'backimagedocFile', 'hdnbackimagedocFile')" />
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-3">
+                                    <div id="backimagedocFile"></div>
+                                    <input type="hidden" name="hdnbackimagedocFile" id="hdnbackimagedocFile" />
+                                </div>
+
+
+
+
+
+                            </div>
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <label>Vehicle Category</label>
+                                    @Html.DropDownList("VehicleCategory", new SelectList(ViewBag.VehicleCategory, "Value", "Text"), "Select Category", new { @class = "form-control input-sm", onchange = "onChangeVehicleCategory(this)" })
+                                </div>
+
+                                <div class="col-md-2">
+
+                                    <div>
+                                        <img id="imgLeftImage" @*onerror="this.src='~/images/vehicle_open1_selected.png';"*@ style="width:50px;height:50px" />
+                                    </div>
+                                </div>
+
+
+                                <div class="col-md-3">
+                                    <div class="file-upload">
+                                        <div class="file-select">
+                                            <div class="file-select-button" id="fileName">Left Image</div>
+                                            <input type="file" id="LeftImage" name="LeftImage" value="1397" title=" " onchange="onFileChange(this, 'leftimagedocFile', 'hdnleftimagedocFile')" />
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-3">
+                                    <div id="leftimagedocFile"></div>
+                                    <input type="hidden" name="hdnleftimagedocFile" id="hdnleftimagedocFile" />
+
+                                    @*@Model.OPerator.OperatorVehicle.FirstOrDefault().LeftImage*@
+                                </div>
+
+
+
+                            </div>
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <label>Model</label>
+                                    @Html.DropDownList("Model", new SelectList("Value", "Text"), "Select Category", new { @class = "form-control input-sm", onchange = "ModelChanged(this)", @disabled = "disabled" })
+                                </div>
+
+
+
+                                <div class="col-md-2">
+
+                                    <div>
+                                        <img id="imgRightImage" @*onerror="this.src='~/images/vehicle_open1_selected.png';"*@ style="width:50px;height:50px" />
+                                    </div>
+                                </div>
+
+                                <div class="col-md-3">
+                                    <div class="file-upload">
+                                        <div class="file-select">
+                                            <div class="file-select-button" id="fileName"> Right Image</div>
+                                            <input type="file" id="RightImage" name="RightImage" value="1398" title=" " onchange="onFileChange(this, 'rightimagedocFile', 'hdnrightimagedocFile')" />
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-3">
+                                    <div id="rightimagedocFile"></div>
+                                    <input type="hidden" name="hdnrightimagedocFile" id="hdnrightimagedocFile" />
+                                </div>
+
+
+
+
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    @*<label>Tonnage</label>*@
+                                    <label>Kg's</label>
+                                    @Html.TextBox("Tonnage", "", new { @class = "form-control", @readonly = "readonly" })
+                                </div>
+                            </div><br />
+                            <div class="row">
+                                <div class="col-md-3">
+                                    <label>Registration (RC)</label>
+                                </div>
+                                <div class="col-md-3">
+                                    <div class="file-upload">
+                                        <div class="file-select">
+                                            <div class="file-select-button" id="fileName">Choose File</div>
+                                            <input type="file" id="registrationdoc" name="registrationdoc" value="1391" title=" " onchange="onFileChange(this, 'registrationdocFile','hdnRegistrationdocFile')" />
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-3">
+                                    <div id="registrationdocFile"></div>
+                                    <input type="hidden" name="hdnRegistrationdocFile" id="hdnRegistrationdocFile" />
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-3">
+                                    <label>Insurance</label>
+                                </div>
+                                <div class="col-md-3">
+                                    <div class="file-upload">
+                                        <div class="file-select">
+                                            <div class="file-select-button" id="fileName">Choose File</div>
+                                            <input type="file" id="insurancedoc" name="insurancedoc" value="1392" title=" " onchange="onFileChange(this, 'insurancedocFile','hdnInsurancedocFile')" />
+                                        </div>
+                                    </div>
+
+                                </div>
+                                <div class="col-md-3">
+                                    <div id="insurancedocFile"></div>
+                                    <input type="hidden" name="hdnInsurancedocFile" id="hdnInsurancedocFile" />
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-3">
+                                    <label>Pollution Check</label>
+                                </div>
+                                <div class="col-md-3">
+                                    <div class="file-upload">
+                                        <div class="file-select">
+                                            <div class="file-select-button" id="fileName">Choose File</div>
+                                            <input type="file" id="pollutioncheckdoc" name="pollutioncheckdoc" value="1393" title=" " onchange="onFileChange(this, 'pollutioncheckdocFile','hdnPollutioncheckdocFile')" />
+                                        </div>
+                                    </div>
+
+                                </div>
+                                <div class="col-md-3">
+                                    <div id="pollutioncheckdocFile"></div>
+                                    <input type="hidden" name="hdnPollutioncheckdocFile" id="hdnPollutioncheckdocFile" />
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-3">
+                                    <label>Others</label>
+                                </div>
+                                <div class="col-md-3">
+                                    <div class="file-upload">
+                                        <div class="file-select">
+                                            <div class="file-select-button" id="fileName">Choose File</div>
+                                            <input type="file" id="othersdoc" name="othersdoc" value="1394" title=" " onchange="onFileChange(this, 'othersdocFile','hdnOthersdocFile')" />
+                                        </div>
+                                    </div>
+
+                                </div>
+                                <div class="col-md-3">
+                                    <div id="othersdocFile"></div>
+                                    <input type="hidden" name="hdnOthersdocFile" id="hdnOthersdocFile" />
+                                </div>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-default pull-left" data-dismiss="modal" id="vehicle_cancel">Close</button>
+                                <button type="button" onclick="btnSaveVehicle();" class="btn btn-primary btn-them">Save</button><!--onclick="btnSaveVehicle();"-->
+                            </div>
+                        </div>
+                    }
                 </div>
-                <div class="modal-body" id="vehicleModalBody">
-                    <div class="row">
-                        <div class="col-md-4">
-                            <label>Vehicle Registration No</label>
-                            @Html.Hidden("OperatorVehicleID", Model.OPerator.OperatorID)
-                            @Html.TextBox("VehicleRegistrationNo", "", new { @class = "form-control noSpecialChar", onchange = "VehicleNo(this)" })
-                        </div>
-                        <div class="col-md-2">
-                           
-                            <div>
-                                <img src="@Url.Content("~/VehicleAttachments/" +  Model.OPerator.OperatorVehicle.FirstOrDefault().OperatorVehicleID + "/" + Model.OPerator.OperatorVehicle.FirstOrDefault().VehicleRegistrationNo+ "/" + Model.OPerator.OperatorVehicle.FirstOrDefault().FrontImage)" @*onerror="this.src='~/images/vehicle_open1_selected.png';"*@ style="width:50px;height:50px" />
-                            </div>
-                        </div>
-                        <div class="col-md-3">
-                            <div class="file-upload">
-                                <div class="file-select">
-                                    <div class="file-select-button" id="fileName">Front Image</div>
-                                    <input type="file" id="FrontImage" name="FrontImage" value="1395" title=" " onchange="onFileChange(this, 'frontimagedocFile', 'hdnfrontimagedocFile')" />
-                                </div>
-                                
-                            </div>
-                        </div>
-                        <div class="col-md-3">
-                            <div id="frontimagedocFile"></div>
-                            <input type="hidden" name="hdnfrontimagedocFile" id="hdnfrontimagedocFile" />
-                    
-                        </div>
-
-
-                    </div>
-                    <div class="row">
-                        <div class="col-md-4">
-                            <label>Vehicle Type</label>
-                            @Html.DropDownList("VehicleType", new SelectList(ViewBag.VehicleType, "Value", "Text"), "Select Category", new { @class = "form-control input-sm" })
-                        </div>
-
-                       
-                        <div class="col-md-2">
-
-                            <div>
-                                <img src="@Url.Content("~/VehicleAttachments/" +  Model.OPerator.OperatorVehicle.FirstOrDefault().OperatorVehicleID + "/" + Model.OPerator.OperatorVehicle.FirstOrDefault().VehicleRegistrationNo+ "/" + Model.OPerator.OperatorVehicle.FirstOrDefault().BackImage)" style="width:50px;height:50px" />
-                            </div>
-                        </div>
-                        
-                        <div class="col-md-3">
-                            <div class="file-upload">
-                                <div class="file-select">
-                                    <div class="file-select-button" id="fileName">Back Image</div>
-                                    <input type="file" id="BackImage" name="BackImage" value="1396" title=" " onchange="onFileChange(this, 'backimagedocFile', 'hdnbackimagedocFile')" />
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-3">
-                            <div id="backimagedocFile"></div>
-                            <input type="hidden" name="hdnbackimagedocFile" id="hdnbackimagedocFile" />
-                        </div>
-
-
-                      
-
-
-                    </div>
-                    <div class="row">
-                        <div class="col-md-4">
-                            <label>Vehicle Category</label>
-                            @Html.DropDownList("VehicleCategory", new SelectList(ViewBag.VehicleCategory, "Value", "Text"), "Select Category", new { @class = "form-control input-sm", onchange = "onChangeVehicleCategory(this)" })
-                        </div>
-
-                        <div class="col-md-2">
-
-                            <div>
-                                <img src="@Url.Content("~/VehicleAttachments/" +  Model.OPerator.OperatorVehicle.FirstOrDefault().OperatorVehicleID + "/" + Model.OPerator.OperatorVehicle.FirstOrDefault().VehicleRegistrationNo+ "/" + Model.OPerator.OperatorVehicle.FirstOrDefault().LeftImage)" style="width:50px;height:50px" />
-                            </div>
-                        </div>
-
-
-                        <div class="col-md-3">
-                            <div class="file-upload">
-                                <div class="file-select">
-                                    <div class="file-select-button" id="fileName">Left Image</div>
-                                    <input type="file" id="LeftImage" name="LeftImage" value="1397" title=" " onchange="onFileChange(this, 'leftimagedocFile', 'hdnleftimagedocFile')" />
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-3">
-                            <div id="leftimagedocFile"></div>
-                            <input type="hidden" name="hdnleftimagedocFile" id="hdnleftimagedocFile" />
-
-                            @*@Model.OPerator.OperatorVehicle.FirstOrDefault().LeftImage*@
-                        </div>
-
-
-                       
-                    </div>
-                    <div class="row">
-                        <div class="col-md-4">
-                            <label>Model</label>
-                            @Html.DropDownList("Model", new SelectList("Value", "Text"), "Select Category", new { @class = "form-control input-sm", onchange = "ModelChanged(this)", @disabled = "disabled" })
-                        </div>
-
-
-
-                        <div class="col-md-2">
-
-                            <div>
-                                <img src="@Url.Content("~/VehicleAttachments/" +  Model.OPerator.OperatorVehicle.FirstOrDefault().OperatorVehicleID + "/" + Model.OPerator.OperatorVehicle.FirstOrDefault().VehicleRegistrationNo+ "/" + Model.OPerator.OperatorVehicle.FirstOrDefault().RightImage)" style="width:50px;height:50px" />
-                            </div>
-                        </div>
-
-                        <div class="col-md-3">
-                            <div class="file-upload">
-                                <div class="file-select">
-                                    <div class="file-select-button" id="fileName"> Right Image</div>
-                                    <input type="file" id="RightImage" name="RightImage" value="1398" title=" " onchange="onFileChange(this, 'rightimagedocFile', 'hdnrightimagedocFile')" />
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-3">
-                            <div id="rightimagedocFile"></div>
-                            <input type="hidden" name="hdnrightimagedocFile" id="hdnrightimagedocFile" />
-                        </div>
-
-                        
-
-
-                    </div>
-                    <div class="row">
-                        <div class="col-md-6">
-                            @*<label>Tonnage</label>*@ 
-                            <label>Kg's</label>                           
-                            @Html.TextBox("Tonnage", "", new { @class = "form-control", @readonly = "readonly" })
-                        </div>
-                    </div><br />
-                    <div class="row">
-                        <div class="col-md-3">
-                            <label>Registration (RC)</label>
-                        </div>
-                        <div class="col-md-3">                            
-                            <div class="file-upload">
-                                <div class="file-select">
-                                    <div class="file-select-button" id="fileName">Choose File</div>                                    
-                                    <input type="file" id="registrationdoc" name="registrationdoc" value="1391" title=" " onchange="onFileChange(this, 'registrationdocFile','hdnRegistrationdocFile')" />
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-3">
-                            <div id="registrationdocFile"></div>
-                            <input type="hidden" name="hdnRegistrationdocFile" id="hdnRegistrationdocFile" />
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-md-3">
-                            <label>Insurance</label>
-                        </div>
-                        <div class="col-md-3">
-                            <div class="file-upload">
-                                <div class="file-select">
-                                    <div class="file-select-button" id="fileName">Choose File</div>
-                                    <input type="file" id="insurancedoc" name="insurancedoc" value="1392"  title=" " onchange="onFileChange(this, 'insurancedocFile','hdnInsurancedocFile')" />
-                                </div>
-                            </div>
-                            
-                        </div>
-                        <div class="col-md-3">
-                            <div id="insurancedocFile"></div>
-                            <input type="hidden" name="hdnInsurancedocFile" id="hdnInsurancedocFile" />
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-md-3">
-                            <label>Pollution Check</label>
-                        </div>
-                        <div class="col-md-3">
-                            <div class="file-upload">
-                                <div class="file-select">
-                                    <div class="file-select-button" id="fileName">Choose File</div>
-                                    <input type="file" id="pollutioncheckdoc" name="pollutioncheckdoc" value="1393"  title=" " onchange="onFileChange(this, 'pollutioncheckdocFile','hdnPollutioncheckdocFile')" />
-                                </div>
-                            </div>
-                            
-                        </div>
-                        <div class="col-md-3">
-                            <div id="pollutioncheckdocFile"></div>
-                            <input type="hidden" name="hdnPollutioncheckdocFile" id="hdnPollutioncheckdocFile" />
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-md-3">
-                            <label>Others</label>
-                        </div>
-                        <div class="col-md-3">
-                            <div class="file-upload">
-                                <div class="file-select">
-                                    <div class="file-select-button" id="fileName">Choose File</div>
-                                    <input type="file" id="othersdoc" name="othersdoc" value="1394"  title=" " onchange="onFileChange(this, 'othersdocFile','hdnOthersdocFile')" />
-                                </div>
-                            </div>
-                            
-                        </div>
-                        <div class="col-md-3">
-                            <div id="othersdocFile"></div>
-                            <input type="hidden" name="hdnOthersdocFile" id="hdnOthersdocFile" />
-                        </div>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-default pull-left" data-dismiss="modal" id="vehicle_cancel" >Close</button>
-                        <button type="button" onclick="btnSaveVehicle();" class="btn btn-primary btn-them">Save</button><!--onclick="btnSaveVehicle();"-->
-                    </div>
-                </div>
-            </div>
-        </form>
+            </form>
+        </div>
     </div>
-</div>
 }
 <div class="modal" id="addressModal">
     <div class="modal-dialog modal-md">
         <form id="frmAddress" name="frmAddress">
             <div class="modal-content">
                 <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal"  id="address_cancel" aria-label="Close">
+                    <button type="button" class="close" data-dismiss="modal" id="address_cancel" aria-label="Close">
                         <span aria-hidden="true">×</span>
                     </button>
                     <h4 class="modal-title">Address Info</h4>
@@ -1076,7 +1084,7 @@
                     <div class="row">
                         <div class="col-md-6">
                             <label>Address 1</label>
-                        
+
                             <input class="form-control" id="Address1" name="Address1" type="text" value="">
                         </div>
                         <div class="col-md-6">
@@ -1114,7 +1122,7 @@
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-default pull-left" data-dismiss="modal" >Close</button>
+                    <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Close</button>
                     <button type="button" onclick="btnSaveAddress();" class="btn btn-primary btn-them ">Save</button>
                 </div>
             </div>
@@ -1123,38 +1131,38 @@
 </div>
 
 @*<div class="modal" id="attachmentModal">
-    <div class="modal-dialog modal-md">
-        <form id="frmAttachments" method="post">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">×</span>
-                    </button>
-                    <h4 class="modal-title">Attachment</h4>
-                </div>
-                <div class="modal-body" id="attachment">
-                    <div class="row">
-                        <div class="col-md-6">
-                            <select id="ddlAttachment" class="form-control"></select>
-                        </div>
-                        <div class="col-md-6">
-                            <input type="file" id="fileAttachment" />
+        <div class="modal-dialog modal-md">
+            <form id="frmAttachments" method="post">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">×</span>
+                        </button>
+                        <h4 class="modal-title">Attachment</h4>
+                    </div>
+                    <div class="modal-body" id="attachment">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <select id="ddlAttachment" class="form-control"></select>
+                            </div>
+                            <div class="col-md-6">
+                                <input type="file" id="fileAttachment" />
+                            </div>
                         </div>
                     </div>
+                    <div class="modal-footer">
+                        <button id="btnSave" class="btn btn-primary btn-them " type="button" onclick="saveAttachment()">Save</button>
+                    </div>
                 </div>
-                <div class="modal-footer">
-                    <button id="btnSave" class="btn btn-primary btn-them " type="button" onclick="saveAttachment()">Save</button>
-                </div>
-            </div>
-        </form>
-    </div>
-</div>*@
+            </form>
+        </div>
+    </div>*@
 <div class="modal" id="bankDetailsModal">
     <div class="modal-dialog modal-md">
         <form id="frmBank" name="frmBank">
             <div class="modal-content">
                 <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal" id="bank_cancel"  aria-label="Close">
+                    <button type="button" class="close" data-dismiss="modal" id="bank_cancel" aria-label="Close">
                         <span aria-hidden="true">×</span>
                     </button>
                     <h4 class="modal-title">Bank Details</h4>
@@ -1173,7 +1181,7 @@
                     <div class="row">
                         <div class="col-md-6">
                             <label>Account Number</label>
-                            <input type="text" id="txtAccNumber" name="txtAccNumber" class="form-control number" maxlength="20"/>
+                            <input type="text" id="txtAccNumber" name="txtAccNumber" class="form-control number" maxlength="20" />
                         </div>
                         <div class="col-md-6">
                             <label>Account Type</label>
@@ -1181,10 +1189,11 @@
                             <select id="txtAccType" name="txtAccType" class="form-control noSpecialChar">
                                 <option value="savings">savings</option>
                                 <option value="current">current</option>
-                                
+
                             </select>
-                           
+
                         </div>
+                    </div>
                         <div class="row">
                             <div class="col-md-6">
                                 <label>IFSC Code</label>
@@ -1192,17 +1201,17 @@
                             </div>
                         </div>
                         <input type="hidden" id="OperatorBankID" name="OperatorBankID" value="" />
-                    </div>
+                    
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-default pull-left" data-dismiss="modal" id="bank_cancel" >Close</button>
+                    <button type="button" class="btn btn-default pull-left" data-dismiss="modal" id="bank_cancel">Close</button>
                     <button id="btnSave" type="button" class="btn btn-primary btn-them " onclick="btnSaveBank();">Save</button>
                 </div>
             </div>
         </form>
-       
+
     </div>
-    
+
 </div>
 <div class="col-md-12">
     <div class="box">
@@ -1225,7 +1234,7 @@
     <script src="@Url.Content("~/Scripts/Internal/OperatorDriver.js")"></script>
     <script src="@Url.Content("~/Scripts/Internal/OperatorVehicle.js")"></script>
     <script src="@Url.Content("~/Scripts/Internal/OperatorBankDetails.js")"></script>
- 
+
 
     <script type="text/javascript">
 
@@ -1245,7 +1254,7 @@
             $('#operatorVehicle_VehicleCategory').val('');
             $('#operatorVehicle_Model').val('');
             $('#operatorVehicle_Tonnage').val('');
-         
+
         }
         function DeleteOperatorDriver(driverID, driverName) {
 
@@ -1382,7 +1391,7 @@
                     {
                         <text> $('#OPerator_DateOfBirth').val('');</text>
                     }
-          
+
 
             $('#frmOperatorAdd').validate({
                 rules: {
@@ -1435,10 +1444,10 @@
                 format: DateFormat,
                 maxDate: date1
             });
-           
+
         });
-       
-      
+
+
         function btnSave() {
             debugger;
             if ($('#frmOperatorAdd').valid()) {
@@ -1639,7 +1648,7 @@
         //    $('#bankDetailsModal').modal('hide');
         //}
         function AddVehicle(index) {
-            
+
             $('#frmVehicle input[type="text"]').removeClass('error');
             $('#frmVehicle select').removeClass('error');
             $('#VehicleRegistrationNo, #VehicleType, #VehicleCategory, #Model, #Tonnage').val('');

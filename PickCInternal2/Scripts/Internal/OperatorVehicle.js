@@ -88,7 +88,7 @@ function EditOperatorVehicle(index) {
             $('#Tonnage').val($('#' + baseID + 'Tonnage').val());
         });
     });   
-    
+    debugger;
     $('#frontimagedocFile').text($('#' + baseID + 'FrontImage').val());
     $('#backimagedocFile').text($('#' + baseID + 'BackImage').val());
     $('#leftimagedocFile').text($('#' + baseID + 'LeftImage').val());
@@ -111,9 +111,15 @@ function EditOperatorVehicle(index) {
     $('#hdnInsurancedocFile').val($('#' + baseID + 'insurancedoc').val());
     $('#hdnPollutioncheckdocFile').val($('#' + baseID + 'pollutioncheckdoc').val());
     $('#hdnOthersdocFile').val($('#' + baseID + 'othersdoc').val());
+    //$('#hdnOperatorVehicleID').val($('#' + baseID + 'OperatorVehicleID').val());
+    //var id = $('#' + baseID + 'OperatorVehicleID').val();
+    //var id1 = $('#' + baseID + 'VehicleRegistrationNo').val()
+    //var id2 = $('#' + baseID + 'FrontImage').val();
 
-    
-   
+    $("#imgFrontImage").attr("src", "/VehicleAttachments/" + $('#' + baseID + 'OperatorVehicleID').val() + "/" + $('#' + baseID + 'VehicleRegistrationNo').val() + "/" + $('#' + baseID + 'FrontImage').val());
+    $("#imgBackImage").attr("src", "/VehicleAttachments/" + $('#' + baseID + 'OperatorVehicleID').val() + "/" + $('#' + baseID + 'VehicleRegistrationNo').val() + "/" + $('#' + baseID + 'BackImage').val());
+    $("#imgLeftImage").attr("src", "/VehicleAttachments/" + $('#' + baseID + 'OperatorVehicleID').val() + "/" + $('#' + baseID + 'VehicleRegistrationNo').val() + "/" + $('#' + baseID + 'LeftImage').val());
+    $("#imgRightImage").attr("src", "/VehicleAttachments/" + $('#' + baseID + 'OperatorVehicleID').val() + "/" + $('#' + baseID + 'VehicleRegistrationNo').val() + "/" + $('#' + baseID + 'RightImage').val());
 
   
     //var regDoc2 = $('#registrationdoc');
