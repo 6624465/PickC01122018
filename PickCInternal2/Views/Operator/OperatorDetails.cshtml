@@ -648,12 +648,12 @@
                                                 
                                                 @if (!string.IsNullOrWhiteSpace(adharStr))
                                                 {
-                                                    <div class="col-md-3">
+                                                    <div class="col-md-2">
                                                         <a href="@Url.Content($"~/Attachments/" + Model.OPerator.OperatorID + "/" + adharStr)" target="_self" download="@adharStr">Download</a>
                                                     </div>
                                                 }
 
-                                                <div class="col-md-3">
+                                                <div class="col-md-4">
                                                     <div id="fadhardocFile">@adharStr</div>
                                                     <input type="hidden" name="hdnfadhardocFile" id="hdnfadhardocFile" class="white-space" />
                                                 </div>
@@ -678,12 +678,12 @@
                                                
                                                 @if (!string.IsNullOrWhiteSpace(panStr))
                                                 {
-                                                    <div class="col-md-3">
+                                                    <div class="col-md-2">
                                                         <a href="@Url.Content($"~/Attachments/" + Model.OPerator.OperatorID + "/" + panStr)" target="_self" download="@panStr">Download</a>
                                                     </div>
                                                 }
 
-                                                <div class="col-md-3">
+                                                <div class="col-md-4">
                                                     <div id="fpandocFile">@panStr</div>
                                                     <input type="hidden" name="hdnfpandocFile" id="hdnfpandocFile" />
                                                 </div>
@@ -710,11 +710,11 @@
                                                
                                                 @if (!string.IsNullOrWhiteSpace(licenseStr))
                                                 {
-                                                    <div class="col-md-3">
+                                                    <div class="col-md-2">
                                                         <a href="@Url.Content($"~/Attachments/" + Model.OPerator.OperatorID + "/" + licenseStr)" target="_self" download="@licenseStr">Download</a>
                                                     </div>
                                                 }
-                                                <div class="col-md-3">
+                                                <div class="col-md-4">
                                                     <div id="flicensedocFile">@licenseStr</div>
                                                     <input type="hidden" name="hdnflicensedocFile" id="hdnflicensedocFile" />
                                                 </div>
@@ -739,7 +739,7 @@
                                                
                                                 @if (!string.IsNullOrWhiteSpace(voterStr))
                                                 {
-                                                    <div class="col-md-3">
+                                                    <div class="col-md-2">
                                                         <a href="@Url.Content($"~/Attachments/" + Model.OPerator.OperatorID + "/" + voterStr)" target="_self" download="@voterStr">Download</a>
                                                     </div>
                                                 }
