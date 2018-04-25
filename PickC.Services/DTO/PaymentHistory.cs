@@ -29,6 +29,7 @@ namespace PickC.Services.DTO
         public string TripId { get; set; }
         public decimal DriverCommission { get; set; }
         public DateTime InvoiceDate { get; set; }
+        public string BookingNo { get; set; }
 
     }
     public class pickCCommissionDetails
@@ -39,6 +40,7 @@ namespace PickC.Services.DTO
         public decimal CommissionAmount { get; set; }
         public decimal GST { get; set; }
         public decimal TotalAmount { get; set; }
+        public string BookingNo { get; set; }
 
     }
     public class CustomerDetails
@@ -48,6 +50,7 @@ namespace PickC.Services.DTO
         public decimal InvoiceAmount { get; set; }
         public decimal GST { get; set; }
         public decimal TotalAmount { get; set; }
+        public string BookingNo { get; set; }
     }
     public class DailyPaymentHistory
     {

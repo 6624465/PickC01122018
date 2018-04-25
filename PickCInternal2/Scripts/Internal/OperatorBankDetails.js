@@ -64,6 +64,7 @@ function EditBankDetails(index) {
     $('#txtBranch').val($('#' + baseID + 'Branch').val());
     $('#txtAccNumber').val($('#' + baseID + 'AccountNumber').val());
     $('#txtAccType').val($('#' + baseID + 'AccountType').val());
+    $('#txtIFSCcode').val($('#' + baseID + 'IFSC').val());
     $('#bankDetailsModal').modal('show');
 
 }
@@ -78,11 +79,12 @@ function DeleteBankDetails(index) {
         $('#txtBranch').val('');
         $('#txtAccNumber').val('');
         $('#txtAccType').val('');
+        $('#txtIFSCcode').val('');
     }
     else return false;
 }
 function btnSaveBank() {
-
+    debugger;
     if (!$('#frmBank').valid())
         return;  
 
@@ -99,8 +101,10 @@ function btnSaveBank() {
 
         $('#' + baseID + 'AccountType').val($('#txtAccType').val());
         $('#' + 'txtAccType_span_' + gIndex).text($('#txtAccType').val());
-        //$('#' + baseID + 'IFSC').val($('#txtIFSCcode').val());
-        //$('#' + 'txtIfsc_span_' + gIndex).text($('#txtIFSCcode').val());
+
+        $('#' + baseID + 'IFSC').val($('#txtIFSCcode').val());
+        $('#' + 'txtIfsc_span_' + gIndex).text($('#txtIFSCcode').val());
+        debugger;
     } else {
         var index = ($('#trBodyBank tr').length);
         debugger
@@ -125,6 +129,12 @@ function btnSaveBank() {
                         //    '<span id="txtIfsc_span_' + index + '">' + $('#txtIFSCcode').val() + '</span>' +
                         //    '<input id="OPerator_BankDetails_' + index + '__IFSC" name="OPerator.BankDetails[' + index + '].IFSC"  type="hidden" value="' + $('#txtIFSCcode').val() + '">' +
                         //'</td>' +
+
+                         '<td>' +
+                            '<span id="txtIfsc_span_' + index + '">' + $('#txtIFSCcode').val() + '</span>' +
+                            '<input id="OPerator_BankDetails_' + index + '__IFSC" name="OPerator.BankDetails[' + index + '].IFSC"  type="hidden" value="' + $('#txtIFSCcode').val() + '">' +
+                        '</td>' +
+
                         '<td>' +
                          '<a class="hand" onclick="EditBankDetails(\'' + index + '\')">Edit</a>&nbsp;|&nbsp;' +
                             '<a class="hand" onclick="DeleteBankDetails(\'' + index + '\')">Delete</a>' +
@@ -135,7 +145,7 @@ function btnSaveBank() {
         $('#txtBranch').val('');
         $('#txtAccNumber').val('');
         $('#txtAccType').val('');
-        //$('#txtIFSCcode').val('');
+        $('#txtIFSCcode').val('');
     }
 
 
@@ -145,6 +155,6 @@ function btnSaveBank() {
 function bankDetails(index) {
     debugger;
     gIndex = -1;
-    $('#txtBankName, #txtBranch, #txtAccNumber, #txtAccType').val('');
+    $('#txtBankName, #txtBranch, #txtAccNumber, #txtAccType,#txtIFSCcode').val('');
     $('#bankDetailsModal').modal('show');
 }

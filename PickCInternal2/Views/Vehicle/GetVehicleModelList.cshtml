@@ -41,6 +41,7 @@
                                          grid.Column("Maker", "Maker", canSort:true),
                                          grid.Column("Tonnage", "Tonnage", canSort: true),
                                          grid.Column("VehicleGroupDescription", "Vehicle Group", canSort: true),
+                                         //grid.Column("VehicleGroupDescription", "Vehicle Type", canSort: true),
                                          grid.Column("Edit", "Edit", format:@<text><a href="@Url.Content("~/Vehicle/edit?VehicleModelId=" + item.VehicleModelId)"><i class="fa fa-pencil" aria-hidden="true"></i></a></text>),
                                          @*grid.Column("Delete", "Delete", format:@<text><a href="@Url.Content("~/Vehicle/delete?VehicleModelId=" + item.VehicleModelId)"><i class="fa fa-trash-o" style="font-size:20px;color:red"></i></a></text>)*@
 

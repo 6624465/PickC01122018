@@ -6,7 +6,7 @@
 }
 @{
     ViewBag.Title = "Index";
-    WebGrid grid = new WebGrid(Model, rowsPerPage: 10, selectionFieldName: "selectedRow", ajaxUpdateContainerId: "grid");
+    WebGrid grid = new WebGrid(Model.OrderByDescending(o=>o.CreatedOn), rowsPerPage: 10, selectionFieldName: "selectedRow", ajaxUpdateContainerId: "grid");
 }
 <style>
     .modal-dialog {
@@ -58,9 +58,11 @@
                                 @<text>
                                     <img src="@Url.Content("~/Attachments/" + item.OperatorID + "/" + item.ImagePath)" class="img-circle" style="width:50px;height:50px" />
                                 </text>),
+
                                 grid.Column("OperatorName", "Operator Name"),
                                 grid.Column("OperatorID", "Operator ID"),
                                 grid.Column("MobileNo", "Mobile No"),
+                                grid.Column("CreatedOn", "Date Of Registration"),
                                 grid.Column("Edit", "Edit", canSort: false,style:"color", format:
                                 @<text>
                                     <button type="button" onclick="location.href = '@Url.Content("~/Operator/Edit?OperatorID=" + item.OperatorID)'" class="btn btn-primary btn-sm"><i class="fa fa-pencil" aria-hidden="true"></i>&nbsp;Edit</button>

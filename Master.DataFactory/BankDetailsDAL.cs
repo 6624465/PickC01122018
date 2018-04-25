@@ -59,6 +59,7 @@ namespace Master.DataFactory
                 db.AddInParameter(savecommand, "Branch", System.Data.DbType.String, bankDetailsList.Branch);
                 db.AddInParameter(savecommand, "AccountNumber", System.Data.DbType.String, bankDetailsList.AccountNumber);
                 db.AddInParameter(savecommand, "AccountType", System.Data.DbType.String, bankDetailsList.AccountType);
+                db.AddInParameter(savecommand, "IFSC", System.Data.DbType.String, bankDetailsList.IFSC);
                 result = db.ExecuteNonQuery(savecommand, transaction);
 
                 if (currentTransaction == null)

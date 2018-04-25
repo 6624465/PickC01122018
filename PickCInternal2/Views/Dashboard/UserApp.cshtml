@@ -22,6 +22,12 @@
 <link href="~/Css/jquery.dataTables.min.css" rel="stylesheet" />
      
 }
+<style>
+    .modal-dialog {
+        width: 70%;
+        margin: 30px auto;
+    }
+</style>
 <section class="content">
     <div class="row">
         <div class="col-md-12">
@@ -60,7 +66,8 @@
                             @foreach (var item in Model.tripDailyBasis)
                             {
                                 <tr>
-                                    <td>@Html.DisplayFor(i => item.BookingNo)</td>
+                                    <td> <a class="hand" onclick="DisplayInvoice('@item.BookingNo')">@item.BookingNo</a></td>
+                                    @*<td>@Html.DisplayFor(i => item.BookingNo)</td>*@
                                     <td>@Html.DisplayFor(i => item.DriverName)</td>
                                     <td>@Html.DisplayFor(i => item.TruckType)</td>
                                     <td>@Html.DisplayFor(i => item.TruckGroup)</td>
@@ -114,6 +121,22 @@
         <div id="chartcontainer" style="width:350px;margin-left:50px;"></div>
     </div>
 </section>
+<div class="modal" id="InvoiceModal">
+    <div class="modal-dialog modal-md">
+        <form id="frmDriver" name="frmDriver">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">×</span>
+                    </button>
+                    <h4 class="modal-title">Booking Invoice</h4>
+                </div>
+                <div class="modal-body" id="InvoiceModalContent">
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
     @section secscripts{
         <script src="@Url.Content("~/Scripts/jquery.validate.js")"></script>
         <script src="@Url.Content("~/Scripts/moment-with-locales.js")"></script>
@@ -126,6 +149,26 @@
 
   
         <script type="text/javascript">
+
+
+            function DisplayInvoice(bookingNo) {
+                debugger;
+                $.ajax({
+                    url: '@Url.Content("~/Dashboard/BookingInvoice?bookingNo=")' + bookingNo,
+                    method: 'get',
+                    contentType: 'text/html',
+                    success: function (html) {
+                        debugger;
+                        $('#InvoiceModalContent').html(html);
+                        $('#InvoiceModal').modal('show');
+                    },
+                    error: function (err) {
+
+                    }
+                });
+            }
+
+
             $(function () {
                 $('#userApp').parent().addClass('active');
 

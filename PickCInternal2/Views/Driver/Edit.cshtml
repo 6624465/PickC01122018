@@ -446,7 +446,7 @@
                                             <th>Branch</th>
                                             <th>Account Number</th>
                                             <th>Account Type</th>
-                                            @*<th>IFSC Code</th>*@
+                                            <th>IFSC Code</th>
                                             <th>Action</th>
                                         </tr>
                                     </thead>
@@ -473,6 +473,12 @@
                                                         <span id="txtAccType_span_@i">@Model.driver.BankDetails[i].AccountType</span>
                                                         @Html.HiddenFor(x => Model.driver.BankDetails[i].AccountType)
                                                     </td>
+
+                                                    <td>
+                                                        <span id="txtIFSCcode_span_@i">@Model.driver.BankDetails[i].IFSC</span>
+                                                        @Html.HiddenFor(x => Model.driver.BankDetails[i].IFSC)
+                                                    </td>
+
                                                     <td>
 
                                                     @*</td>
@@ -779,14 +785,17 @@
                         </div>
                     </div>
                     <div class="row">
-                        <div class="col-md-6">
-                            <label>State</label>
-                            <input class="form-control" id="StateName" name="StateName" type="text" value="">
-                        </div>
+
                         <div class="col-md-6">
                             <label>City</label>
                             <input class="form-control" id="CityName" name="CityName" type="text" value="">
                         </div>
+
+                        <div class="col-md-6">
+                            <label>State</label>
+                            <input class="form-control" id="StateName" name="StateName" type="text" value="">
+                        </div>
+                       
                         <input id="AddressLinkId" name="AddressLinkId" type="hidden" value="">
                         <input id="AddressId" name="AddressId" type="hidden" value="">
                     </div>

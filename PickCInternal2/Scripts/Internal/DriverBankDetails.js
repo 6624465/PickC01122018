@@ -83,6 +83,7 @@ function EditBankDetails(index) {
     $('#txtBranch').val($('#' + baseID + 'Branch').val());
     $('#txtAccNumber').val($('#' + baseID + 'AccountNumber').val());
     $('#txtAccType').val($('#' + baseID + 'AccountType').val());
+    $('#txtIFSCcode').val($('#' + baseID + 'IFSC').val());
     $('#bankDetailsModal').modal('show');
 
 }
@@ -120,6 +121,10 @@ function btnSaveBank() {
 
         $('#' + baseID + 'AccountType').val($('#txtAccType').val());
         $('#' + 'txtAccType_span_' + gIndex).text($('#txtAccType').val());
+
+        $('#' + baseID + 'IFSC').val($('#txtIFSCcode').val());
+        $('#' + 'txtIFSCcode_span_' + gIndex).text($('#txtIFSCcode').val());
+
     } else {
         var index = ($('#trBodyBank tr').length);
         var html = '<tr id="trRow_Bank_' + index + '">' +
@@ -139,6 +144,12 @@ function btnSaveBank() {
             '<span id="txtAccType_span_' + index + '">' + $('#txtAccType').val() + '</span>' +
             '<input id="driver_BankDetails_' + index + '__AccountType" name="driver.BankDetails[' + index + '].AccountType" type="hidden" value="' + $('#txtAccType').val() + '">' +
             '</td>' +
+
+             '<td>' +
+            '<span id="txtIFSCcode_span_' + index + '">' + $('#txtIFSCcode').val() + '</span>' +
+            '<input id="driver_BankDetails_' + index + '__IFSC" name="driver.BankDetails[' + index + '].IFSC" type="hidden" value="' + $('#txtIFSCcode').val() + '">' +
+            '</td>' +
+
             '<td>' +
             '<a class="hand" onclick="EditBankDetails(\'' + index + '\')">Edit</a>&nbsp;|&nbsp;' +
             '<a class="hand" onclick="DeleteBankDetails(\'' + index + '\')">Delete</a>' +
@@ -149,6 +160,7 @@ function btnSaveBank() {
         $('#txtBranch').val('');
         $('#txtAccNumber').val('');
         $('#txtAccType').val('');
+        $('#txtIFSCcode').val('');
     }
 
 
@@ -158,7 +170,7 @@ function btnSaveBank() {
 function bankDetails(index) {
     gIndex = -1;
     $('#frmBank input[type="text"]').removeClass('error');
-    $('#txtBankName, #txtBranch, #txtAccNumber, #txtAccType,#txtAccType').val('');
+    $('#txtBankName, #txtBranch, #txtAccNumber, #txtAccType,#txtAccType,#txtIFSCcode').val('');
     $('#bankDetailsModal').modal('show');
 }
 //function bankDetails(index) {
