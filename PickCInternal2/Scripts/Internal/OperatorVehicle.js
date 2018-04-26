@@ -121,7 +121,16 @@ function EditOperatorVehicle(index) {
     $("#imgLeftImage").attr("src", "/VehicleAttachments/" + $('#' + baseID + 'OperatorVehicleID').val() + "/" + $('#' + baseID + 'VehicleRegistrationNo').val() + "/" + $('#' + baseID + 'LeftImage').val());
     $("#imgRightImage").attr("src", "/VehicleAttachments/" + $('#' + baseID + 'OperatorVehicleID').val() + "/" + $('#' + baseID + 'VehicleRegistrationNo').val() + "/" + $('#' + baseID + 'RightImage').val());
 
-  
+    $("#downFrontImage").attr("href", "/VehicleAttachments/" + $('#' + baseID + 'OperatorVehicleID').val() + "/" + $('#' + baseID + 'VehicleRegistrationNo').val() + "/" + $('#' + baseID + 'FrontImage').val()).attr('download', 'FrontImage');
+    $("#downBackImage").attr("href", "/VehicleAttachments/" + $('#' + baseID + 'OperatorVehicleID').val() + "/" + $('#' + baseID + 'VehicleRegistrationNo').val() + "/" + $('#' + baseID + 'BackImage').val()).attr('download', 'BackImage');
+    $("#downLeftImage").attr("href", "/VehicleAttachments/" + $('#' + baseID + 'OperatorVehicleID').val() + "/" + $('#' + baseID + 'VehicleRegistrationNo').val() + "/" + $('#' + baseID + 'LeftImage').val()).attr('download', 'LeftImage');
+    $("#downRightImage").attr("href", "/VehicleAttachments/" + $('#' + baseID + 'OperatorVehicleID').val() + "/" + $('#' + baseID + 'VehicleRegistrationNo').val() + "/" + $('#' + baseID + 'RightImage').val()).attr('download', 'RightImage');
+
+    $("#downregistrationdoc").attr("href", "/VehicleAttachments/" + $('#' + baseID + 'OperatorVehicleID').val() + "/" + $('#' + baseID + 'VehicleRegistrationNo').val() + "/" + $('#' + baseID + 'registrationdoc').val()).attr('download', 'registrationdoc');
+    $("#downinsurancedoc").attr("href", "/VehicleAttachments/" + $('#' + baseID + 'OperatorVehicleID').val() + "/" + $('#' + baseID + 'VehicleRegistrationNo').val() + "/" + $('#' + baseID + 'insurancedoc').val()).attr('download', 'insurancedoc');
+    $("#downpollutioncheckdoc").attr("href", "/VehicleAttachments/" + $('#' + baseID + 'OperatorVehicleID').val() + "/" + $('#' + baseID + 'VehicleRegistrationNo').val() + "/" + $('#' + baseID + 'pollutioncheckdoc').val()).attr('download', 'pollutioncheckdoc');
+    $("#downothersdoc").attr("href", "/VehicleAttachments/" + $('#' + baseID + 'OperatorVehicleID').val() + "/" + $('#' + baseID + 'VehicleRegistrationNo').val() + "/" + $('#' + baseID + 'othersdoc').val()).attr('download', 'othersdoc');
+
     //var regDoc2 = $('#registrationdoc');
     debugger;
     //$('#operatorVehicle_VehicleType option').filter(function () {

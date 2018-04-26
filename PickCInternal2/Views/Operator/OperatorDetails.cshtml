@@ -28,6 +28,10 @@
     .white-space{
         white-space:pre-line;
     }
+    .type-veh-img{
+        width:70px;
+    }
+    
 </style>
 <section class="content-header">
     <h3>Operator Details</h3>
@@ -259,8 +263,8 @@
                                             <table class="table table-hover table-bordered">
                                                 <thead>
                                                     <tr>
-                                                        <th>Address 1</th>
-                                                        <th>Address 2</th>
+                                                        <th>Address </th>
+                                                        @*<th>Address 2</th>*@
                                                         <th>Action</th>
                                                     </tr>
                                                 </thead>
@@ -271,21 +275,45 @@
                                                         {
                                                             <tr id="trRow_Address_@i" class="trRowCss">
                                                                 <td>
-                                                                    <span id="Address1_span_@i">@Model.OPerator.AddressList[i].Address1</span>
+                                                                    <span id="Address1_span_@i">@Model.OPerator.AddressList[i].Address1</span>,<br />
                                                                     @Html.HiddenFor(x => Model.OPerator.AddressList[i].Address1)
+                                                                    <span id="Address2_span_@i">
+                                                                        @Model.OPerator.AddressList[i].Address2
+                                                                    </span>,<br />
+                                                                    @Html.HiddenFor(x => Model.OPerator.AddressList[i].Address2)
+                                                                    <span id="Address3_span_@i">
+                                                                        @Model.OPerator.AddressList[i].Address3
+                                                                    </span>,<br />
+                                                                    @Html.HiddenFor(x => Model.OPerator.AddressList[i].Address3)
+                                                                    <span id="Address4_span_@i">
+                                                                        @Model.OPerator.AddressList[i].Address4
+                                                                    </span>,<br />
+                                                                    @Html.HiddenFor(x => Model.OPerator.AddressList[i].Address4)
+                                                                    <span id="CityName_span_@i">
+                                                                        @Model.OPerator.AddressList[i].CityName
+                                                                    </span>,<br />
+                                                                    @Html.HiddenFor(x => Model.OPerator.AddressList[i].CityName)
+                                                                    <span id="StateName_span_@i">
+                                                                        @Model.OPerator.AddressList[i].StateName
+                                                                    </span>,<br />
+                                                                    @Html.HiddenFor(x => Model.OPerator.AddressList[i].StateName)
+                                                                    <span id="ZipCode_span_@i">
+                                                                        @Model.OPerator.AddressList[i].ZipCode
+                                                                    </span>.<br />
+                                                                    @Html.HiddenFor(x => Model.OPerator.AddressList[i].ZipCode)
                                                                 </td>
-                                                                <td>
+                                                                @*<td>
                                                                     <span id="Address2_span_@i">
                                                                         @Model.OPerator.AddressList[i].Address2
                                                                     </span>
                                                                     @Html.HiddenFor(x => Model.OPerator.AddressList[i].Address2)
-                                                                </td>
+                                                                </td>*@
                                                                 <td>
-                                                                    @Html.HiddenFor(x => Model.OPerator.AddressList[i].Address3)
+                                                                    @*@Html.HiddenFor(x => Model.OPerator.AddressList[i].Address3)
                                                                     @Html.HiddenFor(x => Model.OPerator.AddressList[i].Address4)
                                                                     @Html.HiddenFor(x => Model.OPerator.AddressList[i].CityName)
                                                                     @Html.HiddenFor(x => Model.OPerator.AddressList[i].StateName)
-                                                                    @Html.HiddenFor(x => Model.OPerator.AddressList[i].ZipCode)
+                                                                    @Html.HiddenFor(x => Model.OPerator.AddressList[i].ZipCode)*@
                                                                     @Html.HiddenFor(x => Model.OPerator.AddressList[i].IsActive)
                                                                     @Html.HiddenFor(x => Model.OPerator.AddressList[i].AddressId)
                                                                     @Html.HiddenFor(x => Model.OPerator.AddressList[i].AddressLinkId)
@@ -784,10 +812,12 @@
                                                     <input type="file" id="fothers" name="fothers" value="1382" multiple="multiple" />
                                                     @*@Html.TextBoxFor(model => model.files, "", new { @type = "file", @multiple = "multiple" })*@
                                                 </div>
+                                         @if (!string.IsNullOrWhiteSpace(fothers))
+                                                {
                                                 <div class="col-md-3">
-                                                        <a href="@Url.Content($"~/Attachments/"+Model.OPerator.OperatorID+"/" + fothers )" target="_self" download="@fothers">Download</a>
+                                                        <a href="@Url.Content($"~/Attachments/" + Model.OPerator.OperatorID + "/" + fothers)" target="_self" download="@fothers">Download</a>
                                                     </div>
-                                         
+                                                          }
                                                 <div class="col-md-3">
                                                     <div id="fothersFile">@fothers</div>
                                                 </div>
@@ -854,7 +884,7 @@
 @using (Html.BeginForm("SaveVehicle", "Operator", FormMethod.Post, new { id = "frmVehicle", name = "frmVehicle", enctype = "multipart/form-data" }))
 {
     <div id="VehicleModal" class="modal">
-        <div class="modal-dialog modal-md">
+        <div class="modal-dialog modal-lg">
             <form id="frmVehicle" name="frmVehicle">
                 <div class="modal-content">
                     <div class="modal-header">
@@ -876,11 +906,11 @@
                                 <div class="col-md-2">
 
                                     <div>
-                                        <img id="imgFrontImage" @*onerror="this.src='~/images/vehicle_open1_selected.png';"*@ style="width:50px;height:50px" />
+                                        <img id="imgFrontImage" @*onerror="this.src='~/images/vehicle_open1_selected.png';"*@ class="img-responsive type-veh-img" />
                                     </div>
                                 </div>
-                                <div class="col-md-3">
-                                    <div class="file-upload">
+                                <div class="col-md-2">
+                                    <div class="file-upload custom-mrgn">
                                         <div class="file-select">
                                             <div class="file-select-button" id="fileName">Front Image</div>
                                             <input type="file" id="FrontImage" name="FrontImage" value="1395" title=" " onchange="onFileChange(this, 'frontimagedocFile', 'hdnfrontimagedocFile')" />
@@ -888,12 +918,17 @@
 
                                     </div>
                                 </div>
-                                <div class="col-md-3">
+                                
+                                <div class="col-md-2">
                                     <div id="frontimagedocFile"></div>
                                     <input type="hidden" name="hdnfrontimagedocFile" id="hdnfrontimagedocFile" />
 
                                 </div>
-
+                                 
+                                <div class="col-md-2">
+                                    <a id="downFrontImage">Download</a>
+                                </div>
+                                    
 
                             </div>
                             <div class="row">
@@ -906,28 +941,29 @@
                                 <div class="col-md-2">
 
                                     <div>
-                                        <img id="imgBackImage" @*onerror="this.src='~/images/vehicle_open1_selected.png';"*@ style="width:50px;height:50px" />
+                                        <img id="imgBackImage" @*onerror="this.src='~/images/vehicle_open1_selected.png';"*@ class="img-responsive type-veh-img" />
                                     </div>
                                 </div>
 
-                                <div class="col-md-3">
-                                    <div class="file-upload">
+                                <div class="col-md-2">
+                                    <div class="file-upload custom-mrgn">
                                         <div class="file-select">
                                             <div class="file-select-button" id="fileName">Back Image</div>
                                             <input type="file" id="BackImage" name="BackImage" value="1396" title=" " onchange="onFileChange(this, 'backimagedocFile', 'hdnbackimagedocFile')" />
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col-md-3">
+                                <div class="col-md-2">
                                     <div id="backimagedocFile"></div>
                                     <input type="hidden" name="hdnbackimagedocFile" id="hdnbackimagedocFile" />
                                 </div>
 
+                                <div class="col-md-2">
+                                    <a id="downBackImage">Download</a>
+                                </div>
 
 
-
-
-                            </div>
+                                </div>
                             <div class="row">
                                 <div class="col-md-4">
                                     <label>Vehicle Category</label>
@@ -937,27 +973,29 @@
                                 <div class="col-md-2">
 
                                     <div>
-                                        <img id="imgLeftImage" @*onerror="this.src='~/images/vehicle_open1_selected.png';"*@ style="width:50px;height:50px" />
+                                        <img id="imgLeftImage" @*onerror="this.src='~/images/vehicle_open1_selected.png';"*@ class="img-responsive type-veh-img" />
                                     </div>
                                 </div>
 
 
-                                <div class="col-md-3">
-                                    <div class="file-upload">
+                                <div class="col-md-2">
+                                    <div class="file-upload custom-mrgn">
                                         <div class="file-select">
                                             <div class="file-select-button" id="fileName">Left Image</div>
                                             <input type="file" id="LeftImage" name="LeftImage" value="1397" title=" " onchange="onFileChange(this, 'leftimagedocFile', 'hdnleftimagedocFile')" />
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col-md-3">
+                                <div class="col-md-2">
                                     <div id="leftimagedocFile"></div>
                                     <input type="hidden" name="hdnleftimagedocFile" id="hdnleftimagedocFile" />
 
                                     @*@Model.OPerator.OperatorVehicle.FirstOrDefault().LeftImage*@
                                 </div>
 
-
+                                <div class="col-md-2">
+                                    <a id="downLeftImage">Download</a>
+                                </div>
 
                             </div>
                             <div class="row">
@@ -969,29 +1007,27 @@
 
 
                                 <div class="col-md-2">
-
                                     <div>
-                                        <img id="imgRightImage" @*onerror="this.src='~/images/vehicle_open1_selected.png';"*@ style="width:50px;height:50px" />
+                                        <img id="imgRightImage" @*onerror="this.src='~/images/vehicle_open1_selected.png';"*@ class="img-responsive type-veh-img" />
                                     </div>
                                 </div>
 
-                                <div class="col-md-3">
-                                    <div class="file-upload">
+                                <div class="col-md-2">
+                                    <div class="file-upload custom-mrgn">
                                         <div class="file-select">
                                             <div class="file-select-button" id="fileName"> Right Image</div>
                                             <input type="file" id="RightImage" name="RightImage" value="1398" title=" " onchange="onFileChange(this, 'rightimagedocFile', 'hdnrightimagedocFile')" />
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col-md-3">
+                                <div class="col-md-2">
                                     <div id="rightimagedocFile"></div>
                                     <input type="hidden" name="hdnrightimagedocFile" id="hdnrightimagedocFile" />
                                 </div>
 
-                                @*<div class="col-md-3">
-                                    <a href="@Url.Content($"~/DriverAttachments/"+Model.driver.DriverId +"/" + fothers )" target="_self" download="@fothers">Download</a>
-                                </div>*@
-
+                                <div class="col-md-2">
+                                    <a id="downRightImage" >Download</a>
+                                </div>
 
                             </div>
                             <div class="row">
@@ -1017,6 +1053,9 @@
                                     <div id="registrationdocFile"></div>
                                     <input type="hidden" name="hdnRegistrationdocFile" id="hdnRegistrationdocFile" />
                                 </div>
+                                <div class="col-md-2">
+                                    <a id="downregistrationdoc">Download</a>
+                                </div>
                             </div>
                             <div class="row">
                                 <div class="col-md-3">
@@ -1035,6 +1074,10 @@
                                     <div id="insurancedocFile"></div>
                                     <input type="hidden" name="hdnInsurancedocFile" id="hdnInsurancedocFile" />
                                 </div>
+                                <div class="col-md-2">
+                                    <a id="downinsurancedoc">Download</a>
+                                </div>
+
                             </div>
                             <div class="row">
                                 <div class="col-md-3">
@@ -1053,6 +1096,11 @@
                                     <div id="pollutioncheckdocFile"></div>
                                     <input type="hidden" name="hdnPollutioncheckdocFile" id="hdnPollutioncheckdocFile" />
                                 </div>
+
+                                <div class="col-md-2">
+                                    <a id="downpollutioncheckdoc">Download</a>
+                                </div>
+
                             </div>
                             <div class="row">
                                 <div class="col-md-3">
@@ -1071,6 +1119,11 @@
                                     <div id="othersdocFile"></div>
                                     <input type="hidden" name="hdnOthersdocFile" id="hdnOthersdocFile" />
                                 </div>
+
+                                <div class="col-md-2">
+                                    <a id="downothersdoc">Download</a>
+                                </div>
+
                             </div>
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-default pull-left" data-dismiss="modal" id="vehicle_cancel">Close</button>

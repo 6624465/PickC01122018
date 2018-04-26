@@ -109,19 +109,32 @@ function btnSaveAddress() {
         //var index = $('.trRowCss').length;
         var html = '<tr id="trRow_Address_' + index + '">' +
                         '<td>' +
-                            '<span id="Address1_span_' + index + '">' + $('#Address1').val() + '</span>' +
+                            '<span id="Address1_span_' + index + '">' + $('#Address1').val() + '</span>' + ',' +'<br />' +
                             '<input id="OPerator_AddressList_' + index + '__Address1" name="OPerator.AddressList[' + index + '].Address1" type="hidden" value="' + $('#Address1').val() + '">' +
-                        '</td>' +
-                        '<td>' +
-                            '<span id="Address2_span_' + index + '">' + $('#Address2').val() + '</span>' +
+                            '<span id="Address2_span_' + index + '">' + $('#Address2').val() + '</span>' + ','  +'<br />' +
                             '<input id="OPerator_AddressList_' + index + '__Address2" name="OPerator.AddressList[' + index + '].Address2" type="hidden" value="' + $('#Address2').val() + '">' +
-                        '</td>' +
-                        '<td>' +
+                            '<span id="Address3_span_' + index + '">' + $('#Address3').val() + '</span>' + ','  +'<br />' +
                             '<input id="OPerator_AddressList_' + index + '__Address3" name="OPerator.AddressList[' + index + '].Address3" type="hidden" value="' + $('#Address3').val() + '">' +
+                            '<span id="Address4_span_' + index + '">' + $('#Address4').val() + '</span>' + ','  +'<br />' +
                             '<input id="OPerator_AddressList_' + index + '__Address4" name="OPerator.AddressList[' + index + '].Address4" type="hidden" value="' + $('#Address4').val() + '">' +
+                            '<span id="CityName_span_' + index + '">' + $('#CityName').val() + '</span>' + ','  +'<br />' +
                             '<input id="OPerator_AddressList_' + index + '__CityName" name="OPerator.AddressList[' + index + '].CityName" type="hidden" value="' + $('#CityName').val() + '">' +
+                            '<span id="StateName_span_' + index + '">' + $('#StateName').val() + '</span>' + ','  +'<br />' +
                             '<input id="OPerator_AddressList_' + index + '__StateName" name="OPerator.AddressList[' + index + '].StateName" type="hidden" value="' + $('#StateName').val() + '">' +
+                            '<span id="ZipCode_span_' + index + '">' + $('#ZipCode').val() + '</span>' + '.'  +'<br />' +
                             '<input id="OPerator_AddressList_' + index + '__ZipCode" name="OPerator.AddressList[' + index + '].ZipCode" type="hidden" value="' + $('#ZipCode').val() + '">' +
+
+                       '</td>' +
+                        //'<td>' +
+                        //    '<span id="Address2_span_' + index + '">' + $('#Address2').val() + '</span>' +
+                        //    '<input id="OPerator_AddressList_' + index + '__Address2" name="OPerator.AddressList[' + index + '].Address2" type="hidden" value="' + $('#Address2').val() + '">' +
+                        //'</td>' +
+                        '<td>' +
+                            //'<input id="OPerator_AddressList_' + index + '__Address3" name="OPerator.AddressList[' + index + '].Address3" type="hidden" value="' + $('#Address3').val() + '">' +
+                            //'<input id="OPerator_AddressList_' + index + '__Address4" name="OPerator.AddressList[' + index + '].Address4" type="hidden" value="' + $('#Address4').val() + '">' +
+                            //'<input id="OPerator_AddressList_' + index + '__CityName" name="OPerator.AddressList[' + index + '].CityName" type="hidden" value="' + $('#CityName').val() + '">' +
+                            //'<input id="OPerator_AddressList_' + index + '__StateName" name="OPerator.AddressList[' + index + '].StateName" type="hidden" value="' + $('#StateName').val() + '">' +
+                            //'<input id="OPerator_AddressList_' + index + '__ZipCode" name="OPerator.AddressList[' + index + '].ZipCode" type="hidden" value="' + $('#ZipCode').val() + '">' +
                             '<input id="OPerator_AddressList_' + index + '__AddressId" name="OPerator.AddressList[' + index + '].AddressId" type="hidden" value="Operator.AddressList['+index+'].AddressId">' +
                             '<a class="hand" onclick="EditAddress(\'' + index + '\')">Edit</a>&nbsp;|&nbsp;' +
                             '<a class="hand" onclick="DeleteAddress(\'' + index + '\')">Delete</a>' +

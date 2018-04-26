@@ -382,8 +382,8 @@
                             <table class="table table-hover table-bordered">
                                 <thead>
                                     <tr>
-                                        <th>Address 1</th>
-                                        <th>Address 2</th>
+                                        <th>Address </th>
+                                        @*<th>Address 2</th>*@
                                         <th>Action</th>
                                     </tr>
                                 </thead>
@@ -397,19 +397,43 @@
                                                 <td>
                                                     <span id="Address1_span_@i">@Model.driver.AddressList[i].Address1</span>
                                                     @Html.HiddenFor(x => Model.driver.AddressList[i].Address1)
+                                                    <span id="Address2_span_@i">
+                                                        @Model.driver.AddressList[i].Address2
+                                                    </span>,<br />
+                                                    @Html.HiddenFor(x => Model.driver.AddressList[i].Address2)
+                                                    <span id="Address3_span_@i">
+                                                        @Model.driver.AddressList[i].Address3
+                                                    </span>,<br />
+                                                    @Html.HiddenFor(x => Model.driver.AddressList[i].Address3)
+                                                    <span id="Address4_span_@i">
+                                                        @Model.driver.AddressList[i].Address4
+                                                    </span>,<br />
+                                                    @Html.HiddenFor(x => Model.driver.AddressList[i].Address4)
+                                                    <span id="CityName_span_@i">
+                                                        @Model.driver.AddressList[i].CityName
+                                                    </span>,<br />
+                                                    @Html.HiddenFor(x => Model.driver.AddressList[i].CityName)
+                                                    <span id="StateName_span_@i">
+                                                        @Model.driver.AddressList[i].StateName
+                                                    </span>,<br />
+                                                    @Html.HiddenFor(x => Model.driver.AddressList[i].StateName)
+                                                    <span id="ZipCode_span_@i">
+                                                        @Model.driver.AddressList[i].ZipCode
+                                                    </span>.<br />
+                                                    @Html.HiddenFor(x => Model.driver.AddressList[i].ZipCode)
                                                 </td>
-                                                <td>
+                                                @*<td>
                                                     <span id="Address2_span_@i">
                                                         @Model.driver.AddressList[i].Address2
                                                     </span>
                                                     @Html.HiddenFor(x => Model.driver.AddressList[i].Address2)
-                                                </td>
+                                                </td>*@
                                                 <td>
-                                                    @Html.HiddenFor(x => Model.driver.AddressList[i].Address3)
+                                                    @*@Html.HiddenFor(x => Model.driver.AddressList[i].Address3)
                                                     @Html.HiddenFor(x => Model.driver.AddressList[i].Address4)
                                                     @Html.HiddenFor(x => Model.driver.AddressList[i].CityName)
                                                     @Html.HiddenFor(x => Model.driver.AddressList[i].StateName)
-                                                    @Html.HiddenFor(x => Model.driver.AddressList[i].ZipCode)
+                                                    @Html.HiddenFor(x => Model.driver.AddressList[i].ZipCode)*@
                                                     @Html.HiddenFor(x => Model.driver.AddressList[i].IsActive)
                                                     @Html.HiddenFor(x => Model.driver.AddressList[i].AddressLinkId)
                                                     @Html.HiddenFor(x => Model.driver.AddressList[i].AddressId)
