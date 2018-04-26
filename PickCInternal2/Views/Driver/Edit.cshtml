@@ -520,6 +520,7 @@
                             var licenseStr = "";
                             var voterStr = "";
                             var profilepicStr = "";
+                            var fothers = "";
                             if (Model.driver != null && Model.driver.driverAttachment != null && Model.driver.driverAttachment.Count > 0)
                             {
 
@@ -571,6 +572,13 @@
                                 {
                                     profilepicStr = fprofilepicObj.ImagePath;
                                 }
+
+                                var fothersObj = Model.driver.driverAttachment.Where(x => x.LookupCode == "1382").FirstOrDefault();
+                                if (fothersObj != null)
+                                {
+                                    fothers = fothersObj.ImagePath;
+                                }
+
                             }
                         }
                         <div class="row">
@@ -730,6 +738,14 @@
                             <div class="col-md-3">
                                 <input type="file" id="fothers" name="fothers" value="1382" multiple="multiple" />
                                 @*@Html.TextBoxFor(model => model.files, "", new { @type = "file", @multiple = "multiple" })*@
+                            </div>
+
+                            <div class="col-md-3">
+                                <a href="@Url.Content($"~/DriverAttachments/"+Model.driver.DriverId +"/" + fothers )" target="_self" download="@fothers">Download</a>
+                            </div>
+
+                            <div class="col-md-3">
+                                <div id="fothersFile">@fothers</div>
                             </div>
                            
                         </div>

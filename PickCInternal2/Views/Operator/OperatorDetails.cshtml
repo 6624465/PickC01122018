@@ -58,7 +58,7 @@
                                 <div class="col-md-4">
                                     <div class="form-group">
                                         <label>Operator Name</label>
-                                        @Html.TextBoxFor(x => x.OPerator.OperatorName, new { @class = "form-control alphaonly noSpecialChar", placeholder = "Operator Name" })
+                                        @Html.TextBoxFor(x => x.OPerator.OperatorName, new { @class = "form-control alphaonly ", placeholder = "Operator Name" })
                                     </div>
                                 </div>
 
@@ -140,7 +140,7 @@
                                         <div class="col-md-4">
                                             <div class="form-group">
                                                 <label>Father Name</label>
-                                                @Html.TextBoxFor(x => x.OPerator.FatherName, new { @class = "form-control alphaonly noSpecialChar", placeholder = "Father Name" })
+                                                @Html.TextBoxFor(x => x.OPerator.FatherName, new { @class = "form-control alphaonly @*noSpecialChar*@", placeholder = "Father Name" })
                                             </div>
                                         </div>
                                         <div class="col-md-4">
@@ -168,7 +168,7 @@
                                         <div class="col-md-4">
                                             <div class="form-group">
                                                 <label>Place Of Birth</label>
-                                                @Html.TextBoxFor(x => x.OPerator.PlaceOfBirth, new { @class = "form-control alphaonly noSpecialChar", placeholder = "Place Of Birth" })
+                                                @Html.TextBoxFor(x => x.OPerator.PlaceOfBirth, new { @class = "form-control alphaonly ", placeholder = "Place Of Birth" })
                                             </div>
                                         </div>
                                     </div>
@@ -478,7 +478,7 @@
                                                 <div class="box-tools">
                                                     @*<button class="btn btn-box-tool" type="button" onclick="bankDetails()">Add</button>*@
                                                     @*<button type="button" class="btn btn-box-tool" data-toggle="modal" data-target="#myModal"><i class="fa fa-plus" aria-hidden="true"></i></button>*@
-                                                    <button class="btn btn-default btn-sm btn-them " type="button" id="Btn_SendOperatorId">Add Driver</button>
+                                                    <button class="btn btn-box-tool " type="button" id="Btn_SendOperatorId"><i class="fa fa-plus" aria-hidden="true"></i></button>
                                                     @*<button class="btn btn-default btn-sm btn-them " type="button" onclick="AddDriver('-1')">Add</button>*@
                                                     @*<button class="btn btn-box-tool" type="button" onclick="AddDriver('-1')"><i class="fa fa-plus" aria-hidden="true"></i></button>location.href="@Url.Content("~/Driver/Add?OperatorID=OP171100001")"*@
                                                 </div>
@@ -784,9 +784,9 @@
                                                     <input type="file" id="fothers" name="fothers" value="1382" multiple="multiple" />
                                                     @*@Html.TextBoxFor(model => model.files, "", new { @type = "file", @multiple = "multiple" })*@
                                                 </div>
-                                                @*<div class="col-md-3">
+                                                <div class="col-md-3">
                                                         <a href="@Url.Content($"~/Attachments/"+Model.OPerator.OperatorID+"/" + fothers )" target="_self" download="@fothers">Download</a>
-                                                    </div>*@
+                                                    </div>
                                          
                                                 <div class="col-md-3">
                                                     <div id="fothersFile">@fothers</div>
@@ -988,7 +988,9 @@
                                     <input type="hidden" name="hdnrightimagedocFile" id="hdnrightimagedocFile" />
                                 </div>
 
-
+                                @*<div class="col-md-3">
+                                    <a href="@Url.Content($"~/DriverAttachments/"+Model.driver.DriverId +"/" + fothers )" target="_self" download="@fothers">Download</a>
+                                </div>*@
 
 
                             </div>
