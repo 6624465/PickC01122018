@@ -90,27 +90,95 @@ function EditOperatorVehicle(index) {
     });   
     debugger;
     $('#frontimagedocFile').text($('#' + baseID + 'FrontImage').val());
-    $('#backimagedocFile').text($('#' + baseID + 'BackImage').val());
-    $('#leftimagedocFile').text($('#' + baseID + 'LeftImage').val());
-    $('#rightimagedocFile').text($('#' + baseID + 'RightImage').val());
-
-
-
     $('#hdnfrontimagedocFile').val($('#' + baseID + 'FrontImage').val());
+    var FrontimageDocfile = $('#' + baseID + 'FrontImage').val();
+    if (FrontimageDocfile == null || FrontimageDocfile == '')
+    {
+        $('#downFrontImage').hide();
+    }
+    else
+    {
+        $('#downFrontImage').show();
+    }
+
+    $('#backimagedocFile').text($('#' + baseID + 'BackImage').val());
     $('#hdnbackimagedocFile').val($('#' + baseID + 'BackImage').val());
+    var backimagedocfile = $('#' + baseID + 'BackImage').val();
+    if (backimagedocfile == null || backimagedocfile == '') {
+        $('#downBackImage').hide();
+    }
+    else {
+        $('#downBackImage').show();
+    }
+
+    $('#leftimagedocFile').text($('#' + baseID + 'LeftImage').val());
     $('#hdnleftimagedocFile').val($('#' + baseID + 'LeftImage').val());
+    var leftimagedocfile = $('#' + baseID + 'LeftImage').val();
+    if (leftimagedocfile == null || leftimagedocfile == '') {
+        $('#downLeftImage').hide();
+    }
+    else {
+        $('#downLeftImage').show();
+    }
+
+    $('#rightimagedocFile').text($('#' + baseID + 'RightImage').val());
     $('#hdnrightimagedocFile').val($('#' + baseID + 'RightImage').val());
-   
+    var rightimagedocfile = $('#' + baseID + 'RightImage').val();
+    if (rightimagedocfile == null || rightimagedocfile == '') {
+        $('#downRightImage').hide();
+    }
+    else {
+        $('#downRightImage').show();
+    }
+
+
     $('#registrationdocFile').text($('#' + baseID + 'registrationdoc').val());
-    $('#insurancedocFile').text($('#' + baseID + 'insurancedoc').val());
-    $('#pollutioncheckdocFile').text($('#' + baseID + 'pollutioncheckdoc').val());
-    $('#othersdocFile').text($('#' + baseID + 'othersdoc').val());
-
-
     $('#hdnRegistrationdocFile').val($('#' + baseID + 'registrationdoc').val());
+    var registrationdocFile = $('#' + baseID + 'registrationdoc').val();
+    if (registrationdocFile == null || registrationdocFile == '')
+    {
+        $('#downregistrationdoc').hide();
+    }
+    else {
+        $('#downregistrationdoc').show();
+    }
+
+
+    $('#insurancedocFile').text($('#' + baseID + 'insurancedoc').val());
     $('#hdnInsurancedocFile').val($('#' + baseID + 'insurancedoc').val());
+    var insuranceDocFile = $('#' + baseID + 'insurancedoc').val();
+    debugger;
+    if (insuranceDocFile == null || insuranceDocFile == '') {
+        $('#downinsurancedoc').hide();
+    }
+    else {
+        $('#downinsurancedoc').show();
+    }
+
+    
+    
+    $('#pollutioncheckdocFile').text($('#' + baseID + 'pollutioncheckdoc').val());
     $('#hdnPollutioncheckdocFile').val($('#' + baseID + 'pollutioncheckdoc').val());
+    var pollutioncheckDocFile = $('#' + baseID + 'pollutioncheckdoc').val();
+    if (pollutioncheckDocFile == null || pollutioncheckDocFile == '') {
+        $('#downpollutioncheckdoc').hide();
+    }
+    else {
+        $('#downpollutioncheckdoc').show();
+    }
+
+    $('#othersdocFile').text($('#' + baseID + 'othersdoc').val());
     $('#hdnOthersdocFile').val($('#' + baseID + 'othersdoc').val());
+   
+    var othersdocFile = $('#' + baseID + 'othersdoc').val();
+    if (othersdocFile == null || othersdocFile == '')
+    {
+        $('#downothersdoc').hide();
+    }
+    else {
+        $('#downothersdoc').show();
+    }
+
     //$('#hdnOperatorVehicleID').val($('#' + baseID + 'OperatorVehicleID').val());
     //var id = $('#' + baseID + 'OperatorVehicleID').val();
     //var id1 = $('#' + baseID + 'VehicleRegistrationNo').val()
@@ -235,6 +303,7 @@ function btnSaveVehicle() {
     //gIndex = -1;
 }
 function AddVehicle(index) {
+    debugger;
     gIndex = -1;
     $('#operatorVehicle_VehicleRegistrationNo, #operatorVehicle_VehicleType,#operatorVehicle_VehicleCategory, #operatorVehicle_Model, #operatorVehicle_Tonnage').val('');
     $('#VehicleModal').modal('show');

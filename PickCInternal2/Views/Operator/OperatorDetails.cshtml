@@ -883,6 +883,7 @@
 
 @using (Html.BeginForm("SaveVehicle", "Operator", FormMethod.Post, new { id = "frmVehicle", name = "frmVehicle", enctype = "multipart/form-data" }))
 {
+    @Html.Hidden("OperatorVehicleID", Model.OPerator.OperatorID)
     <div id="VehicleModal" class="modal">
         <div class="modal-dialog modal-lg">
             <form id="frmVehicle" name="frmVehicle">
@@ -899,7 +900,6 @@
                             <div class="row">
                                 <div class="col-md-4">
                                     <label>Vehicle Registration No</label>
-                                    @Html.Hidden("OperatorVehicleID", Model.OPerator.OperatorID)
                                     @*<input type="hidden" name="hdnOperatorVehicleID" id="hdnOperatorVehicleID" />*@
                                     @Html.TextBox("VehicleRegistrationNo", "", new { @class = "form-control noSpecialChar", onchange = "VehicleNo(this)" })
                                 </div>
@@ -913,7 +913,7 @@
                                     <div class="file-upload custom-mrgn">
                                         <div class="file-select">
                                             <div class="file-select-button" id="fileName">Front Image</div>
-                                            <input type="file" id="FrontImage" name="FrontImage" value="1395" title=" " onchange="onFileChange(this, 'frontimagedocFile', 'hdnfrontimagedocFile')" />
+                                            <input type="file" id="FrontImage" name="FrontImage" value="1395" title="" onchange="onFileChange(this, 'frontimagedocFile', 'hdnfrontimagedocFile')" />
                                         </div>
 
                                     </div>
@@ -949,7 +949,7 @@
                                     <div class="file-upload custom-mrgn">
                                         <div class="file-select">
                                             <div class="file-select-button" id="fileName">Back Image</div>
-                                            <input type="file" id="BackImage" name="BackImage" value="1396" title=" " onchange="onFileChange(this, 'backimagedocFile', 'hdnbackimagedocFile')" />
+                                            <input type="file" id="BackImage" name="BackImage" value="1396" title="" onchange="onFileChange(this, 'backimagedocFile', 'hdnbackimagedocFile')" />
                                         </div>
                                     </div>
                                 </div>
@@ -1045,7 +1045,7 @@
                                     <div class="file-upload">
                                         <div class="file-select">
                                             <div class="file-select-button" id="fileName">Choose File</div>
-                                            <input type="file" id="registrationdoc" name="registrationdoc" value="1391" title=" " onchange="onFileChange(this, 'registrationdocFile','hdnRegistrationdocFile')" />
+                                            <input type="file" id="registrationdoc" name="registrationdoc" value="1391" title="" onchange="onFileChange(this, 'registrationdocFile','hdnRegistrationdocFile')" />
                                         </div>
                                     </div>
                                 </div>
@@ -1125,10 +1125,11 @@
                                 </div>
 
                             </div>
-                            <div class="modal-footer">
-                                <button type="button" class="btn btn-default pull-left" data-dismiss="modal" id="vehicle_cancel">Close</button>
-                                <button type="button" onclick="btnSaveVehicle();" class="btn btn-primary btn-them">Save</button><!--onclick="btnSaveVehicle();"-->
-                            </div>
+                            
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-default pull-left" data-dismiss="modal" id="vehicle_cancel">Close</button>
+                            <button type="button" onclick="btnSaveVehicle();" class="btn btn-primary btn-them">Save</button><!--onclick="btnSaveVehicle();"-->
                         </div>
                     }
                 </div>
@@ -1317,6 +1318,7 @@
             $('#addressModal').modal('show');
         }
         function AddVehicle() {
+            debugger;
             $('#VehicleModal').modal('show');
             $('#operatorVehicle_VehicleRegistrationNo').val('');
             $('#operatorVehicle_VehicleType').val('');
@@ -1721,11 +1723,266 @@
         //    $('#bankDetailsModal').modal('hide');
         //}
         function AddVehicle(index) {
-
+            debugger;
             $('#frmVehicle input[type="text"]').removeClass('error');
             $('#frmVehicle select').removeClass('error');
             $('#VehicleRegistrationNo, #VehicleType, #VehicleCategory, #Model, #Tonnage').val('');
+
+
+            var strHtml = `
+                <div class ="row">
+                                <div class ="col-md-4">
+                                    <label>Vehicle Registration No</label>
+
+
+                                    <input class ="form-control noSpecialChar" id="VehicleRegistrationNo" name="VehicleRegistrationNo" onchange="VehicleNo(this)" type="text" value="">
+                                </div>
+                                <div class ="col-md-2">
+
+                                    <div>
+                                        <img id="imgFrontImage" class ="img-responsive type-veh-img">
+                                    </div>
+                                </div>
+                                <div class ="col-md-2">
+                                    <div class ="file-upload custom-mrgn">
+                                        <div class ="file-select">
+                                            <div class ="file-select-button" id="fileName">Front Image</div>
+                                            <input type="file" id="FrontImage" name="FrontImage" value="1395" title=" " onchange="onFileChange(this, 'frontimagedocFile', 'hdnfrontimagedocFile')">
+                                        </div>
+
+                                    </div>
+                                </div>
+
+                                <div class ="col-md-2">
+                                    <div id="frontimagedocFile"></div>
+                                    <input type="hidden" name="hdnfrontimagedocFile" id="hdnfrontimagedocFile">
+
+                                </div>
+
+                                 <div class ="col-md-2">
+                                    <a id="downFrontImage">Download</a>
+                                </div>
+
+                            </div>
+                            <div class ="row">
+                                <div class ="col-md-4">
+                                    <label>Vehicle Type</label>
+                                    <select class ="form-control input-sm" id="VehicleType" name="VehicleType"><option value="">Select Category</option>
+<option value="1300">Open</option>
+<option value="1301">Closed</option>
+</select>
+                                </div>
+
+
+                                <div class ="col-md-2">
+
+                                    <div>
+                                        <img id="imgBackImage" class ="img-responsive type-veh-img">
+                                    </div>
+                                </div>
+
+                                <div class ="col-md-2">
+                                    <div class ="file-upload custom-mrgn">
+                                        <div class ="file-select">
+                                            <div class ="file-select-button" id="fileName">Back Image</div>
+                                            <input type="file" id="BackImage" name="BackImage" value="1396" title=" " onchange="onFileChange(this, 'backimagedocFile', 'hdnbackimagedocFile')">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class ="col-md-2">
+                                    <div id="backimagedocFile"></div>
+                                    <input type="hidden" name="hdnbackimagedocFile" id="hdnbackimagedocFile">
+                                </div>
+
+
+                                <div class ="col-md-2">
+                                    <a id="downBackImage">Download</a>
+                                </div>
+
+
+                                </div>
+                            <div class ="row">
+                                <div class ="col-md-4">
+                                    <label>Vehicle Category</label>
+                                    <select class ="form-control input-sm" id="VehicleCategory" name="VehicleCategory" onchange="onChangeVehicleCategory(this)"><option value="">Select Category</option>
+<option value="1000">Mini</option>
+<option value="1001">Small</option>
+<option value="1002">Medium</option>
+<option value="1003">Large</option>
+</select>
+                                </div>
+
+                                <div class ="col-md-2">
+
+                                    <div>
+                                        <img id="imgLeftImage" class ="img-responsive type-veh-img">
+                                    </div>
+                                </div>
+
+
+                                <div class ="col-md-2">
+                                    <div class ="file-upload custom-mrgn">
+                                        <div class ="file-select">
+                                            <div class ="file-select-button" id="fileName">Left Image</div>
+                                            <input type="file" id="LeftImage" name="LeftImage" value="1397" title=" " onchange="onFileChange(this, 'leftimagedocFile', 'hdnleftimagedocFile')">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class ="col-md-2">
+                                    <div id="leftimagedocFile"></div>
+                                    <input type="hidden" name="hdnleftimagedocFile" id="hdnleftimagedocFile">
+
+
+                                </div>
+                            <div class ="col-md-2">
+                                    <a id="downLeftImage">Download</a>
+                                </div>
+                               
+                            </div>
+                            <div class ="row">
+                                <div class ="col-md-4">
+                                    <label>Model</label>
+                                    <select class ="form-control input-sm" disabled="disabled" id="Model" name="Model" onchange="ModelChanged(this)"><option value="">Select Category</option>
+<option>V</option>
+<option>a</option>
+<option>l</option>
+<option>u</option>
+<option>e</option>
+</select>
+                                </div>
+
+
+
+                                <div class ="col-md-2">
+                                    <div>
+                                        <img id="imgRightImage" class ="img-responsive type-veh-img">
+                                    </div>
+                                </div>
+
+                                <div class ="col-md-2">
+                                    <div class ="file-upload custom-mrgn">
+                                        <div class ="file-select">
+                                            <div class ="file-select-button" id="fileName"> Right Image</div>
+                                            <input type="file" id="RightImage" name="RightImage" value="1398" title=" " onchange="onFileChange(this, 'rightimagedocFile', 'hdnrightimagedocFile')">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class ="col-md-2">
+                                    <div id="rightimagedocFile"></div>
+                                    <input type="hidden" name="hdnrightimagedocFile" id="hdnrightimagedocFile">
+                                </div>
+
+                                <div class ="col-md-2">
+                                    <a id="downRightImage" >Download</a>
+                                </div>
+
+                            </div>
+                            <div class ="row">
+                                <div class ="col-md-6">
+
+                                    <label>Kg's</label>
+                                    <input class ="form-control" id="Tonnage" name="Tonnage" readonly="readonly" type="text" value="">
+                                </div>
+                            </div><br>
+                            <div class ="row">
+                                <div class ="col-md-3">
+                                    <label>Registration (RC) </label>
+                                </div>
+                                <div class ="col-md-3">
+                                    <div class ="file-upload">
+                                        <div class ="file-select">
+                                            <div class ="file-select-button" id="fileName">Choose File</div>
+                                            <input type="file" id="registrationdoc" name="registrationdoc" value="1391" title=" " onchange="onFileChange(this, 'registrationdocFile','hdnRegistrationdocFile')">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class ="col-md-3">
+                                    <div id="registrationdocFile"></div>
+                                    <input type="hidden" name="hdnRegistrationdocFile" id="hdnRegistrationdocFile">
+                                </div>
+                                 <div class ="col-md-2">
+                                    <a id="downregistrationdoc">Download</a>
+                                </div>
+                            </div>
+                            <div class ="row">
+                                <div class ="col-md-3">
+                                    <label>Insurance</label>
+                                </div>
+                                <div class ="col-md-3">
+                                    <div class ="file-upload">
+                                        <div class ="file-select">
+                                            <div class ="file-select-button" id="fileName">Choose File</div>
+                                            <input type="file" id="insurancedoc" name="insurancedoc" value="1392" title=" " onchange="onFileChange(this, 'insurancedocFile','hdnInsurancedocFile')">
+                                        </div>
+                                    </div>
+
+                                </div>
+                                <div class ="col-md-3">
+                                    <div id="insurancedocFile"></div>
+                                    <input type="hidden" name="hdnInsurancedocFile" id="hdnInsurancedocFile">
+                                </div>
+                                <div class ="col-md-2">
+                                    <a id="downinsurancedoc">Download</a>
+                                </div>
+
+                            </div>
+                            <div class ="row">
+                                <div class ="col-md-3">
+                                    <label>Pollution Check</label>
+                                </div>
+                                <div class ="col-md-3">
+                                    <div class ="file-upload">
+                                        <div class ="file-select">
+                                            <div class ="file-select-button" id="fileName">Choose File</div>
+                                            <input type="file" id="pollutioncheckdoc" name="pollutioncheckdoc" value="1393" title=" " onchange="onFileChange(this, 'pollutioncheckdocFile','hdnPollutioncheckdocFile')">
+                                        </div>
+                                    </div>
+
+                                </div>
+                                <div class ="col-md-3">
+                                    <div id="pollutioncheckdocFile"></div>
+                                    <input type="hidden" name="hdnPollutioncheckdocFile" id="hdnPollutioncheckdocFile">
+                                </div>
+
+                                <div class ="col-md-2">
+                                    <a id="downpollutioncheckdoc">Download</a>
+                                </div>
+                            </div>
+                            <div class ="row">
+                                <div class ="col-md-3">
+                                    <label>Others</label>
+                                </div>
+                                <div class ="col-md-3">
+                                    <div class ="file-upload">
+                                        <div class ="file-select">
+                                            <div class ="file-select-button" id="fileName">Choose File</div>
+                                            <input type="file" id="othersdoc" name="othersdoc" value="1394" title=" " onchange="onFileChange(this, 'othersdocFile','hdnOthersdocFile')">
+                                        </div>
+                                    </div>
+
+                                </div>
+                                <div class ="col-md-3">
+                                    <div id="othersdocFile"></div>
+                                    <input type="hidden" name="hdnOthersdocFile" id="hdnOthersdocFile">
+                                </div>
+                                  <div class ="col-md-2">
+                                    <a id="downothersdoc">Download</a>
+                                </div>
+                               
+                `;
+            debugger;
+            $('#vehicleModalBody').html(strHtml);
             $('#VehicleModal').modal('show');
+
+            $('#downFrontImage').hide();
+            $('#downBackImage').hide();
+            $('#downLeftImage').hide();
+            $('#downRightImage').hide();
+            $('#downregistrationdoc').hide();
+            $('#downinsurancedoc').hide();
+            $('#downpollutioncheckdoc').hide();
+            $('#downothersdoc').hide();
+
         }
         function bankDetails(index) {
             debugger;
