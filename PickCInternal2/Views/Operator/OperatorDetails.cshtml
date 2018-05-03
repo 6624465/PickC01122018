@@ -192,7 +192,9 @@
                                         <div class="col-md-4">
                                             <div class="form-group">
                                                 <label>Mobile No</label>
-                                                @Html.TextBoxFor(x => x.OPerator.MobileNo, new { @class = "form-control numCss", placeholder = "Mobile No", maxlength = 10 })
+                                                @Html.TextBoxFor(x => x.OPerator.MobileNo, new { @class = "form-control numCss MobileNoCss", placeholder = "Mobile No", maxlength = 10 @*, onblur = "appendMobileno(this)"*@ })
+                                            
+                                            @*<label id="mobileerror">MobileNo is Already Exists.Please enter another one</label>*@
                                             </div>
                                         </div>
                                     </div>
@@ -226,14 +228,18 @@
                                     <div class="col-md-4">
                                         <div class="form-group">
                                             <label>PAN No</label>
-                                            @Html.TextBoxFor(x => x.OPerator.PANNo, new { @class = "form-control noSpecialChar", placeholder = "PAN No", @id = "panno", maxLength = 10 })
+                                            @Html.TextBoxFor(x => x.OPerator.PANNo, new { @class = "form-control noSpecialChar", placeholder = "PAN No", @id = "panno", maxLength = 10 @*, onblur = "appendPanno(this)"*@ })
+                                        
+                                            @*<label id="panerror">PanNo is Already Exists.Please enter another one</label>*@
+
                                         </div>
                                     </div>
                                     <div class="col-md-4">
                                         <div class="form-group">
                                             <label>Aadhar Card No</label>
-                                            @Html.TextBoxFor(x => x.OPerator.AadharCardNo, new { @class = "form-control numCss", placeholder = "Aadhar Card No", maxLength = 12, @id = "AadharCardNo" })
-                                        </div>
+                                            @Html.TextBoxFor(x => x.OPerator.AadharCardNo, new { @class = "form-control numCss", placeholder = "Aadhar Card No", maxLength = 12, @id = "AadharCardNo"@*, onblur = "appendAadharno(this)"*@ })
+                                       @*<label id="aadharerror">AadharNo is Already Exists.Please enter another one</label>*@
+                                         </div>
 
                                         @*<div class="col-md-4">
                                                 <div class="form-group">
@@ -1251,8 +1257,9 @@
                     <div class="row">
                         <div class="col-md-6">
                             <label>Account Number</label>
-                            <input type="text" id="txtAccNumber" name="txtAccNumber" class="form-control number" maxlength="20" />
-                        </div>
+                            <input type="text" id="txtAccNumber" name="txtAccNumber" class="form-control number" maxlength="20" @*onblur = "appendAccountno(this)"*@ />
+                       @*<label id="accountnoerror">Account no is Already Exists.Please enter another one</label>*@
+                         </div>
                         <div class="col-md-6">
                             <label>Account Type</label>
                             @*<input type="text" id="txtAccType" name="txtAccType" class="form-control noSpecialChar" />*@
@@ -1307,6 +1314,112 @@
 
 
     <script type="text/javascript">
+
+        $.validator.addMethod('MobileNoCss', function (value) {
+            var test = /^[789]\d{9}$/.test(value);
+            return /^[789]\d{9}$/.test(value);
+        }, 'Please enter correct Mobile Number');
+
+        @*function appendPanno(el) {
+            debugger;
+            var panno = $('#panno').val();
+                $.ajax({
+                    url: '@Url.Content("~/Operator/IsPannoExists?Panno=")' + panno,
+                    method: 'get',
+                    contentType: 'Json',
+                    success: function (result) {
+                        if (result == "True") {
+                            $('#panerror').show();
+                            $('#panno').val('');
+                            $('#panerror').fadeOut(5000);
+                        }
+                        else {
+                            $('#error').hide();
+                        }
+                    },
+                    error: function (err) {
+                        return result;
+                    }
+                });
+        }*@
+
+        @*function appendMobileno(el) {
+            var mobilenono = $('#OPerator_MobileNo').val();
+            debugger;
+            $.ajax({
+                url: '@Url.Content("~/Operator/IsMobilenoExists?mobilenono=")' + $('#OPerator_MobileNo').val(),
+                method: 'get',
+                contentType: 'Json',
+                success: function (result) {
+                    if (result == "True") {
+                        $('#mobileerror').show();
+                        $('#OPerator_MobileNo').val('');
+                        $('#error').fadeOut(5000);
+                    }
+                    else {
+                        $('#mobileerror').hide();
+                        
+                    }
+                },
+                error: function (err) {
+                    return result;
+                }
+
+            });
+        }*@
+        @*$('#aadharerror').hide();
+        function appendAadharno(el) {
+            var aadharno = $('#AadharCardNo').val();
+            debugger;
+            $.ajax({
+                url: '@Url.Content("~/Operator/IsAadharExists?aadharno=")' + aadharno,
+                method: 'get',
+                contentType: 'Json',
+                success: function (result) {
+                    if (result == 0) {
+                        $('#aadharerror').show();
+                        $('#AadharCardNo').val('');
+                        $('#error').fadeOut(5000);
+                    }
+                    else {
+                        $('#aadharerror').hide();
+                       
+                    }
+                },
+                error: function (err) {
+                    return result;
+                }
+
+            });
+        }*@
+
+
+        @*function appendAccountno(el) {
+            var accountno = $('#txtAccNumber').val();
+            debugger;
+            $.ajax({
+                url: '@Url.Content("~/Operator/IsAccountnoExists?accountno=")' + $('#txtAccNumber').val(),
+                method: 'get',
+                contentType: 'Json',
+                success: function (result) {
+                    if (result == "True") {
+                        $('#accountnoerror').show();
+                        $('#txtAccNumber').val('');
+                        $('#accountnoerror').fadeOut(5000);
+                    }
+                    else {
+                        $('#accountnoerror').hide();
+                        
+                    }
+                },
+                error: function (err) {
+                    return result;
+                }
+
+            });
+        }*@
+
+      
 
         function onFileChange(el, id, hdn) {
             debugger;
@@ -1458,6 +1571,12 @@
         }
         $(function () {
             var date1 = new Date();
+
+            day = date1.getDate(),
+            month = date1.getMonth() + 1,
+            year = date1.getFullYear() - 18;
+            var mindate = '-' + year + '/' + month + '/' + day
+
             @if(Model.OPerator.OperatorID==null)
                     {
                         <text> $('#OPerator_DateOfBirth').val('');</text>
@@ -1511,9 +1630,14 @@
                     }
                 }
             });
+
+
+
+
             $('.dtCss').datetimepicker({
                 format: DateFormat,
-                maxDate: date1
+                maxDate: mindate
+                //minDate: mindate,
             });
 
         });
@@ -1837,7 +1961,7 @@
                             <div class ="col-md-2">
                                     <a id="downLeftImage">Download</a>
                                 </div>
-                               
+
                             </div>
                             <div class ="row">
                                 <div class ="col-md-4">
@@ -1968,7 +2092,7 @@
                                   <div class ="col-md-2">
                                     <a id="downothersdoc">Download</a>
                                 </div>
-                               
+
                 `;
             debugger;
             $('#vehicleModalBody').html(strHtml);

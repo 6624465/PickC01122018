@@ -62,12 +62,12 @@
                                 grid.Column("OperatorName", "Operator Name"),
                                 grid.Column("OperatorID", "Operator ID"),
                                 grid.Column("MobileNo", "Mobile No"),
-                                grid.Column("CreatedOn", "Date Of Registration"),
-                                grid.Column("Edit", "Edit", canSort: false,style:"color", format:
+                                grid.Column("CreatedOn", "Date Of Registration", format: (item) => string.Format("{0:dd-MMM-yyyy}", item.CreatedOn)),
+                                grid.Column("Edit", "Edit", canSort: false, style: "color", format:
                                 @<text>
                                     <button type="button" onclick="location.href = '@Url.Content("~/Operator/Edit?OperatorID=" + item.OperatorID)'" class="btn btn-primary btn-sm"><i class="fa fa-pencil" aria-hidden="true"></i>&nbsp;Edit</button>
                                 </text>),
-                                grid.Column("View", "View", canSort: false, style: "color", format:
+                                grid.Column("View", "Drivers List", canSort: false, style: "color", format:
                                 @<text>                                    
                                     <button class="btn btn-info btn-sm" type="button" onclick="driverListView('@item.OperatorID')"><i class="fa fa-eye" aria-hidden="true"></i>&nbsp;View</button>
                                 </text>)
@@ -95,7 +95,7 @@
                     <button type="button" class="close" onclick="disposeModel()" aria-label="Close">
                         <span aria-hidden="true">×</span>
                     </button>
-                    <h4 class="modal-title">Operator Driver List</h4>
+                    <h4 class="modal-title"> Drivers List</h4>
                 </div>
                 <div class="modal-body" id="DriverListModalContent">
                     <div class="row">

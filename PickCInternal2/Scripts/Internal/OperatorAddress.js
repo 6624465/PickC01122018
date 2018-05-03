@@ -162,6 +162,7 @@ function AddAddress(index) {
 }
 
 function DeleteAddress(index) {
+    debugger;
     //var id = '#OPerator_AddressList_' + index + '__IsActive';
     //$(id).val('False');
     //$('#trRow_' + index).css({
