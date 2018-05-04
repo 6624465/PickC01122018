@@ -45,7 +45,36 @@ namespace PickC.Internal2.Controllers
 
             return View(driverVm);
 		}
-		[HttpGet]
+
+        [HttpGet]
+        public async Task<JsonResult> IsAadharExists(string aadharno)
+        {
+            var operatorList = await new DriverService(AUTHTOKEN, p_mobileNo).IsAadharExistsAsync(aadharno);
+            return Json(operatorList, JsonRequestBehavior.AllowGet);
+        }
+
+        [HttpGet]
+        public async Task<JsonResult> IsPannoExists(string Panno)
+        {
+            var operatorList = await new DriverService(AUTHTOKEN, p_mobileNo).IsPancardExistsAsync(Panno);
+            return Json(operatorList, JsonRequestBehavior.AllowGet);
+        }
+
+        [HttpGet]
+        public async Task<JsonResult> IsMobilenoExists(string mobilenono)
+        {
+            var operatorList = await new DriverService(AUTHTOKEN, p_mobileNo).IsMobileNoExistsAsync(mobilenono);
+            return Json(operatorList, JsonRequestBehavior.AllowGet);
+        }
+
+        [HttpGet]
+        public async Task<JsonResult> IsAccountnoExists(string accountno)
+        {
+            var operatorList = await new DriverService(AUTHTOKEN, p_mobileNo).IsAccountNoExistsAsync(accountno);
+            return Json(operatorList, JsonRequestBehavior.AllowGet);
+        }
+
+        [HttpGet]
 		public async Task<ActionResult> Edit(string driverID,string OperatorID)
 		{
             TempData["operatorIdEdit"] = OperatorID;

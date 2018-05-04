@@ -45,6 +45,27 @@ namespace Master.BusinessFactory
         {
             return operatorDAL.GetOperatorDetails(operatorID);
         }
+
+        public int GetOperatorDetailsbyaadhar(string aadharno)
+        {
+            return operatorDAL.GetOperatorDetailsbyaadharno(aadharno);
+        }
+
+        public int GetOperatorDetailsbyPan(string pancardno)
+        {
+            return operatorDAL.GetOperatorDetailsbypancardno(pancardno);
+        }
+
+        public int GetOperatorDetailsbyMobileno(string mobileno)
+        {
+            return operatorDAL.GetOperatorDetailsbyMobileno(mobileno);
+        }
+
+        public int GetOperatorDetailsbyAccountno(string accountno)
+        {
+            return operatorDAL.GetOperatorDetailsbyAccountno(accountno);
+        }
+
         public int IsOperatorValid(string operatorID)
         {
             return operatorDAL.IsOperatorExixts(operatorID);

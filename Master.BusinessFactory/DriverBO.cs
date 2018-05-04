@@ -167,5 +167,22 @@ namespace Master.BusinessFactory
         {
             return driverDAL.GetDriverPendingAmount();
         }
+
+          public int GetDriverDetailsbyaadhar(string aadharno)
+        {
+            return driverDAL.GetDriverDetailsbyaadharno(aadharno);
+        }
+
+        public int GetDriverDetailsbyPan(string panno)
+        {
+            return driverDAL.GetDriverDetailsbyPanno(panno);
+        }
+
+        public int GetDriverDetailsbyMobileNo(string mobileno)
+        {
+            return driverDAL.GetDriverDetailsbyMobileNo(mobileno);
+        }
+
+
     }
 }
