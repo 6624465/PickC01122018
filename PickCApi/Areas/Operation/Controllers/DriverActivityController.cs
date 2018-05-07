@@ -364,9 +364,9 @@ namespace PickCApi.Areas.Operation.Controllers
         }
 
         [HttpPost]
-        [Route("UpdateDriverCurrentLocation/{Accuracy}/{BREARING}/")]
+        [Route("UpdateDriverCurrentLocation/{Accuracy}/{BREARING}/{BookingNo}/")]
         [ApiAuthFilter]
-        public IHttpActionResult UpdateCurrentDriverLocation(decimal Accuracy, decimal BREARING)
+        public IHttpActionResult UpdateCurrentDriverLocation(decimal Accuracy, decimal BREARING,string bookingNo)
         {
             try
             {
@@ -379,7 +379,8 @@ namespace PickCApi.Areas.Operation.Controllers
                     IsLogIn = true,
                     IsOnDuty = true,
                     Accuracy = Accuracy,
-                    Bearing = BREARING
+                    Bearing = BREARING,
+                    BookingNo = bookingNo
                 };
                 var result = new DriverActivityBO().UpdateCurrentDriverLocation(updateDriverCurrentLocation);
                 if (result)

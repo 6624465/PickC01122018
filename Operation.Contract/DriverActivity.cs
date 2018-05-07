@@ -57,6 +57,8 @@ namespace Operation.Contract
         public DateTime CreatedOn { get; set; }
 
         public decimal Bearing { get; set; }
+
+        public string BookingNo { get; set; }
     }
 }
 

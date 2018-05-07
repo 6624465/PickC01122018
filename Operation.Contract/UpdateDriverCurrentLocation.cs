@@ -18,6 +18,8 @@ namespace Operation.Contract
         public bool IsOnDuty { get; set; }
         public decimal Accuracy { get; set; }
         public decimal Bearing { get; set; }
+
+        public string BookingNo { get; set; }
     }
     public class AccuracyRate
     {

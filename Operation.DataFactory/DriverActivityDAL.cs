@@ -169,6 +169,7 @@ namespace Operation.DataFactory
                 db.AddInParameter(savecommand, "IsOnDuty", System.Data.DbType.Boolean, updateDriverCurrentLocation.IsOnDuty);
                 db.AddInParameter(savecommand, "Accuracy", System.Data.DbType.Decimal, updateDriverCurrentLocation.Accuracy);
                 db.AddInParameter(savecommand, "Bearing", System.Data.DbType.Decimal, updateDriverCurrentLocation.Bearing);
+                db.AddInParameter(savecommand, "BookingNo", System.Data.DbType.String, updateDriverCurrentLocation.BookingNo);
 
                 result = db.ExecuteNonQuery(savecommand, transaction);
 
