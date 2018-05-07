@@ -275,6 +275,30 @@ namespace Master.DataFactory
             return operatorItem;
         }
 
+        public int GetOperatorDetailsbyaadharno(string aadharno)
+        {
+            var result = Convert.ToInt32(db.ExecuteScalar(db.GetStoredProcCommand(DBRoutine.OPERATORAADHARCARDEXIST, aadharno)));
+            return result;
+        }
+
+        public int GetOperatorDetailsbypancardno(string pancardno)
+        {
+            var result = Convert.ToInt32(db.ExecuteScalar(db.GetStoredProcCommand(DBRoutine.OPERATORPANCARDEXIST, pancardno)));
+            return result;
+        }
+
+        public int GetOperatorDetailsbyMobileno(string mobileno)
+        {
+            var result = Convert.ToInt32(db.ExecuteScalar(db.GetStoredProcCommand(DBRoutine.OPERATORMOBILENOEXIST, mobileno)));
+            return result;
+        }
+
+        public int GetOperatorDetailsbyAccountno(string accountno)
+        {
+            var result = Convert.ToInt32(db.ExecuteScalar(db.GetStoredProcCommand(DBRoutine.ISACCOUNTNOEXIST, accountno)));
+            return result;
+        }
+
         public bool Delete<T>(T item) where T : IContract
         {
             var result = false;

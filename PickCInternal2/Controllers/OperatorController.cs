@@ -178,6 +178,33 @@ namespace PickCInternal2.Controllers
         }
 
         [HttpGet]
+        public async Task<JsonResult> IsAadharExists(string aadharno)
+        {
+            var operatorList = await new OperatorService(AUTHTOKEN, p_mobileNo).IsAadharExistsAsync(aadharno);
+            return Json(operatorList, JsonRequestBehavior.AllowGet);
+        }
+
+        [HttpGet]
+        public async Task<JsonResult> IsPannoExists(string panno)
+        {
+            var operatorList = await new OperatorService(AUTHTOKEN, p_mobileNo).IsPancardExistsAsync(panno);
+            return Json(operatorList, JsonRequestBehavior.AllowGet);
+        }
+
+        public async Task<JsonResult> IsMobilenoExists(string mobilenono)
+        {
+            var operatorList = await new OperatorService(AUTHTOKEN, p_mobileNo).IsMobilenoExistsAsync(mobilenono);
+            return Json(operatorList, JsonRequestBehavior.AllowGet);
+        }
+
+        public async Task<JsonResult> IsAccountnoExists(string accountno)
+        {
+            var operatorList = await new OperatorService(AUTHTOKEN, p_mobileNo).IsAccountNoExistsAsync(accountno);
+            return Json(operatorList, JsonRequestBehavior.AllowGet);
+        }
+
+
+        [HttpGet]
         public async Task<ActionResult> GetOperatorDriverList(string operatorID)
         {
             List<OperatorDriver> OperatorDriverList = (await new OperatorDriverService(AUTHTOKEN, p_mobileNo).GetDriverList()).Where(x => x.OperatorID == operatorID).ToList();

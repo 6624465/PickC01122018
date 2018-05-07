@@ -192,8 +192,8 @@
                         <div class="col-md-4">
                             <div class="form-group">
                                 <label>Mobile No</label>
-                                @Html.TextBoxFor(x => x.driver.MobileNo, new { @class = "form-control number MobileNoCss", @maxlength = 10, placeholder = "Mobile No" @*, onblur = "appendMobileno(this)"*@ })
-                                @*<label id="mobileerror">MobileNo is Already Exists.Please enter another one</label>*@
+                                @Html.TextBoxFor(x => x.driver.MobileNo, new { @class = "form-control number MobileNoCss", @maxlength = 10, placeholder = "Mobile No" , onblur = "appendMobileno(this)" })
+                                <label id="mobileerror">MobileNo is Already Exists.Please enter another one</label>
                             </div>
                         </div>
                     </div>
@@ -220,15 +220,15 @@
                         <div class="col-md-4">
                             <div class="form-group">
                                 <label>PAN No</label>
-                                @Html.TextBoxFor(x => x.driver.PANNo, new { @class = "form-control noSpecialChar", @maxlength = 10, placeholder = "PAN No" @*, onblur = "appendPanno(this)"*@ })
-                                @*<label id="panerror">PanNo is Already Exists.Please enter another one</label>*@
+                                @Html.TextBoxFor(x => x.driver.PANNo, new { @class = "form-control noSpecialChar", @maxlength = 10, placeholder = "PAN No" , onblur = "appendPanno(this)" })
+                                <label id="panerror">PanNo is Already Exists.Please enter another one</label>
                               </div>
                         </div>
                         <div class="col-md-4">
                             <div class="form-group">
                                 <label>Aadhar Card No</label>
-                                @Html.TextBoxFor(x => x.driver.AadharCardNo, new { @class = "form-control number", @maxlength = 12, placeholder = "Aadhar Card No" @*, onblur = "appendAadharno(this)"*@ })
-                                @*<label id="aadharerror">AadharNo is Already Exists.Please enter another one</label>*@
+                                @Html.TextBoxFor(x => x.driver.AadharCardNo, new { @class = "form-control number", @maxlength = 12, placeholder = "Aadhar Card No" , onblur = "appendAadharno(this)" })
+                                <label id="aadharerror">AadharNo is Already Exists.Please enter another one</label>
                               </div>
                         </div>
                         <div class="col-md-4">
@@ -898,8 +898,8 @@
                     <div class="row">
                         <div class="col-md-6">
                             <label>Account Number</label>
-                            <input type="text" id="txtAccNumber" name="txtAccNumber" class="form-control number" maxlength="20" @*onblur = "appendAccountno(this)"*@/>
-                            @*<label id="accountnoerror">Account no is Already Exists.Please enter another one</label>*@
+                            <input type="text" id="txtAccNumber" name="txtAccNumber" class="form-control number" maxlength="20" onblur = "appendAccountno(this)"/>
+                            <label id="accountnoerror">Account no is Already Exists.Please enter another one</label>
                          </div>
                         <div class="col-md-6">
                             <label>Account Type</label>
@@ -938,107 +938,133 @@
     <script src="@Url.Content("~/Scripts/jquery.cookie.js")"></script>
     <script type="text/javascript">
 
-
-        @*function appendPanno(el) {
+        $('#panerror').hide();
+        function appendPanno(el) {
+            debugger;
               var pannno = $('#driver_PANNo').val();
-              debugger;
-              $.ajax({
-                  url: '@Url.Content("~/Driver/IsPannoExists?Panno=")' + $('#driver_PANNo').val(),
-                  method: 'get',
-                  contentType: 'Json',
-                  success: function (result) {
-                      if (result == "True") {
-                          $('#panerror').show();
-                          $('#driver_PANNo').val('');
-                          $('#panerror').fadeOut(5000);
+              var length = pannno.length;
+              if (length > 0) {
+                  $.ajax({
+                      url: '@Url.Content("~/Driver/IsPannoExists?Panno=")' + pannno,
+                      method: 'get',
+                      contentType: 'Json',
+                      success: function (result) {
+                          if (result > 0) {
+                              $('#panerror').show();
+                              $('#driver_PANNo').val('');
+                              $('#panerror').fadeOut(5000);
+                          }
+                          else {
+                              $('#panerror').hide();
+
+                          }
+                      },
+                      error: function (err) {
+                          return result;
                       }
-                      else {
-                          $('#error').hide();
 
-                      }
-                  },
-                  error: function (err) {
-                      return result;
-                  }
+                  });
+              }
+              else {
+                  return null;
+              }
+          }
 
-              });
-          }*@
-
-        @*function appendMobileno(el) {
+        $('#mobileerror').hide();
+        function appendMobileno(el) {
+            debugger;
             var mobilenono = $('#driver_MobileNo').val();
+            var length = mobilenono.length;
+            if (length > 0) {
+                $.ajax({
+                    url: '@Url.Content("~/Driver/IsMobilenoExists?mobilenono=")' + $('#driver_MobileNo').val(),
+                    method: 'get',
+                    contentType: 'Json',
+                    success: function (result) {
+                        if (result > 0) {
+                            $('#mobileerror').show();
+                            $('#driver_MobileNo').val('');
+                            $('#mobileerror').fadeOut(5000);
+                        }
+                        else {
+                            $('#mobileerror').hide();
+
+                        }
+                    },
+                    error: function (err) {
+                        return result;
+                    }
+
+                });
+            }
+            else {
+                return null;
+            }
+        }
+
+        $('#aadharerror').hide();
+        function appendAadharno(el) {
             debugger;
-            $.ajax({
-                url: '@Url.Content("~/Driver/IsMobilenoExists?mobilenono=")' + $('#driver_MobileNo').val(),
-                method: 'get',
-                contentType: 'Json',
-                success: function (result) {
-                    if (result == "True") {
-                        $('#mobileerror').show();
-                        $('#driver_MobileNo').val('');
-                        $('#error').fadeOut(5000);
-                    }
-                    else {
-                        $('#mobileerror').hide();
-
-                    }
-                },
-                error: function (err) {
-                    return result;
-                }
-
-            });
-        }*@
-
-        @*function appendAadharno(el) {
             var aadharno = $('#driver_AadharCardNo').val();
+            var length = aadharno.length;
+            if (length > 0) {
+                $.ajax({
+                    url: '@Url.Content("~/Driver/IsAadharExists?aadharno=")' + aadharno,
+                    method: 'get',
+                    contentType: 'Json',
+                    success: function (result) {
+                        if (result > 0) {
+                            $('#aadharerror').show();
+                            $('#driver_AadharCardNo').val('');
+                            $('#aadharerror').fadeOut(5000);
+                        }
+                        else {
+                            $('#aadharerror').hide();
+
+                        }
+                    },
+                    error: function (err) {
+                        return result;
+                    }
+
+                });
+            }
+            else {
+                return null;
+            }
+        }
+
+        $('#accountnoerror').hide();
+        function appendAccountno(el) {
             debugger;
-            $.ajax({
-                url: '@Url.Content("~/Operator/IsAadharExists?aadharno=")' + $('#driver_AadharCardNo').val(),
-                method: 'get',
-                contentType: 'Json',
-                success: function (result) {
-                    if (result == "True") {
-                        $('#aadharerror').show();
-                        $('#driver_AadharCardNo').val('');
-                        $('#error').fadeOut(5000);
-                    }
-                    else {
-                        $('#aadharerror').hide();
-
-                    }
-                },
-                error: function (err) {
-                    return result;
-                }
-
-            });
-        }*@
-
-
-        @*function appendAccountno(el) {
             var accountno = $('#txtAccNumber').val();
-            debugger;
-            $.ajax({
-                url: '@Url.Content("~/Operator/IsAccountnoExists?accountno=")' + $('#txtAccNumber').val(),
-                method: 'get',
-                contentType: 'Json',
-                success: function (result) {
-                    if (result == "True") {
-                        $('#accountnoerror').show();
-                        $('#txtAccNumber').val('');
-                        $('#accountnoerror').fadeOut(5000);
-                    }
-                    else {
-                        $('#accountnoerror').hide();
+            var length = accountno.length;
+            if (length > 0) {
+                $.ajax({
+                    url: '@Url.Content("~/Driver/IsAccountnoExists?accountno=")' + $('#txtAccNumber').val(),
+                    method: 'get',
+                    contentType: 'Json',
+                    success: function (result) {
+                        if (result > 0) {
+                            $('#accountnoerror').show();
+                            $('#txtAccNumber').val('');
+                            $('#accountnoerror').fadeOut(5000);
+                        }
+                        else {
+                            $('#accountnoerror').hide();
 
+                        }
+                    },
+                    error: function (err) {
+                        return result;
                     }
-                },
-                error: function (err) {
-                    return result;
-                }
 
-            });
-        }*@
+                });
+            }
+            else {
+                return null;
+            }
+        }
 
 
 

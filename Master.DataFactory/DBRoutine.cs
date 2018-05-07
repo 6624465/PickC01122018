@@ -104,6 +104,9 @@ namespace Master.DataFactory
         public const string DRIVERISBUSYSTATUSUPDATE = "[Operation].[usp_UpdateDriverIsBusyStatus]";
         public const String BOOKINGCONFIRMISSTARTTRIPCHECK = "[Operation].[usp_BookingConfirmIsStartTripCheck]";
         public const String PICKUPREACHEDISSTARTTRIPPENDING = "[Operation].[usp_PickupReachedIsStartTripPending]";
+        public const String DRIVERAADHARCARDEXIST = "[Master].[usp_DriverAadharcardExist]";
+        public const String DRIVERPANCARDEXIST = "[Master].[usp_DriverPancardExist]";
+        public const String DRIVERMOBILENOEXIST = "[Master].[usp_DriverMobilenoExist]";
         /// <summary>
         /// [Master].[Operator]
         /// </summary>
@@ -121,7 +124,9 @@ namespace Master.DataFactory
         public const string OPERATORUPDATEPASSWORD = "[Master].[usp_OperatorUpdatePassword]";
         public const string OPERATORVALIDCHECK = "[Master].[usp_OperatorValidCheck]";
         public const string LISTOPERATORWISEDRIVERVEHICLEATTACHEDTODAYLIST = "[Master].[usp_OperatorWiseDriverVehicleAttachedTodayList]";
-
+        public const string OPERATORAADHARCARDEXIST = "[Master].[usp_OperatorAadharcardExist]";
+        public const string OPERATORPANCARDEXIST = "[Master].[usp_OperatorPancardExist]";
+        public const string OPERATORMOBILENOEXIST = "[Master].[usp_OperatorMobilenoExist]";
 
         /// <summary>
         /// [Master].[OperatorDriver]
@@ -176,7 +181,7 @@ namespace Master.DataFactory
         public const string LISTBANKDETAILS = "[Master].[usp_BankDetailsList]";
         public const string SAVEBANKDETAILS = "[Master].[usp_BankDetailsSave]";
         public const string DELETEBANKDETAILS = "[Master].[usp_BankDetailsDelete]";
-
+        public const string ISACCOUNTNOEXIST = "[Master].[usp_isaccontnoexist]";
         /// <summary>
         /// [Master].[ReferralDriver]
         /// </summary>

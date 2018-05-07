@@ -192,9 +192,9 @@
                                         <div class="col-md-4">
                                             <div class="form-group">
                                                 <label>Mobile No</label>
-                                                @Html.TextBoxFor(x => x.OPerator.MobileNo, new { @class = "form-control numCss MobileNoCss", placeholder = "Mobile No", maxlength = 10 @*, onblur = "appendMobileno(this)"*@ })
+                                                @Html.TextBoxFor(x => x.OPerator.MobileNo, new { @class = "form-control numCss MobileNoCss", placeholder = "Mobile No", maxlength = 10 , onblur = "appendMobileno(this)" })
                                             
-                                            @*<label id="mobileerror">MobileNo is Already Exists.Please enter another one</label>*@
+                                            <label id="mobileerror">MobileNo is Already Exists.Please enter another one</label>
                                             </div>
                                         </div>
                                     </div>
@@ -228,17 +228,17 @@
                                     <div class="col-md-4">
                                         <div class="form-group">
                                             <label>PAN No</label>
-                                            @Html.TextBoxFor(x => x.OPerator.PANNo, new { @class = "form-control noSpecialChar", placeholder = "PAN No", @id = "panno", maxLength = 10 @*, onblur = "appendPanno(this)"*@ })
+                                            @Html.TextBoxFor(x => x.OPerator.PANNo, new { @class = "form-control noSpecialChar", placeholder = "PAN No", @id = "panno", maxLength = 10 , onblur = "appendPanno(this)" })
                                         
-                                            @*<label id="panerror">PanNo is Already Exists.Please enter another one</label>*@
+                                            <label id="panerror">PanNo is Already Exists.Please enter another one</label>
 
                                         </div>
                                     </div>
                                     <div class="col-md-4">
                                         <div class="form-group">
                                             <label>Aadhar Card No</label>
-                                            @Html.TextBoxFor(x => x.OPerator.AadharCardNo, new { @class = "form-control numCss", placeholder = "Aadhar Card No", maxLength = 12, @id = "AadharCardNo"@*, onblur = "appendAadharno(this)"*@ })
-                                       @*<label id="aadharerror">AadharNo is Already Exists.Please enter another one</label>*@
+                                            @Html.TextBoxFor(x => x.OPerator.AadharCardNo, new { @class = "form-control numCss", placeholder = "Aadhar Card No", maxLength = 12, @id = "AadharCardNo", onblur = "appendAadharno(this)" })
+                                       <label id="aadharerror">AadharNo is Already Exists.Please enter another one</label>
                                          </div>
 
                                         @*<div class="col-md-4">
@@ -1257,8 +1257,8 @@
                     <div class="row">
                         <div class="col-md-6">
                             <label>Account Number</label>
-                            <input type="text" id="txtAccNumber" name="txtAccNumber" class="form-control number" maxlength="20" @*onblur = "appendAccountno(this)"*@ />
-                       @*<label id="accountnoerror">Account no is Already Exists.Please enter another one</label>*@
+                            <input type="text" id="txtAccNumber" name="txtAccNumber" class="form-control number" maxlength="20" onblur = "appendAccountno(this)" />
+                       <label id="accountnoerror">Account no is Already Exists.Please enter another one</label>
                          </div>
                         <div class="col-md-6">
                             <label>Account Type</label>
@@ -1320,106 +1320,134 @@
             return /^[789]\d{9}$/.test(value);
         }, 'Please enter correct Mobile Number');
 
-        @*function appendPanno(el) {
+        $('#panerror').hide();
+        function appendPanno(el) {
             debugger;
             var panno = $('#panno').val();
+            var length = panno.length;
+            if (length > 0) {
                 $.ajax({
                     url: '@Url.Content("~/Operator/IsPannoExists?Panno=")' + panno,
                     method: 'get',
                     contentType: 'Json',
                     success: function (result) {
-                        if (result == "True") {
+                        if (result > 0) {
                             $('#panerror').show();
                             $('#panno').val('');
                             $('#panerror').fadeOut(5000);
                         }
                         else {
-                            $('#error').hide();
+                            $('#panerror').hide();
                         }
                     },
                     error: function (err) {
                         return result;
                     }
                 });
-        }*@
+            }
+            else {
+                return null;
+            }
+        }
 
-        @*function appendMobileno(el) {
+        $('#mobileerror').hide();
+        function appendMobileno(el) {
+            debugger;
             var mobilenono = $('#OPerator_MobileNo').val();
-            debugger;
-            $.ajax({
-                url: '@Url.Content("~/Operator/IsMobilenoExists?mobilenono=")' + $('#OPerator_MobileNo').val(),
-                method: 'get',
-                contentType: 'Json',
-                success: function (result) {
-                    if (result == "True") {
-                        $('#mobileerror').show();
-                        $('#OPerator_MobileNo').val('');
-                        $('#error').fadeOut(5000);
-                    }
-                    else {
-                        $('#mobileerror').hide();
-                        
-                    }
-                },
-                error: function (err) {
-                    return result;
-                }
+            var length = mobilenono.length;
+            if (length > 0) {
+                $.ajax({
+                    url: '@Url.Content("~/Operator/IsMobilenoExists?mobilenono=")' + mobilenono,
+                    method: 'get',
+                    contentType: 'Json',
+                    success: function (result) {
+                        if (result > 0) {
+                            $('#mobileerror').show();
+                            $('#OPerator_MobileNo').val('');
+                            $('#mobileerror').fadeOut(5000);
+                        }
+                        else {
+                            $('#mobileerror').hide();
 
-            });
-        }*@
-        @*$('#aadharerror').hide();
+                        }
+                    },
+                    error: function (err) {
+                        return result;
+                    }
+
+                });
+            }
+            else {
+                return null;
+            }
+        }
+
+        $('#aadharerror').hide();
         function appendAadharno(el) {
+            debugger;
             var aadharno = $('#AadharCardNo').val();
+            var length = aadharno.length;
+            if (length > 0) {
+                $.ajax({
+                    url: '@Url.Content("~/Operator/IsAadharExists?aadharno=")' + aadharno,
+                    method: 'get',
+                    contentType: 'Json',
+                    success: function (result) {
+                        debugger;
+                        if (result > 0) {
+                            $('#aadharerror').show();
+                            $('#AadharCardNo').val('');
+                            $('#aadharerror').fadeOut(5000);
+                        }
+                        else {
+                            $('#aadharerror').hide();
+                        }
+                    },
+                    error: function (err) {
+                        return result;
+                    }
+
+                });
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+        $('#accountnoerror').hide();
+        function appendAccountno(el) {
             debugger;
-            $.ajax({
-                url: '@Url.Content("~/Operator/IsAadharExists?aadharno=")' + aadharno,
-                method: 'get',
-                contentType: 'Json',
-                success: function (result) {
-                    if (result == 0) {
-                        $('#aadharerror').show();
-                        $('#AadharCardNo').val('');
-                        $('#error').fadeOut(5000);
-                    }
-                    else {
-                        $('#aadharerror').hide();
-                       
-                    }
-                },
-                error: function (err) {
-                    return result;
-                }
-
-            });
-        }*@
-
-
-        @*function appendAccountno(el) {
             var accountno = $('#txtAccNumber').val();
+            var length = accountno.length;
             debugger;
-            $.ajax({
-                url: '@Url.Content("~/Operator/IsAccountnoExists?accountno=")' + $('#txtAccNumber').val(),
-                method: 'get',
-                contentType: 'Json',
-                success: function (result) {
-                    if (result == "True") {
-                        $('#accountnoerror').show();
-                        $('#txtAccNumber').val('');
-                        $('#accountnoerror').fadeOut(5000);
-                    }
-                    else {
-                        $('#accountnoerror').hide();
-                        
-                    }
-                },
-                error: function (err) {
-                    return result;
-                }
+            if (length > 0) {
+                $.ajax({
+                    url: '@Url.Content("~/Operator/IsAccountnoExists?accountno=")' + accountno,
+                    method: 'get',
+                    contentType: 'Json',
+                    success: function (result) {
+                        if (result > 0) {
+                            $('#accountnoerror').show();
+                            $('#txtAccNumber').val('');
+                            $('#accountnoerror').fadeOut(5000);
+                        }
+                        else {
+                            $('#accountnoerror').hide();
 
-            });
-        }*@
+                        }
+                    },
+                    error: function (err) {
+                        return result;
+                    }
 
-      
+                });
+            }
+            else
+                return null;
+        }
+
+
 
         function onFileChange(el, id, hdn) {
             debugger;

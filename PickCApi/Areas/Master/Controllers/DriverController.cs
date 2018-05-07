@@ -350,7 +350,71 @@ namespace PickCApi.Areas.Master.Controllers
                 return InternalServerError(ex);
             }
         }
-        
+
+
+        [HttpGet]
+        [Route("AadharCardNoExist/{Aadharcardno}")]
+        public IHttpActionResult Aadharcardexist(string AadharCardNo)
+        {
+            try
+            {
+                var OPerator = new DriverBO().GetDriverDetailsbyaadhar(AadharCardNo);
+
+                return Ok(OPerator);
+            }
+            catch (Exception ex)
+            {
+                return InternalServerError(ex);
+            }
+        }
+
+        [HttpGet]
+        [Route("PanCardNoExist/{Pancardno}")]
+        public IHttpActionResult Pancardexist(string PanCardNo)
+        {
+            try
+            {
+                var OPerator = new DriverBO().GetDriverDetailsbyPan(PanCardNo);
+
+                return Ok(OPerator);
+            }
+            catch (Exception ex)
+            {
+                return InternalServerError(ex);
+            }
+        }
+
+        [HttpGet]
+        [Route("MobileNoExist/{Mobileno}")]
+        public IHttpActionResult Mobilenoexist(string MobileNo)
+        {
+            try
+            {
+                var OPerator = new DriverBO().GetDriverDetailsbyMobileNo(MobileNo);
+
+                return Ok(OPerator);
+            }
+            catch (Exception ex)
+            {
+                return InternalServerError(ex);
+            }
+        }
+
+        [HttpGet]
+        [Route("AccountNoExist/{Accountno}")]
+        public IHttpActionResult Accountnoexist(string AccountNo)
+        {
+            try
+            {
+                var Driver = new OperatorBO().GetOperatorDetailsbyAccountno(AccountNo);
+
+                return Ok(Driver);
+            }
+            catch (Exception ex)
+            {
+                return InternalServerError(ex);
+            }
+        }
 
     }
 }

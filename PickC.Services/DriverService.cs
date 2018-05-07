@@ -220,5 +220,67 @@ namespace PickC.Services
                 return ServiceResponse<List<DriverPendingAmount>>(client.Execute<List<DriverPendingAmount>>(request));
             });
         }
+
+        public async Task<string> IsAadharExistsAsync(string aadharno)
+        {
+            IRestClient client = new RestClient(ApiBaseUrl);
+            var request = p_request;
+            request.Method = Method.GET;
+            request.Resource = "master/driver/AadharCardNoExist/{Aadharcardno}";
+            request.AddParameter("Aadharcardno", aadharno, ParameterType.UrlSegment);
+
+
+            return await Task.Run(() =>
+            {
+                return ServiceResponse(client.Execute(request));
+            });
+        }
+
+
+        public async Task<string> IsPancardExistsAsync(string pancardno)
+        {
+            IRestClient client = new RestClient(ApiBaseUrl);
+            var request = p_request;
+            request.Method = Method.GET;
+            request.Resource = "master/driver/PanCardNoExist/{Pancardno}";
+            request.AddParameter("Pancardno", pancardno, ParameterType.UrlSegment);
+
+
+            return await Task.Run(() =>
+            {
+                return ServiceResponse(client.Execute(request));
+            });
+        }
+
+        public async Task<string> IsMobileNoExistsAsync(string mobileno)
+        {
+            IRestClient client = new RestClient(ApiBaseUrl);
+            var request = p_request;
+            request.Method = Method.GET;
+            request.Resource = "master/driver/MobileNoExist/{Mobileno}";
+            request.AddParameter("Mobileno", mobileno, ParameterType.UrlSegment);
+
+
+            return await Task.Run(() =>
+            {
+                return ServiceResponse(client.Execute(request));
+            });
+        }
+
+        public async Task<string> IsAccountNoExistsAsync(string accountno)
+        {
+            IRestClient client = new RestClient(ApiBaseUrl);
+            var request = p_request;
+            request.Method = Method.GET;
+            request.Resource = "master/driver/AccountNoExist/{Accountno}";
+            request.AddParameter("Accountno", accountno, ParameterType.UrlSegment);
+
+
+            return await Task.Run(() =>
+            {
+                return ServiceResponse(client.Execute(request));
+            });
+        }
+
     }
 }

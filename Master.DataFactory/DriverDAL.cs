@@ -865,5 +865,23 @@ namespace Master.DataFactory
                 MapBuilder<DriverPendingAmount>.BuildAllProperties()).ToList();
         }
 
+        public int GetDriverDetailsbyaadharno(string aadharno)
+        {
+            var result = Convert.ToInt32(db.ExecuteScalar(db.GetStoredProcCommand(DBRoutine.DRIVERAADHARCARDEXIST, aadharno)));
+            return result;
+        }
+
+        public int GetDriverDetailsbyPanno(string panno)
+        {
+            var result = Convert.ToInt32(db.ExecuteScalar(db.GetStoredProcCommand(DBRoutine.DRIVERPANCARDEXIST, panno)));
+            return result;
+        }
+
+        public int GetDriverDetailsbyMobileNo(string mobileno)
+        {
+            var result = Convert.ToInt32(db.ExecuteScalar(db.GetStoredProcCommand(DBRoutine.DRIVERMOBILENOEXIST, mobileno)));
+            return result;
+        }
+
     }
 }
