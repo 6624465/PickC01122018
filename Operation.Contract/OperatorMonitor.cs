@@ -10,9 +10,16 @@ namespace Operation.Contract
     {
         public string DriverName { get; set; }
 
+        public string DriverID { get; set; }
+
+        public string MobileNo { get; set; }
+
+
         public string VehicleRegistrationNo { get; set; }
 
-        public Int16 VehicleType { get; set; }
+        public string VehicleType { get; set; }
+
+        public string VehicleGroup { get; set; }
 
         public decimal Latitude { get; set; }
 

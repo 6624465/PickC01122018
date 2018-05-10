@@ -398,6 +398,7 @@ namespace PickCApi.Areas.Master.Controllers
         {
             try
             {
+                 
                 var result = new OperatorBO().DetachOperatorwisedrivervehicleattachedlist(operatorWiseDriverVehicleAttachedTodayList);
                 if (result == true)
                     return Ok(new { Status = UTILITY.SUCCESSMESSAGE });
