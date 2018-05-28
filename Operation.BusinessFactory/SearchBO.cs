@@ -43,9 +43,9 @@ namespace Operation.BusinessFactory
             return searchDAL.SearchBookingsHistory(bookingFrom, bookingTo);
         }
 
-        public List<TrackCRNVm> BookingBycrn(string bookingno)
+        public Booking GetBookingByCRN(string bookingno)
         { 
-            return searchDAL.BookingBycrn(bookingno);
+            return searchDAL.GetBookingByCRN(bookingno);
         }
     }
 }

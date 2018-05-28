@@ -58,7 +58,7 @@ namespace Operation.DataFactory
         }
 
 
-        public List<TrackCRNVm> BookingBycrn(string bookingno)
+        public  Booking GetBookingByCRN(string bookingno)
         { 
             return db.ExecuteSprocAccessor(DBRoutine.BOOKINGBYBOOKINGNO, MapBuilder<Booking>.BuildAllProperties(), bookingno).FirstOrDefault();
         }
