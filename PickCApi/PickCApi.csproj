@@ -16,7 +16,7 @@
     <RootNamespace>PickCApi</RootNamespace>
     <AssemblyName>PickCApi</AssemblyName>
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
-    <UseIISExpress>true</UseIISExpress>
+    <UseIISExpress>false</UseIISExpress>
     <Use64BitIISExpress />
     <IISExpressSSLPort />
     <IISExpressAnonymousAuthentication />
@@ -52,7 +52,8 @@
     <Reference Include="itextsharp.xmlworker, Version=5.5.12.0, Culture=neutral, PublicKeyToken=8354ae6d2174ddca, processorArchitecture=MSIL">
       <HintPath>..\packages\itextsharp.xmlworker.5.5.12\lib\itextsharp.xmlworker.dll</HintPath>
     </Reference>
-    <Reference Include="MCPG.CCA.Util">
+    <Reference Include="MCPG.CCA.Util, Version=1.0.0.0, Culture=neutral, PublicKeyToken=e6a3b8f321ea9c04, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
       <HintPath>C:\dlls\MCPG.CCA.Util.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.CodeDom.Providers.DotNetCompilerPlatform, Version=1.0.7.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
@@ -85,6 +86,9 @@
     </Reference>
     <Reference Include="NLog, Version=4.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c, processorArchitecture=MSIL">
       <HintPath>..\packages\NLog.4.4.12\lib\net45\NLog.dll</HintPath>
+    </Reference>
+    <Reference Include="paytm">
+      <HintPath>C:\dlls\paytm.dll</HintPath>
     </Reference>
     <Reference Include="System.Net.Http" />
     <Reference Include="System.Web.Cors, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
@@ -146,10 +150,12 @@
     <Content Include="Areas\Master\Views\Driver\companyinvoice%281%29.html" />
     <Content Include="Areas\Master\Views\Driver\driverinvoice.html" />
     <Content Include="Areas\Master\Views\Driver\font-awesome.css" />
+    <Content Include="ccavResponseHandler.aspx" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\Site.css" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="GenerateChecksum.aspx" />
     <Content Include="getRSA.aspx" />
     <Content Include="Global.asax" />
     <Content Include="Images\128-Large-closed.png" />
@@ -194,6 +200,7 @@
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
     <Content Include="Scripts\modernizr-2.6.2.js" />
+    <Content Include="VerifyChecksum.aspx" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
@@ -239,10 +246,21 @@
     <Compile Include="Areas\Operation\DTO\TripEstimateDTO.cs" />
     <Compile Include="Areas\Operation\DTO\TrucksInRangeDTO.cs" />
     <Compile Include="Areas\Operation\OperationAreaRegistration.cs" />
+    <Compile Include="ccavResponseHandler.aspx.cs">
+      <DependentUpon>ccavResponseHandler.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ccavResponseHandler.aspx.designer.cs">
+      <DependentUpon>ccavResponseHandler.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Core\ApiAuthFilter.cs" />
     <Compile Include="Core\LoggingFilterAttribute.cs" />
     <Compile Include="Core\NLogger.cs" />
     <Compile Include="Core\OperatorAPIAuthFilter.cs" />
+    <Compile Include="GenerateChecksum.aspx.cs">
+      <DependentUpon>GenerateChecksum.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
     <Compile Include="getRSA.aspx.cs">
       <DependentUpon>getRSA.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -253,9 +271,14 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="PayTMConstants.cs" />
     <Compile Include="UTILITY.cs" />
     <Compile Include="Utility\EmailGenerator.cs" />
     <Compile Include="Utility\smsGenerator.cs" />
+    <Compile Include="VerifyChecksum.aspx.cs">
+      <DependentUpon>VerifyChecksum.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Content Include="Areas\Master\Views\Driver\CompanyInvoice.cshtml" />
@@ -326,11 +349,11 @@
     <VisualStudio>
       <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
         <WebProjectProperties>
-          <UseIIS>False</UseIIS>
+          <UseIIS>True</UseIIS>
           <AutoAssignPort>True</AutoAssignPort>
           <DevelopmentServerPort>59648</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
-          <IISUrl>http://localhost:1234/</IISUrl>
+          <IISUrl>http://localhost/PickCApi</IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
           <UseCustomServer>False</UseCustomServer>
           <CustomServerUrl>

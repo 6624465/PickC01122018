@@ -10,6 +10,8 @@ using System.Configuration;
 using PickC.Services.DTO;
 
 using Operation.BusinessFactory;
+using CCA.Util;
+using System.Collections.Specialized;
 
 namespace PickCApi.Areas.Operation.Controllers
 {
@@ -80,11 +82,41 @@ namespace PickCApi.Areas.Operation.Controllers
             return Ok("Cancelled");
         }
 
+
+        //public IHttpActionResult redirect(string mobile, string bookingNo, string encResp)
+
         [HttpGet]
         [Route("ccavenue/redirect/{mobile}/{bookingNo}")]
-        public IHttpActionResult redirect(string mobile,string bookingNo)
+        public IHttpActionResult redirect(string mobile, string bookingNo)
         {
+            //string response=string.Empty;
+            //string workingKey = ConfigurationManager.AppSettings["CCAVENUE_ACCESS_CODE"]; //put in the 32bit alpha numeric key in the quotes provided here
+            //string workingKeyStaging = "016DCDDA144D77F103E7923DC30C6DED";
+
+            //CCACrypto ccaCrypto = new CCACrypto();
+            //string encResponse = ccaCrypto.Decrypt(encResp, workingKeyStaging);
+            //NameValueCollection Params = new NameValueCollection();
+            //string[] segments = encResponse.Split('&');
+            //foreach (string seg in segments)
+            //{
+            //    string[] parts = seg.Split('=');
+            //    if (parts.Length > 0)
+            //    {
+            //        string Key = parts[0].Trim();
+            //        string Value = parts[1].Trim();
+            //        Params.Add(Key, Value);
+            //    }
+            //}
+
+            //for (int i = 0; i < Params.Count; i++)
+            //{
+            //    response += Params.Keys[i] + " = " + Params[i];
+            //}
+
+            //return Ok(response);
+
             return Ok("redirected");
+
         }
 
         private string postPaymentRequestToGateway(String queryUrl, String urlParam)
@@ -184,5 +216,20 @@ namespace PickCApi.Areas.Operation.Controllers
     {
         public string Access_code { get; set; }
         public string Order_id { get; set; }
+    }
+
+
+    public class PayTMData
+    {
+        public string CustomerID { get; set; }
+
+        public string OrderNo { get; set; }
+
+        public decimal Amount { get; set; }
+
+        public string MobileNo { get; set; }
+
+        public string CustomerEmailID { get; set; }
+
     }
 }

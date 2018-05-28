@@ -27,6 +27,7 @@ using PickCApi.Areas.Operation.DTO;
 using PickCApi.Areas.Operation.Controllers;
 using PickC.Services.DTO;
 using System.Web.Http.Tracing;
+using paytm;
 
 namespace PickCApi.Areas.Master.Controllers
 {
@@ -948,14 +949,58 @@ namespace PickCApi.Areas.Master.Controllers
                 return InternalServerError(ex);
             }
         }
+
+        [HttpPost]
+        [Route("GeneratePayTMCheckSum")]
+        public IHttpActionResult GeneratePayTMCheckSum(PayTMData paytmdata)
+        {
+            string paytmChecksum = string.Empty;
+
+            try
+            {
+                Dictionary<string, string> parameters = new Dictionary<string, string>();
+                parameters.Add("CALLBACK_URL", String.Format("{0}{1}", PayTMSTAGINGConstants.CALLBACK_URL, paytmdata.OrderNo)); //Provided by Paytm
+                parameters.Add("CHANNEL_ID", PayTMSTAGINGConstants.CHANNEL_ID); //Provided by Paytm
+                parameters.Add("CUST_ID", paytmdata.CustomerID); // unique customer identifier 
+                parameters.Add("INDUSTRY_TYPE_ID", PayTMSTAGINGConstants.INDUSTRY_TYPE_ID); //Provided by Paytm
+                parameters.Add("MID", PayTMSTAGINGConstants.MID); //Provided by Paytm
+                parameters.Add("ORDER_ID", paytmdata.OrderNo); //unique OrderId for every request
+                parameters.Add("TXN_AMOUNT", paytmdata.Amount.ToString()); // transaction amount
+                parameters.Add("WEBSITE", PayTMSTAGINGConstants.WEBSITE); //Provided by Paytm
+                 
+
+
+                foreach (string key in parameters.Keys)
+                {
+                    if (parameters[key].ToUpper().Contains("REFUND") || parameters[key].ToUpper().Contains("|"))
+                    {
+                        parameters[key] = "";
+                    }
+                }
+
+                paytmChecksum = CheckSum.generateCheckSum(PayTMConstants.MERCHANT_KEY, parameters);
+                  
+            }
+            catch (Exception ex)
+            {
+                return InternalServerError(ex);
+
+            }
+
+            return Ok(paytmChecksum);
+        }
+
+
+
         [HttpPost]
         [Route("getRSAKey")]
         public IHttpActionResult getRSAKey(RSAObject obj)
         {
             try {
-            var CCAVENUE_ACCESS_CODE = ConfigurationManager.AppSettings["CCAVENUE_ACCESS_CODE"];
-            if (CCAVENUE_ACCESS_CODE == obj.Access_code)
-            {
+                var CCAVENUE_ACCESS_CODE = ConfigurationManager.AppSettings["CCAVENUE_ACCESS_CODE"];
+                var CCAVENUE_ACCESS_CODE_LOCAL = "AVJX78FE15BT74XJTB"; // 183.83.198.154
+                if (CCAVENUE_ACCESS_CODE == obj.Access_code || CCAVENUE_ACCESS_CODE_LOCAL == obj.Access_code)
+                {
                 string vParams = "access_code=" + obj.Access_code + "&" + "order_id=" + obj.Order_id;
                 string queryUrl = "https://secure.ccavenue.com/transaction/getRSAKey";
                 var encStr = postPaymentRequestToGateway(queryUrl, vParams);
@@ -978,6 +1023,8 @@ namespace PickCApi.Areas.Master.Controllers
             }
         }
         #region apart from customer app
+
+         
         private string postPaymentRequestToGateway(String queryUrl, String urlParam)
         {
             String message = "";
