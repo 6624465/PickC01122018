@@ -48,7 +48,7 @@ namespace Operation.DataFactory
         /// </summary>
         /// 
 
-        public const string BOOKINGBYBOOKINGNO = "[Operation].[usp_BookingListByBookingNo2]";
+        public const string BOOKINGBYBOOKINGNO = "[Operation].[usp_BookingListByBookingNo2]"; // used for current bookings map
 
         public const string SELECTBOOKING = "[Operation].[usp_BookingSelect]";
         public const string LISTBOOKING = "[Operation].[usp_BookingList]";
