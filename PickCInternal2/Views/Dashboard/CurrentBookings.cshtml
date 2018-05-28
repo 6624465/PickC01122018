@@ -11,11 +11,6 @@
             margin: 0px;
             padding: 0px;
         }
-         #dvMap {
-            width: 100%;
-            min-height: 45.2vh !important;
-            height: 55vh;
-        }
     </style>
 }
 
@@ -86,8 +81,7 @@
                                         <div style="float:left;padding-left:10px;">
                                             <span style="display:block">@item.DriverName</span>
                                             <span style="display:block"> @item.DriverId</span>
-                                            @*<span style="display:block"> @item.BookingNo</span>*@
-                                            <a class="hand" onclick="trackCrnClick('@item.BookingNo')">@item.BookingNo</a>
+                                            <span style="display:block"> @item.BookingNo</span>
                                         </div>
                                         <div class="clearfix"></div>                                        
                                     </li>
@@ -95,15 +89,9 @@
                             </ul>
                         </div>
                     </div>
-                    @*<div class="col-md-9">
+                    <div class="col-md-9">
                         <div id="map" style="border: 1px solid rgba(255,255,255,0.15);"></div>
-                    </div>*@
-
-                    
-                        <div class="col-md-9">
-                            <div id="dvMap" style="height:425px;position: relative; overflow: hidden; background-color: rgb(229, 227, 223);"></div>
-                        </div>
-                   
+                    </div>
                 </div>
             </div>
         </div>
@@ -113,20 +101,13 @@
     {
         <input type="hidden" name="status" id="status" />
     }
-
-@using (Html.BeginForm("TrackCrn", "Dashboard", FormMethod.Post, new { id = "frmTrackCrn", name = "frmTrackCrn" }))
-{
-    <input type="hidden" name="trackcrn" id="trackcrn" />
-}
 </section>
 
 
 @section secscripts{
     <script src="@Url.Content("~/Scripts/jquery.validate.js")"></script>
-<script src="~/Scripts/stopExecutionOnTimeout.js"></script>
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD7WVBL9AmhKs1QAr4x7mArA2mKZY-9nUo&v=3.exp&libraries=places&sensor=true"></script>
-<script src="~/Scripts/trackcrn.js"></script>
-     <script type="text/javascript">
+    <script type="text/javascript">
         $(document).ready(function () {
             $('#dates_fromDate,#dates_toDate').datepicker();
             $('#frmCurrentBookings').validate({
@@ -140,30 +121,6 @@
                 }
             });
         });
-
-
-        function trackCrnClick(bookingno) {
-            debugger;
-            var trackCrnNon = bookingno;
-            $('#trackcrn').val(bookingno);
-            //var trackCrnNon = $('#trackCrnNo').val();
-            if (trackCrnNon != '') {
-                $('#frmTrackCrn').submit();
-                //$('#divtrackcrn').hide();
-            }
-            else {
-                $('#divtrackcrn').show();
-
-
-            }
-
-        }
-
-
-
-
-
-
 		$(function () {
 			setInterval(function () {
 				location.reload();
@@ -180,8 +137,7 @@
 
             }
 
-		    $('#ddlSearchCustomerByStatus').on("change", function () {
-		        debugger;
+                    $('#ddlSearchCustomerByStatus').on("change", function () {
                 $('#status').val($('#ddlSearchCustomerByStatus').val());
                 $('#frm').submit();
             });

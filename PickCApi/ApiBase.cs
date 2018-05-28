@@ -44,12 +44,12 @@ namespace PickCApi
                 var data = new
                 {
                     to = toDeviceId,
-                    //notification = new
-                    //{
-                    //    body = message,
-                    //    title = "Alert",
-                    //    sound = "Enabled"
-                    //},
+                    notification = new
+                    {
+                        body = message,
+                        title = bookingNo,
+                        sound = "Enabled"
+                    },
                     data = new
                     {
                         bookingNo = bookingNo,
