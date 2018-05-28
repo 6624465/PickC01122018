@@ -84,5 +84,17 @@ namespace PickC.Services
 
         }
 
+        public async Task<List<TrackCRNVm>> GetByBookingNo( string bookingnumber)
+        {
+            IRestClient client = new RestClient(ApiBaseUrl);
+            var request = p_request;
+            request.Method = Method.POST;
+            request.Resource = "operation/search/BookingBycrn";
+            request.AddJsonBody(bookingnumber);
+
+            return ServiceResponse(
+                await client.ExecuteTaskAsync<List<TrackCRNVm>>(request));
+        }
+
     }
 }

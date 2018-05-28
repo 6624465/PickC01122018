@@ -77,7 +77,7 @@ namespace PickCApi.Areas.Operation.Controllers
                 var bookingresult = new SearchBO().CurrentBookingByStatus(status);
                 return Ok(bookingresult);
             }
-            catch (Exception ex)
+             catch (Exception ex)
             {
                 return InternalServerError(ex);
             }
@@ -100,6 +100,22 @@ namespace PickCApi.Areas.Operation.Controllers
             {
                 return InternalServerError(ex);
             }
+        }
+
+        [HttpPost]
+        [Route("BookingBycrn")]
+        public IHttpActionResult bookingbycrn(string  bookingno)
+        {
+            try
+            {
+                var bookingresult = new SearchBO().BookingBycrn(bookingbycrn);
+                return Ok(bookingresult);
+            }
+            catch (Exception ex)
+            {
+                return InternalServerError(ex);
+            }
+
         }
 
     }

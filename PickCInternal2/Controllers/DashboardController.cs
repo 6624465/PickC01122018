@@ -443,11 +443,45 @@ namespace PickC.Internal2.Controllers
 		{
 			return View();
 		}
-	}
+
+        [HttpPost]
+
+        private TrackCRNVm GetData(string trackCrnNo)
+        {
+            // var booking = new BookingBO().GetByBookingNo(trackCrnNo);
+            var booking=  await new UserService(AUTHTOKEN, p_mobileNo).GetByBookingNo(trackCrnNo);
+
+            DriverMonitorInCustomer driverMonitorInCustomer = null;
+            if (booking != null && !booking.IsComplete && booking.IsConfirm && !booking.IsCancel)
+            {
+                driverMonitorInCustomer = new DriverActivityBO().GetDriverMonitorInCustomer(new DriverMonitorInCustomer { DriverId = booking.DriverId });
+            }
+
+            TrackCRNVm obj = new TrackCRNVm
+            {
+                booking = booking,
+                driverMonitorInCustomer = driverMonitorInCustomer
+            };
+
+            return obj;
+        }
+
+
+        public ActionResult TrackCrn(string trackCrnNo)
+        {
+            TempData["TD:TrackCRNVm"] = GetData(trackCrnNo);
+            TempData["TD:IsTrackCRN"] = true;
+
+            return View("index", new Booking { });
+        }
+
+
+    }
 
 	public class SelectValueText
 	{
 		public string Value { get; set; }
 		public string Text { get; set; }
 	}
+    
 }

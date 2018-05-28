@@ -93,6 +93,11 @@ namespace Operation.Contract
         public decimal InvoiceAmount { get; set; }
         public string InvoiceNo { get; set; }
     }
+    public class TrackCRNVm
+    {
+        public Booking booking { get; set; }
+        public DriverMonitorInCustomer driverMonitorInCustomer { get; set; }
+    }
 }
 
 
