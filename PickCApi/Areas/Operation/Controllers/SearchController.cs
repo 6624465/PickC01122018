@@ -105,7 +105,7 @@ namespace PickCApi.Areas.Operation.Controllers
         [HttpPost]
         [Route("BookingBycrn")]
         public IHttpActionResult bookingbycrn(string  bookingno)
-        {
+        { 
             try
             {
                 var bookingresult = new SearchBO().BookingBycrn(bookingbycrn);

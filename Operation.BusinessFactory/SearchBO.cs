@@ -44,7 +44,7 @@ namespace Operation.BusinessFactory
         }
 
         public List<TrackCRNVm> BookingBycrn(string bookingno)
-        {
+        { 
             return searchDAL.BookingBycrn(bookingno);
         }
     }

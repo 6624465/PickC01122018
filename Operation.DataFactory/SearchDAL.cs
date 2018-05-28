@@ -59,7 +59,7 @@ namespace Operation.DataFactory
 
 
         public List<TrackCRNVm> BookingBycrn(string bookingno)
-        {
+        { 
             return db.ExecuteSprocAccessor(DBRoutine.BOOKINGBYBOOKINGNO, MapBuilder<Booking>.BuildAllProperties(), bookingno).FirstOrDefault();
         }
     }
