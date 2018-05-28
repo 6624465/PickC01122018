@@ -11,7 +11,7 @@ using Operation.Contract;
 using Operation.DataFactory;
 namespace Operation.DataFactory
 {
-   public class SearchDAL
+    public class SearchDAL
     {
         private Database db;
         private DbTransaction currentTransaction = null;
@@ -27,7 +27,7 @@ namespace Operation.DataFactory
         }
 
         public List<Booking> SearchBookings(string bookingNo,
-            DateTime? bookingDate, int vehicleGroup, int vehicleType,string customerName,string vehicleNumber)
+            DateTime? bookingDate, int vehicleGroup, int vehicleType, string customerName, string vehicleNumber)
         {
 
 
@@ -37,12 +37,13 @@ namespace Operation.DataFactory
                                             bookingNo, bookingDate, vehicleGroup, vehicleType, customerName, vehicleNumber).ToList();
         }
 
-        public List<Booking> BookingsByDate(DateTime fromdate,DateTime todate) {
+        public List<Booking> BookingsByDate(DateTime fromdate, DateTime todate)
+        {
             return db.ExecuteSprocAccessor(DBRoutine.BOOKINGBYDATES, MapBuilder<Booking>.BuildAllProperties(), fromdate, todate).ToList();
         }
         public List<Booking> CurrentBookingsByStatus(int? Status)
         {
-            return db.ExecuteSprocAccessor(DBRoutine.LISTOFBOOKINGBYSTATUS, MapBuilder<Booking>.BuildAllProperties(),Status).ToList();
+            return db.ExecuteSprocAccessor(DBRoutine.LISTOFBOOKINGBYSTATUS, MapBuilder<Booking>.BuildAllProperties(), Status).ToList();
         }
         public List<Booking> GetList()
         {
@@ -54,6 +55,12 @@ namespace Operation.DataFactory
                                              MapBuilder<Booking>
                                              .BuildAllProperties(),
                                              bookingFrom, bookingTo).ToList();
+        }
+
+
+        public List<TrackCRNVm> BookingBycrn(string bookingno)
+        { 
+            return db.ExecuteSprocAccessor(DBRoutine.BOOKINGBYBOOKINGNO, MapBuilder<Booking>.BuildAllProperties(), bookingno).FirstOrDefault();
         }
     }
 }

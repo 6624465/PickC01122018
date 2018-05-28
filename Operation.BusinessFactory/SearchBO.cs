@@ -33,7 +33,7 @@ namespace Operation.BusinessFactory
         }
         public List<Booking> CurrentBookingByStatus(int? Status)
         {
-            return searchDAL.CurrentBookingsByStatus(Status);
+             return searchDAL.CurrentBookingsByStatus(Status);
         }
         public List<Booking> BookingByDate(DateTime fromdate , DateTime todate) {
             return searchDAL.BookingsByDate(fromdate,todate);
@@ -41,6 +41,11 @@ namespace Operation.BusinessFactory
         public List<Booking> SearchBookingsHistory(DateTime bookingFrom, DateTime bookingTo)
         {
             return searchDAL.SearchBookingsHistory(bookingFrom, bookingTo);
+        }
+
+        public List<TrackCRNVm> BookingBycrn(string bookingno)
+        { 
+            return searchDAL.BookingBycrn(bookingno);
         }
     }
 }
