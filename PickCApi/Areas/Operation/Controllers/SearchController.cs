@@ -108,7 +108,7 @@ namespace PickCApi.Areas.Operation.Controllers
         { 
             try
             {
-                var bookingresult = new SearchBO().BookingBycrn(bookingbycrn);
+                var bookingresult = new SearchBO().GetBookingByCRN(bookingno);
                 return Ok(bookingresult);
             }
             catch (Exception ex)
