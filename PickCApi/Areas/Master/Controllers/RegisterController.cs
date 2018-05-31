@@ -28,6 +28,7 @@ using PickCApi.Areas.Operation.Controllers;
 using PickC.Services.DTO;
 using System.Web.Http.Tracing;
 using paytm;
+using System.Web.Script.Serialization;
 
 namespace PickCApi.Areas.Master.Controllers
 {
@@ -950,6 +951,10 @@ namespace PickCApi.Areas.Master.Controllers
             }
         }
 
+
+        #region PayTM Integration
+
+
         [HttpPost]
         [Route("GeneratePayTMCheckSum")]
         public IHttpActionResult GeneratePayTMCheckSum(PayTMData paytmdata)
@@ -991,6 +996,74 @@ namespace PickCApi.Areas.Master.Controllers
         }
 
 
+        [HttpPost]
+        [Route("CheckPayTMTransactionStatus")]
+        public IHttpActionResult CheckPayTMTransactionStatus(PayTMData paytmdata)
+        {
+            string returnvalue = string.Empty;
+
+            string value = "https://securegw-stage.paytm.in/merchant-status/getTxnStatus=";
+
+            Dictionary<string, string> innerrequest = new Dictionary<string, string>();
+            Dictionary<string, string> outerrequest = new Dictionary<string, string>();
+
+
+
+            innerrequest.Add("MID", PayTMSTAGINGConstants.MID);
+            innerrequest.Add("ORDERID", paytmdata.OrderNo);
+
+
+            String first_jason = new JavaScriptSerializer().Serialize(innerrequest);
+
+
+            first_jason = first_jason.Replace("\\", "").Replace(":\"{", ":{").Replace("}\",", "},");
+
+            string Check = paytm.CheckSum.generateCheckSum(PayTMConstants.MERCHANT_KEY, innerrequest);
+            string correct_check = HttpUtility.UrlEncode(Check);
+
+            innerrequest.Add("CHECKSUMHASH", correct_check);
+
+
+            String final = new JavaScriptSerializer().Serialize(innerrequest);
+            final = final.Replace("\\", "").Replace(":\"{", ":{").Replace("}\",", "},");
+
+            String url = value + final;
+
+            HttpWebRequest request = (HttpWebRequest)WebRequest.Create(url);
+
+
+
+            request.Headers.Add("ContentType", "application/json");
+            request.Method = "POST";
+
+            using (StreamWriter requestWriter2 = new StreamWriter(request.GetRequestStream()))
+            {
+                requestWriter2.Write(final);
+
+            }
+
+            string responseData = string.Empty;
+
+
+
+            using (StreamReader responseReader = new StreamReader(request.GetResponse().GetResponseStream()))
+            {
+                responseData = responseReader.ReadToEnd();
+
+                //Response.Write(responseData);
+                //Response.Write("Requested Json= " + final);
+
+                returnvalue = responseData;
+                returnvalue += ("Requested Json= " + final);
+
+            }
+
+            return Ok(returnvalue);
+        }
+
+        #endregion
+
+        #region CCAvenues Integration
 
         [HttpPost]
         [Route("getRSAKey")]
@@ -1054,6 +1127,7 @@ namespace PickCApi.Areas.Master.Controllers
         }
 
 
+        #endregion
 
 
 
