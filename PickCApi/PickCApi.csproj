@@ -189,6 +189,7 @@
     <Content Include="Images\thankyou.png" />
     <Content Include="Images\thumb.png" />
     <Content Include="InvoiceContent.txt" />
+    <Content Include="PayTMTransactionStatus.aspx" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <None Include="Properties\PublishProfiles\CustomProfile.pubxml" />
@@ -273,6 +274,13 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="PayTMConstants.cs" />
+    <Compile Include="PayTMTransactionStatus.aspx.cs">
+      <DependentUpon>PayTMTransactionStatus.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="PayTMTransactionStatus.aspx.designer.cs">
+      <DependentUpon>PayTMTransactionStatus.aspx</DependentUpon>
+    </Compile>
     <Compile Include="UTILITY.cs" />
     <Compile Include="Utility\EmailGenerator.cs" />
     <Compile Include="Utility\smsGenerator.cs" />

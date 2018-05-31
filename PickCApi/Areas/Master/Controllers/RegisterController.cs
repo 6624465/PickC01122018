@@ -1002,7 +1002,7 @@ namespace PickCApi.Areas.Master.Controllers
         {
             string returnvalue = string.Empty;
 
-            string value = "https://securegw-stage.paytm.in/merchant-status/getTxnStatus=";
+            string value = "https://securegw-stage.paytm.in/merchant-status/getTxnStatus?JsonData=";
 
             Dictionary<string, string> innerrequest = new Dictionary<string, string>();
             Dictionary<string, string> outerrequest = new Dictionary<string, string>();
