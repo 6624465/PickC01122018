@@ -84,5 +84,38 @@ namespace PickC.Services
 
         }
 
+      
+            public async Task<DriverMonitorInCustomer> GetDriverMonitorInCustomer(DriverMonitorInCustomer obj)
+        {
+            IRestClient client = new RestClient(ApiBaseUrl);
+            var request = p_request;
+            request.Method = Method.POST;
+            request.Resource = "operation/Search/GetDriverMonitorInCustomer";
+            request.AddJsonBody(obj);
+
+            return ServiceResponse(
+                await client.ExecuteTaskAsync<DriverMonitorInCustomer>(request));
+
+        }
+
+
+
+        public async Task<Booking> GetBookingDataByBookingno(string bookingno)
+        {
+            IRestClient client = new RestClient(ApiBaseUrl);
+            var request = p_request;
+            request.Method = Method.POST;
+            request.Resource = "operation/search/bookingBycrn/{bookingno}";
+            request.AddParameter("bookingno", bookingno, ParameterType.UrlSegment);
+
+            return ServiceResponse(
+                await client.ExecuteTaskAsync<Booking>(request));
+
+        }
+
+
+
+
+
     }
 }

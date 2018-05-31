@@ -10,6 +10,7 @@ using PickC.Services.DTO;
 using Operation.Contract;
 using Operation.BusinessFactory;
 using Master.Contract;
+using Newtonsoft.Json;
 
 namespace PickC.Internal2.Controllers
 {
@@ -443,7 +444,111 @@ namespace PickC.Internal2.Controllers
 		{
 			return View();
 		}
-	}
+
+       // [HttpPost]
+        //private async Task<ActionResult>GetData(string trackCrnNo)
+        //{
+        //    //var booking = new BookingBO().GetByBookingNo(trackCrnNo);
+        //    var booking= await new UserService(AUTHTOKEN, p_mobileNo).GetBookingDataByBookingno(trackCrnNo);
+        //    DriverMonitorInCustomer driverMonitorInCustomer = null;
+        //    if (booking != null && !booking.IsComplete && booking.IsConfirm && !booking.IsCancel)
+        //    {
+        //        //driverMonitorInCustomer = new DriverActivityBO().GetDriverMonitorInCustomer(new DriverMonitorInCustomer { DriverId = booking.DriverId });
+
+        //        var driverid = booking.DriverId;
+        //        driverMonitorInCustomer = await new UserService(AUTHTOKEN, p_mobileNo).GetDriverMonitorInCustomer(new DriverMonitorInCustomer { DriverId = booking.DriverId });
+
+        //    }
+
+        //    TrackCRNVm obj = new TrackCRNVm
+        //    {
+        //        booking = booking,
+        //        driverMonitorInCustomer = driverMonitorInCustomer
+        //    };
+            
+        //    return Json(obj);
+        //}
+        private async Task<TrackCRNVm> GetData(string trackCrnNo)
+        {
+            var booking = await new UserService(AUTHTOKEN, p_mobileNo).GetBookingDataByBookingno(trackCrnNo);
+            DriverMonitorInCustomer driverMonitorInCustomer = null;
+            if (booking != null && !booking.IsComplete && booking.IsConfirm && !booking.IsCancel)
+            {
+                var driverid = booking.DriverId;
+                driverMonitorInCustomer = await new UserService(AUTHTOKEN, p_mobileNo).GetDriverMonitorInCustomer(new DriverMonitorInCustomer { DriverId = booking.DriverId });
+            }
+
+            TrackCRNVm obj = new TrackCRNVm
+            {
+                booking = booking,
+                driverMonitorInCustomer = driverMonitorInCustomer
+            };
+
+            return obj;
+        }
+
+        [HttpGet]
+        public async Task<ActionResult> TrackCrn(string trackCrnNo)
+        {
+            var data = GetData(trackCrnNo);
+            TempData["TD:IsTrackCRN"] = true;
+
+            var Driver = (await new OperatorDriverService(AUTHTOKEN, p_mobileNo).GetDriverList()).Select(x => new SelectValueText() { Value = x.DriverID, Text = x.DriverName }).ToList();
+            var VehicleNo = (await new OperatorDriverService(AUTHTOKEN, p_mobileNo).GetvehicleNoList()).Select(x => new SelectValueText() { Value = x.VehicleRegistrationNo, Text = x.VehicleRegistrationNo }).ToList();
+            var VehicleType = (await new OperatorVehicleService(AUTHTOKEN, p_mobileNo).GetOperatorVehicleList()).Select(x => new SelectValueText() { Value = x.LookupId.ToString(), Text = x.LookupCode }).ToList();
+            var VehicleCategory = (await new OperatorVehicleService(AUTHTOKEN, p_mobileNo).GetOperatorVehicleCategoryList()).Select(x => new SelectValueText { Value = x.LookupId.ToString(), Text = x.LookupCode }).ToList();
+            //var currentbookings = await new SearchService(AUTHTOKEN, p_mobileNo).BookingListAsync();
+            var currentbookings = await new SearchService(AUTHTOKEN, p_mobileNo).GetCustomerBySearch(0);
+       
+            var bookingSearchVM = new BookingSearchDTO();
+            bookingSearchVM.booking = currentbookings;
+            //var tripMonitor = await GetTripMonitorData();
+            //ViewBag.trips = tripMonitor;
+            var tripMonitorData = new List<TripMonitorVm>();
+            if (currentbookings != null)
+            {
+                for (var i = 0; i < currentbookings.Count; i++)
+                {
+                    var tripMonitor = new TripMonitorVm();
+                    tripMonitor.address = new ViewModals.Address
+                    {
+                        address = "",
+                        lat = currentbookings[i].Latitude.ToString(),
+                        lng = currentbookings[i].Longitude.ToString(),
+                    };
+                    tripMonitor.title = currentbookings[i].DriverId;
+                    tripMonitor.BookingNo = currentbookings[i].BookingNo;
+                    //tripMonitor.DriverName = Driver.AsEnumerable().Where(x => x.Value == currentbookings[i].DriverId).Select(x => x.Text).ToString();
+                    tripMonitor.DriverName = currentbookings[i].DriverName;//getName(Driver, currentbookings[i].DriverId);
+
+                    tripMonitor.LocationFrom = currentbookings[i].LocationFrom;
+                    tripMonitor.LocationTo = currentbookings[i].LocationTo;
+                    tripMonitor.VehicleNo = currentbookings[i].VehicleNo;
+                    tripMonitor.VehicleType = getSName(VehicleType, currentbookings[i].VehicleType);//(await new OperatorVehicleService(AUTHTOKEN, p_mobileNo).GetOperatorVehicleList()).Where(x => x.LookupId == currentbookings[i].VehicleType).Select(x => x.LookupCode).ToString(); //currentbookings[i].VehicleTypeDescription;
+                    tripMonitor.VehicleCategory = getSName(VehicleCategory, currentbookings[i].VehicleGroup);//(await new OperatorVehicleService(AUTHTOKEN, p_mobileNo).GetOperatorVehicleCategoryList()).Where(x => x.LookupId == currentbookings[i].VehicleGroup).Select(x => x.LookupCode).ToString();
+                    tripMonitor.ETA = "";
+                    tripMonitor.TripStartTime = "";
+                    tripMonitor.ArrivalTime = "";
+                    tripMonitor.WaitingTime = "";
+                    tripMonitor.Status = currentbookings[i].Status;
+                    tripMonitorData.Add(tripMonitor);
+                }
+
+                ViewBag.trips = tripMonitorData;
+            }
+           
+            TempData["TD:TrackCRNVm"] = data.Result;
+            return View("CurrentBookings", bookingSearchVM);
+        }
+
+        [HttpGet]
+        public JsonResult GetBookingData(string trackCrnNo)
+        {
+            return Json(GetData(trackCrnNo), JsonRequestBehavior.AllowGet);
+        }
+
+
+    }
 
 	public class SelectValueText
 	{

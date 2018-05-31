@@ -61,6 +61,7 @@
     <Compile Include="Roles.cs" />
     <Compile Include="Securables.cs" />
     <Compile Include="Summary.cs" />
+    <Compile Include="TrackCRNVm.cs" />
     <Compile Include="Trip.cs" />
     <Compile Include="TripMonitor.cs" />
     <Compile Include="UpdateDriverCurrentLocation.cs" />

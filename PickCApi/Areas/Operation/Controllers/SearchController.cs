@@ -8,6 +8,7 @@ using Operation.BusinessFactory;
 
 using PickC.Services.DTO;
 using PickCApi.Core;
+using Operation.Contract;
 
 namespace PickCApi.Areas.Operation.Controllers
 {
@@ -103,12 +104,30 @@ namespace PickCApi.Areas.Operation.Controllers
         }
 
         [HttpPost]
-        [Route("BookingBycrn")]
-        public IHttpActionResult bookingbycrn(string  bookingno)
-        { 
+        [Route("GetDriverMonitorInCustomer")]
+        public IHttpActionResult GetDriverMonitorInCustomer(DriverMonitorInCustomer obj)
+        {
             try
             {
-                var bookingresult = new SearchBO().BookingBycrn(bookingbycrn);
+
+                var driverMonitorInCustomer = new DriverActivityBO().GetDriverMonitorInCustomer(obj);
+                return Ok(driverMonitorInCustomer);
+            }
+            catch (Exception ex)
+            {
+                return InternalServerError(ex);
+            }
+
+        }
+
+
+        [HttpPost]
+        [Route("bookingBycrn/{bookingno}")]
+        public IHttpActionResult BookingBycrnunber(string bookingno)
+        {
+            try
+            {
+                var bookingresult = new SearchBO().GetBookingByCRN(bookingno);
                 return Ok(bookingresult);
             }
             catch (Exception ex)

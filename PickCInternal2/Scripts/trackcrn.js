@@ -75,7 +75,7 @@ function initialize() {
 var steps = [];
 
 function calcRoute() {
-
+    debugger;
     if (timerHandle) {
         clearTimeout(timerHandle);
     }
@@ -192,6 +192,7 @@ function updatePoly(d) {
 }
 
 function animate(d) {
+    debugger;
     if (d > eol) {
         map.panTo(endLocation.latlng);
         marker.setPosition(endLocation.latlng);
@@ -372,20 +373,28 @@ function startAnimation() {
         strokeColor: "#0000FF",
         strokeWeight: 10
     });
-    // map.addOverlay(poly2);
+  
+     //map.addOverlay(poly2);
     //setTimeout("animate(50)", 2000); // Allow time for the initial map display
 
-    var isModalOpen = ($("#track-crn-modal").data('bs.modal') || {}).isShown;
-    if (isModalOpen) {
-        promiseCall();
-    }
+    //var isModalOpen = ($("#track-crn-modal").data('bs.modal') || {}).isShown;
+    //if (isModalOpen) {
+    //    promiseCall();
+    //}
+    debugger;
+    promiseCall();
 }
 
 var gD = 0;
 function promiseCall() {
+    debugger;
     var promise = GetDriverCurrentLatLng(bkgTrackCrnBookingNo);
     $.when(promise).done(function (result) {
         debugger;
+        setTimeout(function () {
+            debugger;
+            promiseCall();
+        }, 10000);
         if (!result.booking.IsComplete && !result.booking.IsCancel) {
             var d = CalFromToCurrentDistance(result.driverMonitorInCustomer.CurrentLat, result.driverMonitorInCustomer.CurrentLong);
             if (gD != d) {
@@ -393,10 +402,11 @@ function promiseCall() {
                 gD = d;
             }               
             
-            setTimeout(function () {
-                promiseCall();
-            }, 3000);
-        }        
+            //setTimeout(function () {
+            //    debugger;
+            //    promiseCall();
+            //}, 10000);
+        }
     });
 }
 //google.maps.event.addDomListener(window, 'load', initialize);
